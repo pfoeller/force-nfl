@@ -474,3 +474,20 @@ body::after{right:8px;transform:scaleX(-1)}
 /* V145 QB leaderboard: keep team identity compact beside the quarterback. */
 .qb-name-team{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .qb-name-team .qb-team-mark{flex:0 0 auto}
+
+
+/* FORCE public boot loader */
+.force-boot-stage{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 34%,rgba(141,215,255,.10),transparent 34%),linear-gradient(180deg,#050b12,#07111b 58%,#050b12);color:#f5f7fa}
+.force-boot-shell{width:min(520px,92vw);display:grid;justify-items:center;gap:15px;text-align:center}
+.force-boot-mark{width:82px;height:82px;object-fit:contain;filter:drop-shadow(0 0 26px rgba(141,215,255,.20));animation:forceBootMark 1.45s ease-in-out infinite}
+.force-boot-eyebrow{font-size:10px;font-weight:900;letter-spacing:.19em;text-transform:uppercase;color:#86a8bf}
+.force-boot-title{margin:0;font-size:31px;line-height:1;font-weight:1000;letter-spacing:.07em}
+.force-boot-detail{min-height:18px;color:#8da3b5;font-size:11px;letter-spacing:.04em}
+.force-boot-meter{position:relative;width:min(380px,78vw);height:7px;overflow:hidden;border:1px solid rgba(141,215,255,.18);border-radius:99px;background:#09131d;box-shadow:inset 0 0 12px rgba(0,0,0,.45)}
+.force-boot-meter>i{display:block;height:100%;width:92%;border-radius:99px;background:linear-gradient(90deg,#5fd2ff,#8dd7ff 58%,#d9f5ff);transform-origin:left center;animation:forceBootProgress 3s cubic-bezier(.17,.84,.24,1) forwards}
+.force-boot-meter:after{content:"";position:absolute;inset:0 auto 0 -28%;width:24%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.48),transparent);animation:forceBootShimmer 1.1s linear infinite}
+.force-boot-steps{width:min(380px,78vw);display:flex;justify-content:space-between;color:#657d90;font-size:8px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+@keyframes forceBootProgress{from{transform:scaleX(.025)}to{transform:scaleX(1)}}
+@keyframes forceBootShimmer{to{left:108%}}
+@keyframes forceBootMark{0%,100%{transform:translateY(0);opacity:.82}50%{transform:translateY(-4px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.force-boot-mark,.force-boot-meter>i,.force-boot-meter:after{animation:none}.force-boot-meter>i{transform:scaleX(.92)}}

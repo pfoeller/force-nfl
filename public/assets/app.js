@@ -19,6 +19,9 @@
   const GF = window.FORCE_GAME_FLOW_PRIORS_2025 || null;
   const app = document.getElementById('app');
   const REFRESH_MS = 60 * 60 * 1000;
+  const FORCE_BOOT_MIN_MS = 3000;
+  const PUBLIC_SNAPSHOT_POLL_MS = 10 * 60 * 1000;
+  const FORCE_BOOT_STARTED_AT = (typeof performance !== 'undefined' && typeof performance.now === 'function') ? performance.now() : Date.now();
 
   // V85 diagnostic instrumentation. Keep a bounded in-browser event log so a
   // browser-only debugging session can capture the entire startup/refresh path
@@ -422,6 +425,178 @@
     return rows;
   }
 
+
+  function scheduleFromBootstrapText(scheduleText) {
+    const rows = parseCSV(scheduleText || '');
+    const h = rows[0] || [];
+    const ix = (x) => h.indexOf(x);
+    const field = (row, name) => ix(name) >= 0 ? row[ix(name)] : '';
+    const got = rows.slice(1)
+      .filter((x) => field(x, 'season') === '2026' && field(x, 'game_type') === 'REG')
+      .map((x) => {
+        const away = canon(field(x, 'away_team')), home = canon(field(x, 'home_team'));
+        return {
+          date: field(x, 'gameday'),
+          week: +field(x, 'week'),
+          away, home,
+          awayScore: numOrNull(field(x, 'away_score')),
+          homeScore: numOrNull(field(x, 'home_score')),
+          status: field(x, 'home_score') === '' ? 'scheduled' : 'closed',
+          time: field(x, 'gametime') || null,
+          awayMoneyline: numOrNull(field(x, 'away_moneyline')),
+          homeMoneyline: numOrNull(field(x, 'home_moneyline')),
+          spreadLine: numOrNull(field(x, 'spread_line')),
+          totalLine: numOrNull(field(x, 'total_line')),
+          divisional: field(x, 'div_game') === '1' || isDivisionGame(home, away),
+          lineSource: 'nflverse current/closing field'
+        };
+      })
+      .filter((g) => D.teams[g.home] && D.teams[g.away]);
+    if (got.length <= 200) throw new Error(`unexpected bootstrap schedule row count (${got.length})`);
+    return got;
+  }
+
+  function bootstrapJson(text, label) {
+    try { return JSON.parse(text || '{}'); }
+    catch (error) { throw new Error(`${label} bootstrap JSON invalid: ${error?.message || error}`); }
+  }
+
+  function snapshotStateBackup() {
+    return {
+      schedule:S.schedule, live:S.live, connectionState:S.connectionState,
+      serverIdentity:S.serverIdentity, lastRefreshAt:S.lastRefreshAt,
+      nextRefreshAt:S.nextRefreshAt, refreshError:S.refreshError,
+      scheduleVersion:S.scheduleVersion, engineCache:S.engineCache,
+      liveTeamStats:S.liveTeamStats, livePlayerStats:S.livePlayerStats,
+      liveFtnCharting:S.liveFtnCharting, livePfrPassStats:S.livePfrPassStats,
+      priorPfrPassStats:S.priorPfrPassStats, currentPressure:S.currentPressure,
+      liveGameFlow2026:S.liveGameFlow2026, initialRefreshDone:S.initialRefreshDone,
+      statsLastRefreshAt:S.statsLastRefreshAt, statsError:S.statsError,
+      statsWarning:S.statsWarning, statsVersion:S.statsVersion,
+      liveProfilesCache:S.liveProfilesCache
+    };
+  }
+
+  function restoreSnapshotState(backup) { Object.assign(S, backup); }
+
+  function applyBootstrapSnapshot(snapshot, reason = 'bootstrap') {
+    if (!snapshot?.ok || !snapshot?.feeds) throw new Error('bootstrap snapshot payload missing');
+    const feeds = snapshot.feeds;
+    const health = bootstrapJson(feeds.health, 'health');
+    if (health?.product !== 'FORCE' || health?.app_version !== 'V149') {
+      throw new Error(`wrong bootstrap server identity (expected FORCE V149, got ${health?.product || 'unknown'} ${health?.app_version || 'unknown'})`);
+    }
+
+    const next = {
+      schedule: scheduleFromBootstrapText(feeds.schedule),
+      team: canonicalWeeklyRows(csvObjects(feeds.teamStats || ''), 'team'),
+      player: canonicalWeeklyRows(csvObjects(feeds.playerStats || ''), 'player'),
+      ftn: csvObjects(feeds.ftnCharting || ''),
+      pfr: csvObjects(feeds.pfrPass || ''),
+      pfrPrior: csvObjects(feeds.pfrPassPrior || ''),
+      pressure: bootstrapJson(feeds.currentPressure || '{}', 'current pressure'),
+      gameFlow: bootstrapJson(feeds.gameFlow2026 || '{}', 'game flow')
+    };
+    if (!next.team.length) throw new Error('bootstrap snapshot has no current team rows');
+
+    const backup = snapshotStateBackup();
+    try {
+      S.schedule = next.schedule;
+      S.liveTeamStats = next.team;
+      S.livePlayerStats = next.player;
+      S.liveFtnCharting = next.ftn;
+      S.livePfrPassStats = next.pfr;
+      S.priorPfrPassStats = next.pfrPrior;
+      S.currentPressure = next.pressure;
+      S.liveGameFlow2026 = next.gameFlow;
+      S.serverIdentity = health;
+      S.live = true;
+      S.connectionState = 'live';
+      S.refreshError = null;
+      S.statsError = null;
+      S.statsWarning = Array.isArray(snapshot.warnings) && snapshot.warnings.length ? snapshot.warnings.join(' · ') : null;
+
+      const builtMs = Date.parse(snapshot.builtAt || '');
+      S.lastRefreshAt = Number.isFinite(builtMs) ? builtMs : Date.now();
+      S.statsLastRefreshAt = S.lastRefreshAt;
+      S.nextRefreshAt = Date.now() + PUBLIC_SNAPSHOT_POLL_MS;
+      S.scheduleVersion += 1;
+      S.statsVersion += 1;
+      S.engineCache = null;
+      S.liveProfilesCache = null;
+      S.initialRefreshDone = true;
+
+      const integrity = currentDataIntegrity();
+      if (!integrity.ready) {
+        throw new Error(`bootstrap snapshot failed integrity: ${integrity.missing.join(', ') || 'unknown missing data'}`);
+      }
+
+      diag('bootstrap:snapshot-applied', {
+        reason,
+        generation:snapshot.generation || null,
+        builtAt:snapshot.builtAt || null,
+        ageSeconds:Number.isFinite(builtMs) ? Math.round((Date.now() - builtMs) / 1000) : null,
+        warnings:snapshot.warnings || [],
+        integrity:{ready:integrity.ready, missing:integrity.missing, pending:integrity.pending}
+      });
+      return true;
+    } catch (error) {
+      restoreSnapshotState(backup);
+      throw error;
+    }
+  }
+
+  async function fetchBootstrapSnapshot(reason = 'bootstrap') {
+    const started = diagnosticNow();
+    const response = await fetch(`/api/bootstrap?ts=${Date.now()}`, {cache:'no-store'});
+    const text = await response.text();
+    if (!response.ok) throw new Error(`bootstrap snapshot ${response.status}: ${text.slice(0,220)}`);
+    const snapshot = bootstrapJson(text, 'bootstrap');
+    applyBootstrapSnapshot(snapshot, reason);
+    diag('bootstrap:snapshot-fetch-complete', {
+      reason,
+      elapsedMs:Math.round(diagnosticNow() - started),
+      builtAt:snapshot.builtAt || null
+    });
+    return snapshot;
+  }
+
+  async function refreshPublishedSnapshot(reason = 'snapshot-poll') {
+    if (USE_HASH_ROUTING) return refreshSchedule(reason);
+    try {
+      await fetchBootstrapSnapshot(reason);
+      render();
+      updateRefreshControls();
+    } catch (error) {
+      diag('bootstrap:snapshot-poll-failed', {reason, error:diagnosticError(error)});
+      if (!S.lastRefreshAt) await refreshSchedule(reason);
+    }
+  }
+
+  async function waitForBootMinimum() {
+    const now = (typeof performance !== 'undefined' && typeof performance.now === 'function') ? performance.now() : Date.now();
+    const remaining = Math.max(0, FORCE_BOOT_MIN_MS - (now - FORCE_BOOT_STARTED_AT));
+    if (remaining) await new Promise((resolve)=>setTimeout(resolve, remaining));
+  }
+
+  async function initialCanonicalBootstrap() {
+    let snapshotLoaded = false;
+    if (!USE_HASH_ROUTING) {
+      try {
+        await fetchBootstrapSnapshot('initial');
+        snapshotLoaded = true;
+      } catch (error) {
+        diag('bootstrap:snapshot-unavailable', {error:diagnosticError(error)});
+      }
+    }
+    if (!snapshotLoaded) {
+      await refreshSchedule('initial', null, {renderOnComplete:false});
+    }
+    await waitForBootMinimum();
+    render();
+    updateRefreshControls();
+  }
+
   async function verifyServerIdentity(signal) {
     const health=await diagnosticFetch('health', `/api/health?ts=${Date.now()}`, {cache:'no-store',signal}, 'json');
     if (health?.product!=='FORCE' || health?.app_version!=='V149') {
@@ -539,7 +714,7 @@
     if (m) m.textContent = refreshText();
   }
 
-  async function refreshSchedule(reason = 'manual', updateTeams = null) {
+  async function refreshSchedule(reason = 'manual', updateTeams = null, options = {}) {
     if (S.refreshing) {
       queueRefreshRequest(reason, updateTeams);
       updateRefreshControls();
@@ -651,7 +826,7 @@
       S.initialRefreshDone = true;
       S.refreshing = false;
       diag('schedule:refresh-finally', { reason, live:S.live, refreshError:S.refreshError, statsError:S.statsError, statsWarning:S.statsWarning, lastRefreshAt:S.lastRefreshAt });
-      render();
+      if (options.renderOnComplete !== false) render();
       updateRefreshControls();
       const queued=S.queuedRefresh;
       if (queued) {
@@ -5139,19 +5314,30 @@
 
   window.addEventListener('hashchange', render);
   window.addEventListener('popstate', render);
-  window.addEventListener('online', () => { diag('browser:online-event',{navigatorOnline:(typeof navigator !== 'undefined' ? navigator.onLine : null)}); refreshSchedule('online'); });
+  window.addEventListener('online', () => { diag('browser:online-event',{navigatorOnline:(typeof navigator !== 'undefined' ? navigator.onLine : null)}); refreshPublishedSnapshot('online'); });
   window.addEventListener('offline', () => { S.connectionState='offline'; diag('browser:offline-event',{navigatorOnline:(typeof navigator !== 'undefined' ? navigator.onLine : null)}); render(); });
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible' && (!S.lastRefreshAt || Date.now() - S.lastRefreshAt >= REFRESH_MS)) {
-      refreshSchedule('visibility-catchup');
+      refreshPublishedSnapshot('visibility-catchup');
     }
   });
-  setInterval(() => refreshSchedule('hourly'), REFRESH_MS);
+  setInterval(() => refreshPublishedSnapshot('snapshot-poll'), PUBLIC_SNAPSHOT_POLL_MS);
   setInterval(updateRefreshControls, 30000);
   const missingAtBoot=criticalRuntimeModulesMissing();
   diag('boot',{version:FORCE_DIAG_VERSION,protocol:location.protocol,origin:location.origin,pathname:location.pathname,navigatorOnline:(typeof navigator !== 'undefined' ? navigator.onLine : null),missingModules:missingAtBoot,embeddedFallbackScheduleRows:S.schedule.length});
   if (missingAtBoot.length && !ALLOW_DEGRADED_TEST_DATA) app.innerHTML=runtimeModuleBlocked(missingAtBoot);
   else if (ALLOW_DEGRADED_TEST_DATA) render();
-  else app.innerHTML=`<main class="shell"><section class="card method"><div class="eyebrow">Loading current data</div><h1>Building canonical FORCE state…</h1><p>Schedule, team and player feeds are being reconciled before current ratings are published. FORCE will verify the completed state automatically; no manual reload should be required.</p></section></main>`;
-  refreshSchedule('initial');
+  else {
+    const slowBootTimer = setTimeout(() => {
+      const detail = document.querySelector('.force-boot-detail');
+      if (detail) detail.textContent = 'Finishing live data sync…';
+    }, FORCE_BOOT_MIN_MS + 100);
+    initialCanonicalBootstrap()
+      .catch((error) => {
+        S.refreshError = error?.message || 'initial bootstrap failed';
+        diag('bootstrap:initial-failed', {error:diagnosticError(error)});
+        render();
+      })
+      .finally(() => clearTimeout(slowBootTimer));
+  }
 })();

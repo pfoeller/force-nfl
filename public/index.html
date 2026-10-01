@@ -10,7 +10,18 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <div id="app"><div class="boot">Loading FORCE…</div></div>
+  <div id="app">
+    <div class="force-boot-stage" role="status" aria-live="polite" aria-label="Loading FORCE">
+      <div class="force-boot-shell">
+        <img class="force-boot-mark" src="assets/force-approved-mark.png" alt="">
+        <div class="force-boot-eyebrow">Football Objective Rating &amp; Comparative Efficiency</div>
+        <h1 class="force-boot-title">FORCE</h1>
+        <div class="force-boot-detail">Loading current ratings…</div>
+        <div class="force-boot-meter" aria-hidden="true"><i></i></div>
+        <div class="force-boot-steps" aria-hidden="true"><span>Ratings</span><span>Matchups</span><span>Forecasts</span></div>
+      </div>
+    </div>
+  </div>
   <script src="data/model-data.js"></script>
   <script src="data/opening-lines.js"></script>
   <script src="data/matchup-data.js"></script>
