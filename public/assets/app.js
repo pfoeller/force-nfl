@@ -23,6 +23,8 @@
   const PUBLIC_SNAPSHOT_POLL_MS = 10 * 60 * 1000;
   const PUBLIC_STALE_LIVE_TIMEOUT_MS = 9000;
   const PUBLIC_STALE_LIVE_BACKOFF_MS = 30 * 60 * 1000;
+  const PUBLIC_MISSING_SNAPSHOT_TIMEOUT_MS = 12000;
+  const PUBLIC_MISSING_SNAPSHOT_BACKOFF_MS = 30 * 60 * 1000;
   const FORCE_BOOT_STARTED_AT = (typeof performance !== 'undefined' && typeof performance.now === 'function') ? performance.now() : Date.now();
 
   // V85 diagnostic instrumentation. Keep a bounded in-browser event log so a
@@ -289,6 +291,8 @@
     snapshotCheckMessage: null,
     snapshotCheckedAt: null,
     staleLiveFailure: null,
+    missingSnapshotFailureAt: null,
+    missingSnapshotFallback: null,
     qbInputWarning: null,
     queuedRefresh: null,
     initialVerificationAttempted: false,
@@ -596,6 +600,7 @@
         if (!refreshed) throw new Error(S.refreshError || 'direct live bootstrap failed');
         S.snapshotFreshness=null;
         S.staleLiveFailure=null;
+        S.missingSnapshotFailureAt=null;
         return snapshot;
       } catch (error) {
         restoreSnapshotState(backup);
@@ -609,12 +614,39 @@
       S.snapshotFreshness=agePolicy;
       S.nextRefreshAt=Date.now()+PUBLIC_SNAPSHOT_POLL_MS;
     } else applyBootstrapSnapshot(snapshot, reason);
+    S.missingSnapshotFailureAt=null;
     diag('bootstrap:snapshot-fetch-complete', {
       reason,
       elapsedMs:Math.round(diagnosticNow() - started),
       builtAt:snapshot.builtAt || null
     });
     return snapshot;
+  }
+
+  function recoverMissingSnapshot(reason) {
+    if (S.missingSnapshotFallback) return S.missingSnapshotFallback;
+    if (S.missingSnapshotFailureAt!=null && Date.now()-S.missingSnapshotFailureAt<PUBLIC_MISSING_SNAPSHOT_BACKOFF_MS) {
+      S.snapshotCheckMessage='Snapshot unavailable · live retry paused; snapshot checks continue';
+      return Promise.resolve(false);
+    }
+    if (S.refreshing) return Promise.resolve(false);
+    S.missingSnapshotFallback=(async()=>{
+      const backup=snapshotStateBackup();
+      const loaded=await refreshSchedule(reason, null, {renderOnComplete:false,requireCanonical:true,timeoutMs:PUBLIC_MISSING_SNAPSHOT_TIMEOUT_MS});
+      if (loaded) {
+        S.missingSnapshotFailureAt=null;
+        return true;
+      }
+      const failure=S.refreshError;
+      restoreSnapshotState(backup);
+      S.refreshError=failure;
+      S.initialRefreshDone=true;
+      S.connectionState=(typeof navigator!=='undefined' && navigator.onLine===false)?'offline':S.live?'live':'error';
+      S.missingSnapshotFailureAt=Date.now();
+      S.snapshotCheckMessage='Snapshot and live fallback unavailable · snapshot checks continue';
+      return false;
+    })().finally(()=>{S.missingSnapshotFallback=null;});
+    return S.missingSnapshotFallback;
   }
 
   async function refreshPublishedSnapshot(reason = 'snapshot-poll') {
@@ -634,15 +666,8 @@
       diag('bootstrap:snapshot-poll-failed', {reason, error:diagnosticError(error)});
       S.snapshotCheckMessage='Snapshot check failed · retaining last usable data';
       if (!S.lastRefreshAt || !currentDataIntegrity().ready) {
-        const backup=snapshotStateBackup();
-        const loaded=await refreshSchedule('snapshot-unavailable', null, {renderOnComplete:false,requireCanonical:true});
+        const loaded=await recoverMissingSnapshot('snapshot-unavailable');
         if (loaded) S.snapshotCheckMessage='Live fallback loaded';
-        else {
-          const failure=S.refreshError;
-          restoreSnapshotState(backup);
-          S.refreshError=failure;
-          S.snapshotCheckMessage='Snapshot and live fallback unavailable';
-        }
       }
     } finally {
       S.snapshotCheckedAt=Date.now();
@@ -673,7 +698,8 @@
       }
     }
     if (!snapshotLoaded) {
-      await refreshSchedule('initial', null, {renderOnComplete:false});
+      if (USE_HASH_ROUTING) await refreshSchedule('initial', null, {renderOnComplete:false});
+      else await recoverMissingSnapshot('snapshot-unavailable');
     }
     await waitForBootMinimum();
     render();
@@ -4048,6 +4074,13 @@
     const base=(window.FORCE_LIVE_PROFILE?.calibrateQbComposite?window.FORCE_LIVE_PROFILE.calibrateQbComposite(uncalibratedBase):Math.max(0,Math.min(100,50+1.20*(uncalibratedBase-50))));
     return Math.max(0,Math.min(100,base+qbCustomOpponentAdjustment(c,weights)+(Number(c.debug?.olRatingAdjustment)||0)+qbRecencyAdjustment(c.debug?.team)));
   }
+  function compareQbRankingRows(a,b) {
+    const aUnavailable=Boolean(a.q.unavailable) || !Number.isFinite(a.rating);
+    const bUnavailable=Boolean(b.q.unavailable) || !Number.isFinite(b.rating);
+    if (aUnavailable!==bUnavailable) return aUnavailable?1:-1;
+    if (aUnavailable) return a.team.localeCompare(b.team) || a.qb.localeCompare(b.qb);
+    return b.rating-a.rating || a.qb.localeCompare(b.qb);
+  }
   function qbRankingsPage() {
     const custom=S.qbRankingMode==='custom';
     const rows=Object.keys(D.teams).map(t=>{
@@ -4055,13 +4088,13 @@
       if (q.unavailable) return {team:t,qb:q.qb||`${t} quarterbacks`,rating:NaN,c,q};
       const recencyAdj=qbRecencyAdjustment(t); const rating=custom?qbCustomScore(c):Math.max(0,Math.min(100,Number(q.displayedQbIndex??q.measuredQbIndex??50)));
       return {team:t,qb:q.qb||`${t} quarterbacks`,rating,c,q};
-    }).filter(r=>Number.isFinite(r.q.primaryQbDropbackShare) && r.q.primaryQbDropbackShare>=0.60).sort((a,b)=>b.rating-a.rating||a.qb.localeCompare(b.qb));
+    }).filter(r=>Number.isFinite(r.q.primaryQbDropbackShare) && r.q.primaryQbDropbackShare>=0.60).sort(compareQbRankingRows);
     const total=Object.values(S.qbWeights).reduce((a,v)=>a+Number(v||0),0);
     const controls=Object.keys(QB_DEFAULT_WEIGHTS).map(k=>`<label class="qb-weight"><span>${QB_WEIGHT_LABELS[k]} <b id="qbWeightOut-${k}">${S.qbWeights[k]}%</b></span><input type="range" min="0" max="100" step="1" value="${S.qbWeights[k]}" data-qb-weight="${k}"></label>`).join('');
     const native=(v,d=2,suffix='')=>v!=null && v!=='' && Number.isFinite(Number(v))?`${fmt(Number(v),d)}${suffix}`:'-';
     return layout(`<div class="section-title"><div><div class="eyebrow">Quarterback model</div><h2>QB Rankings</h2><p>FORCE's standard quarterback rating, with the underlying football statistics shown in their native units. Main rankings require the listed QB to account for at least 60% of his team's QB dropbacks.</p></div><div class="qb-mode"><button class="${custom?'ghost':'primary'}" data-qb-mode="default">FORCE Default</button><button class="${custom?'primary':'ghost'}" data-qb-mode="custom">Customize</button></div></div>
       <section class="card qb-builder ${custom?'':'qb-builder-disabled'}"><div class="card-head"><div><h2>${custom?'Your QB Rating':'FORCE Default'}</h2><p class="raw">Default: 30% EPA/play · 30% ANY/A · 20% Success Rate · 10% QB rushing value · 10% CPOE, then opponent-strength, pressure-context, and current-season recency adjustments.</p></div><span class="chip">${custom?`Weights normalize automatically · entered ${total}%`:'Predictive default'}</span></div><div class="qb-weight-grid">${controls}</div>${custom?'<p class="raw">Your weights change this ranking only. They do not alter FORCEcast, team FORCE ratings, or the canonical QB unit. Opponent strength is still applied after the weighted components using the canonical leave-one-matchup-out defense context. The Pressure Adjustment remains contextual and unchanged by your stat weights.</p>':'<p class="raw">The default rating is the canonical QB unit used throughout FORCE. EPA/play counts passes, sacks, scrambles and designed QB runs once, excluding kneels and spikes. The 10% rushing value is an additional boost. The five statistics are combined, then the final 0-100 QB Rating is adjusted for opponent strength and pass protection. The Recency Adjustment uses current-season games only: 2.00x for the latest game, then 1.75x, 1.50x, 1.25x, and 1.00x thereafter; 40% of the recency-weighted rating difference is applied, capped at ±4 points. Pressure Adjustment is 75% standard-rush protection difficulty and 25% performance under disruption relative to league average. Early-season continuity and sample stabilization still apply.</p>'}</section>
-      <section class="card"><div class="table-wrap qb-ranking-table-wrap"><table class="diagnostic-table qb-ranking-table"><thead><tr><th>#</th><th>Quarterback</th><th>${custom?'Your QB Rating':'FORCE QB Rating'}</th><th>Raw QB Rating</th><th>Opponent Adjustment</th><th>Pressure Adjustment</th><th>Recency Adjustment</th><th>EPA/play</th><th>ANY/A</th><th>Success</th><th>Rush EPA/att</th><th>CPOE</th></tr></thead><tbody>${rows.map((r,i)=>{const adj=custom?qbCustomOpponentAdjustment(r.c):Number(r.q.opponentRatingAdjustment)||0; const olAdj=Number(r.q.olRatingAdjustment)||0; const recAdj=qbRecencyAdjustment(r.team); const rawRating=Math.max(0,Math.min(100,r.rating-adj-olAdj-recAdj)); const olTitle=`75% protection difficulty / 25% performance under pressure · standard-rush pressure ${r.q.standardRushPressureRate==null?'—':(r.q.standardRushPressureRate*100).toFixed(1)+'%'} · under-pressure EPA ${r.q.pressureEpaPerPlay==null?'—':r.q.pressureEpaPerPlay.toFixed(3)} · success ${r.q.pressureSuccessRate==null?'—':(r.q.pressureSuccessRate*100).toFixed(1)+'%'}`; return `<tr><td><b>${i+1}</b></td><td><span class="qb-name-team"><b>${r.qb}</b>${teamMark(r.team,'xxs','right','qb-team-mark')}</span></td><td class="${bandClass(r.rating)}"><b>${fmt(r.rating,1)}</b></td><td><b>${fmt(rawRating,1)}</b></td><td>${adj>=0?'+':''}${fmt(adj,1)}</td><td title="${olTitle}">${olAdj>=0?'+':''}${fmt(olAdj,1)}</td><td>${recAdj>=0?'+':''}${fmt(recAdj,1)}</td><td>${native(r.q.qbEpaPerPlay,3)}</td><td>${native(r.q.anyA,2)}</td><td>${native(r.q.passSuccessRate==null?null:r.q.passSuccessRate*100,1,'%')}</td><td>${native(r.q.qbRushEpaPerAttempt,2)}</td><td>${native(r.q.cpoe,1)}</td></tr>`}).join('')}</tbody></table></div></section>
+      <section class="card"><div class="table-wrap qb-ranking-table-wrap"><table class="diagnostic-table qb-ranking-table"><thead><tr><th>#</th><th>Quarterback</th><th>${custom?'Your QB Rating':'FORCE QB Rating'}</th><th>Raw QB Rating</th><th>Opponent Adjustment</th><th>Pressure Adjustment</th><th>Recency Adjustment</th><th>EPA/play</th><th>ANY/A</th><th>Success</th><th>Rush EPA/att</th><th>CPOE</th></tr></thead><tbody>${rows.map((r,i)=>{const adj=custom?qbCustomOpponentAdjustment(r.c):Number(r.q.opponentRatingAdjustment)||0; const olAdj=Number(r.q.olRatingAdjustment)||0; const recAdj=qbRecencyAdjustment(r.team); const rawRating=Math.max(0,Math.min(100,r.rating-adj-olAdj-recAdj)); const olTitle=`75% protection difficulty / 25% performance under pressure · standard-rush pressure ${r.q.standardRushPressureRate==null?'—':(r.q.standardRushPressureRate*100).toFixed(1)+'%'} · under-pressure EPA ${r.q.pressureEpaPerPlay==null?'—':r.q.pressureEpaPerPlay.toFixed(3)} · success ${r.q.pressureSuccessRate==null?'—':(r.q.pressureSuccessRate*100).toFixed(1)+'%'}`; return `<tr><td><b>${r.q.unavailable?'—':i+1}</b></td><td><span class="qb-name-team"><b>${r.qb}</b>${teamMark(r.team,'xxs','right','qb-team-mark')}</span></td><td class="${bandClass(r.rating)}"><b>${r.q.unavailable?'Unavailable':fmt(r.rating,1)}</b></td><td><b>${r.q.unavailable?'—':fmt(rawRating,1)}</b></td><td>${adj>=0?'+':''}${fmt(adj,1)}</td><td title="${olTitle}">${olAdj>=0?'+':''}${fmt(olAdj,1)}</td><td>${recAdj>=0?'+':''}${fmt(recAdj,1)}</td><td>${native(r.q.qbEpaPerPlay,3)}</td><td>${native(r.q.anyA,2)}</td><td>${native(r.q.passSuccessRate==null?null:r.q.passSuccessRate*100,1,'%')}</td><td>${native(r.q.qbRushEpaPerAttempt,2)}</td><td>${native(r.q.cpoe,1)}</td></tr>`}).join('')}</tbody></table></div></section>
       <p class="raw">FORCE QB Rating is the final 0-100 quarterback score after contextual adjustments. Raw QB Rating is the 0-100 score before opponent, pressure, or recency context is applied. Opponent Adjustment is the number of rating points added or subtracted from the leave-one-matchup-out FORCE QB Rating allowed by the defenses faced. Your own matchup against each defense is excluded from that defense’s baseline, and small remaining samples are stabilized toward league average. Recency Adjustment uses current-season games only: 2.00x for the latest game, then 1.75x, 1.50x, 1.25x, and 1.00x thereafter; 40% of the recency-weighted rating difference is applied, capped at ±4 points. Pressure Adjustment is 75% standard-rush protection difficulty and 25% performance under disruption. In live 2026 data, an explicit pressure flag is preferred; when unavailable, FORCE uses a labeled observable-pressure proxy (QB hit, sack, or FTN-charted throwaway). More standard-rush pressure increases contextual credit; better EPA and Success Rate on disrupted dropbacks increases the performance component. Standard-rush disruption uses hit-or-sack outcomes on four-or-fewer-rusher dropbacks, excluding screens, out-of-pocket plays, and QB-fault sacks when FTN charting identifies them. Pressure-performance inputs remain internal to the Pressure Adjustment rather than appearing as separate leaderboard columns. The five-component raw composite is calibrated with a 1.20x expansion around 50 to counter the mechanical tail compression caused by averaging multiple 0-100 component scores; the individual component statistics themselves are unchanged. All displayed individual statistics remain in their actual observed units.</p>`, 'qbs');
   }
 

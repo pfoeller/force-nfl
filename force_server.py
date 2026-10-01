@@ -118,6 +118,11 @@ GAME_FLOW_BUILD_CONDITION = threading.Condition()
 GAME_FLOW_FLIGHT = None
 EP_SURFACE_2025_CACHE_KEY = '/derived/ep-state-surface-2025-v97'
 _EP_SURFACE_2025 = None
+HISTORICAL_SEED_FINGERPRINTS = {
+    PENALTY_REFERENCE_2025_CACHE_KEY: '1d3bbb49aa66d1cd62bde4c081d1556a7c8545cf4fa0d701417c84e7191ac5c3',
+    EP_SURFACE_2025_CACHE_KEY: 'a0902f59b763b4d6f2fd6219113f55f21399b76e594a6c993ea3b9c6f6bbff7c',
+    PERFORMANCE_LUCK_2025_CACHE_KEY: 'd96297c89ce92054f4f5c6dad5fcedd9463692b3f3d2f0155f93d7557077a3cd',
+}
 _EP_SURFACE_LOCK = threading.Lock()
 
 TEAM_NAMES = {
@@ -1250,24 +1255,72 @@ def _same_state_causal_epa(row,home,beneficiary,actual_state,counterfactual_stat
     return (0.0,actual_future_ep,actual_future_ep,'nflverse-epa-endstate-fallback-zero',
             0.0,0.0,actual_future_ep,actual_future_ep)
 
-def _get_ep_surface_2025(rows=None):
-    global _EP_SURFACE_2025
-    if _EP_SURFACE_2025 is not None:return _EP_SURFACE_2025
-    with _EP_SURFACE_LOCK:
-        if _EP_SURFACE_2025 is not None:return _EP_SURFACE_2025
-        disk=_read_disk_cache(EP_SURFACE_2025_CACHE_KEY)
-        if disk:
+def _finite_seed_number(value, positive=False):
+    return (isinstance(value, (int, float)) and not isinstance(value, bool)
+            and math.isfinite(value) and (not positive or value > 0))
+
+
+def _historical_seed_payload(key, validator, force=False):
+    """Public uses only the reviewed seed; explicit local force may rebuild.
+
+    Fingerprints add provenance without rewriting existing calibrated payloads.
+    They cover canonical JSON values, so whitespace/key order is immaterial.
+    """
+    if not force or PUBLIC_MODE:
+        with LOCK:
+            cached = CACHE.get(key)
+        for entry in (cached, _read_disk_cache(key)):
+            if not entry:
+                continue
             try:
-                obj=json.loads(disk['body'].decode('utf-8'))
-                if obj.get('version')=='V97-nflfastR-derived-EP-surface':
-                    _EP_SURFACE_2025=_deserialize_ep_surface(obj); return _EP_SURFACE_2025
-            except Exception:pass
+                obj = json.loads(entry['body'])
+                if not validator(obj):
+                    continue
+                if PUBLIC_MODE:
+                    fingerprint = hashlib.sha256(json.dumps(obj, sort_keys=True,
+                        separators=(',', ':'), allow_nan=False).encode('utf-8')).hexdigest()
+                    if fingerprint != HISTORICAL_SEED_FINGERPRINTS[key]:
+                        continue
+                with LOCK:
+                    CACHE[key] = {'ts': time.time(), 'body': entry['body'], 'ctype': 'application/json'}
+                return obj
+            except (ValueError, TypeError, KeyError, AttributeError):
+                continue
+    if PUBLIC_MODE:
+        message = f'Historical seed {key} missing or invalid; public regeneration disabled'
+        _server_diag('historical-seed:unavailable', key=key, error=message)
+        raise ValueError(message)
+    return None
+
+
+def _ep_surface_seed_valid(obj):
+    if not isinstance(obj, dict) or obj.get('version') != 'V97-nflfastR-derived-EP-surface':
+        return False
+    cells = obj.get('cells')
+    return (isinstance(cells, list) and bool(cells)
+            and all(isinstance(row, (list, tuple)) and len(row) == 9
+                    and all(_finite_seed_number(value) for value in row)
+                    and row[0] in (1, 2, 3, 4) and row[8] > 0 for row in cells))
+
+
+def _get_ep_surface_2025(rows=None, force=False):
+    global _EP_SURFACE_2025
+    if _EP_SURFACE_2025 is not None and (not force or PUBLIC_MODE):return _EP_SURFACE_2025
+    with _EP_SURFACE_LOCK:
+        if _EP_SURFACE_2025 is not None and (not force or PUBLIC_MODE):return _EP_SURFACE_2025
+        obj = _historical_seed_payload(EP_SURFACE_2025_CACHE_KEY, _ep_surface_seed_valid, force)
+        if obj is not None:
+            _EP_SURFACE_2025 = _deserialize_ep_surface(obj)
+            return _EP_SURFACE_2025
         if rows is None:
             text=_fetch_text(PBP_2025_URL,timeout=90); rows=list(csv.DictReader(io.StringIO(text)))
-        _EP_SURFACE_2025=_build_ep_state_surface(rows)
-        body=json.dumps(_serialize_ep_surface(_EP_SURFACE_2025),separators=(',',':')).encode('utf-8')
+        surface=_build_ep_state_surface(rows)
+        obj=_serialize_ep_surface(surface)
+        if not _ep_surface_seed_valid(obj):raise ValueError('2025 EP surface generation invalid')
+        body=json.dumps(obj,separators=(',',':')).encode('utf-8')
         _write_disk_cache(EP_SURFACE_2025_CACHE_KEY,body,'application/json')
-        return _EP_SURFACE_2025
+        _EP_SURFACE_2025=surface
+        return surface
 
 
 def _counterfactual_no_penalty_epa(row, ep_lookup, ep_by_down):
@@ -1614,25 +1667,31 @@ def _attach_penalty_scores(games, profiles, calibration):
             vals['penaltyImpactBreakdown']=breakdown
 
 
-def penalty_reference_2025_payload():
+def _penalty_reference_seed_valid(obj):
+    if not isinstance(obj, dict) or obj.get('season') != 2025 or obj.get('method') != PENALTY_MODEL_VERSION:
+        return False
+    calibration=obj.get('calibration') or {}
+    scales=('epa_per_game_rms','wpa_per_game_rms','first_downs_per_game_rms','erased_tds_per_game_rms','softness','component_z_cap')
+    weights={'epa_weight':.40,'wpa_weight':.25,'first_down_weight':.20,'erased_td_weight':.15}
+    return (isinstance(calibration, dict) and _finite_seed_number(obj.get('game_count'), positive=True)
+            and calibration.get('source_season') == 2025 and calibration.get('method') == PENALTY_MODEL_VERSION
+            and calibration.get('score_scale_version') == 'V97 cap3-softness3-direct-coherence'
+            and all(_finite_seed_number(calibration.get(key), positive=True) for key in scales)
+            and all(calibration.get(key) == value for key,value in weights.items())
+            and (obj.get('wp_reference') or {}).get('source') == 'nflverse/fastrmodels data/wp_model.rda'
+            and (obj.get('ep_reference') or {}).get('source') == 'nflverse 2025 pre-play ep')
+
+
+def penalty_reference_2025_payload(force=False):
     """2025 modeling reference only: league normalization under the V97 method.
 
     No team-specific 2025 penalty result is carried into 2026.  The historical
     season is used only to normalize the current-season 0-100 scale. Counterfactual
     WP comes from the packaged nflfastR no-spread model; EPA uses the same 2025 nflfastR-derived state surface on both sides of each penalty.
     """
-    with LOCK:
-        cached=CACHE.get(PENALTY_REFERENCE_2025_CACHE_KEY)
-        if cached:
-            return json.loads(cached['body'].decode('utf-8'))
-    disk=_read_disk_cache(PENALTY_REFERENCE_2025_CACHE_KEY)
-    if disk:
-        try:
-            obj=json.loads(disk['body'].decode('utf-8'))
-            if obj.get('method') == PENALTY_MODEL_VERSION:
-                with LOCK:CACHE[PENALTY_REFERENCE_2025_CACHE_KEY]={'ts':time.time(),'body':disk['body'],'ctype':'application/json'}
-                return obj
-        except Exception:pass
+    key=PENALTY_REFERENCE_2025_CACHE_KEY
+    seeded=_historical_seed_payload(key, _penalty_reference_seed_valid, force)
+    if seeded is not None:return seeded
     text=_fetch_text(PBP_2025_URL,timeout=90)
     rows=list(csv.DictReader(io.StringIO(text)))
     ep_surface=_get_ep_surface_2025(rows)
@@ -1644,6 +1703,7 @@ def penalty_reference_2025_payload():
     model=_load_nflfastr_wp_model()
     obj={'season':2025,'method':PENALTY_MODEL_VERSION,'game_count':len(games),'calibration':calibration,'wp_reference':{'source':model.get('source'),'model_type':model.get('model_type'),'trees':len(model.get('trees') or [])},'ep_reference':{'source':'nflverse 2025 pre-play ep','method':'same-state locally weighted nflfastR-derived EP surface','cells':ep_surface.get('row_cells')}}
     body=json.dumps(obj,separators=(',',':')).encode('utf-8')
+    if not _penalty_reference_seed_valid(obj):raise ValueError('2025 penalty reference generation invalid')
     with LOCK:CACHE[PENALTY_REFERENCE_2025_CACHE_KEY]={'ts':time.time(),'body':body,'ctype':'application/json'}
     _write_disk_cache(PENALTY_REFERENCE_2025_CACHE_KEY,body,'application/json')
     return obj
@@ -2230,29 +2290,32 @@ def _fit_performance_luck_calibration(game_rows):
     }
 
 
+def _performance_luck_seed_valid(obj):
+    names=('epa_diff','success_diff','ypp_diff','yards_diff','ppd_diff','interception_diff')
+    if (not isinstance(obj, dict) or obj.get('version') != 'V121-EPA-MARGIN-LUCK-2025-1'
+            or obj.get('valid') is not True or obj.get('season') != 2025
+            or not _finite_seed_number(obj.get('sample_count')) or obj['sample_count'] < 200
+            or obj.get('features') != list(names) or not _finite_seed_number(obj.get('intercept'))):
+        return False
+    for key in ('coefficients','means','scales'):
+        block=obj.get(key)
+        if not isinstance(block, dict) or not all(_finite_seed_number(block.get(name), positive=key=='scales') for name in names):
+            return False
+    margin=obj.get('epa_margin') or {}
+    return (isinstance(margin, dict) and _finite_seed_number(margin.get('sample_count'))
+            and margin['sample_count'] >= 200
+            and all(_finite_seed_number(margin.get(key), positive=key=='residual_sd') for key in ('intercept','slope','residual_sd','r2')))
+
+
 def performance_luck_calibration_2025_payload(force=False):
     now=time.time(); key=PERFORMANCE_LUCK_2025_CACHE_KEY
-    with LOCK:
-        cached=CACHE.get(key)
-        if not force and cached:
-            try:
-                obj=json.loads(cached['body'].decode('utf-8'))
-                if obj.get('valid') and int(obj.get('sample_count') or 0)>=200: return obj
-            except Exception: pass
-    if not force:
-        disk=_read_disk_cache(key)
-        if disk:
-            try:
-                obj=json.loads(disk['body'].decode('utf-8'))
-                if obj.get('valid') and int(obj.get('sample_count') or 0)>=200:
-                    with LOCK:CACHE[key]={'ts':now,'body':disk['body'],'ctype':'application/json'}
-                    return obj
-            except Exception: pass
+    seeded=_historical_seed_payload(key, _performance_luck_seed_valid, force)
+    if seeded is not None:return seeded
     text=_fetch_text(PBP_2025_URL,timeout=90); rows=list(csv.DictReader(io.StringIO(text)))
     drive_games=_defensive_points_per_drive_games(rows)
     feature_games=_performance_luck_games(rows,drive_games,calibration=None)
     obj=_fit_performance_luck_calibration(feature_games)
-    if not obj.get('valid'): raise ValueError(f"V113 performance calibration invalid: {obj}")
+    if not _performance_luck_seed_valid(obj): raise ValueError(f"V121 performance calibration invalid: {obj}")
     body=json.dumps(obj,separators=(',',':')).encode('utf-8')
     with LOCK:CACHE[key]={'ts':now,'body':body,'ctype':'application/json'}
     _write_disk_cache(key,body,'application/json')
@@ -2492,12 +2555,16 @@ def _v143_pressure_context(pbp_rows, ftn_rows):
 
 def _game_flow_qb_valid(obj):
     fields=('home_qb_total_epa','home_qb_plays','away_qb_total_epa','away_qb_plays')
-    return (isinstance(obj,dict) and obj.get('qb_epa_definition')==QB_EPA_DEFINITION
-            and _v106_reference_valid(obj.get('v104_reference'))
-            and isinstance(obj.get('defensive_drive_games'),list)
-            and all(all(isinstance(game.get(key),(int,float)) and math.isfinite(game[key])
-                        and (not key.endswith('_plays') or game[key]>=0) for key in fields)
-                    for game in obj['defensive_drive_games']))
+    try:
+        if isinstance(obj,(str,bytes)):obj=json.loads(obj)
+        return (isinstance(obj,dict) and obj.get('qb_epa_definition')==QB_EPA_DEFINITION
+                and _v106_reference_valid(obj.get('v104_reference'))
+                and isinstance(obj.get('defensive_drive_games'),list)
+                and all(isinstance(game,dict) and all(_finite_seed_number(game.get(key))
+                            and (not key.endswith('_plays') or game[key]>=0) for key in fields)
+                        for game in obj['defensive_drive_games']))
+    except (ValueError,TypeError,AttributeError):
+        return False
 
 
 def game_flow_2026_payload(force=False):
@@ -2510,7 +2577,7 @@ def game_flow_2026_payload(force=False):
             cached=CACHE.get(GAME_FLOW_CACHE_KEY)
             if cached and time.time()-cached['ts']<GAME_FLOW_CACHE_TTL:
                 try:
-                    if _game_flow_qb_valid(json.loads(cached['body'])):
+                    if _game_flow_qb_valid(cached['body']):
                         return cached['body'], True
                 except (ValueError, TypeError):
                     pass
@@ -2549,13 +2616,13 @@ def _build_game_flow_2026_payload(force=False):
     with LOCK:
         cached=CACHE.get(cache_key)
         if not force and cached and now-cached['ts']<GAME_FLOW_CACHE_TTL:
-            if _game_flow_qb_valid(json.loads(cached['body'])):
+            if _game_flow_qb_valid(cached['body']):
                 return cached['body'],True
     try:
         text=_fetch_text(PBP_2026_URL,timeout=55)
     except Exception:
-        disk=_read_disk_cache(cache_key)
-        if disk and _game_flow_qb_valid(json.loads(disk['body'])):
+        disk=cached if cached and _game_flow_qb_valid(cached['body']) else _read_disk_cache(cache_key)
+        if disk and _game_flow_qb_valid(disk['body']):
             body=disk['body']
             with LOCK: CACHE[cache_key]={'ts':now,'body':body,'ctype':'application/json'}
             return body,True
@@ -2588,6 +2655,7 @@ def _build_game_flow_2026_payload(force=False):
     try:
         performance_luck_calibration=performance_luck_calibration_2025_payload()
     except Exception as e:
+        if PUBLIC_MODE:raise
         performance_luck_calibration={'version':'V113-PERFORMANCE-LOGIT-2025-1','valid':False,'error':str(e)}
     performance_luck_games=_performance_luck_games(rows,defensive_drive_games,performance_luck_calibration)
     games={}
@@ -2651,8 +2719,11 @@ def _build_game_flow_2026_payload(force=False):
         'penalty_reference':{'season':2025,'role':'league calibration only; no team carryover','wp_model':'fastrmodels::wp_model no-spread','ep_model':'same-state nflfastR-derived 2025 EP surface'},
     }
     body=json.dumps(payload,separators=(',',':')).encode('utf-8')
-    with LOCK:CACHE[cache_key]={'ts':now,'body':body,'ctype':'application/json'}
-    _write_disk_cache(cache_key, body, 'application/json')
+    if _game_flow_qb_valid(payload):
+        _write_disk_cache(cache_key, body, 'application/json')
+        with LOCK:CACHE[cache_key]={'ts':now,'body':body,'ctype':'application/json'}
+    else:
+        _server_diag('game-flow:cache-preserved', error=reference_error or 'Canonical QB schema invalid', key=cache_key)
     return body,False
 
 
