@@ -81,15 +81,29 @@ still include existing statistical stabilization; Raw does not mean
 unstabilized native statistics. Customization changes this ranking only, not
 team FORCE, FORCEcast, or the canonical QB unit.
 
-Missing-component behavior is not uniform. Production Customize uses a neutral
-50 for component values that fail its finite-number check in
-`qbComponentScores`. That check first calls `Number`: an explicit `null` coerces
-to 0 and therefore does not take the neutral fallback. Canonical Raw requires a
-finite EPA component; its formula uses `?? 50` for Success and CPOE, ANY/A has its
-own finite-number/50 fallback, and rushing value is constructed from the rush
-bonus. Canonical Raw does not uniformly substitute 50 for every missing input.
-The diagnostic deliberately reports missing component stages as unavailable
-rather than treating these production fallbacks as evidence of complete data.
+Through the normal production `qbDebug` -> `qbComponentScores` path, an actually
+missing component contributes 0 to Customize. For each of the five component
+fields, `qbDebug` maps an absent property, undefined, NaN or either infinity to
+null; explicit null and explicit 0 become 0, and ordinary finite values remain
+unchanged. `qbComponentScores` then converts the null to 0:
+`Number(null) === 0`, and `Number.isFinite(0) === true`. Its coded neutral-50
+fallback exists for values that remain nonfinite after numeric conversion, but
+normal `qbDebug` output is finite-number-or-null, so that fallback is bypassed
+for ordinary missing production components.
+
+Canonical Raw handles components differently. EPA must be finite or Raw is
+unavailable/null. Success and CPOE use `?? 50` for nullish scores. ANY/A has its
+own finite-number/50 fallback; its numeric conversion also turns explicit null
+into 0. Rushing value is constructed from its rush bonus, with a zero bonus
+yielding the neutral 50 result. There is no universal canonical missing-value
+policy. The diagnostic deliberately reports missing component stages as
+unavailable rather than treating production fallbacks as complete-data evidence.
+
+This is relevant evidence for the future UX-08 product contract: missing-as-zero
+can penalize a customized composite, while missing-as-neutral would not impose
+that zero-value penalty. No contract or preference is selected here, and these
+source-path observations do not establish how often this occurs in deployed
+production.
 
 All-zero custom weights currently yield Raw 0: the denominator falls back to 1,
 the weighted composite is 0, and calibration/clipping returns 0. Final can still
@@ -111,7 +125,7 @@ Both paths use all three context terms; canonical additionally blends
 continuity, including the contextual live score. Changing only the prior leaves
 Raw and Customize unchanged while moving canonical Final. Any displayed/measured
 scenario difference is separately reported rather than attributed to continuity;
-it is zero in these built-in examples.
+the built-in synthetic cohorts include a nonzero KC `scenarioGap`, detailed below.
 
 Clipping order is another boundary distinction. In a controlled stage fixture,
 Raw/live/prior are 100, opponent is +8, pressure is 0, and recency is -4.
@@ -150,8 +164,12 @@ counterfactual `customStagedFinal` and clipped canonical measured Final. Near
 0/100 it describes the visible post-clamp effect, not an unclipped prior-blend
 delta; with changed weights it also contains the Raw-stage difference. The
 separate `scenarioGap` is displayed Default minus measured Default; Customize
-does not apply that overlay. The built-in cohorts have scenarioGap 0 and do not
-measure its prevalence in production.
+does not apply that overlay. The built-in synthetic cohorts record KC
+`scenarioGap` values of 4.261664 with tracked priors, 4.220547 with low priors,
+and 4.294644 with high priors. The diagnostic already recorded these values
+correctly; the numeric tables and gap decomposition were already correct. Only
+the prose claiming zero overlay was wrong. These are synthetic-fixture
+observations, not estimates of real-world production prevalence.
 
 ## Product-contract alternatives for owner choice
 
