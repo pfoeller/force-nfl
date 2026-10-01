@@ -1,6 +1,7 @@
-global.window={};
-require('../model/live_profiles.js');
-const LP=global.window.FORCE_LIVE_PROFILE;
+const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const context={window:{}};vm.createContext(context);
+vm.runInContext(fs.readFileSync(path.resolve(__dirname,'../model/live_profiles.js'),'utf8'),context);
+const LP=context.window.FORCE_LIVE_PROFILE;
 if(!LP) throw new Error('live profile module missing');
 const cal={epa_per_game_rms:1,wpa_per_game_rms:1,first_downs_per_game_rms:1,erased_tds_per_game_rms:1,epa_weight:.4,wpa_weight:.25,first_down_weight:.2,erased_td_weight:.15,softness:3,component_z_cap:3};
 const h=LP.causalPenaltyScoreBreakdownFromAverages(-.2,-.2,3,0,cal);

@@ -1,0 +1,1755 @@
+{
+  "schema": 1,
+  "baseline": {
+    "head": "c8946a8aed179d28e7d1bc3e9aefc2bccde4b382",
+    "javascript": 183,
+    "commonjs": 169,
+    "esm": 14,
+    "dirname": 105,
+    "cwd_direct_or_shared_helper": 74,
+    "cwd_transitive": 2,
+    "process_cwd": 0,
+    "normally_passing": 14,
+    "python": 58,
+    "optional_javascript": 0,
+    "optional_python": 3,
+    "benchmark_writers": 4,
+    "tracked_benchmark_writers": 3,
+    "live_cache_writers": 1,
+    "expensive": 1,
+    "legacy_harness_timeouts": 1,
+    "isolated_js_pass": 99,
+    "isolated_js_fail_or_timeout": 84,
+    "isolated_python_pass": 34,
+    "isolated_python_fail": 24
+  },
+  "tests": [
+    {
+      "file": "test_adaptive_v3.py",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_diagnostic_views.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: penalty rankings missing Penalty impact"
+    },
+    {
+      "file": "test_force_brand.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_forecast_audit_ui.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_forecast_v2.py",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_matchup_ui.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: game report missing: Luck, penalties, and market"
+    },
+    {
+      "file": "test_qb_carryover_ui.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: initial V33 carryover panel missing Patrick Mahomes 2025 preset"
+    },
+    {
+      "file": "test_runtime.cjs",
+      "suites": [
+        "safe"
+      ],
+      "classification": "test-runtime",
+      "python": true
+    },
+    {
+      "file": "test_v100_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v100_defense_ppd.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v100_points_per_drive.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v101_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v101_coverage_pbp.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v101_coverage_separation.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v102_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V102 identity"
+    },
+    {
+      "file": "test_v102_offense_orthogonalization.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: KC must receive tougher opponent Coverage context than BUF in fixture"
+    },
+    {
+      "file": "test_v102_pbp_ol.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v103_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V103 identity"
+    },
+    {
+      "file": "test_v103_qb_calibration.js",
+      "suites": [
+        "safe",
+        "qb",
+        "model"
+      ],
+      "classification": "frozen-regression"
+    },
+    {
+      "file": "test_v103_qb_rush_pbp.py",
+      "suites": [
+        "safe",
+        "qb",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v104_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V104 identity"
+    },
+    {
+      "file": "test_v104_qb_calibration.js",
+      "suites": [
+        "safe",
+        "qb",
+        "model"
+      ],
+      "classification": "frozen-regression"
+    },
+    {
+      "file": "test_v104_reference.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v105_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: app must require V105 server identity"
+    },
+    {
+      "file": "test_v105_reference.py",
+      "suites": [],
+      "classification": "historical-reference",
+      "reason": "Archived v3 QB reference fixture conflicts with current v4 positional all-play schema"
+    },
+    {
+      "file": "test_v106_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: app must require current V107 server identity"
+    },
+    {
+      "file": "test_v106_qb_stabilization.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: EPA weight"
+    },
+    {
+      "file": "test_v107_composite_scale.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v107_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: app must require current V108 server identity"
+    },
+    {
+      "file": "test_v108_composite_scale.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v108_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: app must require V108 server identity"
+    },
+    {
+      "file": "test_v109_contract.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: current server supersedes V109"
+    },
+    {
+      "file": "test_v109_units_luck.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v10_ui.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Legacy UI harness did not terminate within audit deadline; fixture/timer debt",
+      "timeoutMs": 12000,
+      "special": [
+        "legacy-harness-timeout"
+      ]
+    },
+    {
+      "file": "test_v110_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V110"
+    },
+    {
+      "file": "test_v110_luck.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v110_performance_payload.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v111_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V111"
+    },
+    {
+      "file": "test_v111_fumble_parser.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v111_luck.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v112_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V112"
+    },
+    {
+      "file": "test_v112_luck.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v113_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V113"
+    },
+    {
+      "file": "test_v113_fumble_and_calibration.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v113_luck_isolation.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v114_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V114"
+    },
+    {
+      "file": "test_v114_unit_centering.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v115_unit_orthogonalization.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v116_game_flow_valid_scores.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Exhaustive 22x22 allocation sweep exceeded audit deadline; opt in to bounded slow execution",
+      "timeoutMs": 120000,
+      "special": [
+        "expensive"
+      ]
+    },
+    {
+      "file": "test_v117_luck_table.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v118_playoffs.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: UI should disclose exact supported tiebreak depth"
+    },
+    {
+      "file": "test_v119_playoff_export.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: V123 client identity missing"
+    },
+    {
+      "file": "test_v11_ui.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: #home missing Export PNG"
+    },
+    {
+      "file": "test_v120_kickoff_time.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v121_epa_luck.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server version"
+    },
+    {
+      "file": "test_v122_flag.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V126 identity"
+    },
+    {
+      "file": "test_v123_playoff_record_seed_coherence.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v124_representative_playoff_projection.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v126_flag_export.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V126 identity"
+    },
+    {
+      "file": "test_v127_luck_rank.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V129 identity"
+    },
+    {
+      "file": "test_v128_export_rankings.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V129 identity"
+    },
+    {
+      "file": "test_v129_export_xml_safety.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server V129 identity"
+    },
+    {
+      "file": "test_v12_ui.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v130_qb_rankings.mjs",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v131_qb_native_opponent.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: EPA/play must display native value"
+    },
+    {
+      "file": "test_v132_qb_rating_sequence.mjs",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v133_qb_oline_adjustment.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: overall pressure weight must be 25%"
+    },
+    {
+      "file": "test_v135_qb_pressure_context.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: 25% overall pressure weight"
+    },
+    {
+      "file": "test_v136_server_identity.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded V136 identity; original text decoding also depended on Windows locale"
+    },
+    {
+      "file": "test_v137_pressure_adjustment.mjs",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v138_qb_qualification_layout.js",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "current-identity",
+      "reason": "Current banner follows server identity; original behavior/layout assertions retained"
+    },
+    {
+      "file": "test_v139_qb_opponent_allowed.mjs",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v13_ui.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v140_qb_recency.mjs",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v141_bootstrap_identity.js",
+      "suites": [
+        "safe",
+        "snapshot"
+      ],
+      "classification": "current-identity",
+      "reason": "Current banner follows server identity; original behavior/layout assertions retained"
+    },
+    {
+      "file": "test_v142_pressure_flag.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: V142 bootstrap comparison"
+    },
+    {
+      "file": "test_v143_pressure_fallback.mjs",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v146_qb_export_width.js",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "current-identity",
+      "reason": "Current banner follows server identity; original behavior/layout assertions retained"
+    },
+    {
+      "file": "test_v147_qb_export_paging.js",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "current-identity",
+      "reason": "Current banner follows server identity; original behavior/layout assertions retained"
+    },
+    {
+      "file": "test_v148_canonical_qb_everywhere.mjs",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_1_operations.mjs",
+      "suites": [
+        "safe",
+        "release"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_1_operations.py",
+      "suites": [
+        "safe",
+        "release",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_bootstrap_snapshot.mjs",
+      "suites": [
+        "safe",
+        "release",
+        "snapshot"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_monte_carlo_score.js",
+      "suites": [
+        "safe",
+        "release",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_public_refresh.mjs",
+      "suites": [
+        "safe",
+        "release",
+        "snapshot"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_public_refresh.py",
+      "suites": [
+        "safe",
+        "release",
+        "snapshot",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_qb_epa_pbp.py",
+      "suites": [
+        "safe",
+        "release",
+        "qb",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_qb_epa_semantics.mjs",
+      "suites": [
+        "safe",
+        "release",
+        "qb"
+      ],
+      "classification": "regression",
+      "python": true
+    },
+    {
+      "file": "test_v149_qb_propagation.mjs",
+      "suites": [
+        "safe",
+        "release",
+        "qb"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_release_hardening.mjs",
+      "suites": [
+        "safe",
+        "release"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_release_hardening.py",
+      "suites": [
+        "safe",
+        "release",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v149_snapshot_hardening.mjs",
+      "suites": [
+        "safe",
+        "release",
+        "snapshot"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v14_matchup_clarity.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: carryover unit preview missing"
+    },
+    {
+      "file": "test_v15_export.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v16_spread_sign.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: market line did not convert internal +2.5 home margin to sportsbook notation"
+    },
+    {
+      "file": "test_v17_export.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v18_export_styles.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v20_export_zip.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v21_export_packing.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v24_live_metrics.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v24_refresh_integration.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: live refresh integration missing OFFENSIVE EPA / PLAY"
+    },
+    {
+      "file": "test_v25_proxy.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v26_postgame_consistency.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v27_metric_transform_smoke.js",
+      "suites": [],
+      "classification": "research-artifact",
+      "reason": "Writes a benchmark report; opt in to isolated execution",
+      "special": [
+        "writes-benchmarks"
+      ]
+    },
+    {
+      "file": "test_v28_current_state_consistency.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v28_metric_transform_smoke.js",
+      "suites": [],
+      "classification": "research-artifact",
+      "reason": "Writes a benchmark report; opt in to isolated execution",
+      "special": [
+        "writes-benchmarks"
+      ]
+    },
+    {
+      "file": "test_v29_defense_components.js",
+      "suites": [],
+      "classification": "research-artifact",
+      "reason": "Writes a benchmark report; opt in to isolated execution",
+      "special": [
+        "writes-benchmarks"
+      ]
+    },
+    {
+      "file": "test_v29_week1_replay.js",
+      "suites": [],
+      "classification": "research-artifact",
+      "reason": "Writes a benchmark report; opt in to isolated execution",
+      "special": [
+        "writes-benchmarks"
+      ]
+    },
+    {
+      "file": "test_v30_predictive_gates.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v31_force_line_calibration.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v32_market_decay_rounding.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: V35 exact score must use football normalizer"
+    },
+    {
+      "file": "test_v33_qb_regime.js",
+      "suites": [
+        "safe",
+        "qb",
+        "model"
+      ],
+      "classification": "frozen-regression"
+    },
+    {
+      "file": "test_v34_early_regime.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "frozen-regression"
+    },
+    {
+      "file": "test_v35_forecast_coherence.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: main app must not expose FORCE-only probability/line language"
+    },
+    {
+      "file": "test_v36_rematch_units_export.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v37_unit_prior.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v38_units_force.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v39_units_force_color.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v40_rankings_export.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: all rankings sub-tabs need common export cleanup"
+    },
+    {
+      "file": "test_v40_team_logos.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v40_unit_clarity.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: Units note must define pass-rush semantics"
+    },
+    {
+      "file": "test_v41_pass_rush_pressure.js",
+      "suites": [
+        "safe",
+        "qb",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v42_pass_rush_readiness_and_matchup_logos.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: matchup note/provider map must expose the weekly disruption fallback"
+    },
+    {
+      "file": "test_v43_ftn_pressure_provider.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: UI discloses V99 fallback/freshness state rather than relabeling missing advanced pressure"
+    },
+    {
+      "file": "test_v44_pressure_freshness.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: UI explicitly identifies the fallback instead of showing Pass Rush unavailable"
+    },
+    {
+      "file": "test_v44_pressure_freshness.py",
+      "suites": [
+        "safe",
+        "qb",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v45_all_metric_freshness.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v45_unit_force_bridge.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v45_update_center.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: team update triggers a real upstream refresh"
+    },
+    {
+      "file": "test_v46_manual_pressure_write.py",
+      "suites": [
+        "safe",
+        "qb",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v46_scale_logos_pressure_rescue.js",
+      "suites": [
+        "safe",
+        "qb"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v47_score_prior_and_forecast_logos.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: QB-correction copy must be text-only with no redundant logo"
+    },
+    {
+      "file": "test_v48_vector_brand.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v49_brand_scale.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v50_brand_gloss_and_name.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v51_offseason_reversion.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v52_approved_png_brand.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v53_corrected_png_name.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v54_png_rating_ruler.py",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Requires optional Pillow image dependency",
+      "special": [
+        "optional:Pillow"
+      ]
+    },
+    {
+      "file": "test_v55_png_rating_ruler_contiguous.py",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Requires optional Pillow image dependency",
+      "special": [
+        "optional:Pillow"
+      ]
+    },
+    {
+      "file": "test_v56_single_ruler.py",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Requires optional Pillow image dependency",
+      "special": [
+        "optional:Pillow"
+      ]
+    },
+    {
+      "file": "test_v57_forecast_cleanup.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: forecast explanation keeps QB correction text"
+    },
+    {
+      "file": "test_v57_unit_regression_rb.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v58_export_copy_minimal.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v59_logo_provider_aliases.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v60_lines_penalties_spread_context.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: method copy should explain .0 and .5 are both valid sportsbook lines"
+    },
+    {
+      "file": "test_v61_spread_history_gate.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v62_context_scores.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: penalty blend explanation missing"
+    },
+    {
+      "file": "test_v63_forcecast_brand.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v64_context_gate_and_bands.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v65_matchup_semantic_colors.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v66_divisions_playoffs.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v67_logo_only_team_marks.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v68_customer_rematch_export.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v69_canonical_historical_state.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "frozen-regression"
+    },
+    {
+      "file": "test_v70_matchup_export_packing.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v71_game_flow_research.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v72_game_flow_scoring.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v73_matchup_donuts.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v74_matchup_donut_layout.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v75_playoff_structure.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v76_matchup_donut_export.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v77_game_flow_blend.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v77_game_flow_proxy.py",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Writes canonical game-flow live-cache files; opt in to isolated execution",
+      "special": [
+        "writes-live-cache"
+      ]
+    },
+    {
+      "file": "test_v78_game_flow_output_only.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v79_forcecast_slate.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v80_penalty_impact.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: approved method must be surfaced in UI"
+    },
+    {
+      "file": "test_v80_penalty_pbp.py",
+      "suites": [],
+      "classification": "historical-model",
+      "reason": "Archived penalty event/EPA/WPA expectations differ from current same-state scoring semantics"
+    },
+    {
+      "file": "test_v81_penalty_impact.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: approved method must be surfaced in UI"
+    },
+    {
+      "file": "test_v81_penalty_pbp.py",
+      "suites": [],
+      "classification": "historical-model",
+      "reason": "Archived penalty event/EPA/WPA expectations differ from current same-state scoring semantics"
+    },
+    {
+      "file": "test_v82_integrity_contract.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: user-facing stale-prior refusal missing"
+    },
+    {
+      "file": "test_v82_server_cache.py",
+      "suites": [],
+      "classification": "historical-authorization",
+      "reason": "Archived anonymous force_refresh bypass contract is superseded by current public TTL authorization"
+    },
+    {
+      "file": "test_v83_partial_week_cache.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v83_partial_week_freshness.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v84_diagnostics.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: client diagnostic version missing"
+    },
+    {
+      "file": "test_v84_diagnostics.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: diagnostic version missing"
+    },
+    {
+      "file": "test_v85_refresh_bootstrap.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: V86 client version missing"
+    },
+    {
+      "file": "test_v85_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v86_penalty_cross_season.py",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Historical penalty-reference fixture no longer satisfies the current EP/reference contract"
+    },
+    {
+      "file": "test_v86_penalty_impact.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: Cannot read properties of undefined (reading 'epa')"
+    },
+    {
+      "file": "test_v86_penalty_pbp.py",
+      "suites": [],
+      "classification": "historical-model",
+      "reason": "Archived penalty event/EPA/WPA expectations differ from current same-state scoring semantics"
+    },
+    {
+      "file": "test_v87_penalty_rankings.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: rankings must expose a Penalty Impact tab"
+    },
+    {
+      "file": "test_v87_refresh_bootstrap.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: V87 client version missing"
+    },
+    {
+      "file": "test_v87_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v88_penalty_cross_season.py",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Historical penalty-reference fixture no longer satisfies the current EP/reference contract"
+    },
+    {
+      "file": "test_v88_penalty_impact.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: approved method must be surfaced in UI"
+    },
+    {
+      "file": "test_v88_penalty_pbp.py",
+      "suites": [],
+      "classification": "historical-model",
+      "reason": "Archived penalty event/EPA/WPA expectations differ from current same-state scoring semantics"
+    },
+    {
+      "file": "test_v88_penalty_rankings.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: rankings must expose a Penalty Impact tab"
+    },
+    {
+      "file": "test_v88_refresh_bootstrap.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: V88 client version missing"
+    },
+    {
+      "file": "test_v88_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v89_penalty_cross_season.py",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Historical penalty-reference fixture no longer satisfies the current EP/reference contract"
+    },
+    {
+      "file": "test_v89_penalty_impact.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: approved method must be surfaced in UI"
+    },
+    {
+      "file": "test_v89_penalty_pbp.py",
+      "suites": [],
+      "classification": "historical-model",
+      "reason": "Archived penalty event/EPA/WPA expectations differ from current same-state scoring semantics"
+    },
+    {
+      "file": "test_v89_penalty_rankings.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: rankings must expose a Penalty Impact tab"
+    },
+    {
+      "file": "test_v89_refresh_bootstrap.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: V89 client version missing"
+    },
+    {
+      "file": "test_v89_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v90_penalty_current_season.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v90_penalty_rankings.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: Penalty Impact tab missing"
+    },
+    {
+      "file": "test_v90_penalty_state_wp.py",
+      "suites": [],
+      "classification": "historical-model",
+      "reason": "Archived penalty event/EPA/WPA expectations differ from current same-state scoring semantics"
+    },
+    {
+      "file": "test_v90_refresh_bootstrap.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: V90 client version missing"
+    },
+    {
+      "file": "test_v90_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v91_nflfastr_wp.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v91_penalty_current_season.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v91_penalty_rankings.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: Penalty Impact tab missing"
+    },
+    {
+      "file": "test_v91_prestate_alignment.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v91_refresh_bootstrap.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: V91 client version missing"
+    },
+    {
+      "file": "test_v91_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v92_nflfastr_wp.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v92_penalty_current_season.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v92_penalty_rankings.js",
+      "suites": [],
+      "classification": "historical-fixture",
+      "reason": "Baseline audit: Penalty Impact tab missing"
+    },
+    {
+      "file": "test_v92_prestate_alignment.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v92_refresh_bootstrap.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: V92 client version missing"
+    },
+    {
+      "file": "test_v92_same_model_penalty_wpa.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v92_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v93_penalty_aggregation.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v93_penalty_client_source.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v93_penalty_current_season.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v94_penalty_current_season.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v94_special_teams_penalty.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v95_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v95_same_state_epa.py",
+      "suites": [
+        "safe",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v95_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v96_browser_scale.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v96_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v96_penalty_debug_payload.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v96_penalty_scale.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v96_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v97_browser_scale.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v97_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v97_export_contract.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v97_penalty_debug_payload.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v97_penalty_scale.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v97_score_aware_penalty.py",
+      "suites": [
+        "safe",
+        "server",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v97_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v98_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v98_retrospective_strength.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v98_server_health.py",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Hard-coded historical server/diagnostic identity conflicts with current V149"
+    },
+    {
+      "file": "test_v99_32_team_ledger_contract.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v99_all_team_week2_units.js",
+      "suites": [
+        "safe"
+      ],
+      "classification": "frozen-regression"
+    },
+    {
+      "file": "test_v99_contract.js",
+      "suites": [],
+      "classification": "stale-current-contract",
+      "reason": "Baseline audit: server identity"
+    },
+    {
+      "file": "test_v99_pass_rush_fallback.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_v99_rating_continuity.js",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    }
+  ]
+}

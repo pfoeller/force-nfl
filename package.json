@@ -7,7 +7,16 @@
   "scripts": {
     "build:public": "python scripts/build_public.py",
     "dev": "npm run build:public && wrangler dev",
-    "deploy": "npm run build:public && wrangler deploy"
+    "deploy": "npm run build:public && wrangler deploy",
+    "test": "node scripts/run_tests.mjs",
+    "test:safe": "node scripts/run_tests.mjs --suite safe",
+    "test:release": "node scripts/run_tests.mjs --suite release",
+    "test:qb": "node scripts/run_tests.mjs --suite qb",
+    "test:snapshot": "node scripts/run_tests.mjs --suite snapshot",
+    "test:server": "node scripts/run_tests.mjs --suite server",
+    "test:model": "node scripts/run_tests.mjs --suite model",
+    "test:list": "node scripts/run_tests.mjs --suite all --list",
+    "test:inventory": "node scripts/run_tests.mjs --inventory"
   },
   "dependencies": {
     "@cloudflare/containers": "latest"
