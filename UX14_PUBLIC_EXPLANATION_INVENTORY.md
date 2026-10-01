@@ -1,8 +1,18 @@
-# UX-14 public explanation inventory and approval proposal
+# UX-14 public explanation inventory and owner disposition
 
 Roadmap item: `UX-14` (public methodology depth). Decision status CONFIRMED; this document is the required inventory and classification step. Prepared 2026-10-01 on `claude/roadmap-lane` from `main @ 8fc1f87`.
 
-**Nothing in this document has been removed from the public site.** Every classification below is a proposal. `UX-14` requires explicit owner confirmation of the actual removal/simplification list before any content tranche, and that tranche needs its own authorization. Technical/model documentation stays available internally.
+**Nothing in this document has been removed from the public site.** The classifications below were proposals; the owner disposition that follows records what was approved. Implementing any approved removal or simplification still needs its own separately authorized content tranche. Technical/model documentation stays available internally.
+
+## Owner disposition (2026-10-01)
+
+Recorded from the owner's message on 2026-10-01. It approves the list; it does not authorize the content tranche that implements it.
+
+- **A. REMOVE FROM PUBLIC: R1–R9 approved.** For R3–R5, remove the internal wording only. Honest user-facing failure and staleness communication stays, as concise plain English such as “some inputs are delayed”, “FORCE did not load completely, please reload” and “last good data is being shown”.
+- **B. RESERVE FOR DEEPER: D1–D9 approved. D10 approved with a condition:** move the detailed historical/correction rationale deeper, and keep a short public statement somewhere appropriate that automatic QB correction is applied only in verified cases. `UX-19` removes the public QB-return tool; it does not hide the limited verified automatic correction inside the model.
+- **C. SIMPLIFY PUBLIC: overall direction approved** for the listed groups: concepts instead of formulas; human football language instead of provider/model jargon; plain-English continuity and staleness explanations; “thousands of simulations” rather than public-facing “Monte Carlo”; market transparency kept, without implementation dumps. This does not resolve `UX-18` placement or any other open design gate.
+- **D. Other gates unchanged:** `UX-08`, `UX-12`/`UX-26`, `UX-15`, `UX-17`, `UX-18`, `UX-19`, `UX-31` and other existing gates stay under their own roadmap items.
+- **Section E findings:** C1, C2, C4 and C5 are confirmed findings, reported in the lane handoff and not implemented by this lane. C3 remains INVESTIGATE under `UX-10`/`UX-18`.
 
 ## Scope and method
 
