@@ -1,0 +1,20 @@
+const fs=require('fs');
+const server=fs.readFileSync('force_server.py','utf8');
+const lp=fs.readFileSync('model/live_profiles.js','utf8');
+const app=fs.readFileSync('assets/app.js','utf8');
+let n=0; function ok(v,m){n++; if(!v) throw new Error(m)}
+ok(server.includes("APP_VERSION = 'V96'"),'server identity');
+ok(server.includes("SERVER_DIAG_VERSION = 'V96-DIAG-1'"),'diagnostic identity');
+ok(server.includes("/api/game-flow-2026-v96"),'V96 game-flow cache');
+ok(server.includes("'softness':3.0") && server.includes("'component_z_cap':3.0"),'server widened scale config');
+ok(server.includes('_penalty_score_breakdown_from_averages'),'server scale breakdown');
+ok(server.includes("if path == '/api/penalty-scale-debug'"),'server league audit endpoint');
+ok(lp.includes('contextZSoftness: 3.0') && lp.includes('penaltyComponentZCap: 3.0'),'browser widened scale config');
+ok(lp.includes('causalPenaltyScoreBreakdownFromAverages'),'browser scale breakdown');
+ok(lp.includes('livePenaltyWeights: Object.freeze({ epa: 0.40, wpa: 0.25, firstDown: 0.20, erasedTd: 0.15 })'),'approved weights intact');
+ok(app.includes("health?.app_version!=='V96'"),'client health identity');
+ok(app.includes('window.FORCE_PENALTY_SCALE_AUDIT=penaltyScaleAudit'),'scale audit helper');
+ok(app.includes('window.FORCE_PENALTY_OUTLIERS=penaltyOutliers'),'event outlier helper');
+ok(app.includes('browserScoreBreakdown') && app.includes('serverScoreBreakdown'),'single-team scale debug');
+ok(app.includes('penaltyScoreText') && app.includes('fmt(x,1)'),'one-decimal score display');
+console.log(`PASS: V96 Penalty Impact contract (${n} checks)`);

@@ -1,0 +1,13 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes('function splitPredictionFinale(node, maxHeight)'), 'completed-game finale splitter missing');
+ok(app.includes("contains('prediction-finale')) return splitPredictionFinale"), 'finale splitter not wired into export expansion');
+ok(app.includes('Part 1: the shareable forecast/actual-final summary'), 'forecast export block missing');
+ok(app.includes('Part 2: postgame FORCE movement + rematch outputs'), 'rematch export block missing');
+ok(app.includes('Part 3: the unit update'), 'unit-update export block missing');
+ok(app.includes('page.used < usable * 0.58'), 'underfilled-page rebalance threshold missing');
+ok(app.includes('page.blocks.push(next.blocks.shift())'), 'forward page rebalance missing');
+ok(app.includes('stampExportHeight(unitOuter'), 'unit-update export height must be stamped independently');
+console.log(`OK: ${n} V70 matchup-export packing assertions`);

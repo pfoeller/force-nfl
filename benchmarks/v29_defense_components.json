@@ -1,0 +1,49 @@
+{
+  "version": 29,
+  "checks": 494,
+  "failures": [],
+  "defenseWeights": {
+    "coverageIndex": 0.36,
+    "passRushIndex": 0.16,
+    "runDefenseIndex": 0.28,
+    "pointsAllowedPerDriveIndex": 0.2
+  },
+  "ind": {
+    "before": {
+      "passRush": 12.903225806451616,
+      "runDefense": 41.935483870967744,
+      "coverage": 45.2,
+      "defense": 36.040582153472236,
+      "legacyFront": 16.1
+    },
+    "after": {
+      "passRush": 43.54838709677419,
+      "runDefense": 20.967741935483872,
+      "coverage": 22.6,
+      "defense": 24.459221391680444,
+      "legacyFront": 41.43709677419355
+    },
+    "raw": {
+      "pressureRate": 0.2222222222222222,
+      "runEpaAllowed": 0.4,
+      "passEpaAllowed": 0.3888888888888889,
+      "cpoeAllowed": 9
+    }
+  },
+  "kc": {
+    "before": {
+      "passRush": 87.09677419354838,
+      "runDefense": 54.83870967741935,
+      "coverage": 54.8,
+      "defense": 62.728723282068486,
+      "legacyFront": 87.1
+    },
+    "after": {
+      "passRush": 93.54838709677419,
+      "runDefense": 77.41935483870968,
+      "coverage": 77.4,
+      "defense": 81.6134079015341,
+      "legacyFront": 93.55
+    }
+  }
+}

@@ -1,0 +1,11 @@
+const fs = require('fs');
+const app = fs.readFileSync(__dirname + '/../assets/app.js','utf8');
+const css = fs.readFileSync(__dirname + '/../assets/styles.css','utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes('class="score ${bandClass(score(r.liveElo))}"'),'Units FORCE score must use canonical bandClass');
+ok(css.includes('.rating-cell .score.band-low{color:var(--red)}'),'low FORCE text must be red');
+ok(css.includes('.rating-cell .score.band-mid{color:var(--gold)}'),'mid FORCE text must be gold');
+ok(css.includes('.rating-cell .score.band-high{color:var(--green)}'),'high FORCE text must be green');
+ok(app.includes('data-export-row-group="16"'),'Rankings 16-team export grouping must remain intact');
+ok(app.includes("S.ratingView === 'units' ? '' : diagnosticNotice()"),'Units notes must remain suppressed');
+console.log(`OK: ${n} V39 Units FORCE semantic-color assertions`);

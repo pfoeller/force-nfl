@@ -1,0 +1,14 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes("const ac=av==null?'':bandClass(av), hc=hv==null?'':bandClass(hv);"),'duel must derive semantic classes from canonical bandClass');
+ok(app.includes('strong class="${ac}"'),'away matchup number must carry FORCE band class');
+ok(app.includes('strong class="${hc}"'),'home matchup number must carry FORCE band class');
+ok(app.includes('i class="${ac}" style="width:${aw}%"'),'away matchup bar must carry FORCE band class');
+ok(app.includes('i class="${hc}" style="width:${hw}%"'),'home matchup bar must carry FORCE band class');
+ok(css.includes('.duel-track i.band-low')&&css.includes('.duel-track i.band-mid')&&css.includes('.duel-track i.band-high'),'duel bars need all three FORCE semantic colors');
+ok(css.includes('.duel-side strong.band-low')&&css.includes('.duel-side strong.band-mid')&&css.includes('.duel-side strong.band-high'),'duel numeric values need all three FORCE semantic colors');
+ok(css.indexOf('.duel-track i.band-high')>css.indexOf('.duel-track i:last-child'),'V65 semantic overrides must follow legacy team-color declarations');
+console.log(`OK: ${n} V65 matchup semantic-color assertions`);

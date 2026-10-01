@@ -1,0 +1,18 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const data=fs.readFileSync(path.join(root,'data/game-flow-priors-2025.js'),'utf8');
+const report=fs.readFileSync(path.join(root,'GAME_FLOW_RESEARCH_V71.md'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(index.includes('data/game-flow-priors-2025.js'),'Game Flow priors must load before app');
+ok(app.includes('const GF = window.FORCE_GAME_FLOW_PRIORS_2025'),'app must consume Game Flow research data');
+ok(app.includes('Game Flow · Research'),'matchup page must expose Game Flow research panel');
+ok(app.includes('Projected scoring by quarter'),'Game Flow must show quarter-specific scoring path');
+ok(app.includes('display-only'),'Game Flow must be explicitly marked display-only');
+ok(app.includes('leagueQuarterShare'),'Game Flow must use league-average quarter timing');
+ok(data.includes('"teamProfileWeight":0.0'),'team-specific quarter timing must have zero predictive weight');
+ok(!app.includes('game-flow-detail'),'Game Flow must not render detailed explanatory prose');
+ok(report.includes('41.6%'),'research report must document failed persistence test');
+ok(!app.includes('fc.probability =') && !app.includes('proj.probability ='),'Game Flow presentation must not mutate forecast probability');
+console.log(`OK: ${n} V71 Game Flow research assertions`);

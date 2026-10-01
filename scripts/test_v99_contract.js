@@ -1,0 +1,11 @@
+const fs=require('fs'),path=require('path'); const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8'), server=fs.readFileSync(path.join(root,'force_server.py'),'utf8'), html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+let n=0; const ok=(x,m)=>{n++;if(!x)throw new Error(m)};
+ok(server.includes("APP_VERSION = 'V99'"),'server identity');
+ok(server.includes("SERVER_DIAG_VERSION = 'V99-DIAG-1'"),'server diagnostic identity');
+ok(app.includes("health?.app_version!=='V99'"),'client server identity');
+ok(app.includes("FORCE_DIAG_VERSION = 'V99-DIAG-1'"),'client diagnostic identity');
+ok(html.includes('model/rating_continuity.js'),'continuity module not loaded');
+ok(app.includes('FORCE_PASS_RUSH_DEBUG'),'pass-rush diagnostic hook missing');
+ok(app.includes('FORCE_UNIT_AUDIT'),'unit audit hook missing');
+console.log(`PASS: V99 contract (${n} checks)`);

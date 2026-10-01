@@ -1,0 +1,16 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const server=fs.readFileSync(path.join(root,'force_server.py'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes("const FORCE_DIAG_VERSION = 'V109-DIAG-1'"),'client diagnostic version missing');
+ok(app.includes('window.FORCE_DIAGNOSTICS'),'global diagnostic collector missing');
+ok(app.includes("diagnosticFetch('team stats'"),'team fetch logging missing');
+ok(app.includes("diag('weekly-canonical-replace'"),'browser merge logging missing');
+ok(app.includes("diag('profiles:build-complete'"),'profile freshness logging missing');
+ok(app.includes('id="collectDiagnostics"'),'Update Center diagnostic button missing');
+ok(app.includes('id="diagnosticOutput"'),'visible diagnostic output missing');
+ok(server.includes("if path == '/api/diagnostics':"),'server diagnostics endpoint missing');
+ok(server.includes("weekly-merge:no-prior-snapshot"),'no-prior partial-week diagnostic missing');
+ok(server.includes("upstream:fallback-disk"),'disk fallback diagnostic missing');
+console.log(`PASS: V84 client/server diagnostic instrumentation (${n} checks)`);

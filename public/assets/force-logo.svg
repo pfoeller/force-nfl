@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 150" role="img" aria-labelledby="t d">
+  <title id="t">FORCE</title>
+  <desc id="d">FORCE, Football Objective Rating &amp; Comparative Efficiency, with a 1 to 100 rating-scale motif colored by the FORCE rating bands.</desc>
+  <defs>
+    <linearGradient id="teal" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#0a5e56"/><stop offset=".34" stop-color="#11b893"/><stop offset=".62" stop-color="#33f0c1"/><stop offset="1" stop-color="#1a8b76"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#9b5a17"/><stop offset=".38" stop-color="#f0ae2f"/><stop offset=".65" stop-color="#ffe37c"/><stop offset="1" stop-color="#b97a22"/></linearGradient>
+    <linearGradient id="red" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#6e1428"/><stop offset=".45" stop-color="#c72048"/><stop offset=".7" stop-color="#ff5b74"/><stop offset="1" stop-color="#991f33"/></linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset=".45" stop-color="#f5f7fa"/><stop offset="1" stop-color="#a8b6c3"/></linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".75"/><stop offset=".18" stop-color="#ffffff" stop-opacity=".34"/><stop offset=".36" stop-color="#ffffff" stop-opacity="0"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#ffb34f" flood-opacity=".22"/></filter>
+  </defs>
+  <g transform="translate(0 1) scale(.86)">
+    <g filter="url(#glow)">
+    <path id="fTop" d="M20 104 L76 23 H166 L150 40 H83 L39 104 Z" fill="url(#teal)"/>
+    <path id="fMid" d="M36 112 L80 53 H145 L129 70 H89 L53 112 Z" fill="url(#gold)"/>
+    <path id="fLow" d="M45 124 L84 78 H112 L90 100 H74 L58 124 Z" fill="url(#red)"/>
+    <path d="M20 104 L76 23 H166 L150 40 H83 L39 104 Z" fill="url(#shine)" opacity=".55"/>
+    <path d="M36 112 L80 53 H145 L129 70 H89 L53 112 Z" fill="url(#shine)" opacity=".44"/>
+    <path d="M45 124 L84 78 H112 L90 100 H74 L58 124 Z" fill="url(#shine)" opacity=".42"/>
+    <path d="M28 128 L35 120 H40 V128 Z M40 128 L48 118 H53 V128 Z M54 128 L64 114 H70 V128 Z" fill="#ff6479" opacity=".97"/>
+    <path d="M60 120 L69 108" stroke="#ffb6c2" stroke-width="2" stroke-linecap="round" opacity=".58"/>
+    <path d="M70 117 L79 105" stroke="#ffb6c2" stroke-width="2" stroke-linecap="round" opacity=".48"/>
+    <path d="M79 113 L87 103" stroke="#7a1028" stroke-width="2.1" stroke-linecap="round" opacity=".32"/>
+  </g>
+  </g>
+  <text x="154" y="77" fill="url(#silver)" font-family="Arial Black, Inter, Segoe UI, sans-serif" font-size="58" font-weight="900" letter-spacing="8">FORCE</text>
+  <text x="157" y="103" fill="#d7e1e9" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="500" letter-spacing=".8">Football Objective Rating &amp; Comparative Efficiency</text>
+  <g transform="translate(158 119)">
+    <text x="0" y="14" fill="#ff6b70" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" font-weight="900">1</text>
+    <path d="M24 0v19" stroke="#ff6b70" stroke-width="3"/>
+    <g stroke-width="1.6" stroke-linecap="square">
+      <path d="M41 5v10" stroke="#ff6b70" opacity=".55"/>
+      <path d="M58 1v18" stroke="#ff6b70" opacity=".95"/>
+      <path d="M75 5v10" stroke="#ff6b70" opacity=".55"/>
+      <path d="M92 1v18" stroke="#ff6b70" opacity=".95"/>
+      <path d="M109 5v10" stroke="#ff6b70" opacity=".55"/>
+      <path d="M126 1v18" stroke="#ff6b70" opacity=".95"/>
+      <path d="M143 5v10" stroke="#ff6b70" opacity=".55"/>
+      <path d="M160 1v18" stroke="#ff6b70" opacity=".95"/>
+      <path d="M177 5v10" stroke="#ffd166" opacity=".55"/>
+      <path d="M194 1v18" stroke="#ffd166" opacity=".95"/>
+      <path d="M211 5v10" stroke="#ffd166" opacity=".55"/>
+      <path d="M228 1v18" stroke="#ffd166" opacity=".95"/>
+      <path d="M245 5v10" stroke="#ffd166" opacity=".55"/>
+      <path d="M262 1v18" stroke="#ffd166" opacity=".95"/>
+      <path d="M279 5v10" stroke="#55d69e" opacity=".55"/>
+      <path d="M296 1v18" stroke="#55d69e" opacity=".95"/>
+      <path d="M313 5v10" stroke="#55d69e" opacity=".55"/>
+      <path d="M330 1v18" stroke="#55d69e" opacity=".95"/>
+      <path d="M347 5v10" stroke="#55d69e" opacity=".55"/>
+    </g>
+    <path d="M364 0v19" stroke="#55d69e" stroke-width="3"/>
+    <text x="376" y="14" fill="#55d69e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" font-weight="900">100</text>
+  </g>
+</svg>

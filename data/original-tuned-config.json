@@ -1,0 +1,22 @@
+{
+  "scale": 340.0,
+  "k_factor": 20.0,
+  "hfa": 15.0,
+  "reversion": 0.333,
+  "margin_blend": 0.6,
+  "epa_to_points": 65.0,
+  "qb_k": 16.0,
+  "qb_weight": 0.375,
+  "qb_cap": 230.0,
+  "use_designation_injury": true,
+  "desig_injury_scale": 8.0,
+  "desig_injury_cap": 50.0,
+  "use_divisional_adjustment": true,
+  "divisional_attenuation": 0.06,
+  "use_team_av_prior": true,
+  "team_av_scale": 30.0,
+  "team_av_weight": 0.15,
+  "use_quality_weighting": true,
+  "quality_weight": 0.25,
+  "quality_weight_cap": 2.5
+}

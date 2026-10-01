@@ -1,0 +1,13 @@
+const fs=require('fs'); let n=0; const ok=(x,m)=>{if(!x)throw new Error(m);n++;};
+const app=fs.readFileSync('assets/app.js','utf8'), server=fs.readFileSync('force_server.py','utf8'), live=fs.readFileSync('model/live_profiles.js','utf8');
+ok(server.includes("APP_VERSION = 'V121'"),'server V112');
+ok(server.includes("SERVER_DIAG_VERSION = 'V121-DIAG-1'"),'server diagnostics V112');
+ok(app.includes('expected FORCE V121'),'client V112 identity');
+ok(app.includes("FORCE_DIAG_VERSION = 'V121-DIAG-1'"),'client diagnostics V112');
+ok(live.includes('outcome_surprise_z'),'live luck exposes standardized surprise');
+ok(live.includes('outcomeNeutralZ=0.5'),'half-sigma neutral band');
+ok(app.includes('const WIN_LUCK_V113'),'win luck V112 mapping');
+ok(app.includes('const LUCK_DISPLAY_V113'),'display calibration retained');
+ok(app.includes('expectedWinsDisplayed:l.exp_w!=null?Math.round'),'normal UI uses rounded expected wins');
+ok(fs.existsSync('CHANGELOG_V112.md'),'V112 changelog');
+console.log(`PASS: V112 contract (${n} checks)`);

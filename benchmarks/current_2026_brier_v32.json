@@ -1,0 +1,24 @@
+{
+  "model": "FORCE V32 week-decaying market blend",
+  "evaluation_date": "2026-09-16",
+  "sample": "15 completed Week 1 games in the embedded 2026 fallback schedule with embedded opening lines",
+  "n": 15,
+  "important_caveat": "This is a current-season opening-line diagnostic, not the historical 2023-2025 closing-line benchmark and not an out-of-sample validation of Weeks 2+ weights.",
+  "market_weight_schedule": {
+    "week_1": 0.75,
+    "week_2": 0.50,
+    "week_3": 0.25,
+    "week_4": 0.15,
+    "week_5": 0.10,
+    "week_6_plus": 0.05
+  },
+  "brier": {
+    "v31_runtime_98pct_market": 0.22707254705253982,
+    "v32_runtime_75pct_market_week1": 0.22459139744438097,
+    "delta_v32_minus_v31": -0.0024811496081588447,
+    "relative_reduction_percent": 1.0926682420947869,
+    "market_only": 0.2273676321009777,
+    "force_only": 0.2254297758764091
+  },
+  "verdict": "improved on the currently completed embedded 2026 sample"
+}

@@ -1,0 +1,13 @@
+const fs=require('fs'); let n=0; const ok=(x,m)=>{if(!x)throw new Error(m);n++;};
+const app=fs.readFileSync('assets/app.js','utf8'), live=fs.readFileSync('model/live_profiles.js','utf8'), server=fs.readFileSync('force_server.py','utf8'), bridge=fs.readFileSync('model/unit_force_bridge.js','utf8');
+ok(server.includes("APP_VERSION = 'V121'"),'server V114');
+ok(server.includes("SERVER_DIAG_VERSION = 'V121-DIAG-1'"),'server diagnostics V114');
+ok(app.includes('expected FORCE V121'),'client V114 identity');
+ok(app.includes("receiverPolicy: 'v115-partial-orthogonal'"),'V114 receiver active');
+ok(app.includes("rbPolicy: 'v115-partial-orthogonal'"),'V114 RB active');
+ok(live.includes('environmentAlignToHistoricalCenter'),'environment alignment helper');
+ok(live.includes('receiverCalibratedResidual'),'receiver calibrated residual');
+ok(live.includes('rbCalibratedComposite'),'RB calibrated composite');
+ok(bridge.includes('receiverIndex:0.08')&&bridge.includes('rbIndex:0.07'),'predictive bridge weights unchanged');
+ok(fs.existsSync('CHANGELOG_V114.md'),'V114 changelog');
+console.log(`PASS: V114 contract (${n} checks)`);

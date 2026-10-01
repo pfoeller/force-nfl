@@ -1,0 +1,13 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+let n=0; const ok=(x,m)=>{n++;if(!x)throw new Error(m)};
+ok(app.includes('matchup-subedge-donut-card'),'V74 donut card class missing');
+ok(app.includes('matchup-subedge-body'),'V74 donut body class missing');
+ok(app.includes('matchup-subedge-title'),'V74 dedicated title missing');
+ok(css.includes('grid-template-columns:repeat(2,minmax(280px,1fr))'),'wide matchup grid should be two-across');
+ok(css.includes('grid-template-columns:minmax(64px,1fr) 104px minmax(64px,1fr)'),'donut card must reserve center column');
+ok(css.includes('.matchup-edge-wrap{display:grid;place-items:center;gap:2px;width:104px;min-width:104px'),'donut center width must be fixed');
+ok(!app.includes('matchup-subedge-donut-row'),'legacy collision-prone row markup should be removed');
+console.log(`OK: ${n} V74 matchup donut layout assertions`);

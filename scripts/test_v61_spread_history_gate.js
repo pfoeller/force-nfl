@@ -1,0 +1,12 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes('function spreadHistoryReady(ai, minGames = 4)'), '4-game spread-history gate helper missing');
+ok(app.includes('Number(ai.marketGames ?? 0) >= Number(minGames)'), 'gate must use market-tracked games');
+ok(app.includes('contextScoreText(spreadScore)') && app.includes('spreadContextScore(ai)'), 'matchup context should use gated normalized spread score');
+ok(app.includes('contextScoreText(spreadContextScore(ai))'), 'team Advanced should use gated normalized spread score');
+ok(app.includes('vsVegas: Number(spreadContextScore(ai) ?? -999)'), 'rankings Advanced should sort on gated normalized spread score');
+ok(app.includes("${ai.marketGames ?? 0}/4 market-tracked games"), 'early-season explanatory copy missing');
+ok(app.includes("vsVegas:'Recent vs spread'"), 'advanced label should not revert to Vs Vegas');
+console.log(`OK: ${n} V61 spread-history gate assertions`);

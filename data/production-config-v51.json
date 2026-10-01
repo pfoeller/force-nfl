@@ -1,0 +1,11 @@
+{
+  "version": "V51",
+  "mean_elo": 1505.0,
+  "scale": 340.0,
+  "k_factor": 20.0,
+  "hfa": 15.0,
+  "offseason_reversion": 0.3,
+  "offseason_reversion_era": "2021+",
+  "legacy_reversion": 0.333,
+  "note": "Current-era season boundary. Prior-season team Elo is regressed 30% toward league mean before the new-season replay. The original-tuned-config.json artifact retains the older 33.3% setting for provenance."
+}

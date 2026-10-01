@@ -1,0 +1,27 @@
+const fs=require('fs'), vm=require('vm'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const code=fs.readFileSync(path.join(root,'model/live_profiles.js'),'utf8');
+const sandbox={window:{},console}; vm.runInNewContext(code,sandbox);
+const L=sandbox.window.FORCE_LIVE_PROFILE;
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+const near=(a,b,t=1e-9)=>Math.abs(a-b)<=t;
+ok(near(L.CONTEXT_SCALE.causalPenaltyWeights.epa,.70)&&near(L.CONTEXT_SCALE.causalPenaltyWeights.wpa,.30),'V86 weights must be 70/30 causal EPA/WPA');
+ok(!Object.prototype.hasOwnProperty.call(L.CONTEXT_SCALE,'livePenaltyWeights'),'legacy 40/25/20/15 weights must be removed');
+const cal={epa_per_game_rms:2,wpa_per_game_rms:.04,epa_weight:.7,wpa_weight:.3,softness:2,prior_equivalent_games:3};
+const priorNeutral={games:17,net_penalty_epa:0,net_penalty_wpa:0};
+const neutral=L.livePenaltyImpactScore({netPenaltyEpaTotal:0,netPenaltyWpaTotal:0},2,priorNeutral,cal);
+ok(near(neutral,50),'neutral causal penalty context must score 50');
+const good=L.livePenaltyImpactScore({netPenaltyEpaTotal:4,netPenaltyWpaTotal:.08},2,priorNeutral,cal);
+ok(good>50,'positive causal impact must move score above neutral');
+const priorGood={games:17,net_penalty_epa:34,net_penalty_wpa:.68}; // +2 EPA/g, +4 pp/g
+const neutralCurrent=L.livePenaltyImpactScore({netPenaltyEpaTotal:0,netPenaltyWpaTotal:0},2,priorGood,cal);
+ok(neutralCurrent>50,'recalculated 2025 causal prior must carry into 2026');
+const contextA={netPenaltyEpaTotal:4,netPenaltyWpaTotal:.08,netFirstDownsPerGame:999,netTdsNegatedPerGame:999};
+const contextB={netPenaltyEpaTotal:4,netPenaltyWpaTotal:.08,netFirstDownsPerGame:-999,netTdsNegatedPerGame:-999};
+ok(near(L.livePenaltyImpactScore(contextA,2,priorNeutral,cal),L.livePenaltyImpactScore(contextB,2,priorNeutral,cal)),'audit event counts must not be double-counted in the score');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+ok(app.includes('70% causal penalty EPA')&&app.includes('30% causal penalty WPA'),'V86 method must be surfaced in UI');
+ok(app.includes('TURNOVERS ERASED BY PENALTY'),'erased turnovers must be auditable in UI');
+ok(app.includes('3RD/4TH-DOWN DRIVE SAVES'),'drive saves must be auditable in UI');
+ok(!app.includes('40% net penalty EPA'),'legacy V81 scoring description must be removed');
+console.log(`PASS: V86 causal penalty scoring (${n} checks)`);

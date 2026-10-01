@@ -1,0 +1,22 @@
+{
+  "model": "FORCE + Market v2",
+  "version": "2.0.0",
+  "benchmark_window": "2023-2025",
+  "scores": {
+    "independent_model": 0.2170,
+    "vegas_closing_spread_only": 0.2095,
+    "logistic_blend_elo_plus_closing_spread": 0.2095,
+    "gbm_delta_layer": 0.2112
+  },
+  "improvement": {
+    "absolute_brier_reduction_vs_independent": 0.0075,
+    "relative_brier_reduction_percent": 3.46
+  },
+  "runtime_policy": {
+    "power_score_uses_market": false,
+    "smart_forecast_prefers": ["devigged_moneyline", "spread", "independent_model"],
+    "independent_fallback": true
+  },
+  "caveat": "0.2095 is the supplied research bundle's closing-line benchmark. Current/opening lines can have a different Brier score and must not be described as measured at 0.2095 without a separate backtest.",
+  "source": "Celo.zip README.md and shipped model-card research"
+}

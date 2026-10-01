@@ -1,0 +1,17 @@
+const fs=require('fs');
+const path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const server=fs.readFileSync(path.join(root,'force_server.py'),'utf8');
+let n=0; const ok=(v,m)=>{n++;if(!v)throw new Error(m)};
+ok(server.includes("APP_VERSION = 'V129'"),'server V129 identity');
+ok(app.includes("health?.app_version!=='V129'"),'client V129 identity');
+ok(app.includes("if (view === 'luck') return `<tr><th class=\"metric-rank-head\">${rankLabel()} rank</th>"),'Luck rank heading remains contextual');
+ok(app.includes('const luckLead=`<td>${displayRank}</td>'),'Luck rows retain contextual display rank');
+ok(app.includes("teamIdentity(r.team,{size:'xs'})"),'Luck rows use simple team identity');
+ok(!app.includes("const luckLead=`<td>${displayRank}</td><td><button class=\"team-link\" data-team=\"${r.team}\">${teamIdentity(r.team,{size:'xs',sub:subRank})}"),'Luck rows do not inject secondary nested rank markup');
+ok(app.includes('function simplifyInteractiveControlsForExport(root)'),'export control simplifier exists');
+ok(app.includes("root.querySelectorAll('button, a')"),'export clone flattens interactive controls');
+ok(app.includes('simplifyInteractiveControlsForExport(clone);'),'export control simplifier is wired into clone preparation');
+ok(app.indexOf('simplifyInteractiveControlsForExport(clone);') < app.indexOf("clone.classList.add('export-compact-copy')"),'control simplification happens before export layout measurement');
+console.log(`PASS: V128 contextual Luck rank + export hardening (${n} checks)`);

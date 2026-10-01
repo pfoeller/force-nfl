@@ -1,0 +1,16 @@
+const fs=require('fs'),path=require('path');const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8'),server=fs.readFileSync(path.join(root,'force_server.py'),'utf8'),live=fs.readFileSync(path.join(root,'model/live_profiles.js'),'utf8');
+let n=0;const ok=(x,m)=>{n++;if(!x)throw new Error(m)};
+ok(server.includes("APP_VERSION = 'V121'"),'server V103 identity');
+ok(server.includes("SERVER_DIAG_VERSION = 'V121-DIAG-1'"),'server V103 diagnostics');
+ok(app.includes("health?.app_version!=='V121'"),'client requires V103 server');
+ok(app.includes("qbPolicy: 'v106-current-season-stabilized'"),'live QB V104 successor policy missing');
+ok(live.includes('passEpaWeight:0.75')&&live.includes('cpoeWeight:0.25'),'V103 QB passing core must be 75/25 EPA/CPOE');
+ok(live.includes('rushingBonusCap:12.0'),'V103 rushing bonus cap must be +12');
+ok(live.includes("qbPolicy==='v103-stable-pass-rush-bonus'||qbPolicy==='v104-historical-calibrated'||qbPolicy==='v106-current-season-stabilized'"),'V103/V104 live QB must preserve additive rushing bonus behavior');
+ok(live.includes('shiftedPriorPercentile'),'V103 stable prior-distribution benchmark missing');
+ok(server.includes('home_qb_rush_epa')&&server.includes('home_qb_rush_attempts'),'V103 PBP QB rushing payload missing');
+ok(server.includes("not _pbp_truthy(row.get('qb_kneel'))"),'V103 QB rushing must exclude kneels');
+ok(app.includes('passEpaScore')&&app.includes('qbRushBonus')&&app.includes('liveQbScore'),'V103 QB diagnostics missing component scores');
+ok(fs.existsSync(path.join(root,'CHANGELOG_V103.md')),'V103 changelog missing');
+console.log(`PASS: V103 contract (${n} checks)`);

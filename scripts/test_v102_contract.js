@@ -1,0 +1,18 @@
+const fs=require('fs'),path=require('path');const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8'),server=fs.readFileSync(path.join(root,'force_server.py'),'utf8'),live=fs.readFileSync(path.join(root,'model/live_profiles.js'),'utf8'),bridge=fs.readFileSync(path.join(root,'model/unit_force_bridge.js'),'utf8');
+let n=0;const ok=(x,m)=>{n++;if(!x)throw new Error(m)};
+ok(server.includes("APP_VERSION = 'V121'"),'server V102 identity');
+ok(server.includes("SERVER_DIAG_VERSION = 'V121-DIAG-1'"),'server V102 diagnostics');
+ok(app.includes("health?.app_version!=='V121'"),'client requires V102 server');
+ok(live.includes("qbPolicy==='v102-attempts-opponent-adjusted'"),'V102 QB policy support must remain for historical regression');
+ok(app.includes("receiverPolicy: 'v115-partial-orthogonal'")&&live.includes("receiverResidualPolicyActive(receiverPolicy)"),'V109 receiver policy must supersede while preserving V102 support');
+ok(app.includes("olPolicy: 'v102-pass-protection'"),'OL separation policy missing');
+ok(app.includes("rbPolicy: 'v115-partial-orthogonal'")&&live.includes("rbResidualPolicyActive(rbPolicy)"),'V109 RB policy must supersede while preserving V102 support');
+ok(app.includes('preserveV101Offense:true'),'Week-2 baseline must preserve V101 offense semantics');
+ok(live.includes(".65*scoreQbEpa")&&live.includes(".20*(scoreQbCpoe")&&live.includes(".15*(scoreQbRush"),'QB must be 65/20/15 pass EPA/CPOE/rush');
+ok(live.includes("recPositions=receiverResidualPolicyActive(receiverPolicy) ? ['WR','TE']"),'RB/FB must be excluded from V102 receiver room');
+ok(live.includes("team rushing EPA removed"),'OL provenance must document removal of rush EPA');
+ok(bridge.includes('pointsScoredPerDriveIndex:0.20')&&!bridge.includes('offenseIndex:0.20'),'bridge must replace team EPA with scoring/drive outcome');
+ok(app.includes('FORCE_QB_DEBUG')&&app.includes('FORCE_UNIT_OVERLAP_AUDIT'),'V102 diagnostics missing');
+ok(fs.existsSync(path.join(root,'CHANGELOG_V102.md')),'V102 changelog missing');
+console.log(`PASS: V102 contract (${n} checks)`);

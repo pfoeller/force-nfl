@@ -1,0 +1,8224 @@
+{
+  "version": 28,
+  "checks": 2519,
+  "failures": [],
+  "kc": {
+    "front": {
+      "before": 87.1,
+      "after": 88.55,
+      "disruption": 0.475,
+      "runEpaAllowed": 0.3333333333333333
+    },
+    "force": {
+      "before": 45.529573590096284,
+      "after": 52.94029799624339,
+      "qbAdjustedBefore": 53.84476534296028,
+      "qbAdjustedAfter": 61.47820413342749
+    },
+    "offense": {
+      "before": 67.47708582125902,
+      "after": 89.161336405029,
+      "qbAdjustedBefore": 84.10746932698703,
+      "qbAdjustedAfter": 96.32368196397165
+    }
+  },
+  "metricPaths": {
+    "units": [
+      "offenseIndex",
+      "olIndex",
+      "frontIndex",
+      "passRushIndex",
+      "runDefenseIndex",
+      "coverageIndex",
+      "qbIndex",
+      "receiverIndex",
+      "rushIndex",
+      "defenseIndex",
+      "offenseComposite"
+    ],
+    "live": [
+      "off_epa",
+      "qb.epa_per_play",
+      "qb.cpoe",
+      "qb.live_epa_per_play",
+      "qb.live_cpoe",
+      "ol.pressure_rate_allowed",
+      "ol.sack_rate_allowed",
+      "ol.qb_hits_allowed",
+      "ol.sacks_allowed",
+      "dl.pressure_rate",
+      "dl.sack_rate",
+      "dl.qb_hits",
+      "dl.sacks",
+      "dl.run_epa_allowed",
+      "cov.press_adj_epa",
+      "cov.epa_allowed",
+      "cov.cpoe_allowed",
+      "receivers.adj_epa",
+      "rb.rush_epa",
+      "rb.adj_rush",
+      "rb.adj_recv",
+      "luck.w",
+      "luck.l",
+      "luck.g",
+      "luck.exp_w",
+      "luck.exp_l",
+      "luck.luck",
+      "luck.luck_pct",
+      "penalty.net_pen_yards",
+      "penalty.net_pen_yards_per_game",
+      "penalty.pen_count_for",
+      "penalty.pen_count_against",
+      "penalty.pen_yards_for",
+      "penalty.pen_yards_against",
+      "scoring.ppg_for",
+      "scoring.ppg_against",
+      "_live.games",
+      "_live.weight",
+      "_live.offEpa",
+      "_live.passEpa",
+      "_live.qbEpa",
+      "_live.qbCpoe",
+      "_live.rushEpa",
+      "_live.recvEpa",
+      "_live.sackAllowed",
+      "_live.pressureAllowedRate",
+      "_live.frontPressureRate",
+      "_live.frontSackRate",
+      "_live.runEpaAllowed",
+      "_live.passEpaAllowed",
+      "_live.cpoeAllowed",
+      "_live.penaltyYardsNet"
+    ]
+  },
+  "beforeAfter": {
+    "ARI": {
+      "offenseIndex": {
+        "before": 32.3,
+        "after": 16.15
+      },
+      "olIndex": {
+        "before": 29,
+        "after": 22.403225806451612
+      },
+      "frontIndex": {
+        "before": 3.200000000000003,
+        "after": 23.858064516129037
+      },
+      "passRushIndex": {
+        "before": 6.451612903225808,
+        "after": 22.580645161290324
+      },
+      "runDefenseIndex": {
+        "before": 29.032258064516128,
+        "after": 62.903225806451616
+      },
+      "coverageIndex": {
+        "before": 16.1,
+        "after": 54.8241935483871
+      },
+      "qbIndex": {
+        "before": 22.6,
+        "after": 43.88064516129032
+      },
+      "receiverIndex": {
+        "before": 80.6,
+        "after": 41.912903225806446
+      },
+      "rushIndex": {
+        "before": 45.2,
+        "after": 22.6
+      },
+      "defenseIndex": {
+        "before": 17.83662566135782,
+        "after": 51.37909647279929
+      },
+      "offenseComposite": {
+        "before": 29.55026806492613,
+        "after": 18.625491205247894
+      },
+      "off_epa": {
+        "before": -0.0169,
+        "after": -0.02595
+      },
+      "qb.epa_per_play": {
+        "before": -0.022,
+        "after": -0.02587179487179487
+      },
+      "qb.cpoe": {
+        "before": 61.2,
+        "after": -2.64
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.029743589743589743
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -2.64
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2268,
+        "after": 0.25
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 6
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "dl.pressure_rate": {
+        "before": 0.1548,
+        "after": 0.2
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 5
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 2
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.0304
+      },
+      "cov.press_adj_epa": {
+        "before": 0.1366,
+        "after": -0.03257142857142858
+      },
+      "cov.epa_allowed": {
+        "before": 0.1517,
+        "after": -0.03257142857142858
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -2.46
+      },
+      "receivers.adj_epa": {
+        "before": 0.3615,
+        "after": -0.022758620689655173
+      },
+      "rb.rush_epa": {
+        "before": -0.0744,
+        "after": -0.041999999999999996
+      },
+      "rb.adj_rush": {
+        "before": -0.0643,
+        "after": -0.041999999999999996
+      },
+      "rb.adj_recv": {
+        "before": 0.0292,
+        "after": -0.0264
+      },
+      "luck.w": {
+        "before": 3,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 14,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 6.6,
+        "after": 0.6706768379236326
+      },
+      "luck.exp_l": {
+        "before": 10.4,
+        "after": 0.32932316207636736
+      },
+      "luck.luck": {
+        "before": -3.58,
+        "after": 0.32932316207636736
+      },
+      "luck.luck_pct": {
+        "before": -21.1,
+        "after": 32.93231620763674
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 97,
+        "after": 6
+      },
+      "penalty.pen_count_against": {
+        "before": 115,
+        "after": 5
+      },
+      "penalty.pen_yards_for": {
+        "before": 822,
+        "after": 41
+      },
+      "penalty.pen_yards_against": {
+        "before": 842,
+        "after": 34
+      },
+      "scoring.ppg_for": {
+        "before": 20.88,
+        "after": 23.939999999999998
+      },
+      "scoring.ppg_against": {
+        "before": 28.71,
+        "after": 24.355
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.035
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.035
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.029743589743589743
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -2.64
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.034999999999999996
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.022758620689655173
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.25
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.2
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.0304
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.03257142857142858
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -2.46
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "ATL": {
+      "offenseIndex": {
+        "before": 29,
+        "after": 16.112903225806452
+      },
+      "olIndex": {
+        "before": 83.9,
+        "after": 58.24032258064516
+      },
+      "frontIndex": {
+        "before": 48.4,
+        "after": 74.2
+      },
+      "passRushIndex": {
+        "before": 61.29032258064516,
+        "after": 80.64516129032258
+      },
+      "runDefenseIndex": {
+        "before": 32.25806451612903,
+        "after": 66.12903225806451
+      },
+      "coverageIndex": {
+        "before": 61.3,
+        "after": 79.03709677419354
+      },
+      "qbIndex": {
+        "before": 38.7,
+        "after": 35.47903225806452
+      },
+      "receiverIndex": {
+        "before": 32.3,
+        "after": 19.375806451612902
+      },
+      "rushIndex": {
+        "before": 64.5,
+        "after": 33.86290322580645
+      },
+      "defenseIndex": {
+        "before": 51.29916239659393,
+        "after": 76.52791269819737
+      },
+      "offenseComposite": {
+        "before": 34.62515262382159,
+        "after": 18.49129167841443
+      },
+      "off_epa": {
+        "before": -0.0217,
+        "after": -0.026683333333333337
+      },
+      "qb.epa_per_play": {
+        "before": 0.024,
+        "after": -0.0016842105263157898
+      },
+      "qb.cpoe": {
+        "before": 63.3,
+        "after": -2.46
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.02736842105263158
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -2.46
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1544,
+        "after": 0.2
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.02857142857142857
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 5
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 2
+      },
+      "dl.pressure_rate": {
+        "before": 0.2112,
+        "after": 0.25
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 6
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 3
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.034999999999999996
+      },
+      "cov.press_adj_epa": {
+        "before": -0.0292,
+        "after": -0.035
+      },
+      "cov.epa_allowed": {
+        "before": -0.031,
+        "after": -0.035
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -2.64
+      },
+      "receivers.adj_epa": {
+        "before": 0.1686,
+        "after": -0.01966666666666667
+      },
+      "rb.rush_epa": {
+        "before": -0.0808,
+        "after": -0.03619047619047619
+      },
+      "rb.adj_rush": {
+        "before": -0.0678,
+        "after": -0.03619047619047619
+      },
+      "rb.adj_recv": {
+        "before": 0.1457,
+        "after": -0.023600000000000003
+      },
+      "luck.w": {
+        "before": 8,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 9,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 7.3,
+        "after": 0.32932316207636747
+      },
+      "luck.exp_l": {
+        "before": 9.7,
+        "after": 0.6706768379236325
+      },
+      "luck.luck": {
+        "before": 0.68,
+        "after": -0.32932316207636747
+      },
+      "luck.luck_pct": {
+        "before": 4,
+        "after": -32.932316207636745
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 95,
+        "after": 5
+      },
+      "penalty.pen_count_against": {
+        "before": 108,
+        "after": 6
+      },
+      "penalty.pen_yards_for": {
+        "before": 747,
+        "after": 34
+      },
+      "penalty.pen_yards_against": {
+        "before": 819,
+        "after": 41
+      },
+      "scoring.ppg_for": {
+        "before": 20.76,
+        "after": 20.380000000000003
+      },
+      "scoring.ppg_against": {
+        "before": 23.59,
+        "after": 25.295
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.03166666666666667
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.03257142857142858
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.02736842105263158
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -2.46
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.0304
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.01966666666666667
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.02857142857142857
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.2
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.25
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.034999999999999996
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.035
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -2.64
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "BAL": {
+      "offenseIndex": {
+        "before": 64.5,
+        "after": 35.475806451612904
+      },
+      "olIndex": {
+        "before": 32.3,
+        "after": 52.11774193548387
+      },
+      "frontIndex": {
+        "before": 45.2,
+        "after": 44.535483870967745
+      },
+      "passRushIndex": {
+        "before": 35.483870967741936,
+        "after": 37.096774193548384
+      },
+      "runDefenseIndex": {
+        "before": 58.064516129032256,
+        "after": 74.19354838709677
+      },
+      "coverageIndex": {
+        "before": 35.5,
+        "after": 61.29838709677419
+      },
+      "qbIndex": {
+        "before": 58.1,
+        "after": 66.1467741935484
+      },
+      "receiverIndex": {
+        "before": 51.6,
+        "after": 30.638709677419357
+      },
+      "rushIndex": {
+        "before": 16.1,
+        "after": 11.275806451612905
+      },
+      "defenseIndex": {
+        "before": 42.46671293232067,
+        "after": 62.39809645116378
+      },
+      "offenseComposite": {
+        "before": 59.732861155915316,
+        "after": 41.90617874831674
+      },
+      "off_epa": {
+        "before": 0.0339,
+        "after": 0.0025432203389830505
+      },
+      "qb.epa_per_play": {
+        "before": 0.089,
+        "after": 0.03172222222222222
+      },
+      "qb.cpoe": {
+        "before": 66.1,
+        "after": -2.2800000000000002
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.025555555555555557
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -2.2800000000000002
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2455,
+        "after": 0.12121212121212122
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.06060606060606061
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 1
+      },
+      "dl.pressure_rate": {
+        "before": 0.198,
+        "after": 0.2
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 7
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 0
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.022222222222222223
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0767,
+        "after": -0.025714285714285714
+      },
+      "cov.epa_allowed": {
+        "before": 0.0789,
+        "after": -0.025714285714285714
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -2.1
+      },
+      "receivers.adj_epa": {
+        "before": 0.2376,
+        "after": -0.016774193548387096
+      },
+      "rb.rush_epa": {
+        "before": 0.0444,
+        "after": -0.030909090909090907
+      },
+      "rb.adj_rush": {
+        "before": 0.0373,
+        "after": -0.030909090909090907
+      },
+      "rb.adj_recv": {
+        "before": -0.4945,
+        "after": -0.020800000000000003
+      },
+      "luck.w": {
+        "before": 8,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 9,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 9.4,
+        "after": 0.5513723172510174
+      },
+      "luck.exp_l": {
+        "before": 7.6,
+        "after": 0.44862768274898257
+      },
+      "luck.luck": {
+        "before": -1.4,
+        "after": 0.44862768274898257
+      },
+      "luck.luck_pct": {
+        "before": -8.2,
+        "after": 44.86276827489826
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -28
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -28
+      },
+      "penalty.pen_count_for": {
+        "before": 106,
+        "after": 4
+      },
+      "penalty.pen_count_against": {
+        "before": 99,
+        "after": 3
+      },
+      "penalty.pen_yards_for": {
+        "before": 833,
+        "after": 20
+      },
+      "penalty.pen_yards_against": {
+        "before": 746,
+        "after": 48
+      },
+      "scoring.ppg_for": {
+        "before": 24.94,
+        "after": 24.47
+      },
+      "scoring.ppg_against": {
+        "before": 23.41,
+        "after": 22.705
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.0288135593220339
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.03090909090909091
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.025555555555555557
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -2.2800000000000002
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.026153846153846153
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.016774193548387096
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.06060606060606061
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.12121212121212122
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.2
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.022222222222222223
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.025714285714285714
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -2.1
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -28
+      }
+    },
+    "BUF": {
+      "offenseIndex": {
+        "before": 96.8,
+        "after": 53.23870967741935
+      },
+      "olIndex": {
+        "before": 71,
+        "after": 52.75806451612903
+      },
+      "frontIndex": {
+        "before": 61.3,
+        "after": 35.32741935483871
+      },
+      "passRushIndex": {
+        "before": 77.41935483870968,
+        "after": 38.70967741935484
+      },
+      "runDefenseIndex": {
+        "before": 16.129032258064512,
+        "after": 54.83870967741935
+      },
+      "coverageIndex": {
+        "before": 83.9,
+        "after": 87.11129032258066
+      },
+      "qbIndex": {
+        "before": 77.4,
+        "after": 61.92580645161291
+      },
+      "receiverIndex": {
+        "before": 61.3,
+        "after": 38.714516129032255
+      },
+      "rushIndex": {
+        "before": 93.5,
+        "after": 51.58870967741935
+      },
+      "defenseIndex": {
+        "before": 60.08892419357286,
+        "after": 67.93725072960305
+      },
+      "offenseComposite": {
+        "before": 91.13388195816262,
+        "after": 55.050314866097104
+      },
+      "off_epa": {
+        "before": 0.1424,
+        "after": 0.05910322580645161
+      },
+      "qb.epa_per_play": {
+        "before": 0.154,
+        "after": 0.06647368421052631
+      },
+      "qb.cpoe": {
+        "before": 68.4,
+        "after": -2.1
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.021052631578947368
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -2.1
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2072,
+        "after": 0.2
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 7
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 0
+      },
+      "dl.pressure_rate": {
+        "before": 0.2264,
+        "after": 0.12121212121212122
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 3
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 1
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.026153846153846153
+      },
+      "cov.press_adj_epa": {
+        "before": -0.107,
+        "after": -0.03090909090909091
+      },
+      "cov.epa_allowed": {
+        "before": -0.1133,
+        "after": -0.03090909090909091
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -2.2800000000000002
+      },
+      "receivers.adj_epa": {
+        "before": 0.2914,
+        "after": -0.0140625
+      },
+      "rb.rush_epa": {
+        "before": 0.018,
+        "after": -0.02608695652173913
+      },
+      "rb.adj_rush": {
+        "before": 0.0219,
+        "after": -0.02608695652173913
+      },
+      "rb.adj_recv": {
+        "before": 0.2193,
+        "after": -0.018000000000000002
+      },
+      "luck.w": {
+        "before": 13,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 6,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 19,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 12.7,
+        "after": 0.4486276827489826
+      },
+      "luck.exp_l": {
+        "before": 6.3,
+        "after": 0.5513723172510174
+      },
+      "luck.luck": {
+        "before": 0.3,
+        "after": -0.4486276827489826
+      },
+      "luck.luck_pct": {
+        "before": 1.6,
+        "after": -44.862768274898265
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 28
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 28
+      },
+      "penalty.pen_count_for": {
+        "before": 88,
+        "after": 3
+      },
+      "penalty.pen_count_against": {
+        "before": 113,
+        "after": 4
+      },
+      "penalty.pen_yards_for": {
+        "before": 761,
+        "after": 48
+      },
+      "penalty.pen_yards_against": {
+        "before": 955,
+        "after": 20
+      },
+      "scoring.ppg_for": {
+        "before": 28.29,
+        "after": 25.145
+      },
+      "scoring.ppg_against": {
+        "before": 21.47,
+        "after": 22.735
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.024193548387096774
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.025714285714285714
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.021052631578947368
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -2.1
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.022222222222222223
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.0140625
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.2
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.12121212121212122
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.026153846153846153
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.03090909090909091
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -2.2800000000000002
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 28
+      }
+    },
+    "CAR": {
+      "offenseIndex": {
+        "before": 19.4,
+        "after": 16.151612903225804
+      },
+      "olIndex": {
+        "before": 41.9,
+        "after": 32.40161290322581
+      },
+      "frontIndex": {
+        "before": 6.5,
+        "after": 13.411290322580644
+      },
+      "passRushIndex": {
+        "before": 3.225806451612904,
+        "after": 8.064516129032258
+      },
+      "runDefenseIndex": {
+        "before": 64.51612903225806,
+        "after": 75.80645161290323
+      },
+      "coverageIndex": {
+        "before": 25.8,
+        "after": 53.22258064516129
+      },
+      "qbIndex": {
+        "before": 19.4,
+        "after": 38.409677419354836
+      },
+      "receiverIndex": {
+        "before": 25.8,
+        "after": 19.351612903225806
+      },
+      "rushIndex": {
+        "before": 61.3,
+        "after": 38.714516129032255
+      },
+      "defenseIndex": {
+        "before": 33.08297361481571,
+        "after": 52.400894212381225
+      },
+      "offenseComposite": {
+        "before": 14.358117813413678,
+        "after": 15.230899622978022
+      },
+      "off_epa": {
+        "before": -0.0389,
+        "after": -0.029933870967741937
+      },
+      "qb.epa_per_play": {
+        "before": -0.065,
+        "after": -0.041689189189189194
+      },
+      "qb.cpoe": {
+        "before": 63.5,
+        "after": -1.92
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.018378378378378378
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -1.92
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2079,
+        "after": 0.23529411764705882
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 5
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "dl.pressure_rate": {
+        "before": 0.1456,
+        "after": 0.16666666666666666
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 4
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 2
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.019999999999999997
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0877,
+        "after": -0.018333333333333333
+      },
+      "cov.epa_allowed": {
+        "before": 0.1057,
+        "after": -0.018333333333333333
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -1.74
+      },
+      "receivers.adj_epa": {
+        "before": 0.1352,
+        "after": -0.014074074074074074
+      },
+      "rb.rush_epa": {
+        "before": -0.0058,
+        "after": -0.021666666666666667
+      },
+      "rb.adj_rush": {
+        "before": -0.0085,
+        "after": -0.021666666666666667
+      },
+      "rb.adj_recv": {
+        "before": -0.04,
+        "after": -0.015200000000000002
+      },
+      "luck.w": {
+        "before": 8,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 10,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 18,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 6.9,
+        "after": 0.6506285713666761
+      },
+      "luck.exp_l": {
+        "before": 11.1,
+        "after": 0.34937142863332393
+      },
+      "luck.luck": {
+        "before": 1.06,
+        "after": 0.34937142863332393
+      },
+      "luck.luck_pct": {
+        "before": 5.9,
+        "after": 34.93714286333239
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 118,
+        "after": 6
+      },
+      "penalty.pen_count_against": {
+        "before": 99,
+        "after": 5
+      },
+      "penalty.pen_yards_for": {
+        "before": 912,
+        "after": 34
+      },
+      "penalty.pen_yards_against": {
+        "before": 797,
+        "after": 27
+      },
+      "scoring.ppg_for": {
+        "before": 18.29,
+        "after": 22.145
+      },
+      "scoring.ppg_against": {
+        "before": 22.35,
+        "after": 21.175
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.020967741935483872
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.022941176470588236
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.018378378378378378
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -1.92
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.018571428571428572
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.014074074074074074
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.23529411764705882
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.16666666666666666
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.019999999999999997
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.018333333333333333
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -1.74
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "CHI": {
+      "offenseIndex": {
+        "before": 77.4,
+        "after": 46.76451612903226
+      },
+      "olIndex": {
+        "before": 93.5,
+        "after": 75.78225806451613
+      },
+      "frontIndex": {
+        "before": 12.899999999999999,
+        "after": 49.837096774193554
+      },
+      "passRushIndex": {
+        "before": 16.129032258064512,
+        "after": 51.61290322580645
+      },
+      "runDefenseIndex": {
+        "before": 22.580645161290324,
+        "after": 53.225806451612904
+      },
+      "coverageIndex": {
+        "before": 51.6,
+        "after": 67.73548387096774
+      },
+      "qbIndex": {
+        "before": 67.7,
+        "after": 53.85
+      },
+      "receiverIndex": {
+        "before": 54.8,
+        "after": 37.07741935483871
+      },
+      "rushIndex": {
+        "before": 29,
+        "after": 20.951612903225808
+      },
+      "defenseIndex": {
+        "before": 32.57035149944134,
+        "after": 60.699043255702485
+      },
+      "offenseComposite": {
+        "before": 83.38789783368384,
+        "after": 52.29930802954321
+      },
+      "off_epa": {
+        "before": 0.0729,
+        "after": 0.026967241379310346
+      },
+      "qb.epa_per_play": {
+        "before": 0.132,
+        "after": 0.05882051282051282
+      },
+      "qb.cpoe": {
+        "before": 64.9,
+        "after": -1.74
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.01435897435897436
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -1.74
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.175,
+        "after": 0.16666666666666666
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 4
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 2
+      },
+      "dl.pressure_rate": {
+        "before": 0.1824,
+        "after": 0.23529411764705882
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 5
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 3
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.018571428571428572
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0224,
+        "after": -0.022941176470588236
+      },
+      "cov.epa_allowed": {
+        "before": 0.0293,
+        "after": -0.022941176470588236
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -1.92
+      },
+      "receivers.adj_epa": {
+        "before": 0.2385,
+        "after": -0.01107142857142857
+      },
+      "rb.rush_epa": {
+        "before": 0.0093,
+        "after": -0.024444444444444442
+      },
+      "rb.adj_rush": {
+        "before": -0.001,
+        "after": -0.024444444444444442
+      },
+      "rb.adj_recv": {
+        "before": -0.269,
+        "after": -0.0124
+      },
+      "luck.w": {
+        "before": 12,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 7,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 19,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 9.2,
+        "after": 0.34937142863332393
+      },
+      "luck.exp_l": {
+        "before": 9.8,
+        "after": 0.6506285713666761
+      },
+      "luck.luck": {
+        "before": 2.78,
+        "after": -0.34937142863332393
+      },
+      "luck.luck_pct": {
+        "before": 14.6,
+        "after": -34.93714286333239
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 103,
+        "after": 5
+      },
+      "penalty.pen_count_against": {
+        "before": 125,
+        "after": 6
+      },
+      "penalty.pen_yards_for": {
+        "before": 748,
+        "after": 27
+      },
+      "penalty.pen_yards_against": {
+        "before": 999,
+        "after": 34
+      },
+      "scoring.ppg_for": {
+        "before": 25.94,
+        "after": 22.97
+      },
+      "scoring.ppg_against": {
+        "before": 24.41,
+        "after": 25.205
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.018965517241379314
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.018333333333333333
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.01435897435897436
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -1.74
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.019999999999999997
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.01107142857142857
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.16666666666666666
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.23529411764705882
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.018571428571428572
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.022941176470588236
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -1.92
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "CIN": {
+      "offenseIndex": {
+        "before": 38.7,
+        "after": 29.027419354838713
+      },
+      "olIndex": {
+        "before": 87.1,
+        "after": 55.48548387096774
+      },
+      "frontIndex": {
+        "before": 19.4,
+        "after": 20.829032258064515
+      },
+      "passRushIndex": {
+        "before": 22.580645161290324,
+        "after": 19.35483870967742
+      },
+      "runDefenseIndex": {
+        "before": 12.903225806451616,
+        "after": 45.16129032258065
+      },
+      "coverageIndex": {
+        "before": 12.899999999999999,
+        "after": 43.54677419354839
+      },
+      "qbIndex": {
+        "before": 16.1,
+        "after": 47.727419354838716
+      },
+      "receiverIndex": {
+        "before": 35.5,
+        "after": 29.04032258064516
+      },
+      "rushIndex": {
+        "before": 48.4,
+        "after": 33.87741935483871
+      },
+      "defenseIndex": {
+        "before": 14.800311662503375,
+        "after": 37.87094359223805
+      },
+      "offenseComposite": {
+        "before": 34.144655360951205,
+        "after": 31.02234632163794
+      },
+      "off_epa": {
+        "before": -0.0078,
+        "after": -0.011794736842105264
+      },
+      "qb.epa_per_play": {
+        "before": -0.09,
+        "after": -0.050945945945945946
+      },
+      "qb.cpoe": {
+        "before": 60.6,
+        "after": -1.56
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.011891891891891894
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -1.56
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1674,
+        "after": 0.23529411764705882
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 7
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 1
+      },
+      "dl.pressure_rate": {
+        "before": 0.1944,
+        "after": 0.18181818181818182
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 6
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 0
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.011666666666666667
+      },
+      "cov.press_adj_epa": {
+        "before": 0.1602,
+        "after": -0.012727272727272726
+      },
+      "cov.epa_allowed": {
+        "before": 0.1635,
+        "after": -0.012727272727272726
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -1.3800000000000001
+      },
+      "receivers.adj_epa": {
+        "before": 0.1871,
+        "after": -0.008275862068965517
+      },
+      "rb.rush_epa": {
+        "before": -0.003,
+        "after": -0.01894736842105263
+      },
+      "rb.adj_rush": {
+        "before": 0.0026,
+        "after": -0.01894736842105263
+      },
+      "rb.adj_recv": {
+        "before": -0.1179,
+        "after": -0.009600000000000001
+      },
+      "luck.w": {
+        "before": 6,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 11,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 7.6,
+        "after": 0.5263133366950837
+      },
+      "luck.exp_l": {
+        "before": 9.4,
+        "after": 0.47368666330491627
+      },
+      "luck.luck": {
+        "before": -1.57,
+        "after": 0.47368666330491627
+      },
+      "luck.luck_pct": {
+        "before": -9.2,
+        "after": 47.36866633049163
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 104,
+        "after": 4
+      },
+      "penalty.pen_count_against": {
+        "before": 88,
+        "after": 3
+      },
+      "penalty.pen_yards_for": {
+        "before": 878,
+        "after": 48
+      },
+      "penalty.pen_yards_against": {
+        "before": 633,
+        "after": 41
+      },
+      "scoring.ppg_for": {
+        "before": 24.35,
+        "after": 23.675
+      },
+      "scoring.ppg_against": {
+        "before": 28.94,
+        "after": 25.47
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.015789473684210527
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.015882352941176472
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.011891891891891894
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -1.56
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.015652173913043476
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.008275862068965517
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.23529411764705882
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.18181818181818182
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.011666666666666667
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.012727272727272726
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -1.3800000000000001
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "CLE": {
+      "offenseIndex": {
+        "before": 3.200000000000003,
+        "after": 12.890322580645163
+      },
+      "olIndex": {
+        "before": 0,
+        "after": 24.838709677419352
+      },
+      "frontIndex": {
+        "before": 96.8,
+        "after": 91.6258064516129
+      },
+      "passRushIndex": {
+        "before": 80.64516129032258,
+        "after": 83.87096774193549
+      },
+      "runDefenseIndex": {
+        "before": 96.7741935483871,
+        "after": 88.70967741935485
+      },
+      "coverageIndex": {
+        "before": 90.3,
+        "after": 83.85967741935484
+      },
+      "qbIndex": {
+        "before": 3.200000000000003,
+        "after": 15.793548387096775
+      },
+      "receiverIndex": {
+        "before": 0,
+        "after": 12.903225806451612
+      },
+      "rushIndex": {
+        "before": 6.5,
+        "after": 14.540322580645162
+      },
+      "defenseIndex": {
+        "before": 89.07720336601119,
+        "after": 85.49760593533387
+      },
+      "offenseComposite": {
+        "before": 0.7810622502788362,
+        "after": 7.558392389214404
+      },
+      "off_epa": {
+        "before": -0.1892,
+        "after": -0.10074035087719299
+      },
+      "qb.epa_per_play": {
+        "before": -0.25,
+        "after": -0.12944444444444445
+      },
+      "qb.cpoe": {
+        "before": 59.7,
+        "after": -1.3800000000000001
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.008888888888888887
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -1.3800000000000001
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2613,
+        "after": 0.18181818181818182
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 6
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 0
+      },
+      "dl.pressure_rate": {
+        "before": 0.2278,
+        "after": 0.23529411764705882
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 7
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 1
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.015652173913043476
+      },
+      "cov.press_adj_epa": {
+        "before": -0.1218,
+        "after": -0.015882352941176472
+      },
+      "cov.epa_allowed": {
+        "before": -0.1285,
+        "after": -0.015882352941176472
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -1.56
+      },
+      "receivers.adj_epa": {
+        "before": -0.1526,
+        "after": -0.0056666666666666645
+      },
+      "rb.rush_epa": {
+        "before": -0.1137,
+        "after": -0.014000000000000002
+      },
+      "rb.adj_rush": {
+        "before": -0.1161,
+        "after": -0.014000000000000002
+      },
+      "rb.adj_recv": {
+        "before": -0.2164,
+        "after": -0.006799999999999998
+      },
+      "luck.w": {
+        "before": 5,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 12,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 5.2,
+        "after": 0.47368666330491616
+      },
+      "luck.exp_l": {
+        "before": 11.8,
+        "after": 0.5263133366950838
+      },
+      "luck.luck": {
+        "before": -0.23,
+        "after": -0.47368666330491616
+      },
+      "luck.luck_pct": {
+        "before": -1.4,
+        "after": -47.368666330491614
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 125,
+        "after": 3
+      },
+      "penalty.pen_count_against": {
+        "before": 108,
+        "after": 4
+      },
+      "penalty.pen_yards_for": {
+        "before": 863,
+        "after": 41
+      },
+      "penalty.pen_yards_against": {
+        "before": 840,
+        "after": 48
+      },
+      "scoring.ppg_for": {
+        "before": 16.41,
+        "after": 19.205
+      },
+      "scoring.ppg_against": {
+        "before": 22.29,
+        "after": 22.645
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.012280701754385965
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.012727272727272726
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.008888888888888887
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -1.3800000000000001
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.011666666666666667
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.0056666666666666645
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.18181818181818182
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.23529411764705882
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.015652173913043476
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.015882352941176472
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -1.56
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "DAL": {
+      "offenseIndex": {
+        "before": 90.3,
+        "after": 58.05322580645161
+      },
+      "olIndex": {
+        "before": 74.2,
+        "after": 56.77741935483871
+      },
+      "frontIndex": {
+        "before": 71,
+        "after": 39.04838709677419
+      },
+      "passRushIndex": {
+        "before": 90.3225806451613,
+        "after": 45.16129032258065
+      },
+      "runDefenseIndex": {
+        "before": 6.451612903225808,
+        "after": 38.70967741935484
+      },
+      "coverageIndex": {
+        "before": 3.200000000000003,
+        "after": 35.47096774193549
+      },
+      "qbIndex": {
+        "before": 87.1,
+        "after": 74.84032258064516
+      },
+      "receiverIndex": {
+        "before": 83.9,
+        "after": 56.46612903225807
+      },
+      "rushIndex": {
+        "before": 90.3,
+        "after": 58.05322580645161
+      },
+      "defenseIndex": {
+        "before": 20.425704001331987,
+        "after": 37.06935123385152
+      },
+      "offenseComposite": {
+        "before": 93.4591319231339,
+        "after": 68.25551866627384
+      },
+      "off_epa": {
+        "before": 0.0952,
+        "after": 0.04343333333333334
+      },
+      "qb.epa_per_play": {
+        "before": 0.196,
+        "after": 0.09536842105263159
+      },
+      "qb.cpoe": {
+        "before": 62.8,
+        "after": -1.2000000000000002
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.005263157894736843
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -1.2000000000000002
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1821,
+        "after": 0.2
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 4
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "dl.pressure_rate": {
+        "before": 0.2393,
+        "after": 0.13513513513513514
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.05405405405405406
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 3
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 2
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.004615384615384615
+      },
+      "cov.press_adj_epa": {
+        "before": 0.2285,
+        "after": -0.004864864864864869
+      },
+      "cov.epa_allowed": {
+        "before": 0.2183,
+        "after": -0.004864864864864869
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -1.02
+      },
+      "receivers.adj_epa": {
+        "before": 0.3891,
+        "after": -0.0032258064516129024
+      },
+      "rb.rush_epa": {
+        "before": 0.0484,
+        "after": -0.009523809523809521
+      },
+      "rb.adj_rush": {
+        "before": 0.0231,
+        "after": -0.009523809523809521
+      },
+      "rb.adj_recv": {
+        "before": 0.2119,
+        "after": -0.003999999999999999
+      },
+      "luck.w": {
+        "before": 7,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 9,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 8.3,
+        "after": 0.6292149033463672
+      },
+      "luck.exp_l": {
+        "before": 8.7,
+        "after": 0.3707850966536328
+      },
+      "luck.luck": {
+        "before": -0.78,
+        "after": 0.3707850966536328
+      },
+      "luck.luck_pct": {
+        "before": -4.6,
+        "after": 37.07850966536328
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 134,
+        "after": 6
+      },
+      "penalty.pen_count_against": {
+        "before": 133,
+        "after": 5
+      },
+      "penalty.pen_yards_for": {
+        "before": 1142,
+        "after": 27
+      },
+      "penalty.pen_yards_against": {
+        "before": 1136,
+        "after": 20
+      },
+      "scoring.ppg_for": {
+        "before": 27.71,
+        "after": 26.355
+      },
+      "scoring.ppg_against": {
+        "before": 30.06,
+        "after": 25.03
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.008333333333333333
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.008571428571428572
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.005263157894736843
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -1.2000000000000002
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.007999999999999998
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.0032258064516129024
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.2
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.13513513513513514
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.05405405405405406
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.004615384615384615
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.004864864864864869
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -1.02
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "DEN": {
+      "offenseIndex": {
+        "before": 58.1,
+        "after": 50.01774193548387
+      },
+      "olIndex": {
+        "before": 90.3,
+        "after": 60.15
+      },
+      "frontIndex": {
+        "before": 100,
+        "after": 53.064516129032256
+      },
+      "passRushIndex": {
+        "before": 100,
+        "after": 53.225806451612904
+      },
+      "runDefenseIndex": {
+        "before": 93.54838709677419,
+        "after": 48.387096774193544
+      },
+      "coverageIndex": {
+        "before": 77.4,
+        "after": 38.7
+      },
+      "qbIndex": {
+        "before": 64.5,
+        "after": 36.12096774193549
+      },
+      "receiverIndex": {
+        "before": 38.7,
+        "after": 19.35
+      },
+      "rushIndex": {
+        "before": 19.4,
+        "after": 59.7
+      },
+      "defenseIndex": {
+        "before": 86.9683202863585,
+        "after": 44.28010352338374
+      },
+      "offenseComposite": {
+        "before": 67.96759332884048,
+        "after": 39.64388475553243
+      },
+      "off_epa": {
+        "before": 0.0296,
+        "after": 0.01870625
+      },
+      "qb.epa_per_play": {
+        "before": 0.105,
+        "after": -0.04401162790697675
+      },
+      "qb.cpoe": {
+        "before": 65.5,
+        "after": -5
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.1930232558139535
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -5
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.161,
+        "after": 0.475
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.05
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 18
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 1
+      },
+      "dl.pressure_rate": {
+        "before": 0.2713,
+        "after": 0.14705882352941177
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 4
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 1
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.12962962962962962
+      },
+      "cov.press_adj_epa": {
+        "before": -0.0928,
+        "after": 0.25
+      },
+      "cov.epa_allowed": {
+        "before": -0.1126,
+        "after": 0.25
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 5.5
+      },
+      "receivers.adj_epa": {
+        "before": 0.1874,
+        "after": -0.14705882352941177
+      },
+      "rb.rush_epa": {
+        "before": 0.0273,
+        "after": 0.4
+      },
+      "rb.adj_rush": {
+        "before": 0.0044,
+        "after": 0.4
+      },
+      "rb.adj_recv": {
+        "before": -0.4008,
+        "after": -0.2
+      },
+      "luck.w": {
+        "before": 15,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 4,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 19,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 12,
+        "after": 0.0640784824256055
+      },
+      "luck.exp_l": {
+        "before": 7,
+        "after": 0.9359215175743945
+      },
+      "luck.luck": {
+        "before": 3.03,
+        "after": -0.0640784824256055
+      },
+      "luck.luck_pct": {
+        "before": 15.9,
+        "after": -6.40784824256055
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -55
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -55
+      },
+      "penalty.pen_count_for": {
+        "before": 123,
+        "after": 2
+      },
+      "penalty.pen_count_against": {
+        "before": 128,
+        "after": 8
+      },
+      "penalty.pen_yards_for": {
+        "before": 910,
+        "after": 15
+      },
+      "penalty.pen_yards_against": {
+        "before": 1136,
+        "after": 70
+      },
+      "scoring.ppg_for": {
+        "before": 23.59,
+        "after": 16.795
+      },
+      "scoring.ppg_against": {
+        "before": 18.29,
+        "after": 24.645
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.0078125
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.1875
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.1930232558139535
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -5
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.3333333333333333
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.14705882352941177
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.05
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.475
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.14705882352941177
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.12962962962962962
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.25
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 5.5
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -55
+      }
+    },
+    "DET": {
+      "offenseIndex": {
+        "before": 83.9,
+        "after": 56.46612903225807
+      },
+      "olIndex": {
+        "before": 38.7,
+        "after": 57.5758064516129
+      },
+      "frontIndex": {
+        "before": 64.5,
+        "after": 53.37903225806452
+      },
+      "passRushIndex": {
+        "before": 58.064516129032256,
+        "after": 48.38709677419355
+      },
+      "runDefenseIndex": {
+        "before": 61.29032258064516,
+        "after": 67.74193548387096
+      },
+      "coverageIndex": {
+        "before": 58.1,
+        "after": 64.53387096774193
+      },
+      "qbIndex": {
+        "before": 80.6,
+        "after": 49.97741935483871
+      },
+      "receiverIndex": {
+        "before": 93.5,
+        "after": 62.87903225806451
+      },
+      "rushIndex": {
+        "before": 80.6,
+        "after": 54.81612903225806
+      },
+      "defenseIndex": {
+        "before": 60.45120741171356,
+        "after": 63.98697153535715
+      },
+      "offenseComposite": {
+        "before": 87.00932552594617,
+        "after": 59.47981616952909
+      },
+      "off_epa": {
+        "before": 0.0813,
+        "after": 0.03826904761904762
+      },
+      "qb.epa_per_play": {
+        "before": 0.184,
+        "after": 0.091
+      },
+      "qb.cpoe": {
+        "before": 66.7,
+        "after": -1.02
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": -0.002000000000000004
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -1.02
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1987,
+        "after": 0.13513513513513514
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08108108108108109
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 2
+      },
+      "dl.pressure_rate": {
+        "before": 0.211,
+        "after": 0.2
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 4
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 3
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.007999999999999998
+      },
+      "cov.press_adj_epa": {
+        "before": -0.0036,
+        "after": -0.008571428571428572
+      },
+      "cov.epa_allowed": {
+        "before": -0.0053,
+        "after": -0.008571428571428572
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -1.2000000000000002
+      },
+      "receivers.adj_epa": {
+        "before": 0.4004,
+        "after": -0.0009375000000000008
+      },
+      "rb.rush_epa": {
+        "before": -0.011,
+        "after": -0.005454545454545454
+      },
+      "rb.adj_rush": {
+        "before": -0.0146,
+        "after": -0.005454545454545454
+      },
+      "rb.adj_recv": {
+        "before": 0.179,
+        "after": -0.001200000000000001
+      },
+      "luck.w": {
+        "before": 9,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 8,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 10,
+        "after": 0.37078509665363285
+      },
+      "luck.exp_l": {
+        "before": 7,
+        "after": 0.6292149033463672
+      },
+      "luck.luck": {
+        "before": -1.02,
+        "after": -0.37078509665363285
+      },
+      "luck.luck_pct": {
+        "before": -6,
+        "after": -37.078509665363285
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 91,
+        "after": 5
+      },
+      "penalty.pen_count_against": {
+        "before": 104,
+        "after": 6
+      },
+      "penalty.pen_yards_for": {
+        "before": 701,
+        "after": 20
+      },
+      "penalty.pen_yards_against": {
+        "before": 718,
+        "after": 27
+      },
+      "scoring.ppg_for": {
+        "before": 28.29,
+        "after": 24.145
+      },
+      "scoring.ppg_against": {
+        "before": 24.29,
+        "after": 24.645
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.004761904761904764
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.004864864864864869
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": -0.002000000000000004
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -1.02
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.004615384615384615
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": -0.0009375000000000008
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08108108108108109
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.13513513513513514
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.2
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.007999999999999998
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.008571428571428572
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -1.2000000000000002
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "GB": {
+      "offenseIndex": {
+        "before": 93.5,
+        "after": 62.87903225806451
+      },
+      "olIndex": {
+        "before": 54.8,
+        "after": 43.52903225806452
+      },
+      "frontIndex": {
+        "before": 41.9,
+        "after": 27.079032258064515
+      },
+      "passRushIndex": {
+        "before": 54.83870967741935,
+        "after": 30.64516129032258
+      },
+      "runDefenseIndex": {
+        "before": 19.35483870967742,
+        "after": 41.935483870967744
+      },
+      "coverageIndex": {
+        "before": 32.3,
+        "after": 46.79516129032258
+      },
+      "qbIndex": {
+        "before": 100,
+        "after": 92.25806451612904
+      },
+      "receiverIndex": {
+        "before": 90.3,
+        "after": 62.89193548387097
+      },
+      "rushIndex": {
+        "before": 38.7,
+        "after": 35.47903225806452
+      },
+      "defenseIndex": {
+        "before": 30.419719241128742,
+        "after": 40.74680247448504
+      },
+      "offenseComposite": {
+        "before": 95.09677491910784,
+        "after": 75.69830775046727
+      },
+      "off_epa": {
+        "before": 0.1199,
+        "after": 0.05910254237288136
+      },
+      "qb.epa_per_play": {
+        "before": 0.314,
+        "after": 0.15757142857142858
+      },
+      "qb.cpoe": {
+        "before": 61.8,
+        "after": -0.8399999999999999
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.0011428571428571414
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -0.8399999999999999
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2138,
+        "after": 0.21875
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.03125
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 6
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 1
+      },
+      "dl.pressure_rate": {
+        "before": 0.2098,
+        "after": 0.14705882352941177
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 5
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 0
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.0014285714285714299
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0773,
+        "after": 0.0017647058823529428
+      },
+      "cov.epa_allowed": {
+        "before": 0.076,
+        "after": 0.0017647058823529428
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -0.6600000000000001
+      },
+      "receivers.adj_epa": {
+        "before": 0.3918,
+        "after": 0.0014814814814814827
+      },
+      "rb.rush_epa": {
+        "before": -0.0617,
+        "after": -0.0017391304347826103
+      },
+      "rb.adj_rush": {
+        "before": -0.0693,
+        "after": -0.0017391304347826103
+      },
+      "rb.adj_recv": {
+        "before": -0.0325,
+        "after": 0.0016000000000000014
+      },
+      "luck.w": {
+        "before": 9,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 8,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 18,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 11,
+        "after": 0.6190134098122387
+      },
+      "luck.exp_l": {
+        "before": 7,
+        "after": 0.38098659018776126
+      },
+      "luck.luck": {
+        "before": -1.47,
+        "after": 0.38098659018776126
+      },
+      "luck.luck_pct": {
+        "before": -8.2,
+        "after": 38.098659018776125
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 101,
+        "after": 4
+      },
+      "penalty.pen_count_against": {
+        "before": 112,
+        "after": 3
+      },
+      "penalty.pen_yards_for": {
+        "before": 872,
+        "after": 41
+      },
+      "penalty.pen_yards_against": {
+        "before": 883,
+        "after": 34
+      },
+      "scoring.ppg_for": {
+        "before": 23,
+        "after": 25
+      },
+      "scoring.ppg_against": {
+        "before": 21.18,
+        "after": 21.59
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": -0.0016949152542372896
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": -0.0018750000000000017
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.0011428571428571414
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -0.8399999999999999
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": -0.0014814814814814827
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.0014814814814814827
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.03125
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.21875
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.14705882352941177
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.0014285714285714299
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.0017647058823529428
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -0.6600000000000001
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "HOU": {
+      "offenseIndex": {
+        "before": 25.8,
+        "after": 30.641935483870967
+      },
+      "olIndex": {
+        "before": 48.4,
+        "after": 62.26451612903226
+      },
+      "frontIndex": {
+        "before": 67.7,
+        "after": 69.1725806451613
+      },
+      "passRushIndex": {
+        "before": 51.61290322580645,
+        "after": 61.29032258064516
+      },
+      "runDefenseIndex": {
+        "before": 80.64516129032258,
+        "after": 74.19354838709677
+      },
+      "coverageIndex": {
+        "before": 100,
+        "after": 82.25806451612902
+      },
+      "qbIndex": {
+        "before": 45.2,
+        "after": 40.664516129032265
+      },
+      "receiverIndex": {
+        "before": 71,
+        "after": 54.85483870967742
+      },
+      "rushIndex": {
+        "before": 51.6,
+        "after": 43.54193548387097
+      },
+      "defenseIndex": {
+        "before": 83.96002179216705,
+        "after": 76.89712521925006
+      },
+      "offenseComposite": {
+        "before": 35.615894905557234,
+        "after": 36.67364020074103
+      },
+      "off_epa": {
+        "before": -0.0279,
+        "after": -0.013143548387096774
+      },
+      "qb.epa_per_play": {
+        "before": 0.051,
+        "after": 0.027662162162162163
+      },
+      "qb.cpoe": {
+        "before": 63.7,
+        "after": -0.6600000000000001
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.004324324324324326
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -0.6600000000000001
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1742,
+        "after": 0.14705882352941177
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.058823529411764705
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 5
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 0
+      },
+      "dl.pressure_rate": {
+        "before": 0.2071,
+        "after": 0.21875
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.03125
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 6
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 1
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": -0.0014814814814814827
+      },
+      "cov.press_adj_epa": {
+        "before": -0.1859,
+        "after": -0.0018750000000000017
+      },
+      "cov.epa_allowed": {
+        "before": -0.1864,
+        "after": -0.0018750000000000017
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -0.8399999999999999
+      },
+      "receivers.adj_epa": {
+        "before": 0.3191,
+        "after": 0.003928571428571432
+      },
+      "rb.rush_epa": {
+        "before": -0.1489,
+        "after": 0.001666666666666668
+      },
+      "rb.adj_rush": {
+        "before": -0.131,
+        "after": 0.001666666666666668
+      },
+      "rb.adj_recv": {
+        "before": 0.2166,
+        "after": 0.004400000000000004
+      },
+      "luck.w": {
+        "before": 13,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 6,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 19,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 11,
+        "after": 0.38098659018776126
+      },
+      "luck.exp_l": {
+        "before": 8,
+        "after": 0.6190134098122387
+      },
+      "luck.luck": {
+        "before": 1.97,
+        "after": -0.38098659018776126
+      },
+      "luck.luck_pct": {
+        "before": 10.4,
+        "after": -38.098659018776125
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 117,
+        "after": 3
+      },
+      "penalty.pen_count_against": {
+        "before": 128,
+        "after": 4
+      },
+      "penalty.pen_yards_for": {
+        "before": 979,
+        "after": 34
+      },
+      "penalty.pen_yards_against": {
+        "before": 1065,
+        "after": 41
+      },
+      "scoring.ppg_for": {
+        "before": 23.76,
+        "after": 22.880000000000003
+      },
+      "scoring.ppg_against": {
+        "before": 17.35,
+        "after": 22.175
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.0016129032258064531
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.0017647058823529428
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.004324324324324326
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -0.6600000000000001
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.0014285714285714299
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.003928571428571432
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.058823529411764705
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.14705882352941177
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.21875
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.03125
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": -0.0014814814814814827
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.0018750000000000017
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -0.8399999999999999
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "IND": {
+      "offenseIndex": {
+        "before": 80.6,
+        "after": 59.65483870967742
+      },
+      "olIndex": {
+        "before": 67.7,
+        "after": 66.75322580645161
+      },
+      "frontIndex": {
+        "before": 16.1,
+        "after": 55.95322580645161
+      },
+      "passRushIndex": {
+        "before": 12.903225806451616,
+        "after": 56.45161290322581
+      },
+      "runDefenseIndex": {
+        "before": 41.935483870967744,
+        "after": 50
+      },
+      "coverageIndex": {
+        "before": 45.2,
+        "after": 50.019354838709674
+      },
+      "qbIndex": {
+        "before": 74.2,
+        "after": 76.13225806451612
+      },
+      "receiverIndex": {
+        "before": 64.5,
+        "after": 53.21774193548387
+      },
+      "rushIndex": {
+        "before": 100,
+        "after": 69.35483870967742
+      },
+      "defenseIndex": {
+        "before": 36.040582153472236,
+        "after": 51.48896317363206
+      },
+      "offenseComposite": {
+        "before": 84.05312516265472,
+        "after": 71.13869472451361
+      },
+      "off_epa": {
+        "before": 0.0752,
+        "after": 0.040186206896551724
+      },
+      "qb.epa_per_play": {
+        "before": 0.149,
+        "after": 0.07808974358974359
+      },
+      "qb.cpoe": {
+        "before": 64.8,
+        "after": -0.48
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.007179487179487178
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -0.48
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.192,
+        "after": 0.16666666666666666
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "dl.pressure_rate": {
+        "before": 0.1809,
+        "after": 0.2571428571428571
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 7
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 2
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.008695652173913042
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0279,
+        "after": 0.008571428571428567
+      },
+      "cov.epa_allowed": {
+        "before": 0.0352,
+        "after": 0.008571428571428567
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -0.30000000000000027
+      },
+      "receivers.adj_epa": {
+        "before": 0.2954,
+        "after": 0.006206896551724139
+      },
+      "rb.rush_epa": {
+        "before": 0.0549,
+        "after": 0.006666666666666672
+      },
+      "rb.adj_rush": {
+        "before": 0.0743,
+        "after": 0.006666666666666672
+      },
+      "rb.adj_recv": {
+        "before": 0.2169,
+        "after": 0.007200000000000002
+      },
+      "luck.w": {
+        "before": 8,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 9,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 8.4,
+        "after": 0.6063755161446597
+      },
+      "luck.exp_l": {
+        "before": 8.6,
+        "after": 0.3936244838553403
+      },
+      "luck.luck": {
+        "before": -0.4,
+        "after": 0.3936244838553403
+      },
+      "luck.luck_pct": {
+        "before": -2.4,
+        "after": 39.36244838553403
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -28
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -28
+      },
+      "penalty.pen_count_for": {
+        "before": 103,
+        "after": 6
+      },
+      "penalty.pen_count_against": {
+        "before": 102,
+        "after": 5
+      },
+      "penalty.pen_yards_for": {
+        "before": 917,
+        "after": 20
+      },
+      "penalty.pen_yards_against": {
+        "before": 858,
+        "after": 48
+      },
+      "scoring.ppg_for": {
+        "before": 27.41,
+        "after": 25.705
+      },
+      "scoring.ppg_against": {
+        "before": 24.24,
+        "after": 22.119999999999997
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.005172413793103449
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.004999999999999998
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.007179487179487178
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -0.48
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.005454545454545459
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.006206896551724139
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.16666666666666666
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.2571428571428571
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.008695652173913042
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.008571428571428567
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -0.30000000000000027
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -28
+      }
+    },
+    "JAX": {
+      "offenseIndex": {
+        "before": 61.3,
+        "after": 53.230645161290326
+      },
+      "olIndex": {
+        "before": 45.2,
+        "after": 35.664516129032265
+      },
+      "frontIndex": {
+        "before": 35.5,
+        "after": 26.620967741935484
+      },
+      "passRushIndex": {
+        "before": 19.35483870967742,
+        "after": 16.129032258064516
+      },
+      "runDefenseIndex": {
+        "before": 87.09677419354838,
+        "after": 74.19354838709677
+      },
+      "coverageIndex": {
+        "before": 96.8,
+        "after": 77.43225806451613
+      },
+      "qbIndex": {
+        "before": 61.3,
+        "after": 54.520967741935486
+      },
+      "receiverIndex": {
+        "before": 58.1,
+        "after": 51.630645161290325
+      },
+      "rushIndex": {
+        "before": 67.7,
+        "after": 54.81774193548387
+      },
+      "defenseIndex": {
+        "before": 79.2929181298191,
+        "after": 65.72094720519998
+      },
+      "offenseComposite": {
+        "before": 63.21728142374719,
+        "after": 51.08696068781676
+      },
+      "off_epa": {
+        "before": 0.033,
+        "after": 0.020810344827586206
+      },
+      "qb.epa_per_play": {
+        "before": 0.098,
+        "after": 0.05426315789473684
+      },
+      "qb.cpoe": {
+        "before": 63.5,
+        "after": -0.30000000000000027
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.010526315789473679
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -0.30000000000000027
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1988,
+        "after": 0.2571428571428571
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.02857142857142857
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 7
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 2
+      },
+      "dl.pressure_rate": {
+        "before": 0.184,
+        "after": 0.16666666666666666
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 3
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 3
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.005454545454545459
+      },
+      "cov.press_adj_epa": {
+        "before": -0.1467,
+        "after": 0.004999999999999998
+      },
+      "cov.epa_allowed": {
+        "before": -0.1403,
+        "after": 0.004999999999999998
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -0.48
+      },
+      "receivers.adj_epa": {
+        "before": 0.2867,
+        "after": 0.008333333333333333
+      },
+      "rb.rush_epa": {
+        "before": -0.073,
+        "after": 0.010526315789473682
+      },
+      "rb.adj_rush": {
+        "before": -0.061,
+        "after": 0.010526315789473682
+      },
+      "rb.adj_recv": {
+        "before": 0.1527,
+        "after": 0.01
+      },
+      "luck.w": {
+        "before": 13,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 5,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 18,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 9.7,
+        "after": 0.3936244838553403
+      },
+      "luck.exp_l": {
+        "before": 8.3,
+        "after": 0.6063755161446597
+      },
+      "luck.luck": {
+        "before": 3.25,
+        "after": -0.3936244838553403
+      },
+      "luck.luck_pct": {
+        "before": 18.1,
+        "after": -39.36244838553403
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 28
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 28
+      },
+      "penalty.pen_count_for": {
+        "before": 118,
+        "after": 5
+      },
+      "penalty.pen_count_against": {
+        "before": 129,
+        "after": 6
+      },
+      "penalty.pen_yards_for": {
+        "before": 1015,
+        "after": 48
+      },
+      "penalty.pen_yards_against": {
+        "before": 1073,
+        "after": 20
+      },
+      "scoring.ppg_for": {
+        "before": 27.88,
+        "after": 23.939999999999998
+      },
+      "scoring.ppg_against": {
+        "before": 19.76,
+        "after": 21.880000000000003
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.00862068965517241
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.008571428571428567
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.010526315789473679
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -0.30000000000000027
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.008695652173913042
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.008333333333333333
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.02857142857142857
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.2571428571428571
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.16666666666666666
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.005454545454545459
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.004999999999999998
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -0.48
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 28
+      }
+    },
+    "KC": {
+      "offenseIndex": {
+        "before": 67.7,
+        "after": 83.85
+      },
+      "olIndex": {
+        "before": 19.4,
+        "after": 56.95806451612903
+      },
+      "frontIndex": {
+        "before": 87.1,
+        "after": 88.55
+      },
+      "passRushIndex": {
+        "before": 87.09677419354838,
+        "after": 93.54838709677419
+      },
+      "runDefenseIndex": {
+        "before": 54.83870967741935,
+        "after": 27.419354838709676
+      },
+      "coverageIndex": {
+        "before": 54.8,
+        "after": 77.4
+      },
+      "qbIndex": {
+        "before": 71,
+        "after": 85.5
+      },
+      "receiverIndex": {
+        "before": 67.7,
+        "after": 83.85
+      },
+      "rushIndex": {
+        "before": 9.700000000000003,
+        "after": 53.23709677419355
+      },
+      "defenseIndex": {
+        "before": 62.728723282068486,
+        "after": 64.75357379887566
+      },
+      "offenseComposite": {
+        "before": 67.47708582125902,
+        "after": 89.161336405029
+      },
+      "off_epa": {
+        "before": 0.0339,
+        "after": 0.11531065573770491
+      },
+      "qb.epa_per_play": {
+        "before": 0.139,
+        "after": 0.20463513513513515
+      },
+      "qb.cpoe": {
+        "before": 65.6,
+        "after": 5.5
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.2702702702702703
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 5.5
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2682,
+        "after": 0.14705882352941177
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 4
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 1
+      },
+      "dl.pressure_rate": {
+        "before": 0.2371,
+        "after": 0.475
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.025
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 18
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 1
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.3333333333333333
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0072,
+        "after": -0.1875
+      },
+      "cov.epa_allowed": {
+        "before": -0.0023,
+        "after": -0.1875
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -5
+      },
+      "receivers.adj_epa": {
+        "before": 0.2995,
+        "after": 0.22580645161290322
+      },
+      "rb.rush_epa": {
+        "before": -0.1156,
+        "after": 0.15217391304347827
+      },
+      "rb.adj_rush": {
+        "before": -0.1169,
+        "after": 0.15217391304347827
+      },
+      "rb.adj_recv": {
+        "before": -0.2042,
+        "after": 0.28
+      },
+      "luck.w": {
+        "before": 6,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 11,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 10,
+        "after": 0.9359215175743946
+      },
+      "luck.exp_l": {
+        "before": 7,
+        "after": 0.06407848242560543
+      },
+      "luck.luck": {
+        "before": -4.01,
+        "after": 0.06407848242560543
+      },
+      "luck.luck_pct": {
+        "before": -23.6,
+        "after": 6.407848242560544
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 55
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 55
+      },
+      "penalty.pen_count_for": {
+        "before": 108,
+        "after": 8
+      },
+      "penalty.pen_count_against": {
+        "before": 119,
+        "after": 2
+      },
+      "penalty.pen_yards_for": {
+        "before": 969,
+        "after": 70
+      },
+      "penalty.pen_yards_against": {
+        "before": 951,
+        "after": 15
+      },
+      "scoring.ppg_for": {
+        "before": 21.29,
+        "after": 26.145
+      },
+      "scoring.ppg_against": {
+        "before": 19.29,
+        "after": 14.645
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.19672131147540983
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.25
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.2702702702702703
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 5.5
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.12962962962962962
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.22580645161290322
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.14705882352941177
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.475
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.025
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.3333333333333333
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": -0.1875
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -5
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 55
+      }
+    },
+    "LV": {
+      "offenseIndex": {
+        "before": 0,
+        "after": 24.193548387096776
+      },
+      "olIndex": {
+        "before": 9.700000000000003,
+        "after": 33.075806451612905
+      },
+      "frontIndex": {
+        "before": 38.7,
+        "after": 21.930645161290325
+      },
+      "passRushIndex": {
+        "before": 29.032258064516128,
+        "after": 14.516129032258064
+      },
+      "runDefenseIndex": {
+        "before": 51.61290322580645,
+        "after": 51.61290322580645
+      },
+      "coverageIndex": {
+        "before": 29,
+        "after": 38.693548387096776
+      },
+      "qbIndex": {
+        "before": 9.700000000000003,
+        "after": 39.366129032258065
+      },
+      "receiverIndex": {
+        "before": 22.6,
+        "after": 35.49354838709678
+      },
+      "rushIndex": {
+        "before": 0,
+        "after": 22.580645161290324
+      },
+      "defenseIndex": {
+        "before": 35.30831549283525,
+        "after": 36.89150711688873
+      },
+      "offenseComposite": {
+        "before": 2.886928717476515,
+        "after": 22.24255598522229
+      },
+      "off_epa": {
+        "before": -0.2152,
+        "after": -0.10145964912280701
+      },
+      "qb.epa_per_play": {
+        "before": -0.176,
+        "after": -0.08077777777777777
+      },
+      "qb.cpoe": {
+        "before": 66.6,
+        "after": -0.1200000000000001
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.014444444444444442
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": -0.1200000000000001
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2291,
+        "after": 0.18181818181818182
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.06060606060606061
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 5
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 1
+      },
+      "dl.pressure_rate": {
+        "before": 0.1966,
+        "after": 0.11428571428571428
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 4
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 0
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.014400000000000003
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0816,
+        "after": 0.01542857142857143
+      },
+      "cov.epa_allowed": {
+        "before": 0.0842,
+        "after": 0.01542857142857143
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 0.06000000000000005
+      },
+      "receivers.adj_epa": {
+        "before": 0.1137,
+        "after": 0.010322580645161292
+      },
+      "rb.rush_epa": {
+        "before": -0.2415,
+        "after": 0.014000000000000002
+      },
+      "rb.adj_rush": {
+        "before": -0.2346,
+        "after": 0.014000000000000002
+      },
+      "rb.adj_recv": {
+        "before": -0.1129,
+        "after": 0.012800000000000002
+      },
+      "luck.w": {
+        "before": 3,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 14,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 5.4,
+        "after": 0.5977065653043238
+      },
+      "luck.exp_l": {
+        "before": 11.6,
+        "after": 0.40229343469567624
+      },
+      "luck.luck": {
+        "before": -2.38,
+        "after": 0.40229343469567624
+      },
+      "luck.luck_pct": {
+        "before": -14,
+        "after": 40.229343469567624
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 117,
+        "after": 4
+      },
+      "penalty.pen_count_against": {
+        "before": 108,
+        "after": 3
+      },
+      "penalty.pen_yards_for": {
+        "before": 889,
+        "after": 34
+      },
+      "penalty.pen_yards_against": {
+        "before": 901,
+        "after": 27
+      },
+      "scoring.ppg_for": {
+        "before": 14.18,
+        "after": 20.09
+      },
+      "scoring.ppg_against": {
+        "before": 25.41,
+        "after": 23.705
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.012280701754385965
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.012727272727272726
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.014444444444444442
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": -0.1200000000000001
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.011666666666666667
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.010322580645161292
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.06060606060606061
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.18181818181818182
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.11428571428571428
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.014400000000000003
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.01542857142857143
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 0.06000000000000005
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "LAC": {
+      "offenseIndex": {
+        "before": 22.6,
+        "after": 37.10645161290323
+      },
+      "olIndex": {
+        "before": 3.200000000000003,
+        "after": 43.85806451612903
+      },
+      "frontIndex": {
+        "before": 74.2,
+        "after": 47.1
+      },
+      "passRushIndex": {
+        "before": 67.74193548387096,
+        "after": 41.93548387096774
+      },
+      "runDefenseIndex": {
+        "before": 67.74193548387096,
+        "after": 61.29032258064515
+      },
+      "coverageIndex": {
+        "before": 74.2,
+        "after": 62.906451612903226
+      },
+      "qbIndex": {
+        "before": 48.4,
+        "after": 42.26451612903226
+      },
+      "receiverIndex": {
+        "before": 45.2,
+        "after": 48.406451612903226
+      },
+      "rushIndex": {
+        "before": 41.9,
+        "after": 45.14354838709677
+      },
+      "defenseIndex": {
+        "before": 72.52237056902537,
+        "after": 59.26538357597392
+      },
+      "offenseComposite": {
+        "before": 20.484496435316615,
+        "after": 36.041562108469456
+      },
+      "off_epa": {
+        "before": -0.0364,
+        "after": -0.0107
+      },
+      "qb.epa_per_play": {
+        "before": 0.055,
+        "after": 0.03592105263157895
+      },
+      "qb.cpoe": {
+        "before": 63.7,
+        "after": 0.06000000000000005
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.016842105263157894
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 0.06000000000000005
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2849,
+        "after": 0.11428571428571428
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 4
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 0
+      },
+      "dl.pressure_rate": {
+        "before": 0.2184,
+        "after": 0.18181818181818182
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 5
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 1
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.011666666666666667
+      },
+      "cov.press_adj_epa": {
+        "before": -0.0882,
+        "after": 0.012727272727272726
+      },
+      "cov.epa_allowed": {
+        "before": -0.0921,
+        "after": 0.012727272727272726
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": -0.1200000000000001
+      },
+      "receivers.adj_epa": {
+        "before": 0.2236,
+        "after": 0.012187500000000004
+      },
+      "rb.rush_epa": {
+        "before": -0.0909,
+        "after": 0.017142857142857147
+      },
+      "rb.adj_rush": {
+        "before": -0.0851,
+        "after": 0.017142857142857147
+      },
+      "rb.adj_recv": {
+        "before": 0.046,
+        "after": 0.015600000000000006
+      },
+      "luck.w": {
+        "before": 11,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 7,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 18,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 9.9,
+        "after": 0.40229343469567624
+      },
+      "luck.exp_l": {
+        "before": 8.1,
+        "after": 0.5977065653043238
+      },
+      "luck.luck": {
+        "before": 1.12,
+        "after": -0.40229343469567624
+      },
+      "luck.luck_pct": {
+        "before": 6.2,
+        "after": -40.229343469567624
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 102,
+        "after": 3
+      },
+      "penalty.pen_count_against": {
+        "before": 108,
+        "after": 4
+      },
+      "penalty.pen_yards_for": {
+        "before": 863,
+        "after": 27
+      },
+      "penalty.pen_yards_against": {
+        "before": 807,
+        "after": 34
+      },
+      "scoring.ppg_for": {
+        "before": 21.65,
+        "after": 21.825
+      },
+      "scoring.ppg_against": {
+        "before": 20,
+        "after": 23
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.015000000000000003
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.01542857142857143
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.016842105263157894
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 0.06000000000000005
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.014400000000000003
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.012187500000000004
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.11428571428571428
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.18181818181818182
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.011666666666666667
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.012727272727272726
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": -0.1200000000000001
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "LAR": {
+      "offenseIndex": {
+        "before": 100,
+        "after": 77.41935483870968
+      },
+      "olIndex": {
+        "before": 100,
+        "after": 57.74193548387097
+      },
+      "frontIndex": {
+        "before": 77.4,
+        "after": 74.34516129032258
+      },
+      "passRushIndex": {
+        "before": 70.96774193548387,
+        "after": 72.58064516129032
+      },
+      "runDefenseIndex": {
+        "before": 83.87096774193549,
+        "after": 64.51612903225806
+      },
+      "coverageIndex": {
+        "before": 71,
+        "after": 56.46774193548387
+      },
+      "qbIndex": {
+        "before": 90.3,
+        "after": 58.3758064516129
+      },
+      "receiverIndex": {
+        "before": 96.8,
+        "after": 75.81935483870967
+      },
+      "rushIndex": {
+        "before": 96.8,
+        "after": 74.20645161290322
+      },
+      "defenseIndex": {
+        "before": 77.1319035451539,
+        "after": 64.07361585668534
+      },
+      "offenseComposite": {
+        "before": 98.96959496196946,
+        "after": 78.3354552730761
+      },
+      "off_epa": {
+        "before": 0.1445,
+        "after": 0.08141666666666666
+      },
+      "qb.epa_per_play": {
+        "before": 0.222,
+        "after": 0.12127027027027028
+      },
+      "qb.cpoe": {
+        "before": 62.7,
+        "after": 0.23999999999999977
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.020540540540540542
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 0.23999999999999977
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1362,
+        "after": 0.29411764705882354
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 7
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "dl.pressure_rate": {
+        "before": 0.2188,
+        "after": 0.2222222222222222
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 6
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 2
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.01925925925925926
+      },
+      "cov.press_adj_epa": {
+        "before": -0.0714,
+        "after": 0.02166666666666666
+      },
+      "cov.epa_allowed": {
+        "before": -0.0754,
+        "after": 0.02166666666666666
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 0.41999999999999993
+      },
+      "receivers.adj_epa": {
+        "before": 0.4218,
+        "after": 0.017037037037037045
+      },
+      "rb.rush_epa": {
+        "before": 0.019,
+        "after": 0.019999999999999997
+      },
+      "rb.adj_rush": {
+        "before": 0.0435,
+        "after": 0.019999999999999997
+      },
+      "rb.adj_recv": {
+        "before": 0.2146,
+        "after": 0.018400000000000007
+      },
+      "luck.w": {
+        "before": 14,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 6,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 20,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 13.3,
+        "after": 0.5820600364363633
+      },
+      "luck.exp_l": {
+        "before": 6.7,
+        "after": 0.4179399635636367
+      },
+      "luck.luck": {
+        "before": 0.72,
+        "after": 0.4179399635636367
+      },
+      "luck.luck_pct": {
+        "before": 3.6,
+        "after": 41.79399635636367
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 133,
+        "after": 6
+      },
+      "penalty.pen_count_against": {
+        "before": 89,
+        "after": 5
+      },
+      "penalty.pen_yards_for": {
+        "before": 1014,
+        "after": 48
+      },
+      "penalty.pen_yards_against": {
+        "before": 691,
+        "after": 41
+      },
+      "scoring.ppg_for": {
+        "before": 30.47,
+        "after": 26.735
+      },
+      "scoring.ppg_against": {
+        "before": 20.35,
+        "after": 20.175
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.018333333333333333
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.019411764705882358
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.020540540540540542
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 0.23999999999999977
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.016923076923076923
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.017037037037037045
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.29411764705882354
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.2222222222222222
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.01925925925925926
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.02166666666666666
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 0.41999999999999993
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "MIA": {
+      "offenseIndex": {
+        "before": 35.5,
+        "after": 46.78225806451613
+      },
+      "olIndex": {
+        "before": 64.5,
+        "after": 51.766129032258064
+      },
+      "frontIndex": {
+        "before": 22.6,
+        "after": 58.71935483870968
+      },
+      "passRushIndex": {
+        "before": 25.806451612903224,
+        "after": 62.903225806451616
+      },
+      "runDefenseIndex": {
+        "before": 25.806451612903224,
+        "after": 37.096774193548384
+      },
+      "coverageIndex": {
+        "before": 19.4,
+        "after": 32.28064516129032
+      },
+      "qbIndex": {
+        "before": 29,
+        "after": 46.112903225806456
+      },
+      "receiverIndex": {
+        "before": 29,
+        "after": 43.53225806451613
+      },
+      "rushIndex": {
+        "before": 3.200000000000003,
+        "after": 29.019354838709678
+      },
+      "defenseIndex": {
+        "before": 21.44626114914381,
+        "after": 38.77267973735909
+      },
+      "offenseComposite": {
+        "before": 30.4244000432808,
+        "after": 45.00494396780924
+      },
+      "off_epa": {
+        "before": -0.016,
+        "after": 0.0023174603174603153
+      },
+      "qb.epa_per_play": {
+        "before": -0.008,
+        "after": 0.007282051282051279
+      },
+      "qb.cpoe": {
+        "before": 68.3,
+        "after": 0.41999999999999993
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.02256410256410256
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 0.41999999999999993
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1566,
+        "after": 0.2222222222222222
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 6
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 2
+      },
+      "dl.pressure_rate": {
+        "before": 0.1946,
+        "after": 0.29411764705882354
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 7
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 3
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.016923076923076923
+      },
+      "cov.press_adj_epa": {
+        "before": 0.1298,
+        "after": 0.019411764705882358
+      },
+      "cov.epa_allowed": {
+        "before": 0.1331,
+        "after": 0.019411764705882358
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 0.23999999999999977
+      },
+      "receivers.adj_epa": {
+        "before": 0.1397,
+        "after": 0.01892857142857143
+      },
+      "rb.rush_epa": {
+        "before": -0.0814,
+        "after": 0.022608695652173914
+      },
+      "rb.adj_rush": {
+        "before": -0.0964,
+        "after": 0.022608695652173914
+      },
+      "rb.adj_recv": {
+        "before": -0.2759,
+        "after": 0.021200000000000004
+      },
+      "luck.w": {
+        "before": 7,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 10,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 8.1,
+        "after": 0.41793996356363666
+      },
+      "luck.exp_l": {
+        "before": 8.9,
+        "after": 0.5820600364363633
+      },
+      "luck.luck": {
+        "before": -1.1,
+        "after": -0.41793996356363666
+      },
+      "luck.luck_pct": {
+        "before": -6.5,
+        "after": -41.793996356363664
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 104,
+        "after": 5
+      },
+      "penalty.pen_count_against": {
+        "before": 101,
+        "after": 6
+      },
+      "penalty.pen_yards_for": {
+        "before": 841,
+        "after": 41
+      },
+      "penalty.pen_yards_against": {
+        "before": 811,
+        "after": 48
+      },
+      "scoring.ppg_for": {
+        "before": 20.41,
+        "after": 20.205
+      },
+      "scoring.ppg_against": {
+        "before": 24.94,
+        "after": 23.97
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.02063492063492063
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.02166666666666666
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.02256410256410256
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 0.41999999999999993
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.01925925925925926
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.01892857142857143
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.2222222222222222
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.29411764705882354
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.016923076923076923
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.019411764705882358
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 0.23999999999999977
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "MIN": {
+      "offenseIndex": {
+        "before": 12.899999999999999,
+        "after": 37.09516129032258
+      },
+      "olIndex": {
+        "before": 22.6,
+        "after": 52.751612903225805
+      },
+      "frontIndex": {
+        "before": 90.3,
+        "after": 47.08548387096774
+      },
+      "passRushIndex": {
+        "before": 96.7741935483871,
+        "after": 48.38709677419355
+      },
+      "runDefenseIndex": {
+        "before": 48.38709677419355,
+        "after": 43.54838709677419
+      },
+      "coverageIndex": {
+        "before": 93.5,
+        "after": 64.49193548387098
+      },
+      "qbIndex": {
+        "before": 12.899999999999999,
+        "after": 35.80483870967742
+      },
+      "receiverIndex": {
+        "before": 9.700000000000003,
+        "after": 35.495161290322585
+      },
+      "rushIndex": {
+        "before": 22.6,
+        "after": 40.332258064516125
+      },
+      "defenseIndex": {
+        "before": 79.68539368162376,
+        "after": 54.50935358608403
+      },
+      "offenseComposite": {
+        "before": 6.540868076866104,
+        "after": 32.756297193103165
+      },
+      "off_epa": {
+        "before": -0.1162,
+        "after": -0.04600322580645161
+      },
+      "qb.epa_per_play": {
+        "before": -0.141,
+        "after": -0.05698648648648648
+      },
+      "qb.cpoe": {
+        "before": 63,
+        "after": 0.5999999999999995
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.027027027027027025
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 0.5999999999999995
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2662,
+        "after": 0.14705882352941177
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 4
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 1
+      },
+      "dl.pressure_rate": {
+        "before": 0.2457,
+        "after": 0.09090909090909091
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 3
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 0
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.030909090909090907
+      },
+      "cov.press_adj_epa": {
+        "before": -0.1384,
+        "after": 0.03090909090909091
+      },
+      "cov.epa_allowed": {
+        "before": -0.1505,
+        "after": 0.03090909090909091
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 0.7799999999999998
+      },
+      "receivers.adj_epa": {
+        "before": 0.079,
+        "after": 0.020689655172413796
+      },
+      "rb.rush_epa": {
+        "before": -0.0363,
+        "after": 0.025000000000000005
+      },
+      "rb.adj_rush": {
+        "before": -0.0487,
+        "after": 0.025000000000000005
+      },
+      "rb.adj_recv": {
+        "before": -0.2332,
+        "after": 0.024000000000000004
+      },
+      "luck.w": {
+        "before": 9,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 8,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 8.1,
+        "after": 0.57516719733523
+      },
+      "luck.exp_l": {
+        "before": 8.9,
+        "after": 0.42483280266476997
+      },
+      "luck.luck": {
+        "before": 0.87,
+        "after": 0.42483280266476997
+      },
+      "luck.luck_pct": {
+        "before": 5.1,
+        "after": 42.483280266476996
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 110,
+        "after": 4
+      },
+      "penalty.pen_count_against": {
+        "before": 111,
+        "after": 3
+      },
+      "penalty.pen_yards_for": {
+        "before": 875,
+        "after": 27
+      },
+      "penalty.pen_yards_against": {
+        "before": 886,
+        "after": 20
+      },
+      "scoring.ppg_for": {
+        "before": 20.24,
+        "after": 22.619999999999997
+      },
+      "scoring.ppg_against": {
+        "before": 19.59,
+        "after": 20.795
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.024193548387096774
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.026470588235294114
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.027027027027027025
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 0.5999999999999995
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.021428571428571432
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.020689655172413796
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.14705882352941177
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.09090909090909091
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.030909090909090907
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.03090909090909091
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 0.7799999999999998
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "NE": {
+      "offenseIndex": {
+        "before": 87.1,
+        "after": 75.80806451612904
+      },
+      "olIndex": {
+        "before": 16.1,
+        "after": 52.24354838709678
+      },
+      "frontIndex": {
+        "before": 32.3,
+        "after": 21.15
+      },
+      "passRushIndex": {
+        "before": 38.70967741935484,
+        "after": 22.580645161290324
+      },
+      "runDefenseIndex": {
+        "before": 35.483870967741936,
+        "after": 38.70967741935484
+      },
+      "coverageIndex": {
+        "before": 67.7,
+        "after": 53.20483870967742
+      },
+      "qbIndex": {
+        "before": 96.8,
+        "after": 88.4
+      },
+      "receiverIndex": {
+        "before": 100,
+        "after": 82.25806451612902
+      },
+      "rushIndex": {
+        "before": 74.2,
+        "after": 67.74516129032259
+      },
+      "defenseIndex": {
+        "before": 50.71797238281155,
+        "after": 40.90628527370673
+      },
+      "offenseComposite": {
+        "before": 89.63335525844406,
+        "after": 85.75998788876862
+      },
+      "off_epa": {
+        "before": 0.0889,
+        "after": 0.05990454545454546
+      },
+      "qb.epa_per_play": {
+        "before": 0.267,
+        "after": 0.14905555555555555
+      },
+      "qb.cpoe": {
+        "before": 62.8,
+        "after": 0.7799999999999998
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.031111111111111114
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 0.7799999999999998
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2577,
+        "after": 0.09090909090909091
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 0
+      },
+      "dl.pressure_rate": {
+        "before": 0.2003,
+        "after": 0.14705882352941177
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 4
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 1
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.021428571428571432
+      },
+      "cov.press_adj_epa": {
+        "before": -0.0589,
+        "after": 0.026470588235294114
+      },
+      "cov.epa_allowed": {
+        "before": -0.0574,
+        "after": 0.026470588235294114
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 0.5999999999999995
+      },
+      "receivers.adj_epa": {
+        "before": 0.4974,
+        "after": 0.022333333333333337
+      },
+      "rb.rush_epa": {
+        "before": 0.0469,
+        "after": 0.03777777777777777
+      },
+      "rb.adj_rush": {
+        "before": 0.011,
+        "after": 0.03777777777777777
+      },
+      "rb.adj_recv": {
+        "before": 0.0275,
+        "after": 0.026800000000000008
+      },
+      "luck.w": {
+        "before": 17,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 4,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 21,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 12.4,
+        "after": 0.42483280266476997
+      },
+      "luck.exp_l": {
+        "before": 8.6,
+        "after": 0.57516719733523
+      },
+      "luck.luck": {
+        "before": 4.63,
+        "after": -0.42483280266476997
+      },
+      "luck.luck_pct": {
+        "before": 22,
+        "after": -42.483280266476996
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 122,
+        "after": 3
+      },
+      "penalty.pen_count_against": {
+        "before": 108,
+        "after": 4
+      },
+      "penalty.pen_yards_for": {
+        "before": 900,
+        "after": 20
+      },
+      "penalty.pen_yards_against": {
+        "before": 967,
+        "after": 27
+      },
+      "scoring.ppg_for": {
+        "before": 28.82,
+        "after": 25.41
+      },
+      "scoring.ppg_against": {
+        "before": 18.82,
+        "after": 21.91
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.030909090909090907
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.03090909090909091
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.031111111111111114
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 0.7799999999999998
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.030909090909090907
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.022333333333333337
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.09090909090909091
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.14705882352941177
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.021428571428571432
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.026470588235294114
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 0.5999999999999995
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "NO": {
+      "offenseIndex": {
+        "before": 16.1,
+        "after": 41.920967741935485
+      },
+      "olIndex": {
+        "before": 51.6,
+        "after": 42.251612903225805
+      },
+      "frontIndex": {
+        "before": 58.1,
+        "after": 40.8241935483871
+      },
+      "passRushIndex": {
+        "before": 48.38709677419355,
+        "after": 35.483870967741936
+      },
+      "runDefenseIndex": {
+        "before": 77.41935483870968,
+        "after": 54.83870967741936
+      },
+      "coverageIndex": {
+        "before": 64.5,
+        "after": 46.766129032258064
+      },
+      "qbIndex": {
+        "before": 41.9,
+        "after": 44.498387096774195
+      },
+      "receiverIndex": {
+        "before": 41.9,
+        "after": 54.820967741935476
+      },
+      "rushIndex": {
+        "before": 12.899999999999999,
+        "after": 38.70806451612903
+      },
+      "defenseIndex": {
+        "before": 67.58520292014644,
+        "after": 46.94744195614912
+      },
+      "offenseComposite": {
+        "before": 23.136291825891377,
+        "after": 41.33527659971878
+      },
+      "off_epa": {
+        "before": -0.0856,
+        "after": -0.026420689655172414
+      },
+      "qb.epa_per_play": {
+        "before": 0.044,
+        "after": 0.038315789473684206
+      },
+      "qb.cpoe": {
+        "before": 67.2,
+        "after": 0.96
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.032631578947368414
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 0.96
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1776,
+        "after": 0.2571428571428571
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 6
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "dl.pressure_rate": {
+        "before": 0.2053,
+        "after": 0.1891891891891892
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.05405405405405406
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 5
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 2
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.035
+      },
+      "cov.press_adj_epa": {
+        "before": -0.0461,
+        "after": 0.034054054054054046
+      },
+      "cov.epa_allowed": {
+        "before": -0.0461,
+        "after": 0.034054054054054046
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 1.1399999999999997
+      },
+      "receivers.adj_epa": {
+        "before": 0.192,
+        "after": 0.023870967741935485
+      },
+      "rb.rush_epa": {
+        "before": -0.138,
+        "after": 0.04
+      },
+      "rb.adj_rush": {
+        "before": -0.1364,
+        "after": 0.04
+      },
+      "rb.adj_recv": {
+        "before": -0.1428,
+        "after": 0.029599999999999998
+      },
+      "luck.w": {
+        "before": 6,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 11,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 6.4,
+        "after": 0.6706768379236326
+      },
+      "luck.exp_l": {
+        "before": 10.6,
+        "after": 0.32932316207636736
+      },
+      "luck.luck": {
+        "before": -0.38,
+        "after": 0.32932316207636736
+      },
+      "luck.luck_pct": {
+        "before": -2.2,
+        "after": 32.93231620763674
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 116,
+        "after": 6
+      },
+      "penalty.pen_count_against": {
+        "before": 118,
+        "after": 5
+      },
+      "penalty.pen_yards_for": {
+        "before": 913,
+        "after": 41
+      },
+      "penalty.pen_yards_against": {
+        "before": 920,
+        "after": 34
+      },
+      "scoring.ppg_for": {
+        "before": 18,
+        "after": 22.5
+      },
+      "scoring.ppg_against": {
+        "before": 22.53,
+        "after": 21.265
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.03275862068965517
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.032571428571428564
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.032631578947368414
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 0.96
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.03304347826086956
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.023870967741935485
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.2571428571428571
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.1891891891891892
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.05405405405405406
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.035
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.034054054054054046
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 1.1399999999999997
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "NYG": {
+      "offenseIndex": {
+        "before": 51.6,
+        "after": 61.28387096774193
+      },
+      "olIndex": {
+        "before": 12.899999999999999,
+        "after": 35.80483870967741
+      },
+      "frontIndex": {
+        "before": 25.8,
+        "after": 59.674193548387095
+      },
+      "passRushIndex": {
+        "before": 64.51612903225806,
+        "after": 82.25806451612902
+      },
+      "runDefenseIndex": {
+        "before": 0,
+        "after": 17.741935483870968
+      },
+      "coverageIndex": {
+        "before": 48.4,
+        "after": 40.329032258064515
+      },
+      "qbIndex": {
+        "before": 25.8,
+        "after": 40.64193548387097
+      },
+      "receiverIndex": {
+        "before": 12.899999999999999,
+        "after": 41.93387096774194
+      },
+      "rushIndex": {
+        "before": 35.5,
+        "after": 51.62096774193548
+      },
+      "defenseIndex": {
+        "before": 32.92199946942732,
+        "after": 39.56977608176416
+      },
+      "offenseComposite": {
+        "before": 25.4070457774011,
+        "after": 49.03694577560177
+      },
+      "off_epa": {
+        "before": 0.0103,
+        "after": 0.022363114754098357
+      },
+      "qb.epa_per_play": {
+        "before": -0.014,
+        "after": 0.009999999999999998
+      },
+      "qb.cpoe": {
+        "before": 65.5,
+        "after": 1.1399999999999997
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.033999999999999996
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 1.1399999999999997
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2676,
+        "after": 0.1891891891891892
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08108108108108109
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 5
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 2
+      },
+      "dl.pressure_rate": {
+        "before": 0.2126,
+        "after": 0.2571428571428571
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 6
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 3
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.03304347826086956
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0248,
+        "after": 0.032571428571428564
+      },
+      "cov.epa_allowed": {
+        "before": 0.0226,
+        "after": 0.032571428571428564
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 0.96
+      },
+      "receivers.adj_epa": {
+        "before": 0.0879,
+        "after": 0.0253125
+      },
+      "rb.rush_epa": {
+        "before": -0.0556,
+        "after": 0.042
+      },
+      "rb.adj_rush": {
+        "before": -0.067,
+        "after": 0.042
+      },
+      "rb.adj_recv": {
+        "before": -0.0875,
+        "after": 0.032400000000000005
+      },
+      "luck.w": {
+        "before": 4,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 13,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 5.1,
+        "after": 0.32932316207636747
+      },
+      "luck.exp_l": {
+        "before": 11.9,
+        "after": 0.6706768379236325
+      },
+      "luck.luck": {
+        "before": -1.12,
+        "after": -0.32932316207636747
+      },
+      "luck.luck_pct": {
+        "before": -6.6,
+        "after": -32.932316207636745
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 135,
+        "after": 5
+      },
+      "penalty.pen_count_against": {
+        "before": 128,
+        "after": 6
+      },
+      "penalty.pen_yards_for": {
+        "before": 1105,
+        "after": 34
+      },
+      "penalty.pen_yards_against": {
+        "before": 1075,
+        "after": 41
+      },
+      "scoring.ppg_for": {
+        "before": 22.41,
+        "after": 21.205
+      },
+      "scoring.ppg_against": {
+        "before": 25.82,
+        "after": 26.41
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.034426229508196717
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.034054054054054046
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.033999999999999996
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 1.1399999999999997
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.035
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.0253125
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08108108108108109
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.1891891891891892
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.2571428571428571
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.03304347826086956
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.032571428571428564
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 0.96
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "NYJ": {
+      "offenseIndex": {
+        "before": 9.700000000000003,
+        "after": 41.946774193548386
+      },
+      "olIndex": {
+        "before": 6.5,
+        "after": 48.89516129032258
+      },
+      "frontIndex": {
+        "before": 9.700000000000003,
+        "after": 29.366129032258065
+      },
+      "passRushIndex": {
+        "before": 9.677419354838712,
+        "after": 30.64516129032258
+      },
+      "runDefenseIndex": {
+        "before": 45.16129032258065,
+        "after": 35.483870967741936
+      },
+      "coverageIndex": {
+        "before": 0,
+        "after": 11.29032258064516
+      },
+      "qbIndex": {
+        "before": 0,
+        "after": 38.38709677419355
+      },
+      "receiverIndex": {
+        "before": 3.200000000000003,
+        "after": 38.696774193548386
+      },
+      "rushIndex": {
+        "before": 54.8,
+        "after": 62.883870967741935
+      },
+      "defenseIndex": {
+        "before": 17.06229393345904,
+        "after": 22.077012059740667
+      },
+      "offenseComposite": {
+        "before": 2.225802973564477,
+        "after": 36.8078680131514
+      },
+      "off_epa": {
+        "before": -0.1319,
+        "after": -0.04577456140350877
+      },
+      "qb.epa_per_play": {
+        "before": -0.296,
+        "after": -0.12685714285714284
+      },
+      "qb.cpoe": {
+        "before": 60.5,
+        "after": 1.3200000000000003
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.04228571428571429
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 1.3200000000000003
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2878,
+        "after": 0.125
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.03125
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 1
+      },
+      "dl.pressure_rate": {
+        "before": 0.1646,
+        "after": 0.20588235294117646
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 7
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 0
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.038461538461538464
+      },
+      "cov.press_adj_epa": {
+        "before": 0.2419,
+        "after": 0.04411764705882353
+      },
+      "cov.epa_allowed": {
+        "before": 0.2541,
+        "after": 0.04411764705882353
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 1.5
+      },
+      "receivers.adj_epa": {
+        "before": 0.0118,
+        "after": 0.0325925925925926
+      },
+      "rb.rush_epa": {
+        "before": -0.0752,
+        "after": 0.043809523809523805
+      },
+      "rb.adj_rush": {
+        "before": -0.0769,
+        "after": 0.043809523809523805
+      },
+      "rb.adj_recv": {
+        "before": 0.0978,
+        "after": 0.03520000000000001
+      },
+      "luck.w": {
+        "before": 3,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 14,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 5.1,
+        "after": 0.5513723172510174
+      },
+      "luck.exp_l": {
+        "before": 11.9,
+        "after": 0.44862768274898257
+      },
+      "luck.luck": {
+        "before": -2.09,
+        "after": 0.44862768274898257
+      },
+      "luck.luck_pct": {
+        "before": -12.3,
+        "after": 44.86276827489826
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -28
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -28
+      },
+      "penalty.pen_count_for": {
+        "before": 91,
+        "after": 4
+      },
+      "penalty.pen_count_against": {
+        "before": 110,
+        "after": 3
+      },
+      "penalty.pen_yards_for": {
+        "before": 794,
+        "after": 20
+      },
+      "penalty.pen_yards_against": {
+        "before": 909,
+        "after": 48
+      },
+      "scoring.ppg_for": {
+        "before": 17.65,
+        "after": 20.825
+      },
+      "scoring.ppg_against": {
+        "before": 29.59,
+        "after": 25.795
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.04035087719298245
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.043125
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.04228571428571429
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 1.3200000000000003
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.0368
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.0325925925925926
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.03125
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.125
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.20588235294117646
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.038461538461538464
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.04411764705882353
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 1.5
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -28
+      }
+    },
+    "PHI": {
+      "offenseIndex": {
+        "before": 54.8,
+        "after": 66.10967741935484
+      },
+      "olIndex": {
+        "before": 58.1,
+        "after": 55.98548387096774
+      },
+      "frontIndex": {
+        "before": 80.6,
+        "after": 41.751612903225805
+      },
+      "passRushIndex": {
+        "before": 93.54838709677419,
+        "after": 46.774193548387096
+      },
+      "runDefenseIndex": {
+        "before": 38.70967741935484,
+        "after": 33.87096774193549
+      },
+      "coverageIndex": {
+        "before": 87.1,
+        "after": 56.45322580645161
+      },
+      "qbIndex": {
+        "before": 54.8,
+        "after": 36.43225806451613
+      },
+      "receiverIndex": {
+        "before": 74.2,
+        "after": 75.80967741935484
+      },
+      "rushIndex": {
+        "before": 83.9,
+        "after": 79.04677419354839
+      },
+      "defenseIndex": {
+        "before": 73.31144137694393,
+        "after": 46.12309236694726
+      },
+      "offenseComposite": {
+        "before": 62.91414047581632,
+        "after": 63.55235002884144
+      },
+      "off_epa": {
+        "before": 0.0222,
+        "after": 0.031933333333333334
+      },
+      "qb.epa_per_play": {
+        "before": 0.081,
+        "after": 0.062121621621621624
+      },
+      "qb.cpoe": {
+        "before": 62.3,
+        "after": 1.5
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.043243243243243246
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 1.5
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.185,
+        "after": 0.20588235294117646
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.058823529411764705
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 7
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 0
+      },
+      "dl.pressure_rate": {
+        "before": 0.2396,
+        "after": 0.125
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.03125
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 3
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 1
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.0368
+      },
+      "cov.press_adj_epa": {
+        "before": -0.1147,
+        "after": 0.043125
+      },
+      "cov.epa_allowed": {
+        "before": -0.125,
+        "after": 0.043125
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 1.3200000000000003
+      },
+      "receivers.adj_epa": {
+        "before": 0.3266,
+        "after": 0.03392857142857143
+      },
+      "rb.rush_epa": {
+        "before": 0.13,
+        "after": 0.045454545454545456
+      },
+      "rb.adj_rush": {
+        "before": 0.0688,
+        "after": 0.045454545454545456
+      },
+      "rb.adj_recv": {
+        "before": 0,
+        "after": 0.03800000000000001
+      },
+      "luck.w": {
+        "before": 11,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 7,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 18,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 12.8,
+        "after": 0.4486276827489826
+      },
+      "luck.exp_l": {
+        "before": 5.2,
+        "after": 0.5513723172510174
+      },
+      "luck.luck": {
+        "before": -1.78,
+        "after": -0.4486276827489826
+      },
+      "luck.luck_pct": {
+        "before": -9.9,
+        "after": -44.862768274898265
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 28
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 28
+      },
+      "penalty.pen_count_for": {
+        "before": 92,
+        "after": 3
+      },
+      "penalty.pen_count_against": {
+        "before": 124,
+        "after": 4
+      },
+      "penalty.pen_yards_for": {
+        "before": 812,
+        "after": 48
+      },
+      "penalty.pen_yards_against": {
+        "before": 1121,
+        "after": 20
+      },
+      "scoring.ppg_for": {
+        "before": 22.29,
+        "after": 22.145
+      },
+      "scoring.ppg_against": {
+        "before": 19.12,
+        "after": 21.560000000000002
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.041666666666666664
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.04411764705882353
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.043243243243243246
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 1.5
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.038461538461538464
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.03392857142857143
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.058823529411764705
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.20588235294117646
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.125
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.03125
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.0368
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.043125
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 1.3200000000000003
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 28
+      }
+    },
+    "PIT": {
+      "offenseIndex": {
+        "before": 41.9,
+        "after": 61.272580645161284
+      },
+      "olIndex": {
+        "before": 96.8,
+        "after": 71.30322580645162
+      },
+      "frontIndex": {
+        "before": 51.6,
+        "after": 32.5741935483871
+      },
+      "passRushIndex": {
+        "before": 41.935483870967744,
+        "after": 27.41935483870968
+      },
+      "runDefenseIndex": {
+        "before": 70.96774193548387,
+        "after": 45.16129032258065
+      },
+      "coverageIndex": {
+        "before": 41.9,
+        "after": 29.014516129032256
+      },
+      "qbIndex": {
+        "before": 32.3,
+        "after": 48.73064516129032
+      },
+      "receiverIndex": {
+        "before": 19.4,
+        "after": 50.022580645161284
+      },
+      "rushIndex": {
+        "before": 87.1,
+        "after": 82.25967741935483
+      },
+      "defenseIndex": {
+        "before": 52.38427858890649,
+        "after": 32.568064576754
+      },
+      "offenseComposite": {
+        "before": 41.03841432311504,
+        "after": 62.532865201107775
+      },
+      "off_epa": {
+        "before": -0.0063,
+        "after": 0.01827857142857143
+      },
+      "qb.epa_per_play": {
+        "before": -0.007,
+        "after": 0.018551282051282054
+      },
+      "qb.cpoe": {
+        "before": 66.8,
+        "after": 1.6799999999999997
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.04410256410256411
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 1.6799999999999997
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1284,
+        "after": 0.2222222222222222
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 5
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "dl.pressure_rate": {
+        "before": 0.202,
+        "after": 0.17142857142857143
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 4
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 2
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.04142857142857143
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0287,
+        "after": 0.04971428571428571
+      },
+      "cov.epa_allowed": {
+        "before": 0.0297,
+        "after": 0.04971428571428571
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 1.8599999999999994
+      },
+      "receivers.adj_epa": {
+        "before": 0.1117,
+        "after": 0.03517241379310346
+      },
+      "rb.rush_epa": {
+        "before": -0.0024,
+        "after": 0.04695652173913044
+      },
+      "rb.adj_rush": {
+        "before": 0.0055,
+        "after": 0.04695652173913044
+      },
+      "rb.adj_recv": {
+        "before": 0.2252,
+        "after": 0.04080000000000002
+      },
+      "luck.w": {
+        "before": 10,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 8,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 18,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 9.7,
+        "after": 0.6506285713666761
+      },
+      "luck.exp_l": {
+        "before": 8.3,
+        "after": 0.34937142863332393
+      },
+      "luck.luck": {
+        "before": 0.32,
+        "after": 0.34937142863332393
+      },
+      "luck.luck_pct": {
+        "before": 1.8,
+        "after": 34.93714286333239
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 113,
+        "after": 6
+      },
+      "penalty.pen_count_against": {
+        "before": 104,
+        "after": 5
+      },
+      "penalty.pen_yards_for": {
+        "before": 926,
+        "after": 34
+      },
+      "penalty.pen_yards_against": {
+        "before": 827,
+        "after": 27
+      },
+      "scoring.ppg_for": {
+        "before": 23.35,
+        "after": 24.675
+      },
+      "scoring.ppg_against": {
+        "before": 22.76,
+        "after": 21.380000000000003
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.04285714285714286
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.045000000000000005
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.04410256410256411
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 1.6799999999999997
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.04
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.03517241379310346
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.2222222222222222
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.17142857142857143
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.05714285714285714
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.04142857142857143
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.04971428571428571
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 1.8599999999999994
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "SEA": {
+      "offenseIndex": {
+        "before": 71,
+        "after": 77.43548387096774
+      },
+      "olIndex": {
+        "before": 80.6,
+        "after": 78.36451612903225
+      },
+      "frontIndex": {
+        "before": 93.5,
+        "after": 81.26612903225806
+      },
+      "passRushIndex": {
+        "before": 74.19354838709677,
+        "after": 74.19354838709677
+      },
+      "runDefenseIndex": {
+        "before": 100,
+        "after": 61.29032258064516
+      },
+      "coverageIndex": {
+        "before": 80.6,
+        "after": 49.97741935483871
+      },
+      "qbIndex": {
+        "before": 93.5,
+        "after": 65.45967741935485
+      },
+      "receiverIndex": {
+        "before": 87.1,
+        "after": 85.48548387096774
+      },
+      "rushIndex": {
+        "before": 71,
+        "after": 75.82258064516128
+      },
+      "defenseIndex": {
+        "before": 85.90574813377451,
+        "after": 59.97314965571832
+      },
+      "offenseComposite": {
+        "before": 89.36674058999361,
+        "after": 85.18248159460362
+      },
+      "off_epa": {
+        "before": 0.0422,
+        "after": 0.04411587301587301
+      },
+      "qb.epa_per_play": {
+        "before": 0.233,
+        "after": 0.14071052631578948
+      },
+      "qb.cpoe": {
+        "before": 63.6,
+        "after": 1.8599999999999994
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.04842105263157894
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 1.8599999999999994
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1486,
+        "after": 0.17142857142857143
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.02857142857142857
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 4
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 2
+      },
+      "dl.pressure_rate": {
+        "before": 0.2232,
+        "after": 0.2222222222222222
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 5
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 3
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.04
+      },
+      "cov.press_adj_epa": {
+        "before": -0.0982,
+        "after": 0.045000000000000005
+      },
+      "cov.epa_allowed": {
+        "before": -0.1035,
+        "after": 0.045000000000000005
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 1.6799999999999997
+      },
+      "receivers.adj_epa": {
+        "before": 0.3913,
+        "after": 0.036333333333333336
+      },
+      "rb.rush_epa": {
+        "before": -0.0647,
+        "after": 0.04833333333333334
+      },
+      "rb.adj_rush": {
+        "before": -0.0581,
+        "after": 0.04833333333333334
+      },
+      "rb.adj_recv": {
+        "before": 0.1696,
+        "after": 0.04360000000000001
+      },
+      "luck.w": {
+        "before": 17,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 3,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 20,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 13,
+        "after": 0.34937142863332393
+      },
+      "luck.exp_l": {
+        "before": 7,
+        "after": 0.6506285713666761
+      },
+      "luck.luck": {
+        "before": 3.95,
+        "after": -0.34937142863332393
+      },
+      "luck.luck_pct": {
+        "before": 19.8,
+        "after": -34.93714286333239
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 127,
+        "after": 5
+      },
+      "penalty.pen_count_against": {
+        "before": 112,
+        "after": 6
+      },
+      "penalty.pen_yards_for": {
+        "before": 993,
+        "after": 27
+      },
+      "penalty.pen_yards_against": {
+        "before": 873,
+        "after": 34
+      },
+      "scoring.ppg_for": {
+        "before": 28.41,
+        "after": 24.205
+      },
+      "scoring.ppg_against": {
+        "before": 17.18,
+        "after": 21.59
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.04603174603174603
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.04971428571428571
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.04842105263157894
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 1.8599999999999994
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.04142857142857143
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.036333333333333336
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.02857142857142857
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.17142857142857143
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.2222222222222222
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.08333333333333333
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.04
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.045000000000000005
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 1.6799999999999997
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "SF": {
+      "offenseIndex": {
+        "before": 74.2,
+        "after": 80.6483870967742
+      },
+      "olIndex": {
+        "before": 61.3,
+        "after": 52.262903225806454
+      },
+      "frontIndex": {
+        "before": 0,
+        "after": 6.451612903225807
+      },
+      "passRushIndex": {
+        "before": 0,
+        "after": 6.451612903225806
+      },
+      "runDefenseIndex": {
+        "before": 3.225806451612904,
+        "after": 8.06451612903226
+      },
+      "coverageIndex": {
+        "before": 22.6,
+        "after": 16.138709677419353
+      },
+      "qbIndex": {
+        "before": 83.9,
+        "after": 59.69193548387097
+      },
+      "receiverIndex": {
+        "before": 77.4,
+        "after": 82.2483870967742
+      },
+      "rushIndex": {
+        "before": 77.4,
+        "after": 80.63548387096775
+      },
+      "defenseIndex": {
+        "before": 12.236246238864062,
+        "after": 12.289326226335788
+      },
+      "offenseComposite": {
+        "before": 84.57462615269475,
+        "after": 80.56856990246789
+      },
+      "off_epa": {
+        "before": 0.0619,
+        "after": 0.05913181818181818
+      },
+      "qb.epa_per_play": {
+        "before": 0.185,
+        "after": 0.11972222222222222
+      },
+      "qb.cpoe": {
+        "before": 63.1,
+        "after": 2.04
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.05444444444444444
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 2.04
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1763,
+        "after": 0.24242424242424243
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.06060606060606061
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 7
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 1
+      },
+      "dl.pressure_rate": {
+        "before": 0.1413,
+        "after": 0.17142857142857143
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 6
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 0
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.05739130434782608
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0982,
+        "after": 0.05657142857142857
+      },
+      "cov.epa_allowed": {
+        "before": 0.1174,
+        "after": 0.05657142857142857
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 2.2199999999999998
+      },
+      "receivers.adj_epa": {
+        "before": 0.3346,
+        "after": 0.03741935483870968
+      },
+      "rb.rush_epa": {
+        "before": -0.0078,
+        "after": 0.0688888888888889
+      },
+      "rb.adj_rush": {
+        "before": -0.0252,
+        "after": 0.0688888888888889
+      },
+      "rb.adj_recv": {
+        "before": 0.1668,
+        "after": 0.04640000000000001
+      },
+      "luck.w": {
+        "before": 13,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 6,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 19,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 9.9,
+        "after": 0.5263133366950837
+      },
+      "luck.exp_l": {
+        "before": 9.1,
+        "after": 0.47368666330491627
+      },
+      "luck.luck": {
+        "before": 3.06,
+        "after": 0.47368666330491627
+      },
+      "luck.luck_pct": {
+        "before": 16.1,
+        "after": 47.36866633049163
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 116,
+        "after": 4
+      },
+      "penalty.pen_count_against": {
+        "before": 87,
+        "after": 3
+      },
+      "penalty.pen_yards_for": {
+        "before": 787,
+        "after": 48
+      },
+      "penalty.pen_yards_against": {
+        "before": 702,
+        "after": 41
+      },
+      "scoring.ppg_for": {
+        "before": 25.71,
+        "after": 24.355
+      },
+      "scoring.ppg_against": {
+        "before": 21.82,
+        "after": 21.91
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.056363636363636366
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.05636363636363636
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.05444444444444444
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 2.04
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.05636363636363637
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.03741935483870968
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.06060606060606061
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.24242424242424243
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.17142857142857143
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.05739130434782608
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.05657142857142857
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 2.2199999999999998
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "TB": {
+      "offenseIndex": {
+        "before": 45.2,
+        "after": 67.76129032258065
+      },
+      "olIndex": {
+        "before": 77.4,
+        "after": 77.73225806451613
+      },
+      "frontIndex": {
+        "before": 54.8,
+        "after": 71.75483870967741
+      },
+      "passRushIndex": {
+        "before": 32.25806451612903,
+        "after": 64.51612903225806
+      },
+      "runDefenseIndex": {
+        "before": 90.3225806451613,
+        "after": 53.225806451612904
+      },
+      "coverageIndex": {
+        "before": 38.7,
+        "after": 25.80161290322581
+      },
+      "qbIndex": {
+        "before": 51.6,
+        "after": 39.99354838709678
+      },
+      "receiverIndex": {
+        "before": 6.5,
+        "after": 48.41129032258065
+      },
+      "rushIndex": {
+        "before": 32.3,
+        "after": 59.69838709677419
+      },
+      "defenseIndex": {
+        "before": 56.25924361325959,
+        "after": 42.18321692497861
+      },
+      "offenseComposite": {
+        "before": 43.34043782207253,
+        "after": 64.73162469557309
+      },
+      "off_epa": {
+        "before": -0.0056,
+        "after": 0.025648275862068963
+      },
+      "qb.epa_per_play": {
+        "before": 0.068,
+        "after": 0.061368421052631586
+      },
+      "qb.cpoe": {
+        "before": 65,
+        "after": 2.2199999999999998
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.05473684210526316
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 2.2199999999999998
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.1614,
+        "after": 0.17142857142857143
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 6
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 0
+      },
+      "dl.pressure_rate": {
+        "before": 0.1969,
+        "after": 0.24242424242424243
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 7
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 1
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.05636363636363637
+      },
+      "cov.press_adj_epa": {
+        "before": 0.0722,
+        "after": 0.05636363636363636
+      },
+      "cov.epa_allowed": {
+        "before": 0.0748,
+        "after": 0.05636363636363636
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 2.04
+      },
+      "receivers.adj_epa": {
+        "before": 0.0695,
+        "after": 0.038437500000000006
+      },
+      "rb.rush_epa": {
+        "before": -0.2056,
+        "after": 0.06947368421052631
+      },
+      "rb.adj_rush": {
+        "before": -0.2181,
+        "after": 0.06947368421052631
+      },
+      "rb.adj_recv": {
+        "before": 0.2632,
+        "after": 0.04920000000000001
+      },
+      "luck.w": {
+        "before": 8,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 9,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 9.2,
+        "after": 0.47368666330491616
+      },
+      "luck.exp_l": {
+        "before": 7.8,
+        "after": 0.5263133366950838
+      },
+      "luck.luck": {
+        "before": -1.19,
+        "after": -0.47368666330491616
+      },
+      "luck.luck_pct": {
+        "before": -7,
+        "after": -47.368666330491614
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 128,
+        "after": 3
+      },
+      "penalty.pen_count_against": {
+        "before": 95,
+        "after": 4
+      },
+      "penalty.pen_yards_for": {
+        "before": 994,
+        "after": 41
+      },
+      "penalty.pen_yards_against": {
+        "before": 737,
+        "after": 48
+      },
+      "scoring.ppg_for": {
+        "before": 22.35,
+        "after": 22.175
+      },
+      "scoring.ppg_against": {
+        "before": 24.18,
+        "after": 23.59
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.05689655172413793
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.05657142857142857
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.05473684210526316
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 2.2199999999999998
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.05739130434782608
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.038437500000000006
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.08571428571428572
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.17142857142857143
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.24242424242424243
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.030303030303030304
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.05636363636363637
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.05636363636363636
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 2.04
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    },
+    "TEN": {
+      "offenseIndex": {
+        "before": 6.5,
+        "after": 50.024193548387096
+      },
+      "olIndex": {
+        "before": 35.5,
+        "after": 47.10483870967742
+      },
+      "frontIndex": {
+        "before": 83.9,
+        "after": 42.27258064516129
+      },
+      "passRushIndex": {
+        "before": 83.87096774193549,
+        "after": 41.935483870967744
+      },
+      "runDefenseIndex": {
+        "before": 74.19354838709677,
+        "after": 40.32258064516129
+      },
+      "coverageIndex": {
+        "before": 9.700000000000003,
+        "after": 7.6725806451612915
+      },
+      "qbIndex": {
+        "before": 6.5,
+        "after": 12.60483870967742
+      },
+      "receiverIndex": {
+        "before": 16.1,
+        "after": 54.8241935483871
+      },
+      "rushIndex": {
+        "before": 25.8,
+        "after": 58.061290322580646
+      },
+      "defenseIndex": {
+        "before": 46.68661832777477,
+        "after": 24.209976077065892
+      },
+      "offenseComposite": {
+        "before": 5.560514042630096,
+        "after": 35.81290307526011
+      },
+      "off_epa": {
+        "before": -0.1597,
+        "after": -0.04967758620689656
+      },
+      "qb.epa_per_play": {
+        "before": -0.196,
+        "after": -0.06827027027027027
+      },
+      "qb.cpoe": {
+        "before": 63,
+        "after": 2.3999999999999995
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.05945945945945945
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 2.3999999999999995
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2105,
+        "after": 0.20588235294117646
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 4
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "dl.pressure_rate": {
+        "before": 0.2282,
+        "after": 0.1388888888888889
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 3
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 2
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.0592
+      },
+      "cov.press_adj_epa": {
+        "before": 0.1782,
+        "after": 0.06166666666666666
+      },
+      "cov.epa_allowed": {
+        "before": 0.1714,
+        "after": 0.06166666666666666
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 2.58
+      },
+      "receivers.adj_epa": {
+        "before": 0.0903,
+        "after": 0.04814814814814815
+      },
+      "rb.rush_epa": {
+        "before": -0.0896,
+        "after": 0.06999999999999999
+      },
+      "rb.adj_rush": {
+        "before": -0.0505,
+        "after": 0.06999999999999999
+      },
+      "rb.adj_recv": {
+        "before": -0.2198,
+        "after": 0.052000000000000005
+      },
+      "luck.w": {
+        "before": 3,
+        "after": 1
+      },
+      "luck.l": {
+        "before": 14,
+        "after": 0
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 3.9,
+        "after": 0.6292149033463672
+      },
+      "luck.exp_l": {
+        "before": 13.1,
+        "after": 0.3707850966536328
+      },
+      "luck.luck": {
+        "before": -0.89,
+        "after": 0.3707850966536328
+      },
+      "luck.luck_pct": {
+        "before": -5.2,
+        "after": 37.07850966536328
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": 7
+      },
+      "penalty.pen_count_for": {
+        "before": 106,
+        "after": 6
+      },
+      "penalty.pen_count_against": {
+        "before": 129,
+        "after": 5
+      },
+      "penalty.pen_yards_for": {
+        "before": 772,
+        "after": 27
+      },
+      "penalty.pen_yards_against": {
+        "before": 986,
+        "after": 20
+      },
+      "scoring.ppg_for": {
+        "before": 16.71,
+        "after": 20.855
+      },
+      "scoring.ppg_against": {
+        "before": 28.12,
+        "after": 24.060000000000002
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.06034482758620689
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.06176470588235293
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.05945945945945945
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 2.3999999999999995
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.05833333333333333
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.04814814814814815
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.029411764705882353
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.20588235294117646
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.1388888888888889
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.0592
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.06166666666666666
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 2.58
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": 7
+      }
+    },
+    "WAS": {
+      "offenseIndex": {
+        "before": 48.4,
+        "after": 72.58709677419355
+      },
+      "olIndex": {
+        "before": 25.8,
+        "after": 59.674193548387095
+      },
+      "frontIndex": {
+        "before": 29,
+        "after": 38.20967741935484
+      },
+      "passRushIndex": {
+        "before": 45.16129032258065,
+        "after": 48.38709677419355
+      },
+      "runDefenseIndex": {
+        "before": 9.677419354838712,
+        "after": 9.677419354838708
+      },
+      "coverageIndex": {
+        "before": 6.5,
+        "after": 5.266129032258062
+      },
+      "qbIndex": {
+        "before": 35.5,
+        "after": 30.008064516129032
+      },
+      "receiverIndex": {
+        "before": 48.4,
+        "after": 72.58709677419355
+      },
+      "rushIndex": {
+        "before": 58.1,
+        "after": 75.8241935483871
+      },
+      "defenseIndex": {
+        "before": 15.184993461593578,
+        "after": 15.253657152553899
+      },
+      "offenseComposite": {
+        "before": 37.070683370194246,
+        "after": 65.61230647400504
+      },
+      "off_epa": {
+        "before": 0.0072,
+        "after": 0.03392786885245901
+      },
+      "qb.epa_per_play": {
+        "before": 0.024,
+        "after": 0.04174358974358974
+      },
+      "qb.cpoe": {
+        "before": 64.4,
+        "after": 2.58
+      },
+      "qb.live_epa_per_play": {
+        "before": null,
+        "after": 0.059487179487179485
+      },
+      "qb.live_cpoe": {
+        "before": null,
+        "after": 2.58
+      },
+      "ol.pressure_rate_allowed": {
+        "before": 0.2553,
+        "after": 0.1388888888888889
+      },
+      "ol.sack_rate_allowed": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "ol.qb_hits_allowed": {
+        "before": null,
+        "after": 3
+      },
+      "ol.sacks_allowed": {
+        "before": null,
+        "after": 2
+      },
+      "dl.pressure_rate": {
+        "before": 0.2029,
+        "after": 0.20588235294117646
+      },
+      "dl.sack_rate": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "dl.qb_hits": {
+        "before": null,
+        "after": 4
+      },
+      "dl.sacks": {
+        "before": null,
+        "after": 3
+      },
+      "dl.run_epa_allowed": {
+        "before": null,
+        "after": 0.05833333333333333
+      },
+      "cov.press_adj_epa": {
+        "before": 0.2006,
+        "after": 0.06176470588235293
+      },
+      "cov.epa_allowed": {
+        "before": 0.2014,
+        "after": 0.06176470588235293
+      },
+      "cov.cpoe_allowed": {
+        "before": null,
+        "after": 2.3999999999999995
+      },
+      "receivers.adj_epa": {
+        "before": 0.2274,
+        "after": 0.04892857142857144
+      },
+      "rb.rush_epa": {
+        "before": -0.0319,
+        "after": 0.07047619047619047
+      },
+      "rb.adj_rush": {
+        "before": -0.0547,
+        "after": 0.07047619047619047
+      },
+      "rb.adj_recv": {
+        "before": 0.0645,
+        "after": 0.054800000000000015
+      },
+      "luck.w": {
+        "before": 5,
+        "after": 0
+      },
+      "luck.l": {
+        "before": 12,
+        "after": 1
+      },
+      "luck.g": {
+        "before": 17,
+        "after": 1
+      },
+      "luck.exp_w": {
+        "before": 7.4,
+        "after": 0.37078509665363285
+      },
+      "luck.exp_l": {
+        "before": 9.6,
+        "after": 0.6292149033463672
+      },
+      "luck.luck": {
+        "before": -2.38,
+        "after": -0.37078509665363285
+      },
+      "luck.luck_pct": {
+        "before": -14,
+        "after": -37.078509665363285
+      },
+      "penalty.net_pen_yards": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.net_pen_yards_per_game": {
+        "before": null,
+        "after": -7
+      },
+      "penalty.pen_count_for": {
+        "before": 116,
+        "after": 5
+      },
+      "penalty.pen_count_against": {
+        "before": 117,
+        "after": 6
+      },
+      "penalty.pen_yards_for": {
+        "before": 1030,
+        "after": 20
+      },
+      "penalty.pen_yards_against": {
+        "before": 913,
+        "after": 27
+      },
+      "scoring.ppg_for": {
+        "before": 20.94,
+        "after": 20.47
+      },
+      "scoring.ppg_against": {
+        "before": 26.53,
+        "after": 25.765
+      },
+      "_live.games": {
+        "before": 0,
+        "after": 1
+      },
+      "_live.weight": {
+        "before": null,
+        "after": 0.5
+      },
+      "_live.offEpa": {
+        "before": null,
+        "after": 0.06065573770491803
+      },
+      "_live.passEpa": {
+        "before": null,
+        "after": 0.06166666666666666
+      },
+      "_live.qbEpa": {
+        "before": null,
+        "after": 0.059487179487179485
+      },
+      "_live.qbCpoe": {
+        "before": null,
+        "after": 2.58
+      },
+      "_live.rushEpa": {
+        "before": null,
+        "after": 0.0592
+      },
+      "_live.recvEpa": {
+        "before": null,
+        "after": 0.04892857142857144
+      },
+      "_live.sackAllowed": {
+        "before": null,
+        "after": 0.05555555555555555
+      },
+      "_live.pressureAllowedRate": {
+        "before": null,
+        "after": 0.1388888888888889
+      },
+      "_live.frontPressureRate": {
+        "before": null,
+        "after": 0.20588235294117646
+      },
+      "_live.frontSackRate": {
+        "before": null,
+        "after": 0.08823529411764706
+      },
+      "_live.runEpaAllowed": {
+        "before": null,
+        "after": 0.05833333333333333
+      },
+      "_live.passEpaAllowed": {
+        "before": null,
+        "after": 0.06176470588235293
+      },
+      "_live.cpoeAllowed": {
+        "before": null,
+        "after": 2.3999999999999995
+      },
+      "_live.penaltyYardsNet": {
+        "before": null,
+        "after": -7
+      }
+    }
+  }
+}

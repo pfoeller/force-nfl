@@ -1,0 +1,16 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes('Game Flow · Research'),'Game Flow panel must remain present');
+ok(app.includes('Projected scoring by quarter'),'quarter-score heading must remain present');
+ok(app.includes("const labels = ['Q1', 'Q2', 'Q3', 'Q4', 'Final']"),'Q1-Q4/Final table must remain present');
+ok(!app.includes('gameFlowNarrative'),'generated Game Flow narrative function must be removed');
+ok(!app.includes('game-flow-summary'),'generated Game Flow summary markup must be removed');
+ok(!app.includes('game-flow-detail'),'detailed Game Flow explanatory markup must be removed');
+ok(!app.includes('projected edge is concentrated later in the game'),'awkward edge narrative must be absent');
+ok(!app.includes('projected to establish an advantage'),'generated advantage narrative must be absent');
+ok(!app.includes('projected to hold a modest advantage'),'generated hold-advantage narrative must be absent');
+ok(!css.includes('.game-flow-summary') && !css.includes('.game-flow-detail'),'unused prose styles must be removed');
+console.log(`OK: ${n} V78 output-only Game Flow assertions`);

@@ -1,0 +1,15 @@
+const fs=require('fs');
+const app=fs.readFileSync('assets/app.js','utf8'), live=fs.readFileSync('model/live_profiles.js','utf8'), server=fs.readFileSync('force_server.py','utf8');
+let n=0; const ok=(x,m)=>{if(!x)throw new Error(m);n++;};
+ok(server.includes("APP_VERSION = 'V121'"),'server V110');
+ok(app.includes('expected FORCE V121'),'client V110');
+ok(server.includes('_performance_luck_games'),'game performance payload');
+ok(server.includes('_fumble_recovery_events'),'fumble recovery parser');
+ok(live.includes('fumble_prior_opportunities'),'fumble shrinkage exposed');
+ok(live.includes('pythagorean_exp_w'),'Pythagorean audit retained');
+ok(app.includes('0.60*epaScore+0.20*penaltyScore+0.15*fumbleScore+0.05*'),'V121 EPA-heavy four-part luck blend');
+ok(app.includes('fumbleRecoveryRate'),'luck debug fumble fields');
+ok(app.includes('deservedGames'),'luck debug game-level deserved wins');
+ok(app.includes("receiverPolicy: 'v115-partial-orthogonal'"),'V109 receiver retained');
+ok(app.includes("rbPolicy: 'v115-partial-orthogonal'"),'V109 RB retained');
+console.log(`PASS: V110 contract (${n} checks)`);

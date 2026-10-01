@@ -1,0 +1,25 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+const server=fs.readFileSync(path.join(root,'force_server.py'),'utf8');
+let n=0; const ok=(x,m)=>{n++;if(!x)throw new Error(m)};
+ok(server.includes("APP_VERSION = 'V129'"),'server V126 identity');
+ok(app.includes("health?.app_version!=='V129'"),'client V126 identity');
+ok(app.includes('function simplifyFlagForExport(root)'),'FLAG export simplifier exists');
+ok(app.includes("root.querySelectorAll('.flag-intro-scale')"),'FLAG intro scale simplification wired');
+ok(app.includes("root.querySelectorAll('.flag-gauge')"),'FLAG gauge simplification wired');
+ok(app.includes("replacement.className='flag-export-summary'"),'FLAG gauge gets export-safe summary');
+ok(app.includes('data-flag-score="${pct}"'),'FLAG gauge carries exact score into clone');
+ok(app.includes('data-flag-epa="${a.winnerBenefitEpa}"'),'FLAG Swing carries EPA into export clone');
+ok(app.includes('data-flag-wpa="${a.winnerBenefitWpa}"'),'FLAG Swing carries WPA into export clone');
+ok(app.includes("compact.className='card flag-export-swing'"),'FLAG Swing gets export-safe card');
+ok(app.includes('simplifyFlagForExport(clone);'),'social export simplifies FLAG before pagination');
+ok(app.includes("retrying with export-safe FLAG markup"),'third-stage FLAG-safe raster retry exists');
+ok(css.includes('.flag-export-scale-key'),'export-safe FLAG scale key styled');
+ok(css.includes('.flag-export-summary'),'export-safe FLAG summary styled');
+ok(css.includes('.flag-export-swing'),'export-safe FLAG Swing card styled');
+// Screen presentation must remain present; V126 changes only cloned export markup.
+ok(app.includes('<div class="flag-scale"><i style="left:${pct}%"></i><em></em></div>'),'live FLAG gauge remains intact');
+ok(css.includes('.flag-scale{position:relative;height:9px;border-radius:99px;background:linear-gradient'),'live FLAG gradient remains intact');
+console.log(`PASS: V126 FLAG/export compatibility (${n} checks)`);

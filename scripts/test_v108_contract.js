@@ -1,0 +1,17 @@
+const fs=require('fs');
+const app=fs.readFileSync('assets/app.js','utf8');
+const live=fs.readFileSync('model/live_profiles.js','utf8');
+const server=fs.readFileSync('force_server.py','utf8');
+const bridge=fs.readFileSync('model/unit_force_bridge.js','utf8');
+let n=0; const ok=(x,m)=>{if(!x)throw new Error(m);n++;};
+ok(app.includes('expected FORCE V121'),'app must require V108 server identity');
+ok(server.includes("APP_VERSION = 'V121'"),'server must advertise V108');
+ok(server.includes("SERVER_DIAG_VERSION = 'V121-DIAG-1'"),'server diagnostics');
+ok(live.includes("softness:35"),'offense soft-tail calibration');
+ok(live.includes("softness:42"),'defense soft-tail calibration');
+ok(live.includes('uncalibrateComposite'),'scenario inversion must operate in raw space');
+ok(live.includes('offenseCompositeRaw'),'raw offense composite retained');
+ok(live.includes('defenseCompositeRaw'),'raw defense composite retained');
+ok(app.includes('FORCE_COMPOSITE_DEBUG'),'composite debug hook');
+ok(!bridge.includes('offenseComposite:') && !bridge.includes('defenseIndex:'),'predictive bridge must not consume displayed composites');
+console.log(`PASS: V108 contract (${n} checks)`);

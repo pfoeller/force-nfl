@@ -1,0 +1,63 @@
+{
+  "version": "V33",
+  "generated": "2026-09-16",
+  "canonical_independent_baselines": {
+    "2008_2025": {
+      "games": 4661,
+      "brier": 0.21980551008673274
+    },
+    "2023_2025": {
+      "games": 855,
+      "brier": 0.21696480283086164
+    },
+    "2025": {
+      "games": 285,
+      "brier": 0.21398757779230115
+    },
+    "2023_2024_combined_derived": {
+      "games": 570,
+      "brier": 0.21845341535014187,
+      "derivation": "subtract preserved 2025 SSE from preserved 2023-2025 SSE"
+    },
+    "2023_individual": null,
+    "2024_individual": null
+  },
+  "qb_regime_candidate": {
+    "study": "six-case decline-gated returning-starter prior-isolation subset",
+    "window": "next-season Weeks 1-8",
+    "baseline_brier": 0.23167603865337003,
+    "candidate_brier": 0.22181717427265416,
+    "delta_brier": -0.00985886438071587,
+    "episodes_improved": 5,
+    "episodes": 6,
+    "rule": {
+      "elo_per_verified_missed_start_pre_reversion": 7.5,
+      "pre_reversion_cap": 60,
+      "offseason_survival": 0.7,
+      "half_life_team_games": 4
+    },
+    "promotion_scope": "automatic only for mechanically verified registry cases; zero for unverified teams",
+    "caveat": "prior-isolation event study, not a full-PBP replay"
+  },
+  "probability_mapping_stress_test": {
+    "data": "preserved 2025 recent_games only; raw home/away pregame Elo reconstruction, not the full QB/effective-margin probability path",
+    "n_games": 285,
+    "current_hfa_scale_reconstruction_brier": 0.21457552697452262,
+    "best_same_sample_grid": {
+      "hfa": 25,
+      "scale": 360,
+      "brier": 0.21432830717421483,
+      "delta": -0.00024721980030778523
+    },
+    "decision": "reject for V33: same-sample one-season gain is too small and not walk-forward evidence"
+  },
+  "market_policy": {
+    "decision": "unchanged from V32",
+    "reason": "the bundle still lacks joint historical FORCE pregame probability + market line rows needed to replay and refit the week-decay schedule without fabrication"
+  },
+  "limitations": [
+    "The supplied archive preserves aggregate 2023-2025 and 2025 Brier but not separate 2023 and 2024 game-level predictions, so individual 2023/2024 Brier cannot be recovered exactly.",
+    "Raw historical full-PBP replay inputs are not bundled, so V33 does not claim a new whole-model 2008-2025 or 2023-2025 Brier after the regime correction.",
+    "The automatic regime correction is intentionally registry-gated rather than inferred from missed starts alone."
+  ]
+}

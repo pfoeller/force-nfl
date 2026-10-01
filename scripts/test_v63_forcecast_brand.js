@@ -1,0 +1,13 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const readme=fs.readFileSync(path.join(root,'README.md'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes('FORCEcast'),'runtime must use FORCEcast branding');
+ok(!app.includes('FORCE Forecast'),'runtime must not retain old title-case forecast branding');
+ok(!app.includes('FORCE FORECAST'),'runtime must not retain old all-caps forecast branding');
+ok(!app.includes('FORCE forecast'),'runtime must not retain old sentence-case forecast branding');
+ok(app.includes('<div class="eyebrow">FORCEcast</div>'),'matchup forecast section should be headed FORCEcast');
+ok(app.includes('forecast-badge model">FORCEcast</span>'),'model forecast badge should use FORCEcast');
+ok(readme.includes('**FORCEcast**'),'current README should document FORCEcast');
+console.log(`OK: ${n} V63 FORCEcast branding assertions`);

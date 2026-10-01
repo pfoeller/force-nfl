@@ -1,0 +1,18 @@
+const fs=require('fs'),vm=require('vm'),path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const server=fs.readFileSync(path.join(root,'force_server.py'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes("expected FORCE V121"),'app must require V105 server identity');
+ok(server.includes("APP_VERSION = 'V121'"),'server must advertise V105');
+ok(server.includes('/derived/v106-qb-current-season-reference-2025-v3'),'V105 must use a fresh historical-reference cache key');
+ok(server.includes('_v106_reference_valid'),'historical reference must be integrity validated');
+ok(app.includes('suppressQbUnitScenarioOverlay'),'current returning starter must suppress QB-unit overlay');
+ok(app.includes('unitOverlaySuppressed'),'scenario effect must expose unit overlay suppression');
+ok(app.includes('qbRegimeCorrection'),'QB debug/state must expose the team-level regime correction separately');
+const ctx={window:{}};ctx.globalThis=ctx.window;vm.createContext(ctx);
+vm.runInContext(fs.readFileSync(path.join(root,'model/live_profiles.js'),'utf8'),ctx,{filename:'model/live_profiles.js'});
+const LP=ctx.window.FORCE_LIVE_PROFILE;
+const fallback=LP.qbPassAbsoluteFallback(.55);
+ok(Number.isFinite(fallback)&&fallback<100&&fallback>90,'emergency QB pass fallback must be high but not saturate to 100');
+console.log(`PASS: V105 contract (${n} checks)`);

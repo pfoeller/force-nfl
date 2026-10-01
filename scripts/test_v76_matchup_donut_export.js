@@ -1,0 +1,16 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+const start=app.indexOf('function prepareCloneForSocialExport(clone)');
+const end=app.indexOf('async function exportCurrentPagePng', start);
+const fn=(start>=0&&end>start)?app.slice(start,end):'';
+ok(fn.length>0,'prepareCloneForSocialExport missing');
+ok(!fn.includes("'.matchup-analysis'"),'export must not remove matchup-analysis block');
+ok(fn.includes("'.matchup-strengths'"),'deep strengths/weaknesses should remain excluded from export');
+ok(fn.includes("'.matchup-footnote'"),'matchup footnote should be stripped from export');
+ok(fn.includes("'.matchup-qb-line'"),'QB EPA/CPOE detail should be stripped from export');
+ok(app.includes('matchup-edge-donut'),'donut markup must exist');
+ok(app.includes('matchup-subedge-donut-card'),'donut matchup cards must exist');
+ok(app.includes('matchup-edge-logo'),'winning-team center logo must exist');
+console.log(`OK: ${n} V76 matchup-donut export assertions`);

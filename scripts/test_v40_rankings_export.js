@@ -1,0 +1,21 @@
+const fs = require('fs');
+const path = require('path');
+const root = path.resolve(__dirname, '..');
+const app = fs.readFileSync(path.join(root, 'assets/app.js'), 'utf8');
+let n = 0;
+const ok = (x, m) => { n++; if (!x) throw new Error(m); };
+
+ok(app.includes('data-export-row-group="16"'), 'rankings table must export in 16-team chunks');
+ok(!app.includes('data-export-row-group="8"'), 'legacy 8-team ranking export grouping must be removed');
+ok(app.includes("if ((location.hash.replace('#','') || '') === 'rankings')"), 'all rankings sub-tabs need common export cleanup');
+ok(app.includes("clone.querySelectorAll('.section-title, .diagnostic-viewer, .diagnostic-note, .penalty-sort-toolbar, p.raw')"), 'screen-only rankings chrome must be stripped before pagination');
+ok(app.includes("clone.querySelectorAll('#rankBody tr').forEach((row) => { row.style.display = ''; });"), 'ranking export must restore all 32 rows before 16/16 pagination');
+ok(app.includes("const viewLabel = RATING_VIEWS.find(([key]) => key === S.ratingView)?.[1] || 'Strength'"), 'ranking export header should identify the active sub-tab');
+ok(app.includes('function forceExportLogoMarkup()'), 'self-contained FORCE export logo helper missing');
+ok(app.includes('force-approved-export-logo.png'), 'approved FORCE export PNG missing');
+ok(app.includes('force-approved-export-logo.png'), 'approved FORCE export PNG should replace reconstructed wordmark');
+ok(app.includes('${forceExportLogoMarkup()}'), 'export brand must use inline FORCE logo markup');
+ok(!app.includes('social-export-wordmark"><img class="force-brand-logo force-brand-logo-export" src="assets/force-field-logo.svg"'), 'export must not depend on a relative SVG image URL');
+ok(app.includes("shell.setAttribute('data-export-force-page', '1')"), 'forced ranking chunks must each occupy their own PNG');
+ok(app.includes('rows.slice(i, i + forcedRows)'), 'forced row chunking must remain active');
+console.log(`OK: ${n} V40 ranking-export assertions`);

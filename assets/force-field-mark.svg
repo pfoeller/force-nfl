@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">FORCE field mark</title>
+  <desc id="desc">A blue football-field arc and yard-line ticks above a white F.</desc>
+  <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2586ff"/><stop offset="1" stop-color="#8dd7ff"/></linearGradient></defs>
+  <path d="M10 37 Q48 8 86 37" fill="none" stroke="url(#b)" stroke-width="7" stroke-linecap="round"/>
+  <g stroke="url(#b)" stroke-width="4" stroke-linecap="round"><path d="M28 27v11"/><path d="M41 21v13"/><path d="M55 21v13"/><path d="M68 27v11"/></g>
+  <path d="M27 42h44v10H40v10h25v10H40v20H27z" fill="#f5f7fa"/>
+</svg>

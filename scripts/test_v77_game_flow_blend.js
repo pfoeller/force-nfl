@@ -1,0 +1,35 @@
+const fs=require('fs'), path=require('path'), vm=require('vm');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+
+ok(app.includes("/api/game-flow-2026"),'V77 must load current-season quarter splits');
+ok(app.includes('n / (n + 6)'),'V77 current-season trust curve missing');
+ok(app.includes('0.20 * v + 0.50 * offense.shares[i] + 0.30 * defense.shares[i]'),'V77 matchup timing blend missing');
+ok(!app.includes('fc.probability =') && !app.includes('proj.probability ='),'Game Flow timing must not mutate FORCEcast win probability');
+ok(app.includes('week >= Number(beforeWeek)'),'current-season timing must exclude same/future week data');
+
+const start=app.indexOf('  function gameFlowQuarterWeights()');
+const end=app.indexOf('\n\n  const GAME_FLOW_QUARTER_PRIOR', start);
+ok(start>=0 && end>start,'V77 timing source block missing');
+const source=`const GF={meta:{leagueQuarterShare:[.20,.30,.20,.30]},profiles:{BUF:{for:[85,125,120,151],against:[82,139,43,101]},IND:{for:[109,142,108,101],against:[73,128,74,134]}}};\nconst S={liveGameFlow2026:{games:[{week:1,home:'BUF',away:'IND',home_q:[5,21,5,5],away_q:[7,3,7,3]},{week:2,home:'IND',away:'BUF',home_q:[28,0,0,0],away_q:[0,0,0,0]}]}};\nfunction canon(x){return x;}\n${app.slice(start,end)}\nresult={gameFlow2026Weight,gameFlow2026Profile,gameFlowBlendedTeamProfile,gameFlowMatchupQuarterWeights};`;
+const ctx={result:null,Math,Number,Array,Object}; vm.createContext(ctx); vm.runInContext(source,ctx);
+const f=ctx.result;
+const close=(a,b,t=1e-9)=>Math.abs(a-b)<=t;
+ok(close(f.gameFlow2026Weight(1),1/7),'1 game should get ~14.3% current-season timing weight');
+ok(close(f.gameFlow2026Weight(2),.25),'2 games should get 25% current-season timing weight');
+ok(close(f.gameFlow2026Weight(4),.4),'4 games should get 40% current-season timing weight');
+ok(close(f.gameFlow2026Weight(8),8/14),'8 games should get ~57.1% current-season timing weight');
+const preW2=f.gameFlow2026Profile('BUF','for',2);
+ok(preW2.games===1,'Week 2 projection must use only Week 1 current data');
+ok(JSON.stringify(preW2.points)==='[5,21,5,5]','Week 2 profile must exclude same-week/future game');
+const blended=f.gameFlowBlendedTeamProfile('BUF','for',2);
+const priorQ2=125/(85+125+120+151);
+const currentQ2=21/36;
+ok(blended.shares[1]>priorQ2,'Q2-heavy 2026 result should nudge Buffalo Q2 share upward');
+ok(blended.shares[1]<currentQ2,'one current game must not dominate the 2025 prior');
+ok(close(blended.w26,1/7),'Buffalo one-game blend weight should be 1/7');
+const matchup=f.gameFlowMatchupQuarterWeights('BUF','IND',2);
+ok(matchup.weights[1]>.30,'Buffalo Q2-heavy offense plus opponent profile should lift matchup Q2 timing above league baseline');
+ok(close(matchup.weights.reduce((a,b)=>a+b,0),1,1e-8),'matchup timing weights must normalize to 1');
+console.log(`OK: ${n} V77 team/opponent Game Flow blend assertions`);

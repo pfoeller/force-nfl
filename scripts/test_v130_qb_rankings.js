@@ -1,0 +1,18 @@
+const fs=require('fs');
+const app=fs.readFileSync('assets/app.js','utf8');
+const live=fs.readFileSync('model/live_profiles.js','utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes("['qbs', 'QB Rankings']"),'QB Rankings nav missing');
+ok(app.includes("qbWeights: { epa:30, anya:30, success:20, rushing:10, cpoe:10 }"),'default UI weights wrong');
+ok(app.includes("Your weights change this ranking only. They do not alter FORCEcast"),'custom isolation disclosure missing');
+ok(app.includes("page === 'qbs' ? qbRankingsPage()"),'QB route missing');
+ok(live.includes('passEpaWeight:0.30'),'EPA weight wrong');
+ok(live.includes('anyAWeight:0.30'),'ANY/A weight wrong');
+ok(live.includes('passSuccessWeight:0.20'),'success weight wrong');
+ok(live.includes('rushingValueWeight:0.10'),'rushing weight wrong');
+ok(live.includes('cpoeWeight:0.10'),'CPOE weight wrong');
+ok(live.includes('qbPassYards+20*qbPassTds-45*qbInterceptions-qbSackYards'),'ANY/A formula missing');
+ok(live.includes('QB_V106.anyAWeight*qbAnyAScore'),'ANY/A not wired into canonical QB composite');
+ok(live.includes('QB_V106.rushingValueWeight*qbRushingValueScore'),'rushing value not wired into canonical QB composite');
+ok(live.includes("qbPolicy==='v106-current-season-stabilized' ? clamp(qbPassCore??scoreQbEpa[t])"),'V130 canonical score should not double-add legacy rushing bonus');
+console.log(`PASS: V130 QB Rankings + canonical 30/30/20/10/10 rating (${n} checks)`);

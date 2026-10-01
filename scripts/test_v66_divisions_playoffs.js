@@ -1,0 +1,17 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..'); const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8'); const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+let n=0; const ok=(x,m)=>{n++;if(!x)throw new Error(m)};
+ok(app.includes("['divisions', 'Divisions']"),'Divisions nav missing');
+ok(app.includes("['playoffs', 'Playoff Picture']"),'Playoff nav missing');
+ok(app.includes('const PROJECTION_RUNS = 5000'),'simulation run count missing');
+ok(app.includes('function seasonProjection()'),'season projection engine missing');
+ok(app.includes('pHome: forecastFor(g, ratings).probability'),'projection must use FORCEcast probability');
+ok(app.includes('projectedFinish'),'division projected finish missing');
+ok(app.includes('divisionPct'),'division probability missing');
+ok(app.includes('playoffPct'),'playoff probability missing');
+ok(app.includes('byePct'),'bye probability missing');
+ok(app.includes('projectedSeed'),'seed projection missing');
+ok(app.includes("page === 'divisions' ? divisionsPage()"),'Divisions route missing');
+ok(app.includes("page === 'playoffs' ? playoffPicturePage()"),'Playoffs route missing');
+ok(css.includes('.projection-grid'),'projection CSS missing');
+console.log(`OK: ${n} V66 division/playoff assertions`);

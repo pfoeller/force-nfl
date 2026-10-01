@@ -1,0 +1,10 @@
+const fs=require('fs'); const server=fs.readFileSync('force_server.py','utf8'); const app=fs.readFileSync('assets/app.js','utf8');
+let n=0; const ok=(x,m)=>{if(!x)throw new Error(m);n++;};
+ok(server.includes("APP_VERSION = 'V121'"),'server V113');
+ok(server.includes("SERVER_DIAG_VERSION = 'V121-DIAG-1'"),'server diagnostics V113');
+ok(app.includes('expected FORCE V121'),'client V113 identity');
+ok(app.includes("FORCE_DIAG_VERSION = 'V121-DIAG-1'"),'client diagnostics V113');
+ok(server.includes('V113-PERFORMANCE-LOGIT-2025-1'),'historical deserved-win calibration version');
+ok(server.includes('REVERSED|OVERTURNED'),'replay-reversal fumble guard');
+ok(fs.existsSync('CHANGELOG_V113.md'),'V113 changelog');
+console.log(`PASS: V113 contract (${n} checks)`);

@@ -1,0 +1,17 @@
+const fs=require('fs'), vm=require('vm');
+const code=fs.readFileSync('model/live_profiles.js','utf8');
+const sandbox={window:{},console}; vm.createContext(sandbox); vm.runInContext(code,sandbox);
+const L=sandbox.window.FORCE_LIVE_PROFILE; let n=0; const ok=(x,m)=>{if(!x)throw new Error(m);n++;};
+ok(L.QB_V106.passEpaWeight===0.65,'EPA weight');
+ok(L.QB_V106.passSuccessWeight===0.20,'success weight');
+ok(L.QB_V106.cpoeWeight===0.15,'CPOE weight');
+const w60=L.reliabilityWeight(60,150), w300=L.reliabilityWeight(300,150);
+ok(Math.abs(w60-60/210)<1e-12,'60-attempt EPA reliability');
+ok(w300>w60,'reliability must rise with attempts');
+const league=.15, hot=.55;
+const stab60=L.stabilizeToward(hot,league,60,150), stab300=L.stabilizeToward(hot,league,300,150);
+ok(stab60>league && stab60<hot,'small sample must shrink toward current league mean');
+ok(stab300>stab60,'larger sample must preserve more observed signal');
+const neutral=L.stabilizeToward(league,league,60,150);
+ok(Math.abs(neutral-league)<1e-12,'league-average performance stays league average');
+console.log(`PASS: V106 QB stabilization (${n} checks)`);

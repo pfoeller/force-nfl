@@ -1,0 +1,33 @@
+{
+  "model": "FORCE Adaptive v3",
+  "version": "3.0.0-research",
+  "status": "research-candidate-not-promoted",
+  "validated_adaptive_brier": null,
+  "champion_baseline": {
+    "name": "Signal v2 closing-market benchmark",
+    "brier": 0.2095,
+    "window": "2023-2025"
+  },
+  "runtime_research_defaults": {
+    "decay": 0.85,
+    "prior_games": 6.0,
+    "base_market_weight": 0.98,
+    "min_market_weight": 0.82,
+    "max_market_weight": 0.995,
+    "trust_sensitivity": 1.5,
+    "residual_gamma": 0.3,
+    "favorite_gamma": 0.2,
+    "favorite_threshold_points": 6.0,
+    "max_market_point_correction": 2.5,
+    "division_compression": 0.0
+  },
+  "features": [
+    "lagged exponentially-decayed team margin-vs-market residual",
+    "lagged residual when a team was favored by 6+ points",
+    "team-conditioned sliding market/model weight from prior Brier advantage",
+    "optional divisional spread compression searched by the historical trainer",
+    "strict prior-week-only state for weekly backtests"
+  ],
+  "promotion_rule": "Must beat the static market-aware baseline overall on future seasons, improve a majority of held-out seasons, and avoid a >0.002 Brier regression in any single held-out season.",
+  "important": "The 0.2095 score is still the only promoted market-aware benchmark. The v3 parameters above are research defaults, not a new validated score."
+}

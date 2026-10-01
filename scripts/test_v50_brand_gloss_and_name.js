@@ -1,0 +1,12 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes('Football Objective Rating & Comparative Efficiency'),'app should use Comparative Efficiency name');
+ok(app.includes('force-approved-mark.png'),'topbar should use approved PNG mark with original gradients and shine');
+ok(app.includes('force-approved-board.png'),'About board should use approved PNG with original gradients and side rails');
+ok(app.includes('force-approved-export-logo.png'),'exports should use approved PNG logo instead of SVG recreation');
+ok(!app.includes('forceExportShine'),'export logo should no longer reconstruct shine via SVG');
+ok(index.includes('force-approved-favicon.png'),'favicon should use approved PNG mark');
+console.log(`OK: ${n} V50/V52 approved PNG brand assertions`);

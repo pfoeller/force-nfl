@@ -1,0 +1,85 @@
+{
+  "version": "V34",
+  "source": "Celo sample_data/ui_data.json recent_games; 2025 only; exported probabilities are rounded to 0.001",
+  "n_games": 285,
+  "config": {
+    "residualThresholdPoints": 3.0,
+    "observationCapPoints": 24.0,
+    "correctionScale": 0.4,
+    "finalCorrectionCapPoints": 7.0,
+    "recency": 0.6,
+    "maxObservations": 3,
+    "consistencyGames": 2,
+    "opponentQualityWeight": 0.2,
+    "weekFade": {
+      "1": 0,
+      "2": 1.0,
+      "3": 1.0,
+      "4": 0.8,
+      "5": 0.55,
+      "6": 0.3,
+      "7+": 0
+    }
+  },
+  "brier_replay": {
+    "week2": {
+      "n": 16,
+      "baseline": 0.1816580625,
+      "candidate": 0.1535722948775137,
+      "delta": -0.0280857676224863
+    },
+    "week3": {
+      "n": 16,
+      "baseline": 0.2197974375,
+      "candidate": 0.2213750252835128,
+      "delta": 0.0015775877835128
+    },
+    "weeks2_3": {
+      "n": 32,
+      "baseline": 0.20072775,
+      "candidate": 0.18747366008114155,
+      "delta": -0.01325408991885845
+    },
+    "weeks4_6_temporal_holdout": {
+      "n": 45,
+      "baseline": 0.25777544444444445,
+      "candidate": 0.254174807413555,
+      "delta": -0.00360063703088944
+    },
+    "weeks2_6": {
+      "n": 77,
+      "baseline": 0.23406731168831169,
+      "candidate": 0.22645485008034283,
+      "delta": -0.00761246160796886
+    },
+    "weeks7_plus": {
+      "n": 192,
+      "baseline": 0.20784515104166668,
+      "candidate": 0.20784515104166668,
+      "delta": 0.0
+    },
+    "full_2025": {
+      "n": 285,
+      "baseline": 0.2139925052631579,
+      "candidate": 0.21193580510942597,
+      "delta": -0.00205670015373194
+    }
+  },
+  "robustness_neighborhood": {
+    "n_configs": 288,
+    "parameter_ranges": "threshold 3/5/7; scale .25/.30/.35/.40; observation cap 18/24; consistency=2; opponent interaction 0/.1/.2/.3; recency .6/.8/1.0",
+    "weeks2_3_improved": 288,
+    "weeks4_6_improved": 288,
+    "weeks2_6_improved": 288,
+    "full_2025_improved": 288,
+    "median_delta_weeks2_6": -0.006416197855564854,
+    "median_delta_full_2025": -0.0017334990697491226
+  },
+  "promotion": "provisional early-window runtime correction; exact zero from Week 7 onward",
+  "limitations": [
+    "The supplied Celo archive preserves only 2025 game-level pregame probabilities; 2008-2024 row-level probabilities were not bundled.",
+    "The 2025 probabilities are rounded to three decimals in the UI export, so replay Brier differs slightly from the canonical exact 2025 aggregate.",
+    "Weeks 4-6 are a temporal holdout relative to the Week 2-3 selection direction, but this is not a multi-season out-of-sample validation.",
+    "The feature is therefore explicitly provisional and should be revalidated across historical seasons when row-level predictions are available."
+  ]
+}

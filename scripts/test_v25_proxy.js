@@ -1,0 +1,12 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const sh=fs.readFileSync(path.join(root,'serve_local.sh'),'utf8');
+const bat=fs.readFileSync(path.join(root,'serve_local.bat'),'utf8');
+const py=fs.readFileSync(path.join(root,'force_server.py'),'utf8');
+for (const x of ['/api/schedule','/api/team-stats','/api/player-stats']) if(!app.includes(x)) throw new Error('app missing local proxy endpoint '+x);
+if(app.includes('releases/download/stats_team') || app.includes('releases/download/stats_player')) throw new Error('browser still fetches GitHub release assets directly');
+if(!sh.includes('force_server.py')||!bat.includes('force_server.py')) throw new Error('serve scripts do not use FORCE proxy server');
+for (const x of ['stats_team_week_2026.csv','stats_player_week_2026.csv','games.csv']) if(!py.includes(x)) throw new Error('proxy missing upstream '+x);
+if(!app.includes('priorGames: 1')) throw new Error('unit prior was not reduced to one game');
+console.log('V25 proxy/unit-weight regression PASS');

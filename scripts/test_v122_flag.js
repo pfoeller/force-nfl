@@ -1,0 +1,30 @@
+const fs=require('fs');
+const path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+const server=fs.readFileSync(path.join(root,'force_server.py'),'utf8');
+let n=0;function ok(v,m){n++;if(!v)throw new Error(m)}
+ok(server.includes("APP_VERSION = 'V129'"),'server V126 identity');
+ok(app.includes("health?.app_version!=='V129'"),'client V126 identity');
+ok(app.includes("['penalties', 'FLAG']"),'FLAG tab branding');
+ok(app.includes('Flag Leverage &amp; Advantage Gauge'),'FLAG expanded name');
+ok(app.includes("sortHeader('FLAG','penEPA')"),'FLAG ranking heading');
+ok(app.includes('function flagGauge(v, compact=false)'),'semantic FLAG gauge helper');
+ok(css.includes('linear-gradient(90deg,var(--red)'),'semantic harm-to-benefit gradient');
+ok(css.includes('.flag-hero-card'),'team FLAG hero treatment');
+ok(app.includes('function flagSwingAssessment(g)'),'FLAG swing assessment helper');
+ok(app.includes('winnerBenefitEpa>0 && winnerBenefitEpa+1e-9>=margin'),'conservative EPA >= margin threshold');
+ok(app.includes('function flagSwingTeamPanel(teamCode)'),'team FLAG swing history');
+ok(app.includes('${flagSwingGameBanner(g)}'),'individual game FLAG swing banner');
+ok(app.includes('${flagSwingBadge(g)}<b>Pred</b>'),'team schedule FLAG swing badge');
+ok(app.includes('FORCE_FLAG_SWING_DEBUG'),'FLAG swing debug hook');
+ok(app.includes('does not judge whether calls were correct'),'correctness disclaimer');
+ok(app.includes('does not say penalties caused the result'),'causation disclaimer');
+// Synthetic contract for the intentionally simple V123 threshold.
+const swing=(benefit,margin)=>benefit>0 && benefit+1e-9>=margin;
+ok(swing(4.2,3),'4.2 EPA benefit in 3-point win is swing candidate');
+ok(swing(3,3),'equal EPA/margin is swing candidate');
+ok(!swing(2.9,3),'sub-margin EPA is not swing candidate');
+ok(!swing(-5,3),'winner harmed by penalties is not swing candidate');
+console.log(`PASS: V126 inherited FLAG (${n} checks)`);

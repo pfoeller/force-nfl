@@ -1,0 +1,10 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(!app.includes('team-mark-fallback'),'active runtime must not render abbreviation fallback badges');
+ok(/function teamToken[\s\S]{0,500}?label == null[\s\S]{0,220}?teamMark\(c, size/.test(app),'default teamToken must resolve to logo-only teamMark');
+ok(app.includes("img.closest('.team-mark')?.remove()"),'failed export logo must remove the mark instead of showing a code badge');
+ok(/function stripExportTeamLogos[\s\S]{0,250}?mark\.remove\(\)/.test(app),'image-free export retry must not resurrect abbreviations');
+ok(app.includes("teamIdentity(c, { size, label"),'explicit full-text labels must remain supported beside logos');
+console.log(`OK: ${n} V67 logo-only team-mark assertions`);

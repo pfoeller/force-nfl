@@ -1,0 +1,57 @@
+{
+  "KC": {
+    "before": {
+      "offenseIndex": 67.7,
+      "olIndex": 19.4,
+      "frontIndex": 87.1,
+      "passRushIndex": 87.09677419354838,
+      "runDefenseIndex": 54.83870967741935,
+      "coverageIndex": 54.8,
+      "qbIndex": 71,
+      "receiverIndex": 67.7,
+      "rushIndex": 9.700000000000003,
+      "defenseIndex": 62.728723282068486,
+      "offenseComposite": 67.47708582125902
+    },
+    "after": {
+      "offenseIndex": 83.85,
+      "olIndex": 59.7,
+      "frontIndex": 93.55,
+      "passRushIndex": 93.54838709677419,
+      "runDefenseIndex": 77.41935483870968,
+      "coverageIndex": 77.4,
+      "qbIndex": 85.5,
+      "receiverIndex": 83.85,
+      "rushIndex": 54.85,
+      "defenseIndex": 81.6134079015341,
+      "offenseComposite": 89.49645046273302
+    },
+    "raw": {
+      "off_epa": 0.1810125,
+      "qb_epa": 0.2537105263157895,
+      "qb_cpoe": 8,
+      "ol_pressure_allowed": 0.029411764705882353,
+      "front_disruption": 0.5116279069767442,
+      "coverage_epa_allowed": -0.23255813953488372,
+      "recv_epa_target": 0.34375,
+      "rb_rush_epa": 0.3333333333333333,
+      "penalty_yards_game": 55,
+      "luck": 0.06407848242560543
+    }
+  },
+  "force": {
+    "pre": 45.529573590096284,
+    "post": 52.94029799624339,
+    "preQBAdjusted": 53.84476534296028,
+    "postQBAdjusted": 61.47820413342749,
+    "eloDelta": 42.28925089918844
+  },
+  "scenario": {
+    "preOffense": 84.10746932698703,
+    "postOffense": 96.53126950248588,
+    "preQB": 90.17678509079461,
+    "postQB": 100
+  },
+  "checks": 2331,
+  "failures": []
+}

@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "version": "v8 research",
+    "defaultEnabled": false,
+    "promotionDecision": "not-default-yet",
+    "reason": "Promising 11-episode historical prior-isolation study, but exact full Celo replay with verified injury windows is still required before production promotion.",
+    "asOf": "2026-09-14"
+  },
+  "presets": {
+    "KC": {
+      "season": 2025,
+      "returnSeason": 2026,
+      "qb": "Patrick Mahomes",
+      "missedStarts": 3,
+      "rawBackupWindowEloDamage": 67.6151,
+      "postReversionCarryoverDamage": 47.3306,
+      "suggestedRestoreElo": 47.3,
+      "confidence": "case-specific estimate",
+      "note": "Weeks 16-18 replacement-QB losses generated about -67.6 raw Elo in the supplied Celo update equations; approximately 70% survives the 17-game offseason reversion before other priors."
+    }
+  },
+  "study": {
+    "episodes": 11,
+    "week1to4": {
+      "baselineBrier": 0.1956688426,
+      "looCandidateBrier": 0.185277941,
+      "delta": -0.0103909016,
+      "episodesImproved": 6,
+      "bootstrap95MeanDelta": [
+        -0.0281,
+        0.0062
+      ]
+    },
+    "week1to8": {
+      "baselineBrier": 0.2303240399,
+      "looCandidateBrier": 0.2209032578,
+      "delta": -0.0094207821,
+      "episodesImproved": 7,
+      "bootstrap95MeanDelta": [
+        -0.0241,
+        0.0047
+      ]
+    },
+    "gatedSubset": {
+      "episodes": 6,
+      "week1to8BaselineBrier": 0.2316760387,
+      "bestObservedBrier": 0.217634,
+      "approxDelta": -0.014042,
+      "episodesImproved": 5,
+      "bootstrap95MeanDelta": [
+        -0.0299,
+        0.0011
+      ]
+    },
+    "caution": "The event study isolates the next-season prior using real Celo season-end ratings and real outcomes, but it is not an exact full-PBP rerun of every Celo feature.",
+    "method": "11 curated returning-starter episodes; real Celo season-end Elo and real next-season outcomes; leave-one-episode-out parameter choice; prior-isolation approximation, not full-PBP Celo rerun."
+  }
+}

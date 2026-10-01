@@ -1,0 +1,15 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const boardPng=path.join(root,'assets/force-approved-board.png');
+const logoPng=path.join(root,'assets/force-approved-export-logo.png');
+const markPng=path.join(root,'assets/force-approved-mark.png');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(fs.existsSync(markPng),'approved PNG mark should exist');
+ok(fs.existsSync(logoPng),'approved PNG logo/export asset should exist');
+ok(fs.existsSync(boardPng),'approved PNG identity board should exist');
+ok(app.includes('force-approved-export-logo.png'),'export logo should use approved PNG asset with approved 1–100 scale');
+ok(app.includes('inlineExportBrandImages'),'export pipeline should inline approved PNG brand images');
+ok(app.includes('force-approved-board.png'),'About FORCE should use approved board preserving yard rails and scale');
+ok(app.includes('force-approved-mark.png'),'topbar should use approved mark');
+console.log(`OK: ${n} V49/V52 approved-brand compatibility assertions`);

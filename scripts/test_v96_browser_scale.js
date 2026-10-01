@@ -1,0 +1,11 @@
+global.window={};
+require('../model/live_profiles.js');
+const LP=global.window.FORCE_LIVE_PROFILE;
+if(!LP) throw new Error('live profile module missing');
+const cal={epa_per_game_rms:1,wpa_per_game_rms:1,first_downs_per_game_rms:1,erased_tds_per_game_rms:1,epa_weight:.4,wpa_weight:.25,first_down_weight:.2,erased_td_weight:.15,softness:3,component_z_cap:3};
+const b=LP.causalPenaltyScoreBreakdownFromAverages(100,100,100,100,cal);
+const expected=50+50*Math.tanh(1);
+if(Math.abs(b.score-expected)>1e-12) throw new Error(`score ${b.score} expected ${expected}`);
+for(const v of Object.values(b.cappedZ)) if(Math.abs(v-3)>1e-12) throw new Error('cap mismatch');
+if(LP.causalPenaltyScoreFromAverages(0,0,0,0,cal)!==50) throw new Error('neutral mismatch');
+console.log('PASS: V96 browser penalty scale parity');

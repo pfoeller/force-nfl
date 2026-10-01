@@ -1,0 +1,14 @@
+const fs=require('fs'),path=require('path'); const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8'), server=fs.readFileSync(path.join(root,'force_server.py'),'utf8'), live=fs.readFileSync(path.join(root,'model/live_profiles.js'),'utf8');
+let n=0; const ok=(x,m)=>{n++;if(!x)throw new Error(m)};
+ok(server.includes("APP_VERSION = 'V121'"),'server identity');
+ok(server.includes("SERVER_DIAG_VERSION = 'V121-DIAG-1'"),'server diagnostic identity');
+ok(app.includes("health?.app_version!=='V121'"),'client server identity');
+ok(app.includes("FORCE_DIAG_VERSION = 'V121-DIAG-1'"),'client diagnostic identity');
+ok(app.includes("coveragePolicy: 'v101-attempts'"),'V101 live coverage policy missing');
+ok(live.includes("coveragePolicy==='v100-historical'"),'V100 historical coverage compatibility missing');
+ok(server.includes("not _pbp_truthy(row.get('sack'))"),'PBP coverage must explicitly exclude sacks');
+ok(server.includes("not _pbp_truthy(row.get('qb_spike'))"),'PBP coverage must explicitly exclude spikes');
+ok(app.includes('epaPerActualPassAttempt'),'defense debug must expose attempt-only EPA');
+ok(app.includes('preserveV100Coverage:true'),'Week-2 entry baseline must preserve V100 coverage semantics');
+console.log(`PASS: V101 contract (${n} checks)`);

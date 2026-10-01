@@ -1,0 +1,34 @@
+{
+  "as_of": "2026-09-16",
+  "source": "Curated current Week 1 pressure recovery (NFL Next Gen Stats / StatRankings)",
+  "source_url": "https://www.nfl.com/news/broncos-chiefs-on-monday-night-football-what-we-learned-from-kansas-city-s-31-10-win",
+  "teams": {
+    "KC": {
+      "pressure_rate": 0.455,
+      "as_of": "2026-09-16",
+      "games": 1,
+      "through_week": 1,
+      "source": "NFL Next Gen Stats \u2014 Bo Nix pressure rate vs KC",
+      "source_url": "https://www.nfl.com/news/broncos-chiefs-on-monday-night-football-what-we-learned-from-kansas-city-s-31-10-win",
+      "note": "NFL Pro / Next Gen Stats reported Bo Nix pressured on 45.5% of dropbacks vs Kansas City. Week 1 only."
+    },
+    "DEN": {
+      "pressure_rate": 0.273,
+      "as_of": "2026-09-16",
+      "games": 1,
+      "through_week": 1,
+      "source": "StatRankings Offensive Pressure Rate \u2014 Patrick Mahomes",
+      "source_url": "https://statrankings.com/nfl/advanced/players/qb/offensive-pressure-rate?sort_field=home_value&sort_order=desc",
+      "note": "Recovered from the opponent-QB offensive pressure table because the direct team-defense row was not machine-identifiable. Week 1 only."
+    },
+    "DAL": {
+      "pressure_rate": 0.323529,
+      "as_of": "2026-09-16",
+      "games": 1,
+      "through_week": 1,
+      "source": "NFL Next Gen Stats \u2014 Jaxson Dart pressures vs DAL",
+      "source_url": "https://www.dallascowboys.com/news/quinnen-williams-caleb-downs-circle-what-went-wrong-in-cowboys-loss-to-giants",
+      "note": "NFL Next Gen Stats reported 11 pressures on Jaxson Dart; 34 game dropbacks yields 32.4%. Week 1 only."
+    }
+  }
+}

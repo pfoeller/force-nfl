@@ -1,0 +1,18 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+const server=fs.readFileSync(path.join(root,'force_server.py'),'utf8');
+let n=0; const ok=(x,m)=>{n++;if(!x)throw new Error(m)};
+ok(server.includes("APP_VERSION = 'V129'"),'server V129 identity');
+ok(app.includes("health?.app_version!=='V129'"),'client V129 identity');
+ok(css.includes('Flag Leverage & Advantage Gauge'),'regression fixture retains the literal CSS ampersand that triggered the bug');
+ok(app.includes('function escapeExportXmlText(value)'),'XML text escaper exists');
+ok(app.includes(".replace(/&/g, '&amp;')"),'ampersands are XML escaped');
+ok(app.includes(".replace(/</g, '&lt;')"),'less-than signs are XML escaped');
+ok(app.includes(".replace(/>/g, '&gt;')"),'greater-than signs are XML escaped');
+ok(app.includes('const safeCss=escapeExportXmlText('),'stylesheet is escaped before SVG insertion');
+ok(app.includes('<style>${safeCss}</style>'),'SVG uses the escaped stylesheet payload');
+ok(!app.includes('<style>${exportCss}${cssText.replace'),'old raw CSS injection is gone');
+ok(app.includes('unescaped XML ampersand'),'future SVG-load failures expose raw-ampersand leakage');
+console.log(`PASS: V129 XML-safe PNG export (${n} checks)`);

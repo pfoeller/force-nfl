@@ -1,0 +1,11 @@
+.git
+.gitignore
+.github
+__pycache__
+*.pyc
+node_modules
+.wrangler
+.env
+.env.*
+.dev.vars
+force-v149-local/

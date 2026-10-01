@@ -1,0 +1,14 @@
+global.window={};
+require('../model/live_profiles.js');
+const LP=global.window.FORCE_LIVE_PROFILE;
+if(!LP) throw new Error('live profile module missing');
+const cal={epa_per_game_rms:1,wpa_per_game_rms:1,first_downs_per_game_rms:1,erased_tds_per_game_rms:1,epa_weight:.4,wpa_weight:.25,first_down_weight:.2,erased_td_weight:.15,softness:3,component_z_cap:3};
+const h=LP.causalPenaltyScoreBreakdownFromAverages(-.2,-.2,3,0,cal);
+if(!h.directionGuardApplied || h.directValueAgreement!=='negative' || h.score!==50) throw new Error(`negative coherence guard failed ${JSON.stringify(h)}`);
+const o=LP.causalPenaltyScoreBreakdownFromAverages(.2,.2,-3,0,cal);
+if(!o.directionGuardApplied || o.directValueAgreement!=='positive' || o.score!==50) throw new Error(`positive coherence guard failed ${JSON.stringify(o)}`);
+const m=LP.causalPenaltyScoreBreakdownFromAverages(1,-1,2,0,cal);
+if(m.directionGuardApplied || m.directValueAgreement!=='mixed' || Math.abs(m.preGuardCombinedZ-m.combinedZ)>1e-12) throw new Error('mixed direct guard regression');
+const x=LP.causalPenaltyScoreBreakdownFromAverages(100,100,100,100,cal);
+for(const v of Object.values(x.cappedZ)) if(Math.abs(v-3)>1e-12) throw new Error('cap mismatch');
+console.log('PASS: V97 browser penalty scale/coherence parity');

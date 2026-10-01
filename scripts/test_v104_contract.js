@@ -1,0 +1,16 @@
+const fs=require('fs'),path=require('path');const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8'),server=fs.readFileSync(path.join(root,'force_server.py'),'utf8'),live=fs.readFileSync(path.join(root,'model/live_profiles.js'),'utf8');
+let n=0;const ok=(x,m)=>{n++;if(!x)throw new Error(m)};
+ok(server.includes("APP_VERSION = 'V121'"),'server V104 identity');
+ok(server.includes('v104_reference_2025_payload'),'V104 historical reference payload missing');
+ok(server.includes('_v104_reference_from_drive_games'),'V104 same-sized PBP reference builder missing');
+ok(app.includes("qbPolicy: 'v106-current-season-stabilized'"),'V104 live QB policy missing');
+ok(app.includes('historicalReference: S.liveGameFlow2026?.v104_reference || null'),'V104 historical reference not passed into live profiles');
+ok(live.includes('cpoeShrinkAttempts:60.0'),'V104 CPOE attempt shrink missing');
+ok(live.includes('priorFloorGames:1.0')&&live.includes('priorFloorThroughGames:4'),'V104 QB prior floor missing');
+ok(live.includes("historicalWindowValues(historicalReference,'qb_pass_epa'"),'V104 QB same-sized benchmark missing');
+ok(live.includes("historicalWindowValues(historicalReference,'ol_disruption_rate'"),'V104 OL same-definition benchmark missing');
+ok(live.includes('priorRbOrthogonalComposite'),'V104 like-for-like RB residual benchmark missing');
+ok(app.includes('measuredQbIndex')&&app.includes('displayedQbIndex')&&app.includes('scenarioAdjustment'),'V104 QB scenario diagnostics missing');
+ok(fs.existsSync(path.join(root,'CHANGELOG_V104.md')),'V104 changelog missing');
+console.log(`PASS: V104 contract (${n} checks)`);

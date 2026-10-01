@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" role="img" aria-labelledby="t d">
+  <title id="t">FORCE identity board</title>
+  <desc id="d">The FORCE vector F, full name, a 1 to 100 rating scale colored by FORCE score bands, and football yard-mark side rails with four minor ticks between each major line.</desc>
+  <defs>
+    <radialGradient id="bgGlow" cx="68%" cy="0%" r="82%"><stop stop-color="#123247"/><stop offset=".48" stop-color="#07131d"/><stop offset="1" stop-color="#050b12"/></radialGradient>
+    <linearGradient id="teal" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#0a5e56"/><stop offset=".34" stop-color="#11b893"/><stop offset=".62" stop-color="#33f0c1"/><stop offset="1" stop-color="#1a8b76"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#9b5a17"/><stop offset=".38" stop-color="#f0ae2f"/><stop offset=".65" stop-color="#ffe37c"/><stop offset="1" stop-color="#b97a22"/></linearGradient>
+    <linearGradient id="red" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#6e1428"/><stop offset=".45" stop-color="#c72048"/><stop offset=".7" stop-color="#ff5b74"/><stop offset="1" stop-color="#991f33"/></linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".48" stop-color="#f3f6f8"/><stop offset="1" stop-color="#9aabba"/></linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".75"/><stop offset=".18" stop-color="#ffffff" stop-opacity=".34"/><stop offset=".36" stop-color="#ffffff" stop-opacity="0"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#ffb34f" flood-opacity=".18"/></filter>
+  </defs>
+  <rect width="1000" height="620" rx="30" fill="url(#bgGlow)"/>
+  <g stroke="#58cfe0" stroke-linecap="square" opacity=".78">
+    <g transform="translate(36 72)">
+      <path d="M0 0h28" stroke-width="4"/><path d="M0 22h11M0 42h11M0 62h11M0 82h11" stroke-width="2"/><path d="M0 104h28" stroke-width="4"/>
+      <path d="M0 126h11M0 146h11M0 166h11M0 186h11" stroke-width="2"/><path d="M0 208h28" stroke-width="4"/>
+      <path d="M0 230h11M0 250h11M0 270h11M0 290h11" stroke-width="2"/><path d="M0 312h28" stroke-width="4"/>
+      <path d="M0 334h11M0 354h11M0 374h11M0 394h11" stroke-width="2"/><path d="M0 416h28" stroke-width="4"/>
+    </g>
+    <g transform="translate(964 72) scale(-1 1)">
+      <path d="M0 0h28" stroke-width="4"/><path d="M0 22h11M0 42h11M0 62h11M0 82h11" stroke-width="2"/><path d="M0 104h28" stroke-width="4"/>
+      <path d="M0 126h11M0 146h11M0 166h11M0 186h11" stroke-width="2"/><path d="M0 208h28" stroke-width="4"/>
+      <path d="M0 230h11M0 250h11M0 270h11M0 290h11" stroke-width="2"/><path d="M0 312h28" stroke-width="4"/>
+      <path d="M0 334h11M0 354h11M0 374h11M0 394h11" stroke-width="2"/><path d="M0 416h28" stroke-width="4"/>
+    </g>
+  </g>
+  <g transform="translate(335 63) scale(1.9)">
+    <g filter="url(#glow)">
+    <path id="fTop" d="M20 104 L76 23 H166 L150 40 H83 L39 104 Z" fill="url(#teal)"/>
+    <path id="fMid" d="M36 112 L80 53 H145 L129 70 H89 L53 112 Z" fill="url(#gold)"/>
+    <path id="fLow" d="M45 124 L84 78 H112 L90 100 H74 L58 124 Z" fill="url(#red)"/>
+    <path d="M20 104 L76 23 H166 L150 40 H83 L39 104 Z" fill="url(#shine)" opacity=".55"/>
+    <path d="M36 112 L80 53 H145 L129 70 H89 L53 112 Z" fill="url(#shine)" opacity=".44"/>
+    <path d="M45 124 L84 78 H112 L90 100 H74 L58 124 Z" fill="url(#shine)" opacity=".42"/>
+    <path d="M28 128 L35 120 H40 V128 Z M40 128 L48 118 H53 V128 Z M54 128 L64 114 H70 V128 Z" fill="#ff6479" opacity=".97"/>
+    <path d="M60 120 L69 108" stroke="#ffb6c2" stroke-width="2" stroke-linecap="round" opacity=".58"/>
+    <path d="M70 117 L79 105" stroke="#ffb6c2" stroke-width="2" stroke-linecap="round" opacity=".48"/>
+    <path d="M79 113 L87 103" stroke="#7a1028" stroke-width="2.1" stroke-linecap="round" opacity=".32"/>
+  </g>
+  </g>
+  <text x="500" y="382" text-anchor="middle" fill="url(#silver)" font-family="Arial Black, Inter, Segoe UI, sans-serif" font-size="88" font-weight="900" letter-spacing="14">FORCE</text>
+  <text x="500" y="425" text-anchor="middle" fill="#e7eef3" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="500" letter-spacing="1.2">Football Objective Rating &amp; Comparative Efficiency</text>
+  <g transform="translate(237 478)">
+    <text x="0" y="17" fill="#ff6b70" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="900">1</text>
+    <path d="M34 0v24" stroke="#ff6b70" stroke-width="4"/>
+    <g stroke-linecap="square">
+      <path d="M66 7v10" stroke="#ff6b70" stroke-width="2" opacity=".58"/>
+      <path d="M98 0v24" stroke="#ff6b70" stroke-width="3.4" opacity=".96"/>
+      <text x="88" y="42" fill="#ff6b70" opacity=".92" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="800">10</text>
+      <path d="M130 7v10" stroke="#ff6b70" stroke-width="2" opacity=".58"/>
+      <path d="M162 0v24" stroke="#ff6b70" stroke-width="3.4" opacity=".96"/>
+      <text x="152" y="42" fill="#ff6b70" opacity=".92" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="800">20</text>
+      <path d="M194 7v10" stroke="#ff6b70" stroke-width="2" opacity=".58"/>
+      <path d="M226 0v24" stroke="#ff6b70" stroke-width="3.4" opacity=".96"/>
+      <text x="216" y="42" fill="#ff6b70" opacity=".92" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="800">30</text>
+      <path d="M258 7v10" stroke="#ff6b70" stroke-width="2" opacity=".58"/>
+      <path d="M290 0v24" stroke="#ff6b70" stroke-width="3.4" opacity=".96"/>
+      <text x="280" y="42" fill="#ff6b70" opacity=".92" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="800">40</text>
+      <path d="M322 7v10" stroke="#ffd166" stroke-width="2" opacity=".58"/>
+      <path d="M354 0v24" stroke="#ffd166" stroke-width="3.4" opacity=".96"/>
+      <text x="344" y="42" fill="#ffd166" opacity=".96" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="800">50</text>
+      <path d="M386 7v10" stroke="#ffd166" stroke-width="2" opacity=".58"/>
+      <path d="M418 0v24" stroke="#ffd166" stroke-width="3.4" opacity=".96"/>
+      <text x="408" y="42" fill="#ffd166" opacity=".96" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="800">60</text>
+      <path d="M450 7v10" stroke="#ffd166" stroke-width="2" opacity=".58"/>
+      <path d="M482 0v24" stroke="#ffd166" stroke-width="3.4" opacity=".96"/>
+      <text x="472" y="42" fill="#ffd166" opacity=".96" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="800">70</text>
+      <path d="M514 7v10" stroke="#55d69e" stroke-width="2" opacity=".58"/>
+      <path d="M546 0v24" stroke="#55d69e" stroke-width="3.4" opacity=".96"/>
+      <text x="536" y="42" fill="#55d69e" opacity=".96" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="800">80</text>
+      <path d="M578 7v10" stroke="#55d69e" stroke-width="2" opacity=".58"/>
+      <path d="M610 0v24" stroke="#55d69e" stroke-width="3.4" opacity=".96"/>
+      <text x="600" y="42" fill="#55d69e" opacity=".96" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="800">90</text>
+      <path d="M642 7v10" stroke="#55d69e" stroke-width="2" opacity=".58"/>
+    </g>
+    <path d="M674 0v24" stroke="#55d69e" stroke-width="4"/>
+    <text x="693" y="17" fill="#55d69e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="900">100</text>
+  </g>
+</svg>

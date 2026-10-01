@@ -1,0 +1,12 @@
+const fs=require('fs');
+const bridge=fs.readFileSync('model/unit_force_bridge.js','utf8');
+const forecast=fs.readFileSync('model/forecast_v2.js','utf8');
+const live=fs.readFileSync('model/live_profiles.js','utf8');
+const app=fs.readFileSync('assets/app.js','utf8');
+let n=0; const ok=(x,m)=>{if(!x)throw new Error(m);n++;};
+ok(!/\bluck\b/i.test(bridge),'Luck must not enter Unit-to-FORCE bridge');
+ok(!/\bluck\b/i.test(forecast),'Luck must not enter forecast_v2');
+ok(live.includes('V121 2026 Luck: 60% historical EPA/play-implied scoring realization'),'V121 luck source');
+ok(app.includes('0.60*epaScore+0.20*penaltyScore+0.15*fumbleScore+0.05*'),'Luck blend remains contextual and EPA-heavy');
+ok(app.includes('fumbleEvents:'),'debug exposes flattened fumble ledger');
+console.log(`PASS: V113 Luck is diagnostic-only (${n} checks)`);

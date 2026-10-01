@@ -1,0 +1,13 @@
+const fs=require('fs'), path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
+ok(app.includes("if (v == null || v === '') return '-';"),'contextScoreText must not coerce null to zero');
+ok(app.includes("return Number.isFinite(x) ? bandClass(x) : '';"),'context scores must reuse FORCE bandClass');
+ok(app.includes("spreadHistoryReady(ai) ? contextScoreText(spreadScore) : ''"),'matchup Recent vs spread must be truly blank before four games');
+ok(app.includes("spreadHistoryReady(ai) ? contextScoreText(spreadContextScore(ai)) : ''"),'KPI/table Recent vs spread must be blank before four games');
+ok(css.includes('.context-grid strong.band-mid') && css.includes('color:var(--gold)'),'mid-band context scores must render gold/yellow');
+ok(css.includes('.context-grid strong.band-high') && css.includes('color:var(--green)'),'high-band context scores must render green');
+ok(css.includes('.context-grid strong.band-low') && css.includes('color:var(--red)'),'low-band context scores must render red');
+console.log(`OK: ${n} V64 context gate/band assertions`);

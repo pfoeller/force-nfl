@@ -1,0 +1,13 @@
+const fs=require('fs');
+const app=fs.readFileSync('assets/app.js','utf8'), live=fs.readFileSync('model/live_profiles.js','utf8'), server=fs.readFileSync('force_server.py','utf8');
+let n=0; const ok=(x,m)=>{if(!x)throw new Error(m);n++;};
+ok(server.includes("APP_VERSION = 'V121'"),'current server supersedes V109');
+ok(app.includes('expected FORCE V121'),'current client supersedes V109');
+ok(app.includes("receiverPolicy: 'v115-partial-orthogonal'"),'receiver policy');
+ok(app.includes("rbPolicy: 'v115-partial-orthogonal'"),'rb policy');
+ok(live.includes('receiverResidualStabilizerTargets:120.0'),'receiver stabilization');
+ok(live.includes('rbRecvResidualStabilizerTargets:60.0'),'rb receiving stabilization');
+ok(live.includes('pythagorean_exp_w'),'V109 Pythagorean retained as V110 audit fallback');
+ok(app.includes('0.60*epaScore+0.20*penaltyScore+0.15*fumbleScore+0.05*'),'V121 supersedes V109 Luck blend');
+ok(app.includes('FORCE_LUCK_DEBUG'),'luck debug');
+console.log(`PASS: V109 contract (${n} checks)`);
