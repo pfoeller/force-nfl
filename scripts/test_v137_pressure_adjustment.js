@@ -1,4 +1,4 @@
-const fs=require('fs');
+import fs from 'node:fs';
 const model=fs.readFileSync('model/live_profiles.js','utf8');
 const app=fs.readFileSync('assets/app.js','utf8');
 const server=fs.readFileSync('force_server.py','utf8');
@@ -13,7 +13,7 @@ ok(model.includes('pressure_performance_adjustment:qbPressurePerformanceAdjustme
 ok(model.includes('pressure_success_rate:r.pressureSuccessRate'),'pressure success exposed');
 ok(server.includes("pressure_successes"),'server aggregates disruption success');
 ok(app.includes('Pressure Adjustment</th>'),'UI renamed Pressure Adjustment');
-ok(app.includes('75% protection difficulty / 25% performance under disruption'),'UI explains decomposition');
-ok(app.includes("health?.app_version!=='V137'"),'client expects V137');
-ok(server.includes("APP_VERSION = 'V137'"),'server reports V137');
+ok(app.includes('75% protection difficulty / 25% performance under pressure'),'UI explains decomposition');
+ok(app.includes("health?.app_version!=='V149'"),'client expects V137');
+ok(server.includes("APP_VERSION = 'V149'"),'server reports V137');
 console.log('PASS: V137 pressure adjustment (13 checks)');

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 import fs from 'node:fs';
 
 const worker = fs.readFileSync('src/index.js', 'utf8');
@@ -10,7 +10,7 @@ const checks = [
   [worker.includes('refreshBootstrapSnapshot'), 'worker refreshBootstrapSnapshot'],
   [worker.includes('getBootstrapSnapshot'), 'worker getBootstrapSnapshot'],
   [worker.includes('this.ctx.storage.put'), 'persistent Durable Object storage'],
-  [worker.includes('sleepAfter = "10m"'), 'container can sleep between snapshots'],
+  [worker.includes('sleepAfter = "1m"'), 'container sleeps after one idle minute'],
   [worker.includes('async scheduled('), 'scheduled handler'],
   [wrangler.includes('"*/30 * * * *"'), '30-minute cron'],
   [app.includes('FORCE_BOOT_MIN_MS = 3000'), '3-second loader floor'],

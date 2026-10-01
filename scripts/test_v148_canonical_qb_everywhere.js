@@ -1,5 +1,5 @@
-const fs=require('fs');const app=fs.readFileSync('assets/app.js','utf8');function ok(x,m){if(!x)throw new Error(m)}
-ok(app.includes("health?.app_version!=='V148'"),'V148 bootstrap comparison');
+import fs from 'node:fs';const app=fs.readFileSync('assets/app.js','utf8');function ok(x,m){if(!x)throw new Error(m)}
+ok(app.includes("health?.app_version!=='V149'"),'V148 bootstrap comparison');
 ok(app.includes('qbRecencyAdjustmentFromProfiles'),'canonical recency helper missing');
 ok(app.includes('p.qbIndex=Math.max(0,Math.min(100,Number(p.qbIndex)+recency))'),'recency not promoted into canonical qbIndex');
 ok(app.includes('q.canonical_force_qb_rating=p.qbIndex'),'canonical QB rating not exposed');

@@ -21,6 +21,8 @@
   const REFRESH_MS = 60 * 60 * 1000;
   const FORCE_BOOT_MIN_MS = 3000;
   const PUBLIC_SNAPSHOT_POLL_MS = 10 * 60 * 1000;
+  const PUBLIC_STALE_LIVE_TIMEOUT_MS = 9000;
+  const PUBLIC_STALE_LIVE_BACKOFF_MS = 30 * 60 * 1000;
   const FORCE_BOOT_STARTED_AT = (typeof performance !== 'undefined' && typeof performance.now === 'function') ? performance.now() : Date.now();
 
   // V85 diagnostic instrumentation. Keep a bounded in-browser event log so a
@@ -281,6 +283,13 @@
     live: false,
     connectionState: 'connecting',
     serverIdentity: null,
+    snapshotFreshness: null,
+    snapshotGeneration: null,
+    snapshotChecking: false,
+    snapshotCheckMessage: null,
+    snapshotCheckedAt: null,
+    staleLiveFailure: null,
+    qbInputWarning: null,
     queuedRefresh: null,
     initialVerificationAttempted: false,
     team: 'BUF',
@@ -464,13 +473,14 @@
   function snapshotStateBackup() {
     return {
       schedule:S.schedule, live:S.live, connectionState:S.connectionState,
-      serverIdentity:S.serverIdentity, lastRefreshAt:S.lastRefreshAt,
+      serverIdentity:S.serverIdentity, snapshotFreshness:S.snapshotFreshness, snapshotGeneration:S.snapshotGeneration, lastRefreshAt:S.lastRefreshAt,
       nextRefreshAt:S.nextRefreshAt, refreshError:S.refreshError,
       scheduleVersion:S.scheduleVersion, engineCache:S.engineCache,
       liveTeamStats:S.liveTeamStats, livePlayerStats:S.livePlayerStats,
       liveFtnCharting:S.liveFtnCharting, livePfrPassStats:S.livePfrPassStats,
       priorPfrPassStats:S.priorPfrPassStats, currentPressure:S.currentPressure,
       liveGameFlow2026:S.liveGameFlow2026, initialRefreshDone:S.initialRefreshDone,
+      qbInputWarning:S.qbInputWarning,
       statsLastRefreshAt:S.statsLastRefreshAt, statsError:S.statsError,
       statsWarning:S.statsWarning, statsVersion:S.statsVersion,
       liveProfilesCache:S.liveProfilesCache
@@ -478,6 +488,21 @@
   }
 
   function restoreSnapshotState(backup) { Object.assign(S, backup); }
+
+  function snapshotAgePolicy(builtAt) {
+    const builtMs=Date.parse(builtAt || '');
+    const ageMinutes=Number.isFinite(builtMs)?Math.max(0,(Date.now()-builtMs)/60000):Infinity;
+    return {ageMinutes,stale:ageMinutes>=60,requiresLiveRefresh:ageMinutes>120};
+  }
+
+  function selectGameFlowInput(candidate) {
+    const status=LP.gameFlowQbStatus(candidate);
+    if (status.ready) return {value:candidate,warning:null};
+    if (LP.gameFlowQbStatus(S.liveGameFlow2026).ready) {
+      return {value:S.liveGameFlow2026,warning:`${status.reason}; retaining last known good QB/game-flow input`};
+    }
+    return {value:{...candidate,qb_epa_definition:'unavailable'},warning:status.reason};
+  }
 
   function applyBootstrapSnapshot(snapshot, reason = 'bootstrap') {
     if (!snapshot?.ok || !snapshot?.feeds) throw new Error('bootstrap snapshot payload missing');
@@ -508,13 +533,22 @@
       S.livePfrPassStats = next.pfr;
       S.priorPfrPassStats = next.pfrPrior;
       S.currentPressure = next.pressure;
-      S.liveGameFlow2026 = next.gameFlow;
+      const selectedFlow=selectGameFlowInput(next.gameFlow);
+      S.liveGameFlow2026 = selectedFlow.value;
+      S.qbInputWarning=selectedFlow.warning;
       S.serverIdentity = health;
       S.live = true;
-      S.connectionState = 'live';
+      S.snapshotFreshness = snapshotAgePolicy(snapshot.builtAt);
+      S.snapshotGeneration = snapshot.generation || null;
+      S.connectionState = S.snapshotFreshness.stale ? 'degraded' : 'live';
       S.refreshError = null;
       S.statsError = null;
       S.statsWarning = Array.isArray(snapshot.warnings) && snapshot.warnings.length ? snapshot.warnings.join(' · ') : null;
+      S.statsWarning=[S.statsWarning,S.qbInputWarning].filter(Boolean).join(' · ') || null;
+      if (S.snapshotFreshness.stale) {
+        const age=Number.isFinite(S.snapshotFreshness.ageMinutes)?`${Math.floor(S.snapshotFreshness.ageMinutes)} minutes old`:'of unknown age';
+        S.statsWarning = [S.statsWarning, `Stale data: showing the last known good snapshot (${age}). Live refresh is unavailable or still pending.`].filter(Boolean).join(' · ');
+      }
 
       const builtMs = Date.parse(snapshot.builtAt || '');
       S.lastRefreshAt = Number.isFinite(builtMs) ? builtMs : Date.now();
@@ -552,7 +586,29 @@
     const text = await response.text();
     if (!response.ok) throw new Error(`bootstrap snapshot ${response.status}: ${text.slice(0,220)}`);
     const snapshot = bootstrapJson(text, 'bootstrap');
-    applyBootstrapSnapshot(snapshot, reason);
+    const generation=snapshot.generation || snapshot.builtAt || 'unknown';
+    if (S.staleLiveFailure && S.staleLiveFailure.generation!==generation) S.staleLiveFailure=null;
+    const retrySuppressed=S.staleLiveFailure?.generation===generation && Date.now()-S.staleLiveFailure.failedAt<PUBLIC_STALE_LIVE_BACKOFF_MS;
+    if (snapshotAgePolicy(snapshot.builtAt).requiresLiveRefresh && !retrySuppressed) {
+      const backup=snapshotStateBackup();
+      try {
+        const refreshed=await refreshSchedule('snapshot-too-old', null, {renderOnComplete:false,requireCanonical:true,timeoutMs:USE_HASH_ROUTING?60000:PUBLIC_STALE_LIVE_TIMEOUT_MS});
+        if (!refreshed) throw new Error(S.refreshError || 'direct live bootstrap failed');
+        S.snapshotFreshness=null;
+        S.staleLiveFailure=null;
+        return snapshot;
+      } catch (error) {
+        restoreSnapshotState(backup);
+        S.staleLiveFailure={generation,failedAt:Date.now()};
+        diag('bootstrap:stale-live-fallback-failed', {reason,error:diagnosticError(error)});
+      }
+    }
+    const agePolicy=snapshotAgePolicy(snapshot.builtAt);
+    const unchanged=snapshot.ok && snapshot.feeds && snapshot.generation && snapshot.generation===S.snapshotGeneration && S.live && currentDataIntegrity().ready;
+    if (unchanged && agePolicy.stale===S.snapshotFreshness?.stale) {
+      S.snapshotFreshness=agePolicy;
+      S.nextRefreshAt=Date.now()+PUBLIC_SNAPSHOT_POLL_MS;
+    } else applyBootstrapSnapshot(snapshot, reason);
     diag('bootstrap:snapshot-fetch-complete', {
       reason,
       elapsedMs:Math.round(diagnosticNow() - started),
@@ -563,14 +619,41 @@
 
   async function refreshPublishedSnapshot(reason = 'snapshot-poll') {
     if (USE_HASH_ROUTING) return refreshSchedule(reason);
+    if (S.snapshotChecking || S.refreshing) return;
+    S.snapshotChecking=true;
+    S.snapshotCheckMessage=null;
+    const previousGeneration=S.snapshotGeneration;
+    updateRefreshControls();
     try {
       await fetchBootstrapSnapshot(reason);
-      render();
-      updateRefreshControls();
+      S.refreshError=null;
+      S.snapshotCheckMessage=S.snapshotFreshness
+        ? (previousGeneration && previousGeneration===S.snapshotGeneration ? (S.snapshotFreshness.stale?'Snapshot unchanged · stale data':'Snapshot unchanged · already current') : 'Latest published snapshot loaded')
+        : 'Live fallback loaded';
     } catch (error) {
       diag('bootstrap:snapshot-poll-failed', {reason, error:diagnosticError(error)});
-      if (!S.lastRefreshAt) await refreshSchedule(reason);
+      S.snapshotCheckMessage='Snapshot check failed · retaining last usable data';
+      if (!S.lastRefreshAt || !currentDataIntegrity().ready) {
+        const backup=snapshotStateBackup();
+        const loaded=await refreshSchedule('snapshot-unavailable', null, {renderOnComplete:false,requireCanonical:true});
+        if (loaded) S.snapshotCheckMessage='Live fallback loaded';
+        else {
+          const failure=S.refreshError;
+          restoreSnapshotState(backup);
+          S.refreshError=failure;
+          S.snapshotCheckMessage='Snapshot and live fallback unavailable';
+        }
+      }
+    } finally {
+      S.snapshotCheckedAt=Date.now();
+      S.snapshotChecking=false;
+      render();
+      updateRefreshControls();
     }
+  }
+
+  function refreshFromUi(reason = 'manual', updateTeams = null) {
+    return USE_HASH_ROUTING ? refreshSchedule(reason, updateTeams) : refreshPublishedSnapshot(reason);
   }
 
   async function waitForBootMinimum() {
@@ -608,13 +691,13 @@
 
   async function refreshLiveMetrics(signal) {
     const stamp = Date.now();
-    const teamUrl = `/api/team-stats?force_refresh=${stamp}`;
-    const playerUrl = `/api/player-stats?force_refresh=${stamp}`;
-    const ftnUrl = `/api/ftn-charting?force_refresh=${stamp}`;
-    const pfrUrl = `/api/pfr-pass?force_refresh=${stamp}`;
-    const pfrPriorUrl = `/api/pfr-pass-prior?force_refresh=${stamp}`;
-    const currentPressureUrl = `/api/current-pressure?force_refresh=${stamp}`;
-    const gameFlowUrl = `/api/game-flow-2026?force_refresh=${stamp}`;
+    const teamUrl = liveFeedUrl('/api/team-stats', stamp);
+    const playerUrl = liveFeedUrl('/api/player-stats', stamp);
+    const ftnUrl = liveFeedUrl('/api/ftn-charting', stamp);
+    const pfrUrl = liveFeedUrl('/api/pfr-pass', stamp);
+    const pfrPriorUrl = liveFeedUrl('/api/pfr-pass-prior', stamp);
+    const currentPressureUrl = liveFeedUrl('/api/current-pressure', stamp);
+    const gameFlowUrl = liveFeedUrl('/api/game-flow-2026', stamp);
     diag('metrics:refresh-start', { stamp, existingTeamRows: S.liveTeamStats.length, existingPlayerRows: S.livePlayerStats.length });
     const [teamResult, playerResult, ftnResult, pfrResult, pfrPriorResult, currentPressureResult, gameFlowResult] = await Promise.allSettled([
       diagnosticFetch('team stats', teamUrl, { cache: 'no-store', signal }, 'csv'),
@@ -637,7 +720,9 @@
     if (pfrPriorResult.status === 'fulfilled') S.priorPfrPassStats = pfrPriorResult.value;
     if (currentPressureResult.status === 'fulfilled') S.currentPressure = currentPressureResult.value;
     if (gameFlowResult.status === 'fulfilled') {
-      S.liveGameFlow2026 = gameFlowResult.value;
+      const selectedFlow=selectGameFlowInput(gameFlowResult.value);
+      S.liveGameFlow2026 = selectedFlow.value;
+      S.qbInputWarning=selectedFlow.warning;
       const pc=S.liveGameFlow2026?.pressure_context;
       if (pc) {
         const summary=`FORCE pressure context: ${pc.source||'unknown'}; FTN rows ${pc.ftn_rows||0}; joined dropbacks ${pc.joined_dropbacks||0}; explicit pressure rows ${pc.explicit_pressure_rows||0}.`;
@@ -654,7 +739,11 @@
     if (pfrResult.status !== 'fulfilled' && currentPressureResult.status !== 'fulfilled') errors.push(`current pressure fallbacks unavailable: ${pfrResult.reason?.message || 'fetch failed'}`);
     if (pfrPriorResult.status !== 'fulfilled') errors.push(`pressure benchmark unavailable: ${pfrPriorResult.reason?.message || 'fetch failed'}`);
     else if (LP?.pfrChartingReady && !LP.pfrChartingReady(pfrPriorResult.value)) warnings.push('2025 pressure benchmark incomplete');
-    if (gameFlowResult.status !== 'fulfilled') warnings.push(`2026 quarter-scoring profile unavailable; Game Flow will fall back to 2025 timing`);
+    if (gameFlowResult.status !== 'fulfilled') {
+      S.qbInputWarning=LP.gameFlowQbStatus(S.liveGameFlow2026).ready?'QB/game-flow refresh failed; retaining last known good input':'QB/game-flow input unavailable';
+      warnings.push(`2026 quarter-scoring profile unavailable; Game Flow will fall back to 2025 timing`);
+    }
+    if (S.qbInputWarning) warnings.push(S.qbInputWarning);
     if (currentPressureResult.status !== 'fulfilled') warnings.push(`advanced current pressure unavailable; nflverse weekly disruption fallback will be used where team stats are current`);
     else {
       const cp=currentPressureResult.value || {};
@@ -673,9 +762,11 @@
       currentPressureRows: Number(S.currentPressure?.row_count || 0),
       gameFlowGames: Number(S.liveGameFlow2026?.game_count || 0)
     });
+    return {coreReady:playerResult.status==='fulfilled' && playerResult.value.length>0};
   }
 
   function refreshText() {
+    if (S.snapshotChecking) return 'Checking latest published snapshot…';
     if (S.refreshing && !S.lastRefreshAt) return 'Loading current data…';
     if (S.refreshing) return 'Refreshing now…';
     if (!S.lastRefreshAt) return S.refreshError ? `Initial load failed · ${S.refreshError}` : 'Connecting to live data…';
@@ -683,12 +774,16 @@
     const untilMin = Math.max(0, Math.ceil((S.nextRefreshAt - Date.now()) / 60000));
     const age = ageMin < 1 ? 'just now' : `${ageMin}m ago`;
     const metricState = S.statsError ? ' · some metrics unavailable' : (S.statsLastRefreshAt ? ` · metrics refreshed${S.statsWarning ? ' · freshness warning' : ''}` : '');
-    return `Updated ${age}${metricState} · auto in ${untilMin}m`;
+    const checkAgeMin=Math.max(0,Math.floor((Date.now()-S.snapshotCheckedAt)/60000));
+    const checked=checkAgeMin<1?'just now':`${checkAgeMin}m ago`;
+    const check=S.snapshotCheckMessage ? `${S.snapshotCheckMessage} · checked ${checked} · ` : '';
+    if (!USE_HASH_ROUTING && check) return `${check}Data updated ${age}${S.snapshotFreshness?.stale?' · stale':S.statsError||S.statsWarning?' · degraded':''}`;
+    return `${check}Updated ${age}${metricState} · auto in ${untilMin}m`;
   }
 
   function connectionLabel() {
     if (S.refreshing && !S.lastRefreshAt) return 'Connecting…';
-    if (S.live) return S.statsError ? 'Live data degraded' : 'Live data';
+    if (S.live) return S.snapshotFreshness?.stale ? 'Stale data · last known good' : S.statsError ? 'Live data degraded' : 'Live data';
     if (S.connectionState==='offline') return 'Offline';
     if (S.refreshError) return 'Live data unavailable';
     return 'Connecting…';
@@ -710,8 +805,15 @@
   function updateRefreshControls() {
     const b = document.getElementById('refreshData');
     const m = document.getElementById('refreshMeta');
-    if (b) { b.disabled = S.refreshing; b.textContent = S.refreshing ? '↻ Refreshing…' : '↻ Refresh'; }
+    const busy=S.refreshing || S.snapshotChecking;
+    if (b) { b.disabled = busy; b.textContent = S.snapshotChecking ? '↻ Checking…' : S.refreshing ? '↻ Refreshing…' : '↻ Refresh'; }
+    const snapshotButton=document.getElementById('checkLatestSnapshot');
+    if (snapshotButton) { snapshotButton.disabled=busy; snapshotButton.textContent=busy?'Checking…':'Check latest snapshot'; }
     if (m) m.textContent = refreshText();
+  }
+
+  function liveFeedUrl(path, stamp = Date.now()) {
+    return `${path}?${USE_HASH_ROUTING?'force_refresh':'ts'}=${stamp}`;
   }
 
   async function refreshSchedule(reason = 'manual', updateTeams = null, options = {}) {
@@ -726,10 +828,10 @@
     diag('schedule:refresh-start', { reason, updateTeams: Array.isArray(updateTeams) ? updateTeams.map(canon) : null, navigatorOnline: (typeof navigator !== 'undefined' ? navigator.onLine : null), currentScheduleRows: S.schedule.length, live: S.live });
     updateRefreshControls();
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 60000);
+    const timer = setTimeout(() => controller.abort(), options.timeoutMs ?? 60000);
     try {
       await verifyServerIdentity(controller.signal);
-      const url = `/api/schedule?force_refresh=${Date.now()}`;
+      const url = liveFeedUrl('/api/schedule');
       const scheduleText = await diagnosticFetch('schedule', url, { cache: 'no-store', signal: controller.signal }, 'text');
       const rows = parseCSV(scheduleText);
       const h = rows[0];
@@ -766,10 +868,14 @@
       });
       S.schedule = got;
       try {
-        await refreshLiveMetrics(controller.signal);
+        const metrics=await refreshLiveMetrics(controller.signal);
+        controller.signal.throwIfAborted();
+        if (options.requireCanonical && !metrics.coreReady) throw new Error('Direct bootstrap has no fresh player rows');
+        if (options.requireCanonical && !LP.gameFlowQbStatus(S.liveGameFlow2026).ready) throw new Error('Direct bootstrap has no valid all-play QB/game-flow input');
       } catch (metricError) {
         S.statsError = metricError && metricError.message ? metricError.message : 'live metrics refresh failed';
         diag('metrics:refresh-failed', { error: diagnosticError(metricError), retainedTeamRows: S.liveTeamStats.length, retainedPlayerRows: S.livePlayerStats.length });
+        if (options.requireCanonical) throw metricError;
       }
 
       // V85 bootstrap verification: if the first load produced an incomplete
@@ -792,6 +898,10 @@
           diag('bootstrap:verification-not-needed',{integrity:firstIntegrity});
         }
       }
+      if (options.requireCanonical && !currentDataIntegrity().ready) throw new Error('Direct bootstrap failed data integrity');
+      S.snapshotFreshness = null;
+      S.snapshotGeneration = null;
+      S.staleLiveFailure = null;
       S.live = true;
       S.connectionState = 'live';
       S.lastRefreshAt = Date.now();
@@ -811,6 +921,7 @@
       } catch (diagnosticFailure) {
         diag('schedule:post-refresh-diagnostic-error', { error: diagnosticError(diagnosticFailure) });
       }
+      return true;
     } catch (e) {
       S.refreshError = e && e.message ? e.message : 'refresh failed';
       diag('schedule:refresh-failed', { reason, error: diagnosticError(e), navigatorOnline:(typeof navigator !== 'undefined' ? navigator.onLine : null), hadPriorLiveRefresh:Boolean(S.lastRefreshAt) });
@@ -821,6 +932,7 @@
       if (!S.lastRefreshAt) S.live = false;
       S.connectionState = (typeof navigator !== 'undefined' && navigator.onLine === false) ? 'offline' : (S.live ? 'live' : 'error');
       S.nextRefreshAt = Date.now() + REFRESH_MS;
+      return false;
     } finally {
       clearTimeout(timer);
       S.initialRefreshDone = true;
@@ -1350,33 +1462,35 @@
       const homeQbRushEpa=Number(g.home_qb_rush_epa)||0, awayQbRushEpa=Number(g.away_qb_rush_epa)||0;
       const homeQbRushAtt=Math.max(0,Number(g.home_qb_rush_attempts)||0), awayQbRushAtt=Math.max(0,Number(g.away_qb_rush_attempts)||0);
       if (away && awayDrives>0) {
-        const row=out[home] ||= {pointsAllowed:0,opponentDrives:0,games:0,coveragePassEpa:0,coveragePassAttempts:0,coveragePassSuccesses:0,offensivePoints:0,offensiveDrives:0,offensePassEpa:0,offensePassAttempts:0,offensePassSuccesses:0,passProtectionDropbacks:0,passProtectionDisruptions:0,standardRushDropbacks:0,standardRushPressures:0,pressureEpa:0,pressurePlays:0,pressureSuccesses:0,cleanEpa:0,cleanPlays:0,qbRushEpa:0,qbRushAttempts:0,gameRows:[]};
+        const row=out[home] ||= {pointsAllowed:0,opponentDrives:0,games:0,coveragePassEpa:0,coveragePassAttempts:0,coveragePassSuccesses:0,offensivePoints:0,offensiveDrives:0,offensePassEpa:0,offensePassAttempts:0,offensePassSuccesses:0,qbTotalEpa:0,qbPlays:0,passProtectionDropbacks:0,passProtectionDisruptions:0,standardRushDropbacks:0,standardRushPressures:0,pressureEpa:0,pressurePlays:0,pressureSuccesses:0,cleanEpa:0,cleanPlays:0,qbRushEpa:0,qbRushAttempts:0,gameRows:[]};
         row.pointsAllowed += awayPts; row.opponentDrives += awayDrives; row.games += 1;
         row.coveragePassEpa += awayCovEpa; row.coveragePassAttempts += awayCovAtt; row.coveragePassSuccesses += awayCovSuccess;
       }
       if (home && homeDrives>0) {
-        const row=out[away] ||= {pointsAllowed:0,opponentDrives:0,games:0,coveragePassEpa:0,coveragePassAttempts:0,coveragePassSuccesses:0,offensivePoints:0,offensiveDrives:0,offensePassEpa:0,offensePassAttempts:0,offensePassSuccesses:0,passProtectionDropbacks:0,passProtectionDisruptions:0,standardRushDropbacks:0,standardRushPressures:0,pressureEpa:0,pressurePlays:0,pressureSuccesses:0,cleanEpa:0,cleanPlays:0,qbRushEpa:0,qbRushAttempts:0,gameRows:[]};
+        const row=out[away] ||= {pointsAllowed:0,opponentDrives:0,games:0,coveragePassEpa:0,coveragePassAttempts:0,coveragePassSuccesses:0,offensivePoints:0,offensiveDrives:0,offensePassEpa:0,offensePassAttempts:0,offensePassSuccesses:0,qbTotalEpa:0,qbPlays:0,passProtectionDropbacks:0,passProtectionDisruptions:0,standardRushDropbacks:0,standardRushPressures:0,pressureEpa:0,pressurePlays:0,pressureSuccesses:0,cleanEpa:0,cleanPlays:0,qbRushEpa:0,qbRushAttempts:0,gameRows:[]};
         row.pointsAllowed += homePts; row.opponentDrives += homeDrives; row.games += 1;
         row.coveragePassEpa += homeCovEpa; row.coveragePassAttempts += homeCovAtt; row.coveragePassSuccesses += homeCovSuccess;
       }
       // V102 reuses the same sack-free pass-attempt PBP for the offense/QB side.
       if (home && homeDrives>0) {
-        const row=out[home] ||= {pointsAllowed:0,opponentDrives:0,games:0,coveragePassEpa:0,coveragePassAttempts:0,coveragePassSuccesses:0,offensivePoints:0,offensiveDrives:0,offensePassEpa:0,offensePassAttempts:0,offensePassSuccesses:0,passProtectionDropbacks:0,passProtectionDisruptions:0,standardRushDropbacks:0,standardRushPressures:0,pressureEpa:0,pressurePlays:0,pressureSuccesses:0,cleanEpa:0,cleanPlays:0,qbRushEpa:0,qbRushAttempts:0,gameRows:[]};
+        const row=out[home] ||= {pointsAllowed:0,opponentDrives:0,games:0,coveragePassEpa:0,coveragePassAttempts:0,coveragePassSuccesses:0,offensivePoints:0,offensiveDrives:0,offensePassEpa:0,offensePassAttempts:0,offensePassSuccesses:0,qbTotalEpa:0,qbPlays:0,passProtectionDropbacks:0,passProtectionDisruptions:0,standardRushDropbacks:0,standardRushPressures:0,pressureEpa:0,pressurePlays:0,pressureSuccesses:0,cleanEpa:0,cleanPlays:0,qbRushEpa:0,qbRushAttempts:0,gameRows:[]};
         row.offensivePoints += homePts; row.offensiveDrives += homeDrives;
         row.offensePassEpa += homeCovEpa; row.offensePassAttempts += homeCovAtt; row.offensePassSuccesses += homeCovSuccess;
         row.passProtectionDropbacks += homeOlDb; row.passProtectionDisruptions += homeOlDis;
         row.standardRushDropbacks += homeStdDb; row.standardRushPressures += homeStdPressure; row.pressureEpa += homePressureEpa; row.pressurePlays += homePressurePlays; row.pressureSuccesses += homePressureSuccesses; row.cleanEpa += homeCleanEpa; row.cleanPlays += homeCleanPlays;
+        row.qbTotalEpa += Number(g.home_qb_total_epa)||0; row.qbPlays += Number(g.home_qb_plays)||0;
         row.qbRushEpa += homeQbRushEpa; row.qbRushAttempts += homeQbRushAtt;
-        row.gameRows.push({week,opponent:away,passEpa:homeCovEpa,passAttempts:homeCovAtt,passSuccesses:homeCovSuccess,passYards:homePassYds,passTds:homePassTds,interceptions:homeInts,sackYards:homeSackYds,sacks:homeSacks,cpoe:homeCpoe,standardRushDropbacks:homeStdDb,standardRushPressures:homeStdPressure,pressureEpa:homePressureEpa,pressurePlays:homePressurePlays,pressureSuccesses:homePressureSuccesses,cleanEpa:homeCleanEpa,cleanPlays:homeCleanPlays,qbRushEpa:homeQbRushEpa,qbRushAttempts:homeQbRushAtt});
+        row.gameRows.push({week,opponent:away,qbTotalEpa:Number(g.home_qb_total_epa)||0,qbPlays:Number(g.home_qb_plays)||0,passEpa:homeCovEpa,passAttempts:homeCovAtt,passSuccesses:homeCovSuccess,passYards:homePassYds,passTds:homePassTds,interceptions:homeInts,sackYards:homeSackYds,sacks:homeSacks,cpoe:homeCpoe,standardRushDropbacks:homeStdDb,standardRushPressures:homeStdPressure,pressureEpa:homePressureEpa,pressurePlays:homePressurePlays,pressureSuccesses:homePressureSuccesses,cleanEpa:homeCleanEpa,cleanPlays:homeCleanPlays,qbRushEpa:homeQbRushEpa,qbRushAttempts:homeQbRushAtt});
       }
       if (away && awayDrives>0) {
-        const row=out[away] ||= {pointsAllowed:0,opponentDrives:0,games:0,coveragePassEpa:0,coveragePassAttempts:0,coveragePassSuccesses:0,offensivePoints:0,offensiveDrives:0,offensePassEpa:0,offensePassAttempts:0,offensePassSuccesses:0,passProtectionDropbacks:0,passProtectionDisruptions:0,standardRushDropbacks:0,standardRushPressures:0,pressureEpa:0,pressurePlays:0,pressureSuccesses:0,cleanEpa:0,cleanPlays:0,qbRushEpa:0,qbRushAttempts:0,gameRows:[]};
+        const row=out[away] ||= {pointsAllowed:0,opponentDrives:0,games:0,coveragePassEpa:0,coveragePassAttempts:0,coveragePassSuccesses:0,offensivePoints:0,offensiveDrives:0,offensePassEpa:0,offensePassAttempts:0,offensePassSuccesses:0,qbTotalEpa:0,qbPlays:0,passProtectionDropbacks:0,passProtectionDisruptions:0,standardRushDropbacks:0,standardRushPressures:0,pressureEpa:0,pressurePlays:0,pressureSuccesses:0,cleanEpa:0,cleanPlays:0,qbRushEpa:0,qbRushAttempts:0,gameRows:[]};
         row.offensivePoints += awayPts; row.offensiveDrives += awayDrives;
         row.offensePassEpa += awayCovEpa; row.offensePassAttempts += awayCovAtt; row.offensePassSuccesses += awayCovSuccess;
         row.passProtectionDropbacks += awayOlDb; row.passProtectionDisruptions += awayOlDis;
         row.standardRushDropbacks += awayStdDb; row.standardRushPressures += awayStdPressure; row.pressureEpa += awayPressureEpa; row.pressurePlays += awayPressurePlays; row.pressureSuccesses += awayPressureSuccesses; row.cleanEpa += awayCleanEpa; row.cleanPlays += awayCleanPlays;
+        row.qbTotalEpa += Number(g.away_qb_total_epa)||0; row.qbPlays += Number(g.away_qb_plays)||0;
         row.qbRushEpa += awayQbRushEpa; row.qbRushAttempts += awayQbRushAtt;
-        row.gameRows.push({week,opponent:home,passEpa:awayCovEpa,passAttempts:awayCovAtt,passSuccesses:awayCovSuccess,passYards:awayPassYds,passTds:awayPassTds,interceptions:awayInts,sackYards:awaySackYds,sacks:awaySacks,cpoe:awayCpoe,standardRushDropbacks:awayStdDb,standardRushPressures:awayStdPressure,pressureEpa:awayPressureEpa,pressurePlays:awayPressurePlays,pressureSuccesses:awayPressureSuccesses,cleanEpa:awayCleanEpa,cleanPlays:awayCleanPlays,qbRushEpa:awayQbRushEpa,qbRushAttempts:awayQbRushAtt});
+        row.gameRows.push({week,opponent:home,qbTotalEpa:Number(g.away_qb_total_epa)||0,qbPlays:Number(g.away_qb_plays)||0,passEpa:awayCovEpa,passAttempts:awayCovAtt,passSuccesses:awayCovSuccess,passYards:awayPassYds,passTds:awayPassTds,interceptions:awayInts,sackYards:awaySackYds,sacks:awaySacks,cpoe:awayCpoe,standardRushDropbacks:awayStdDb,standardRushPressures:awayStdPressure,pressureEpa:awayPressureEpa,pressurePlays:awayPressurePlays,pressureSuccesses:awayPressureSuccesses,cleanEpa:awayCleanEpa,cleanPlays:awayCleanPlays,qbRushEpa:awayQbRushEpa,qbRushAttempts:awayQbRushAtt});
       }
     }
     for (const row of Object.values(out)) {
@@ -1570,13 +1684,13 @@
       success:Number.isFinite(Number(q.pass_success_score))?Number(q.pass_success_score):50,
       rushing:Number.isFinite(Number(q.rushing_value_score))?Number(q.rushing_value_score):50,
       cpoe:Number.isFinite(Number(q.cpoe_score))?Number(q.cpoe_score):50,
-      native:{actualPassEpaPerAttempt:Number(q.actual_pass_epa_per_attempt),anyA:Number(q.any_a),passSuccessRate:Number(q.pass_success_rate),qbRushEpaPerAttempt:Number(q.rush_epa_per_attempt),cpoe:Number(q.live_cpoe)}
+      native:{qbEpaPerPlay:q.epa_per_qb_play!=null?Number(q.epa_per_qb_play):NaN,anyA:Number(q.any_a),passSuccessRate:Number(q.pass_success_rate),qbRushEpaPerAttempt:Number(q.rush_epa_per_attempt),cpoe:Number(q.live_cpoe)}
     };};
     const teams=Object.keys(D.teams).map(t=>component(t));
     const fit=(nativeKey,scoreKey)=>{const pts=teams.map(c=>[Number(c.native[nativeKey]),Number(c[scoreKey])]).filter(([x,y])=>Number.isFinite(x)&&Number.isFinite(y)); if(pts.length<8)return null; const mx=pts.reduce((a,p)=>a+p[0],0)/pts.length,my=pts.reduce((a,p)=>a+p[1],0)/pts.length; const den=pts.reduce((a,p)=>a+(p[0]-mx)**2,0); if(den<=1e-9)return null; const b=pts.reduce((a,p)=>a+(p[0]-mx)*(p[1]-my),0)/den; return {a:my-b*mx,b};};
-    const fits={epa:fit('actualPassEpaPerAttempt','epa'),anya:fit('anyA','anya'),success:fit('passSuccessRate','success'),rushing:fit('qbRushEpaPerAttempt','rushing'),cpoe:fit('cpoe','cpoe')};
+    const fits={epa:fit('qbEpaPerPlay','epa'),anya:fit('anyA','anya'),success:fit('passSuccessRate','success'),rushing:fit('qbRushEpaPerAttempt','rushing'),cpoe:fit('cpoe','cpoe')};
     const weights={epa:30,anya:30,success:20,rushing:10,cpoe:10};
-    const scoreGame=g=>{const att=Math.max(1,Number(g.passAttempts)||0), sacks=Math.max(0,Number(g.sacks)||0); const anya=(Number(g.passYards)||0)+20*(Number(g.passTds)||0)-45*(Number(g.interceptions)||0)-(Number(g.sackYards)||0); const vals={epa:(Number(g.passEpa)||0)/att,anya:anya/Math.max(1,att+sacks),success:(Number(g.passSuccesses)||0)/att,rushing:(Number(g.qbRushAttempts)||0)>0?(Number(g.qbRushEpa)||0)/Number(g.qbRushAttempts):0,cpoe:Number(g.cpoe)}; let sum=0,wt=0; for(const [k,w] of Object.entries(weights)){const f=fits[k],v=vals[k]; if(f&&Number.isFinite(v)){sum+=Math.max(0,Math.min(100,f.a+f.b*v))*w;wt+=w;}} return wt?sum/wt:null;};
+    const scoreGame=g=>{const att=Math.max(1,Number(g.passAttempts)||0), sacks=Math.max(0,Number(g.sacks)||0); const anya=(Number(g.passYards)||0)+20*(Number(g.passTds)||0)-45*(Number(g.interceptions)||0)-(Number(g.sackYards)||0); const vals={epa:Number(g.qbPlays)>0?Number(g.qbTotalEpa)/Number(g.qbPlays):NaN,anya:anya/Math.max(1,att+sacks),success:(Number(g.passSuccesses)||0)/att,rushing:(Number(g.qbRushAttempts)||0)>0?(Number(g.qbRushEpa)||0)/Number(g.qbRushAttempts):0,cpoe:Number(g.cpoe)}; let sum=0,wt=0; for(const [k,w] of Object.entries(weights)){const f=fits[k],v=vals[k]; if(f&&Number.isFinite(v)){sum+=Math.max(0,Math.min(100,f.a+f.b*v))*w;wt+=w;}} return wt?sum/wt:null;};
     const scored=games.map(g=>({g,score:scoreGame(g)})).filter(x=>Number.isFinite(x.score)); if(scored.length<2)return 0;
     const normal=scored.reduce((a,x)=>a+x.score,0)/scored.length; let num=0,den=0; const n=scored.length; scored.forEach((x,i)=>{const rec=n-1-i,w=rec===0?2:rec===1?1.75:rec===2?1.5:rec===3?1.25:1;num+=x.score*w;den+=w;});
     return Math.max(-4,Math.min(4,0.40*((num/den)-normal)));
@@ -1613,6 +1727,7 @@
       penaltyPriorByTeam: {},
       penaltyCalibration: S.liveGameFlow2026?.penalty_calibration || null,
       historicalReference: S.liveGameFlow2026?.v104_reference || null,
+      qbEpaDefinition: LP.gameFlowQbStatus(S.liveGameFlow2026).ready ? S.liveGameFlow2026.qb_epa_definition : null,
       useChartedPassRush: true,
       priorProfiles: M.profiles || {},
       // V82 integrity contract: the profile engine must always know what games
@@ -1645,11 +1760,19 @@
     for (const t of Object.keys(D.teams || {})) {
       const p=value?.[t], q=p?.qb;
       if (!p || !q || !Number.isFinite(Number(p.qbIndex))) continue;
+      if (q.unavailable) continue;
+      if (S.qbInputWarning) {
+        q.data_state='last-known-good';
+        p._live.qbDataState='last-known-good';
+        if (p._live.freshness?.qb) p._live.freshness.qb.current=false;
+      }
       const recency=qbRecencyAdjustmentFromProfiles(t,value);
       q.pre_recency_qb_index=Number(p.qbIndex);
       q.recency_adjustment=recency;
       p.qbIndex=Math.max(0,Math.min(100,Number(p.qbIndex)+recency));
       q.canonical_force_qb_rating=p.qbIndex;
+      p.offenseCompositeRaw=LP.rawOffenseCompositeFrom(p);
+      p.offenseComposite=LP.offenseCompositeFrom(p);
     }
     const teamDiagnostics={};
     for (const t of Object.keys(D.teams || {})) {
@@ -1703,6 +1826,7 @@
       penaltyPriorByTeam: {},
       penaltyCalibration: S.liveGameFlow2026?.penalty_calibration || null,
       historicalReference: S.liveGameFlow2026?.v104_reference || null,
+      qbEpaDefinition: LP.gameFlowQbStatus(S.liveGameFlow2026).ready ? S.liveGameFlow2026.qb_epa_definition : null,
       useChartedPassRush: true,
       priorProfiles: M.profiles || {},
       schedule,
@@ -1794,7 +1918,7 @@
     // the shared pure transform so the same logic is regression-tested outside
     // the UI and cannot silently diverge from the live profile pipeline.
     const baseProfile = profile(t);
-    const unitOverlaySuppressed = suppressQbUnitScenarioOverlay(t, baseProfile);
+    const unitOverlaySuppressed = Boolean(baseProfile.qb?.unavailable) || suppressQbUnitScenarioOverlay(t, baseProfile);
     const scenarioResult = (!unitOverlaySuppressed && LP?.applyQbCarryoverScenario)
       ? LP.applyQbCarryoverScenario(baseProfile, forceBefore, forceAfter)
       : { profile: { ...baseProfile } };
@@ -1976,11 +2100,13 @@
     const measured=Number.isFinite(Number(p?.qbIndex))?Number(p.qbIndex):null;
     const shown=Number.isFinite(Number(displayed?.qbIndex))?Number(displayed.qbIndex):measured;
     const result={
+      unavailable:Boolean(qb.unavailable),qbDataState:qb.data_state||null,qbUnavailableReason:qb.unavailable_reason||null,
       team:t,qb:qb.qb||null,primaryQbDropbacks:Number(qb.primary_qb_dropbacks||0),qbRoomDropbacks:Number(qb.qb_room_dropbacks||0),primaryQbDropbackShare:Number.isFinite(Number(qb.primary_qb_dropback_share))?Number(qb.primary_qb_dropback_share):null,qbIndex:measured,measuredQbIndex:measured,displayedQbIndex:shown,preseasonQbIndex:prior,
       movement:(prior!=null&&measured!=null)?measured-prior:null,
       scenarioAdjustment:(measured!=null&&shown!=null)?shown-measured:0,
       scenario:scenario?{qb:scenario.qb||null,restoreElo:Number(scenario.restoreElo)||0,forceDelta:Number(scenario.forceDelta)||0,baseQbIndex:Number(scenario.baseQbIndex),displayedQbIndex:shown}:null,
       qbRegimeCorrection:state?.qbRegimeCorrection||null,
+      qbEpaPerPlay:qb.epa_per_qb_play!=null && Number.isFinite(Number(qb.epa_per_qb_play))?Number(qb.epa_per_qb_play):null,
       actualPassEpaPerAttempt:Number.isFinite(Number(qb.actual_pass_epa_per_attempt))?Number(qb.actual_pass_epa_per_attempt):null,
       opponentAdjustedPassEpa:Number.isFinite(Number(qb.opponent_adjusted_epa_per_attempt))?Number(qb.opponent_adjusted_epa_per_attempt):null,
       opponentCoverageIndex:Number.isFinite(Number(qb.opponent_coverage_index))?Number(qb.opponent_coverage_index):null,
@@ -2286,6 +2412,7 @@
   }
 
   async function saveManualPressure(teamCode, button) {
+    if (!USE_HASH_ROUTING) return;
     const t=canon(teamCode);
     const value=document.querySelector(`[data-manual-pressure-value="${t}"]`)?.value;
     const asOf=document.querySelector(`[data-manual-pressure-date="${t}"]`)?.value;
@@ -2310,19 +2437,22 @@
   }
 
   function updateCenter() {
+    const local=USE_HASH_ROUTING;
     const teams=Object.keys(D.teams).sort((a,b)=>team(a).name.localeCompare(team(b).name));
     const states=teams.map(t=>[t,metricFreshness(t)]);
     const current=states.filter(([,x])=>x.overall==='current'||x.overall==='preseason').length;
     const attention=states.filter(([,x])=>x.overall==='partial'||x.overall==='stale').map(([t])=>t);
     const last=S.lastUpdateScope?.at ? new Date(S.lastUpdateScope.at).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}) : '-';
-    return layout(`<div class="section-title"><div><div class="eyebrow">Update Center</div><h2>Canonical live team snapshots</h2><p>Refresh one team or the whole league. Every successful source update feeds the same unit ratings, FORCE rating, rankings, team pages, matchups, projections, and future forecasts.</p></div></div>
-      <section class="card update-summary"><div class="update-summary-actions"><button class="primary" id="updateAllTeams">↻ Update all 32 teams</button><button class="ghost" id="updateStaleTeams" ${attention.length?'':'disabled'}>Update missing / stale (${attention.length})</button><button class="ghost" id="collectDiagnostics">Collect diagnostic report</button></div><div class="update-summary-stats"><span><b>${current}</b> current/preseason</span><span><b>${attention.length}</b> need attention</span><span>Last requested update: <b>${last}</b></span></div></section>
-      <section class="card force-diagnostic-card"><div class="card-head"><div><div class="eyebrow">Troubleshooting</div><h3>Live-data report</h3></div><span class="chip">${FORCE_DIAG_VERSION}</span></div><p class="raw">If a refresh fails, click <b>Collect diagnostic report</b>. It records which data sources loaded, which ones did not, what weeks were available, and which teams are still waiting for fresh data.</p><textarea id="diagnosticOutput" class="force-diagnostic-output" hidden readonly spellcheck="false"></textarea><div id="diagnosticFeedback" class="raw"></div></section>
+    const actions=local?`<button class="primary" id="updateAllTeams">↻ Update all 32 teams</button><button class="ghost" id="updateStaleTeams" ${attention.length?'':'disabled'}>Update missing / stale (${attention.length})</button><button class="ghost" id="collectDiagnostics">Collect diagnostic report</button>`:'<button class="primary" id="checkLatestSnapshot">Check latest snapshot</button>';
+    const diagnostic=local?`<section class="card force-diagnostic-card"><div class="card-head"><div><div class="eyebrow">Troubleshooting</div><h3>Live-data report</h3></div><span class="chip">${FORCE_DIAG_VERSION}</span></div><p class="raw">If a refresh fails, click <b>Collect diagnostic report</b>. It records which data sources loaded, which ones did not, what weeks were available, and which teams are still waiting for fresh data.</p><textarea id="diagnosticOutput" class="force-diagnostic-output" hidden readonly spellcheck="false"></textarea><div id="diagnosticFeedback" class="raw"></div></section>`:'';
+    return layout(`<div class="section-title"><div><div class="eyebrow">Update Center</div><h2>${local?'Canonical live team snapshots':'Published team data'}</h2><p>${local?'Refresh one team or the whole league. Every successful source update feeds the same unit ratings, FORCE rating, rankings, team pages, matchups, projections, and future forecasts.':'Fresh data are published every 30 minutes. Check for the latest snapshot and review team freshness below.'}</p></div></div>
+      <section class="card update-summary"><div class="update-summary-actions">${actions}</div><div class="update-summary-stats"><span><b>${current}</b> current/preseason</span><span><b>${attention.length}</b> need attention</span><span>${local?`Last requested update: <b>${last}</b>`:refreshText()}</span></div></section>
+      ${diagnostic}
       <div class="warning update-policy"><b>How FORCE handles stale data:</b> after a team plays, a current rating is shown only when its source includes that team's latest completed game. If the new data are missing, FORCE does not quietly substitute an older week or a 2025 value. When fresh unit data arrive, those unit changes flow into the team's FORCE Score.</div>
       <section class="update-team-grid">${states.map(([t,x])=>{
         const bridge=unitForceBridge(t,coreCurrentRatings()[t]);
         const log=S.updateLog[t];
-        return `<article class="card update-team-card" style="${teamAccentStyle(t)}"><div class="card-head"><h3>${teamIdentity(t,{size:'sm'})}</h3>${statusChip(x.overall)}</div><div class="update-team-meta"><span>${x.games} completed game${x.games===1?'':'s'}${x.latestWeek?` · through Week ${x.latestWeek}`:''}</span><span>Unit effect on FORCE: <b class="${bridge.forceDelta>0?'positive':bridge.forceDelta<0?'negative':''}">${bridge.forceDelta>=0?'+':''}${fmt(bridge.forceDelta,1)}</b></span>${log?`<span>Last team update: ${new Date(log.at).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}</span>`:''}</div><div class="update-metric-list">${x.items.map(m=>`<div><span>${m.label}</span><b class="${m.current?'positive':'negative'}">${m.current?'Current':'Unavailable'}</b><small>${m.detail}</small></div>`).join('')}</div><button class="ghost update-team-button" data-update-team="${t}">↻ Refresh all ${t} data</button>${manualPressureEditor(t,x)}</article>`;
+        return `<article class="card update-team-card" style="${teamAccentStyle(t)}"><div class="card-head"><h3>${teamIdentity(t,{size:'sm'})}</h3>${statusChip(x.overall)}</div><div class="update-team-meta"><span>${x.games} completed game${x.games===1?'':'s'}${x.latestWeek?` · through Week ${x.latestWeek}`:''}</span><span>Unit effect on FORCE: <b class="${bridge.forceDelta>0?'positive':bridge.forceDelta<0?'negative':''}">${bridge.forceDelta>=0?'+':''}${fmt(bridge.forceDelta,1)}</b></span>${log?`<span>Last team update: ${new Date(log.at).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}</span>`:''}</div><div class="update-metric-list">${x.items.map(m=>`<div><span>${m.label}</span><b class="${m.current?'positive':'negative'}">${m.current?'Current':'Unavailable'}</b><small>${m.detail}</small></div>`).join('')}</div>${local?`<button class="ghost update-team-button" data-update-team="${t}">↻ Refresh all ${t} data</button>`:''}${manualPressureEditor(t,x)}</article>`;
       }).join('')}</section>`, 'update');
   }
 
@@ -3657,7 +3787,7 @@
         ['home', 'Home'], ['rankings', 'FORCE Rankings'], ['qbs', 'QB Rankings'], ['divisions', 'Divisions'], ['playoffs', 'Playoff Picture'], ['slate', 'FORCEcast Slate'], ['matchups', 'Games'],
         ['teams', 'Teams'], ['update', 'Update'], ['lab', 'Roster Lab'], ['model', 'Method']
       ].map(([k, v]) => `<button data-nav="${k}" class="${active === k ? 'active' : ''}">${v}</button>`).join('')}</nav>
-      <div class="top-actions"><span class="status"><i class="dot ${S.refreshError ? 'warn' : ''}"></i>${connectionLabel()}</span><button class="ghost refresh-button" id="refreshData" title="Update schedule plus all current team/player/unit sources and recompute FORCE everywhere">↻ Refresh</button><button class="ghost export-button" id="exportPng" title="Save this page as a PNG">Export PNG</button><span class="refresh-meta" id="refreshMeta">${refreshText()}</span><button class="ghost" data-nav="names">About FORCE</button></div>
+      <div class="top-actions"><span class="status"><i class="dot ${S.refreshError ? 'warn' : ''}"></i>${connectionLabel()}</span><button class="ghost refresh-button" id="refreshData" title="${USE_HASH_ROUTING?'Update schedule plus all current team/player/unit sources and recompute FORCE everywhere':'Check the latest published canonical snapshot'}">↻ Refresh</button><button class="ghost export-button" id="exportPng" title="Save this page as a PNG">Export PNG</button><span class="refresh-meta" id="refreshMeta">${refreshText()}</span><button class="ghost" data-nav="names">About FORCE</button></div>
     </header>
     <main class="shell"><div id="exportCapture" class="export-capture">${S.refreshError ? `<div class="refresh-warning">${S.lastRefreshAt ? 'Refresh failed. Kept the last good data.' : `Live-data bootstrap failed: ${S.refreshError}`}</div>` : ''}${S.statsError ? `<div class="refresh-warning">Some live metrics could not refresh (${S.statsError}). Current values are suppressed unless a fresh or last-known-good live snapshot is available.</div>` : ''}${S.statsWarning ? `<div class="refresh-warning refresh-warning-info">Live metrics refreshed; ${S.statsWarning}.</div>` : ''}${content}
       <div class="footer">FORCE prototype | Ratings and forecasts refresh with current data when available. FORCE Score measures team strength. Luck and FLAG add context but do not directly change the public forecast. See Method for a plain-language explanation of how the model works.</div></div>
@@ -3906,8 +4036,8 @@
     if (games.length<2) return 0;
     const teams=Object.keys(D.teams).map(t=>qbComponentScores(t));
     const fit=(nativeKey,scoreKey)=>{const pts=teams.map(c=>[Number(c.debug?.[nativeKey]),Number(c[scoreKey])]).filter(([x,y])=>Number.isFinite(x)&&Number.isFinite(y)); if(pts.length<8)return null; const mx=pts.reduce((a,p)=>a+p[0],0)/pts.length,my=pts.reduce((a,p)=>a+p[1],0)/pts.length; const den=pts.reduce((a,p)=>a+(p[0]-mx)**2,0); if(den<=1e-9)return null; const b=pts.reduce((a,p)=>a+(p[0]-mx)*(p[1]-my),0)/den; return {a:my-b*mx,b};};
-    const fits={epa:fit('actualPassEpaPerAttempt','epa'),anya:fit('anyA','anya'),success:fit('passSuccessRate','success'),rushing:fit('qbRushEpaPerAttempt','rushing'),cpoe:fit('cpoe','cpoe')};
-    const scoreGame=g=>{const att=Math.max(1,Number(g.passAttempts)||0), sacks=Math.max(0,Number(g.sacks)||0); const anya=(Number(g.passYards)||0)+20*(Number(g.passTds)||0)-45*(Number(g.interceptions)||0)-(Number(g.sackYards)||0); const vals={epa:(Number(g.passEpa)||0)/att,anya:anya/Math.max(1,att+sacks),success:(Number(g.passSuccesses)||0)/att,rushing:(Number(g.qbRushAttempts)||0)>0?(Number(g.qbRushEpa)||0)/Number(g.qbRushAttempts):0,cpoe:Number(g.cpoe)}; let sum=0,wt=0; for(const [k,w] of Object.entries(QB_DEFAULT_WEIGHTS)){const f=fits[k],v=vals[k]; if(f&&Number.isFinite(v)){sum+=Math.max(0,Math.min(100,f.a+f.b*v))*w;wt+=w;}} return wt?sum/wt:null;};
+    const fits={epa:fit('qbEpaPerPlay','epa'),anya:fit('anyA','anya'),success:fit('passSuccessRate','success'),rushing:fit('qbRushEpaPerAttempt','rushing'),cpoe:fit('cpoe','cpoe')};
+    const scoreGame=g=>{const att=Math.max(1,Number(g.passAttempts)||0), sacks=Math.max(0,Number(g.sacks)||0); const anya=(Number(g.passYards)||0)+20*(Number(g.passTds)||0)-45*(Number(g.interceptions)||0)-(Number(g.sackYards)||0); const vals={epa:Number(g.qbPlays)>0?Number(g.qbTotalEpa)/Number(g.qbPlays):NaN,anya:anya/Math.max(1,att+sacks),success:(Number(g.passSuccesses)||0)/att,rushing:(Number(g.qbRushAttempts)||0)>0?(Number(g.qbRushEpa)||0)/Number(g.qbRushAttempts):0,cpoe:Number(g.cpoe)}; let sum=0,wt=0; for(const [k,w] of Object.entries(QB_DEFAULT_WEIGHTS)){const f=fits[k],v=vals[k]; if(f&&Number.isFinite(v)){sum+=Math.max(0,Math.min(100,f.a+f.b*v))*w;wt+=w;}} return wt?sum/wt:null;};
     const scored=games.map(g=>({g,score:scoreGame(g)})).filter(x=>Number.isFinite(x.score)); if(scored.length<2)return 0;
     const normal=scored.reduce((a,x)=>a+x.score,0)/scored.length; let num=0,den=0; const n=scored.length; scored.forEach((x,i)=>{const rec=n-1-i; const w=rec===0?2:rec===1?1.75:rec===2?1.5:rec===3?1.25:1; num+=x.score*w;den+=w;});
     return Math.max(-4,Math.min(4,0.40*((num/den)-normal)));
@@ -3922,15 +4052,16 @@
     const custom=S.qbRankingMode==='custom';
     const rows=Object.keys(D.teams).map(t=>{
       const c=qbComponentScores(t), q=c.debug;
+      if (q.unavailable) return {team:t,qb:q.qb||`${t} quarterbacks`,rating:NaN,c,q};
       const recencyAdj=qbRecencyAdjustment(t); const rating=custom?qbCustomScore(c):Math.max(0,Math.min(100,Number(q.displayedQbIndex??q.measuredQbIndex??50)));
       return {team:t,qb:q.qb||`${t} quarterbacks`,rating,c,q};
     }).filter(r=>Number.isFinite(r.q.primaryQbDropbackShare) && r.q.primaryQbDropbackShare>=0.60).sort((a,b)=>b.rating-a.rating||a.qb.localeCompare(b.qb));
     const total=Object.values(S.qbWeights).reduce((a,v)=>a+Number(v||0),0);
     const controls=Object.keys(QB_DEFAULT_WEIGHTS).map(k=>`<label class="qb-weight"><span>${QB_WEIGHT_LABELS[k]} <b id="qbWeightOut-${k}">${S.qbWeights[k]}%</b></span><input type="range" min="0" max="100" step="1" value="${S.qbWeights[k]}" data-qb-weight="${k}"></label>`).join('');
-    const native=(v,d=2,suffix='')=>Number.isFinite(Number(v))?`${fmt(Number(v),d)}${suffix}`:'-';
+    const native=(v,d=2,suffix='')=>v!=null && v!=='' && Number.isFinite(Number(v))?`${fmt(Number(v),d)}${suffix}`:'-';
     return layout(`<div class="section-title"><div><div class="eyebrow">Quarterback model</div><h2>QB Rankings</h2><p>FORCE's standard quarterback rating, with the underlying football statistics shown in their native units. Main rankings require the listed QB to account for at least 60% of his team's QB dropbacks.</p></div><div class="qb-mode"><button class="${custom?'ghost':'primary'}" data-qb-mode="default">FORCE Default</button><button class="${custom?'primary':'ghost'}" data-qb-mode="custom">Customize</button></div></div>
-      <section class="card qb-builder ${custom?'':'qb-builder-disabled'}"><div class="card-head"><div><h2>${custom?'Your QB Rating':'FORCE Default'}</h2><p class="raw">Default: 30% EPA/play · 30% ANY/A · 20% Success Rate · 10% QB rushing value · 10% CPOE, then opponent-strength, pressure-context, and current-season recency adjustments.</p></div><span class="chip">${custom?`Weights normalize automatically · entered ${total}%`:'Predictive default'}</span></div><div class="qb-weight-grid">${controls}</div>${custom?'<p class="raw">Your weights change this ranking only. They do not alter FORCEcast, team FORCE ratings, or the canonical QB unit. Opponent strength is still applied after the weighted components using the canonical leave-one-matchup-out defense context. The Pressure Adjustment remains contextual and unchanged by your stat weights.</p>':'<p class="raw">The default rating is the canonical QB unit used throughout FORCE. The five statistics are combined, then the final 0-100 QB Rating is adjusted for opponent strength and pass protection. The Recency Adjustment uses current-season games only: 2.00x for the latest game, then 1.75x, 1.50x, 1.25x, and 1.00x thereafter; 40% of the recency-weighted rating difference is applied, capped at ±4 points. Pressure Adjustment is 75% standard-rush protection difficulty and 25% performance under disruption relative to league average. Early-season continuity and sample stabilization still apply.</p>'}</section>
-      <section class="card"><div class="table-wrap qb-ranking-table-wrap"><table class="diagnostic-table qb-ranking-table"><thead><tr><th>#</th><th>Quarterback</th><th>${custom?'Your QB Rating':'FORCE QB Rating'}</th><th>Raw QB Rating</th><th>Opponent Adjustment</th><th>Pressure Adjustment</th><th>Recency Adjustment</th><th>EPA/play</th><th>ANY/A</th><th>Success</th><th>Rush EPA/att</th><th>CPOE</th></tr></thead><tbody>${rows.map((r,i)=>{const adj=custom?qbCustomOpponentAdjustment(r.c):Number(r.q.opponentRatingAdjustment)||0; const olAdj=Number(r.q.olRatingAdjustment)||0; const recAdj=qbRecencyAdjustment(r.team); const rawRating=Math.max(0,Math.min(100,r.rating-adj-olAdj-recAdj)); const olTitle=`75% protection difficulty / 25% performance under pressure · standard-rush pressure ${r.q.standardRushPressureRate==null?'—':(r.q.standardRushPressureRate*100).toFixed(1)+'%'} · under-pressure EPA ${r.q.pressureEpaPerPlay==null?'—':r.q.pressureEpaPerPlay.toFixed(3)} · success ${r.q.pressureSuccessRate==null?'—':(r.q.pressureSuccessRate*100).toFixed(1)+'%'}`; return `<tr><td><b>${i+1}</b></td><td><span class="qb-name-team"><b>${r.qb}</b>${teamMark(r.team,'xxs','right','qb-team-mark')}</span></td><td class="${bandClass(r.rating)}"><b>${fmt(r.rating,1)}</b></td><td><b>${fmt(rawRating,1)}</b></td><td>${adj>=0?'+':''}${fmt(adj,1)}</td><td title="${olTitle}">${olAdj>=0?'+':''}${fmt(olAdj,1)}</td><td>${recAdj>=0?'+':''}${fmt(recAdj,1)}</td><td>${native(r.q.actualPassEpaPerAttempt,3)}</td><td>${native(r.q.anyA,2)}</td><td>${native(r.q.passSuccessRate==null?null:r.q.passSuccessRate*100,1,'%')}</td><td>${native(r.q.qbRushEpaPerAttempt,2)}</td><td>${native(r.q.cpoe,1)}</td></tr>`}).join('')}</tbody></table></div></section>
+      <section class="card qb-builder ${custom?'':'qb-builder-disabled'}"><div class="card-head"><div><h2>${custom?'Your QB Rating':'FORCE Default'}</h2><p class="raw">Default: 30% EPA/play · 30% ANY/A · 20% Success Rate · 10% QB rushing value · 10% CPOE, then opponent-strength, pressure-context, and current-season recency adjustments.</p></div><span class="chip">${custom?`Weights normalize automatically · entered ${total}%`:'Predictive default'}</span></div><div class="qb-weight-grid">${controls}</div>${custom?'<p class="raw">Your weights change this ranking only. They do not alter FORCEcast, team FORCE ratings, or the canonical QB unit. Opponent strength is still applied after the weighted components using the canonical leave-one-matchup-out defense context. The Pressure Adjustment remains contextual and unchanged by your stat weights.</p>':'<p class="raw">The default rating is the canonical QB unit used throughout FORCE. EPA/play counts passes, sacks, scrambles and designed QB runs once, excluding kneels and spikes. The 10% rushing value is an additional boost. The five statistics are combined, then the final 0-100 QB Rating is adjusted for opponent strength and pass protection. The Recency Adjustment uses current-season games only: 2.00x for the latest game, then 1.75x, 1.50x, 1.25x, and 1.00x thereafter; 40% of the recency-weighted rating difference is applied, capped at ±4 points. Pressure Adjustment is 75% standard-rush protection difficulty and 25% performance under disruption relative to league average. Early-season continuity and sample stabilization still apply.</p>'}</section>
+      <section class="card"><div class="table-wrap qb-ranking-table-wrap"><table class="diagnostic-table qb-ranking-table"><thead><tr><th>#</th><th>Quarterback</th><th>${custom?'Your QB Rating':'FORCE QB Rating'}</th><th>Raw QB Rating</th><th>Opponent Adjustment</th><th>Pressure Adjustment</th><th>Recency Adjustment</th><th>EPA/play</th><th>ANY/A</th><th>Success</th><th>Rush EPA/att</th><th>CPOE</th></tr></thead><tbody>${rows.map((r,i)=>{const adj=custom?qbCustomOpponentAdjustment(r.c):Number(r.q.opponentRatingAdjustment)||0; const olAdj=Number(r.q.olRatingAdjustment)||0; const recAdj=qbRecencyAdjustment(r.team); const rawRating=Math.max(0,Math.min(100,r.rating-adj-olAdj-recAdj)); const olTitle=`75% protection difficulty / 25% performance under pressure · standard-rush pressure ${r.q.standardRushPressureRate==null?'—':(r.q.standardRushPressureRate*100).toFixed(1)+'%'} · under-pressure EPA ${r.q.pressureEpaPerPlay==null?'—':r.q.pressureEpaPerPlay.toFixed(3)} · success ${r.q.pressureSuccessRate==null?'—':(r.q.pressureSuccessRate*100).toFixed(1)+'%'}`; return `<tr><td><b>${i+1}</b></td><td><span class="qb-name-team"><b>${r.qb}</b>${teamMark(r.team,'xxs','right','qb-team-mark')}</span></td><td class="${bandClass(r.rating)}"><b>${fmt(r.rating,1)}</b></td><td><b>${fmt(rawRating,1)}</b></td><td>${adj>=0?'+':''}${fmt(adj,1)}</td><td title="${olTitle}">${olAdj>=0?'+':''}${fmt(olAdj,1)}</td><td>${recAdj>=0?'+':''}${fmt(recAdj,1)}</td><td>${native(r.q.qbEpaPerPlay,3)}</td><td>${native(r.q.anyA,2)}</td><td>${native(r.q.passSuccessRate==null?null:r.q.passSuccessRate*100,1,'%')}</td><td>${native(r.q.qbRushEpaPerAttempt,2)}</td><td>${native(r.q.cpoe,1)}</td></tr>`}).join('')}</tbody></table></div></section>
       <p class="raw">FORCE QB Rating is the final 0-100 quarterback score after contextual adjustments. Raw QB Rating is the 0-100 score before opponent, pressure, or recency context is applied. Opponent Adjustment is the number of rating points added or subtracted from the leave-one-matchup-out FORCE QB Rating allowed by the defenses faced. Your own matchup against each defense is excluded from that defense’s baseline, and small remaining samples are stabilized toward league average. Recency Adjustment uses current-season games only: 2.00x for the latest game, then 1.75x, 1.50x, 1.25x, and 1.00x thereafter; 40% of the recency-weighted rating difference is applied, capped at ±4 points. Pressure Adjustment is 75% standard-rush protection difficulty and 25% performance under disruption. In live 2026 data, an explicit pressure flag is preferred; when unavailable, FORCE uses a labeled observable-pressure proxy (QB hit, sack, or FTN-charted throwaway). More standard-rush pressure increases contextual credit; better EPA and Success Rate on disrupted dropbacks increases the performance component. Standard-rush disruption uses hit-or-sack outcomes on four-or-fewer-rusher dropbacks, excluding screens, out-of-pocket plays, and QB-fault sacks when FTN charting identifies them. Pressure-performance inputs remain internal to the Pressure Adjustment rather than appearing as separate leaderboard columns. The five-component raw composite is calibrated with a 1.20x expansion around 50 to counter the mechanical tail compression caused by averaging multiple 0-100 component scores; the individual component statistics themselves are unchanged. All displayed individual statistics remain in their actual observed units.</p>`, 'qbs');
   }
 
@@ -5189,16 +5320,18 @@
     document.querySelectorAll('[data-qb-weight]').forEach((input)=>{ input.disabled=S.qbRankingMode!=='custom'; input.oninput=()=>{ S.qbWeights[input.dataset.qbWeight]=Number(input.value); render(); }; });
 
     const refresh = document.getElementById('refreshData');
-    if (refresh) refresh.onclick = () => refreshSchedule('manual', Object.keys(D.teams));
+    if (refresh) refresh.onclick = () => refreshFromUi('manual', Object.keys(D.teams));
+    const checkLatest=document.getElementById('checkLatestSnapshot');
+    if (checkLatest) checkLatest.onclick=()=>refreshPublishedSnapshot('manual');
     const updateAll=document.getElementById('updateAllTeams');
-    if (updateAll) updateAll.onclick=()=>refreshSchedule('update-all',Object.keys(D.teams));
+    if (updateAll && USE_HASH_ROUTING) updateAll.onclick=()=>refreshFromUi('update-all',Object.keys(D.teams));
     const updateStale=document.getElementById('updateStaleTeams');
-    if (updateStale) updateStale.onclick=()=>{
+    if (updateStale && USE_HASH_ROUTING) updateStale.onclick=()=>{
       const targets=Object.keys(D.teams).filter(t=>['partial','stale'].includes(teamUpdateStatus(t)));
-      if (targets.length) refreshSchedule('update-stale',targets);
+      if (targets.length) return refreshFromUi('update-stale',targets);
     };
     const collectDiagnostics=document.getElementById('collectDiagnostics');
-    if (collectDiagnostics) collectDiagnostics.onclick=async()=>{
+    if (collectDiagnostics && USE_HASH_ROUTING) collectDiagnostics.onclick=async()=>{
       const output=document.getElementById('diagnosticOutput');
       const feedback=document.getElementById('diagnosticFeedback');
       const oldLabel=collectDiagnostics.textContent;
@@ -5217,8 +5350,10 @@
         collectDiagnostics.textContent=oldLabel;
       }
     };
-    document.querySelectorAll('[data-update-team]').forEach((b)=>{ b.onclick=()=>refreshSchedule(`update-${b.dataset.updateTeam}`,[b.dataset.updateTeam]); });
-    document.querySelectorAll('[data-save-pressure]').forEach((b)=>{ b.onclick=()=>saveManualPressure(b.dataset.savePressure,b); });
+    if (USE_HASH_ROUTING) {
+      document.querySelectorAll('[data-update-team]').forEach((b)=>{ b.onclick=()=>refreshFromUi(`update-${b.dataset.updateTeam}`,[b.dataset.updateTeam]); });
+      document.querySelectorAll('[data-save-pressure]').forEach((b)=>{ b.onclick=()=>saveManualPressure(b.dataset.savePressure,b); });
+    }
     const exportBtn = document.getElementById('exportPng');
     if (exportBtn) exportBtn.onclick = () => exportCurrentPagePng(exportBtn);
     const exportBtnMobile = document.getElementById('exportPngMobile');

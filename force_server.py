@@ -33,6 +33,10 @@ UPSTREAMS = {
     '/api/ftn-charting': 'https://github.com/nflverse/nflverse-data/releases/download/ftn_charting/ftn_charting_2026.csv',
 }
 TTL = {'/api/schedule': 300, '/api/team-stats': 900, '/api/player-stats': 900, '/api/pfr-pass': 3600, '/api/pfr-pass-prior': 21600, '/api/ftn-charting': 1800}
+# Private container namespace, never forwarded by the public Worker/DO fetch.
+# This route is a network/RPC boundary, not a browser header-based privilege.
+INTERNAL_BOOTSTRAP_PREFIX = '/__force_internal/bootstrap'
+INTERNAL_BOOTSTRAP_PATHS = set(UPSTREAMS) | {'/api/health', '/api/current-pressure', '/api/game-flow-2026'}
 CACHE = {}
 LOCK = threading.Lock()
 APP_VERSION = 'V149'
@@ -102,11 +106,16 @@ PRESSURE_OVERRIDE_PATH = BASE_DIR / 'data' / 'pressure-current.manual.json'
 PBP_2026_URL = 'https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz'
 PBP_2025_URL = 'https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2025.csv.gz'
 PENALTY_REFERENCE_2025_CACHE_KEY = '/derived/penalty-reference-2025-v97-score-aware'
-V104_REFERENCE_2025_CACHE_KEY = '/derived/v106-qb-current-season-reference-2025-v3'
+V104_REFERENCE_2025_CACHE_KEY = '/derived/v149-qb-all-play-reference-2025-v4'
+QB_EPA_DEFINITION = 'v149-all-play'
+QB_ID_SOURCE_2025 = '2025-player-stats-positional'
+GAME_FLOW_CACHE_KEY = '/api/game-flow-2026-v149-qb-all-play'
 PERFORMANCE_LUCK_2025_CACHE_KEY = '/derived/performance-luck-calibration-2025-v121'
 PENALTY_MODEL_VERSION = 'V97 score-aware same-state nflfastR-derived EPA + same-model nflfastR WPA + scoring-play counterfactuals + dedicated special-teams reconstruction + canonical game-row aggregation + approved 40/25/20/15 blend + direct-value coherence guard + capped component z-scores'
 PENALTY_PRIOR_EQUIV_GAMES = 0.0
 GAME_FLOW_CACHE_TTL = 900
+GAME_FLOW_BUILD_CONDITION = threading.Condition()
+GAME_FLOW_FLIGHT = None
 EP_SURFACE_2025_CACHE_KEY = '/derived/ep-state-surface-2025-v97'
 _EP_SURFACE_2025 = None
 _EP_SURFACE_LOCK = threading.Lock()
@@ -1653,8 +1662,8 @@ def _pbp_float(value):
         return None
 
 
-def _defensive_points_per_drive_games(rows):
-    """Return per-game drive scoring, sack-free pass EPA, OL disruption, and V103 QB rushing.
+def _defensive_points_per_drive_games(rows, qb_player_ids=None):
+    """Return drive scoring, legacy pass EPA, OL disruption, QB rushing and all-play QB EPA.
 
     Drives count only possessions with at least one real offensive scrimmage snap
     (or a field-goal attempt) and exclude kneel-only possessions. Points are
@@ -1691,6 +1700,8 @@ def _defensive_points_per_drive_games(rows):
     pass_protection_disruptions={}
     qb_rush_epa={}
     qb_rush_attempts={}
+    qb_total_epa={}
+    qb_plays={}
     drive_keys={}
     for row in rows:
         season_type=str(row.get('season_type') or row.get('game_type') or '').upper()
@@ -1779,16 +1790,32 @@ def _defensive_points_per_drive_games(rows):
         rusher_id=str(row.get('rusher_player_id') or '').strip()
         normal_qb_rush=(
             down is not None and 1 <= down <= 4
-            and _pbp_truthy(row.get('rush_attempt'))
+            and (_pbp_truthy(row.get('rush_attempt')) or _pbp_truthy(row.get('qb_scramble')))
             and not _pbp_truthy(row.get('qb_kneel'))
-            and rusher_id and rusher_id in qb_ids_by_game_team.get((game_id,posteam),set())
+            and not _pbp_truthy(row.get('qb_spike'))
+            and not _pbp_truthy(row.get('sack'))
+            and not _pbp_truthy(row.get('no_play'))
+            and (_pbp_truthy(row.get('qb_scramble')) or rusher_id in (qb_player_ids or set()) or
+                 (rusher_id and rusher_id in qb_ids_by_game_team.get((game_id,posteam),set())))
         )
         if normal_qb_rush:
             epa=_pbp_float(row.get('epa'))
-            if epa is not None:
+            if epa is not None and math.isfinite(epa):
                 key=(game_id,posteam)
                 qb_rush_epa[key]=qb_rush_epa.get(key,0.0)+epa
                 qb_rush_attempts[key]=qb_rush_attempts.get(key,0)+1
+
+        # Canonical QB EPA/play: a UNION of dropbacks and meaningful QB rushes.
+        # A scramble may carry both pass/rush flags; each PBP row contributes once.
+        # Keep this separate from sack-free Coverage and pressure-performance EPA.
+        qb_value_play=(normal_dropback or normal_qb_rush) and not (
+            _pbp_truthy(row.get('qb_kneel')) or _pbp_truthy(row.get('qb_spike')) or _pbp_truthy(row.get('no_play')))
+        if qb_value_play:
+            epa=_pbp_float(row.get('epa'))
+            if epa is not None and math.isfinite(epa):
+                key=(game_id,posteam)
+                qb_total_epa[key]=qb_total_epa.get(key,0.0)+epa
+                qb_plays[key]=qb_plays.get(key,0)+1
 
         drive=str(row.get('drive') or '').strip()
         if not drive:
@@ -1832,6 +1859,10 @@ def _defensive_points_per_drive_games(rows):
             'away_qb_rush_epa':float(qb_rush_epa.get((game_id,away),0.0)),
             'home_qb_rush_attempts':int(qb_rush_attempts.get((game_id,home),0)),
             'away_qb_rush_attempts':int(qb_rush_attempts.get((game_id,away),0)),
+            'home_qb_total_epa':float(qb_total_epa.get((game_id,home),0.0)),
+            'away_qb_total_epa':float(qb_total_epa.get((game_id,away),0.0)),
+            'home_qb_plays':int(qb_plays.get((game_id,home),0)),
+            'away_qb_plays':int(qb_plays.get((game_id,away),0)),
         })
     return sorted(out,key=lambda x:(x['week'],x['game_id']))
 
@@ -2230,8 +2261,9 @@ def performance_luck_calibration_2025_payload(force=False):
 def _v104_reference_from_drive_games(games, max_window=4):
     """Build same-sized 2025 empirical windows for V104 QB and OL calibration.
 
-    The pass metric is sack-free actual-pass EPA/attempt, matching V101/V102 PBP
-    ownership. OL is hit-OR-sack disruption per dropback, matching V102's
+    Legacy pass EPA stays sack-free, matching V101/V102 ownership. Canonical QB
+    EPA/play also includes sacks and meaningful QB rushes, counted once.
+    OL is hit-OR-sack disruption per dropback, matching V102's
     de-duplicated protection definition. Rolling windows are by team games (byes
     therefore do not break a window).
     """
@@ -2247,6 +2279,8 @@ def _v104_reference_from_drive_games(games, max_window=4):
                 'pass_epa':float(g.get(f'{side}_coverage_pass_epa') or 0.0),
                 'pass_attempts':int(g.get(f'{side}_coverage_pass_attempts') or 0),
                 'pass_successes':int(g.get(f'{side}_coverage_pass_successes') or 0),
+                'qb_total_epa':float(g.get(f'{side}_qb_total_epa') or 0.0),
+                'qb_plays':int(g.get(f'{side}_qb_plays') or 0),
                 'ol_disruptions':int(g.get(f'{side}_pass_protection_disruptions') or 0),
                 'ol_dropbacks':int(g.get(f'{side}_pass_protection_dropbacks') or 0),
             }
@@ -2255,12 +2289,15 @@ def _v104_reference_from_drive_games(games, max_window=4):
         arr.sort(key=lambda x:(x['week'],x['game_id']))
     windows={}
     for n_games in range(1,max_window+1):
-        qb_vals=[]; qb_success_vals=[]; ol_vals=[]
+        qb_vals=[]; qb_all_play_vals=[]; qb_success_vals=[]; ol_vals=[]
         for arr in by_team.values():
             if len(arr)<n_games:
                 continue
             for i in range(0,len(arr)-n_games+1):
                 seg=arr[i:i+n_games]
+                qp=sum(x['qb_plays'] for x in seg)
+                if qp>0:
+                    qb_all_play_vals.append(sum(x['qb_total_epa'] for x in seg)/qp)
                 pa=sum(x['pass_attempts'] for x in seg)
                 if pa>0:
                     qb_vals.append(sum(x['pass_epa'] for x in seg)/pa)
@@ -2270,6 +2307,7 @@ def _v104_reference_from_drive_games(games, max_window=4):
                     ol_vals.append(sum(x['ol_disruptions'] for x in seg)/db)
         windows[str(n_games)]={
             'qb_pass_epa':[round(x,8) for x in qb_vals],
+            'qb_epa_per_play':[round(x,8) for x in qb_all_play_vals],
             'qb_pass_success_rate':[round(x,8) for x in qb_success_vals],
             'ol_disruption_rate':[round(x,8) for x in ol_vals],
         }
@@ -2277,7 +2315,14 @@ def _v104_reference_from_drive_games(games, max_window=4):
 
 
 def _v106_reference_valid(obj):
-    if not isinstance(obj, dict) or obj.get('version') != 'V106-QB-CURRENT-SEASON-REFERENCE-3':
+    if not isinstance(obj, dict) or obj.get('version') != 'V149-QB-ALL-PLAY-REFERENCE-4':
+        return False
+    ids = obj.get('qb_player_ids') or []
+    if (obj.get('season') != 2025 or obj.get('qb_id_source') != QB_ID_SOURCE_2025
+            or not isinstance(ids, list) or len(ids) < 32
+            or any(not isinstance(pid, str) or not re.fullmatch(r'00-\d{7}', pid) for pid in ids)
+            or ids != sorted(set(ids)) or obj.get('qb_id_count') != len(ids)
+            or obj.get('qb_ids_sha256') != hashlib.sha256('\n'.join(ids).encode('utf-8')).hexdigest()):
         return False
     # A full 2025 regular season has 272 games and roughly 544 team-game rows.
     # Reject empty/truncated payloads instead of silently blessing them as a valid
@@ -2289,12 +2334,16 @@ def _v106_reference_valid(obj):
         block=windows.get(n_games) or {}
         if len(block.get('qb_pass_epa') or []) < 400:
             return False
+        if len(block.get('qb_epa_per_play') or []) < 400:
+            return False
         if len(block.get('ol_disruption_rate') or []) < 400:
             return False
         if len(block.get('qb_pass_success_rate') or []) < 400:
             return False
     season_block=windows.get('17') or {}
     if len(season_block.get('qb_pass_epa') or []) < 30:
+        return False
+    if len(season_block.get('qb_epa_per_play') or []) < 30:
         return False
     if len(season_block.get('qb_pass_success_rate') or []) < 30:
         return False
@@ -2303,16 +2352,17 @@ def _v106_reference_valid(obj):
 
 def v104_reference_2025_payload(force=False):
     now=time.time(); key=V104_REFERENCE_2025_CACHE_KEY
+    use_seed = not force or PUBLIC_MODE
     with LOCK:
         cached=CACHE.get(key)
-        if not force and cached:
+        if use_seed and cached:
             try:
                 obj=json.loads(cached['body'].decode('utf-8'))
                 if _v106_reference_valid(obj):
                     return obj
             except Exception:
                 pass
-    if not force:
+    if use_seed:
         disk=_read_disk_cache(key)
         if disk:
             try:
@@ -2322,20 +2372,38 @@ def v104_reference_2025_payload(force=False):
                     return obj
             except Exception:
                 pass
+    if PUBLIC_MODE:
+        message='V149 historical all-play QB reference seed missing or invalid; public regeneration disabled'
+        _server_diag('qb-reference:unavailable', error=message, key=key)
+        raise ValueError(message)
     text=_fetch_text(PBP_2025_URL,timeout=90)
     rows=list(csv.DictReader(io.StringIO(text)))
-    drive_games=_defensive_points_per_drive_games(rows)
+    # Positional weekly IDs also identify a QB whose only game action was a run.
+    # A historical all-play scale must never be certified with passer-only IDs.
+    player_url=UPSTREAMS['/api/player-stats'].replace('2026','2025')
+    player_text=_fetch_text(player_url,timeout=35)
+    player_rows=list(csv.DictReader(io.StringIO(player_text)))
+    qb_ids=_qb_player_ids(player_rows)
+    if len(qb_ids) < 32:
+        raise ValueError('2025 positional QB IDs unavailable or incomplete')
+    drive_games=_defensive_points_per_drive_games(rows,qb_player_ids=qb_ids)
     sample_windows=_v104_reference_from_drive_games(drive_games,17)
     obj={
-        'version':'V106-QB-CURRENT-SEASON-REFERENCE-3',
+        'version':'V149-QB-ALL-PLAY-REFERENCE-4',
         'season':2025,
+        'qb_id_source':QB_ID_SOURCE_2025,
+        'qb_player_ids':sorted(qb_ids),
+        'qb_id_count':len(qb_ids),
+        'qb_ids_sha256':hashlib.sha256('\n'.join(sorted(qb_ids)).encode('utf-8')).hexdigest(),
+        'pbp_input':{'url':PBP_2025_URL,'rows':len(rows),'sha256':hashlib.sha256(text.encode('utf-8')).hexdigest()},
+        'player_stats_input':{'url':player_url,'rows':len(player_rows),'sha256':hashlib.sha256(player_text.encode('utf-8')).hexdigest()},
         'source':'nflverse play-by-play 2025 regular season',
-        'method':'rolling team-game windows through 17 games; QB=sack-free actual-pass EPA/attempt + pass success rate; OL=de-duplicated QB-hit OR sack disruption/dropback. V106 stabilizes 2026 QB metrics toward the 2026 league environment before scoring them against 2025 full-season distributions.',
+        'method':'rolling team-game windows through 17 games; canonical QB EPA/play=passes, sacks and QB rushes counted once, excluding kneels/spikes. Legacy sack-free pass EPA and pass success remain separate; OL=de-duplicated QB-hit OR sack disruption/dropback. Current QB metrics retain league-environment stabilization and full-season benchmarking.',
         'game_count':len(drive_games),
         'sample_windows':sample_windows,
     }
     if not _v106_reference_valid(obj):
-        counts={k:{m:len((v or {}).get(m) or []) for m in ('qb_pass_epa','qb_pass_success_rate','ol_disruption_rate')} for k,v in sample_windows.items()}
+        counts={k:{m:len((v or {}).get(m) or []) for m in ('qb_epa_per_play','qb_pass_epa','qb_pass_success_rate','ol_disruption_rate')} for k,v in sample_windows.items()}
         raise ValueError(f'V106 historical reference failed integrity validation: games={len(drive_games)}, windows={counts}')
     body=json.dumps(obj,separators=(',',':')).encode('utf-8')
     with LOCK:CACHE[key]={'ts':now,'body':body,'ctype':'application/json'}
@@ -2343,6 +2411,13 @@ def v104_reference_2025_payload(force=False):
     return obj
 
 
+
+
+def _qb_player_ids(player_rows):
+    return {str(row.get('player_id') or row.get('gsis_id') or '').strip()
+            for row in player_rows
+            if str(row.get('position') or row.get('position_group') or '').upper()=='QB'
+            and (row.get('player_id') or row.get('gsis_id'))}
 
 
 def _v143_pressure_context(pbp_rows, ftn_rows):
@@ -2415,22 +2490,72 @@ def _v143_pressure_context(pbp_rows, ftn_rows):
     elif joined==0: meta['warning']='FTN pressure rows were present but no nflverse game/play IDs joined to live PBP.'
     return out,meta
 
+def _game_flow_qb_valid(obj):
+    fields=('home_qb_total_epa','home_qb_plays','away_qb_total_epa','away_qb_plays')
+    return (isinstance(obj,dict) and obj.get('qb_epa_definition')==QB_EPA_DEFINITION
+            and _v106_reference_valid(obj.get('v104_reference'))
+            and isinstance(obj.get('defensive_drive_games'),list)
+            and all(all(isinstance(game.get(key),(int,float)) and math.isfinite(game[key])
+                        and (not key.endswith('_plays') or game[key]>=0) for key in fields)
+                    for game in obj['defensive_drive_games']))
+
+
 def game_flow_2026_payload(force=False):
+    """One expensive build per process; overlapping forced callers share it too."""
+    global GAME_FLOW_FLIGHT
+    # A lightweight TTL hit is not a build and must never capture a concurrent
+    # privileged force request in a shared cache-only result.
+    if not force:
+        with LOCK:
+            cached=CACHE.get(GAME_FLOW_CACHE_KEY)
+            if cached and time.time()-cached['ts']<GAME_FLOW_CACHE_TTL:
+                try:
+                    if _game_flow_qb_valid(json.loads(cached['body'])):
+                        return cached['body'], True
+                except (ValueError, TypeError):
+                    pass
+    with GAME_FLOW_BUILD_CONDITION:
+        if GAME_FLOW_FLIGHT is not None and not GAME_FLOW_FLIGHT['done']:
+            flight=GAME_FLOW_FLIGHT
+            while not flight['done']:
+                GAME_FLOW_BUILD_CONDITION.wait()
+            if flight['error'] is not None:
+                raise flight['error']
+            return flight['result'][0], True
+        flight={'done':False,'result':None,'error':None}
+        GAME_FLOW_FLIGHT=flight
+    try:
+        result=_build_game_flow_2026_payload(force=force)
+        with GAME_FLOW_BUILD_CONDITION:
+            flight['result']=result
+        return result
+    except Exception as error:
+        with GAME_FLOW_BUILD_CONDITION:
+            flight['error']=error
+        raise
+    finally:
+        with GAME_FLOW_BUILD_CONDITION:
+            flight['done']=True
+            GAME_FLOW_BUILD_CONDITION.notify_all()
+
+
+def _build_game_flow_2026_payload(force=False):
     """Aggregate 2026 scoring flow plus V97 canonical game-row penalty impact.
 
     The score is current-season only. 2025 supplies league normalization only;
     every actual/counterfactual WPA uses the same nflfastR no-spread model, and EPA uses the same nflfastR-derived EP state surface on both sides.
     """
-    now=time.time(); cache_key='/api/game-flow-2026-v137'
+    now=time.time(); cache_key=GAME_FLOW_CACHE_KEY
     with LOCK:
         cached=CACHE.get(cache_key)
         if not force and cached and now-cached['ts']<GAME_FLOW_CACHE_TTL:
-            return cached['body'],True
+            if _game_flow_qb_valid(json.loads(cached['body'])):
+                return cached['body'],True
     try:
         text=_fetch_text(PBP_2026_URL,timeout=55)
     except Exception:
         disk=_read_disk_cache(cache_key)
-        if disk:
+        if disk and _game_flow_qb_valid(json.loads(disk['body'])):
             body=disk['body']
             with LOCK: CACHE[cache_key]={'ts':now,'body':body,'ctype':'application/json'}
             return body,True
@@ -2442,7 +2567,12 @@ def game_flow_2026_payload(force=False):
     except Exception:
         ftn_rows=[]
     v143_pressure,v143_pressure_meta=_v143_pressure_context(rows,ftn_rows)
-    defensive_drive_games=_defensive_points_per_drive_games(rows)
+    try:
+        player_body,_,_=fetch_upstream('/api/player-stats')
+        qb_ids=_qb_player_ids(csv.DictReader(io.StringIO(player_body.decode('utf-8'))))
+    except Exception:
+        qb_ids=None
+    defensive_drive_games=_defensive_points_per_drive_games(rows,qb_player_ids=qb_ids)
     for g in defensive_drive_games:
         gid=str(g.get('game_id') or '')
         for side in ('home','away'):
@@ -2496,13 +2626,15 @@ def game_flow_2026_payload(force=False):
     try:
         v104_reference=v104_reference_2025_payload()
     except Exception as e:
-        v104_reference={'version':'V106-QB-CURRENT-SEASON-REFERENCE-3','season':2025,'valid':False,'game_count':0,'sample_windows':{},'error':str(e)}
+        v104_reference={'version':'V149-QB-ALL-PLAY-REFERENCE-4','season':2025,'valid':False,'game_count':0,'sample_windows':{},'error':str(e)}
         reference_error=str(e)
     ep_surface=_get_ep_surface_2025()
     penalty_games,penalty_profiles=_penalty_context_from_rows(rows,include_postseason=False,wp_model=None,ep_surface=ep_surface)
     _attach_penalty_scores(penalty_games,penalty_profiles,calibration)
     payload={
         'season':2026,'generated_at':datetime.now(timezone.utc).isoformat(),'source':'nflverse play-by-play',
+        'qb_epa_definition':QB_EPA_DEFINITION if _v106_reference_valid(v104_reference) else 'unavailable',
+        'warnings':[reference_error] if reference_error else [],
         'pressure_context':v143_pressure_meta,
         'games':sorted(out_games,key=lambda x:(x['week'],x['game_id'])),'profiles':profiles,'game_count':len(out_games),
         'defensive_drive_games':defensive_drive_games,
@@ -2718,6 +2850,17 @@ class ForceHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         parsed = urlparse(self.path)
         path = parsed.path
+        internal_bootstrap = path.startswith(INTERNAL_BOOTSTRAP_PREFIX + '/')
+        if internal_bootstrap:
+            path = path[len(INTERNAL_BOOTSTRAP_PREFIX):]
+            if path not in INTERNAL_BOOTSTRAP_PATHS:
+                self.send_response(404)
+                self.end_headers()
+                return
+        # Public read URLs never bypass TTLs, regardless of query/header spelling.
+        # Only the private builder route can force in public mode; local operators
+        # retain the established force_refresh query parameter on ordinary APIs.
+        force_refresh = internal_bootstrap or (not PUBLIC_MODE and 'force_refresh' in parse_qs(parsed.query, keep_blank_values=True))
         if PUBLIC_MODE and path in {'/api/diagnostics', '/api/penalty-debug', '/api/penalty-scale-debug'}:
             self.send_response(404)
             self.end_headers()
@@ -2754,7 +2897,7 @@ class ForceHandler(SimpleHTTPRequestHandler):
             try:
                 params=parse_qs(parsed.query or '')
                 team=(params.get('team') or ['BUF'])[0]
-                obj=penalty_debug_payload(team, force='force_refresh=' in parsed.query)
+                obj=penalty_debug_payload(team, force=force_refresh)
                 body=json.dumps(obj,separators=(',',':'),default=str).encode('utf-8')
                 self.send_response(200)
                 self.send_header('Content-Type','application/json; charset=utf-8')
@@ -2772,7 +2915,7 @@ class ForceHandler(SimpleHTTPRequestHandler):
             try:
                 params=parse_qs(parsed.query or '')
                 limit=int((params.get('limit') or ['30'])[0])
-                obj=penalty_scale_debug_payload(force='force_refresh=' in parsed.query,limit=limit)
+                obj=penalty_scale_debug_payload(force=force_refresh,limit=limit)
                 body=json.dumps(obj,separators=(',',':'),default=str).encode('utf-8')
                 self.send_response(200)
                 self.send_header('Content-Type','application/json; charset=utf-8')
@@ -2788,7 +2931,7 @@ class ForceHandler(SimpleHTTPRequestHandler):
             return
         if path == '/api/game-flow-2026':
             try:
-                body, cached = game_flow_2026_payload(force='force_refresh=' in parsed.query)
+                body, cached = game_flow_2026_payload(force=force_refresh)
                 try:
                     parsed_body=json.loads(body.decode('utf-8'))
                     _server_diag('game-flow:response', cache='HIT' if cached else 'MISS', bytes=len(body), game_count=parsed_body.get('game_count'), profile_count=len(parsed_body.get('profiles') or {}), penalty_profile_count=len(parsed_body.get('penalty_profiles') or {}))
@@ -2811,7 +2954,7 @@ class ForceHandler(SimpleHTTPRequestHandler):
             return
         if path == '/api/current-pressure':
             try:
-                body, cached = current_pressure_payload(force='force_refresh=' in parsed.query)
+                body, cached = current_pressure_payload(force=force_refresh)
                 try:
                     parsed_body=json.loads(body.decode('utf-8'))
                     _server_diag('current-pressure:response', cache='HIT' if cached else 'MISS', bytes=len(body), row_count=parsed_body.get('row_count'), as_of=parsed_body.get('as_of'), automatic=parsed_body.get('automatic'), manual=parsed_body.get('manual'))
@@ -2834,7 +2977,7 @@ class ForceHandler(SimpleHTTPRequestHandler):
             return
         if path in UPSTREAMS:
             try:
-                body, ctype, cached = fetch_upstream(path, force='force_refresh=' in parsed.query)
+                body, ctype, cached = fetch_upstream(path, force=force_refresh)
                 self.send_response(200)
                 self.send_header('Content-Type', 'text/csv; charset=utf-8' if 'csv' in ctype or ctype == 'application/octet-stream' else ctype)
                 self.send_header('Content-Length', str(len(body)))

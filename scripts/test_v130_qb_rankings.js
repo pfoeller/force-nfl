@@ -1,4 +1,4 @@
-const fs=require('fs');
+import fs from 'node:fs';
 const app=fs.readFileSync('assets/app.js','utf8');
 const live=fs.readFileSync('model/live_profiles.js','utf8');
 let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};

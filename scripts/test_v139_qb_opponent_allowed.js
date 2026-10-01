@@ -1,8 +1,8 @@
-const fs=require('fs');
+import fs from 'node:fs';
 const app=fs.readFileSync('assets/app.js','utf8');
 const lp=fs.readFileSync('model/live_profiles.js','utf8');
 function ok(x,m){if(!x)throw new Error(m)}
-ok(app.includes("expected FORCE V139"),'client identity V139');
+ok(app.includes("expected FORCE V149"),'client identity V139');
 ok(lp.includes('leave-one-matchup-out'),'leave-one-out method documented');
 ok(lp.includes('g.team!==t'),'evaluated team matchup excluded from defense baseline');
 ok(lp.includes('stabilizerDropbacks:100'),'small defense sample stabilized');
