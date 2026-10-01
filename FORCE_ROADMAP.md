@@ -49,7 +49,7 @@ Documentation chronology matters. [README](README.md) still describes V105; [mod
 5. Use the linked technical documents rather than duplicating their mechanisms here. Report conflicting or stale documentation as intake evidence in the tranche handoff.
 6. After completion, update status/history as authorized, identify newly unblocked candidates, and stop for owner direction.
 
-There is no new implementation tranche in progress merely because this roadmap exists. All Product / UX implementation and investigation entries remain `PLANNED`; `PRESERVE` entries are ongoing constraints. The 2026-10-01 owner intake below records direction and decisions, not implementation completion or permission to start Phase 1.
+There is no new implementation tranche in progress merely because this roadmap exists. Product / UX implementation and investigation entries remain `PLANNED` unless the item and the Completed / history table record a later authorized change; `PRESERVE` entries are ongoing constraints. The 2026-10-01 owner intake below records direction and decisions, not implementation completion or permission to start Phase 1.
 
 ## Execution doctrine
 
@@ -168,19 +168,21 @@ Priority does not override phase order or dependencies.
 
 #### UX-14 — Public methodology depth
 
-- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner decision: 2026-10-01.** Public explanations should be high-level and sufficient to understand/use FORCE. This resolves the earlier open depth direction; it does not approve a particular removal list.
+- **Decision status: CONFIRMED; Execution status: REVIEW (inventory step only); Priority: unset. Owner decision: 2026-10-01.** Public explanations should be high-level and sufficient to understand/use FORCE. This resolves the earlier open depth direction; it does not approve a particular removal list.
 - **Direction:** Deep mechanics, exact formulas, provider details, implementation internals, and unusually detailed methodology should not be spread through ordinary public pages. Some About FORCE / Method material may belong in internal documentation or a future deeper/paid layer; no paid product or placement is selected by this item.
 - **Required inventory before removal:** Inventory EVERY customer-facing explanation on EVERY public page: About FORCE, Method, rankings, QB, Games, matchup/FORCEcast, team pages, standings/playoffs, retained labs and surfaces pending removal, cards, footnotes, tooltips, loaders/status text, and any other public explanatory text.
 - **Classification / OWNER APPROVAL gate:** Classify each explanation as `KEEP PUBLIC`, `SIMPLIFY PUBLIC`, `REMOVE FROM PUBLIC`, or `RESERVE FOR DEEPER / FUTURE PAID LAYER`. Present the proposed removal/simplification inventory to the owner. Do NOT remove customer-facing explanatory content until the owner explicitly confirms the proposed removals. Preserve technical/model documentation internally when public copy is removed.
 - **Dependencies/non-goals:** Gates relevant `UX-06`/`UX-04` copy work; coordinate `UX-19`'s separately decided tool removal, `UX-20` voice, `UX-22` education, and `UX-18`'s still-open market disclosure placement. Preserve public limitations/benchmark transparency. No wholesale deletion or formula/model change.
 - **Acceptance / next candidate:** Complete inventory, classifications, retained internal destinations, and recorded owner approval of the actual removal list before a separately authorized content tranche. Related: [brand/copy guidance](BRAND_FORCE.md), [Method/application](assets/app.js).
+- **Progress note (2026-10-01, `claude/roadmap-lane`, uncommitted to `main`):** Inventory, proposed classifications and internal destinations delivered in [UX-14 public explanation inventory](UX14_PUBLIC_EXPLANATION_INVENTORY.md). Owner approval of the removal/simplification list is still pending; no public explanation was removed. Branch review and integration are pending.
 
 #### UX-16 — Prototype badge / positioning
 
-- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner decision: 2026-10-01.** FORCE is no longer a prototype; remove public-facing prototype labeling/positioning.
+- **Decision status: CONFIRMED; Execution status: REVIEW; Priority: unset. Owner decision: 2026-10-01.** FORCE is no longer a prototype; remove public-facing prototype labeling/positioning.
 - **Scope/invariant:** Badge, footer, and other public positioning copy. Keep the FORCE brand unchanged; do not substitute another misleading maturity label. This is a bounded copy change, not a rebrand.
 - **Prior context:** Keep/rename/remove was previously open. The owner selected removal; do not reopen it as a design choice without new owner direction/evidence. The separate expanded-name question in `UX-31` remains open.
 - **Acceptance / next candidate:** Inventory public prototype references and remove them in a separately authorized tranche, verifying brand continuity and accurate positioning. Related: [application](assets/app.js), [brand guidance](BRAND_FORCE.md).
+- **Completion note (2026-10-01, `claude/roadmap-lane`; not merged or deployed):** Public references found: the header "prototype" badge, the footer "FORCE prototype" prefix, and the About FORCE "Prototype name" warning. All three were removed and the orphaned badge styles deleted; the FORCE mark, footer explanation and expanded name are unchanged. Remaining matches are non-public (a code comment, the unused `prototypeDate` data key, historical docs). Evidence: `scripts/test_ux16_public_positioning.mjs`, safe suite, desktop/tablet/mobile checks. Awaiting cross-review and integration.
 
 #### UX-19 — Remove public QB adjustment / QB-return tool
 
@@ -496,6 +498,7 @@ At handoff:
 | Date | Milestone | Execution status | Result / evidence | Follow-up |
 | --- | --- | --- | --- | --- |
 | 2026-10-01 | `main @ 8d72a03`, “Fix FORCE QB correctness and migrate V5 reference” | COMPLETE — repository milestone; production deployment not certified by this document | QB semantics, V5 reference/migration, ANY/A, Raw display, and repaired test infrastructure. Recorded verification: 134 safe, 16 release, 25 QB, and 6 snapshot tests passed; historical V4 reproduced and V5 provenance preserved. See baseline and technical references above. | Product / UX audit sequence remains planned; none of its choices were implemented by this milestone. |
+| 2026-10-01 | `claude/roadmap-lane` from `8fc1f87`: `UX-16` prototype-positioning removal and `UX-14` public explanation inventory | REVIEW — branch only; not merged to `main` or deployed | Prototype badge/footer/About warning removed with regression test; inventory and approval proposal in [UX14_PUBLIC_EXPLANATION_INVENTORY.md](UX14_PUBLIC_EXPLANATION_INVENTORY.md). | Owner approval of the `UX-14` list; Codex cross-review and integration review. |
 
 This is a starting marker, not a replacement for the versioned changelogs. Future entries should link the actual completion/release evidence and distinguish local completion from production verification.
 
