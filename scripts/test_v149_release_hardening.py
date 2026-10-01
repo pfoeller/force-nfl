@@ -28,9 +28,11 @@ ok(reference['game_count']==272 and reference['qb_id_count']==81,'full regular s
 ok(reference['pbp_input']['rows']==48771 and reference['player_stats_input']['rows']==19422,'full input provenance retained')
 old=json.loads((root/'data/live-cache/bdaac89c27e7bd1dd454.bin').read_bytes())
 ok(not server._v106_reference_valid(old),'old v3 reference rejected')
+v4=json.loads((root/'data/live-cache/e0914b8c5a086741a555.bin').read_bytes())
+ok(not server._v106_reference_valid(v4),'old canceled-play V4 reference rejected')
 for metric in ('qb_pass_epa','qb_pass_success_rate','ol_disruption_rate'):
-    ok(all(old['sample_windows'][key][metric]==reference['sample_windows'][key][metric] for key in old['sample_windows']), 'legacy historical scale remains identical: '+metric)
-for key in ('version','qb_id_source','qb_player_ids','qb_id_count','qb_ids_sha256'):
+    ok(all(old['sample_windows'][key][metric]==v4['sample_windows'][key][metric] for key in old['sample_windows']), 'frozen V3/V4 legacy scale remains identical: '+metric)
+for key in ('version','qb_epa_definition','qb_id_source','qb_player_ids','qb_id_count','qb_ids_sha256'):
     broken=copy.deepcopy(reference);broken.pop(key)
     ok(not server._v106_reference_valid(broken),'reference rejects missing '+key)
 broken=copy.deepcopy(reference);broken['sample_windows']['17'].pop('qb_epa_per_play')
@@ -66,7 +68,7 @@ with tempfile.TemporaryDirectory(prefix='force-seed-test-') as directory:
         ok(games.call_args.kwargs['qb_player_ids']==set(ids),'local generation passes positional IDs to all-play aggregator')
         ok(data_path.exists() and meta_path.exists(),'local generation writes established bin/json pair')
 
-flow={'qb_epa_definition':'v149-all-play','v104_reference':reference,'defensive_drive_games':[
+flow={'qb_epa_definition':'v149-all-play-v2','v104_reference':reference,'defensive_drive_games':[
     {'home_qb_total_epa':2,'home_qb_plays':20,'away_qb_total_epa':1,'away_qb_plays':20}]}
 ok(server._game_flow_qb_valid(flow),'new game-flow schema validates')
 for marker in (None,'v149-pass-only'):

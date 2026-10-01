@@ -6,7 +6,8 @@ const SNAPSHOT_CHUNK_CHARS = 700000;
 const SNAPSHOT_RECOVERY_KEY = "force:bootstrap:recovery-attempt";
 const SNAPSHOT_RECOVERY_MS = 5 * 60 * 1000;
 const INTERNAL_BOOTSTRAP_PREFIX = "/__force_internal/bootstrap";
-const QB_EPA_DEFINITION = "v149-all-play";
+const QB_EPA_DEFINITION = "v149-all-play-v2";
+const QB_REFERENCE_VERSION = "V149-QB-ALL-PLAY-REFERENCE-5";
 
 export function gameFlowQbValid(body) {
   try {
@@ -15,7 +16,7 @@ export function gameFlowQbValid(body) {
     const ids = ref?.qb_player_ids;
     const fields = ["home_qb_total_epa", "home_qb_plays", "away_qb_total_epa", "away_qb_plays"];
     return flow?.qb_epa_definition === QB_EPA_DEFINITION
-      && ref?.version === "V149-QB-ALL-PLAY-REFERENCE-4" && ref?.season === 2025
+      && ref?.version === QB_REFERENCE_VERSION && ref?.qb_epa_definition === QB_EPA_DEFINITION && ref?.season === 2025
       && ref?.qb_id_source === "2025-player-stats-positional"
       && Array.isArray(ids) && ids.length >= 32 && ref.qb_id_count === ids.length
       && ["1", "2", "3", "4", "17"].every((key) => Array.isArray(ref.sample_windows?.[key]?.qb_epa_per_play) && ref.sample_windows[key].qb_epa_per_play.length >= (key === "17" ? 30 : 400))
@@ -160,7 +161,7 @@ export class ForceContainer extends Container {
         // The first schema migration after rollout must not inherit a recent
         // old-code stale/cache-miss cooldown. Subsequent migration retries remain
         // bounded and persistent just like other read-triggered recovery.
-        const recoveryKey = reason === "schema-migration" ? `${SNAPSHOT_RECOVERY_KEY}:v149-all-play` : SNAPSHOT_RECOVERY_KEY;
+        const recoveryKey = reason === "schema-migration" ? `${SNAPSHOT_RECOVERY_KEY}:${QB_EPA_DEFINITION}` : SNAPSHOT_RECOVERY_KEY;
         const lastAttempt = await this.ctx.storage.get(recoveryKey);
         if (this.bootstrapRefresh) return this.bootstrapRefresh;
         const started = Date.now();

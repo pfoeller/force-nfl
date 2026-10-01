@@ -18,7 +18,7 @@ function build(name){
  api.S.liveGameFlow2026=gameFlowFixture({defensive_drive_games:fixtures[name]});
  return L.buildProfiles({teamRows,playerRows,schedule,teamIds:ids,priorProfiles,
    defensiveDriveContextByTeam:api.defensiveDriveContextMapBeforeWeek(),
-    qbEpaDefinition:'v149-all-play',
+    qbEpaDefinition:'v149-all-play-v2',
     historicalReference:{...qbReference,sample_windows:{...qbReference.sample_windows,17:{qb_epa_per_play:bench,qb_pass_epa:bench,qb_pass_success_rate:bench}}},
    qbPolicy:'v106-current-season-stabilized',coveragePolicy:'v101-attempts',priorGames:1});
 }

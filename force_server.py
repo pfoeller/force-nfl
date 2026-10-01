@@ -106,10 +106,11 @@ PRESSURE_OVERRIDE_PATH = BASE_DIR / 'data' / 'pressure-current.manual.json'
 PBP_2026_URL = 'https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz'
 PBP_2025_URL = 'https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2025.csv.gz'
 PENALTY_REFERENCE_2025_CACHE_KEY = '/derived/penalty-reference-2025-v97-score-aware'
-V104_REFERENCE_2025_CACHE_KEY = '/derived/v149-qb-all-play-reference-2025-v4'
-QB_EPA_DEFINITION = 'v149-all-play'
+V104_REFERENCE_2025_CACHE_KEY = '/derived/v149-qb-all-play-reference-2025-v5'
+QB_REFERENCE_VERSION = 'V149-QB-ALL-PLAY-REFERENCE-5'
+QB_EPA_DEFINITION = 'v149-all-play-v2'
 QB_ID_SOURCE_2025 = '2025-player-stats-positional'
-GAME_FLOW_CACHE_KEY = '/api/game-flow-2026-v149-qb-all-play'
+GAME_FLOW_CACHE_KEY = '/api/game-flow-2026-v149-qb-all-play-v2'
 PERFORMANCE_LUCK_2025_CACHE_KEY = '/derived/performance-luck-calibration-2025-v121'
 PENALTY_MODEL_VERSION = 'V97 score-aware same-state nflfastR-derived EPA + same-model nflfastR WPA + scoring-play counterfactuals + dedicated special-teams reconstruction + canonical game-row aggregation + approved 40/25/20/15 blend + direct-value coherence guard + capped component z-scores'
 PENALTY_PRIOR_EQUIV_GAMES = 0.0
@@ -1715,6 +1716,12 @@ def _pbp_truthy(value):
     return str(value or '').strip().lower() in {'1','1.0','true','t','yes'}
 
 
+def _pbp_no_play(row):
+    """Canonical nflverse cancellation fields; penalty flags alone are not cancellation."""
+    return (_pbp_truthy(row.get('no_play')) or
+            str(row.get('play_type') or '').strip().lower() == 'no_play')
+
+
 def _pbp_float(value):
     try:
         return float(value)
@@ -1739,7 +1746,7 @@ def _defensive_points_per_drive_games(rows, qb_player_ids=None):
         game_id=str(row.get('game_id') or '').strip()
         posteam=_canon_team_code(row.get('posteam'))
         passer_id=str(row.get('passer_player_id') or '').strip()
-        if not game_id or posteam not in TEAM_NAMES or not passer_id:
+        if not game_id or posteam not in TEAM_NAMES or not passer_id or _pbp_no_play(row):
             continue
         if _pbp_truthy(row.get('pass_attempt')) or _pbp_truthy(row.get('sack')):
             qb_ids_by_game_team.setdefault((game_id,posteam),set()).add(passer_id)
@@ -1802,6 +1809,7 @@ def _defensive_points_per_drive_games(rows, qb_player_ids=None):
         down=_pbp_float(row.get('down'))
         actual_pass_attempt=(
             _pbp_truthy(row.get('pass_attempt'))
+            and not _pbp_no_play(row)
             and not _pbp_truthy(row.get('sack'))
             and not _pbp_truthy(row.get('qb_spike'))
             and down is not None and 1 <= down <= 4
@@ -1829,6 +1837,7 @@ def _defensive_points_per_drive_games(rows, qb_player_ids=None):
         # arithmetic that can double-count a sack depending on provider semantics.
         normal_dropback=(
             down is not None and 1 <= down <= 4
+            and not _pbp_no_play(row)
             and not _pbp_truthy(row.get('qb_spike'))
             and (_pbp_truthy(row.get('pass_attempt')) or _pbp_truthy(row.get('sack')))
         )
@@ -1854,7 +1863,7 @@ def _defensive_points_per_drive_games(rows, qb_player_ids=None):
             and not _pbp_truthy(row.get('qb_kneel'))
             and not _pbp_truthy(row.get('qb_spike'))
             and not _pbp_truthy(row.get('sack'))
-            and not _pbp_truthy(row.get('no_play'))
+            and not _pbp_no_play(row)
             and (_pbp_truthy(row.get('qb_scramble')) or rusher_id in (qb_player_ids or set()) or
                  (rusher_id and rusher_id in qb_ids_by_game_team.get((game_id,posteam),set())))
         )
@@ -1869,7 +1878,7 @@ def _defensive_points_per_drive_games(rows, qb_player_ids=None):
         # A scramble may carry both pass/rush flags; each PBP row contributes once.
         # Keep this separate from sack-free Coverage and pressure-performance EPA.
         qb_value_play=(normal_dropback or normal_qb_rush) and not (
-            _pbp_truthy(row.get('qb_kneel')) or _pbp_truthy(row.get('qb_spike')) or _pbp_truthy(row.get('no_play')))
+            _pbp_truthy(row.get('qb_kneel')) or _pbp_truthy(row.get('qb_spike')) or _pbp_no_play(row))
         if qb_value_play:
             epa=_pbp_float(row.get('epa'))
             if epa is not None and math.isfinite(epa):
@@ -2378,7 +2387,8 @@ def _v104_reference_from_drive_games(games, max_window=4):
 
 
 def _v106_reference_valid(obj):
-    if not isinstance(obj, dict) or obj.get('version') != 'V149-QB-ALL-PLAY-REFERENCE-4':
+    if (not isinstance(obj, dict) or obj.get('version') != QB_REFERENCE_VERSION
+            or obj.get('qb_epa_definition') != QB_EPA_DEFINITION):
         return False
     ids = obj.get('qb_player_ids') or []
     if (obj.get('season') != 2025 or obj.get('qb_id_source') != QB_ID_SOURCE_2025
@@ -2452,7 +2462,8 @@ def v104_reference_2025_payload(force=False):
     drive_games=_defensive_points_per_drive_games(rows,qb_player_ids=qb_ids)
     sample_windows=_v104_reference_from_drive_games(drive_games,17)
     obj={
-        'version':'V149-QB-ALL-PLAY-REFERENCE-4',
+        'version':QB_REFERENCE_VERSION,
+        'qb_epa_definition':QB_EPA_DEFINITION,
         'season':2025,
         'qb_id_source':QB_ID_SOURCE_2025,
         'qb_player_ids':sorted(qb_ids),
@@ -2461,7 +2472,7 @@ def v104_reference_2025_payload(force=False):
         'pbp_input':{'url':PBP_2025_URL,'rows':len(rows),'sha256':hashlib.sha256(text.encode('utf-8')).hexdigest()},
         'player_stats_input':{'url':player_url,'rows':len(player_rows),'sha256':hashlib.sha256(player_text.encode('utf-8')).hexdigest()},
         'source':'nflverse play-by-play 2025 regular season',
-        'method':'rolling team-game windows through 17 games; canonical QB EPA/play=passes, sacks and QB rushes counted once, excluding kneels/spikes. Legacy sack-free pass EPA and pass success remain separate; OL=de-duplicated QB-hit OR sack disruption/dropback. Current QB metrics retain league-environment stabilization and full-season benchmarking.',
+        'method':'rolling team-game windows through 17 games; canonical QB EPA/play=passes, sacks and QB rushes counted once, excluding kneels/spikes and canceled plays (truthy no_play OR normalized play_type=no_play). Legacy sack-free pass EPA and pass success remain separate; OL=de-duplicated QB-hit OR sack disruption/dropback. Current QB metrics retain league-environment stabilization and full-season benchmarking.',
         'game_count':len(drive_games),
         'sample_windows':sample_windows,
     }
@@ -2518,7 +2529,7 @@ def _v143_pressure_context(pbp_rows, ftn_rows):
         posteam=_canon_team_code(r.get('posteam'))
         if not gid or not pid or posteam not in TEAM_NAMES:continue
         down=num(r.get('down'))
-        if down is None or not (1<=down<=4) or truth(r.get('qb_spike')):continue
+        if down is None or not (1<=down<=4) or truth(r.get('qb_spike')) or _pbp_no_play(r):continue
         dropback=truth(r.get('pass_attempt')) or truth(r.get('sack'))
         if not dropback:continue
         f=fidx.get((gid,pid))
@@ -2694,7 +2705,7 @@ def _build_game_flow_2026_payload(force=False):
     try:
         v104_reference=v104_reference_2025_payload()
     except Exception as e:
-        v104_reference={'version':'V149-QB-ALL-PLAY-REFERENCE-4','season':2025,'valid':False,'game_count':0,'sample_windows':{},'error':str(e)}
+        v104_reference={'version':QB_REFERENCE_VERSION,'qb_epa_definition':QB_EPA_DEFINITION,'season':2025,'valid':False,'game_count':0,'sample_windows':{},'error':str(e)}
         reference_error=str(e)
     ep_surface=_get_ep_surface_2025()
     penalty_games,penalty_profiles=_penalty_context_from_rows(rows,include_postseason=False,wp_model=None,ep_surface=ep_surface)

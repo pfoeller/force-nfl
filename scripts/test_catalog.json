@@ -73,6 +73,47 @@
       "reason": "Baseline audit: initial V33 carryover panel missing Patrick Mahomes 2025 preset"
     },
     {
+      "file": "test_qb_correctness.mjs",
+      "suites": [
+        "safe",
+        "release",
+        "qb",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_qb_historical_semantics.py",
+      "suites": [
+        "safe",
+        "release",
+        "qb",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_qb_no_play.py",
+      "suites": [
+        "safe",
+        "release",
+        "qb",
+        "server"
+      ],
+      "classification": "regression"
+    },
+    {
+      "file": "test_qb_schema_migration.mjs",
+      "suites": [
+        "safe",
+        "release",
+        "qb",
+        "snapshot",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
       "file": "test_runtime.cjs",
       "suites": [
         "safe"
