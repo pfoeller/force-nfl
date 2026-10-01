@@ -18,12 +18,12 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 134 tests: 102 JavaScript and 32 Python |
+| `npm test` / `npm run test:safe` | 135 tests: 103 JavaScript and 32 Python |
 | `npm run test:release` | 16 release/correctness tests |
-| `npm run test:qb` | 25 QB/pressure regressions |
+| `npm run test:qb` | 26 QB/pressure regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
-| `npm run test:model` | 43 model/unit regressions |
+| `npm run test:model` | 44 model/unit regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
 
@@ -57,7 +57,7 @@ to report the complete selected result.
 
 ## Excluded and special tests
 
-The catalog has 246 entries including the runner, QB correctness and semantic migration regressions. Its 112 default
+The catalog has 247 entries including the runner, QB correctness, Customize audit and semantic migration regressions. Its 112 default
 exclusions remain visible in `test_catalog.json`; exclusion does not mean pass.
 102 retain failing historical assertions/fixtures. The remaining 10 are:
 

@@ -49,7 +49,7 @@ Documentation chronology matters. [README](README.md) still describes V105; [mod
 5. Use the linked technical documents rather than duplicating their mechanisms here. Report conflicting or stale documentation as intake evidence in the tranche handoff.
 6. After completion, update status/history as authorized, identify newly unblocked candidates, and stop for owner direction.
 
-There is no new implementation tranche in progress merely because this roadmap exists. All Product / UX implementation and investigation entries remain `PLANNED`; `PRESERVE` entries are ongoing constraints. The 2026-10-01 owner intake below records direction and decisions, not implementation completion or permission to start Phase 1.
+There is no new implementation tranche in progress merely because this roadmap exists. Product / UX execution states are recorded per item; unspecified entries remain `PLANNED`, and `PRESERVE` entries are ongoing constraints. The 2026-10-01 owner intake below records direction and decisions, not implementation completion or permission to start Phase 1.
 
 ## Execution doctrine
 
@@ -266,10 +266,11 @@ Priority does not override phase order or dependencies.
 
 ### Investigate
 
-All entries in this group have **Decision status: INVESTIGATE; Execution status: PLANNED; Sequence: PHASE 1**. No separate urgency ranking is assigned within this group. Completion means evidence and options, not automatic implementation.
+All entries in this group have **Decision status: INVESTIGATE; Sequence: PHASE 1**. Execution status is `PLANNED` unless the item records progress explicitly. No separate urgency ranking is assigned within this group. Completion means evidence and options, not automatic implementation.
 
 #### UX-08 — QB Customize baseline
 
+- **Execution status: REVIEW (2026-10-01, Codex lane investigation/tooling).** [Reproducible audit and decision brief](UX08_QB_CUSTOMIZE_AUDIT.md) traces the actual model/app and rendered cells, quantifies three labeled synthetic cohorts, and supplies owner-contract alternatives. Decision status remains `INVESTIGATE`; no desired behavior is selected, no production calculation changes, and no resulting implementation tranche is authorized. Branch: `codex/roadmap-lane`, based on `8fc1f87`; final test/commit evidence is in the lane handoff.
 - **Observed:** Untouched 30/30/20/10/10 Customize does not reproduce the published canonical FORCE QB Rating.
 - **Initial root cause:** Both Customize (`qbCustomScore` in [application](assets/app.js)) and canonical FORCE QB Rating apply opponent, pressure, and recency context. Canonical FORCE QB Rating additionally includes prior/continuity blending in [live model](model/live_profiles.js). This genuine pipeline distinction explains why untouched 30/30/20/10/10 Customize does not reproduce canonical Default; it does **not** establish which product behavior is desired.
 - **Questions:** What does Customize claim to customize? Should canonical default weights reproduce canonical Final exactly? If prior/continuity is omitted, should it be labeled as a different analytical rating? Should weight customization retain the canonical context/continuity pipeline? What do Raw and Final mean in custom mode?
@@ -501,7 +502,7 @@ This is a starting marker, not a replacement for the versioned changelogs. Futur
 
 ### Owner direction intake — 2026-10-01
 
-This records decisions and accepted requirements only. All resulting work remains `PLANNED`; no implementation is marked complete by this intake. The authoritative outcome, dependencies, gates, and prior context remain in the referenced items.
+This records decisions and accepted requirements only. At intake, resulting work was `PLANNED`; no implementation was marked complete by that intake. Subsequent item-level progress is recorded in the authoritative entries, alongside outcomes, dependencies, gates, and prior context.
 
 | Owner decision / accepted requirement | Authoritative item(s) | Decision record |
 | --- | --- | --- |
