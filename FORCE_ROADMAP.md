@@ -1,0 +1,541 @@
+# FORCE Roadmap
+
+Canonical project direction and decision record. Established 2026-10-01 from the owner's Product / UX audit intake. This roadmap describes direction, status, dependencies, and completion; it does not authorize execution.
+
+## Purpose and authority
+
+Use this document to understand what work is planned, why it matters, what is decided, what remains open, and which work areas become legitimate candidates after a tranche finishes. Do not infer project direction from an adjacent implementation opportunity or an old audit recommendation.
+
+The owner's active prompt defines the authorized tranche. Roadmap order, a `CONFIRMED` decision status, and an unblocked dependency are not permission to start work. Agents may report completion, discover issues, recommend candidate next work, and propose roadmap updates. They must stop for owner direction before starting a new tranche unless the prompt explicitly authorizes continuation.
+
+An explicit owner instruction can reopen a preservation constraint or change this roadmap's direction. Record that instruction and its resulting decision; do not treat an agent's recommendation as owner approval.
+
+## Current production baseline
+
+The owner-specified starting milestone is **2026-10-01, `main @ 8d72a03`**, “Fix FORCE QB correctness and migrate V5 reference.” It includes:
+
+- Canonical V149 all-play QB EPA semantics: actual passes, sacks, scrambles, and designed QB runs counted once, with kneels, spikes, and canceled plays excluded.
+- V5 historical QB reference, rebuilt with matching canceled-play semantics and pinned provenance.
+- Corrected ANY/A sack-yard handling and compatibility with legacy aliases.
+- Corrected Raw QB Rating display, exposing the calibrated live five-component composite before context and continuity/prior blending.
+- Production schema-migration support for `v149-all-play-v2`, rejecting incompatible old QB inputs.
+- Repaired test infrastructure and the isolated safe test runner.
+
+This identifies the repository/release starting point; a commit alone is not evidence that deployment or production migration succeeded. Record deployed verification separately when an authorized release supplies that evidence. The application identity remains V149.
+
+Technical mechanisms remain in their existing sources and documentation:
+
+| Reference | Use |
+| --- | --- |
+| [Deployment structure](DEPLOYMENT_STRUCTURE.md) | Worker/container/static-asset boundaries, public-mode restrictions, and canonical/generated source layout. |
+| [Testing guide](scripts/TESTING.md) | Suite selection, isolation, worktree checks, test catalog, and excluded/special tests. |
+| [V148 changelog](CHANGELOG_V148.md) | Canonical QB unit propagation and once-only recency application. |
+| [V149 changelog](CHANGELOG_V149.md) | Possession-level score simulation and representative displayed score. |
+| [V124 changelog](CHANGELOG_V124.md) | Representative season versus marginal playoff/division probabilities. |
+| [V137](CHANGELOG_V137.md), [V139](CHANGELOG_V139.md), [V140](CHANGELOG_V140.md) | Pressure, opponent, and recency context history; consult the current source for subsequent changes. |
+| [Brand guidance](BRAND_FORCE.md) | FORCE naming, public-copy principles, and versioned visual-identity history. |
+| [Predictive feature policy](PREDICTIVE_FEATURE_POLICY_V30.md) | Evidence and promotion gates, including the V33 amendment. |
+| [Application](assets/app.js), [live model](model/live_profiles.js), [server](force_server.py), [Worker](src/index.js) | Current implementation, including the V5 reference/semantic compatibility contract. |
+| [Seed helper](scripts/seed_v149_qb_reference.py) | Explicit local historical-reference generation and pinned-input verification. |
+
+Documentation chronology matters. [README](README.md) still describes V105; [model overview](model/README.md) describes earlier forecast architecture; [AUDIT](AUDIT.md) includes historical recommendations. They are context, not a competing current roadmap or proof that an old issue remains unresolved. Revalidate historical claims before proposing current work. Do not rewrite these documents as part of this intake.
+
+## How to use this roadmap
+
+1. Read the baseline, execution doctrine, decision state, and dependencies before proposing substantial work.
+2. Locate the authorized item by its stable ID. `UX-01` through `UX-18` correspond to the original accepted Product / UX audit items; `UX-19` through `UX-31` come from the 2026-10-01 owner-direction intake. Model items use `MD-` IDs; security items use `SEC-` IDs. Every ID has exactly one authoritative roadmap entry.
+3. Separate accepted outcomes from open implementation details. An investigation can establish a cause without deciding the desired product behavior.
+4. Agree a bounded deliverable, non-goals, acceptance criteria, and necessary owner decisions within the active prompt's scope. Do not assign yourself the next tranche.
+5. Use the linked technical documents rather than duplicating their mechanisms here. Report conflicting or stale documentation as intake evidence in the tranche handoff.
+6. After completion, update status/history as authorized, identify newly unblocked candidates, and stop for owner direction.
+
+There is no new implementation tranche in progress merely because this roadmap exists. All Product / UX implementation and investigation entries remain `PLANNED`; `PRESERVE` entries are ongoing constraints. The 2026-10-01 owner intake below records direction and decisions, not implementation completion or permission to start Phase 1.
+
+## Execution doctrine
+
+For future coding agents:
+
+1. Read `FORCE_ROADMAP.md` before proposing substantial new work.
+2. Follow only the authorized item/tranche. Do not automatically implement neighboring items.
+3. When implementation reveals another issue, report evidence in the tranche handoff, classify it, recommend whether it belongs in roadmap intake, and explain urgency/dependencies. Add candidate work directly to `FORCE_ROADMAP.md` only when the active prompt explicitly authorizes roadmap/documentation edits. Do not expand scope except for work required for correctness within the authorized task; explain that dependency. A new product/model choice still requires owner direction.
+4. For `INVESTIGATE`, gather evidence, determine semantics/root cause, prepare options, and stop before selecting a product/model direction unless explicitly authorized.
+5. For `OWNER DECISION`, present alternatives and their consequences. Do not select for the owner.
+6. Treat `PRESERVE` as a constraint unless the authorized prompt explicitly reopens it.
+7. Keep implementation tranches independently reviewable. State concrete non-goals and avoid combining unrelated redesigns.
+8. At completion, report changes, tests/evidence, limitations, and roadmap items now unblocked. Recommend the next candidate work, then **STOP and wait for owner direction** unless continuation was explicitly authorized.
+9. Roadmap ordering is never blanket permission to continue automatically. Commits, publication, deployment, and production verification are separate actions subject to the active task's authorization.
+10. If an authorized prompt appears to bypass a roadmap dependency, phase order, or a `PRESERVE` constraint, state the conflict and confirm the intended scope with the owner before implementing. An explicit owner instruction governs once the conflict is acknowledged and scope is confirmed.
+
+## Roadmap status taxonomy
+
+Decision status and execution status are distinct fields; progress does not settle an open decision.
+
+| Decision status | Meaning |
+| --- | --- |
+| **CONFIRMED** | The problem or desired direction is accepted. Implementation details may still need design work. |
+| **INVESTIGATE** | Evidence suggests a real issue/product question, but root cause and semantics must be established before selecting a change. Agents must not silently convert it into implementation work. |
+| **OWNER DECISION** | Multiple reasonable product/model directions exist. Agents may prepare evidence and options; the owner chooses the direction. |
+| **PRESERVE** | Current behavior/pattern is explicitly valued or invariant. Do not casually redesign it. |
+
+| Execution status | Meaning |
+| --- | --- |
+| **PLANNED** | Recorded for future work; not authorization to begin. |
+| **IN PROGRESS** | An explicitly authorized tranche is underway. |
+| **REVIEW** | Deliverable/evidence is ready for the review specified by its acceptance criteria. This does not imply release authorization. |
+| **COMPLETE** | Authorized acceptance criteria are satisfied and any explicitly required review is resolved; completion evidence is recorded. |
+| **DEFERRED** | Paused/postponed by owner direction, with reason and revisit condition recorded. |
+
+An investigation may be execution-`COMPLETE` while its resulting product choice remains `OWNER DECISION`. A preserved behavior need not be treated as a new implementation task.
+
+## Current execution sequence
+
+The authoritative near-term order is **Phase 1 → Phase 2 → Phase 3**. This is dependency order, not automatic execution authority or a release calendar.
+
+| Phase | Scope | Deliverable and handoff |
+| --- | --- | --- |
+| **PHASE 1 — Understand before redesigning** | Audit `UX-08`–`UX-12` with the revised `UX-09` scope; prepare alternatives for still-open `UX-13`, `UX-15`, `UX-17`, `UX-18`, `UX-24`, and `UX-31`. | Evidence, calculation/source traces, the projection semantic map, baseline contracts/options, and an owner-decision brief. Also prepare the `UX-14` explanation inventory/approval proposal, mobile navigation options for `UX-30`, and quarter-score approach options for `UX-26`. Gather later taper-review evidence for `MD-02` when separately authorized and appropriate. No product-design choices are implemented without a separately authorized prompt. Stop for owner direction. |
+| **PHASE 2 — Build shared UI foundations** | `UX-01`, `UX-02`, `UX-05`, informed by `UX-20`, `UX-23`, `UX-28`, `UX-29`, and `UX-30`. | Shared navigation/header, responsive data-view, and numeric/label conventions, with reviewable examples and applicable responsive/accessibility verification. Account for semantic theme tokens, mobile architecture, universal sort/rank behavior, intentional viewport use, and human-language copy architecture. Obtain owner decisions required by the authorized design; agents do not resolve open `OWNER DECISION` items themselves. Unrelated open choices remain open. |
+| **PHASE 3 — Apply foundations in bounded product tranches** | `UX-03`, `UX-04`, `UX-06`, `UX-07`. | Independently reviewable page/workflow changes using the shared foundations. Avoid a giant redesign PR or repeated page-local solutions. |
+
+Phase 1 findings must be recorded before choosing changes that depend on their semantics. Phase 2 numeric labels depend on `UX-10` and incorporate `UX-25`'s display rule; navigation placement depends on `UX-15` and the still-open destinations in `UX-30`; semantic colors depend on `UX-13`. Theme modes (`UX-23`) are confirmed without deciding that palette. Phase 3 copy depends on `UX-14`'s inventory/owner approval gate and `UX-18`; matchup graphics remain subject to `UX-17`. Prototype removal (`UX-16`) is now decided, not an open positioning choice. Pending choices do not authorize agents to invent defaults; bounded work can leave unrelated decisions unresolved when the owner authorizes that scope.
+
+Apply the new accepted directions through separately authorized, independently reviewable tranches using the relevant foundations: `UX-16`/`UX-19` public-surface changes; `UX-20`–`UX-22` copy/narratives/education; `UX-25`/`UX-26` odds/quarter presentation; and `UX-27`/`UX-28` loader/layout application. This does not assign an unsupplied priority or bypass an item's gate. `UX-30` is the broader mobile initiative informing foundations and their later page applications, not a duplicate navigation/table implementation.
+
+**Security (`SEC-01`) is a separate CONFIRMED HIGH-priority workstream.** It need not wait for all UX work to finish and must not be buried in visual redesign. Bound each authorized security cycle independently around its threat model, safe test environment, and findings ledger. Neither its priority nor this sequence authorizes starting it automatically.
+
+## Product / UX
+
+Initial evidence is the owner's 2026-10-01 live product audit/intake. `CONFIRMED` accepts the supplied problem/direction, not an agent-selected design. Detailed reproductions, widths, screenshots, and current-source traces belong in each authorized tranche's evidence record. No extra page defect is assumed from a vague example.
+
+### Confirmed
+
+`UX-01`–`UX-07` retain **Decision status: CONFIRMED; Execution status: PLANNED; Priority: HIGH**. Resolved owner decisions and new confirmed directions below have explicit item-level status/priority; they do not inherit an invented HIGH priority.
+
+Priority does not override phase order or dependencies.
+
+#### UX-01 — Navigation / header architecture
+
+- **Problem:** Navigation overflows at common desktop widths and becomes effectively unusable on tablet/mobile. Operational controls consume primary-nav space; the mobile header occupies too much initial viewport height.
+- **Accepted direction:** Compact primary navigation; intentional overflow/“More”; dedicated mobile navigation; compact sticky header once the navigation model is sound; operational status/actions outside primary navigation.
+- **Dependencies/open decisions:** Phase 1 handoff; `UX-15` for Update/status placement; `UX-16`'s confirmed positioning direction if touched; broader mobile requirements/options in `UX-30`; brand/viewport balance in `UX-28`. Exact navigation contents, including the approximately five mobile destinations, breakpoints, and interaction remain open.
+- **Acceptance:** Every destination remains discoverable; desktop/tablet/mobile navigation is usable without overflow; operational actions remain reachable; header footprint is compact; keyboard/focus behavior and per-page URLs are preserved.
+- **Candidate next deliverable (requires authorization):** Navigation alternatives and a bounded shared-header implementation after required decisions. Related: [layout/application](assets/app.js), [styles](assets/styles.css), [deployment structure](DEPLOYMENT_STRUCTURE.md).
+
+#### UX-02 — Responsive data-table architecture
+
+- **Problem:** Page-primary metrics disappear off-screen in several mobile views; horizontal scrolling substitutes for an adapted information hierarchy.
+- **Accepted direction:** A reusable narrow-screen table/list pattern keeping **Rank · identity · page-primary metric** visible. Secondary fields intentionally collapse, hide, or expand; exact columns may differ by page.
+- **Dependencies/open decisions:** Phase 1 semantics, `UX-05` conventions, `UX-29`'s universal sorting/rank invariant, `UX-30`'s mobile requirements, and a per-page primary/secondary field inventory. These are shared requirements, not duplicate table projects. Do not introduce unrelated page-specific scroll hacks as the long-term architecture.
+- **Acceptance:** Shared rules are demonstrated on representative dense views; primary answers stay visible; secondary data remains intentionally accessible; sorting/search and identity links survive; desktop and applicable export behavior are checked.
+- **Candidate next deliverable (requires authorization):** Field inventory and shared-pattern proposals, followed by a bounded implementation. Related: [application](assets/app.js), [styles](assets/styles.css), [QB export history](CHANGELOG_V146.md), [paging history](CHANGELOG_V147.md).
+
+#### UX-03 — Games information architecture
+
+- **Problem:** The current all-season, oldest-first feed makes the current in-season week harder to reach.
+- **Accepted direction:** Make current week the primary in-season view; add previous/next-week navigation; retain All / Completed / Upcoming as secondary access; make prediction versus result easy to evaluate for completed games.
+- **Dependencies/open decisions:** Phase 2 navigation/data/numeric foundations; `UX-10`/`UX-12` semantics. Offseason and empty-week behavior need design within the authorized tranche.
+- **Acceptance:** Current-week entry and week navigation work; secondary access remains available; completed cards clearly distinguish prediction from actual result; the presentation does not imply unavailable historical forecast provenance.
+- **Candidate next deliverable (requires authorization):** A bounded Games workflow design/implementation. Related: [game cards/application](assets/app.js), [score-simulation history](CHANGELOG_V149.md).
+
+#### UX-04 — Matchup / FORCEcast information hierarchy
+
+- **Accepted direction:** Surface win probability, predicted line, and predicted score immediately in the hero. Put explanatory edges/context afterward and reduce internal diagnostic language in normal presentation.
+- **Dependencies/open decisions:** Phase 2 foundations; `UX-10`/`UX-12`; `UX-14`, `UX-17`, and `UX-18` where affected.
+- **Acceptance:** The forecast answer is easy to find at desktop/mobile widths; context follows it; strengths/weaknesses remain useful; no forecast value or score-generation method changes merely to improve layout.
+- **Candidate next deliverable (requires authorization):** A bounded hierarchy/presentation tranche. Related: [matchup/application](assets/app.js), [forecast overview](model/README.md), [V149 score mechanism](CHANGELOG_V149.md).
+
+#### UX-05 — UI consistency / numeric conventions
+
+- **Accepted direction:** Shared rules for decimal precision, percentages, projected wins, signed deltas, zero handling, numeric alignment, tabular figures, and recurring metric labels.
+- **Explicit invariants:** Never render `-0.0`; comparable numeric columns are consistently right-aligned with tabular figures; identical labels represent identical quantities.
+- **Dependencies/open decisions:** `UX-10` defines quantity/source semantics; `UX-13` governs color meanings; `UX-25` adds actual-state-gated 1%/99% postseason display bounds without changing probabilities. Exact precision/rounding conventions must be documented, not guessed per page.
+- **Acceptance:** A reusable convention/formatter contract covers rounding-to-zero, signed deltas, percentages, missing values, and projection labels; representative views follow it without altering underlying calculations.
+- **Candidate next deliverable (requires authorization):** Convention matrix and bounded shared implementation. Related: [formatting/application](assets/app.js), [styles](assets/styles.css).
+
+#### UX-06 — Public-copy / tooltip system
+
+- **Accepted direction:** Reduce unnecessary internal/provider/model jargon, repeated methodology paragraphs, and repeated card-level source/debug text. Use concise labels with contextual tooltips/details while preserving transparency.
+- **Dependencies/open decisions:** Phase 2 foundations; `UX-10` labels; `UX-14`'s confirmed high-level explanation direction and owner-approved removal inventory; `UX-18` market disclosure placement. `UX-20` supplements this item with human-language voice; `UX-21` supplies data-grounded narratives; `UX-22` supplies canonical feature/score education. They do not replace this disclosure-system work.
+- **Acceptance:** Shared explanation/disclosure patterns exist; normal workflows use understandable labels; definitions and limitations remain accessible; technical implementation prose is not repeated on every card. Touch and keyboard users can access necessary explanations.
+- **Candidate next deliverable (requires authorization):** Copy inventory and a bounded disclosure-system tranche after owner choices. Related: [brand/copy guidance](BRAND_FORCE.md), [application](assets/app.js).
+
+#### UX-07 — Confirmed responsive / polish defects
+
+- **Known examples:** Team-name/percentage collisions; mobile mid-word breaks/clipping; QB control-card spacing/state styling; oversized mobile header; inconsistent numeric alignment; repeated/constant/empty elements; other verified breakage from the 2026-10-01 audit.
+- **Dependencies:** Phase 2 foundations and the relevant Phase 3 workflow. Fix through shared patterns where possible rather than one-off CSS exceptions.
+- **Acceptance:** Each selected defect has a reproducible example and before/after evidence; verified duplicate/empty elements are removed only after checking their purpose; responsive fixes preserve interactions and applicable exports. Do not infer new defects without evidence.
+- **Candidate next deliverable (requires authorization):** A short, explicitly selected defect tranche. Related: [application](assets/app.js), [styles](assets/styles.css), [testing guide](scripts/TESTING.md).
+
+#### UX-14 — Public methodology depth
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner decision: 2026-10-01.** Public explanations should be high-level and sufficient to understand/use FORCE. This resolves the earlier open depth direction; it does not approve a particular removal list.
+- **Direction:** Deep mechanics, exact formulas, provider details, implementation internals, and unusually detailed methodology should not be spread through ordinary public pages. Some About FORCE / Method material may belong in internal documentation or a future deeper/paid layer; no paid product or placement is selected by this item.
+- **Required inventory before removal:** Inventory EVERY customer-facing explanation on EVERY public page: About FORCE, Method, rankings, QB, Games, matchup/FORCEcast, team pages, standings/playoffs, retained labs and surfaces pending removal, cards, footnotes, tooltips, loaders/status text, and any other public explanatory text.
+- **Classification / OWNER APPROVAL gate:** Classify each explanation as `KEEP PUBLIC`, `SIMPLIFY PUBLIC`, `REMOVE FROM PUBLIC`, or `RESERVE FOR DEEPER / FUTURE PAID LAYER`. Present the proposed removal/simplification inventory to the owner. Do NOT remove customer-facing explanatory content until the owner explicitly confirms the proposed removals. Preserve technical/model documentation internally when public copy is removed.
+- **Dependencies/non-goals:** Gates relevant `UX-06`/`UX-04` copy work; coordinate `UX-19`'s separately decided tool removal, `UX-20` voice, `UX-22` education, and `UX-18`'s still-open market disclosure placement. Preserve public limitations/benchmark transparency. No wholesale deletion or formula/model change.
+- **Acceptance / next candidate:** Complete inventory, classifications, retained internal destinations, and recorded owner approval of the actual removal list before a separately authorized content tranche. Related: [brand/copy guidance](BRAND_FORCE.md), [Method/application](assets/app.js).
+
+#### UX-16 — Prototype badge / positioning
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner decision: 2026-10-01.** FORCE is no longer a prototype; remove public-facing prototype labeling/positioning.
+- **Scope/invariant:** Badge, footer, and other public positioning copy. Keep the FORCE brand unchanged; do not substitute another misleading maturity label. This is a bounded copy change, not a rebrand.
+- **Prior context:** Keep/rename/remove was previously open. The owner selected removal; do not reopen it as a design choice without new owner direction/evidence. The separate expanded-name question in `UX-31` remains open.
+- **Acceptance / next candidate:** Inventory public prototype references and remove them in a separately authorized tranche, verifying brand continuity and accurate positioning. Related: [application](assets/app.js), [brand guidance](BRAND_FORCE.md).
+
+#### UX-19 — Remove public QB adjustment / QB-return tool
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner decision: 2026-10-01.** Remove the public-facing QB adjustment/QB-return UI/tool; its current targeting is confusing because it meaningfully applies to only one QB at present.
+- **Boundary:** Preserve underlying data, adjustment logic, diagnostics, and useful internal model capability. Public-surface removal does not authorize deleting that machinery or changing the canonical model.
+- **Reconciliation/dependencies:** Supersedes the public QB Return Lab portion of `UX-09`; retained labs still require baseline honesty. Identify all public entry points and distinguish this surface from QB Rankings Customize (`UX-08`). Coordinate explanation inventory (`UX-14`) and product education (`UX-22`); do not remove unrelated tools.
+- **Acceptance / next candidate:** A bounded public-removal plan identifying retained internal capability, followed by separately authorized removal and evidence that public entry points are gone while useful internal behavior/data remain. Related: [application](assets/app.js), [QB-return research](QB_REGIME_RESEARCH_V33.md).
+
+#### UX-20 — Human-language public voice
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** Public copy should sound like a knowledgeable NFL analyst or podcast: natural football language and short, conversational explanations, without gimmicky or overly casual tone.
+- **Standard:** Remove em dashes from customer-facing copy; avoid visibly machine-like punctuation/style habits and provider/internal implementation vocabulary in normal UI. Maintain statistical accuracy and do not invent unsupported causality.
+- **Style examples, subject to factual fit:** “Monte Carlo simulation” → “thousands of simulations”; exact FLAG percentages/formula → “a blend of play efficiency, win impact, first downs and erased touchdowns”; exact recency coefficients → “recent games count more”; “leave-one-matchup-out opponent adjustment” → “adjusted for opponent strength.” These are voice examples, not permission to misdescribe a quantity or calculation.
+- **Boundary/dependencies:** Supplements `UX-06`; does not replace tooltips/transparency or `UX-14`'s inventory/owner approval gate. Exact formulas, weights, stabilizers, provider names, implementation details, and the term “Monte Carlo” may remain in appropriate deeper/internal documentation. Informs `UX-21`/`UX-22` and shared copy architecture before page application.
+- **Acceptance / next candidate:** Shared voice examples and an accuracy-checked public-copy inventory, then bounded authorized applications. No calculation changes. Related: [brand/copy guidance](BRAND_FORCE.md), [application](assets/app.js).
+
+#### UX-21 — Tokenized football narratives
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** Explain why a team's rating looks as it does through deterministic, data-grounded football narratives reusable on team pages and suitable other surfaces.
+- **Illustrative pattern:** “QB X leads a formidable offense, but the defense is holding back the team's overall FORCE rating.” Use such a sentence only when the underlying data supports it.
+- **Candidate factual tokens, not final definitions:** Elite/strong/average/weak QB, offense, or defense; strong pass rush; weak coverage; strong/weak run defense or recent form; record outperforming/underperforming underlying performance; a strong rating held back by one unit; balanced, offense-driven, or defense-driven team.
+- **Required design:** Define tokens, thresholds, priority rules, sentence templates/variation, conflict resolution, and placement. Do not invent final thresholds now; reuse canonical definitions only when verified. No live generative-AI prose dependency, unsupported causal claims, contradictory tokens, or absurd combinations.
+- **Dependencies/acceptance:** `UX-10` semantics, `UX-20` voice, `UX-14` disclosure gate, and `UX-22` feature roles. Future authorized design must show adequate variation and regression coverage for contradictory/absurd combinations without changing model outputs. Next candidate is the bounded narrative design, not implementation in this intake.
+
+#### UX-22 — How FORCE Works / How to Use FORCE
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** Create a primary public product-education surface; its final name/placement remains to be designed. Explain the product in plain football language, not deep formulas.
+- **Coverage:** Overall FORCE; offense/defense/unit ratings; QB Ratings; FORCEcast; Luck; FLAG; playoff/division projections; retained scenario/what-if tools; common adjustments; and interpreting scores, bars, and projections.
+- **Canonical feature map:** Explicitly classify roles conceptually as `PART OF THE FORCE RATING`, `CONTEXT ONLY / DOES NOT CHANGE FORCE`, `FORECAST / OUTPUT`, `WHAT-IF / SCENARIO TOOL`, and `DIAGNOSTIC / RESEARCH VIEW`. Labels may be refined, but the role distinctions must remain explicit and come from one canonical map rather than conflicting page descriptions.
+- **Dependencies/non-goals:** `UX-10` quantities, `UX-20` voice, `UX-14` inventory/approval, and `UX-19`'s public-tool boundary. Ordinary pages become shorter/conversational while retaining necessary transparency. Do not expose deep internals, revive a removed tool, invent feature contributions, or promise a paid layer.
+- **Acceptance / next candidate:** Verified feature-role map and high-level education outline, followed by a bounded authorized surface; actual public explanation removals remain gated by `UX-14`.
+
+#### UX-23 — Shared accessibility themes
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** Support Dark, Light, Dark High Contrast, and Light High Contrast. Dark may remain the default unless later changed.
+- **Shared architecture:** Semantic theme tokens for surfaces, text, borders, focus, interaction states, warnings/errors, rating semantics, and context semantics. Persist user preference and consider OS `prefers-color-scheme`; do not implement page-specific theme CSS.
+- **Accessibility:** Intentionally design high-contrast modes rather than merely increasing saturation; validate contrast across all semantic states.
+- **Dependencies/open decisions:** Theme modes are confirmed; `UX-13` still owns the exact semantic rating/context palette. `UX-24` favorite-team personalization is separate and unapproved. Retain the dark navy identity in the dark presentation; adding owner-approved light modes does not authorize a rebrand or removal of preserved typography/brand patterns.
+- **Acceptance / next candidate:** Token/theme architecture and semantic-state contrast evidence, then a bounded authorized implementation integrated with Phase 2 foundations. No autonomous palette choice. Related: [styles](assets/styles.css), [brand guidance](BRAND_FORCE.md).
+
+#### UX-25 — Postseason odds display floor / ceiling
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** If the relevant outcome is not actually clinched, displayed probability must not show 100%: cap presentation at 99%. If not actually eliminated, it must not show 0%: floor presentation at 1%. True 100%/0% display is allowed once the corresponding actual clinch/elimination condition is satisfied.
+- **Scope:** Playoff, division, bye, seed-related, and equivalent bounded postseason odds across public surfaces. Underlying simulation probabilities remain unchanged; this is display semantics, not a model change.
+- **Dependencies/non-goals:** `UX-10` maps raw probability, displayed probability, and actual outcome state distinctly; `UX-11` cannot use a representative “Out”/seed result as actual elimination/clinch. `UX-05` provides shared formatting. Identify authoritative actual-state gates; do not blindly clamp forever or infer clinching from rounding/simulation extremes.
+- **Acceptance / next candidate:** State/source contract and consistent presentation checks for unresolved, clinched, and eliminated outcomes, including rounding boundaries. Design a bounded authorized display tranche without altering probability calculations.
+
+#### UX-26 — Football-plausible quarter-score presentation
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** Representative quarter scoring must be football-plausible, not merely four integers summing to the final. A 26-point winner should not display `1 / 1 / 12 / 12`; a technically possible but unusual `7 / 7 / 10 / 2` should not ordinarily outrank normal constructions.
+- **Open approach / required investigation:** Prepare alternatives using simulated possession/scoring events, constrained post-processing grounded in empirical NFL quarter-scoring distributions, or another defensible approach. Exact strategy remains an owner decision; confirmation of the outcome does not select the method.
+- **Invariants:** Quarter totals sum exactly to the displayed final; no fabricated scoring events; common totals favor common football constructions; rare safeties/XP oddities remain possible in underlying simulation but do not disproportionately become representative output; quarters belong to the same forecast, not an independent second model.
+- **Dependencies/non-goals:** `UX-12` score-selection evidence, `UX-10` terminology, and the existing V149 forecast. Do not encode simplistic “1 point is impossible” bans or retune FORCEcast. Phase 1 prepares approach/evidence; any chosen strategy requires a separately authorized implementation.
+- **Acceptance / next candidate:** Source trace, plausible/rare case examples, comparison of approaches and tradeoffs, then recorded owner strategy choice and later regression evidence for sums/plausibility/forecast consistency. Related: [V149 scoring](CHANGELOG_V149.md), [application](assets/app.js).
+
+#### UX-27 — Loader progression / brand semantics
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** Preserve the branded loader; progress red → yellow → green and reach the visual bar's end at approximately 3 seconds, aligned with the existing minimum branded-loader duration.
+- **Behavior:** If ready earlier, observe the minimum presentation time. If readiness takes longer, hold the bar complete without restarting/erratic behavior. Exit only when both minimum time and required app readiness are satisfied.
+- **Dependencies/non-goals:** Shared theme/state accessibility (`UX-23`); preserve the loader concept and readiness contract. This specific owner-approved progression does not settle `UX-13`'s general palette and is separate from `UX-17`'s matchup graphics.
+- **Acceptance / next candidate:** A bounded authorized loader tranche with early/late readiness evidence, stable completion, and preserved readiness gating. Related: [application/minimum loader duration](assets/app.js), [styles](assets/styles.css).
+
+#### UX-28 — Brand scale / intentional viewport use
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** Give the FORCE logo/name/wordmark greater presence and use the available viewport deliberately. Eliminate accidental blank areas or use them meaningfully; avoid compressing content into one region beside large unused areas.
+- **Layout principle:** Rebalance content width, columns, cards, secondary information, and whitespace responsively. Preserve breathing room; this does not require filling every pixel or creating giant mobile headers.
+- **Dependencies/acceptance:** `UX-01`'s compact mobile header, `UX-02` hierarchy, and `UX-30` mobile initiative. Larger brand presence must coexist with compact mobile navigation and preserved brand identity. Next candidate is shared layout/brand-scale examples and a bounded authorized application, with viewport evidence.
+
+#### UX-29 — Universal table sorting / selected-metric rank
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** Every meaningful data column in every table should sort unless a documented reason makes sorting nonsensical. Selecting a column reorders rows; ascending/descending behavior is consistent and active column/direction is visually obvious.
+- **Rank invariant:** For quantitative columns, the leftmost displayed rank reflects the CURRENT selected metric, not the original/default rank. Ties use deterministic tie-breaking. Identity/action fields may support alphabetical/action sorting where useful, but must not acquire invented quantitative rank meaning.
+- **Dependencies/non-goals:** Part of `UX-02`'s Phase 2 shared table/data-view infrastructure, with `UX-05` numeric conventions and `UX-30` mobile transformations. This is the authoritative sort/rank contract, not a separate per-page reinvention.
+- **Acceptance / next candidate:** Column inventory with documented exceptions, common sort/direction/tie/rank rules, and verification on selected desktop/mobile views in the authorized foundation tranche. Exact tie-rank convention remains design work, not an invented rule in this intake.
+
+#### UX-30 — Mobile as a first-class FORCE experience
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset; Scope: major product initiative. Owner direction: 2026-10-01.** Mobile must be a first-class experience, not compressed desktop. No key page should require horizontal scrolling to access its primary answer.
+- **Deep-dive scope:** Information architecture, persistent navigation, thumb reach, one-handed use, sticky controls, table-to-list/card transformations, team/matchup page hierarchy, charts/graphs, typography, tap targets, safe areas, horizontal overflow elimination, and loading/status states.
+- **Navigation option to investigate:** A persistent bottom bar with approximately five primary destinations and secondary destinations under an additional menu/surface. Evaluate `Home / Slate · Rankings · Games · Teams · More` and `Home · Rankings · QB · Games · More`, among defensible options. Neither the bottom-bar choice nor the exact five destinations is decided.
+- **Dependencies/non-goals:** This broader initiative informs/depends on `UX-01` navigation and `UX-02` data views rather than duplicating them; coordinate `UX-23` themes, `UX-28` viewport use, and `UX-29` sorting. Preserve the Slate's strong mobile behavior as a design reference and the compact-header constraint.
+- **Acceptance / next candidate:** A bounded mobile audit/design brief with primary-answer access and interaction evidence; obtain owner decisions on navigation before implementing it. Shared architecture precedes separately authorized page applications, not a giant redesign.
+
+### Investigate
+
+All entries in this group have **Decision status: INVESTIGATE; Execution status: PLANNED; Sequence: PHASE 1**. No separate urgency ranking is assigned within this group. Completion means evidence and options, not automatic implementation.
+
+#### UX-08 — QB Customize baseline
+
+- **Observed:** Untouched 30/30/20/10/10 Customize does not reproduce the published canonical FORCE QB Rating.
+- **Initial root cause:** Both Customize (`qbCustomScore` in [application](assets/app.js)) and canonical FORCE QB Rating apply opponent, pressure, and recency context. Canonical FORCE QB Rating additionally includes prior/continuity blending in [live model](model/live_profiles.js). This genuine pipeline distinction explains why untouched 30/30/20/10/10 Customize does not reproduce canonical Default; it does **not** establish which product behavior is desired.
+- **Questions:** What does Customize claim to customize? Should canonical default weights reproduce canonical Final exactly? If prior/continuity is omitted, should it be labeled as a different analytical rating? Should weight customization retain the canonical context/continuity pipeline? What do Raw and Final mean in custom mode?
+- **Required outcome:** Trace both pipelines on identical snapshots and controls, quantify the difference, and explicitly document a proposed product invariant and alternatives for owner choice. Current Raw semantics remain the calibrated five-component live score before opponent, pressure, prior, and recency.
+- **Dependencies/non-goals:** Owner must decide the contract before behavior changes. Do not retune weights or silently add/remove continuity to make numbers match.
+- **Acceptance/next step:** Evidence-backed cause, examples, and consequences for each option; record the owner-selected contract when supplied and create a separate implementation item if needed. Related: [V148 canonical propagation](CHANGELOG_V148.md), [correctness regression](scripts/test_qb_correctness.mjs).
+
+#### UX-09 — What-if lab baseline consistency
+
+- **Audit scope:** Roster Lab and other retained scenario tools, against the published rating/forecast state they claim to use. The 2026-10-01 owner decision in `UX-19` supersedes the public QB Return Lab/QB-adjustment audit: remove that public surface, rather than investigate its public baseline for continued use. Internal diagnostics/capability remain preserved; any separately authorized internal baseline review still follows this invariant.
+- **Invariant:** **Every lab or mode must reproduce the state it claims as its baseline.** If it intentionally starts elsewhere, it must identify that state explicitly.
+- **Questions:** Is a discrepancy stale input, an alternate projection path, a pre-adjustment state, omitted context, a deliberate counterfactual, or an actual defect?
+- **Dependencies/non-goals:** Common snapshot/state evidence; `UX-08` where Customize is relevant, `UX-10` for projection labels, and `UX-19` for the public removal boundary. Do not force unlike baselines equal or change the intended counterfactual without owner direction. Preserve Roster Lab's immediate feedback and useful underlying QB-return machinery.
+- **Acceptance/next step:** Baseline/source/control matrix, reproducible comparisons, classified causes, and proposed contracts/fixes for review. Related: [application](assets/app.js), [forecast/lab overview](model/README.md), [returning-QB research](QB_REGIME_RESEARCH_V33.md).
+
+#### UX-10 — Projection source-of-truth / terminology
+
+- **Audit scope:** Projected wins, expected wins, projected record, expected record, most-likely record, representative simulated season, base projection, playoff probability, division probability, and seed probability across public pages.
+- **Invariant:** **Distinct mathematical quantities retain distinct labels.** Identically named quantities use the same canonical source; do not force different concepts to the same number.
+- **Required artifact:** A semantic map containing quantity, definition, calculation source, current pages, and proposed desired public label. Separate expected values, marginal probabilities, modes, and representative realizations where the actual calculations warrant that distinction.
+- **Dependencies:** Feeds/state evidence shared with `UX-09`; findings inform `UX-11` and Phase 2 numeric conventions. Map `UX-25`'s displayed odds separately from raw simulation probability and actual clinch/elimination state; do not collapse those quantities. Label proposals involving a product choice go to the owner.
+- **Acceptance/next step:** Every public occurrence is mapped, inconsistent names/sources are identified, and proposed naming contracts are explicit. Related: [projection/application](assets/app.js), [V124 projection semantics](CHANGELOG_V124.md).
+
+#### UX-11 — Playoff / division presentation semantics
+
+- **Issue:** Representative simulated-season output can conflict visually with marginal probabilities, such as “Out” beside high playoff odds.
+- **Audit:** Determine what controls row order, displayed seed, probability columns, leader chips, and representative-season visibility. Do not assume current ordering communicates a probability ranking.
+- **Options to prepare:** Odds-first ordering with a most-likely-seed column; representative simulation as a clearly labeled secondary view; or another defensible presentation, with consequences for record/seed coherence.
+- **Dependencies/non-goals:** `UX-10` semantic map and `UX-25`'s confirmed display bounds, gated by actual clinch/elimination rather than representative “Out”/seed results. Owner still chooses the presentation interpretation. Do not change simulations, probabilities, or tiebreak behavior to resolve the presentation issue. Preserve Out dimming as a visual constraint; it does not settle which view is primary.
+- **Acceptance/next step:** Verified source map, confusing examples, and concrete alternatives for owner decision. Any proposed “Out”/seed presentation beside marginal odds must unmistakably label the different quantities. Related: [V124 representative season](CHANGELOG_V124.md), [playoff/application](assets/app.js).
+
+#### UX-12 — Rounded / modal predicted-score ties
+
+- **Audit:** Cases where displayed scores tie while line/win probability favors one side. Establish whether each displayed score is a mean, median, mode, rounded expectation, representative simulation outcome, or another statistic.
+- **Initial reference:** [V149 changelog](CHANGELOG_V149.md) describes a representative score selected from simulated outcomes near the joint center. Verify the actual current path and examples rather than inferring from a generic “predicted score” label.
+- **Dependencies/non-goals:** `UX-10` terminology and forecast source tracing. Do **not** manufacture a non-tied score for visual agreement with the favored side or alter probability/line calculations.
+- **Acceptance/next step:** Reproducible cases, exact score-selection explanation, and product options for labels/disclosure. Owner decides the presentation contract before changes. Related: [application](assets/app.js), [score normalizer](model/score_normalizer.js), [V149 changelog](CHANGELOG_V149.md).
+
+### Owner decisions
+
+All entries in this group have **Decision status: OWNER DECISION; Execution status: PLANNED**. Phase 1 prepares alternatives; priorities beyond these dependencies are not assigned. `UX-14` and `UX-16` moved to Confirmed with their stable IDs after dated owner decisions; `UX-13`, `UX-15`, `UX-17`, and `UX-18` remain open. Preparing options does not authorize implementing one.
+
+#### UX-13 — Color-system direction
+
+- **Accepted problem:** Colors carry too many unrelated meanings.
+- **Owner choices:** Distinct meanings for FORCE rating scale, Luck/FLAG context, positive/negative deltas, predicted winners, and interaction/brand accents; then palette choices.
+- **Preserve/non-goals:** Dark visual identity and cyan brand character unless explicitly reopened. Do not choose a replacement palette autonomously.
+- **Evidence/acceptance:** Semantic inventory, concrete palette/application options, accessibility/contrast evidence, and consequences. Record the owner's decision and date. `UX-23` confirms theme modes, not this exact rating/context palette; `UX-27`'s loader progression does not settle it either. Informs shared styles and `UX-05`; related: [brand guidance](BRAND_FORCE.md), [styles](assets/styles.css).
+
+#### UX-15 — Public status / Update placement
+
+- **Owner choices:** First-class navigation item; compact status surface; footer/status menu; or public secondary destination.
+- **Dependencies/non-goals:** Feeds/refresh limitations must remain accurately communicated. `UX-01` cannot silently decide this while shrinking navigation.
+- **Evidence/acceptance:** Concrete placement/access options and consequences, followed by a dated owner decision. Related: [application](assets/app.js), [deployment structure](DEPLOYMENT_STRUCTURE.md), [historical Update guidance](UPDATE_CENTER_V45.md).
+
+#### UX-17 — Matchup comparative graphics
+
+- **Owner choices:** Keep presentation-only donuts, replace with team-colored comparison bars, use another visualization, or remove them.
+- **Dependencies/non-goals:** `UX-04` hierarchy and `UX-13` color semantics. Graphics are presentation-only; do not change model outputs or imply a new predictive contribution. This remains an open choice separate from `UX-27`'s confirmed loader direction.
+- **Evidence/acceptance:** Comparable desktop/mobile options showing comprehension, space use, and accessible alternatives, then a dated owner decision. Related: [application](assets/app.js), [matchup-edge donut introduction](CHANGELOG_V73.md).
+
+#### UX-18 — Market-blend visibility
+
+- **Owner choices:** Game cards, tooltip/details, matchup, Method, or a combination for market weighting/sourcing.
+- **Preserve/non-goals:** Do not reduce transparency without owner approval. Presentation choices must not change forecast weighting or benchmark claims.
+- **Evidence/acceptance:** Surface inventory, disclosure alternatives, distinction between current/opening inputs and closing-line benchmark evidence, then a dated owner decision. Informs `UX-03`/`UX-04`/`UX-06`; related: [forecast overview](model/README.md), [application](assets/app.js).
+
+#### UX-24 — Favorite-team personalization
+
+- **Decision status: OWNER DECISION; Execution status: PLANNED; Priority: unset. Owner question recorded: 2026-10-01.** Evaluate whether a favorite-team selection should give non-semantic surfaces/background accents that team's visual identity. This is an experiment candidate, not implementation approval.
+- **Guardrails if approved:** Do not recolor FORCE rating meaning, Luck/FLAG meaning, positive/negative semantics, or warnings/errors. Preserve accessibility; use safe fallback colors when team palettes have poor contrast.
+- **Dependencies / next candidate:** `UX-23`'s confirmed accessibility themes and `UX-13`'s semantic families. Prepare concrete options, contrast/fallback evidence, and consequences for owner choice. Keep this separate from the four confirmed theme modes.
+
+#### UX-31 — Expanded FORCE name: Rating vs Ratings
+
+- **Decision status: OWNER DECISION; Execution status: PLANNED; Priority: unset. Owner question recorded: 2026-10-01.** Current expanded name: “Football Objective Rating & Comparative Efficiency.” Proposed alternative: “Football Objective Ratings & Comparative Efficiency.” Do not change the name yet.
+- **Rationale/options:** Plural may better describe overall FORCE, offense/defense, unit, QB, and other normalized ratings while preserving the acronym. Singular may remain defensible as “the FORCE rating system.” The owner decides; `UX-16`'s prototype removal is not approval for renaming.
+- **Acceptance / next candidate:** Inventory expanded-name usage, assess branding implications and the singular rationale, and prepare a recommended option with alternatives for owner decision. Related: [current name/brand guidance](BRAND_FORCE.md).
+
+### Preserve
+
+**Decision status: PRESERVE.** These are explicit constraints, not redesign tasks. Agents may refine them only when an authorized task explicitly calls for it:
+
+- Dark navy visual identity.
+- Inter typography.
+- Cyan brand accent, subject to owner-approved semantic-color clarification.
+- Real NFL team logos.
+- Team-color card borders.
+- FORCE number + bar when FORCE is the primary metric.
+- FORCEcast Slate structure and strong mobile behavior.
+- Rankings segmented view controls.
+- Rankings sorting.
+- Rankings search.
+- Playoff “Out” dimming.
+- Matchup strengths/weaknesses presentation.
+- Per-page URLs.
+- Clickable ranking rows leading to team pages.
+- Roster Lab's immediate feedback behavior.
+- Transparent presentation of model limitations and the market benchmark.
+
+Related: [brand guidance](BRAND_FORCE.md), [team-logo history](CHANGELOG_V40.md), [forecast overview](model/README.md). These constraints do not pre-decide the owner-choice items above.
+
+## Model design
+
+Record design questions, evidence, competing hypotheses, validation requirements, and owner decisions before proposing model changes. Distinguish a data/display defect from a change in modeling judgment. The entries below preserve current-season behavior and bank a later review; further technical intake has no guessed priority or implementation authorization.
+
+The Product / UX sequence does not authorize changes to current QB weights, scoring/stabilization, rushing floor, prior identity, team-room ownership, qualification, non-QB attribution, opponent/pressure/protection/recency formulas, 1.20 expansion, offense composite, FORCE bridge, FORCEcast, playoffs, Luck, or FLAG. Preserve the milestone's behavior unless an explicitly scoped task reopens it.
+
+Known reference material: [predictive feature policy](PREDICTIVE_FEATURE_POLICY_V30.md), [returning-QB research](QB_REGIME_RESEARCH_V33.md), [forecast overview](model/README.md). Historical research questions require fresh applicability checks; they are not an accepted prioritized model backlog here.
+
+### MD-01 — Preserve the current 2026 early-season taper
+
+- **Decision status: PRESERVE; Execution status: n/a (constraint); Priority: unset. Owner working recommendation recorded: 2026-10-01.** This is an ongoing constraint, not an implementation task. Do not change a tested model mechanism merely because public launch timing changed. Preserve the current 2026 taper unless a dedicated empirical/model review establishes a reason and the owner authorizes a change.
+- **Current source fact, not an assumed Week 7 cutoff:** [Application](assets/app.js) prefers `FORCE_RATING_CONTINUITY` for correction/prior-confidence signals; [index](index.html) loads [V99 rating continuity](model/rating_continuity.js). Its fade is zero in Week 1; full strength in Weeks 2–3; then 0.85, 0.70, 0.55, 0.40, 0.28, 0.18, 0.10, and 0.05 in Weeks 4–11; zero from Week 12. The realized correction also depends on observations and is not guaranteed to be nonzero each week.
+- **Historical distinction:** [V34 early-regime detector](model/early_regime.js) has the legacy fade: full strength in Weeks 2–3, then 0.80, 0.55, and 0.30 in Weeks 4–6; zero from Week 7. It remains a fallback/research target. Some [unit-prior controller](model/unit_prior_controller.js)/application comments describe that older timing; the canonical V99 call path must not be mistaken for it. Do not rewrite those sources in this intake.
+- **Observation machinery:** V34's observation machinery still feeds the canonical V99 continuity state; its legacy fade schedule, not that observation machinery, has been superseded by the V99 schedule. `early_regime.js` is not dead or removable merely because its fade schedule is legacy.
+- **Boundary:** No launch-driven removal, Week 4 cutoff, formula change, or retuning is authorized. `MD-02` holds the later evidence review; its existence does not reopen this preservation constraint automatically.
+
+### MD-02 — Later empirical early-season movement review
+
+- **Decision status: INVESTIGATE; Execution status: PLANNED; Priority: unset; Timing: later dedicated empirical/model review.** Determine historical predictive benefit, Brier impact, calibration, week-by-week effects, and whether taper timing remains optimal.
+- **Owner questions recorded 2026-10-01:** Remove now because FORCE is public; remove after Week 4; allow the existing taper to expire naturally; or retain/rework longer-term. The working recommendation is current-season preservation (`MD-01`), not a settled longer-term redesign.
+- **Dependencies/non-goals:** Trace canonical V99 versus legacy V34 behavior, use causal/held-out validation and the [predictive feature policy](PREDICTIVE_FEATURE_POLICY_V30.md), and distinguish results from product-launch timing. Phase 1 may gather appropriate evidence only under separate authorization; this intake conducts no empirical review.
+- **Acceptance / next candidate:** An evidence-backed comparison with uncertainty, alternatives, and owner decision on any longer-term change. Update findings without silently converting them to model implementation; retain the current taper until separately authorized.
+
+## Data semantics / provenance
+
+**Future intake placeholder; priority unset.** Record source definitions, pinned input hashes, schema compatibility, cache identities, reproducibility evidence, and effects on historical/current comparisons. A semantic change must keep producers, consumers, reference provenance, and migration behavior coherent.
+
+Known mechanism: the V5/`v149-all-play-v2` contract in [server](force_server.py), [Worker](src/index.js), [live model](model/live_profiles.js), and [seed helper](scripts/seed_v149_qb_reference.py). This completed mechanism is a baseline to preserve, not permission to regenerate data during unrelated UX work.
+
+## Production / operations
+
+**Future intake placeholder; priority unset.** Record deployment/recovery observations, public-versus-administrative boundaries, rollback/last-known-good requirements, and independently verified production status.
+
+Use [deployment structure](DEPLOYMENT_STRUCTURE.md) and the current Worker/server implementation as mechanism references. Keep public refresh/security protections intact. A local commit, generated build, or mock migration test is not a production-verification record.
+
+## Security assurance
+
+### SEC-01 — Deep security assurance / alternating red-blue review
+
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: HIGH. Owner direction: 2026-10-01.** Comprehensive, independently challenged, evidence-backed hardening. **No claim of “proven secure.”** Security cannot literally be proven absolute.
+- **Round authorization:** Each security round, and each subsequent alternating round, requires explicit owner authorization of its scope and environment. Round 1 uses Claude as red team and Codex as blue team; Round 2 reverses those roles. One authorized round does NOT automatically authorize the next; swapping Claude/Codex roles does NOT authorize another tranche. The owner controls whether another cycle begins.
+- **Round handoff / stop:** At the end of each round, report the findings ledger, fixes/mitigations, regression evidence, and residual risk; recommend the next security round if useful; then **STOP for owner direction**. The overall closeout goal is resolved material findings, regression coverage, and both independent reviewers eventually reporting no unresolved material findings within the declared scope. Report explicitly untested/unprovable areas rather than implying absolute assurance.
+- **Minimum scope:** Worker/API attack surface; Durable Object storage; internal container namespace; public/internal trust boundaries; refresh/migration paths; input parsing; XSS and HTML/script injection; query/path manipulation; cache poisoning; CORS; security headers; secrets/config leakage; SSRF-style paths; request-smuggling assumptions where relevant; dependency/supply-chain exposure; public debug/admin endpoints; denial-of-service/resource exhaustion; oversized requests; repeated refresh/rebuild attempts; stale-cache/schema manipulation; static/generated asset assumptions; unsafe upstream-feed trust; information disclosure; authorization bypass; and internal endpoint reachability.
+- **Testing safety:** Production probes require explicit owner approval for that specific cycle and must be bounded and non-destructive; an agent's assessment that a probe is safe does not authorize it. DoS, resource-exhaustion, oversized-request, rebuild-storm, destructive, or availability-impacting testing must run only against local/scratch/staging environments.
+- **Evidence / acceptance:** Threat model, attack-surface inventory, findings ledger, severity, safe reproduction/exploit evidence, mitigation/fix, regression test, residual risk, and untested/unprovable areas. Both reviewers' independent closeout evidence is required; historical audit claims or one review alone do not meet this cycle's criteria.
+- **Dependencies / next candidate:** Establish the bounded scope and safe environment from [deployment boundaries](DEPLOYMENT_STRUCTURE.md), [Worker](src/index.js), [server](force_server.py), and [testing guide](scripts/TESTING.md). Security may proceed under separate authorization before UX completion; it is not a visual-redesign subtask. This roadmap intake launches no audit, probes, reviewers, or fixes.
+
+## Testing
+
+**Future intake placeholder; priority unset.** Existing testing debt is documented in [testing guide](scripts/TESTING.md) and [catalog](scripts/test_catalog.json): 112 default exclusions, including 102 historical assertion/fixture failures and special cases. Exclusion does not mean pass, and this roadmap does not automatically authorize repairing all excluded tests.
+
+Preserve the repaired isolated runner. For an authorized tranche, select checks appropriate to the change using the guide, classify new tests explicitly, verify worktree hygiene, and distinguish relevant regression failures from historical debt without weakening assertions to obtain a pass.
+
+## Performance / reliability
+
+**Future intake placeholder; no accepted item or priority yet.** Capture measured latency, responsiveness, memory/cost, freshness, concurrency, or recovery evidence with environment and baseline. Distinguish product responsiveness from model correctness before proposing a remedy.
+
+Reference current [snapshot/release tests](scripts/TESTING.md) and [deployment boundaries](DEPLOYMENT_STRUCTURE.md); do not assume an optimization is necessary without measurement.
+
+## Documentation
+
+**Future intake placeholder; priority unset.** Record stale/conflicting guidance, missing public definitions, and documentation ownership. The earlier-version README/model overview noted above is a known documentation gap for owner intake, not an authorized rewrite in this task.
+
+Keep this roadmap directional. Technical mechanisms belong in their appropriate docs/source, release details in version history, and public explanation choices in the authorized copy workstream.
+
+## Research / validation
+
+**Future intake placeholder; priority unset.** Record hypotheses, evaluation populations/windows, causal input timing, baseline/candidate results, uncertainty, and promotion decisions. Do not present exploratory results as shipped predictive claims.
+
+Use [predictive feature policy](PREDICTIVE_FEATURE_POLICY_V30.md), [research sources](research/README.md), and the relevant versioned research document. Preserve the distinction between independent ratings and market-aware forecasts, including benchmark limitations.
+
+## Shared product / UX principles
+
+- **Primary metric first:** In dense views, **Rank · identity · page-primary metric** occupy stable, easy-to-find positions. Secondary context must not displace the page's subject.
+- **Baseline honesty:** A control, lab, or scenario reproduces the state it claims as its baseline. If it uses another baseline, label that state explicitly.
+- **Semantic consistency:** The same public label means the same mathematical quantity and canonical source. Different quantities receive different labels.
+- **Progressive disclosure:** Concise default presentation; tooltips/details for explanation; Method/product education for high-level guidance. Preserve deeper mechanics in internal documentation or an owner-approved future deeper layer. Retain transparency without dumping implementation prose into every card; actual public explanation removals require `UX-14`'s approved inventory and market placement remains subject to `UX-18`.
+- **Responsive hierarchy:** Mobile adapts information hierarchy rather than merely inheriting desktop horizontal scrolling. Preserve the page's answer first, then reveal secondary information.
+- **Evidence before retuning:** Identify display bugs, state/source mismatches, intentional alternate calculations, and genuine model decisions before selecting a remedy. Do not retune as a shortcut for presentation inconsistency.
+
+The accepted shared principles also include intentional viewport/brand use (`UX-28`), metric-relative sorting (`UX-29`), and first-class mobile access (`UX-30`). Their authoritative contracts are the items above; theme modes and human-language voice are similarly defined once in `UX-23` and `UX-20`.
+
+## Roadmap item template
+
+Use stable IDs and this format for material additions; compact polish sub-items may omit fields that add no value.
+
+```text
+ID / short name:
+Decision status: CONFIRMED / INVESTIGATE / OWNER DECISION / PRESERVE
+Execution status: PLANNED / IN PROGRESS / REVIEW / COMPLETE / DEFERRED
+Priority: owner-assigned, sequence prerequisite, or unset
+Problem / opportunity:
+Evidence: reproduction, snapshot/date, measurements, source trace
+Desired invariant / outcome: identify proposals versus decided contracts
+Dependencies:
+Non-goals:
+Acceptance criteria:
+Owner decisions required:
+Recommended next step: candidate, not automatic authorization
+Related files/docs:
+Completion note: date, release/commit, result, evidence, follow-ups
+```
+
+Preserve original IDs when descriptions evolve. Add resulting implementation work separately from the investigation/decision record so evidence and product choice remain traceable.
+
+## Completion and roadmap maintenance
+
+A tranche is complete when its explicitly authorized deliverable and acceptance criteria are satisfied; appropriate tests/evidence and limitations are reported; any required review is resolved; relevant preservation constraints and non-goals are checked; and the final changed-file/worktree state is disclosed. Implementation work checks source/generated parity when applicable; documentation-only work does not require regenerating production assets. A tranche must not claim completion while its required work remains unresolved.
+
+At handoff:
+
+- Record execution state, completion date, release/commit when available, short result, verification evidence, and follow-ups. Use “uncommitted” or “deployment unverified” when that is the actual state.
+- Identify items now unblocked and recommend next candidates without beginning them.
+- Do not delete completed history immediately. Move older completed entries to the compact history section or a linked changelog when needed for readability.
+- When an investigation resolves a question, update its original finding and decision state as appropriate, keeping unresolved choices explicit. Add any resulting implementation item separately; findings alone are not owner approval.
+- When the owner decides, record the decision/date and evidence, convert the chosen direction into a `CONFIRMED` implementation item, and briefly retain useful rejected alternatives to prevent unsupported reopening.
+- When work is deferred, record the owner's reason and revisit condition. Do not invent dates or priorities.
+- Report newly discovered candidate work in the tranche handoff: identify it, classify it, recommend whether it belongs in roadmap intake, and explain urgency/dependencies. Add it directly to `FORCE_ROADMAP.md` only when the active prompt explicitly authorizes roadmap/documentation edits; an unrelated coding tranche must not silently mutate the roadmap. Stop for owner direction before a new tranche.
+
+## Completed / history
+
+| Date | Milestone | Execution status | Result / evidence | Follow-up |
+| --- | --- | --- | --- | --- |
+| 2026-10-01 | `main @ 8d72a03`, “Fix FORCE QB correctness and migrate V5 reference” | COMPLETE — repository milestone; production deployment not certified by this document | QB semantics, V5 reference/migration, ANY/A, Raw display, and repaired test infrastructure. Recorded verification: 134 safe, 16 release, 25 QB, and 6 snapshot tests passed; historical V4 reproduced and V5 provenance preserved. See baseline and technical references above. | Product / UX audit sequence remains planned; none of its choices were implemented by this milestone. |
+
+This is a starting marker, not a replacement for the versioned changelogs. Future entries should link the actual completion/release evidence and distinguish local completion from production verification.
+
+### Owner direction intake — 2026-10-01
+
+This records decisions and accepted requirements only. All resulting work remains `PLANNED`; no implementation is marked complete by this intake. The authoritative outcome, dependencies, gates, and prior context remain in the referenced items.
+
+| Owner decision / accepted requirement | Authoritative item(s) | Decision record |
+| --- | --- | --- |
+| FORCE is no longer a prototype; remove prototype positioning | `UX-16` | Resolved: remove; keep brand, do not substitute a misleading maturity label. Previous keep/rename options are superseded. |
+| Remove public QB adjustment/QB-return tool | `UX-19`, revised `UX-09` scope | Resolved public removal; preserve useful internal data/logic/diagnostics. |
+| High-level public methodology; inventory and owner approval before explanation removal | `UX-14` | Depth direction resolved; actual removal/simplification inventory still awaits explicit owner confirmation. Internal technical documentation remains. |
+| Human-language public voice | `UX-20`, supplements `UX-06` | Confirmed customer-facing standard; deeper/internal terminology remains available. |
+| Deterministic football narratives and public product education | `UX-21`, `UX-22` | Confirmed outcomes; narrative thresholds/templates and education name/placement remain design work. |
+| Dark/Light and both high-contrast variants | `UX-23` | Theme modes confirmed; exact semantic palette and favorite-team personalization are not selected. |
+| 1%/99% display bounds until actual elimination/clinch | `UX-25` | Confirmed presentation rule; simulation probabilities unchanged. |
+| Football-plausible representative quarters | `UX-26` | Outcome confirmed; exact generation strategy remains open. |
+| Red → yellow → green loader, approximately 3-second progression | `UX-27` | Confirmed; preserve minimum-time and required-readiness exit gates. |
+| Larger brand presence and intentional viewport use | `UX-28` | Confirmed alongside compact mobile headers and breathing room. |
+| Universal sorting with selected-metric rank | `UX-29` | Confirmed common table behavior; do not give non-metric fields quantitative rank meaning. |
+| First-class mobile experience | `UX-30` | Confirmed initiative; bottom navigation and exact destinations remain open. |
+| Current-season taper preservation pending empirical review | `MD-01`, `MD-02` | Preserve current canonical V99 behavior; longer-term changes remain undecided. |
+| Deep security assurance workstream | `SEC-01` | Confirmed HIGH priority, independent review cycles and evidence requirements; no absolute-security claim. |
+
+**Still open:** `UX-13` exact semantic color palette; `UX-15` public status/Update placement; `UX-17` matchup comparative graphics; `UX-18` market disclosure placement; `UX-24` favorite-team theme; `UX-31` Rating vs Ratings; `UX-30` exact mobile navigation/destinations; `UX-26` quarter-generation strategy; and `MD-02` longer-term taper changes. `UX-08`–`UX-12` remain investigations, not decisions to force matching numbers. `UX-14`'s actual removal inventory requires approval; confirmation of high-level direction is not that approval.
+
+## Candidate recommendations / intake
+
+**Candidate recommendations are NOT authorized roadmap work until accepted by the owner.** Agents should report newly discovered candidate work, evidence, classification, and urgency/dependencies in the tranche handoff. Add it directly to this intake section only when the active prompt explicitly authorizes roadmap/documentation edits. Permission to record a candidate does not authorize implementing it.
+
+Use this compact proposal format:
+
+```text
+Candidate title:
+Why it surfaced:
+Evidence:
+Suggested category: CONFIRMED / INVESTIGATE / OWNER DECISION / PRESERVE
+Dependency / urgency: supported evidence; otherwise unset
+Blocks current authorized work: yes/no, with reason
+Owner disposition/date: pending, accepted, rejected, or deferred
+```
+
+The 2026-10-01 owner additions are accepted direction in the authoritative items above, with open choices explicitly retained; they are not unreviewed agent candidates or implementation authorization. Historical audit recommendations and newly noticed documentation gaps still require owner intake rather than automatic promotion. Phase 1 evidence/options preparation and the independently bounded HIGH-priority security workstream are legitimate next candidate areas; an agent must wait for an explicit prompt to begin either. This task banks direction only and does not start an investigation or implementation.
