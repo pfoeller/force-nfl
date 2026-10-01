@@ -3974,7 +3974,7 @@
   }
 
   function exportPageLabel() {
-    const hash = location.hash.replace('#', '') || 'home';
+    const hash = currentRoute();
     const [page, id] = hash.split('/');
     if (page === 'rankings') {
       const viewLabel = RATING_VIEWS.find(([key]) => key === S.ratingView)?.[1] || 'Strength';
@@ -4003,7 +4003,7 @@
   }
 
   function exportFileName(index = 1, total = 1) {
-    const page = (location.hash.replace('#', '') || 'home').replace(/[^a-z0-9_-]+/gi, '-').replace(/^-+|-+$/g, '') || 'page';
+    const page = currentRoute().replace(/[^a-z0-9_-]+/gi, '-').replace(/^-+|-+$/g, '') || 'page';
     const stamp = new Date().toISOString().slice(0, 10);
     return total > 1
       ? `force-${page}-${stamp}-${index}-of-${total}.png`
@@ -4011,7 +4011,7 @@
   }
 
   function exportZipFileName(total = 1) {
-    const page = (location.hash.replace('#', '') || 'home').replace(/[^a-z0-9_-]+/gi, '-').replace(/^-+|-+$/g, '') || 'page';
+    const page = currentRoute().replace(/[^a-z0-9_-]+/gi, '-').replace(/^-+|-+$/g, '') || 'page';
     const stamp = new Date().toISOString().slice(0, 10);
     if (page === 'playoffs' && total === 3) return `force-playoffs-${stamp}-overview-plus-mobile.zip`;
     return `force-${page}-${stamp}-${total}-pages.zip`;
@@ -4808,7 +4808,7 @@
       // Social exports should contain information, not navigation or boilerplate.
       // Removing these also prevents a tiny footer-only trailing page.
       clone.querySelectorAll('.footer, .matchup-warning, .matchup-back, .qb-quick').forEach((el) => el.remove());
-      if ((location.hash.replace('#','') || '') === 'rankings') {
+      if (currentRoute().split('/')[0] === 'rankings') {
         // Every FORCE Rankings sub-tab exports as the same two-page board:
         // teams 1–16, then 17–32. Strip screen-only controls/notes so they
         // cannot create a third page around the two forced table chunks.
@@ -4889,8 +4889,90 @@
     return `<main class="shell"><section class="card method data-integrity-block"><div class="eyebrow">Runtime integrity gate</div><h1>FORCE did not load completely</h1><p>Required model modules are missing: <b>${missing.join(', ')}</b>.</p><p>FORCE will not silently fall back to simplified ratings or score rounding. Reload the app from the complete V82 bundle.</p></section></main>`;
   }
 
+
+  const PUBLIC_PATH_BY_PAGE = Object.freeze({
+    home: '/',
+    rankings: '/rankings',
+    qbs: '/qb-rankings',
+    divisions: '/divisions',
+    playoffs: '/playoff-picture',
+    slate: '/forcecast-slate',
+    matchups: '/games',
+    teams: '/teams',
+    update: '/update',
+    lab: '/roster-lab',
+    model: '/method',
+    names: '/about'
+  });
+
+  const USE_HASH_ROUTING = ['localhost', '127.0.0.1', '::1'].includes(location.hostname);
+
+  function currentRoute() {
+    // Preserve all existing local / legacy # routes.
+    const legacyHash = location.hash.replace(/^#/, '');
+    if (legacyHash) return legacyHash;
+
+    const segments = (location.pathname || '/')
+      .split('/')
+      .filter(Boolean)
+      .map((part) => decodeURIComponent(part));
+
+    if (!segments.length) return 'home';
+
+    const [head, ...rest] = segments;
+    const pathToPage = {
+      rankings: 'rankings',
+      'qb-rankings': 'qbs',
+      divisions: 'divisions',
+      'playoff-picture': 'playoffs',
+      'forcecast-slate': 'slate',
+      games: 'matchups',
+      teams: 'teams',
+      update: 'update',
+      'roster-lab': 'lab',
+      method: 'model',
+      about: 'names'
+    };
+
+    const page = pathToPage[head] || 'home';
+
+    if (page === 'teams' && rest.length) {
+      return `teams/${rest.join('/')}`;
+    }
+
+    if (page === 'matchups' && rest.length) {
+      return `game/${rest.join('/')}`;
+    }
+
+    return page;
+  }
+
+  function publicPathForRoute(route) {
+    const [page, ...rest] = String(route || 'home').split('/');
+
+    if (page === 'teams' && rest.length) {
+      return `/teams/${rest.map(encodeURIComponent).join('/')}`;
+    }
+
+    if (page === 'game' && rest.length) {
+      return `/games/${rest.map(encodeURIComponent).join('/')}`;
+    }
+
+    return PUBLIC_PATH_BY_PAGE[page] || '/';
+  }
+
+  function navigateRoute(route) {
+    if (USE_HASH_ROUTING) {
+      location.hash = route;
+      return;
+    }
+
+    history.pushState(null, '', publicPathForRoute(route));
+    render();
+  }
+
   function render() {
-    const hash = location.hash.replace('#', '') || 'home';
+    const hash = currentRoute();
     const parts = hash.split('/');
     const page = parts[0];
     const missingModules=criticalRuntimeModulesMissing();
@@ -4920,11 +5002,11 @@
   }
 
   function bind() {
-    document.querySelectorAll('[data-nav]').forEach((b) => { b.onclick = () => { location.hash = b.dataset.nav; }; });
-    document.querySelectorAll('[data-team]').forEach((b) => { b.onclick = () => { location.hash = 'teams/' + b.dataset.team; }; });
-    document.querySelectorAll('[data-game]').forEach((b) => { b.onclick = () => { location.hash = 'game/' + b.dataset.game; }; });
+    document.querySelectorAll('[data-nav]').forEach((b) => { b.onclick = () => { navigateRoute(b.dataset.nav); }; });
+    document.querySelectorAll('[data-team]').forEach((b) => { b.onclick = () => { navigateRoute('teams/' + b.dataset.team); }; });
+    document.querySelectorAll('[data-game]').forEach((b) => { b.onclick = () => { navigateRoute('game/' + b.dataset.game); }; });
     document.querySelectorAll('[data-labteam]').forEach((b) => {
-      b.onclick = () => { S.team = b.dataset.labteam; S.scenario = { removed: new Set(), add: null }; location.hash = 'lab'; };
+      b.onclick = () => { S.team = b.dataset.labteam; S.scenario = { removed: new Set(), add: null }; navigateRoute('lab'); };
     });
     const slateWeek=document.getElementById('slateWeek');
     if(slateWeek) slateWeek.onchange=()=>{ S.slateWeek=Number(slateWeek.value); render(); };
@@ -5056,6 +5138,7 @@
   }
 
   window.addEventListener('hashchange', render);
+  window.addEventListener('popstate', render);
   window.addEventListener('online', () => { diag('browser:online-event',{navigatorOnline:(typeof navigator !== 'undefined' ? navigator.onLine : null)}); refreshSchedule('online'); });
   window.addEventListener('offline', () => { S.connectionState='offline'; diag('browser:offline-event',{navigatorOnline:(typeof navigator !== 'undefined' ? navigator.onLine : null)}); render(); });
   document.addEventListener('visibilitychange', () => {
