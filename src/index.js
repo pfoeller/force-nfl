@@ -1,4 +1,4 @@
-import { Container, getContainer } from "@cloudflare/containers";
+﻿import { Container, getContainer } from "@cloudflare/containers";
 
 const SNAPSHOT_MANIFEST_KEY = "force:bootstrap:manifest:v1";
 const SNAPSHOT_PREFIX = "force:bootstrap:";
@@ -44,7 +44,7 @@ function jsonResponse(value, status = 200, extraHeaders = {}) {
 export class ForceContainer extends Container {
   defaultPort = 8080;
   requiredPorts = [8080];
-  sleepAfter = "10m";
+  sleepAfter = "1m";
   enableInternet = true;
   pingEndpoint = "localhost/api/health";
   envVars = {
@@ -252,3 +252,4 @@ export default {
     );
   },
 };
+
