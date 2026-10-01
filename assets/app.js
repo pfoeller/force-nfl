@@ -3808,7 +3808,7 @@
 
   function layout(content, active) {
     return `<header class="topbar">
-      <div class="brand"><img class="force-brand-logo force-brand-logo-topbar" src="assets/force-approved-mark.png" alt="FORCE - approved Vector-F mark"><span class="working">prototype</span></div>
+      <div class="brand"><img class="force-brand-logo force-brand-logo-topbar" src="assets/force-approved-mark.png" alt="FORCE - approved Vector-F mark"></div>
       <button class="ghost mobile-export-button" id="exportPngMobile" title="Save this page as a PNG">PNG</button>
       <nav class="nav">${[
         ['home', 'Home'], ['rankings', 'FORCE Rankings'], ['qbs', 'QB Rankings'], ['divisions', 'Divisions'], ['playoffs', 'Playoff Picture'], ['slate', 'FORCEcast Slate'], ['matchups', 'Games'],
@@ -3817,7 +3817,7 @@
       <div class="top-actions"><span class="status"><i class="dot ${S.refreshError ? 'warn' : ''}"></i>${connectionLabel()}</span><button class="ghost refresh-button" id="refreshData" title="${USE_HASH_ROUTING?'Update schedule plus all current team/player/unit sources and recompute FORCE everywhere':'Check the latest published canonical snapshot'}">↻ Refresh</button><button class="ghost export-button" id="exportPng" title="Save this page as a PNG">Export PNG</button><span class="refresh-meta" id="refreshMeta">${refreshText()}</span><button class="ghost" data-nav="names">About FORCE</button></div>
     </header>
     <main class="shell"><div id="exportCapture" class="export-capture">${S.refreshError ? `<div class="refresh-warning">${S.lastRefreshAt ? 'Refresh failed. Kept the last good data.' : `Live-data bootstrap failed: ${S.refreshError}`}</div>` : ''}${S.statsError ? `<div class="refresh-warning">Some live metrics could not refresh (${S.statsError}). Current values are suppressed unless a fresh or last-known-good live snapshot is available.</div>` : ''}${S.statsWarning ? `<div class="refresh-warning refresh-warning-info">Live metrics refreshed; ${S.statsWarning}.</div>` : ''}${content}
-      <div class="footer">FORCE prototype | Ratings and forecasts refresh with current data when available. FORCE Score measures team strength. Luck and FLAG add context but do not directly change the public forecast. See Method for a plain-language explanation of how the model works.</div></div>
+      <div class="footer">FORCE | Ratings and forecasts refresh with current data when available. FORCE Score measures team strength. Luck and FLAG add context but do not directly change the public forecast. See Method for a plain-language explanation of how the model works.</div></div>
     </main>`;
   }
 
@@ -4289,7 +4289,6 @@
         <div><b>Roster Lab</b><span>Player what-if tool. Kept plain on purpose.</span></div>
       </div>
       <div class="notice" style="margin-top:16px"><b>Brand principle:</b> use FORCE where it adds meaning. Keep ordinary football terms ordinary.</div>
-      <div class="warning"><b>Prototype name.</b> This is a product-design treatment, not trademark or domain clearance.</div>
     </div>`, 'names');
   }
 

@@ -131,6 +131,13 @@
       "python": true
     },
     {
+      "file": "test_ux16_public_positioning.mjs",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
       "file": "test_v100_contract.js",
       "suites": [],
       "classification": "stale-current-contract",

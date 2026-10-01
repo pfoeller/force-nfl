@@ -70,16 +70,31 @@ qualification controls the summary population.
 | Stage | Canonical Default | Customize |
 | --- | --- | --- |
 | Component scores | Live historical-scale EPA/play, ANY/A, success, rushing value, CPOE from `model/live_profiles.js` | Same scores through `qbDebug` / `qbComponentScores` |
-| Raw | 30/30/20/10/10 composite, existing 1.20 expansion around 50 and clipping | User weights normalized, same calibration/clipping; untouched weights reproduce canonical Raw |
+| Raw | 30/30/20/10/10 composite, existing 1.20 expansion around 50 and clipping | User weights normalized, same calibration/clipping; untouched weights reproduce canonical Raw when all five component scores are available |
 | Opponent / pressure | Added to Raw, then the live score is clipped | Same adjustments added directly in `qbCustomScore` |
 | Continuity | `blend(prior, live, playerStatGames, qbPriorGames)`; effective confidence follows the V99/unit-prior path | No continuity blend |
 | Recency | Added once by app `liveProfiles`, after continuity, then clipped | Same stored canonical recency added once before final clip; custom weights do not recompute it |
-| Published Final | Rankings reads `displayedQbIndex`, falling back to measured; audit records both | Rankings reads `qbCustomScore` |
+| Published Final | Rankings reads `displayedQbIndex`, falling back to measured; the displayed value may include a QB-return scenario overlay; audit records both | Rankings reads `qbCustomScore`; no displayed QB-return scenario overlay |
 
 Raw excludes opponent, pressure, continuity, and recency. Its component inputs
 still include existing statistical stabilization; Raw does not mean
 unstabilized native statistics. Customization changes this ranking only, not
 team FORCE, FORCEcast, or the canonical QB unit.
+
+Missing-component behavior is not uniform. Production Customize uses a neutral
+50 for component values that fail its finite-number check in
+`qbComponentScores`. That check first calls `Number`: an explicit `null` coerces
+to 0 and therefore does not take the neutral fallback. Canonical Raw requires a
+finite EPA component; its formula uses `?? 50` for Success and CPOE, ANY/A has its
+own finite-number/50 fallback, and rushing value is constructed from the rush
+bonus. Canonical Raw does not uniformly substitute 50 for every missing input.
+The diagnostic deliberately reports missing component stages as unavailable
+rather than treating these production fallbacks as evidence of complete data.
+
+All-zero custom weights currently yield Raw 0: the denominator falls back to 1,
+the weighted composite is 0, and calibration/clipping returns 0. Final can still
+contain opponent, pressure and recency terms. This is observed behavior, not a
+selected contract or a proposed production fix.
 
 For available inputs, `R` is calibrated Raw, `O`/`P` opponent/pressure,
 `T` stored recency, `H` the effective prior, `g`/`h` current/equivalent-prior
@@ -130,6 +145,14 @@ displayed/measured scenario differences. Incompatible schemas, unavailable
 canonical/component stages, and null values produce an unavailable comparison,
 not invented zero/neutral scores.
 
+The output field `continuityAndRawGap` is the difference between the clipped
+counterfactual `customStagedFinal` and clipped canonical measured Final. Near
+0/100 it describes the visible post-clamp effect, not an unclipped prior-blend
+delta; with changed weights it also contains the Raw-stage difference. The
+separate `scenarioGap` is displayed Default minus measured Default; Customize
+does not apply that overlay. The built-in cohorts have scenarioGap 0 and do not
+measure its prevalence in production.
+
 ## Product-contract alternatives for owner choice
 
 These are proposed invariants, not accepted implementation directions:
@@ -143,7 +166,8 @@ These are proposed invariants, not accepted implementation directions:
 The owner must choose what Customize claims to customize, whether untouched
 weights reproduce canonical Final, how continuity/context/recency are retained,
 and public Raw/Final meanings. No option is selected here. Current Raw semantics
-and ranking-only customization remain preservation constraints.
+and ranking-only customization are observations of current behavior, not new
+roadmap `PRESERVE` constraints. The product contract remains open.
 
 ## Verification and handoff
 
@@ -182,6 +206,14 @@ with provenance. Rerun the audit as pipelines change rather than treating these
 numbers as permanent model targets.
 
 Recommend owner review of the alternatives or a separately authorized UX-10
-semantic inventory. Neither begins automatically. Claude cross-review and
-combined integration review are later stages; this tranche does not modify
-Claude's branch or merge anything to main.
+semantic inventory. Neither begins automatically. Reciprocal cross-review has
+now passed and the reviewed lanes are combined in `integration/roadmap-lanes`;
+the original lane refs and `main` remain unchanged.
+
+Integration reconciliation (2026-10-01, `integration/roadmap-lanes`) clarified
+the missing-component fallbacks, displayed scenario overlay, zero-weight Raw,
+post-clamp gap terminology and observation-versus-constraint distinction above.
+The original lane verification remains historical; combined verification is in
+[the testing guide](scripts/TESTING.md). Reciprocal review passed with
+non-blocking notes. No new investigation, product contract or production
+behavior change was introduced by this documentation reconciliation.

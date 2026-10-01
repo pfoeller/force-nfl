@@ -18,7 +18,7 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 135 tests: 103 JavaScript and 32 Python |
+| `npm test` / `npm run test:safe` | 136 tests: 104 JavaScript and 32 Python |
 | `npm run test:release` | 16 release/correctness tests |
 | `npm run test:qb` | 26 QB/pressure regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
@@ -26,6 +26,13 @@ example `node scripts/test_v149_release_hardening.mjs`.
 | `npm run test:model` | 44 model/unit regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
+
+Integration verification (2026-10-01, `integration/roadmap-lanes`): `npm test`
+passed 136/136, QB 26/26, model 44/44 and release 16/16 in LF scratch. Both new
+focused regressions passed individually. The normal public build left all 33
+generated files unchanged. Use LF scratch for the known Windows CRLF-sensitive
+`test_v77_game_flow_blend.js` timing-source assertion; no production rewrite is
+needed for that line-ending issue.
 
 Selections overlap. Requirements are Node.js, Git and Python 3.10+; the safe
 suite uses standard-library Python only. Set `FORCE_TEST_PYTHON` to an executable
@@ -57,7 +64,8 @@ to report the complete selected result.
 
 ## Excluded and special tests
 
-The catalog has 247 entries including the runner, QB correctness, Customize audit and semantic migration regressions. Its 112 default
+The catalog has 248 entries including the runner, QB correctness, Customize audit,
+semantic migration and UX-16 public-positioning regressions. Its 112 default
 exclusions remain visible in `test_catalog.json`; exclusion does not mean pass.
 102 retain failing historical assertions/fixtures. The remaining 10 are:
 
