@@ -7,7 +7,8 @@ let n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)};
 ok(app.includes("function canonicalGameTeamState(g, t, phase = 'pre')"),'canonical historical state helper missing');
 ok(app.includes("const p=profileBeforeWeek(t, Number(g.week) + (isPost ? 1 : 0))"),'historical units must be timestamped pre/post game');
 ok(app.includes('const bridge=unitForceBridgeForProfile(t, coreElo, p)'),'historical FORCE must use unit bridge');
-ok(app.includes('QR.correction(qbCarryoverPreset(t),gamesPlayed)'),'historical FORCE must use timestamp-correct QB regime');
+// MD-03 (Cycle 6): the retired automatic QB regime is never reapplied historically.
+ok(!app.includes('QR.correction(') && app.includes('profile:p,qbRestore:0,gamesPlayed};'),'historical FORCE must not reapply the retired automatic QB regime');
 ok(app.includes('forceScore:score(elo)'),'historical FORCE must transform final canonical Elo only after overlays');
 
 // Pregame and postgame UI/audit must consume that same helper.

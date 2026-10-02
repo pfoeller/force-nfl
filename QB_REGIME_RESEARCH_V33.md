@@ -1,5 +1,7 @@
 # V33 returning-QB regime research
 
+**Status (2026-10-02, MD-03 Cycle 6, review branch):** the owner retired the automatic correction from current production as a decision under uncertainty; it was not disproven. Production now applies no automatic QB-return correction. This research and `model/qb_regime.js` are preserved unchanged for possible future reconsideration. See [MD-03 retirement implementation](MD03_RETIREMENT_IMPLEMENTATION.md).
+
 ## Decision
 
 Promote a **conservative, registry-gated** returning-QB correction to the default FORCE rating layer. Do not promote a blanket missed-start rule.

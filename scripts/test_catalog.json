@@ -94,6 +94,17 @@
       "timeoutMs": 60000
     },
     {
+      "file": "test_md03_retirement.mjs",
+      "suites": [
+        "safe",
+        "qb",
+        "model"
+      ],
+      "classification": "regression",
+      "reason": "MD-03 Cycle 6: real-bundle proof that the retired automatic QB-return correction contributes zero on every route, legacy preset/gate data cannot reactivate it, and the manual lab still works",
+      "timeoutMs": 120000
+    },
+    {
       "file": "test_postseason_state_audit.mjs",
       "suites": [
         "safe",

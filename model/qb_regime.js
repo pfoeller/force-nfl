@@ -11,8 +11,11 @@
  *   hard pre-reversion cap = 60 Elo
  *   half-life = 4 team games
  *
- * Manual QB Return Lab values override (rather than stack on top of) this
- * automatic baseline.
+ * MD-03 (Cycle 6): RETIRED FROM PRODUCTION. The owner retired the automatic
+ * correction on 2026-10-02 (a decision under uncertainty, not a finding that
+ * the effect is zero). assets/app.js no longer calls this module, and the
+ * bundled preset is no longer autoEligible. The calculation is kept unchanged
+ * as a research record so the V33 contract stays reproducible.
  */
 (function(root){
   'use strict';

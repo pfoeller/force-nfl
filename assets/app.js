@@ -9,8 +9,11 @@
   const ALLOW_DEGRADED_TEST_DATA = Boolean(window.__FORCE_ALLOW_DEGRADED_TEST_DATA__) || (typeof process !== 'undefined' && process?.versions?.node);
   const M = window.MATCHUP_DATA || { meta: {}, profiles: {} };
   const QBC = window.QB_CARRYOVER || { meta: {}, presets: {}, study: {} };
-  const PF = window.FORCE_PREDICTIVE_FEATURES || null;
-  const QR = window.FORCE_QB_REGIME || null;
+  // MD-03 (Cycle 6): the automatic V33 returning-QB correction is retired from
+  // production. The app deliberately reads neither the V33 regime module nor the
+  // qbCarryover predictive gate, so no preset, eligibility flag or gate value can
+  // restore it. model/qb_regime.js and data/qb-carryover.js remain as research
+  // records and as the manual QB Return Lab preset source.
   const ER = window.FORCE_EARLY_REGIME || null;
   const RC = window.FORCE_RATING_CONTINUITY || null;
   const RS = window.FORCE_RETROSPECTIVE_STRENGTH || null;
@@ -1227,16 +1230,11 @@
     return S.schedule.filter((g) => g.homeScore != null && g.awayScore != null && (g.home === t || g.away === t)).length;
   }
 
-  function automaticQbRegimeCorrection(t) {
-    t = canon(t);
-    if (!predictiveQbCarryoverAllowed() || !QR) return 0;
-    return QR.correction(qbCarryoverPreset(t), teamGamesPlayed(t));
-  }
-
+  // MD-03 (Cycle 6): only an explicit manual QB Return Lab value can produce a
+  // QB-return correction. There is no automatic fallback.
   function effectiveQbCorrection(t) {
     t = canon(t);
-    if (qbCarryoverActive(t)) return Number(S.qbCarryover.restoreElo || 0);
-    return automaticQbRegimeCorrection(t);
+    return qbCarryoverActive(t) ? Number(S.qbCarryover.restoreElo || 0) : 0;
   }
 
   function qbCandidates(t) {
@@ -1264,14 +1262,13 @@
     return !!(S.qbCarryover.enabled && S.qbCarryover.team === canon(t) && Number(S.qbCarryover.restoreElo) > 0);
   }
 
-  function predictiveQbCarryoverAllowed() {
-    return PF ? PF.brierEligible('qbCarryover') : false;
-  }
-
+  // A manual QB Return Lab value is an explicit user what-if, not a predictive
+  // feature, so it no longer depends on the retired qbCarryover gate. Before
+  // MD-03 retirement that gate was always open, so manual behaviour is unchanged.
   function ratingsWithQBCarryover(t, source = currentRatings()) {
     const out = { ...source };
     t = canon(t);
-    const restore = predictiveQbCarryoverAllowed() ? effectiveQbCorrection(t) : 0;
+    const restore = effectiveQbCorrection(t);
     if (restore > 0) out[t] = (out[t] ?? base(t)?.elo ?? D.meta.meanElo) + restore;
     return out;
   }
@@ -1279,7 +1276,6 @@
 
   function ratingsWithActiveQBCarryover(source = currentRatings()) {
     const out = { ...source };
-    if (!predictiveQbCarryoverAllowed()) return out;
     for (const t of Object.keys(QBC.presets || {})) {
       const restore = effectiveQbCorrection(t);
       if (restore > 0) out[t] = (out[t] ?? base(t)?.elo ?? D.meta.meanElo) + restore;
@@ -1292,10 +1288,9 @@
     const preset = qbCarryoverPreset(t);
     if (!preset) return compact ? '' : '<span class="raw">No verified QB-return preset</span>';
     const active = qbCarryoverActive(t);
-    const auto = automaticQbRegimeCorrection(t);
-    const label = active ? 'Use auto QB fix' : (auto > 0 ? `QB auto +${fmt(auto)}` : 'Apply QB fix');
-    const detail = active ? `${preset.qb} | manual +${fmt(S.qbCarryover.restoreElo)} Elo` : auto > 0 ? `${preset.qb} | automatic returning-QB correction` : `${preset.qb} | +${fmt(preset.suggestedRestoreElo)} Elo`;
-    return `<button type="button" class="qb-quick ${(active || auto > 0) ? 'active' : ''}" data-qbquick="${t}" title="${active ? 'Return to automatic' : 'Open manual override for'} ${preset.qb} carryover correction">${label}${compact ? '' : `<small>${detail}</small>`}</button>`;
+    const label = active ? 'Clear QB fix' : 'Apply QB fix';
+    const detail = active ? `${preset.qb} | manual +${fmt(S.qbCarryover.restoreElo)} Elo` : `${preset.qb} | +${fmt(preset.suggestedRestoreElo)} Elo`;
+    return `<button type="button" class="qb-quick ${active ? 'active' : ''}" data-qbquick="${t}" title="${active ? 'Clear manual' : 'Open manual override for'} ${preset.qb} carryover correction">${label}${compact ? '' : `<small>${detail}</small>`}</button>`;
   }
 
   function teamProbability(g, fc, t) {
@@ -1306,7 +1301,6 @@
     t = canon(t);
     const preset = qbCarryoverPreset(t);
     const active = qbCarryoverActive(t);
-    const autoRestore = automaticQbRegimeCorrection(t);
     const effectiveRestore = effectiveQbCorrection(t);
     const qbs = qbCandidates(t);
     const selectedQB = active ? S.qbCarryover.qb : (preset?.qb || qbs[0]?.name || 'Returning starter');
@@ -1325,12 +1319,12 @@
     }
     const research = QBC.study || {};
     const presetCopy = preset
-      ? `<div class="carryover-preset"><b>${preset.qb}:</b> FORCE estimates that the replacement-QB stretch lowered the team rating by about ${fmt(preset.rawBackupWindowEloDamage)} Elo at the time. About ${fmt(preset.postReversionCarryoverDamage)} Elo of that effect carried into the new season. After ${teamGamesPlayed(t)} team games, the automatic correction is now +${fmt(autoRestore)} Elo. The slider lets you test a different total correction.</div>`
+      ? `<div class="carryover-preset"><b>${preset.qb}:</b> FORCE estimates that the replacement-QB stretch lowered the team rating by about ${fmt(preset.rawBackupWindowEloDamage)} Elo at the time. About ${fmt(preset.postReversionCarryoverDamage)} Elo of that effect carried into the new season. FORCE does not apply an automatic correction for this. The slider lets you test one.</div>`
       : `<div class="carryover-preset">No preset for this team. Use the slider for a one-off what-if.</div>`;
     return `<section class="card carryover-card">
-      <div class="card-head"><div><div class="eyebrow">Returning quarterback adjustment</div><h2>QB Return Lab</h2></div><span class="chip ${(active || autoRestore > 0) ? 'carryover-on' : ''}">${active ? 'MANUAL' : autoRestore > 0 ? 'AUTO' : 'OFF'}</span></div>
+      <div class="card-head"><div><div class="eyebrow">Returning quarterback adjustment</div><h2>QB Return Lab</h2></div><span class="chip ${active ? 'carryover-on' : ''}">${active ? 'MANUAL' : 'OFF'}</span></div>
       <div class="card-body">
-        <p class="carryover-copy">When a team spent time with a replacement quarterback, its team rating can still reflect some of those games after the regular starter returns. For verified cases, FORCE automatically gives back a small part of that lost rating and gradually fades the correction as new games are played. This lab lets you try a different amount. Defense is left alone.</p>
+        <p class="carryover-copy">When a team spent time with a replacement quarterback, its team rating can still reflect some of those games after the regular starter returns. FORCE does not automatically correct for this. This lab lets you try giving back part of that lost rating as a what-if. Defense is left alone.</p>
         ${presetCopy}
         <div class="carryover-controls">
           <label>Returning QB<select id="qbCarryoverQB">${(qbs.length ? qbs : [{name:selectedQB}]).map((q) => `<option value="${q.name}" ${q.name === selectedQB ? 'selected' : ''}>${q.name}</option>`).join('')}</select></label>
@@ -1918,7 +1912,9 @@
 
   // V69: canonical historical state. Completed-game pages must use the same
   // FORCE definition as Rankings/Teams, frozen at the requested timestamp:
-  // result/regime Elo + timestamp-correct unit bridge + automatic QB regime.
+  // result/regime Elo + timestamp-correct unit bridge. MD-03 (Cycle 6): the
+  // retired automatic QB regime is not reapplied to any historical timestamp;
+  // qbRestore stays in the state object as an explicit zero.
   function canonicalGameTeamState(g, t, phase = 'pre') {
     t=canon(t);
     const engine=seasonEngine(), hist=engine.gameHistory?.[gameKey(g)];
@@ -1931,11 +1927,8 @@
     const p=profileBeforeWeek(t, Number(g.week) + (isPost ? 1 : 0));
     const bridge=unitForceBridgeForProfile(t, coreElo, p);
     const gamesPlayed=teamGamesBeforeWeek(t,g.week,isPost);
-    const qbRestore=(predictiveQbCarryoverAllowed() && QR)
-      ? QR.correction(qbCarryoverPreset(t),gamesPlayed)
-      : 0;
-    const elo=Number(bridge.elo ?? coreElo) + Number(qbRestore || 0);
-    return {team:t,phase,coreElo,elo,forceScore:score(elo),unitBridge:bridge,profile:p,qbRestore,gamesPlayed};
+    const elo=Number(bridge.elo ?? coreElo);
+    return {team:t,phase,coreElo,elo,forceScore:score(elo),unitBridge:bridge,profile:p,qbRestore:0,gamesPlayed};
   }
 
   function unitChangeRows(t, beforeWeek, currentProfile) {
@@ -2065,7 +2058,9 @@
   // V99: Week-2 continuity ledger. Week 2 entry is the actual canonical state
   // produced after Week 1 (including the V99-smoothed regime correction, unit
   // bridge, and QB regime). Current movement is decomposed into like-for-like
-  // deltas from that state; no hidden rebase is allowed.
+  // deltas from that state; no hidden rebase is allowed. MD-03 (Cycle 6): the
+  // retired automatic QB regime is zero in the entry state too, so the QB delta
+  // now carries only an explicit manual QB Return Lab value.
   function week2EntryState(t) {
     t=canon(t);
     const completed=sortedSchedule().filter((g)=>Number(g.week)<2 && g.homeScore!=null&&g.awayScore!=null&&(g.home===t||g.away===t));
@@ -2082,19 +2077,17 @@
       const p=profileBeforeWeek(t,2,{preserveV98PassRush:true,preserveV100Coverage:true,preserveV101Offense:true});
       const bridge=unitForceBridgeForProfile(t,coreElo,p,null,{weights:V99_UNIT_FORCE_WEIGHTS});
       const gamesPlayed=teamGamesBeforeWeek(t,1,true);
-      const qbRestore=(predictiveQbCarryoverAllowed()&&QR)?QR.correction(qbCarryoverPreset(t),gamesPlayed):0;
-      const elo=Number(bridge.elo??coreElo)+Number(qbRestore||0);
+      const elo=Number(bridge.elo??coreElo);
       const regimeElo=coreElo-causalCoreElo;
-      return {team:t,phase:'week2-entry-v98-baseline',week:2,game:gameKey(g),causalCoreElo,regimeElo:Number.isFinite(regimeElo)?regimeElo:0,retrospectiveElo:0,coreElo,elo,forceScore:score(elo),unitBridge:bridge,profile:p,qbRestore,gamesPlayed};
+      return {team:t,phase:'week2-entry-v98-baseline',week:2,game:gameKey(g),causalCoreElo,regimeElo:Number.isFinite(regimeElo)?regimeElo:0,retrospectiveElo:0,coreElo,elo,forceScore:score(elo),unitBridge:bridge,profile:p,qbRestore:0,gamesPlayed};
     }
     const causalCoreElo=Number(engine.preseasonRatings?.[t] ?? base(t)?.elo ?? D.meta.meanElo);
     const regimeElo=regimeCorrectionElo(t,2,{},D.config.scale);
     const p=profileBeforeWeek(t,2);
     const coreElo=causalCoreElo+regimeElo;
     const bridge=unitForceBridgeForProfile(t,coreElo,p,null,{weights:V99_UNIT_FORCE_WEIGHTS});
-    const qbRestore=(predictiveQbCarryoverAllowed()&&QR)?QR.correction(qbCarryoverPreset(t),0):0;
-    const elo=Number(bridge.elo??coreElo)+Number(qbRestore||0);
-    return {team:t,phase:'week2-entry',week:2,game:null,causalCoreElo,regimeElo,retrospectiveElo:0,coreElo,elo,forceScore:score(elo),unitBridge:bridge,profile:p,qbRestore,gamesPlayed:0};
+    const elo=Number(bridge.elo??coreElo);
+    return {team:t,phase:'week2-entry',week:2,game:null,causalCoreElo,regimeElo,retrospectiveElo:0,coreElo,elo,forceScore:score(elo),unitBridge:bridge,profile:p,qbRestore:0,gamesPlayed:0};
   }
 
   function ratingLedger(teamCode=null) {
@@ -4182,7 +4175,6 @@
     t = canon(t); S.team = t;
     const baseRatings = currentRatings();
     const active = qbCarryoverActive(t);
-    const autoRestore = automaticQbRegimeCorrection(t);
     const effectiveRestore = effectiveQbCorrection(t);
     const state = currentTeamState(t, baseRatings);
     const ratings = ratingsWithQBCarryover(t, baseRatings);
@@ -4193,7 +4185,7 @@
     const baseP = projected(t, baseRatings);
     const sched = S.schedule.filter((g) => g.home === t || g.away === t).sort((a, b2) => a.date.localeCompare(b2.date));
     const current = `${p.w}-${p.l}${p.t ? '-' + p.t : ''}`;
-    const overlay = effectiveRestore > 0 ? `<span class="carryover-inline">QB ${active ? 'manual' : 'auto'} +${fmt(r-rawR)} Elo</span>` : '';
+    const overlay = effectiveRestore > 0 ? `<span class="carryover-inline">QB manual +${fmt(r-rawR)} Elo</span>` : '';
     return layout(`<section class="card team-hero">
       ${teamMark(t, 'xl')}<div><div class="eyebrow">${team(t).division}</div><h1>${team(t).name}</h1><div class="raw">Elo ${fmt(r)}${effectiveRestore > 0 ? ` <span class="muted-strike">${fmt(rawR)} base</span>` : ''} · 2025 base ${fmt(b.elo)} · FORCE Score ${fmt(score(r))} ${overlay}</div>${ratingBar(r, 'bar team-bar')}<div class="team-quick-fix">${quickQbButton(t, false)}</div></div>
       <div class="record-big"><strong>${fmt(p.ew)}–${fmt(17 - p.ew)}</strong><span>projected record · current ${current}${effectiveRestore > 0 ? ` · base projection ${fmt(baseP.ew)} wins` : ''}</span></div>
@@ -4299,11 +4291,11 @@
       <h2>Luck</h2>
       <p>Luck asks whether a team's results have been better or worse than its underlying play would normally produce. Most of it compares actual scoring margin with the margin normally associated with the team's play-by-play efficiency. The rest comes from penalty impact (FLAG), fumble recoveries, and unusually fortunate or unfortunate wins and losses. A team can therefore be excellent and still rate as unlucky if it is playing even better than the scoreboard shows.</p>
       <h2>QB return correction</h2>
-      <p>A stretch with a replacement quarterback can pull down a team's rating even after the regular starter comes back. Historical testing suggests that giving back a modest part of that lost rating can help, but it does not help every case. FORCE therefore applies the automatic correction only to verified situations and fades it quickly as the returning starter builds a new sample.</p>
+      <p>A stretch with a replacement quarterback can pull down a team's rating even after the regular starter comes back. Historical testing suggested that giving back a modest part of that lost rating can help in some cases, but the benefit was small and depended on which cases were included. FORCE therefore does not currently apply an automatic correction. The research is kept in case the idea is revisited.</p>
       <div class="grid three brier-grid">
         <div class="card kpi"><div class="label">FIRST FOUR WEEKS</div><div class="value positive">-0.0104</div><div class="sub">Historical prediction error improved in 6 of 11 cases.</div></div>
         <div class="card kpi"><div class="label">FIRST EIGHT WEEKS</div><div class="value positive">-0.0094</div><div class="sub">Historical prediction error improved in 7 of 11 cases.</div></div>
-        <div class="card kpi"><div class="label">STATUS</div><div class="value" style="font-size:22px">LIMITED USE</div><div class="sub">Automatic only for verified cases; manual what-if available on team pages.</div></div>
+        <div class="card kpi"><div class="label">STATUS</div><div class="value" style="font-size:22px">NOT APPLIED</div><div class="sub">No automatic correction; manual what-if available on team pages.</div></div>
       </div>
       <h2>FORCE Adaptive</h2>
       <p>This is a research feature that asks whether the betting market has consistently known something about a particular team that FORCE has missed. It only uses earlier games when judging a later game, and it keeps any adjustment small.</p>
@@ -4322,7 +4314,7 @@
       <h2>What is allowed to affect predictions?</h2>
       <p>A new stat or adjustment does not get into the forecast just because it looks interesting. FORCE first tests it on games that happened after the data used to build it. If prediction error gets worse, or if the test is not clean enough to trust, that feature gets no predictive weight.</p>
       <div class="formula">Build the idea from past data → test it only on later games → keep it only if prediction error holds steady or improves.</div>
-      <p>Right now the forecast can use the core team rating, validated betting-market information, and the limited returning-QB correction. Luck and FLAG remain descriptive unless future testing shows they improve predictions.</p>
+      <p>Right now the forecast can use the core team rating and validated betting-market information. Luck and FLAG remain descriptive unless future testing shows they improve predictions.</p>
     </div>`, 'model');
   }
 

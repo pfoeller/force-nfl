@@ -11,12 +11,17 @@ let assertions=0;
 function ok(v,m){assertions++; if(!v) throw new Error(m);}
 function near(a,b,t=1e-10,m='values differ'){assertions++; if(Math.abs(Number(a)-Number(b))>t) throw new Error(`${m}: ${a} vs ${b}`);}
 
-ok(PF.brierEligible('qbCarryover'),'verified QB regime feature must be Brier-eligible');
-ok(Q.meta.defaultEnabled===true,'V33 verified regime correction should default on');
-ok(Q.meta.promotionDecision==='verified-regime-auto','unexpected V33 promotion decision');
+// MD-03 (Cycle 6): the automatic correction is retired from production. The V33
+// calculation is still checked below as a research record, using an explicitly
+// re-enabled copy of the preset.
+ok(!PF.brierEligible('qbCarryover') && PF.predictiveWeight('qbCarryover')===0,'retired QB regime feature must not be Brier-eligible');
+ok(Q.meta.defaultEnabled===false,'retired V33 regime correction must default off');
+ok(Q.meta.promotionDecision==='retired-md03-cycle6','unexpected V33 retirement decision');
+ok(Q.presets.KC.autoEligible===false && !R.eligiblePreset(Q.presets.KC),'bundled KC preset must not be auto-eligible');
+near(R.correction(Q.presets.KC,0),0,1e-12,'bundled KC preset yields no V33 restore');
 
-const kc=Q.presets.KC;
-ok(R.eligiblePreset(kc),'KC verified preset should be eligible');
+const kc={...Q.presets.KC,autoEligible:true};
+ok(R.eligiblePreset(kc),'research copy of the KC preset should be eligible');
 near(R.initialRestore(kc),15.75,1e-12,'KC initial restore');
 near(R.correction(kc,0),15.75,1e-12,'KC week-zero restore');
 near(R.correction(kc,4),7.875,1e-12,'four-game half-life');
@@ -39,10 +44,10 @@ near(q.delta_brier,-0.00985886438071587,1e-12,'gated delta Brier changed');
 ok(q.episodes_improved===5 && q.episodes===6,'expected 5/6 gated episodes improved');
 
 const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
-ok(app.includes('function automaticQbRegimeCorrection(t)'), 'missing automatic V33 QB regime path');
-ok(app.includes('function effectiveQbCorrection(t)'), 'missing manual-over-auto correction resolver');
-ok(app.includes('if (qbCarryoverActive(t)) return Number(S.qbCarryover.restoreElo || 0);'), 'manual value must override automatic correction');
-ok(app.includes('for (const t of Object.keys(QBC.presets || {}))'), 'automatic corrections must flow into active predictive ratings');
-ok(app.includes('QR.correction(qbCarryoverPreset(t), teamGamesPlayed(t))'), 'regime correction must decay by completed team games');
+ok(!app.includes('automaticQbRegimeCorrection'), 'retired automatic V33 QB regime resolver must not exist in production');
+ok(!app.includes('FORCE_QB_REGIME') && !app.includes('QR.correction('), 'production app must not call the V33 regime module');
+ok(!app.includes("brierEligible('qbCarryover')"), 'production app must not read the retired qbCarryover gate');
+ok(app.includes('return qbCarryoverActive(t) ? Number(S.qbCarryover.restoreElo || 0) : 0;'), 'only a manual value may produce a QB-return correction');
+ok(app.includes('for (const t of Object.keys(QBC.presets || {}))'), 'manual preset corrections still flow into active ratings');
 
 console.log(`OK: ${assertions} V33 QB-regime assertions`);

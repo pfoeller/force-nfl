@@ -18,14 +18,24 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 143 tests: 110 JavaScript and 33 Python |
+| `npm test` / `npm run test:safe` | 144 tests: 111 JavaScript and 33 Python |
 | `npm run test:release` | 17 release/correctness tests |
-| `npm run test:qb` | 27 QB/pressure/research regressions |
+| `npm run test:qb` | 28 QB/pressure/research regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
-| `npm run test:model` | 48 model/unit/research regressions |
+| `npm run test:model` | 49 model/unit/research regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
+
+Cycle 6 MD-03 retirement (2026-10-02, `cycle6/claude-md03-retirement` from exact
+`0e6b745`, review branch, not pushed or merged): new
+`test_md03_retirement.mjs` (safe, qb, model; `timeoutMs` 120000) brings the
+catalog to 256 entries, 144 safe (111 JavaScript / 33 Python) and 112 unchanged
+default exclusions. Authoritative LF clone passed safe 144/144, model 49/49,
+release 17/17, QB 28/28, snapshot 6/6 and server 30/30. The native CRLF
+worktree also passed safe 144/144; the known V77 CRLF assertion did not trigger
+there. The new test and the updated V30, V33 and V69 contracts fail on `0e6b745`.
+Evidence: [MD-03 retirement](../MD03_RETIREMENT_IMPLEMENTATION.md).
 
 Cycle 3 integration verification (2026-10-02, `cycle3/integration`, reviewed
 `6f03f4e` + `97ed745` and `2f2346e` + `c09fddc`): the combined catalog

@@ -15,11 +15,12 @@ assert not ({'STL','SD','OAK','LA','JAC'} & {r['team'] for r in d['rankings']})
 
 m=parse_window(root/'data/matchup-data.js','MATCHUP_DATA')
 qbc=parse_window(root/'data/qb-carryover.js','QB_CARRYOVER')
-assert qbc['meta']['defaultEnabled'] is True
-assert qbc['meta']['promotionDecision']=='verified-regime-auto'
+# MD-03 (Cycle 6): automatic use retired; the V33 values stay as a research record.
+assert qbc['meta']['defaultEnabled'] is False
+assert qbc['meta']['promotionDecision']=='retired-md03-cycle6'
 assert abs(qbc['presets']['KC']['suggestedRestoreElo']-47.3)<0.01
 assert abs(qbc['presets']['KC']['automaticInitialRestoreElo']-15.75)<1e-9
-assert qbc['presets']['KC']['autoEligible'] is True
+assert qbc['presets']['KC']['autoEligible'] is False
 assert qbc['study']['week1to8']['episodesImproved']==7
 assert set(m['profiles'])==set(d['teams']), (set(d['teams'])-set(m['profiles']),set(m['profiles'])-set(d['teams']))
 for t,p in m['profiles'].items():

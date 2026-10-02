@@ -3,7 +3,7 @@ import vm from 'node:vm';
 
 // Execute the real ordered browser bundle without starting timers/network/UI.
 // Expose lexical functions only inside this test VM, at the existing test gate.
-export function appHarness({fetch = async () => { throw new Error('unexpected fetch'); }, now = Date.now(), hooks = '', hostname = 'forceratings.com', document = null, timers = {}} = {}) {
+export function appHarness({fetch = async () => { throw new Error('unexpected fetch'); }, now = Date.now(), hooks = '', hostname = 'forceratings.com', document = null, timers = {}, sources = {}} = {}) {
   class Clock extends Date { static now() { return typeof now==='function'?now():now; } }
   const context = {window:{__FORCE_TEST_MODE__:true},console:{log(){},warn(){},info(){}},
     document:document || {getElementById(){return {innerHTML:''};},querySelector(){return null;},querySelectorAll(){return [];},addEventListener(){}},
@@ -14,7 +14,8 @@ export function appHarness({fetch = async () => { throw new Error('unexpected fe
   vm.createContext(context);
   const html=fs.readFileSync('index.html','utf8');
   for (const [,path] of html.matchAll(/<script src="([^"]+)"/g)) {
-    let source=fs.readFileSync(path,'utf8');
+    // Optional per-file source overrides let a test load stale or legacy data.
+    let source=Object.hasOwn(sources,path)?sources[path]:fs.readFileSync(path,'utf8');
     if (path==='assets/app.js') source=source.replace('if (window.__FORCE_TEST_MODE__) {',
       `window.TEST={S,liveProfiles,currentRatings,currentTeamState,ratingsWithActiveQBCarryover,unitForceBridge,forecastFor,displayProfile,offenseCompositeFrom,qbRankingsPage,teamPage,rankings,matchupPage,fetchBootstrapSnapshot,initialCanonicalBootstrap,refreshPublishedSnapshot,snapshotAgePolicy,connectionLabel,defensiveDriveContextMapBeforeWeek,${hooks}};\n  if (window.__FORCE_TEST_MODE__) {`);
     vm.runInContext(source,context,{filename:path});

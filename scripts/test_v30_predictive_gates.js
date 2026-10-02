@@ -36,8 +36,10 @@ for (const name of ['luck','penalties']) {
   ok(PF.predictiveWeight(name) === 0, `${name} must remain diagnostic/display-only`);
   ok(G.features[name]?.status === 'display-only', `${name} display-only status changed unexpectedly`);
 }
-ok(PF.brierEligible('qbCarryover'), 'QB carryover should be eligible under its measured aggregate Brier improvement');
-ok(G.features.qbCarryover.deltaBrier < 0, 'QB carryover benchmark must show aggregate Brier improvement');
+// MD-03 (Cycle 6): the automatic QB carryover feature is retired; its V33 benchmark stays as a record.
+ok(!PF.brierEligible('qbCarryover') && PF.predictiveWeight('qbCarryover') === 0, 'retired QB carryover must carry no predictive weight');
+ok(G.features.qbCarryover.status === 'retired-md03-cycle6', 'QB carryover gate must be marked retired');
+ok(G.features.qbCarryover.deltaBrier < 0, 'historical V33 QB carryover benchmark record must be preserved');
 
 // Regression for the reported bug: a +47.3 Elo QB correction must move the
 // model-implied FORCE line. Smart/market probability is allowed to move less.
@@ -55,6 +57,7 @@ ok(app.includes("return forecastFor(g, ratings, 'independent')"), 'FORCE line mu
 ok(app.includes('line: predictedLineLabel(g, proj)'), 'V35 public line must use canonical blended projection');
 ok(!app.includes("line: predictedLineLabel(g, forceLineProj)"), 'V35 must not expose model-only line in game cards');
 ok(app.includes("const lineLabel = predictedLineLabel(g, proj)"), 'V35 matchup page must display canonical blended line');
-ok(app.includes("predictiveQbCarryoverAllowed()"), 'QB predictive path must be feature-gated');
+// MD-03 (Cycle 6): no automatic QB predictive path remains for a gate to reopen.
+ok(!app.includes("predictiveQbCarryoverAllowed") && !app.includes("brierEligible('qbCarryover')"), 'retired QB carryover gate must not be able to reactivate an automatic path');
 
 console.log(`OK: ${assertions} V30 predictive-gate/QB-line assertions`);
