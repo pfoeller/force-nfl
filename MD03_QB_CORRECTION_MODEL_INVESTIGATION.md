@@ -378,7 +378,7 @@ This document does not rewrite Cycle 4 governance.
 2. If kept, A, B0 or a successor, after full-stack validation.
 3. Injury scope: strict medical, probable or broader.
 4. Minimum absence, return verification, activation delay and decay range.
-5. Whether cross-season starter continuity is a required detector capability. Offseason returns carry the signal and are outside the Codex prototype.
+5. How a retained correction should satisfy the offseason/cross-season capability that MD-03 already requires. The accepted MD-03 requirement includes a known offseason-return acceptance case, so any retained automatic correction needs a validated way to carry starter continuity across a season boundary. The owner may decide how that is satisfied; this investigation selects no mechanism, source or algorithm. Narrowing MD-03 to exclude offseason or cross-season cases would require an explicit owner revision of the accepted requirement. The Codex prototype remains within-season only and does not yet provide this capability, while offseason returns carry most of the historical signal in the core-only replay.
 6. Ledger storage and attribution.
 
 ## 22. Recommended next step
