@@ -414,7 +414,7 @@ Entries in this group come from the owner's 2026-10-02 roadmap intake. Each reco
 - **Decision status: CONFIRMED (owner direction 2026-10-02, intake item I); Execution status: PLANNED, not authorized; Priority: unset.** Users should not need to ask "What is FORCE?" or "What is FLAG?". FORCE may keep proprietary vocabulary, but it must teach that vocabulary where users meet it.
 - **Progressive explanation pattern:** First meaningful encounter on a surface gets the expansion plus a concise plain-language explanation; repeated use uses normal shorthand; dense tables get a nearby persistent legend/help pattern; deeper explanation lives in Method or expandable detail. Do not spell out every acronym on every occurrence. Tooltip-only explanation is insufficient for essential meaning. Exports containing proprietary metrics carry enough context to stand alone.
 - **Audit terms:** FORCE; FLAG; Luck; FORCEcast; FORCE QB Rating; Raw versus adjusted QB rating; opponent/pressure/recency adjustments; projected record; other proprietary or non-obvious terms.
-- **OWNER DECISION within this item:** Do not invent an acronym expansion the repository does not establish. The established current expansion is "Football Objective Rating & Comparative Efficiency." `UX-31` owns only the proposed Rating-to-Ratings change; contextual explanation can use the current authoritative expansion without resolving that choice. No authoritative FLAG expansion was found in source or documentation at `aa4e82c`; whether FLAG has an expansion or is explained descriptively is an owner decision.
+- **Established expansions:** Do not invent an acronym expansion the repository does not establish. The established current expansion is "Football Objective Rating & Comparative Efficiency." `UX-31` owns only the proposed Rating-to-Ratings change; contextual explanation can use the current authoritative expansion without resolving that choice. The established current FLAG expansion is "Flag Leverage & Advantage Gauge." Contextual explanations may use that authoritative current expansion. Any future naming change requires a separate owner decision.
 - **Dependencies:** `UX-06` disclosure system, `UX-14` approval gate, `UX-20` voice, `UX-22` canonical feature map, `UX-10` quantity labels, `UX-31`, `UX-35`.
 - **Acceptance (proposed):** Terminology inventory per surface with first-encounter, repeat and dense-table treatments; touch/keyboard access to essential meaning; stand-alone export context.
 
@@ -721,7 +721,7 @@ Recorded after Cycle 5 closed at `main @ aa4e82c`. This records owner direction 
 | F | Live in-game win probability / live game feed | `MD-06` (new) | Feasibility first; owner data-source policy applies; nothing purchased. |
 | G | Roster Lab Beta / simplification | `UX-34` (new) | Product counterpart to `MD-04`. |
 | H | Mobile-native dense views and viewport-independent exports | `UX-02`, `UX-30` (extended); `UX-35` (new) | Dense-view strategy rule extends existing items; export architecture is new. |
-| I | Self-explaining terminology / metric onboarding | `UX-36` (new) | Complements `UX-06`/`UX-22`; uses the established FORCE expansion (`UX-31` owns only Rating versus Ratings); FLAG expansion needs owner decision. |
+| I | Self-explaining terminology / metric onboarding | `UX-36` (new) | Complements `UX-06`/`UX-22`; uses the established FORCE expansion (`UX-31` owns only Rating versus Ratings) and the established FLAG expansion. |
 | J | Game-level FLAG penalty ledger | `UX-37` (new) | New drill-down; must reconcile to game FLAG. |
 | K | App-quality mobile / social sharing | `UX-30` (extended); `UX-38` (new) | App-quality qualities extend `UX-30`; sharing workflow is new. |
 | L | Contextual semantic interpretation / coloring for raw stats | `UX-39` (new) | Palette remains `UX-13`'s decision. |
@@ -731,7 +731,7 @@ Recorded after Cycle 5 closed at `main @ aa4e82c`. This records owner direction 
 
 Cross-item doctrines are recorded under [Shared product / UX principles](#shared-product--ux-principles).
 
-**Open after this intake:** `UX-32` pick model, unpicked games, ties, predicted scores and persistence; `UX-33` platform strategy; `UX-36` FLAG expansion; `UX-39` default/opt-out approach; `UX-25` floor versus `<1%` notation versus constrained apportionment; `MD-04` depth/insurance value policy; `MD-05` attribution policy per unit; `MD-06` source, licensing, cost and deployment scope.
+**Open after this intake:** `UX-32` pick model, unpicked games, ties, predicted scores and persistence; `UX-33` platform strategy; `UX-39` default/opt-out approach; `UX-25` floor versus `<1%` notation versus constrained apportionment; `MD-04` depth/insurance value policy; `MD-05` attribution policy per unit; `MD-06` source, licensing, cost and deployment scope.
 
 ## Candidate recommendations / intake
 
