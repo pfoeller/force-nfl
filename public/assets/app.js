@@ -1855,11 +1855,19 @@
     return liveProfiles()?.[c] || priorProfile(c);
   }
 
-  function liveProfileStatus(t) {
+  // Completed games and usable current stat rows differ: team-stat measures
+  // blend `statGames`, player measures `playerStatGames`, and either can be
+  // zero (current weight zero) while games have been played.
+  function liveProfileStatus(t, source = 'team') {
     const p = profile(t), info = p?._live;
-    if (!info || !info.games) return 'Preseason baseline';
+    const completed = Number(info?.games) || 0;
+    if (!info || !completed) return 'Preseason baseline';
+    const rows = source === 'player' ? info.freshness?.playerStats : info.freshness?.teamStats;
+    const usable = rows?.usable === false ? 0 : Number(source === 'player' ? info.playerStatGames : info.statGames) || 0;
+    if (!usable) return `${completed} game${completed === 1 ? '' : 's'} played, but current stats are not available yet, so this still uses the preseason baseline`;
     const accelerated = info.priorAccelerated ? ', trusting the new season faster because the early results changed sharply' : '';
-    return `${info.games} game${info.games === 1 ? '' : 's'} from 2026, blended with the preseason baseline${accelerated}`;
+    const games = usable < completed ? `${usable} of ${completed} games have` : `${usable} game${usable === 1 ? ' has' : 's have'}`;
+    return `${games} usable 2026 stats, blended with the preseason baseline${accelerated}`;
   }
 
 
@@ -2528,14 +2536,19 @@
         detail=` title="Current pass-rush data are unavailable for this team${reason}. FORCE first looks for current pressure data, then for current QB hits and sacks. If neither is usable, it keeps the preseason pass-rush rating rather than counting missing data as zero."`;
       } else if (Number.isFinite(Number(p?.dl?.pressure_rate))) {
         const rate = Number(p.dl.pressure_rate) * 100;
-        const hurries = Number(p?.dl?.hurries);
-        const hits = Number(p?.dl?.qb_hits);
-        const sacks = Number(p?.dl?.sacks);
+        const eventCount = (value) => value == null || value === '' ? NaN : Number(value);
+        const hurries = eventCount(p?.dl?.hurries);
+        const hits = eventCount(p?.dl?.qb_hits);
+        const sacks = eventCount(p?.dl?.sacks);
         const composite = Number(p?.dl?.pass_rush_composite_rate) * 100;
         const liveWeight = Number(p?._live?.passRushWeight);
         const liveGames = Number(p?._live?.passRushGames);
         const providerKey = p?._live?.passRushProvider;
-        const measure = providerKey==='nflverse-weekly-disruption' ? 'disruption rate from QB hits and sacks per pass play' : 'pressure rate';
+        const disruption = providerKey==='nflverse-weekly-disruption';
+        const measure = disruption ? 'disruption rate from QB hits and sacks per pass play' : 'pressure rate';
+        const method = disruption
+          ? 'Detailed pressure data are not available yet, so FORCE starts with how often QB hits and sacks happen per pass play and gives extra credit for each hit and sack.'
+          : 'FORCE starts with pressure rate and gives extra credit when a pressure becomes a QB hit or sack.';
         const provider = TRACKED_PRESSURE_PROVIDERS.includes(providerKey) ? ' | current-season pressure data' : providerKey==='prior' || providerKey==='prior-held' ? ' | preseason baseline' : '';
         const events = [
           Number.isFinite(hurries) ? `${fmt(hurries,0)} hurries` : null,
@@ -2545,7 +2558,7 @@
         const blend = liveGames>0 && Number.isFinite(liveWeight)
           ? ' | this season blended with the preseason baseline'
           : ' | still using the preseason baseline';
-        detail = ` title="Pass rush: ${fmt(rate,1)}% ${measure}${provider}${p?.dl?.pressure_as_of?` | current through ${p.dl.pressure_as_of}`:''}${events ? ` | ${events}` : ''}${blend}. FORCE starts with pressure rate and gives extra credit when a pressure becomes a QB hit or sack."`;
+        detail = ` title="Pass rush: ${fmt(rate,1)}% ${measure}${provider}${p?.dl?.pressure_as_of?` | current through ${p.dl.pressure_as_of}`:''}${events ? ` | ${events}` : ''}${blend}. ${method}"`;
       }
     }
     return `<td${detail}>${Number.isFinite(v) ? `<b>${fmt(v,0)}</b>` : '-'}</td>`;
@@ -3925,8 +3938,8 @@
     const unitSnapshotLabel = '2026 ratings';
     const awayOffNote = [scenarioMetricNote(ap, 'offenseComposite'), ap.off_epa != null ? `${fmt(ap.off_epa,3)} expected points per play | ${liveProfileStatus(g.away)}` : ''].filter(Boolean).join(' | ');
     const homeOffNote = [scenarioMetricNote(hp, 'offenseComposite'), hp.off_epa != null ? `${fmt(hp.off_epa,3)} expected points per play | ${liveProfileStatus(g.home)}` : ''].filter(Boolean).join(' | ');
-    const awayQbNote = [scenarioMetricNote(ap, 'qbIndex'), qbAway.qb ? `${ap._qbScenario?.qb || qbAway.qb} | ${fmt(qbAway.epa_per_play,3)} expected points per play | ${liveProfileStatus(g.away)}` : 'QB profile'].filter(Boolean).join(' | ');
-    const homeQbNote = [scenarioMetricNote(hp, 'qbIndex'), qbHome.qb ? `${hp._qbScenario?.qb || qbHome.qb} | ${fmt(qbHome.epa_per_play,3)} expected points per play | ${liveProfileStatus(g.home)}` : 'QB profile'].filter(Boolean).join(' | ');
+    const awayQbNote = [scenarioMetricNote(ap, 'qbIndex'), qbAway.qb ? `${ap._qbScenario?.qb || qbAway.qb} | ${fmt(qbAway.epa_per_play,3)} expected points per play | ${liveProfileStatus(g.away, 'player')}` : 'QB profile'].filter(Boolean).join(' | ');
+    const homeQbNote = [scenarioMetricNote(hp, 'qbIndex'), qbHome.qb ? `${hp._qbScenario?.qb || qbHome.qb} | ${fmt(qbHome.epa_per_play,3)} expected points per play | ${liveProfileStatus(g.home, 'player')}` : 'QB profile'].filter(Boolean).join(' | ');
     return layout(`<div class="matchup-back"><button class="ghost" data-nav="matchups">← Matchups</button></div>
       <section class="matchup-hero card">
         <div class="matchup-team away-team" style="${teamAccentStyle(g.away)}">${teamMark(g.away, 'lg', 'right')}<div><div class="eyebrow">${team(g.away).division}</div><h1>${team(g.away).name}</h1><div class="raw">Pregame FORCE ${fmt(score(preAway))}</div>${quickQbButton(g.away)}</div></div>
@@ -4278,7 +4291,7 @@
       <p><b>Defense:</b> leans most heavily on coverage and run defense, with points allowed per drive and pass rush also included.</p>
       <p>Those ingredients describe how the overall offense and defense scores are built. They are not extra adjustments piled on top of the final FORCE Score.</p>
       <h2>How new games change unit ratings</h2>
-      <p>Early-season samples are noisy, so FORCE does not let one game completely replace what was known before the season. Each unit blends current-season evidence with the preseason baseline, and the current season counts for more with every game played. If the early team results are dramatically different from expectations, FORCE can trust the new evidence somewhat faster.</p>
+      <p>Early-season samples are noisy, so FORCE does not let one game completely replace what was known before the season. Each unit is steadied by baseline information: usually last season's rating pulled partway toward average, or a neutral average where no earlier measure exists. As more usable current-season data arrives, it generally carries more of the rating. If the early team results are dramatically different from expectations, FORCE can trust the new evidence somewhat faster.</p>
       <p>Pass rush uses the freshest reliable pressure information available. If detailed pressure charting is missing, FORCE can fall back to current QB hits and sacks. It does not treat missing pressure data as zero.</p>
       <h2>How unit ratings reach the team rating</h2>
       <p>When a unit gets better or worse, that movement can change the overall FORCE Score. The effect is limited so a single noisy unit cannot overwhelm the entire team rating. Missing unit data simply add no new movement until reliable data arrive.</p>

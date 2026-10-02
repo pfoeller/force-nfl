@@ -24,7 +24,7 @@ function harness(hostname) {
     liveGameFlow2026:input.gameFlow,schedule:input.schedule,statsVersion:1,scheduleVersion:1});
   return {...h,input};
 }
-const {api,input}=harness('forceratings.com');
+const {api,input,context:vmContext}=harness('forceratings.com');
 const local=harness('localhost').api;
 const ratings=JSON.stringify(api.currentRatings());
 const liveTeam=Object.keys(api.liveProfiles()).find(t=>api.liveProfiles()[t]?._live?.games>0);
@@ -61,10 +61,27 @@ for (const provider of ['manual-current','ftn-play-level','statrankings-current'
   ok(!providerNames.test(tip) && /31\.2% pressure rate \| current-season pressure data \| current through 2026-09-28/.test(tip),`${provider} tooltip keeps rate and date: ${tip}`);
   ok(/this season blended with the preseason baseline/.test(tip) && !/\d+% based on this season|carried in from preseason/.test(tip),'tooltip states the blend without percentages');
 }
-const disruption=passRush('nflverse-weekly-disruption');
+const disruption=passRush('nflverse-weekly-disruption',{dl:{hurries:null}});
 ok(api.passRushRateLabel(disruption)==='31.2% disruption rate in 2026 | based on QB hits and sacks per opponent pass play · as of 2026-09-28','disruption label still says it is QB hits and sacks, not charted pressure');
 const disruptionTip=titles(api.rawUnitCell(disruption,'passRushIndex'));
 ok(/31\.2% disruption rate from QB hits and sacks per pass play/.test(disruptionTip) && !/% pressure rate \|/.test(disruptionTip) && !providerNames.test(disruptionTip),`disruption tooltip no longer mislabels the rate as pressure: ${disruptionTip}`);
+// Correction F1: the whole fallback explanation, not just its label, avoids
+// pressure/hurry language the hits-and-sacks feed cannot observe.
+ok(disruptionTip==='Pass rush: 31.2% disruption rate from QB hits and sacks per pass play | current through 2026-09-28 | 11 hits · 6 sacks | this season blended with the preseason baseline. Detailed pressure data are not available yet, so FORCE starts with how often QB hits and sacks happen per pass play and gives extra credit for each hit and sack.',`full fallback tooltip: ${disruptionTip}`);
+ok(!/pressure rate|a pressure becomes|hurr/i.test(disruptionTip),'fallback tooltip never claims a pressure rate, pressures or hurries');
+for (const provider of ['manual-current','ftn-play-level','statrankings-current','pfr-advanced']) {
+  ok(titles(api.rawUnitCell(passRush(provider),'passRushIndex')).endsWith('FORCE starts with pressure rate and gives extra credit when a pressure becomes a QB hit or sack.'),`${provider} keeps the true-pressure explanation`);
+}
+// Correction F2: a missing event count is omitted, a measured zero is kept.
+const events=(provider,dl)=>titles(api.rawUnitCell(passRush(provider,{dl}),'passRushIndex')).split(' | ').find(part=>/^\d+ (hurries|hits|sacks)( · \d+ (hurries|hits|sacks))*$/.test(part));
+for (const missingValue of [null,undefined,'',NaN,Infinity]) {
+  ok(events('ftn-play-level',{hurries:missingValue})==='11 hits · 6 sacks',`direct pressure omits missing hurries (${missingValue})`);
+  ok(events('nflverse-weekly-disruption',{hurries:missingValue})==='11 hits · 6 sacks',`fallback omits missing hurries (${missingValue})`);
+}
+ok(events('ftn-play-level',{hurries:0})==='0 hurries · 11 hits · 6 sacks','a measured zero hurries still shows');
+ok(events('ftn-play-level',{hurries:20})==='20 hurries · 11 hits · 6 sacks','finite hurries keep their formatting');
+ok(events('ftn-play-level',{hurries:null,qb_hits:null,sacks:0})==='0 sacks','missing hits are omitted and a zero sack count is kept');
+ok(events('nflverse-weekly-disruption',{hurries:null,qb_hits:0,sacks:null})==='0 hits','fallback keeps a measured zero hit count and drops missing sacks');
 const priorTip=titles(api.rawUnitCell(passRush('prior',{live:{games:0,passRushPressureReady:false,passRushGames:0}}),'passRushIndex'));
 ok(/\| preseason baseline/.test(priorTip) && /still using the preseason baseline/.test(priorTip) && !/2025 prior/.test(priorTip),`preseason tooltip is plain: ${priorTip}`);
 const missing=passRush('prior-held',{live:{passRushPressureReady:false,passRushGames:0,currentPressureReason:'external current-pressure provider stale (as_of 2026-09-01)'}});
@@ -75,17 +92,52 @@ ok(titles(local.rawUnitCell(missing,'passRushIndex')).includes('external current
 ok(/Detailed pressure data are unavailable/.test(api.passRushRateLabel(missing)),'matchup unavailable note is unchanged');
 ok(/currentPressureReason/.test(app) && /passRushProvider/.test(fs.readFileSync('model/live_profiles.js','utf8')),'provider IDs and reasons remain in the live profile');
 
-// Group 3: current-season blend is described in words, not percentages.
-const status=api.liveProfileStatus(liveTeam);
-const games=api.liveProfiles()[liveTeam]._live.games;
-ok(status.startsWith(`${games} game${games===1?'':'s'} from 2026, blended with the preseason baseline`) && !/%/.test(status),`blend status is plain: ${status}`);
-const advanced=panel('advanced');
-ok(advanced.includes(`${status}.`) && !/current-season evidence|gently steadied/.test(advanced),'team Advanced efficiency sub reuses the plain status once');
+// Group 3 / correction F3: the status names the usable current stats actually
+// blended (team or player rows), never just completed games, and claims no
+// blend when the current contribution is zero. Rendered through the real
+// team Advanced card with controlled live-profile evidence.
+const live=api.liveProfiles()[liveTeam]._live, savedLive=structuredClone(live);
+ok(live.games>0 && live.statGames>0 && live.freshness?.teamStats,'fixture profile exposes completed games, usable team-stat games and freshness');
+const withLive=(patch,fn)=>{Object.assign(live,structuredClone(savedLive),patch);try{return fn();}finally{for(const k of Object.keys(live))delete live[k];Object.assign(live,structuredClone(savedLive));}};
+const teamRows=(games,usable=true)=>({freshness:{...savedLive.freshness,teamStats:{...savedLive.freshness.teamStats,usable,games}}});
+const advancedSub=()=>panel('advanced').match(/OFFENSIVE EFFICIENCY PER PLAY.*?\.\s/)?.[0]||'';
+const statusCases=[
+  ['ordinary blend',{games:3,statGames:3,priorAccelerated:false,...teamRows(3)},'3 games have usable 2026 stats, blended with the preseason baseline'],
+  ['completed > usable',{games:3,statGames:2,priorAccelerated:false,...teamRows(2)},'2 of 3 games have usable 2026 stats, blended with the preseason baseline'],
+  ['zero usable rows',{games:3,statGames:0,priorAccelerated:false,...teamRows(0,false)},'3 games played, but current stats are not available yet, so this still uses the preseason baseline'],
+  ['rows flagged unusable',{games:2,statGames:2,priorAccelerated:false,...teamRows(2,false)},'2 games played, but current stats are not available yet, so this still uses the preseason baseline'],
+  ['one usable game',{games:1,statGames:1,priorAccelerated:false,...teamRows(1)},'1 game has usable 2026 stats, blended with the preseason baseline'],
+  ['preseason',{games:0,statGames:0,priorAccelerated:false},'Preseason baseline'],
+];
+for (const [label,patch,expected] of statusCases) withLive(patch,()=>{
+  const status=api.liveProfileStatus(liveTeam);
+  ok(status===expected,`${label}: ${status}`);
+  ok(!/%/.test(status),`${label} has no percentages`);
+  if (patch.games) ok(advancedSub().includes(`${expected}.`),`${label} renders on the team Advanced card: ${advancedSub()}`);
+});
+withLive({games:3,playerStatGames:1,priorAccelerated:false,freshness:{...savedLive.freshness,playerStats:{...savedLive.freshness.playerStats,usable:true}}},()=>
+  ok(api.liveProfileStatus(liveTeam,'player')==='1 of 3 games have usable 2026 stats, blended with the preseason baseline','QB notes count usable player-stat games, not team rows'));
+ok(/liveProfileStatus\(g\.away, 'player'\)/.test(app) && /liveProfileStatus\(g\.home, 'player'\)/.test(app),'matchup QB notes use the player-stat count');
+ok(JSON.stringify(live)===JSON.stringify(savedLive),'status cases leave the live profile unchanged');
+const UP=vmContext.window.FORCE_UNIT_PRIOR;
+ok(UP.liveWeight(0,0,1)===0 && UP.liveWeight(0,40,1)===0,'zero usable games carry zero current weight (no blend to claim)');
+
+// Correction F4: Method copy matches the real stabilizers. Current data gains
+// influence with a larger usable sample at a fixed stabilizer, but the
+// stabilizer itself adapts, so weight is not monotonic in games played, and
+// some units start from a neutral average rather than last season.
 const earlyMethod=visibleText(method.slice(method.indexOf('<h2>How new games change unit ratings</h2>'),method.indexOf('<h2>How unit ratings reach the team rating</h2>')));
-ok(/blends current-season evidence with the preseason baseline, and the current season counts for more with every game played/.test(earlyMethod),'Method describes the early-season blend conceptually');
-ok(!/half|two-thirds|four-fifths/.test(earlyMethod),'Method drops the blend fractions');
+ok(/steadied by baseline information: usually last season's rating pulled partway toward average, or a neutral average where no earlier measure exists/.test(earlyMethod),'Method names both baseline kinds');
+ok(/As more usable current-season data arrives, it generally carries more of the rating/.test(earlyMethod),'Method keeps the growing-influence idea without a universal claim');
+ok(!/every game played|half|two-thirds|four-fifths|\d+%/.test(earlyMethod),'Method drops the monotonic claim, fractions and percentages');
 ok(/trust the new evidence somewhat faster/.test(earlyMethod) && /does not treat missing pressure data as zero/.test(earlyMethod),'Method keeps acceleration and missing-data limitations');
-ok(/weight:statGames\/\(statGames\+teamPriorGames\)/.test(fs.readFileSync('model/live_profiles.js','utf8')),'blend weight still grows with games played (copy matches model)');
+for (const cp of [0,10,40]) ok([1,2,3,4,6,10].every((g,i,a)=>i===0||UP.liveWeight(g,cp,1)>UP.liveWeight(a[i-1],cp,1)),`more usable games raise current weight at a fixed stabilizer (correction ${cp})`);
+const strong=[5,10,20,40,80].find(cp=>UP.effectivePriorGames(cp,1)<UP.effectivePriorGames(0,1)-1e-9);
+ok(strong!=null,'early-regime correction lowers the stabilizer for some teams');
+ok([[2,3],[1,2],[3,4],[2,4]].some(([fewer,more])=>UP.liveWeight(fewer,strong,1)>UP.liveWeight(more,0,1)),'weight is not a function of games played alone: fewer games can carry more weight when the stabilizer adapts');
+const liveModel=fs.readFileSync('model/live_profiles.js','utf8');
+ok(/priorPointsAllowedPerDriveIndex=50;/.test(liveModel),'points-allowed-per-drive starts from a neutral average, not last season');
+ok(/regressUnitIndex\(prior\.offenseIndex,unitPriorReversion\)/.test(liveModel),'other unit baselines are last season pulled toward average');
 
 // Group 5: simulations are "thousands", distinctions and uncertainty survive.
 const playoffs=visibleText(api.playoffPicturePage());
@@ -108,7 +160,7 @@ const flagTeam=visibleText(api.teamPage(liveTeam));
 ok(/A 50 is neutral/.test(flagTeam) && /does not decide whether a call was correct/.test(flagTeam) && /FLAG Swing label only when/.test(flagTeam),'team FLAG view keeps the full definition (no intro panel there)');
 
 // Public copy introduced here uses no em dash; gated rows are untouched.
-for (const [label,text] of [['luck',luckNotice],['status',status],['playoffs',playoffs],['matchup score',matchup.match(/The predicted score comes from[^.]*\./)?.[0]||''],['flag',flagRankings]]) ok(!/—/.test(text),`${label} copy has no em dash`);
+for (const [label,text] of [['luck',luckNotice],['status',statusCases.map(c=>c[2]).join(' ')],['fallback tooltip',disruptionTip],['method blend',earlyMethod],['playoffs',playoffs],['matchup score',matchup.match(/The predicted score comes from[^.]*\./)?.[0]||''],['flag',flagRankings]]) ok(!/—/.test(text),`${label} copy has no em dash`);
 ok(/The market supplies 75% of the Week 1 prediction/.test(method) && /25,000 possession-level simulations centered on that FORCEcast expectation/.test(method),'Method FORCEcast/market row is untouched pending UX-18');
 ok(/1\.20x expansion/.test(app) && /Use auto QB fix|carryover correction/.test(app) && /<th>QB return<\/th>/.test(app),'QB Rankings (UX-08) and QB-return (UX-19) surfaces are untouched');
 ok(/manual what-if available on team pages/.test(method),'D10/UX-19 Method status clause is untouched');

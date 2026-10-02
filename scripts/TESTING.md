@@ -18,7 +18,7 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 139 tests: 107 JavaScript and 32 Python |
+| `npm test` / `npm run test:safe` | 140 tests: 108 JavaScript and 32 Python |
 | `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 26 QB/pressure regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
@@ -117,9 +117,9 @@ to report the complete selected result.
 
 ## Excluded and special tests
 
-The catalog has 251 entries including the runner, QB correctness, Customize audit,
+The catalog has 252 entries including the runner, QB correctness, Customize audit,
 FLAG penalty-value, projection semantics audit, semantic migration, UX-14
-public-explanation and UX-16 public-positioning regressions. Its 112 default
+public-explanation, UX-14 tranche B and UX-16 public-positioning regressions. Its 112 default
 exclusions remain visible in `test_catalog.json`;
 exclusion does not mean pass.
 102 retain failing historical assertions/fixtures. The remaining 10 are:
@@ -184,6 +184,12 @@ safe 140, 112 default exclusions). It renders the real Luck, FLAG, units, team
 Advanced, matchup, Playoffs and Method paths offline and checks the approved
 plain-English copy, provider-neutral pass-rush labels, localhost-only raw reasons,
 preserved limitations, untouched gated rows, unchanged ratings and public parity.
+The cross-review correction commit adds the full hits-and-sacks fallback tooltip,
+missing-versus-zero event counts, usable-stat status cases rendered on the team
+Advanced card, and unit-prior model-contract checks behind the Method blend copy.
+This lane's catalog after tranche B: 252 entries; safe 140 (108 JavaScript /
+32 Python), model 45, release 17, QB 26, snapshot 6, server 30; 112 default
+exclusions.
 Historical copy assertions in V36, V38, V39, V112 and V124 now match the new
 wording with unchanged intent. Verification (2026-10-02, LF export of the
 tranche): safe 140/140, release 17/17, QB 26/26, model 45/45, snapshot 6/6 and
