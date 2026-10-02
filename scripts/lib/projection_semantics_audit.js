@@ -2,6 +2,7 @@ import {appHarness} from './force_app_harness.js';
 
 const finite = value => typeof value === 'number' && Number.isFinite(value);
 const text = html => html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+const oddsKeys = ['playoffPct','divisionPct','byePct'];
 
 // Offline hooks are injected only by the existing VM harness. Production source
 // and the calculation paths are neither patched nor replaced by this diagnostic.
@@ -78,7 +79,7 @@ export function auditProjectionSemantics(h, {render = true, sampleTeam = 'KC'} =
     return {team, loadedGames, currentRecord:records[team],
       analytic:{base, leagueActive:league, teamPage, rosterUntouched:api.projected(team, baseRatings, 0)},
       simulation:sim.teams[team],
-      displayedOdds:Object.fromEntries(['playoffPct','divisionPct','byePct'].map(key=>[key,api.pct(sim.teams[team][key])])),
+      displayedOdds:Object.fromEntries(oddsKeys.map(key=>[key,api.pct(sim.teams[team][key])])),
       actualOutcomeState:{playoff:null, division:null, bye:null,
         status:'unavailable', reason:'No authoritative actual clinch/elimination state in the traced projection return or formatter'},
       seedProbability:{status:'unavailable', reason:'Internal seed counts are not exported as probabilities or rendered; projectedSeed is a representative realization'},
@@ -97,7 +98,9 @@ export function auditProjectionSemantics(h, {render = true, sampleTeam = 'KC'} =
     seed:api.projectionSeed(), representativeDistance:sim.representativeDistance, rows,
     summary:{teams:rows.length, maxAbsoluteSamplingGap:Math.max(...rows.map(row=>Math.abs(row.gap.simulationMinusAnalytic))),
       outWithNonzeroOdds:rows.filter(row=>row.simulation.projectedSeed === 'Out' && row.simulation.playoffPct > 0).map(row=>row.team),
-      roundedExtremes:rows.filter(row=>Object.values(row.displayedOdds).some(value=>value==='0%' || value==='100%')).map(row=>row.team),
+      displayedExtremes:rows.filter(row=>Object.values(row.displayedOdds).some(value=>value==='0%' || value==='100%')).map(row=>row.team),
+      nonzeroDisplayedAsZero:rows.filter(row=>oddsKeys.some(key=>row.simulation[key]>0 && row.displayedOdds[key]==='0%')).map(row=>row.team),
+      sub100DisplayedAs100:rows.filter(row=>oddsKeys.some(key=>row.simulation[key]<100 && row.displayedOdds[key]==='100%')).map(row=>row.team),
       differentRatingInputs:rows.filter(row=>Math.abs(row.gap.leagueActiveMinusRoster)>1e-10 || Math.abs(row.gap.teamPageMinusRoster)>1e-10).map(row=>row.team)},
   };
   if (render) {

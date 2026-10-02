@@ -70,6 +70,25 @@ assert.notEqual(kc.retrospectiveLuck.expectedWins,kc.analytic.leagueActive.ew,'c
 // authorization to ignore UX-25. The audit must report the real path faithfully.
 assert.equal(h.api.pct(0.36),'0%');
 assert.equal(h.api.pct(99.6),'100%');
+// Controlled odds test only the diagnostic classifier with the real formatter.
+// Exact simulation extremes are not evidence of a rounding artifact.
+const realSeasonProjection = h.api.seasonProjection;
+const classifiedSimulation = structuredClone(realSeasonProjection());
+for (const team of report.rows.map(row=>row.team)) {
+  Object.assign(classifiedSimulation.teams[team],{playoffPct:50,divisionPct:50,byePct:50});
+}
+Object.assign(classifiedSimulation.teams.ARI,{playoffPct:0,divisionPct:100});
+Object.assign(classifiedSimulation.teams.ATL,{playoffPct:0.36,divisionPct:99.6});
+Object.assign(classifiedSimulation.teams.BAL,{playoffPct:0.5,divisionPct:99.49});
+try {
+  h.api.seasonProjection=()=>classifiedSimulation;
+  const classified=auditProjectionSemantics(h,{render:false});
+  assert.deepEqual(classified.summary.displayedExtremes,['ARI','ATL']);
+  assert.deepEqual(classified.summary.nonzeroDisplayedAsZero,['ATL']);
+  assert.deepEqual(classified.summary.sub100DisplayedAs100,['ATL']);
+  assert.equal(classified.rows.find(row=>row.team==='BAL').displayedOdds.playoffPct,'1%');
+  assert.equal(classified.rows.find(row=>row.team==='BAL').displayedOdds.divisionPct,'99%');
+} finally { h.api.seasonProjection=realSeasonProjection; }
 const unavailable = structuredClone(input);
 unavailable.gameFlow = {};
 assert.equal(auditProjectionSemantics(projectionAuditHarness(unavailable)).status,'unavailable');
@@ -89,6 +108,20 @@ assert.equal(JSON.stringify(marketHarness.api.currentRatings()),JSON.stringify(h
 assert.notEqual(marketHarness.api.forecastFor(future,marketHarness.api.ratingsWithActiveQBCarryover()).probability,
   h.api.forecastFor(input.schedule.find(g=>g.week===future.week && g.home===future.home && g.away===future.away),ratings).probability,
   'future market odds do enter canonical smart forecasts');
+
+// Fresh harnesses recompute current ratings after changing an actual completed
+// fixture game's market fields. Outcomes, unit inputs and corrections stay fixed.
+const completedMarket = structuredClone(input);
+const completed = completedMarket.schedule.find(g=>g.homeScore!=null && g.awayScore!=null);
+assert.ok(completed,'completed-game market regression requires a completed fixture game');
+Object.assign(completed,{homeMoneyline:-120,awayMoneyline:100,spreadLine:-2,totalLine:42,lineSource:'synthetic original market'});
+const completedBeforeHarness = projectionAuditHarness(completedMarket);
+const completedBeforeRatings = JSON.stringify(completedBeforeHarness.api.currentRatings());
+Object.assign(completed,{homeMoneyline:2000,awayMoneyline:-2000,spreadLine:14,totalLine:60,lineSource:'synthetic mutated market'});
+const completedAfterHarness = projectionAuditHarness(completedMarket);
+assert.equal(completedBeforeRatings,JSON.stringify(h.api.currentRatings()),'adding completed-game market data does not change current ratings');
+assert.equal(JSON.stringify(completedAfterHarness.api.currentRatings()),completedBeforeRatings,
+  'changing completed-game moneylines, spread and total does not change current FORCE ratings');
 
 // Call the real representative selector on coherent supplied snapshots, rather
 // than rewriting selection or treating independently chosen modes as a bracket.

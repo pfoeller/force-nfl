@@ -25,13 +25,6 @@
   },
   "tests": [
     {
-      "file": "test_projection_semantics_audit.mjs",
-      "suites": ["safe", "model"],
-      "classification": "regression",
-      "timeoutMs": 60000,
-      "reason": "Offline real 5000-run projection and two rendered projection paths; no network or artifact writes"
-    },
-    {
       "file": "test_adaptive_v3.py",
       "suites": [
         "safe"
@@ -72,6 +65,16 @@
       "suites": [],
       "classification": "historical-fixture",
       "reason": "Baseline audit: game report missing: Luck, penalties, and market"
+    },
+    {
+      "file": "test_projection_semantics_audit.mjs",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression",
+      "timeoutMs": 60000,
+      "reason": "Offline real 5000-run projection and two rendered projection paths; no network or artifact writes"
     },
     {
       "file": "test_qb_carryover_ui.js",

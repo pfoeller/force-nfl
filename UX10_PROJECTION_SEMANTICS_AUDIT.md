@@ -60,6 +60,14 @@ its provenance **unverified**. Required fields are `teamRows`, `playerRows`,
 No bootstrap fetch, feed freshness certification or production measurement is
 implied. Source hashes naturally differ between CRLF and LF copies.
 
+The summary separates three team-ID lists across playoff, division and bye odds:
+`displayedExtremes` includes any displayed 0% or 100%, including exact simulated
+0/5000 or 5000/5000 outcomes. It is not a count of rounding artifacts.
+`nonzeroDisplayedAsZero` requires that same odds field's raw percentage to be
+greater than 0 while displayed as 0%; `sub100DisplayedAs100` requires raw less
+than 100 while displayed as 100%. A team appears once per list even if multiple
+odds fields qualify. None of these lists establishes actual clinch/elimination.
+
 Unknown teams and partial/nonfinite finals are rejected. Missing canonical QB
 semantic readiness, nonfinite current ratings or invalid future forecast
 probabilities produce explicit `unavailable` reports. Missing retrospective
@@ -127,10 +135,15 @@ term in the canonical team-strength rating.
 The advanced diagnostic `MARKET EFFECT ON TEAM RATING` displays
 `adaptiveTeamInfo().eloEquivalent`, an equivalent scale for the experimental
 adaptive adjustment. `currentRatings` does not add it; `forecastFor` defaults
-to smart, not adaptive. The regression changes **future** moneylines and
-verifies canonical ratings stay identical while smart forecast probability
-changes. This answers the UX-14 C3 label/source contradiction for these traced
-paths; it does not resolve UX-18 disclosure placement or authorize copy changes.
+to smart, not adaptive. The regression changes future moneylines and verifies
+canonical ratings stay identical while smart forecast probability changes.
+It also adds and then changes moneylines, spread and total for a completed
+fixture game, recomputing all 32 current ratings in fresh harnesses. Ratings
+remain identical with outcomes, unit inputs and correction controls held fixed.
+This protects the current-rating boundary; it does not claim market-sensitive
+forecast/research diagnostics remain unchanged. Together with the source trace,
+it answers the UX-14 C3 label/source contradiction for these traced paths; it
+does not resolve UX-18 disclosure placement or authorize copy changes.
 
 Rating inputs are not globally identical: directory/season projection use
 `ratingsWithActiveQBCarryover`, a team projection corrects only its own team's
@@ -170,6 +183,12 @@ occurs for 5 and 16 teams respectively. Those are fixture results, not productio
 prevalence estimates. The Monte Carlo discrepancy is an estimator distinction;
 it does not establish a bug or a desired unified public source.
 
+The short/full cohorts have 30/21 teams in `displayedExtremes`, but only 2/10
+teams in `nonzeroDisplayedAsZero` and 0/1 in `sub100DisplayedAs100`. Exact
+simulated extremes therefore must not be reported as rounding artifacts.
+These are synthetic fixture observations, not production prevalence estimates;
+even exact sampled extremes do not prove actual elimination or clinching.
+
 The short schedule additionally exposes the hard-coded 17-game complement:
 the real team hero renders `2.5–14.5 projected record` despite only four loaded
 games for that team. It is intentionally incomplete input evidence, not a
@@ -183,26 +202,31 @@ forecasts; seven representative seeds and marginal playoff places per
 conference; one marginal bye/division winner; retained actual ties; actual
 rendered projection/odds/Luck/directory cells; zero-delta Roster input identity;
 preserved correction-input differences; changed future-market probabilities
-without rating mutation; and explicit unavailable/error paths. A supplied
+without rating mutation; completed-game market mutations without current-rating
+changes; and explicit unavailable/error paths. A supplied
 coherent-snapshot comparison calls the real representative selector. Rendering
 restores the diagnostic's control state and does not mutate supplied inputs.
 
 Observed baseline rounding is tested to keep evidence faithful, **not** promoted
-to a PRESERVE rule. UX-25 remains entitled to change presentation in a separately
-authorized tranche. The diagnostic is not an exhaustive source parser, a browser
+to a PRESERVE rule. Controlled odds exercise classification of exact 0/100,
+nonzero/sub-100 values rounded to extremes, and nearby non-extreme values through
+the real formatter. They test diagnostic classification, not simulation
+coherence or prevalence. UX-25 remains entitled to change presentation in a
+separately authorized tranche. The diagnostic is not an exhaustive source parser, a browser
 layout/accessibility test, a live feed freshness audit, or a clinch solver. It
 maps current source occurrence families and probes their real rendered values;
 future public-surface additions require renewed inventory.
 
 ## Verification
 
-Lane verification: `npm test` **137/137**, `npm run test:model` **45/45** and
-`npm run test:release` **16/16**, all in LF scratch for the known V77 source
-line-ending assertion. The new focused regression also passed through the
-isolated runner in the Windows worktree. All four new JavaScript entry/helper
-files passed syntax checks. Catalog: 249 tests, 137 safe, 112 unchanged default
-exclusions. Real worktree status/file hashes were unchanged by test execution;
-owned validation scratch was removed. No deployment or live validation occurred.
+Correction verification (2026-10-02): focused regression, safe **137/137**,
+model **45/45**, release **16/16**, QB **26/26** and snapshot **6/6** passed in
+LF scratch for the known V77 source line-ending assertion. The focused regression
+also passed through the isolated runner in the Windows worktree. Both changed
+JavaScript files passed syntax checks. Two complete default diagnostic outputs
+were byte-identical. Catalog: 249 tests, 137 safe, 112 unchanged default
+exclusions; the projection entry moved to its normal position with unchanged
+membership and timeout. No production changes, deployment or live validation.
 
 ## Owner options and remaining gates
 
