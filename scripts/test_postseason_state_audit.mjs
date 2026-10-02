@@ -7,6 +7,7 @@ import {spawnSync} from 'node:child_process';
 import {scheduleEvidence,outcomeSpace,tiebreakBoundaryEvidence} from './lib/postseason_state_audit.js';
 import {projectionSemanticsFixture} from './lib/projection_semantics_fixture.js';
 import {appHarness} from './lib/force_app_harness.js';
+import {validateSourceContracts} from './lib/postseason_source_contract.js';
 
 const app = appHarness({hooks:'scheduleFromBootstrapText'});
 const teams = Object.keys(app.context.window.MODEL_DATA.teams);
@@ -100,3 +101,30 @@ try {
 const bad=spawnSync(process.execPath,['scripts/audit_postseason_state.mjs','--bogus'],{encoding:'utf8'});
 assert.notEqual(bad.status,0);
 console.log('PASS: UX-25 offline source feasibility evidence, real 2026-season calendar, tiebreak boundary, ties, structural counts, validation and deterministic provenance');
+
+// Cycle 4 documentary inventory is not a runtime source adapter or state proof.
+const matrix = JSON.parse(fs.readFileSync('scripts/fixtures/ux25_source_contracts.json','utf8'));
+const matrixBefore = JSON.stringify(matrix);
+const research = validateSourceContracts(matrix);
+assert.equal(JSON.stringify(matrix),matrixBefore,'research validation is read-only');
+assert.equal(research.productionReady,false);
+assert.equal(research.strategySelected,null);
+assert.ok(Object.values(research.coverageClaims).every(n=>n>0),'supported, absent, conditional and unknown all retained');
+const candidate = id => matrix.sources.find(s=>s.id===id);
+assert.equal(candidate('sportsdataio').outcomes.playoffClinched.status,'INFERABLE','route clinches are not exhaustive berth flags');
+assert.equal(candidate('balldontlie').outcomes.exactSeedLocked.status,'NO','current playoff_seed is not a seed-lock field');
+assert.equal(candidate('nfl-public-api').outcomes.playoffClinched.status,'UNKNOWN','no API discovery does not prove unsupported');
+assert.equal(candidate('sportradar').outcomes.byeEliminated.status,'INFERABLE','conditional other-team proof, not a separate provider flag');
+for(const change of [
+  m=>m.strategySelected='sportradar', m=>m.productionReady=true,
+  m=>m.sources[0].outcomes.playoffClinched.refs=[],
+  m=>m.sources[0].outcomes.playoffEliminated.status=false,
+  m=>m.sources[0].outcomes.playoffEliminated.proof='divisionOther',
+  m=>m.sources[0].outcomes.divisionEliminated.proof='current-rank-is-locked',
+  m=>m.proofs.divisionOther.premises=['division clinched'],
+  m=>m.sources.find(s=>s.id==='sportradar').priceClass='low/modest',
+  m=>m.sources.find(s=>s.id==='balldontlie').minimumMonthlyUsd=0,
+  m=>delete m.sources[0].outcomes.byeEliminated,
+  m=>m.sources.push(structuredClone(m.sources[0])),
+]) { const invalid=structuredClone(matrix); change(invalid); assert.throws(()=>validateSourceContracts(invalid),'overclaim/unknown promotion must fail offline review'); }
+console.log('PASS: UX-25 Cycle 4 documentary source coverage, conditional proof boundaries, unknown/unsupported distinction and price provenance');
