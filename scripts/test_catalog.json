@@ -75,6 +75,14 @@
       "reason": "Baseline audit: game report missing: Luck, penalties, and market"
     },
     {
+      "file": "test_postseason_state_audit.mjs",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
       "file": "test_projection_semantics_audit.mjs",
       "suites": [
         "safe",

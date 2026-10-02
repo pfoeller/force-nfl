@@ -18,12 +18,12 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 139 tests: 107 JavaScript and 32 Python |
+| `npm test` / `npm run test:safe` | 140 tests: 108 JavaScript and 32 Python |
 | `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 26 QB/pressure regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
-| `npm run test:model` | 45 model/unit regressions |
+| `npm run test:model` | 46 model/unit regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
 
@@ -117,8 +117,8 @@ to report the complete selected result.
 
 ## Excluded and special tests
 
-The catalog has 251 entries including the runner, QB correctness, Customize audit,
-FLAG penalty-value, projection semantics audit, semantic migration, UX-14
+The catalog has 252 entries including the runner, QB correctness, Customize audit,
+FLAG penalty-value, postseason state sourcing, projection semantics audit, semantic migration, UX-14
 public-explanation and UX-16 public-positioning regressions. Its 112 default
 exclusions remain visible in `test_catalog.json`;
 exclusion does not mean pass.
@@ -186,3 +186,13 @@ inputs, measured zeroes and positive/negative finite values. It also checks exis
 non-live/unavailable guards and unchanged FORCE ratings. Run it with
 `node scripts/run_tests.mjs --test test_flag_penalty_values.mjs`. The presentation
 uses the existing `-` placeholder; no generic formatter or model rule is changed.
+
+Cycle 3 UX-25 source investigation adds `test_postseason_state_audit.mjs` to
+safe/model. It checks real tiebreak/outcome helpers, synthetic fallback sensitivity,
+schedule count-only evidence, input rejection and deterministic provenance. Run
+`node scripts/audit_postseason_state.mjs [--input offline-input.json]` for JSON
+evidence; supplied input needs an app-shaped `schedule` array and remains
+unverified. The [source assessment](../UX25_POSTSEASON_STATE_SOURCING.md) compares
+compute/external/hybrid options. No actual-state solver, feed, formatter or
+production behavior is implemented. Catalog: 252; safe: 140; model: 46; release:
+17; default exclusions: 112 unchanged.
