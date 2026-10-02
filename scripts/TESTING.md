@@ -273,18 +273,19 @@ Cycle 4 authoritative LF export: catalog 253 (safe 141, exclusions 112); safe
 was unchanged; diagnostic byte-determinism retained. Final diff/governance
 checks passed; no production/model/generated change.
 
-## Cycle 4 integration verification (2026-10-02)
+## Cycle 4 integration verification and local main closeout (2026-10-02)
 
 `cycle4/integration` combines complete reviewed Claude `bb73001` and Codex
 `dba8573` histories from exact `a5f55575`. The roadmap history conflict
 retains both lane entries; the integrated roadmap has 35 unique authoritative
 IDs, including MD-03, and 140 checked local documentation links resolve.
 UX-19 planning remains REVIEW and removal PLANNED/not authorized/BLOCKED on
-separately implemented and independently validated MD-03. Its current-state
+separately implemented, independently validated and owner-accepted MD-03. Its current-state
 examples describe `a5f5557`; removal acceptance must use the accepted post-MD-03
 baseline. UX-25 research remains REVIEW, display PLANNED, and source/budget/UX-11
-decisions remain open. Main is unchanged; final independent integration review
-is still pending. No production/model/data/UI/generated change.
+decisions remain open. Final independent review accepted A. READY TO MERGE TO
+MAIN; reviewed candidate `681a961` was fast-forwarded to local main. Not pushed
+or deployed; origin/main remains at `a5f55575`. No production/model/data/UI/generated change.
 
 Authoritative LF-clean export: catalog 253; safe 141 (109 JavaScript, 32 Python);
 model 46; release 17; QB 26; snapshot 6; server 30; default exclusions 112.
@@ -297,5 +298,5 @@ The unchanged UX-25 regression rejects all 134 mutation attacks (24 named,
 104 cell reclassifications, six proof-direction cases) and retains diagnostic
 byte-determinism. Fixture parse/contract validation and both changed JS/MJS
 syntax checks passed. Canonical public build/parity, diff and governance checks
-passed; validation left the integration source worktree unchanged. No broad
+passed; post-merge validation left the main source worktree unchanged. No broad
 visual regression was needed because production/UI sources are unchanged.

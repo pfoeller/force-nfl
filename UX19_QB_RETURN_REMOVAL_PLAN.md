@@ -4,11 +4,11 @@ Roadmap item: `UX-19` (remove public QB adjustment / QB-return tool). Decision s
 
 Prepared 2026-10-02 on `cycle4/claude-product` from exact `main @ a5f5557` (`c9d03fe`), then corrected after Codex's independent cross-review and the owner's O1-O5 decisions (same date, follow-up commit). **Planning only. Nothing was removed.** No production, model, data, test or generated `public/` file changed. Line numbers refer to `a5f5557`. This plan does not authorize the removal tranche.
 
-**Prerequisite added 2026-10-02 (owner requirement): public removal is BLOCKED until a league-wide automatic QB-return correction exists and has been independently validated.** Any retained automatic correction must operate for any team and quarterback, including midseason qualifying injury and return cases; the current KC-only preset is not an acceptable final state. The sequence is: (A) design and implement league-wide automatic detection and correction; (B) validate it independently; (C) only then remove the public manual tool under the boundary in this plan. The prerequisite is roadmap item `MD-03` and is defined in section 14. Everything in sections 1-13 remains the reviewed removal boundary for step C. Where they describe the V33 KC preset, they describe the **current state**, not the target state.
+**Prerequisite added 2026-10-02 (owner requirement): public removal is BLOCKED until a league-wide automatic QB-return correction exists and has been independently validated and accepted by the owner.** Any retained automatic correction must operate for any team and quarterback, including midseason qualifying injury and return cases; the current KC-only preset is not an acceptable final state. The sequence is: (A) investigate/design and separately implement league-wide automatic detection and correction under explicit authorization; (B) validate it independently and obtain owner acceptance; (C) only then remove the public manual tool under the boundary in this plan. The prerequisite is roadmap item `MD-03` and is defined in section 14. Everything in sections 1-13 remains the reviewed removal boundary for step C. Where they describe the V33 KC preset, they describe the **current state**, not the target state.
 
 ## 1. Summary
 
-- **Removal is blocked on `MD-03`** (section 14). The findings below stay valid for the eventual removal step.
+- **Removal is blocked on `MD-03`** until separately implemented, independently validated and accepted by the owner (section 14). The findings below stay valid for the eventual removal step.
 - The public tool is a **manual override** of the automatic V33 returning-QB correction. It has two entry points: the **QB Return Lab** panel on every team page and the **QB quick button** (`quickQbButton`) on home, rankings, teams, team hero and matchup hero.
 - Manual state lives only in the in-memory `S.qbCarryover` object. No `localStorage`, URL, hash, export or server path reads or writes it. A freshly loaded bundle always starts with `enabled:false`. An already-open tab running the old bundle keeps its old code and in-memory state until it reloads.
 - **Default behavior does not depend on the tool.** With `S.qbCarryover.enabled === false`, current and future ratings, rankings and projections use only the automatic correction. Removing every public writer of `S.qbCarryover` leaves default output identical. This was checked with a real-bundle probe (section 9).
@@ -74,7 +74,7 @@ Each question is recorded by the kind of decision it is, so no question is treat
 
 | Capability | Location | Disposition |
 | --- | --- | --- |
-| Automatic verified correction rule | `model/qb_regime.js`, `data/qb-carryover.js`, `qbCarryover` gate | **KEEP as the current baseline** until `MD-03` delivers a validated league-wide replacement. Not the target final architecture; the removal tranche itself does not change it. |
+| Automatic verified correction rule | `model/qb_regime.js`, `data/qb-carryover.js`, `qbCarryover` gate | **KEEP as the current baseline** until `MD-03` delivers an independently validated and owner-accepted league-wide replacement. Not the target final architecture; the removal tranche itself does not change it. |
 | Automatic correction consumers in current and historical FORCE | `automaticQbRegimeCorrection`, `predictiveQbCarryoverAllowed`, `ratingsWithActiveQBCarryover`, `ratingsWithQBCarryover`, `effectiveQbCorrection`, `canonicalGameTeamState`, week-2 entry states | **KEEP** in the removal tranche; names and call sites unchanged (V33, V45 and V69 assert them). `MD-03` may change what feeds them, under its own authorization. |
 | Unit overlay transform and suppression | `LP.applyQbCarryoverScenario`, `qbCarryoverUnitEffect`, `suppressQbUnitScenarioOverlay`, `currentTeamState._qbScenario` | **KEEP**; `qbCarryoverUnitEffect(t, ratings, restoreOverride, qbOverride)` stays as the test/debug what-if entry point |
 | Internal manual override | `S.qbCarryover` (304), override branch in `effectiveQbCorrection` (1238), `qbCarryoverActive` | **KEEP INTERNAL, no public writer** (O4) |
@@ -349,7 +349,7 @@ Golden values are captured from the accepted post-`MD-03` baseline commit (today
 | Unit display | `LP.applyQbCarryoverScenario` overlay through `currentTeamState` | Must work for any qualifying team and label the QB from the detected regime, not from `S.qbCarryover.qb` |
 | Presets | Required for the correction to exist at all | Must **not** be required for normal operation. A preset may remain for research, override or exceptional manual validation |
 
-The KC-only state is the current baseline only. It is not the final product state, and UX-19's public removal waits on the target.
+The KC-only state is the current baseline only. It is not the final product state, and UX-19's public removal waits on the target’s independent validation and owner acceptance.
 
 ### 14.2 Capability contract
 
@@ -425,6 +425,7 @@ The system must prove that:
 1. **`MD-03` investigation:** answer 14.3 and 14.4 and propose a mechanism with evidence; owner decides.
 2. **`MD-03` implementation:** separately authorized; frozen V33/V69 tests are only reopened with explicit owner direction.
 3. **Independent validation:** cases in 14.5, plus no change for nonqualifying teams.
-4. **UX-19 public removal:** sections 1-13, with A5 and A6 run against the validated `MD-03` baseline.
+4. **Owner acceptance:** the independently validated `MD-03` baseline must be accepted by the owner before UX-19 removal.
+5. **UX-19 public removal:** separately authorized; sections 1-13, with A5 and A6 run against the independently validated, owner-accepted `MD-03` baseline.
 
-The UX-19 owner decisions O1-O3 and O5 apply unchanged at step 4. Under the generalized system, the O1 team-level disclosure and the matchup disclosure must appear for any qualifying team, not only KC. O4 is unchanged.
+The UX-19 owner decisions O1-O3 and O5 apply unchanged at step 5. Under the generalized system, the O1 team-level disclosure and the matchup disclosure must appear for any qualifying team, not only KC. O4 is unchanged.

@@ -785,7 +785,7 @@
       "freshness": "2026 and 2025 season queries returned during correction research; no covered-through watermark or latency/finality guarantee verified",
       "correctionFinality": "UNKNOWN; no terminal-flag revision contract verified",
       "history": "2025 response observed with clincher codes *, e, y, z; historical code meanings/revisions require verification",
-      "mapping": "HTML team names/slugs; machine ID/clincher schema NOT verified",
+      "mapping": "HTML team names/slugs; machine ID mapping unverified; clincher field observed; code mapping/precedence not verified",
       "automation": "Machine endpoint responds without credentials; undocumented schema/code mapping and Disney automated/commercial-use rights remain unresolved",
       "confidence": "Observed machine field presence and current-position data; terminal mappings remain surface-specific documentary evidence",
       "refs": [
