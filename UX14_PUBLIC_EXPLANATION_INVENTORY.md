@@ -2,7 +2,7 @@
 
 Roadmap item: `UX-14` (public methodology depth). Decision status CONFIRMED; this document is the required inventory and classification step. Prepared 2026-10-01 on `claude/roadmap-lane` from `main @ 8fc1f87`.
 
-**Current implementation status (updated 2026-10-02):** UX-14 content tranche A (R1–R9, D3, D4, D7) originated on `cycle2/claude-product` (`82400c4` plus correction `1ac894c`), passed final independent review, and is merged to local `main @ e264db7` as of 2026-10-02. It is not deployed. Every other approved row (D1, D2, D5, D6, D8, D9, D10) and the section C simplifications remain gated or PLANNED; see the `UX-14` entry in `FORCE_ROADMAP.md`. Technical/model documentation stays available internally.
+**Current implementation status (updated 2026-10-02):** UX-14 content tranche A (R1–R9, D3, D4, D7) originated on `cycle2/claude-product` (`82400c4` plus correction `1ac894c`), passed final independent review, and is merged to local `main @ e264db7` as of 2026-10-02. It is not deployed. Content tranche B (2026-10-02, `cycle3/claude-product` from `093bd73`, local commit awaiting cross-review, not merged or deployed) implements section C groups 1 (Luck weights), 2 (pass-rush provider cascade), 3 (current-season versus preseason blend percentages) and 5 (simulation wording, except the `UX-18` Method FORCEcast paragraph), plus C1 for the rankings FLAG view. Every other approved row (D1, D2, D5, D6, D8, D9, D10) and section C groups 4, 6 and 7 remain gated or PLANNED; see the `UX-14` entry in `FORCE_ROADMAP.md`. Technical/model documentation stays available internally.
 
 *Historical (Cycle 1, `claude/roadmap-lane`):* when this inventory was prepared, no UX-14 removal, relocation or simplification had been implemented, and UX-16's separately reviewed prototype-positioning change was the only production edit in that lane.
 
@@ -14,7 +14,7 @@ Recorded from the owner's message on 2026-10-01. It approves the list; it does n
 - **B. RESERVE FOR DEEPER: D1–D9 approved. D10 approved with a condition:** move the detailed historical/correction rationale deeper, and keep a short public statement somewhere appropriate that automatic QB correction is applied only in verified cases. `UX-19` removes the public QB-return tool; it does not hide the limited verified automatic correction inside the model.
 - **C. SIMPLIFY PUBLIC: overall direction approved** for the listed groups: concepts instead of formulas; human football language instead of provider/model jargon; plain-English continuity and staleness explanations; “thousands of simulations” rather than public-facing “Monte Carlo”; market transparency kept, without implementation dumps. This does not resolve `UX-18` placement or any other open design gate.
 - **D. Other gates unchanged:** `UX-08`, `UX-12`/`UX-26`, `UX-15`, `UX-17`, `UX-18`, `UX-19`, `UX-31` and other existing gates stay under their own roadmap items.
-- **Section E findings:** C1, C2, C4 and C5 are confirmed findings, reported in the Cycle 1 lane handoff and not implemented by that lane. Content tranche A later addressed C2 (R1–R5), C5 (R5) and C4 in the public banner path only; the header status line and C1 remain open. C3 remains INVESTIGATE under `UX-10`/`UX-18`.
+- **Section E findings:** C1, C2, C4 and C5 are confirmed findings, reported in the Cycle 1 lane handoff and not implemented by that lane. Content tranche A later addressed C2 (R1–R5), C5 (R5) and C4 in the public banner path only; the header status line remains open. Content tranche B addressed C1 on the rankings FLAG view only; the footer/rankings-note duplicate remains open. C3 remains INVESTIGATE under `UX-10`/`UX-18`.
 
 ## Scope and method
 
@@ -326,7 +326,7 @@ Columns: Element · Source · Text · Classification · Flags. The owner disposi
 
 ## Remaining implementation gates
 
-- R1–R9 and D1–D10 disposition and the simplification direction are owner-approved with the recorded conditions. Only content tranche A (R1–R9, D3, D4, D7) has been implemented, reviewed and merged to local `main`; it is not deployed, and each further bounded scope needs a separate prompt.
+- R1–R9 and D1–D10 disposition and the simplification direction are owner-approved with the recorded conditions. Content tranche A (R1–R9, D3, D4, D7) has been implemented, reviewed and merged to local `main`; it is not deployed. Content tranche B (section C groups 1, 2, 3 and 5, C1 on the rankings FLAG view) is implemented on `cycle3/claude-product` and awaits review. Each further bounded scope needs a separate prompt.
 - Market-disclosure placement (`UX-18`), Update placement (`UX-15`), matchup graphics (`UX-17`), expanded name (`UX-31`), QB Customize contract (`UX-08`), projection labels (`UX-10`/`UX-11`).
 - New public wording. `UX-20` voice examples apply when an approved content tranche rewrites copy.
 - QB Rankings copy implementation under `UX-14` must wait until the owner selects the `UX-08` Customize product contract.

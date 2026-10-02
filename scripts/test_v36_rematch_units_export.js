@@ -29,6 +29,6 @@ ok(app.includes("rows.slice(i, i + forcedRows)"),'forced row grouping not implem
 ok(app.includes("shellTable.appendChild(head.cloneNode(true))"),'each export chunk must repeat headers');
 ok(app.includes("shell.setAttribute('data-export-force-page', '1')"),'each 16-team rankings chunk must force its own PNG page');
 ok(app.includes('packed.push({ blocks: [block], used: block.height, forcePage: true })'),'forced Units pages must bypass ordinary packing');
-ok(app.includes("S.ratingView === 'units' ? '' : diagnosticNotice()"),'Units note must be suppressed');
+ok(app.includes("S.ratingView === 'units' ? '' : diagnosticNotice(S.ratingView, { afterFlagIntro: S.ratingView === 'penalties' })"),'Units note must be suppressed');
 ok(!/if \(S\.ratingView === 'units'\)[^\n]+\$\{action\}/.test(app),'Units row must not include QB-return action');
 console.log(`OK: ${assertions} V36 rematch/units/export assertions`);

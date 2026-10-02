@@ -19,6 +19,6 @@ ok(pick===snapshots[1],'representative run should be closest to Monte Carlo expe
 const records={A:{w:14,l:3,t:0},B:{w:13,l:4,t:0},C:{w:10,l:7,t:0},D:{w:9,l:8,t:0}};
 const field=H.buildConferenceField('AFC',{records,outcomes:[],force:{A:70,B:99,C:80,D:75}});
 ok(field.seeds[0]==='A','14-3 division winner must seed above 13-4 regardless of FORCE fallback');
-ok(app.includes('representative Monte Carlo season'),'UI should explain representative Monte Carlo projection');
+ok(app.includes('one representative simulated season') && app.includes('The playoff, division, and bye percentages use every simulation'),'UI should explain the representative simulated season separately from every-simulation odds (UX-14 tranche B public wording)');
 ok(!app.includes('g.pHome>0.5 ? g.home'),'deterministic all-favorites projection path must be absent');
 console.log(`PASS: V124 representative playoff projection (${n} checks)`);

@@ -1858,8 +1858,8 @@
   function liveProfileStatus(t) {
     const p = profile(t), info = p?._live;
     if (!info || !info.games) return 'Preseason baseline';
-    const accelerated = info.priorAccelerated ? ' | trusting the new season faster because the early results changed sharply' : '';
-    return `${info.games} game${info.games === 1 ? '' : 's'} from 2026 | ${Math.round(info.weight * 100)}% current-season evidence and ${Math.round((1-info.weight)*100)}% preseason baseline${accelerated}`;
+    const accelerated = info.priorAccelerated ? ', trusting the new season faster because the early results changed sharply' : '';
+    return `${info.games} game${info.games === 1 ? '' : 's'} from 2026, blended with the preseason baseline${accelerated}`;
   }
 
 
@@ -2282,6 +2282,9 @@
   // Rankings > Units is intentionally a clean numeric board: no scenario notes,
   // no base values, and no QB-return affordance.  Scenario detail remains on the
   // team/matchup pages where it has context.
+  // Public copy names what a pass-rush number measures, not which provider
+  // supplied it. Provider IDs stay in profiles, diagnostics and passRushDebug.
+  const TRACKED_PRESSURE_PROVIDERS=['manual-current','ftn-play-level','statrankings-current','pfr-advanced'];
   function passRushRateLabel(p) {
     const liveGames=Number(p?._live?.games)||0;
     const ready=Boolean(p?._live?.passRushPressureReady && Number(p?._live?.passRushGames)>0);
@@ -2290,10 +2293,7 @@
     const rate=fmt(Number(p.dl.pressure_rate)*100,1);
     const provider=p?._live?.passRushProvider;
     const asOf=p?.dl?.pressure_as_of ? ` · as of ${p.dl.pressure_as_of}` : '';
-    if (ready && provider==='manual-current') return `${rate}% pressure rate in 2026 | manually verified current data${asOf}`;
-    if (ready && provider==='ftn-play-level') return `${rate}% pressure rate in 2026 | FTN charting${asOf}`;
-    if (ready && provider==='statrankings-current') return `${rate}% pressure rate in 2026 | StatRankings${asOf}`;
-    if (ready && provider==='pfr-advanced') return `${rate}% pressure rate in 2026 | Pro Football Reference charting${asOf}`;
+    if (ready && TRACKED_PRESSURE_PROVIDERS.includes(provider)) return `${rate}% pressure rate in 2026${asOf}`;
     if (ready && provider==='nflverse-weekly-disruption') return `${rate}% disruption rate in 2026 | based on QB hits and sacks per opponent pass play${asOf}`;
     return `${rate}% pressure rate from the preseason baseline | no reliable current pressure data yet`;
   }
@@ -2524,8 +2524,8 @@
     if (key === 'passRushIndex') {
       const ready=Boolean(p?._live?.passRushPressureReady && Number(p?._live?.passRushGames)>0);
       if (!ready && Number(p?._live?.games)>0) {
-        const reason=p?._live?.currentPressureReason || 'no fresh complete current-season pressure provider';
-        detail=` title="Pass rush is unavailable: ${String(reason).replace(/"/g,'&quot;')}. FORCE first looks for current pressure data, then for current QB hits and sacks. If neither is usable, it keeps the preseason pass-rush rating."`;
+        const reason=USE_HASH_ROUTING ? ` (${String(p?._live?.currentPressureReason || 'no fresh complete current-season pressure provider').replace(/"/g,'&quot;')})` : '';
+        detail=` title="Current pass-rush data are unavailable for this team${reason}. FORCE first looks for current pressure data, then for current QB hits and sacks. If neither is usable, it keeps the preseason pass-rush rating rather than counting missing data as zero."`;
       } else if (Number.isFinite(Number(p?.dl?.pressure_rate))) {
         const rate = Number(p.dl.pressure_rate) * 100;
         const hurries = Number(p?.dl?.hurries);
@@ -2534,17 +2534,18 @@
         const composite = Number(p?.dl?.pass_rush_composite_rate) * 100;
         const liveWeight = Number(p?._live?.passRushWeight);
         const liveGames = Number(p?._live?.passRushGames);
-        const providerMap={'manual-current':'curated current override','ftn-play-level':'FTN play-level','statrankings-current':'StatRankings current','pfr-advanced':'complete PFR fallback','nflverse-weekly-disruption':'nflverse weekly disruption fallback','prior-held':'2025 prior held','prior':'2025 prior'};
-        const provider = providerMap[p?._live?.passRushProvider] || 'pressure source';
+        const providerKey = p?._live?.passRushProvider;
+        const measure = providerKey==='nflverse-weekly-disruption' ? 'disruption rate from QB hits and sacks per pass play' : 'pressure rate';
+        const provider = TRACKED_PRESSURE_PROVIDERS.includes(providerKey) ? ' | current-season pressure data' : providerKey==='prior' || providerKey==='prior-held' ? ' | preseason baseline' : '';
         const events = [
           Number.isFinite(hurries) ? `${fmt(hurries,0)} hurries` : null,
           Number.isFinite(hits) ? `${fmt(hits,0)} hits` : null,
           Number.isFinite(sacks) ? `${fmt(sacks,1).replace(/\.0$/, '')} sacks` : null
         ].filter(Boolean).join(' · ');
         const blend = liveGames>0 && Number.isFinite(liveWeight)
-          ? ` | ${Math.round(liveWeight*100)}% based on this season and ${Math.round((1-liveWeight)*100)}% carried in from preseason`
+          ? ' | this season blended with the preseason baseline'
           : ' | still using the preseason baseline';
-        detail = ` title="Pass rush: ${fmt(rate,1)}% pressure rate | ${provider}${p?.dl?.pressure_as_of?` | current through ${p.dl.pressure_as_of}`:''}${events ? ` | ${events}` : ''}${blend}. FORCE starts with pressure rate and gives extra credit when a pressure becomes a QB hit or sack."`;
+        detail = ` title="Pass rush: ${fmt(rate,1)}% ${measure}${provider}${p?.dl?.pressure_as_of?` | current through ${p.dl.pressure_as_of}`:''}${events ? ` | ${events}` : ''}${blend}. FORCE starts with pressure rate and gives extra credit when a pressure becomes a QB hit or sack."`;
       }
     }
     return `<td${detail}>${Number.isFinite(v) ? `<b>${fmt(v,0)}</b>` : '-'}</td>`;
@@ -3141,7 +3142,7 @@
     return `<div class="context-card card team-accent-card" style="${teamAccentStyle(t)}">
       <div class="context-title">${teamMark(t, 'sm')}<b>${team(t).name}</b></div>
       <div class="context-grid">
-        <div><span>Luck</span><strong class="${contextScoreClass(luckScore)}">${contextScoreText(luckScore)}</strong><small>${l.exp_w != null ? `50 neutral · ${l.w}-${l.l} actual · ${Math.round(Number(l.exp_w))} expected wins · 60% EPA scoring realization + 20% FLAG + 15% fumble recovery + 5% outcome surprise` : '0–100 · 50 neutral'}</small></div>
+        <div><span>Luck</span><strong class="${contextScoreClass(luckScore)}">${contextScoreText(luckScore)}</strong><small>${l.exp_w != null ? `50 neutral · ${l.w}-${l.l} actual · ${Math.round(Number(l.exp_w))} expected wins` : '0–100 · 50 neutral'}</small></div>
         <div class="flag-context"><span>FLAG</span><strong class="${penUnavailable?'':flagScoreClass(penScore)}">${penUnavailable?'-':contextScoreText(penScore)}</strong>${penUnavailable?'':flagGauge(penScore,true)}<small>${penUnavailable?'current penalty data unavailable':pen.live ? `${flagScoreLabel(penScore)} · Flag Leverage & Advantage Gauge · 50 neutral` : 'current-season FLAG data unavailable'}</small></div>
         <div><span>Recent vs spread</span><strong class="${spreadHistoryReady(ai) ? contextScoreClass(spreadScore) : ''}">${spreadHistoryReady(ai) ? contextScoreText(spreadScore) : ''}</strong><small>${spreadHistoryReady(ai) ? `0–100 · 50 neutral · team history, not a matchup mirror · ${confidenceLabel(ai)}` : ai ? `${ai.marketGames ?? 0}/4 market-tracked games · shown after 4` : 'Adaptive data unavailable'}</small></div>
       </div>
@@ -3172,7 +3173,7 @@
     const desc = S.rankSort.key === 'penEPA' && S.rankSort.dir !== 'asc';
     const asc = S.rankSort.key === 'penEPA' && S.rankSort.dir === 'asc';
     return `<div class="penalty-sort-toolbar" aria-label="FLAG sort order">
-      <span><b>FLAG order</b><small>50 is neutral. Higher scores mean the penalties actually called helped that team more overall.</small></span>
+      <span><b>FLAG order</b><small>Higher scores mean the penalties actually called helped that team more.</small></span>
       <div class="penalty-sort-toggle">
         <button type="button" data-penaltysort="desc" class="${desc ? 'active' : ''}" aria-pressed="${desc ? 'true' : 'false'}">Most benefit first</button>
         <button type="button" data-penaltysort="asc" class="${asc ? 'active' : ''}" aria-pressed="${asc ? 'true' : 'false'}">Least benefit first</button>
@@ -3283,11 +3284,15 @@
     return spreadHistoryReady(ai) ? signed(ai.residual, decimals, suffix) : '-';
   }
 
-  function diagnosticNotice(view = S.ratingView) {
+  // The rankings FLAG view already opens with flagIntroPanel's definition, so
+  // its notice keeps only the FLAG Swing rule. Team pages keep the full note.
+  const FLAG_SWING_NOTE = "A game gets a FLAG Swing label only when the winner's measured penalty advantage was at least as large as the final scoring margin, meaning penalties were large enough to be one plausible part of why the result went that way.";
+  function diagnosticNotice(view = S.ratingView, { afterFlagIntro = false } = {}) {
+    if (view === 'penalties' && afterFlagIntro) return `<div class="diagnostic-note">${FLAG_SWING_NOTE}</div>`;
     const notes = {
       power: 'FORCE Score runs from 0 to 100, with 50 representing an average NFL team. Scores near either end are intentionally hard to reach. The other views explain what is helping or hurting each team.',
-      luck: 'Luck is a 0 to 100 score with 50 meaning roughly neutral. Most of it asks a simple question: has the scoreboard rewarded a team about as much as its play-by-play efficiency says it should have? That accounts for 60% of the score. FLAG contributes 20%, fumble recoveries 15%, and unusually fortunate or unfortunate wins and losses 5%. A great team can still look unlucky if it is playing even better than its scoring margin suggests.',
-      penalties: "FLAG, the Flag Leverage & Advantage Gauge, shows how much the penalties actually called have helped or hurt a team this season. A 50 is neutral. Higher scores mean more net benefit; lower scores mean more net harm. The score mostly follows how much those calls changed expected points and win chances, while also accounting for first downs and touchdowns created or erased by penalties. FLAG does not decide whether a call was correct and does not try to infer intent. A game gets a FLAG Swing label only when the winner's measured penalty advantage was at least as large as the final scoring margin, meaning penalties were large enough to be one plausible part of why the result went that way.",
+      luck: 'Luck is a 0 to 100 score with 50 meaning roughly neutral. Most of it asks a simple question: has the scoreboard rewarded a team about as much as its play-by-play efficiency says it should have? The rest comes from penalty impact (FLAG), fumble recoveries, and unusually fortunate or unfortunate wins and losses. A great team can still look unlucky if it is playing even better than its scoring margin suggests.',
+      penalties: "FLAG, the Flag Leverage & Advantage Gauge, shows how much the penalties actually called have helped or hurt a team this season. A 50 is neutral. Higher scores mean more net benefit; lower scores mean more net harm. The score mostly follows how much those calls changed expected points and win chances, while also accounting for first downs and touchdowns created or erased by penalties. FLAG does not decide whether a call was correct and does not try to infer intent. " + FLAG_SWING_NOTE,
       units: 'Unit scores are relative strength ratings, so higher is better. Overall defense leans most heavily on coverage and run defense, with pass rush and points allowed per drive filling out the picture. Pass rush uses the freshest reliable pressure source available; if detailed pressure data are missing, FORCE can use current QB hits and sacks instead of pretending the missing pressure count is zero. The RB score is driven mostly by rushing efficiency, with receiving work making up the rest.',
       advanced: 'This view shows the underlying team rating and how FORCE has compared with the betting market. The market-comparison score stays hidden until a team has at least four games with usable closing lines.'
     };
@@ -3326,7 +3331,7 @@
     </div>`;
     if (S.ratingView === 'advanced') return `<div class="grid three diagnostic-grid">
       <div class="card kpi"><div class="label">RAW ELO</div><div class="value">${fmt(r)}</div></div>
-      <div class="card kpi"><div class="label">OFFENSIVE EFFICIENCY PER PLAY</div><div class="value ${Number(pr.off_epa) >= 0 ? 'positive' : 'negative'}">${pr.off_epa != null ? signed(pr.off_epa, 3) : '-'}</div><div class="sub">${pr._live?.games ? `${liveProfileStatus(t)} | current-season efficiency with early games gently steadied by the preseason baseline` : 'Preseason offensive efficiency baseline' }.</div></div>
+      <div class="card kpi"><div class="label">OFFENSIVE EFFICIENCY PER PLAY</div><div class="value ${Number(pr.off_epa) >= 0 ? 'positive' : 'negative'}">${pr.off_epa != null ? signed(pr.off_epa, 3) : '-'}</div><div class="sub">${pr._live?.games ? liveProfileStatus(t) : 'Preseason offensive efficiency baseline' }.</div></div>
       <div class="card kpi"><div class="label">SCORING PROFILE</div><div class="value" style="font-size:25px">${scoring.ppg_for != null ? `${fmt(scoring.ppg_for)} / ${fmt(scoring.ppg_against)}` : '-'}</div><div class="sub">Points scored / allowed per game.</div></div>
       <div class="card kpi"><div class="label">RECENT VS SPREAD</div><div class="value ${spreadHistoryReady(ai) ? contextScoreClass(spreadContextScore(ai)) : ''}">${spreadHistoryReady(ai) ? contextScoreText(spreadContextScore(ai)) : ''}</div><div class="sub">${spreadHistoryReady(ai) ? `0–100 · 50 neutral · raw decayed/shrunk residual ${signed(ai.residual,2,' pts')}. Team history, not a matchup mirror.` : ai ? `${ai.marketGames ?? 0}/4 market-tracked games. Value appears after four games.` : 'Adaptive data unavailable.'}</div></div>
       <div class="card kpi"><div class="label">HOW MUCH THE FORECAST USES VEGAS</div><div class="value">${ai ? Math.round(ai.marketWeight * 100) + '%' : '-'}</div><div class="sub">The share of this experimental forecast coming from the betting market rather than FORCE alone.</div></div>
@@ -3814,7 +3819,7 @@
       const rows=Object.values(sim.teams).filter(x=>conferenceOf(x.team)===conf).sort((a,b)=>{ const as=typeof a.projectedSeed==='number'?a.projectedSeed:99, bs=typeof b.projectedSeed==='number'?b.projectedSeed:99; return as-bs || b.playoffPct-a.playoffPct || b.expectedWins-a.expectedWins; });
       return `<section class="card playoff-card"><div class="card-head"><h2>${conf} Playoff Picture</h2><span class="chip">7 playoff spots</span></div><div class="table-wrap"><table class="projection-table playoff-table"><thead><tr><th>Proj seed</th><th>Team</th><th>Record</th><th>FORCE</th><th>Projected</th><th>Playoffs</th><th>Division</th><th>Bye</th></tr></thead><tbody>${rows.map(r=>`<tr class="${typeof r.projectedSeed==='number'?'projected-in':'projected-out'}"><td><b>${typeof r.projectedSeed==='number' ? `#${r.projectedSeed}${r.projectedDivisionWinner ? ' <small>DIV</small>' : ''}` : 'Out'}</b></td><td><button class="team-link" data-team="${r.team}">${teamIdentity(r.team,{size:'xs'})}</button></td><td>${r.current.w}-${r.current.l}${r.current.t?`-${r.current.t}`:''}</td><td class="${bandClass(r.force)}"><b>${fmt(r.force,1)}</b></td><td><b>${r.projectedRecord}</b><small>${fmt(r.expectedWins,1)} exp. wins</small></td><td><b>${pct(r.playoffPct)}</b></td><td>${pct(r.divisionPct)}</td><td>${pct(r.byePct)}</td></tr>`).join('')}</tbody></table></div></section>`;
     }).join('');
-    return layout(`<div class="section-title"><div><div class="eyebrow">Season projection</div><h2>Playoff Picture</h2><p>What the season most plausibly looks like from here, based on current FORCE win chances.</p></div><span class="chip">${sim.runs.toLocaleString()} simulated seasons</span></div><div class="grid two playoff-grid">${confMarkup}</div><p class="raw projection-note">FORCE simulates the rest of the season thousands of times using each game's current win probability. The records and seeds shown here come from one representative Monte Carlo season, meaning one simulated season that looks most like the average result across all of those runs. That keeps the bracket and records consistent with each other. The playoff, division, and bye percentages use every simulation. NFL tiebreakers are applied in their normal order as far as the simulation has enough information to do so.</p>`, 'playoffs');
+    return layout(`<div class="section-title"><div><div class="eyebrow">Season projection</div><h2>Playoff Picture</h2><p>What the season most plausibly looks like from here, based on current FORCE win chances.</p></div><span class="chip">${sim.runs.toLocaleString()} simulated seasons</span></div><div class="grid two playoff-grid">${confMarkup}</div><p class="raw projection-note">FORCE simulates the rest of the season thousands of times using each game's current win probability. The records and seeds shown here come from one representative simulated season, meaning the one that looks most like the average result across all of those runs. That keeps the bracket and records consistent with each other. The playoff, division, and bye percentages use every simulation. NFL tiebreakers are applied in their normal order as far as the simulation has enough information to do so.</p>`, 'playoffs');
   }
 
 
@@ -3967,7 +3972,7 @@
       <section class="prediction-finale card">
         <div class="eyebrow">FORCEcast</div><div class="prediction-grid ${g.homeScore != null ? 'three-up' : ''}">
           <div><span>Predicted line</span><strong class="rich-team-line">${logoizeForecastTeamCodes(lineLabel, 'xs')}</strong><small>Comes from the same win probability shown above${fc.marketAvailable && fc.marketWeight != null ? ` | ${Math.round(fc.marketWeight * 100)}% from the market and ${Math.round(fc.modelWeight * 100)}% from FORCE` : ''}${scenarioTeams.length ? ` | returning-QB adjustment active` : ''}.</small></div>
-          <div class="exact"><span>Predicted final score</span><strong class="rich-team-line">${logoizeForecastTeamCodes(`${g.away} ${proj.away} · ${g.home} ${proj.home}`, 'xs')}</strong><small>The predicted score comes from 25,000 possession-level simulations centered on FORCEcast's expected matchup strength and scoring environment. Pace, drive outcomes, and game-level offensive variance can move the representative score away from the betting-style line. Treat the exact score as less certain than the line or win probability.</small></div>
+          <div class="exact"><span>Predicted final score</span><strong class="rich-team-line">${logoizeForecastTeamCodes(`${g.away} ${proj.away} · ${g.home} ${proj.home}`, 'xs')}</strong><small>The predicted score comes from thousands of drive-by-drive game simulations centered on FORCEcast's expected matchup strength and scoring environment. Pace, drive results, and ordinary game-to-game swings in offense can move the representative score away from the betting-style line. Treat the exact score as less certain than the line or win probability.</small></div>
           ${g.homeScore != null ? `<div class="actual-result"><span>Actual final</span><strong class="rich-team-line">${logoizeTeamCodes(`${g.away} ${g.awayScore} · ${g.home} ${g.homeScore}`, 'xs')}</strong><small>${logoizeTeamCodes(actualWinnerLine)} · margin error ${fmt(marginError)} · total error ${fmt(totalError)}.</small></div>` : ''}
         </div>
         ${gameFlowPanel(g, proj)}
@@ -4064,7 +4069,7 @@
       ${ratingViewControl()}
       ${S.ratingView === 'penalties' ? flagIntroPanel() : ''}
       ${penaltyImpactSortControl()}
-      ${S.ratingView === 'units' ? '' : diagnosticNotice()}
+      ${S.ratingView === 'units' ? '' : diagnosticNotice(S.ratingView, { afterFlagIntro: S.ratingView === 'penalties' })}
       <section class="card" data-export-row-group="16"><div class="table-wrap"><table class="diagnostic-table"><thead>${rankingHeader()}</thead><tbody id="rankBody">
       ${rows.map((r) => rankingRow(r, metricRank[r.team], forceRank[r.team])).join('')}</tbody></table></div></section>
       ${S.ratingView === 'units' ? '<p class="raw">Changes in these unit ratings feed into the overall FORCE Score, but no single unit is allowed to swing the team rating without limit.</p>' : '<p class="raw">FORCE Score is the main team-strength rating. Current unit performance can move it, while Luck and FLAG are context and do not directly change the forecast.</p>'}`, 'rankings');
@@ -4273,13 +4278,13 @@
       <p><b>Defense:</b> leans most heavily on coverage and run defense, with points allowed per drive and pass rush also included.</p>
       <p>Those ingredients describe how the overall offense and defense scores are built. They are not extra adjustments piled on top of the final FORCE Score.</p>
       <h2>How new games change unit ratings</h2>
-      <p>Early-season samples are noisy, so FORCE does not let one game completely replace what was known before the season. After one game, a typical unit is roughly half current-season evidence and half preseason baseline. After two games, about two-thirds comes from the current season. By four games, about four-fifths comes from the current season. If the early team results are dramatically different from expectations, FORCE can trust the new evidence somewhat faster.</p>
+      <p>Early-season samples are noisy, so FORCE does not let one game completely replace what was known before the season. Each unit blends current-season evidence with the preseason baseline, and the current season counts for more with every game played. If the early team results are dramatically different from expectations, FORCE can trust the new evidence somewhat faster.</p>
       <p>Pass rush uses the freshest reliable pressure information available. If detailed pressure charting is missing, FORCE can fall back to current QB hits and sacks. It does not treat missing pressure data as zero.</p>
       <h2>How unit ratings reach the team rating</h2>
       <p>When a unit gets better or worse, that movement can change the overall FORCE Score. The effect is limited so a single noisy unit cannot overwhelm the entire team rating. Missing unit data simply add no new movement until reliable data arrive.</p>
       <p>On matchup pages, the overall edge compares one team's offense with the other team's defense. The QB versus coverage and offensive line versus pass rush rows explain parts of that matchup; they are not added a second time.</p>
       <h2>Luck</h2>
-      <p>Luck asks whether a team's results have been better or worse than its underlying play would normally produce. Sixty percent compares actual scoring margin with the margin normally associated with the team's play-by-play efficiency. FLAG contributes 20%, fumble recoveries 15%, and unusually fortunate or unfortunate wins and losses 5%. A team can therefore be excellent and still rate as unlucky if it is playing even better than the scoreboard shows.</p>
+      <p>Luck asks whether a team's results have been better or worse than its underlying play would normally produce. Most of it compares actual scoring margin with the margin normally associated with the team's play-by-play efficiency. The rest comes from penalty impact (FLAG), fumble recoveries, and unusually fortunate or unfortunate wins and losses. A team can therefore be excellent and still rate as unlucky if it is playing even better than the scoreboard shows.</p>
       <h2>QB return correction</h2>
       <p>A stretch with a replacement quarterback can pull down a team's rating even after the regular starter comes back. Historical testing suggests that giving back a modest part of that lost rating can help, but it does not help every case. FORCE therefore applies the automatic correction only to verified situations and fades it quickly as the returning starter builds a new sample.</p>
       <div class="grid three brier-grid">

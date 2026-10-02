@@ -24,6 +24,6 @@ ok(luck.outcome_surprise_z>0 && luck.outcome_surprise_z<.5,'dominant 2-0 outcome
 ok(Math.abs(luck.outcome_surprise_excess_z)<1e-12,'neutral band zeroes trivial positive residual');
 ok(luck.fumble_luck_score<50 && luck.fumble_luck_score>40,'KC-like fumble ledger remains mildly negative');
 ok(app.includes('WIN_LUCK_V113'),'V112 win-luck calibration exists');
-ok(app.includes('60% EPA scoring realization'),'UI describes V121 EPA-heavy luck input');
+ok(app.includes('Most of it asks a simple question: has the scoreboard rewarded a team about as much as its play-by-play efficiency says it should have?') && app.includes('blend:{epaScoringRealization:0.60'),'UI describes the V121 EPA-heavy luck input in plain words; exact weight stays in the Luck debug payload (UX-14 tranche B)');
 ok(!app.includes('<th>Outcome z</th>'),'V118 Luck ranking removes Outcome z column while retaining outcome surprise in debug');
 console.log(`PASS: V112 standardized outcome-surprise luck (${n} checks)`);

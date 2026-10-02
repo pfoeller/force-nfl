@@ -179,6 +179,16 @@ by its filename. The [public explanation inventory](../UX14_PUBLIC_EXPLANATION_I
 records tranche A and its deferred gates; the regression does not authorize the
 remaining content tranche.
 
+Cycle 3 UX-14 tranche B adds `test_ux14_tranche_b.mjs` to safe (catalog 252,
+safe 140, 112 default exclusions). It renders the real Luck, FLAG, units, team
+Advanced, matchup, Playoffs and Method paths offline and checks the approved
+plain-English copy, provider-neutral pass-rush labels, localhost-only raw reasons,
+preserved limitations, untouched gated rows, unchanged ratings and public parity.
+Historical copy assertions in V36, V38, V39, V112 and V124 now match the new
+wording with unchanged intent. Verification (2026-10-02, LF export of the
+tranche): safe 140/140, release 17/17, QB 26/26, model 45/45, snapshot 6/6 and
+server 30/30; native safe 139/140 with only the known V77 CRLF assertion.
+
 Integration-discovered FLAG correctness coverage: `test_flag_penalty_values.mjs`
 is selected by safe/release. It exercises the real team card and adjacent rankings
 EPA/WPA cell with null, undefined, NaN and both infinities, mixed available/missing
