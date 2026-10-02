@@ -823,14 +823,18 @@
     const delayed=parts.some(part=>!part.startsWith(STALE_WARNING_PREFIX));
     const qbUnavailable=Boolean(S.qbInputWarning) && !LP?.gameFlowQbStatus?.(S.liveGameFlow2026)?.ready;
     const ageMinutes=Number(S.snapshotFreshness?.ageMinutes);
-    const age=Number.isFinite(ageMinutes) ? `, from ${Math.floor(ageMinutes)} minutes ago,` : '';
+    const age=Number.isFinite(ageMinutes) ? `, from ${Math.floor(ageMinutes)} minutes ago` : '';
+    // Only say fresh data is loading while a refresh is actually running; after a
+    // failed attempt or retry backoff the honest state is simply "delayed".
     const notes=[
-      stale ? `FORCE is showing the last good data${age} while fresh data loads.` : '',
+      stale ? `FORCE is showing the last good data${age}. ${S.refreshing ? 'Fresh data is loading.' : 'Fresh data is delayed.'}` : '',
       delayed ? 'Some inputs are delayed, so a few values may not reflect the latest games.' : '',
       qbUnavailable ? 'Quarterback ratings are unavailable until current QB data loads.' : ''
     ].filter(Boolean).join(' ');
     return (S.refreshError ? banner(S.lastRefreshAt ? 'Refresh failed. Kept the last good data.' : 'FORCE did not load completely. Please reload the page.') : '')
-      + (S.statsError ? banner('Some current stats could not load. Affected values stay hidden until good data is available.') : '')
+      // Failed inputs keep their last good rows when FORCE has them; anything
+      // without good data stays out rather than being treated as zero.
+      + (S.statsError ? banner('Some current stats could not refresh. FORCE keeps using the last good data it has and leaves out anything it cannot back with good data.') : '')
       + (notes ? banner(notes, true) : '');
   }
 
@@ -4259,9 +4263,9 @@
       <p>FORCEcast is the public game prediction. Early in the season it listens more heavily to the betting market because there is not much new-season evidence yet. The market supplies 75% of the Week 1 prediction, 50% in Week 2, 25% in Week 3, 15% in Week 4, 10% in Week 5, and 5% from Week 6 onward. The win probability and predicted line come from the same final prediction. The predicted score is then generated from 25,000 possession-level simulations centered on that FORCEcast expectation and the matchup's scoring environment.</p>
       <p>The displayed score is adjusted toward point totals that actually occur in football. That keeps the score realistic without changing the underlying win probability. Because of that, the exact score can differ slightly from the betting-style line.</p>
       <h2>Unit profiles</h2>
-      <p><b>Offense:</b> built mostly from overall offensive performance and quarterback play, with receivers and the offensive line filling out the rest.</p>
+      <p><b>Offense:</b> built from scoring efficiency per drive, quarterback play, running backs, receivers and the offensive line, with quarterback play carrying the most weight.</p>
       <p><b>Defense:</b> leans most heavily on coverage and run defense, with points allowed per drive and pass rush also included.</p>
-      <p>Those ingredients describe how the overall offense and defense scores are built. They are not four extra adjustments piled on top of the final FORCE Score.</p>
+      <p>Those ingredients describe how the overall offense and defense scores are built. They are not extra adjustments piled on top of the final FORCE Score.</p>
       <h2>How new games change unit ratings</h2>
       <p>Early-season samples are noisy, so FORCE does not let one game completely replace what was known before the season. After one game, a typical unit is roughly half current-season evidence and half preseason baseline. After two games, about two-thirds comes from the current season. By four games, about four-fifths comes from the current season. If the early team results are dramatically different from expectations, FORCE can trust the new evidence somewhat faster.</p>
       <p>Pass rush uses the freshest reliable pressure information available. If detailed pressure charting is missing, FORCE can fall back to current QB hits and sacks. It does not treat missing pressure data as zero.</p>
