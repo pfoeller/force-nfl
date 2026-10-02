@@ -2,7 +2,7 @@
 
 Roadmap item: `UX-14` (public methodology depth). Decision status CONFIRMED; this document is the required inventory and classification step. Prepared 2026-10-01 on `claude/roadmap-lane` from `main @ 8fc1f87`.
 
-**Current implementation status (updated 2026-10-02):** UX-14 content tranche A (R1–R9, D3, D4, D7) is implemented on the review lane `cycle2/claude-product` (commit `82400c4` plus a cross-review correction commit). It is not merged to `main` and not deployed. Every other approved row (D1, D2, D5, D6, D8, D9, D10) and the section C simplifications remain gated or PLANNED; see the `UX-14` entry in `FORCE_ROADMAP.md`. Technical/model documentation stays available internally.
+**Current implementation status (updated 2026-10-02):** UX-14 content tranche A (R1–R9, D3, D4, D7) originated on `cycle2/claude-product` (`82400c4` plus correction `1ac894c`), passed final independent review, and is merged to local `main @ e264db7` as of 2026-10-02. It is not deployed. Every other approved row (D1, D2, D5, D6, D8, D9, D10) and the section C simplifications remain gated or PLANNED; see the `UX-14` entry in `FORCE_ROADMAP.md`. Technical/model documentation stays available internally.
 
 *Historical (Cycle 1, `claude/roadmap-lane`):* when this inventory was prepared, no UX-14 removal, relocation or simplification had been implemented, and UX-16's separately reviewed prototype-positioning change was the only production edit in that lane.
 
@@ -326,7 +326,7 @@ Columns: Element · Source · Text · Classification · Flags. The owner disposi
 
 ## Remaining implementation gates
 
-- R1–R9 and D1–D10 disposition and the simplification direction are owner-approved with the recorded conditions. Only content tranche A (R1–R9, D3, D4, D7) has been implemented, on the review lane and not merged; each further bounded scope needs a separate prompt.
+- R1–R9 and D1–D10 disposition and the simplification direction are owner-approved with the recorded conditions. Only content tranche A (R1–R9, D3, D4, D7) has been implemented, reviewed and merged to local `main`; it is not deployed, and each further bounded scope needs a separate prompt.
 - Market-disclosure placement (`UX-18`), Update placement (`UX-15`), matchup graphics (`UX-17`), expanded name (`UX-31`), QB Customize contract (`UX-08`), projection labels (`UX-10`/`UX-11`).
 - New public wording. `UX-20` voice examples apply when an approved content tranche rewrites copy.
 - QB Rankings copy implementation under `UX-14` must wait until the owner selects the `UX-08` Customize product contract.

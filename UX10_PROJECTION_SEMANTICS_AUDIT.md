@@ -1,7 +1,8 @@
 # UX-10 projection semantics audit — Cycle 2
 
 2026-10-01. Baseline: `main @ e7f08951d260a18a686171a22788760461245bae`.
-Lane: `cycle2/codex-analysis`. Decision remains **INVESTIGATE**; execution is
+Originating lane: `cycle2/codex-analysis`; evidence merged to local `main @ e264db7`
+after final independent review on 2026-10-02. Decision remains **INVESTIGATE**; execution is
 **REVIEW**. This is internal source/evidence documentation. No public copy,
 calculation, model, odds formatter, ordering, or owner contract was changed.
 

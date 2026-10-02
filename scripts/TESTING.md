@@ -74,6 +74,19 @@ their sources. Desktop/mobile FLAG smoke passed 12 cases with no page overflow
 or browser errors. This verification does not authorize main merge, deployment,
 unrelated defect corrections or another roadmap tranche.
 
+Cycle 2 local-main closeout (2026-10-02): owner-reported final independent review
+accepted candidate `e264db7` with A. READY TO MERGE TO MAIN. Local `main` was
+fast-forwarded from exact `e7f0895` to that candidate, preserving both reviewed
+lane histories and the separate FLAG correction. `origin/main` remains at
+`e7f0895`; no push or deployment was authorized/performed.
+Post-merge inventory/catalog validation confirmed 251 entries, 139 safe and 112
+default exclusions. Authoritative LF export passed safe 139/139, model 45/45,
+release 17/17, QB 26/26, snapshot 6/6 and server 30/30. Projection-semantics,
+UX-14 and FLAG focused regressions each passed separately in both native main
+and the LF export. Canonical public build left all 33 generated files unchanged
+and matching their sources; diff checks passed. The LF export was removed and
+validation left the main worktree unchanged.
+
 Selections overlap. Requirements are Node.js, Git and Python 3.10+; the safe
 suite uses standard-library Python only. Set `FORCE_TEST_PYTHON` to an executable
 path if Python is not on PATH. `PYTHON` is also supported. On Windows the runner
