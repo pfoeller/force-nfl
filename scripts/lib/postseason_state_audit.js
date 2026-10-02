@@ -13,6 +13,11 @@ export function outcomeSpace(remaining) {
 
 export function scheduleEvidence(schedule, teams) {
   if (!Array.isArray(schedule)) throw new Error('schedule must be an array');
+  // FORCE's normalized rows omit season/type after filtering 2026 REG. Audit
+  // that declared season, including January of the following calendar year;
+  // check source metadata too when supplied. This is not schedule authority.
+  const season = 2026;
+  const firstSeasonDate = `${season}-09-01`, lastSeasonDate = `${season+1}-01-31`;
   const ids = [...teams].sort();
   if (ids.length !== 32 || new Set(ids).size !== 32) throw new Error('32 unique team identities required');
   const known = new Set(ids), keys = new Set();
@@ -22,10 +27,13 @@ export function scheduleEvidence(schedule, teams) {
     if (!g || !known.has(g.home) || !known.has(g.away) || g.home === g.away) {
       throw new Error('Unknown/identical schedule teams');
     }
-    if (!Number.isInteger(g.week) || g.week < 1 || g.week > 18
-        || typeof g.date !== 'string' || !/^2026-\d{2}-\d{2}$/.test(g.date)
-        || !Number.isFinite(Date.parse(g.date)) || new Date(g.date).toISOString().slice(0,10) !== g.date) {
-      throw new Error('Expected 2026 regular-season week/date');
+    if (('season' in g && g.season !== season && g.season !== String(season))
+        || ['game_type','season_type'].some(key => key in g && g[key] !== 'REG')
+        || !Number.isInteger(g.week) || g.week < 1 || g.week > 18
+        || typeof g.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(g.date)
+        || !Number.isFinite(Date.parse(g.date)) || new Date(g.date).toISOString().slice(0,10) !== g.date
+        || g.date < firstSeasonDate || g.date > lastSeasonDate) {
+      throw new Error('Expected 2026 REG season, week 1-18 and date in September 2026-January 2027');
     }
     if ((g.homeScore == null) !== (g.awayScore == null)) throw new Error('Partial final');
     if (g.homeScore != null && [g.homeScore,g.awayScore].some(v => !Number.isInteger(v) || v < 0)) {

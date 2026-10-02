@@ -8,7 +8,8 @@ import {scheduleEvidence,outcomeSpace,tiebreakBoundaryEvidence} from './lib/post
 import {projectionSemanticsFixture} from './lib/projection_semantics_fixture.js';
 import {appHarness} from './lib/force_app_harness.js';
 
-const teams = Object.keys(appHarness().context.window.MODEL_DATA.teams);
+const app = appHarness({hooks:'scheduleFromBootstrapText'});
+const teams = Object.keys(app.context.window.MODEL_DATA.teams);
 const short = projectionSemanticsFixture(), full = projectionSemanticsFixture({fullSchedule:true});
 const before = JSON.stringify(full);
 const a = scheduleEvidence(short.schedule,teams), b = scheduleEvidence(full.schedule,teams);
@@ -21,6 +22,21 @@ for (const report of [a,b]) {
   assert.match(report.sourceAuthority,/unverified/);
   assert.deepEqual(Object.values(report.actualState),['unknown','unknown','unknown','unknown']);
 }
+// Real tracked nflverse calendar, normalized by the unchanged production parser.
+// Its January 2027 games belong to the 2026 REG season, not the 2027 season.
+const tracked = app.api.scheduleFromBootstrapText(fs.readFileSync('data/live-cache/9b3c086e80ae9f89bbf3.bin','utf8'));
+const trackedBefore = JSON.stringify(tracked);
+const real = scheduleEvidence(tracked,teams);
+assert.equal(real.games,272);
+assert.equal(real.meetsCountChecks,true,'tracked calendar passes structural counts only');
+assert.equal(real.gamesPerTeamMismatches.length,0);
+const january = tracked.filter(g=>g.date.startsWith('2027-01-'));
+assert.ok(january.some(g=>g.week===17) && january.some(g=>g.week===18),'tracked Week 17/18 games cross the calendar year');
+for(const g of january) assert.equal(scheduleEvidence([g],teams).games,1,'legitimate January date accepted');
+assert.equal(JSON.stringify(tracked),trackedBefore,'tracked schedule remains untouched');
+assert.deepEqual(Object.values(real.actualState),['unknown','unknown','unknown','unknown']);
+assert.equal(scheduleEvidence(tracked.map(g=>({...g,season:'2026',game_type:'REG'})),teams).games,272);
+assert.equal(scheduleEvidence([{...january[0],season:2026,season_type:'REG'}],teams).games,1);
 assert.deepEqual(outcomeSpace(1),{remaining:1,binaryVectors:'2',winLossTieVectors:'3'});
 assert.deepEqual(outcomeSpace(0),{remaining:0,binaryVectors:'1',winLossTieVectors:'1'});
 assert.equal(outcomeSpace(16).winLossTieVectors,'43046721');
@@ -34,6 +50,11 @@ for (const change of [
   s=>s[0].homeScore=null, s=>s[0].awayScore=Infinity,
   s=>s[0].homeScore=-1, s=>s[0].homeScore='21',
   s=>s[0].week=19, s=>s[0].date='2026-02-30',s=>s[0].date='2025-09-07',
+  s=>s[0].date='2026-01-10',s=>s[0].date='2026-08-31',
+  s=>s[0].date='2027-02-01',s=>s[0].date='2027-09-09',s=>s[0].date='2028-01-10',
+  s=>s[0].date='2026-09-31',s=>s[0].date='2027-01-32',
+  s=>s[0].season=2027,s=>s[0].season='2025',s=>s[0].season=null,
+  s=>s[0].game_type='PST',s=>s[0].season_type='PRE',
 ]) {
   const schedule=structuredClone(short.schedule);change(schedule);
   assert.throws(()=>scheduleEvidence(schedule,teams),'malformed schedule must not produce evidence');
@@ -62,7 +83,7 @@ assert.equal(report.suppliedFileSha256,null);
 const scratch=fs.mkdtempSync(path.join(os.tmpdir(),'force-ux25-input-'));
 try {
   const inputPath=path.join(scratch,'input.json');
-  const bytes=JSON.stringify({schedule:short.schedule,actualState:{KC:'clinched'},projectedSeed:1,playoffPct:100});
+  const bytes=JSON.stringify({schedule:tracked,actualState:{KC:'clinched'},projectedSeed:1,playoffPct:100});
   fs.writeFileSync(inputPath,bytes);
   const supplied=spawnSync(process.execPath,['scripts/audit_postseason_state.mjs','--input',inputPath],{encoding:'utf8'});
   assert.equal(supplied.status,0,supplied.stderr);
@@ -78,4 +99,4 @@ try {
 }
 const bad=spawnSync(process.execPath,['scripts/audit_postseason_state.mjs','--bogus'],{encoding:'utf8'});
 assert.notEqual(bad.status,0);
-console.log('PASS: UX-25 offline source feasibility evidence, real tiebreak boundary, ties, structural counts, validation and deterministic provenance');
+console.log('PASS: UX-25 offline source feasibility evidence, real 2026-season calendar, tiebreak boundary, ties, structural counts, validation and deterministic provenance');

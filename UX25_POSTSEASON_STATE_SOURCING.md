@@ -72,12 +72,27 @@ They are not official schedules even when their counts match.
 | Four games per team | 64 / 48 / 16 | 1 | Fails; all 32 teams lack 17 loaded games |
 | Seventeen games per team | 272 / 48 / 224 | 1 | Passes counts only; still unverified/synthetic |
 
-The count audit requires 32 unique known identities, valid 2026 dates/weeks,
-distinct teams, unique date/week/pair keys and paired nonnegative integer finals.
+The count audit requires 32 unique known identities, regular-season weeks 1-18,
+strict ISO calendar dates in the declared 2026 NFL season window (September
+2026 through January 2027), distinct teams, unique date/week/pair keys and paired
+nonnegative integer finals. Supplied `season` must be 2026 and supplied
+`game_type`/`season_type` must be REG. FORCE's normalized rows omit that metadata
+after filtering 2026 REG; accepting that shape does not verify season identity.
 It does not validate NFL opponent rotations, official game IDs, game finality,
 postponements, forfeits, feed watermarks or the truth of results. Its 17/272
 assumptions are a declared normal-season audit scope, not a production acceptance
 gate; exceptional seasons/scheduling must use an explicit separate contract.
+
+**Tracked real-calendar probe (correction F1):** normalize
+`data/live-cache/9b3c086e80ae9f89bbf3.bin` with the unchanged
+`scheduleFromBootstrapText` parser. The tracked 2026 REG cohort has 272 games,
+48 completed and 224 remaining, spanning 2026-09-09 through 2027-01-10; 31 games
+fall in January 2027, including Weeks 17 and 18. The old diagnostic rejected
+these dates; the corrected supplied-input CLI accepts them and passes 17/272
+counts. All four actual-state outcomes remain unknown and provenance remains
+unverified. This is tracked calendar evidence, not a live freshness or clinch
+check. Regressions also reject wrong-season metadata, dates outside the window
+and impossible dates within it.
 
 | Remaining games | Binary result vectors | Win/loss/tie vectors |
 | --- | --- | --- |
@@ -151,21 +166,32 @@ FORCE probe, purchase, data ingestion or dependency installation was performed.
   Its examples show division, wildcard and eliminated markers. This is a
   concrete external-feed candidate, not an already approved FORCE source.
 - [Sportradar's endpoint reference](https://developer.sportradar.com/football/reference/nfl-postgame-standings)
-  lists `conference`, `division_first_round_bye`, `division`, `eliminated`,
-  `playoff_berth`, `wildcard`. It describes a 10-minute cache and updates
-  within two minutes of game completion, with postgame polling guidance.
-  Guide examples cover fewer markers than the reference. Verify full meanings,
-  precedence and coverage with provider evidence before mapping. Current rank
-  is not a locked exact seed. No independent exact-seed lock field was verified.
-  Credentials/production access, contractual authority, availability, licensing,
-  price, SLA and handling of corrections remain unverified owner/provider matters.
+  documents `rank.clinched` as a **single enum/string state**, with values
+  `conference`, `division_first_round_bye`, `division`, `eliminated`,
+  `playoff_berth` and `wildcard`. Only one overall `eliminated` marker is
+  documented. **Separate division-title elimination, separate first-round-bye
+  elimination and exact-seed-lock state are NOT verified**; those unsupported
+  outcome-specific actual states remain **unknown** under this source contract.
+  Current rank is not a locked seed. The documented season-year choices are
+  **2014-2026**, not guaranteed future-season access. Verify enum meanings and
+  precedence before mapping; the guide illustrates fewer values than the reference.
+  It specifies a 10-minute cache and updates within two minutes of completion.
+- The standings guide requires authenticated **`x-api-key`** access.
+  [Sportradar account documentation](https://developer.sportradar.com/getting-started/docs/your-account)
+  distinguishes trial access from production access reserved for customers;
+  production use needs a commercial provider relationship. FORCE's access,
+  contractual authority, licensing, price and SLA remain unverified.
+- The standings guide acknowledges corrections and directs consumers to the
+  **Daily Change Log** to refetch affected-season standings. How `clinched`
+  itself is revised after corrections remains **unverified**; this guidance
+  is not a verified terminal-state invalidation/revision contract.
 
 ## Compute, ingest, or bounded hybrid
 
 | Option for owner choice | Feasibility / required inputs | Correctness risks / testability | Outcome coverage and unresolved boundary |
 | --- | --- | --- | --- |
 | A. Own mathematical proofs | Possible in principle; complete actual schedule/results/identity, rules version, finality and correction history, all required tiebreak statistics. Use sound bounds, branch-and-bound or a verified constraint formulation, not a 5,000-run sampler | High implementation/review cost. Future ties, repeated opponents, SOV/SOS coupling, multi-team restarts, points/TD branches and exceptional games; prove UNSAT or exhaust all relevant states. A timeout returns unknown. Small exhaustive oracle tests and published scenarios required | Could eventually cover playoff/division/bye/exact seed. Not ready using the current projection resolver alone; no full solver implemented or benchmarked |
-| B. Verified external state | Technically concrete via documented provider enum; needs approved source authority/access, evidence snapshots, identity/version mapping and covered-through watermark | Latency/stale snapshots, corrections, ambiguous combined flags, missing outcomes and source outage. Test adapter with recorded approved payloads; do not equate absent marker with elimination or clinching | Documented marker candidates cover more than berth/division, including bye. Exact-seed lock coverage remains unverified; unresolved outcomes stay unknown. No source adopted |
+| B. Verified external state | Technically concrete via documented provider enum; needs approved source authority/access, evidence snapshots, identity/version mapping and covered-through watermark | Latency/stale snapshots, corrections, single-enum precedence, missing outcomes and source outage. Test adapter with recorded approved payloads; do not equate absent marker with elimination or clinching | Documented positive marker candidates include berth/division/bye; one overall eliminated marker exists. Separate division/bye elimination and exact-seed locks are unverified and stay unknown. No source adopted |
 | C. Bounded hybrid | External source for verified outcomes; optionally separately proved local sufficient conditions for unsupported outcomes, with common snapshot/version identity | Avoid a circular cross-check using the same feed. Conflict returns unknown/quarantine pending reconciliation; do not manufacture certainty from agreement or pick a source silently | Allows incremental outcome coverage. Extra operations/authority complexity; owner must select precedence, conflict and stale-state policies. No hybrid implemented |
 
 A local sufficient-condition proof can be useful without solving every possible
@@ -175,12 +201,19 @@ refute a universal clinch claim. Neither an incomplete search nor a merely
 likely counterexample certifies a clinch/elimination. Full-score future states
 may be bounded symbolically; sampling scores does not make a universal proof.
 
-**Decision-support recommendation:** evaluate the documented external-feed
-contract/access first, while keeping the full self-computation option explicit.
-It offers a concrete coverage path with less custom proof machinery. This is
-a research recommendation, not a vendor selection, purchase, adopted trust
-policy or execution authority. A hybrid is a fallback option for demonstrated
-coverage gaps, not an assumed default.
+**Neutral decision support — next investigations:**
+
+- External-source path: verify access, outcome coverage, enum semantics,
+  correction/revision behavior and freshness with provider evidence.
+- Local-solver path: build and independently validate a deliberately small
+  proof prototype against official tiebreak requirements, including unproved
+  boundaries and search exhaustion.
+- Hybrid path: assess only after those investigations establish what each
+  approach can prove and where coverage, precedence and conflict questions remain.
+
+The owner decides which investigation to fund/authorize first. No strategy is
+ranked or recommended; no source, purchase, trust policy or follow-on execution
+authority is selected.
 
 ## Proposed future state contract (unimplemented)
 
@@ -199,7 +232,7 @@ game. Bind state to the projection snapshot or explicitly reconcile watermarks;
 do not carry a terminal flag blindly across score corrections.
 
 Do not infer bye/exact-seed locks from current rank, playoff clinch, representative
-seed or division clinch alone. Combined vendor enums require explicit approved
+seed or division clinch alone. Provider enum values require explicit approved
 mapping; `conference` is not self-defining simply because its name resembles a
 conference championship. Keep raw simulation probabilities independent.
 Representative Out may legitimately coexist with nonzero odds and is never
@@ -256,6 +289,16 @@ Scope is seven files:
 this report, UX-25-only roadmap progress/history, CLI/helper/new regression,
 catalog entry and testing-guide counts/instructions. Production, model, feeds,
 reference, public copy and generated files remain unchanged.
+
+Correction follow-up (F1-F3, 2026-10-02): the real-calendar acceptance/rejection
+regressions, UX-10 dependency, authoritative LF safe/model/release families,
+catalog/inventory, changed JS/MJS syntax, repeated default and tracked-schedule
+CLI byte determinism, and diff checks passed. Counts remain 252 catalog,
+140 safe, 46 model, 17 release and 112 exclusions. Only the offline schedule
+helper/regression and this report changed; roadmap/governance and production
+remain unchanged. Same-week reversed-pair validation, one-team-two-games-in-week
+validation and the textual sampler sentinel remain untouched nonblocking
+follow-ups, outside this correction pass.
 
 Remaining unknowns: approved source terms/authority, complete enum meanings,
 exact-seed terminal coverage, freshness/correction policy, solver soundness/cost
