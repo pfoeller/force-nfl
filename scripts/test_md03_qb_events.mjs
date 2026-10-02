@@ -52,7 +52,7 @@ assert.equal(run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,'opaque-qb-
 const duplicate=run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,'opaque-qb-b',{injuries:[injury,{...injury,status:'Questionable'}]}),game(4,'opaque-qb-a')]);
 assert.equal(duplicate.episodes[0].state,'UNKNOWN');assert.equal(duplicate.episodes[0].injurySupportedReturnCandidate,false);
 const nested=run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,'opaque-qb-b',{injuries:[injury]}),game(4,'opaque-qb-c',{injuries:[{...injury,playerId:'opaque-qb-b'}]}),game(5,'opaque-qb-a')]);
-assert.equal(nested.episodes[0].state,'UNKNOWN');assert.ok(nested.episodes[0].reasons.includes('MULTIPLE_INJURED_QBS_REQUIRES_ROLE_RESOLUTION'));
+assert.equal(nested.episodes[0].state,'UNKNOWN');assert.equal(nested.episodes[0].injurySupportedReturnCandidate,false,'nested taint never qualifies');assert.ok(nested.episodes[0].reasons.includes('MULTIPLE_INJURED_QBS_REQUIRES_ROLE_RESOLUTION'));
 const different=run([...sequence(),game(5,'opaque-qb-b',{change:{subjectId:'opaque-qb-a',reason:'PERMANENT_CHANGE',evidenceId:'change'}}),game(6,'opaque-qb-b'),game(7,'opaque-qb-c',{injuries:[{...injury,playerId:'opaque-qb-b'}]}),game(8,'opaque-qb-b')]);
 assert.equal(different.episodes.length,2);assert.notEqual(different.episodes[0].originalStarterId,different.episodes[1].originalStarterId,'two established QBs retain independent identities');
 assert.equal(run(sequence(),{asOf:'2026-09-10T00:00:00Z'}).blocked,true,'historical evidence without observed-at watermarks cannot become causal');
@@ -60,14 +60,73 @@ assert.equal(run(sequence().map(g=>({...g,observedAt:'2026-09-20T00:00:00Z'})),{
 const corrected=sequence();corrected[2].scheduleStarterId='opaque-qb-a';corrected[2].injuries=[];
 assert.equal(run(corrected).episodes.length,0,'replay retracts corrected absence');
 assert.throws(()=>run([game(1,'opaque-qb-a'),game(1,'opaque-qb-a')]),/duplicate/);
+// The current research anchor requires two starts, and season scope is explicit.
+const single=run([game(1,'opaque-qb-a'),game(2,'opaque-qb-b',{injuries:[injury]}),game(3,'opaque-qb-a')]);
+assert.equal(single.episodes.length,0,'one observed start alone must not establish tenure');
+assert.equal(single.trace[0].state,'STARTER_UNESTABLISHED');
+assert.ok(single.trace.every(t=>t.state==='STARTER_UNESTABLISHED'));
+const priorSeason=run([game(1,'opaque-qb-a',{season:2025}),game(2,'opaque-qb-a',{season:2025}),game(3,'opaque-qb-b',{injuries:[injury]}),game(4,'opaque-qb-a')]);
+assert.equal(priorSeason.blocked,true);
+assert.equal(priorSeason.episodes.length,0,'prior-season history must not fake cross-season support');
+assert.ok(priorSeason.trace.some(t=>t.reason==='CROSS_SEASON_UNSUPPORTED'));
+const crossReturn=run([...sequence().slice(0,3),game(4,'opaque-qb-a',{season:2027})]);
+assert.equal(crossReturn.episodes[0].state,'UNKNOWN');
+assert.equal(crossReturn.episodes[0].injurySupportedReturnCandidate,false);
+assert.equal(crossReturn.episodes[0].returnGameId,undefined);
+assert.ok(crossReturn.episodes[0].reasons.includes('CROSS_SEASON_UNSUPPORTED'));
+const identityOnly=run(sequence().map(g=>({...g,injuries:[]})));
+assert.equal(identityOnly.episodes[0].state,'RETURN_IDENTITY_ONLY');
+assert.equal(identityOnly.episodes[0].returnGameId,'synthetic-game-4');
+assert.equal(identityOnly.episodes[0].injurySupportedReturnCandidate,false,'identity return does not verify medical cause');
+const conflictReturn=run([...sequence().slice(0,3),game(4,'opaque-qb-a',{starterConflict:true}),game(5,'opaque-qb-a')]);
+assert.equal(conflictReturn.episodes[0].state,'UNKNOWN');
+assert.equal(conflictReturn.episodes[0].injurySupportedReturnCandidate,false,'conflicting return cannot qualify');
+function noAuthorization(value) {
+ if(!value || typeof value!=='object')return;
+ if('productionCorrectionAllowed' in value)assert.equal(value.productionCorrectionAllowed,false,'research outputs never authorize correction');
+ for(const child of Object.values(value))noAuthorization(child);
+}
+for(const value of [result,single,priorSeason,crossReturn,identityOnly,duplicate,nested,conflictReturn])noAuthorization(value);
 const report=evaluateSample(fixture);
 assert.deepEqual(report.metrics,{injuryAware:{truePositives:6,falsePositives:0,falseNegatives:2,trueNegatives:2,unknown:2},participationOnly:{truePositives:8,falsePositives:2,falseNegatives:0,trueNegatives:0,unknown:2}});
 assert.equal(fixture.cases.length,12);assert.equal(new Set(fixture.cases.map(c=>c.team)).size,8);assert.equal(new Set(fixture.cases.map(c=>c.season)).size,6);
 assert.equal(report.rows.find(r=>r.caseId==='car-2022-ambiguous').blocked,true,'independently documented starter conflict blocks');
-assert.equal(report.rows.find(r=>r.caseId==='mia-2021-finger').episodes[0].returnWeek,11,'in-game participation in Week 10 is not starter return');
+const croppedFinger=report.rows.find(r=>r.caseId==='mia-2021-finger');
+assert.equal(croppedFinger.episodes.find(e=>e.episodeId===croppedFinger.targetEpisodeId).returnWeek,11,'in-game participation in Week 10 is not starter return');
 assert.equal(report.rows.find(r=>r.caseId==='gb-2017-collarbone').episodes[0].missedStarts,7,'bye excluded from long absence');
+assert.equal(report.scoring,'LABELED_EPISODE');
+assert.deepEqual(report.fullSeason.metrics,{injuryAware:{truePositives:6,falsePositives:0,falseNegatives:2,trueNegatives:2,unknown:2},participationOnly:{truePositives:7,falsePositives:2,falseNegatives:1,trueNegatives:0,unknown:2}});
+for(const [scope,rows] of [['cropped',report.rows],['fullSeason',report.fullSeason.rows]])for(const row of rows){
+ const sample=fixture.cases.find(c=>c.caseId===row.caseId);
+ assert.deepEqual({injuryAware:row.injuryAware,participationOnly:row.participationOnly},sample.target.expectedDetectorResult[scope],scope+' expected labeled result '+row.caseId);
+ assert.equal(sample.target.team,sample.team);assert.equal(sample.target.season,sample.season);
+ assert.ok(sample.crop.reason);assert.ok(sample.target.incumbentId);assert.ok(sample.target.onsetGameId);
+}
+const finger=report.fullSeason.rows.find(r=>r.caseId==='mia-2021-finger');
+assert.ok(finger.episodes.some(e=>e.onsetWeek===3 && e.injurySupportedReturnCandidate),'competing ribs episode remains visible');
+assert.equal(finger.injuryAware,false,'earlier ribs event cannot credit finger target');
+assert.ok(finger.targetEpisodeId.endsWith(finger.target.onsetGameId));
+const secondAnkle=report.fullSeason.rows.find(r=>r.caseId==='sf-2020-second-ankle');
+assert.ok(secondAnkle.episodes.some(e=>e.onsetWeek===3 && e.injurySupportedReturnCandidate));
+assert.equal(secondAnkle.injuryAware,false);assert.equal(secondAnkle.participationOnly,false,'first ankle return cannot credit second open absence');
+const thumb=report.fullSeason.rows.find(r=>r.caseId==='mia-2020-thumb');
+assert.ok(thumb.episodes.some(e=>e.returnGameId && !e.tainted && !e.terminated),'Fitzpatrick return remains visible');
+assert.equal(thumb.targetMatched,false);assert.equal(thumb.participationOnly,false,'Fitzpatrick return cannot credit Tua thumb target');
+const wrongTarget=structuredClone(fixture);wrongTarget.cases[0].target.incumbentId='different-target-qb';
+assert.equal(evaluateSample(wrongTarget).rows[0].participationOnly,false,'matching some other episode never earns target credit');
+const wrongWindow=structuredClone(fixture);wrongWindow.cases[0].target.missedGameIds=[];
+assert.equal(evaluateSample(wrongWindow).rows[0].injuryAware,false,'wrong labeled absence window earns no credit');
+const wrongReturn=structuredClone(fixture);wrongReturn.cases[0].target.returnGameId='different-return-game';
+assert.equal(evaluateSample(wrongReturn).rows[0].participationOnly,false,'wrong return earns no credit');
+const missingTarget=structuredClone(fixture);delete missingTarget.cases[0].target;
+assert.throws(()=>evaluateSample(missingTarget),/labeled target/);
+noAuthorization(report);
+assert.ok(!JSON.stringify(report).includes('RETURN_VERIFIED'));
+assert.equal(fixture.fullSeasons.length,9);
+for(const season of fixture.fullSeasons){assert.ok(season.games.every(g=>g.team===season.team && g.season===season.season));assert.ok(season.games.length>=16);}
+assert.equal(report.fullSeason.rows.find(r=>r.caseId==='car-2022-ambiguous').blocked,true);
 assert.ok(report.rows.every(r=>r.productionCorrectionAllowed===false));
 for(const s of fixture.sources)assert.match(s.sha256,/^[a-f0-9]{64}$/);
 assert.ok(!fixture.currentSourceCoverage['injuries_2026.csv'].columns.includes('date_modified'),'observed schema gap stays explicit');
 assert.equal(JSON.stringify(evaluateSample(fixture)),JSON.stringify(report),'diagnostic determinism');
-console.log('PASS: MD-03 offline episode contract, 32-team symmetry, repeated/ambiguous/transaction/retraction cases and 12-window historical replay');
+console.log('PASS: MD-03 offline episode contract, 32-team symmetry, repeated/ambiguous/transaction/retraction cases and labeled-episode and uncropped historical replay');

@@ -323,3 +323,40 @@ matched the frozen fixture. The canonical public build in scratch reproduced
 generated output unchanged, and validation preserved all source-worktree
 status/hashes. Snapshot/server selections stay 6/30; those suites were not
 rerun for this research-only change.
+
+
+## Cycle 5 MD-03 detector cross-review corrections
+
+Follow-up to `e32ee2b`, still research-only. Catalog membership/counts unchanged:
+254 catalog, safe 142 (110 JS / 32 Python), model 47, QB 27, release 17,
+snapshot 6, server 30 and 112 default exclusions. The schema-2 fixture names
+incumbent/onset/window/return/cause targets and crop reasons, and adds nine
+uncropped regular-season streams from the same 14 frozen inputs. The CLI scores
+only those targets and retains every competing event. Cropped counts remain
+injury-aware 6 TP / 0 FP / 2 FN / 2 TN and cause-free 8 TP / 2 FP / 0 FN / 0 TN;
+full-season cause-free changes to 7 TP / 2 FP / 1 FN / 0 TN because Tua's thumb
+target is not established under the earlier Fitzpatrick anchor. Both views
+have two open/ambiguous cases; none is population accuracy.
+
+Focused regression adds one-start tenure rejection, explicit
+`CROSS_SEASON_UNSUPPORTED`, `RETURN_IDENTITY_ONLY` semantics, tainted/nested/
+conflicting-return abstention, exact target/window/return matching, competing-
+episode non-credit and recursive denial of production authorization. Mutation
+probes kill one-start establishment, tainted qualification, identity-name
+overclaim, hidden cross-season reason and any-episode scoring. Broadening
+onset support for duplicate injury rows remains candidate-equivalent because
+the separate duplicate guard still taints and abstains; no artificial behavior
+was added. Fixture rebuilding remains local/hash-checked; no source is adopted.
+
+Authoritative LF validation passed: inventory/catalog 254; safe 142/142;
+model 47/47; release 17/17; QB 27/27; snapshot 6/6; server 30/30; focused
+MD-03 regression 1/1. All three changed JS/MJS files passed `node --check`,
+and the builder passed Python AST syntax validation. Two independent local
+fixture rebuilds were byte-identical to the committed fixture; rebuilt and
+committed evaluations matched, with cropped/full-season counts above. All
+14 pinned source hashes/sizes validated; a tampered source was rejected before
+output. Repeated diagnostic output was byte-identical. Mutation probes gave
+five kills and the documented candidate-equivalent survivor. All 35 roadmap
+IDs remained unique/unchanged and local roadmap references resolved. Canonical
+public build/parity and `git diff --check` passed; generated output and source
+worktree status/hashes were unchanged by validation.

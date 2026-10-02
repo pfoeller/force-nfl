@@ -1,12 +1,14 @@
 # MD-03 QB event-detection investigation
 
-Cycle 5 independent data/research lane, 2026-10-02. Shared base: `bd15a2c682c0dd8c836ecfd42e615a31741988c7`; branch: `cycle5/codex-md03-data`. Research evidence only, pending independent review. No production correction, ratings, V33 formula, public UI, source adoption, purchase or deployment changes.
+Cycle 5 independent data/research lane, 2026-10-02. Shared base: `bd15a2c682c0dd8c836ecfd42e615a31741988c7`; branch: `cycle5/codex-md03-data`. Research evidence only; F1-F6 correction follow-up to reviewed `e32ee2be89de27b76e3518afed04cf6dd085da27`, pending re-review. No production correction, ratings, V33 formula, public UI, source adoption, purchase or deployment changes.
 
 ## Finding and boundary
 
 A reproducible historical **candidate-event** cohort is feasible with free nflverse starter and injury files. An adequate unattended production route is **not established**: actual starter errors occur, injury rows can omit revised designations or IR continuity, current rows lack an injury modification timestamp, and permanent role/transaction changes need separate evidence. Missing/conflicting evidence must produce **NO AUTOMATIC CORRECTION**, with a reason. Participation patterns alone do not establish an injury return.
 
-The offline prototype finds six of eight documented injury returns in a purposive 12-window sample; two real returns have only a Questionable onset row and remain unverified under its deliberately strict `Out` rule. A participation-pattern comparison finds all eight but also falsely identifies two non-injury returns. These counts describe this selected sample, **not population accuracy, predictive benefit, production eligibility or a chosen policy**. Every diagnostic output emits `productionCorrectionAllowed: false`. There is no magnitude estimation or fitting.
+The current prototype is **WITHIN-SEASON ONLY** and does **not satisfy the complete MD-03 capability contract**. It cannot carry a prior-season incumbent into an offseason return, the KC/Mahomes-type case, or an early-season absence before current-season tenure is established. Mixed-season evidence explicitly yields `CROSS_SEASON_UNSUPPORTED` / UNKNOWN / ABSTAIN, with no automatic correction; no cross-season support is implemented here.
+
+Evaluation now matches each named incumbent/onset/absence-window/return, never any episode somewhere in a crop. Cropped labeled-episode results remain six of eight documented injury returns; the strict Out hypothesis abstains on two Questionable-onset returns. The cause-free comparison finds all eight plus two non-injury false positives. Uncropped regular-season replay retains the same targets and all competing events: the strict route still finds six, while the cause-free route finds seven of eight and two non-injury false positives. The additional miss is Tua's 2020 thumb episode: full history retains the earlier Fitzpatrick anchor, so the target is not detected. These are purposive diagnostics, **not population accuracy, predictive benefit, production eligibility or a chosen policy**. Every diagnostic emits `productionCorrectionAllowed: false`; no magnitude estimation or fitting is performed.
 
 `MD-03` remains CONFIRMED requirement / INVESTIGATE design / PLANNED implementation. [UX-19](UX19_QB_RETURN_REMOVAL_PLAN.md) removal remains PLANNED, unauthorized and blocked on implemented, independently validated, owner-accepted MD-03. The KC preset is current state only, not the accepted final architecture.
 
@@ -21,7 +23,8 @@ Fresh source trace, not a Cycle 4 summary:
 | `verifiedReplacementWindow`, `expectedStarterReturned`, `autoEligible` | All literal `true` in preset | Assertions, not running verifier results; no source timestamp per assertion |
 | Damage facts | Raw backup-window damage 67.6151; post-reversion damage 47.3306; suggested manual restore 47.3 | Frozen research/preset values, not a league-wide causal estimator |
 | Eligibility | [model/qb_regime.js](model/qb_regime.js): three flags exactly true, positive missed starts | No live starter, injury, roster, season or return detector |
-| Initial automatic amount | `min(postReversionDamage, min(60, missedStarts * 7.5) * .70)` = 15.75 Elo here | Derived from authored inputs; not the 47.3 manual suggestion |
+| Initial automatic amount | `min(postReversionDamage, min(60, missedStarts * 7.5) * survival)` = 15.75 Elo here; current KC preset survival is 0.70 | Derived from authored inputs; not the 47.3 manual suggestion |
+| Survival trace | `offseasonSurvivalFraction` is a per-preset field; finite preset value takes precedence, then finite `opts.offseasonSurvival`, then model default 0.70 | The current KC preset supplies 0.70. This is a current-state trace, not a generalized factor; the parallel model lane investigates that separately |
 | Predictive gate | [predictive gates](data/predictive-feature-gates.js) accept verified-regime carryover; [app](assets/app.js) checks `PF.brierEligible` | V33 six-case decline-gated prior-isolation evidence; not new event-policy authorization |
 | Activation | `automaticQbRegimeCorrection()` passes preset and `teamGamesPlayed()` to `QR.correction()` | Scored current-season schedule games count; no actual return event triggers it |
 | Decay | `initialRestore * .5^(teamGames/4)`, cutoff below .05 Elo | Current-season team games, not returning-QB games since a midseason return |
@@ -42,6 +45,8 @@ Separate **identity**, **absence cause**, **event verification**, **model eligib
 For every team require: stable player namespace; starter tenure/effective interval; onset/cause/status; ordered completed game IDs and complete calendar; replacement starters/participation; injury/IR/inactive evidence; intended-role and transaction changes; original starter's participation return and actual-start return separately; episode end/repeats; watermarks/revisions; unknown/disqualifier reasons. Byes are not games. Postponed, uncompleted or cancelled games are not absences; missing expected completed rows are UNKNOWN.
 
 Starter establishment needs a policy for Week 1 injuries, preseason continuity, new rookies and split roles. Prototype **two observed starts** is a research anchor, not an owner-approved tenure threshold. First-game injury without history is a known limitation. Prior-season history needs explicit same-team/role continuity, not automatic carry-forward.
+
+**Required future capability — CROSS-SEASON STARTER CONTINUITY (INVESTIGATE).** Establish the prior-season starter and expected role in the next season; connect an offseason medical absence to a Week-1 or later return; and handle a Week-1/2 injury before current-season tenure is re-established. Dated offseason trade/acquisition, rookie takeover, documented permanent change, retirement/release and conflicting evidence must be accounted for. Prior-team status cannot automatically establish a new-team anchor. Uncertain cross-season continuity → UNKNOWN / ABSTAIN → no automatic correction. The prototype lacks these capabilities, including all 44 offseason cases in Claude's reported 170-episode cohort; they are future requirements, not implemented logic.
 
 Prototype meaningful absence is one or more **completed missed starts**; partial loss in the injury game is excluded. Whether limited/emergency participation, halftime removal, one-game absence or immediate returning-QB data should qualify remains unresolved.
 
@@ -81,6 +86,10 @@ Direct injury release metadata includes **2025 and 2026**. A cached search descr
 
 Proposed precedence: corrected official game starting lineup plus verified stable-ID crosswalk; then accepted finalized schedule starter as provisional corroborated evidence. Require revision/evidence/observation IDs. If independent observations disagree, freeze **UNKNOWN / NO AUTOMATIC CORRECTION**, not majority vote. Missing crosswalk blocks; names are display context only.
 
+The model ultimately needs the **established role-holder**, not merely an official-start label. Official start is the strongest available proxy, but role/workload continuity may matter. `games.csv` starter identity remains primary executable evidence here, with the CAR Week-11 disagreement still blocking.
+
+**Possible future precedence, INVESTIGATE only:** if the schedule names QB A, A has zero offensive snaps and exactly one QB has complete offensive QB snaps, an override may be defensible only after complete coverage and a verified ID crosswalk are established. No such override is adopted by this prototype; usage never silently fills or replaces a starter.
+
 First valid offensive snap can establish a **candidate** under a separately chosen definition, but cancelled plays, absent personnel, opening wildcat/rotation and partial possession prevent unconditional equivalence with official starter. Complete snaps/participation/PBP corroborate, never silently replace lineup identity. Most snaps, dominant dropbacks, season-cumulative leader and depth-chart order remain distinct measures; prototype never uses them to fill missing starts.
 
 Frozen examples:
@@ -109,7 +118,7 @@ Explicit absence-cause **and intended-role evidence** is needed to avoid known f
 
 Durable record: `episodeId = team | season | originalStarterGsisId | firstMissedCompletedGameId`; optional `parentEpisodeId` for a replacement's own absence; establishment/role interval; onset cause/game; ordered missed-game IDs; replacement identity/role intervals; participation versus actual-start return; termination/effective time; watermarks/hashes/revisions; `supersedesRevision`; state/unknown reasons; event verification separate from model eligibility. Evidence revision/hash is not the logical event ID.
 
-Prototype implements a small **retrospective hypothesis**, not full production machinery. Two observed starts establish anchor. Different starter opens episode; exactly one matching injury `Out` row with nonempty injury supports onset. Carrying that hypothesis through sparse IR report rows is not proof of continuing injury/role. Original starter identity closes it. It does not verify complete calendar, official finality, qualifying workload, degradation or owner policy; every output denies production correction.
+Prototype implements a small **WITHIN-SEASON retrospective hypothesis**, not full production machinery or the complete MD-03 contract. Two observed starts establish anchor. Different starter opens episode; exactly one matching injury `Out` row with nonempty injury supports onset. Carrying that hypothesis through sparse IR report rows is not proof of continuing injury/role. Original starter identity closes it as `RETURN_IDENTITY_ONLY` when untainted. That state says only that the same identity resumed the starting role; it verifies neither medical cause nor production eligibility. Injury-supported onset remains a separate flag. It does not verify complete calendar, official finality, qualifying workload, degradation or owner policy; every output denies production correction.
 
 Optional `asOf` replay blocks missing/future observation envelopes. Historical rows lack those causal envelopes. A production adapter must validate every component's availability/revision before constructing an envelope; a provider modification time cannot stand in for observed availability. Scores are research completion observations only.
 
@@ -119,10 +128,11 @@ Optional `asOf` replay blocks missing/future observation envelopes. Historical r
 | NORMAL → ABSENT_UNVERIFIED | Different actual starter in completed team game and complete calendar | Missing/conflicting start → UNKNOWN; bye/future game cannot trigger. No correction |
 | ABSENT → REPLACEMENT_ACTIVE | Injury cause, actual replacement participation, continuing expected role | Prototype supports onset plus starts only. Role/rest/trade ambiguity blocks production. Corrected evidence can retract onset |
 | REPLACEMENT → RETURN_CANDIDATE | Original QB participates or announced to start | Participation/announcement alone cannot activate; limited/emergency return may retract |
-| CANDIDATE → RETURN_VERIFIED | Actual completed start, adequate workload/role, joint source watermark | Prototype verifies identity only. Full policy unresolved; conflict blocks, source revision reverses |
-| VERIFIED → CORRECTION_ACTIVE | Separately implemented eligibility: attributable degradation, similar/better replacement rejection, cap/decay/suppression, owner authorization | **Unimplemented/unauthorized here.** Event truth alone never activates; retraction revokes future effect and requires reproducible historical recomputation |
+| CANDIDATE → RETURN_IDENTITY_ONLY | Prototype: same QB identity in a completed start. Future medical verification also needs adequate workload/role and joint watermark | Identity-only state grants no medical verification or eligibility. Tainted/conflicting events stay UNKNOWN; full policy unresolved |
+| Separately medically verified event → CORRECTION_ACTIVE | Separately implemented eligibility: attributable degradation, similar/better replacement rejection, cap/decay/suppression, owner authorization | **Unimplemented/unauthorized here.** Event truth alone never activates; retraction revokes future effect and requires reproducible historical recomputation |
 | Active → EXPIRED | Separately chosen return-game/evidence threshold | V33 current-season team-game clock is not adopted for midseason. Replay can revise expiry |
 | Any episode → PERMANENT_CHANGE | Effective documented trade/release, benching, permanent replacement/rookie takeover | No return correction under proposed injury contract. Missing evidence IDs/unrecognized reason → UNKNOWN |
+| Cross-season evidence → UNKNOWN | Prototype has no cross-season continuity state | `CROSS_SEASON_UNSUPPORTED`; abstain, no automatic correction |
 | Any → UNKNOWN/CONFLICT | Missing source/game/person, conflicting starter/injury, multiple injured QB role ambiguity, stale evidence | **NO AUTOMATIC CORRECTION** with reason. Prototype requires full replay after stream gap; no silent resumption |
 
 Production adapters/eligibility are not implemented; transition evidence above is a design proposal. The executable research flags `injurySupportedReturnCandidate`, not production eligibility.
@@ -135,33 +145,61 @@ Two QBs injured: maintain original/replacement identities and parent episode lin
 
 Original starter returns then benched: stop future correction at effective role change; don't retroactively erase a true earlier injury return unless revised evidence changes it. Later old-starter start cannot reopen terminated episode. Replacement made permanent: close original episode and independently establish new starter. Trade during/after absence: close old-team interval, never transfer rating damage to new team. Bye is absence of scheduled game; missing expected completed row is unknown. Changed onset IDs need supersession/retraction, not concurrent duplicates.
 
-## 8. Historical sample and errors
+## 8. Historical sample, labeled targets and errors
 
-Purposive **12 windows / eight teams / six seasons (2016, 2017, 2019–2022)**. Pinned games/injuries supply identities/status. Reality labels link primary NFL/club evidence in fixture; labels/descriptions are not detector inputs. Carolina's separately human-adjudicated conflict annotation is passed as evidence, not presented as an automated official API. Without it, the raw-source route would miss Mayfield's actual start, not become validated.
+Purposive **12 labeled episodes / eight teams / six seasons (2016, 2017, 2019–2022)**. This is not an unbiased cohort. Each fixture case records team/season, expected incumbent GSIS, onset game/week, exact missed-game window, documented return game/week (or no return), cause/class and expected detector results for cropped and full-season evidence. Labels and primary NFL/club truth links are evaluation evidence, never detector inputs. Cropping reasons/bounds are explicit in `crop`; selected rows and the nine uncropped regular-season team/season streams come from the same 14 hash-pinned inputs.
 
-“True injury return” here means a documented actual starting-role return after injury absence, not corrective eligibility. Open/ambiguous windows are excluded from binary counts.
+Carolina's human-adjudicated conflict annotation is preserved in both views, not presented as a supported machine API. Without it, raw schedule evidence misses Mayfield's real start; that does not validate the source. Open/ambiguous labels remain outside binary counts. An injury return is a documented starting-role return, not corrective eligibility.
 
-| Window | Documented reality | Missed starts → return week | Injury-aware hypothesis | Cause-free comparison |
-| --- | --- | --- | --- | --- |
-| PIT 2016 knee | One-game injury absence and bye | 1 → 9 | TP candidate | TP |
-| GB 2017 collarbone | Long IR absence | 7 → 15 | TP candidate | TP |
-| NYG 2017 Manning | Benching/reinstatement | 1 → 14 | TN, unverified cause | **FP** |
-| KC 2019 knee | Injury return, not preset reuse | 2 → 10 | TP candidate | TP |
-| SF 2020 first ankle | Midseason return, halftime removal | 2 → 5 | TP candidate; workload policy open | TP |
-| SF 2020 second ankle | New absence, no same-season return | 8; no return | Open/nested-role unknown | Unknown |
-| MIA 2020 rookie change | Veteran supplanted, later fills in for injured rookie | 4 → 12 for veteran | TN, unverified cause | **FP** |
-| MIA 2020 thumb | Established rookie's injury return | 1 → 13 | **FN/unknown cause**, onset Questionable | TP |
-| MIA 2021 ribs | Injury/IR return | 3 → 6 | TP candidate | TP |
-| MIA 2021 finger | Participation W10; starting return W11 | 2 → 11 | **FN/unknown cause**, onset Questionable and mislabeled Ribs | TP |
-| SEA 2021 finger | Injury return and bye | 3 → 10 | TP candidate | TP |
-| CAR 2022 role mix | Injury/demotion/replacement injury/starter conflict/new starter/release | Raw five before conflict; full count uncertified | **UNKNOWN** | Unknown |
+| Labeled target | Incumbent | Onset week | Expected missed team-game weeks | Return week | Cropped injury-aware / cause-free |
+| --- | --- | ---: | --- | ---: | --- |
+| PIT 2016 knee | Roethlisberger | 7 | 7 (bye 8 excluded) | 9 | TP / TP |
+| GB 2017 collarbone | Rodgers | 7 | 7, 9, 10, 11, 12, 13, 14 | 15 | TP / TP |
+| NYG 2017 benching | Manning | 13 | 13 | 14 | TN / FP |
+| KC 2019 knee | Mahomes | 8 | 8–9 | 10 | TP / TP |
+| SF 2020 first ankle | Garoppolo | 3 | 3–4 | 5 | TP / TP |
+| SF 2020 second ankle | Garoppolo | 9 | 9–10, 12–17 | none | Open/nested UNKNOWN / UNKNOWN |
+| MIA 2020 rookie change | Fitzpatrick | 8 | 8–11 | 12 | TN / FP |
+| MIA 2020 thumb | Tagovailoa | 12 | 12 | 13 | FN / TP |
+| MIA 2021 ribs | Tagovailoa | 3 | 3–5 | 6 | TP / TP |
+| MIA 2021 finger | Tagovailoa | 9 | 9–10 | 11 | FN / TP |
+| SEA 2021 finger | Wilson | 6 | 6–8 (bye 9 excluded) | 10 | TP / TP |
+| CAR 2022 role mix | Mayfield | 6 | 6–10; uncertified at conflict | 11 disputed by schedule | UNKNOWN / UNKNOWN |
 
-| Route | TP | FP | FN (abstentions on real returns) | TN | Open/ambiguous |
+The fixture's explicit missed game IDs/weeks are authoritative; a contiguous week range cannot substitute for team games.
+
+| Evaluation / route | TP | FP | FN (including abstention) | TN | Open/ambiguous |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Strict injury-Out onset hypothesis | 6 | 0 | 2 | 2 | 2 |
-| Start-gap-return without cause | 8 | 2 | 0 | 0 | 2 |
+| Previous any-episode-in-crop: injury-aware | 6 | 0 | 2 | 2 | 2 |
+| Previous any-episode-in-crop: cause-free | 8 | 2 | 0 | 0 | 2 |
+| Corrected named episode, cropped: injury-aware | 6 | 0 | 2 | 2 | 2 |
+| Corrected named episode, cropped: cause-free | 8 | 2 | 0 | 0 | 2 |
+| Corrected named episode, full season: injury-aware | 6 | 0 | 2 | 2 | 2 |
+| Corrected named episode, full season: cause-free | 7 | 2 | 1 | 0 | 2 |
 
-All outputs are **NO AUTOMATIC CORRECTION**. No threshold fitting or team/player special cases. Overlapping MIA/SF windows are not independent observations; don't infer population accuracy. Coincident injury plus demotion could still produce false positives beyond this sample. Sparse IR/status revisions, cold starts, unseen roles/transactions, incomplete calendars and offseason/postseason boundaries remain unvalidated.
+Cropped totals happen to remain unchanged; the scoring method is nevertheless corrected. A match must have the labeled incumbent and onset, exact missed game IDs and return identity/game. All competing detector episodes remain visible. Full-season MIA finger retains the earlier ribs candidate but cannot receive its credit; SF second ankle retains the first return but stays open/unknown; MIA thumb retains Fitzpatrick's return but receives no target credit. The thumb crop locally establishes Tua from Week 8; uncropped history exposes the prototype's unresolved role turnover and misses Tua's target. No crop is silently used as a tenure reset in the full-season diagnostic.
+
+These selected, overlapping targets and repeated full-season streams are **not independent population sensitivity/specificity**. All outputs deny automatic correction. Cold starts, offseason continuity, intended-role transitions and nested causes remain unresolved.
+
+### Population sensitivity and cross-lane boundary
+
+Claude's independent cross-review reported **34 potential misses among 126 retrospectively VERIFIED midseason model episodes** under its strict-onset proxy: 23 with Doubtful status or Out appearing only later, and 11 supported through reserve-list evidence instead. This is reported historical cohort sensitivity, not an end-to-end run of a production detector or independently adjudicated injury ground truth. The broad medical classification itself is under model-lane review. Preserve the strict prototype; do not loosen it to fit these cases.
+
+Potential future corroboration includes explicitly medical reserve status, later dated injury confirmation linked back to onset, established-role continuity, dated role-change evidence and confirmed return identity. Later evidence cannot be credited to an earlier forecast before it was observed. If qualifying cause cannot be safely established, abstain.
+
+The model and detector populations are **not interchangeable**:
+
+| Contract | Claude historical cohort at reviewed `0a6dcb8` | Current Codex prototype |
+| --- | --- | --- |
+| Incumbent | Roughly four of last five, with return-history floor | Two consecutive observed starts |
+| Cause | Broader retrospective Out/Doubtful/reserve-window evidence | Unique injury-bearing Out row at onset; not prospectively certified |
+| Timing | Same-season and 44 offseason returns | Within-season only; zero offseason representation |
+| Role changes | Primarily inferred from historical return boundary | Explicit disqualifiers/conflicts abstain; full role turnover unresolved |
+| Repeated/nested | Fresh model windows, evaluation ends on renewed absence | Distinct onset IDs; unresolved injured replacement taints |
+
+The independent model cross-review found much smaller benefit on a detector-like qualifying-Out-at-onset subset: 109/170 across both timings, with the quality-gated research candidate's Brier delta about −0.000185 overall / −0.000471 held-out versus −0.001383 / −0.002124 on the broader cohort. That subset is a separate sensitivity definition from the reported 34/126 status proxy; it is not validated prototype recall. These model-lane figures are decision support only, not a candidate adoption or new fit in this lane.
+
+**Model effect estimates cannot be transferred unchanged onto the current detector population.** A future implementation specification must reconcile DETECTOR ELIGIBILITY POPULATION with MODEL VALIDATION POPULATION, including cause/role, cross-season continuity, delayed activation and source finality, before production authorization.
 
 ### Reproduce offline
 
@@ -171,7 +209,7 @@ node scripts/test_md03_qb_events.mjs
 python -B research/md03_build_sample.py SOURCE_DIRECTORY OUTPUT.json
 ```
 
-Builder reads local CSV/gzip files named in the committed fixture and validates frozen hashes/sizes. Explicit output only; no fetches or production calls. Source URLs/hash/update/retrieval objects and the pinned nfldata commit are in that fixture; temporary probe manifests are not required. Preserve original bytes or verified mirrors if mutable assets change. Builder refuses silent source refresh. Selected committed rows remain enough for replay if upstream disappears. Present-day historical pages/files do not establish availability before old forecasts.
+CLI output contains the cropped and uncropped evaluations of the same named targets. Builder validates all frozen source hashes/sizes and reproduces the labeled fixture/full-season streams from local files, without fetching. Preserve original bytes or verified mirrors; mutable assets must match. Selected committed rows remain enough for replay if upstream disappears. Present-day historical files/pages do not establish pregame historical availability.
 
 ## 9. Freshness/finality/retractions (production prerequisites)
 
@@ -182,9 +220,10 @@ Proposed conservative barrier, not chosen implementation:
 1. Complete game/calendar and reconciled actual starter plus required participation/workload. Future starter guesses/live scores are not finalized starts.
 2. Immutable fetched bytes/hash, retrieval time, publisher update, row-modified/effective time if present, event/game time and coverage-through-game. **Never backdate retrieval to row modification.** Current injury file needs prospective snapshots because row modification is absent.
 3. Joint watermark covers all required calendar/start/cause/role/transaction evidence. New depth data cannot rescue old injury/roster data. Unknown lag, crosswalk, coverage or role continuity blocks.
-4. Prefer reconciled delayed postgame/midweek evidence over immediate activation. Wednesday/Thursday PBP corrections help but aren't absolute finality. Short turnarounds/daily feeds may mean delayed/no correction.
-5. Causal evaluation uses snapshots available before forecasts. Retrospective news, final starter fields, later injury revisions and season-aggregate leaders cannot be credited at onset.
-6. Source correction creates new evidence revision. Replay, supersede/retract old event, revoke unsupported future eligibility and preserve audit trail. Historical rating correction policy requires separate model/owner direction. No production cache/history hook implemented.
+4. **Return confirmation / activation constraint (unselected):** reliable current confirmation follows a completed start. Pregame “expected to start” is not a verified return. Conservative activation may be no earlier than the following game, after all required evidence is finalized. The model-lane delayed-activation sensitivity retained most measured signal; that supports investigating delay, not an adopted policy or a production forecast claim. Future validation must use actual observation times and the selected activation contract.
+5. Prefer reconciled delayed postgame/midweek evidence over immediate activation. Wednesday/Thursday PBP corrections help but aren't absolute finality. Short turnarounds/daily feeds may mean delayed/no correction.
+6. Causal evaluation uses snapshots available before forecasts. Retrospective news, final starter fields, later injury revisions and season-aggregate leaders cannot be credited at onset.
+7. Source correction creates new evidence revision. Replay, supersede/retract old event, revoke unsupported future eligibility and preserve audit trail. Historical rating correction policy requires separate model/owner direction. No production cache/history hook implemented.
 
 ## 10. Rights/access/economics
 
@@ -215,4 +254,4 @@ Recommended **separate owner-directed** next step: independent review, then a bo
 
 Only research artifact, local-file builder, frozen research fixture, pure diagnostic, offline CLI/test, sorted catalog entry, testing note and MD-03 evidence note. No model, production data, assets, server, Worker, public/generated or UI changes. No runtime hooks/dependencies; research code is not loaded by index or public build.
 
-Focused regression covers 32-team symmetry/no name branches, byes, missing/conflicting evidence, repeated and sequential two-QB episodes, nested-role abstention, explicit permanent/benching/rookie/trade/release/rest/suspension/rotation changes, timestamp gaps, retractions, historical error counts and determinism. Local-file rebuild matches fixture and rejects mismatched hashes. Authoritative LF results are in [testing](scripts/TESTING.md). No fully validated production eligibility, selected source, finalized design or implemented correction is claimed.
+Focused regression covers 32-team symmetry/no name branches, byes, missing/conflicting evidence, repeated and sequential two-QB episodes, nested-role abstention, explicit permanent/benching/rookie/trade/release/rest/suspension/rotation changes, timestamp gaps, retractions, labeled target matching, uncropped diagnostics and determinism. The one-start-establishment and tainted-candidate mutants are now killed, as are identity-name overclaim, hidden cross-season reason and any-episode scoring probes. A duplicate-onset-support mutant remains candidate-equivalent: the independent duplicate guard taints the episode and prevents a qualifying return even if onset support is broadened. No artificial behavior was added to kill it; the onset-support diagnostic flag can differ while candidate/abstention behavior remains the same. Local-file rebuild matches fixture and rejects mismatched hashes. Authoritative LF results are in [testing](scripts/TESTING.md). No fully validated production eligibility, selected source, finalized design or implemented correction is claimed.

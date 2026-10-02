@@ -22,6 +22,9 @@ export function detectQbEpisodes(input) {
   for (const game of games) {
     if (!id(game.gameId) || seen.has(game.gameId)) throw Error('Missing/duplicate game ID');
     seen.add(game.gameId);
+    if (game.season!==input.season) {
+      blocked=true;closeUnknown('CROSS_SEASON_UNSUPPORTED');record(game,'UNKNOWN','CROSS_SEASON_UNSUPPORTED');continue;
+    }
     if (game.kind==='BYE') {record(game,active?.state ?? 'NORMAL_STARTER','BYE_NOT_ABSENCE');continue;}
     if (game.season!==input.season || game.team!==input.team || game.completed!==true || !id(game.gameDate)) {
       blocked=true;closeUnknown('INCOMPLETE_GAME_OR_SCOPE');record(game,'UNKNOWN','INCOMPLETE_GAME_OR_SCOPE');continue;
@@ -51,7 +54,7 @@ export function detectQbEpisodes(input) {
     if (current===starter) {
       if(active) {
         active.returnGameId=game.gameId;active.returnWeek=game.week;
-        active.state=active.tainted?'UNKNOWN':'RETURN_VERIFIED';
+        active.state=active.tainted?'UNKNOWN':'RETURN_IDENTITY_ONLY';
         active.injurySupportedReturnCandidate=Boolean(active.injurySupportedOnset && !active.tainted && !active.terminated);
         if(!active.injurySupportedOnset)active.reasons.push('ABSENCE_CAUSE_UNVERIFIED');
         record(game,active.state,active.injurySupportedReturnCandidate?'INJURY_SUPPORTED_ONSET_AND_STARTER_RETURN':'IDENTITY_RETURN_ONLY');
@@ -87,21 +90,37 @@ export function detectQbEpisodes(input) {
     productionCorrectionAllowed:false,episodes,trace,blocked};
 }
 
+// Evaluation labels never enter detection. Match the named event, not any event in a crop.
 export function evaluateSample(fixture) {
-  const metrics={injuryAware:{truePositives:0,falsePositives:0,falseNegatives:0,trueNegatives:0,unknown:0},
-    participationOnly:{truePositives:0,falsePositives:0,falseNegatives:0,trueNegatives:0,unknown:0}};
-  const rows=fixture.cases.map(sample=>{
-    const result=detectQbEpisodes({team:sample.team,season:sample.season,games:sample.games});
-    const injuryAware=result.episodes.some(e=>e.injurySupportedReturnCandidate);
-    const participationOnly=result.episodes.some(e=>e.returnGameId && !e.tainted && !e.terminated);
-    for(const [route,prediction] of Object.entries({injuryAware,participationOnly})) {
-      const m=metrics[route];
-      if(!['injury_return','non_injury_return'].includes(sample.truth))m.unknown++;
-      else if(sample.truth==='injury_return')m[prediction?'truePositives':'falseNegatives']++;
-      else m[prediction?'falsePositives':'trueNegatives']++;
-    }
-    return {caseId:sample.caseId,truth:sample.truth,injuryAware,participationOnly,
-      productionCorrectionAllowed:false,episodes:result.episodes,blocked:result.blocked};
-  });
-  return {schema:1,scope:'RETROSPECTIVE_RESEARCH',metrics,rows,productionCorrectionAllowed:false};
+  const full=new Map(fixture.fullSeasons.map(s=>[`${s.team}|${s.season}`,s]));
+  const evaluate=(uncropped)=>{
+    const metrics={injuryAware:{truePositives:0,falsePositives:0,falseNegatives:0,trueNegatives:0,unknown:0},
+      participationOnly:{truePositives:0,falsePositives:0,falseNegatives:0,trueNegatives:0,unknown:0}};
+    const rows=fixture.cases.map(sample=>{
+      const target=sample.target;
+      if(!target || target.team!==sample.team || target.season!==sample.season || !id(target.incumbentId) || !id(target.onsetGameId) || !Array.isArray(target.missedGameIds))throw Error('Missing/invalid labeled target episode');
+      const season=full.get(`${sample.team}|${sample.season}`);
+      if(uncropped && !season)throw Error('Missing full-season diagnostic evidence');
+      const result=detectQbEpisodes({team:sample.team,season:sample.season,games:uncropped?season.games:sample.games});
+      const matches=result.episodes.filter(e=>e.originalStarterId===target.incumbentId && e.onsetGameId===target.onsetGameId);
+      if(matches.length>1)throw Error('Duplicate target episode');
+      const episode=matches[0] || null;
+      const windowMatches=Boolean(episode && JSON.stringify(episode.missedGameIds)===JSON.stringify(target.missedGameIds));
+      const returnMatches=Boolean(episode && (episode.returnGameId || null)===(target.returnGameId || null));
+      const injuryAware=Boolean(windowMatches && returnMatches && episode.injurySupportedReturnCandidate);
+      const participationOnly=Boolean(windowMatches && returnMatches && episode.returnGameId && !episode.tainted && !episode.terminated);
+      for(const [route,prediction] of Object.entries({injuryAware,participationOnly})) {
+        const m=metrics[route];
+        if(!['injury_return','non_injury_return'].includes(target.causeClass))m.unknown++;
+        else if(target.causeClass==='injury_return')m[prediction?'truePositives':'falseNegatives']++;
+        else m[prediction?'falsePositives':'trueNegatives']++;
+      }
+      return {caseId:sample.caseId,truth:target.causeClass,target,targetEpisodeId:episode?.episodeId || null,
+        targetMatched:Boolean(episode),windowMatches,returnMatches,injuryAware,participationOnly,
+        productionCorrectionAllowed:false,episodes:result.episodes,blocked:result.blocked};
+    });
+    return {metrics,rows};
+  };
+  return {schema:2,scope:'RETROSPECTIVE_RESEARCH',scoring:'LABELED_EPISODE',...evaluate(false),
+    fullSeason:{scope:'UNCROPPED_SAME_LABELED_TARGETS',...evaluate(true)},productionCorrectionAllowed:false};
 }

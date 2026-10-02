@@ -1,4 +1,4 @@
-// Deterministic offline replay; arguments are local JSON only. Never fetches data.
+// Deterministic labeled-episode replay, cropped and full-season; local JSON only. Never fetches data.
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {evaluateSample} from './lib/md03_qb_events.js';
