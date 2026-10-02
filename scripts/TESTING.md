@@ -18,7 +18,7 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 140 tests: 108 JavaScript and 32 Python |
+| `npm test` / `npm run test:safe` | 141 tests: 109 JavaScript and 32 Python |
 | `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 26 QB/pressure regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
@@ -26,6 +26,27 @@ example `node scripts/test_v149_release_hardening.mjs`.
 | `npm run test:model` | 46 model/unit regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
+
+Cycle 3 integration verification (2026-10-02, `cycle3/integration`, reviewed
+`6f03f4e` + `97ed745` and `2f2346e` + `c09fddc`): the combined catalog
+has 253 entries, 141 safe (109 JavaScript / 32 Python) and 112 unchanged default
+exclusions. Authoritative LF export passed safe 141/141, model 46/46, release
+17/17, QB 26/26, snapshot 6/6 and server 30/30. Native results matched except
+safe 140/141, with only the known V77 CRLF timing-source assertion failing.
+The five focused UX-25/UX-14-B/UX-10/UX-14-A/FLAG regressions and modified
+V36/V38/V39/V112/V124 tests passed 10/10 in both native and LF trees. All 11
+changed JS/MJS paths, public-build Python syntax and staged/unstaged diff checks
+passed; the canonical build reproduced all 33 source-identical generated files.
+Default and tracked-schedule UX-25 CLI outputs were byte-identical on repeat
+runs. The tracked 2026 REG calendar has 272 games (48 completed, 224 remaining),
+including 31 January 2027 games in Weeks 17/18; structural counts pass, every
+actual-state outcome stays unknown, and source authority stays unverified.
+Offline real-renderer smoke at 1440×900 and 375×812 covered the ten Claude-touched
+surfaces and controlled pressure/event-count/current-evidence states: unchanged
+from corrected Claude, no new page overflow or console errors. The existing
+header refresh-meta overflow remains deferred. Integration reconciles evidence
+and history only; it does not authorize main merge, deployment, owner decisions
+or another tranche.
 
 Integration verification (2026-10-01, `integration/roadmap-lanes`): `npm test`
 passed 136/136, QB 26/26, model 44/44 and release 16/16 in LF scratch. Both new
@@ -117,9 +138,10 @@ to report the complete selected result.
 
 ## Excluded and special tests
 
-The catalog has 252 entries including the runner, QB correctness, Customize audit,
-FLAG penalty-value, postseason state sourcing, projection semantics audit, semantic migration, UX-14
-public-explanation and UX-16 public-positioning regressions. Its 112 default
+The catalog has 253 entries including the runner, QB correctness, Customize audit,
+FLAG penalty-value, postseason state sourcing, projection semantics audit, semantic
+migration, UX-14 public-explanation, UX-14 tranche B and UX-16 public-positioning
+regressions. Its 112 default
 exclusions remain visible in `test_catalog.json`;
 exclusion does not mean pass.
 102 retain failing historical assertions/fixtures. The remaining 10 are:
@@ -179,6 +201,22 @@ by its filename. The [public explanation inventory](../UX14_PUBLIC_EXPLANATION_I
 records tranche A and its deferred gates; the regression does not authorize the
 remaining content tranche.
 
+Cycle 3 UX-14 tranche B adds `test_ux14_tranche_b.mjs` to safe (standalone lane catalog 252,
+safe 140, 112 default exclusions). It renders the real Luck, FLAG, units, team
+Advanced, matchup, Playoffs and Method paths offline and checks the approved
+plain-English copy, provider-neutral pass-rush labels, localhost-only raw reasons,
+preserved limitations, untouched gated rows, unchanged ratings and public parity.
+The cross-review correction commit adds the full hits-and-sacks fallback tooltip,
+missing-versus-zero event counts, usable-stat status cases rendered on the team
+Advanced card, and unit-prior model-contract checks behind the Method blend copy.
+This lane's catalog after tranche B: 252 entries; safe 140 (108 JavaScript /
+32 Python), model 45, release 17, QB 26, snapshot 6, server 30; 112 default
+exclusions.
+Historical copy assertions in V36, V38, V39, V112 and V124 now match the new
+wording with unchanged intent. Verification (2026-10-02, LF export of the
+tranche): safe 140/140, release 17/17, QB 26/26, model 45/45, snapshot 6/6 and
+server 30/30; native safe 139/140 with only the known V77 CRLF assertion.
+
 Integration-discovered FLAG correctness coverage: `test_flag_penalty_values.mjs`
 is selected by safe/release. It exercises the real team card and adjacent rankings
 EPA/WPA cell with null, undefined, NaN and both infinities, mixed available/missing
@@ -194,5 +232,5 @@ schedule count-only evidence, input rejection and deterministic provenance. Run
 evidence; supplied input needs an app-shaped `schedule` array and remains
 unverified. The [source assessment](../UX25_POSTSEASON_STATE_SOURCING.md) compares
 compute/external/hybrid options. No actual-state solver, feed, formatter or
-production behavior is implemented. Catalog: 252; safe: 140; model: 46; release:
+production behavior is implemented. Standalone lane catalog: 252; safe: 140; model: 46; release:
 17; default exclusions: 112 unchanged.

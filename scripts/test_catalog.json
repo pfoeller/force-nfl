@@ -164,6 +164,13 @@
       "classification": "regression"
     },
     {
+      "file": "test_ux14_tranche_b.mjs",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
       "file": "test_ux16_public_positioning.mjs",
       "suites": [
         "safe"

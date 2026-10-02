@@ -7,5 +7,5 @@ ok(css.includes('.rating-cell .score.band-low{color:var(--red)}'),'low FORCE tex
 ok(css.includes('.rating-cell .score.band-mid{color:var(--gold)}'),'mid FORCE text must be gold');
 ok(css.includes('.rating-cell .score.band-high{color:var(--green)}'),'high FORCE text must be green');
 ok(app.includes('data-export-row-group="16"'),'Rankings 16-team export grouping must remain intact');
-ok(app.includes("S.ratingView === 'units' ? '' : diagnosticNotice()"),'Units notes must remain suppressed');
+ok(app.includes("S.ratingView === 'units' ? '' : diagnosticNotice(S.ratingView, { afterFlagIntro: S.ratingView === 'penalties' })"),'Units notes must remain suppressed');
 console.log(`OK: ${n} V39 Units FORCE semantic-color assertions`);
