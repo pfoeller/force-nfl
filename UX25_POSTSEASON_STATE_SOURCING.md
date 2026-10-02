@@ -6,6 +6,13 @@ owner's display floor/ceiling); source strategy is unresolved. Execution:
 **REVIEW for this source-feasibility investigation; display implementation
 PLANNED**. This is internal evidence and options, not a production state gate.
 
+Local-main closeout (2026-10-02): investigation `6f03f4e` and correction
+`97ed745` passed final independent integration review beneath `840e53b1`,
+accepted A. READY TO MERGE TO MAIN. The owner-authorized fast-forward has merged
+that candidate to local `main`; not pushed or deployed. Investigation remains
+REVIEW, display implementation remains PLANNED, and source strategy/authority
+and all other owner choices remain unresolved.
+
 ## Selection before changing files
 
 Read the full current roadmap, UX-10 semantic audit, UX-08 baseline audit,

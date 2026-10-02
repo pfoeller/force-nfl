@@ -48,6 +48,25 @@ header refresh-meta overflow remains deferred. Integration reconciles evidence
 and history only; it does not authorize main merge, deployment, owner decisions
 or another tranche.
 
+Cycle 3 local-main closeout (2026-10-02): owner-reported final independent
+review accepted `840e53b1` with A. READY TO MERGE TO MAIN. Local `main` was
+fast-forwarded from exact `093bd734` to that candidate, preserving both reviewed
+lane histories and correction commits. `origin/main` remains at `093bd734`;
+this closeout authorizes no push or deployment.
+Post-merge inventory/catalog validation confirmed 253 entries, 141 safe
+(109 JavaScript / 32 Python) and 112 default exclusions. Authoritative LF export
+passed safe 141/141, model 46/46, release 17/17, QB 26/26, snapshot 6/6 and
+server 30/30. Native results matched except safe 140/141: only the known V77
+CRLF timing-source assertion failed. All ten focused/modified regressions passed
+in both trees; all 11 changed JS/MJS paths, public-build Python syntax and diff
+checks passed. Canonical public build reproduced all 33 generated files unchanged.
+The single post-merge tracked-schedule probe passed structural counts, including
+31 January 2027 games in Weeks 17/18; every actual state remains unknown and
+source authority unverified. Offline real-renderer smoke of the seven touched
+surfaces at 1440×900 and 375×812 matched the reviewed candidate, with no new page
+overflow or browser errors; fallback, missing-count, representative-Out and blend
+semantics passed. The known refresh-meta/header overflow remains deferred.
+
 Integration verification (2026-10-01, `integration/roadmap-lanes`): `npm test`
 passed 136/136, QB 26/26, model 44/44 and release 16/16 in LF scratch. Both new
 focused regressions passed individually. The normal public build left all 33
