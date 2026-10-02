@@ -18,12 +18,12 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 136 tests: 104 JavaScript and 32 Python |
+| `npm test` / `npm run test:safe` | 137 tests: 105 JavaScript and 32 Python |
 | `npm run test:release` | 16 release/correctness tests |
 | `npm run test:qb` | 26 QB/pressure regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
-| `npm run test:model` | 44 model/unit regressions |
+| `npm run test:model` | 45 model/unit regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
 
@@ -64,9 +64,10 @@ to report the complete selected result.
 
 ## Excluded and special tests
 
-The catalog has 248 entries including the runner, QB correctness, Customize audit,
-semantic migration and UX-16 public-positioning regressions. Its 112 default
-exclusions remain visible in `test_catalog.json`; exclusion does not mean pass.
+The catalog has 249 entries including the runner, QB correctness, Customize audit,
+projection semantics audit, semantic migration and UX-16 public-positioning
+regressions. Its 112 default exclusions remain visible in `test_catalog.json`;
+exclusion does not mean pass.
 102 retain failing historical assertions/fixtures. The remaining 10 are:
 
 - Four benchmark writers: `test_v27_metric_transform_smoke.js`,
@@ -106,3 +107,12 @@ rejects unknown, missing or duplicate entries. Review network, output writes,
 optional dependencies and cost before adding it to `safe`. Never select tests
 dynamically just because they happened to pass, and never change production
 behavior to satisfy an archived assertion.
+
+Cycle 2 UX-10 adds `test_projection_semantics_audit.mjs` to safe/model. It calls
+the real forecasts, 5,000-run season simulation and projection renderers offline;
+the catalog allows 60 seconds for that bounded workload. Reproduce the labeled
+synthetic evidence with `node scripts/audit_projection_semantics.mjs`, or use
+`--input offline-input.json` for supplied inputs with unverified provenance.
+The [semantic map](../UX10_PROJECTION_SEMANTICS_AUDIT.md) records source paths,
+limitations and unresolved owner choices. The diagnostic does not change public
+probability formatting or infer actual clinch/elimination from simulation results.
