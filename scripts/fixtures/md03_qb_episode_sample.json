@@ -1,0 +1,4215 @@
+{
+  "schema": 2,
+  "scope": "RETROSPECTIVE_RESEARCH_NOT_PRODUCTION_ELIGIBILITY",
+  "base": "bd15a2c682c0dd8c836ecfd42e615a31741988c7",
+  "nfldataCommit": "5898b6279be0829925f7bbda165d319b474e1825",
+  "attribution": "Selected factual rows: nflverse/nfldata and nflverse-data; source URLs/hashes below. nflverse-data carries CC BY 4.0; an express nfldata grant was not established. Upstream rights require review before production adoption.",
+  "selection": "Purposive 12 labeled episodes / 8 teams / 6 seasons, not population accuracy. Crops and uncropped regular seasons share the same named targets; all competing episodes remain visible. Labels and official conflict annotation are human evaluation evidence.",
+  "sources": [
+    {
+      "file": "games.csv",
+      "url": "https://raw.githubusercontent.com/nflverse/nfldata/5898b6279be0829925f7bbda165d319b474e1825/data/games.csv",
+      "sha256": "14fc5583f0a27ec9213964617c091d348a1d62fa33a5de985c2cc3243a45b642",
+      "bytes": 2182457,
+      "retrievedAt": "2026-10-02T16:54:11.114Z",
+      "updatedAt": null
+    },
+    {
+      "file": "injuries_2016.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2016.csv",
+      "sha256": "504e05968cb9c54ddc730fd9b6e7d1dd16a62db8029cc784d3d7bafcea7ff7cb",
+      "bytes": 674980,
+      "retrievedAt": "2026-10-02T16:58:25.765Z",
+      "updatedAt": "2022-07-26T05:23:03Z"
+    },
+    {
+      "file": "injuries_2017.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2017.csv",
+      "sha256": "0d5139fbf41b0866517bd2bd5fd85bb20dbd4dd9bc36a706fed030a88731de6f",
+      "bytes": 665280,
+      "retrievedAt": "2026-10-02T16:58:26.356Z",
+      "updatedAt": "2022-07-26T05:23:09Z"
+    },
+    {
+      "file": "injuries_2019.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2019.csv",
+      "sha256": "daddfe8e04ddc3a29bce14f362e774fbadfb274c807f1f0fde7b5bf32aaf6cdf",
+      "bytes": 700757,
+      "retrievedAt": "2026-10-02T16:58:26.821Z",
+      "updatedAt": "2022-07-26T05:23:22Z"
+    },
+    {
+      "file": "injuries_2020.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2020.csv",
+      "sha256": "706cca82824214f6b73ba0c6e537d3ee39766a50c644b8974b9fc28d7518de90",
+      "bytes": 737474,
+      "retrievedAt": "2026-10-02T16:58:27.312Z",
+      "updatedAt": "2022-07-26T05:23:28Z"
+    },
+    {
+      "file": "injuries_2021.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2021.csv",
+      "sha256": "1049fb9ff0fe7cfcf3ba8bfe1f5a35d3aba985c461c8fb7bf5201735b6d34254",
+      "bytes": 737083,
+      "retrievedAt": "2026-10-02T16:58:27.782Z",
+      "updatedAt": "2022-08-31T07:37:30Z"
+    },
+    {
+      "file": "injuries_2022.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2022.csv",
+      "sha256": "5f0d60324e597edd1a2ced8540b04e40b51dd440591dd1df11b8d96343387c9e",
+      "bytes": 752433,
+      "retrievedAt": "2026-10-02T16:58:28.191Z",
+      "updatedAt": "2023-08-31T07:14:24Z"
+    },
+    {
+      "file": "injuries_2026.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
+      "sha256": "d65b65e4b2e4459dcf83813f21e1b085ec816bc1e3e3d98007ffc26c094b6034",
+      "bytes": 114876,
+      "retrievedAt": "2026-10-02T16:58:28.484Z",
+      "updatedAt": "2026-10-02T13:47:53Z"
+    },
+    {
+      "file": "snap_counts_2020.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2020.csv",
+      "sha256": "512e35f17d076eb5d99b933c4a144eb95dcddf40c0320dbb397cae3c35683716",
+      "bytes": 2257664,
+      "retrievedAt": "2026-10-02T17:04:30.304Z",
+      "updatedAt": "2026-09-24T12:50:26Z"
+    },
+    {
+      "file": "snap_counts_2021.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2021.csv",
+      "sha256": "8e4dae054a4749cf2d4919508d9161a6068fd67509979aefa385bfb3803d0ee5",
+      "bytes": 2388493,
+      "retrievedAt": "2026-10-02T16:58:29.463Z",
+      "updatedAt": "2025-10-06T06:51:11Z"
+    },
+    {
+      "file": "snap_counts_2022.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2022.csv",
+      "sha256": "0018a4833fbf0f825286c1c27450c6254391b548d6c55bcde728e93e4816815a",
+      "bytes": 2379719,
+      "retrievedAt": "2026-10-02T17:04:31.337Z",
+      "updatedAt": "2025-10-06T06:51:14Z"
+    },
+    {
+      "file": "snap_counts_2026.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
+      "sha256": "67905be7dc1981c6630e3e977996137e36b6566a93ce8ce78e69c40cfd13c7ff",
+      "bytes": 411096,
+      "retrievedAt": "2026-10-02T16:58:30.544Z",
+      "updatedAt": "2026-10-02T11:01:51Z"
+    },
+    {
+      "file": "roster_2026.csv",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2026.csv",
+      "sha256": "746ae4cee3c8d3de624caccf67cb1f88bf32306017fb472391a2aa219b03eddc",
+      "bytes": 959377,
+      "retrievedAt": "2026-10-02T16:58:31.063Z",
+      "updatedAt": "2026-10-02T13:50:59Z"
+    },
+    {
+      "file": "depth_charts_2026.csv.gz",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/depth_charts/depth_charts_2026.csv.gz",
+      "sha256": "313b7dde789751e1f4f0d152353823fcf13d9f5e2694177f634d1095ef831eb9",
+      "bytes": 11574716,
+      "retrievedAt": "2026-10-02T17:04:35.333Z",
+      "updatedAt": "2026-10-02T13:49:30Z"
+    }
+  ],
+  "starterCoverage": [
+    {
+      "season": 2016,
+      "completedGames": 256,
+      "starterSlots": 512,
+      "missingStarterIds": 0
+    },
+    {
+      "season": 2017,
+      "completedGames": 256,
+      "starterSlots": 512,
+      "missingStarterIds": 0
+    },
+    {
+      "season": 2019,
+      "completedGames": 256,
+      "starterSlots": 512,
+      "missingStarterIds": 0
+    },
+    {
+      "season": 2020,
+      "completedGames": 256,
+      "starterSlots": 512,
+      "missingStarterIds": 0
+    },
+    {
+      "season": 2021,
+      "completedGames": 272,
+      "starterSlots": 544,
+      "missingStarterIds": 0
+    },
+    {
+      "season": 2022,
+      "completedGames": 271,
+      "starterSlots": 542,
+      "missingStarterIds": 0
+    },
+    {
+      "season": 2026,
+      "completedGames": 49,
+      "starterSlots": 98,
+      "missingStarterIds": 0
+    }
+  ],
+  "currentSourceCoverage": {
+    "injuries_2026.csv": {
+      "rows": 1025,
+      "teams": 32,
+      "columns": [
+        "season",
+        "season_type",
+        "game_type",
+        "team",
+        "week",
+        "gsis_id",
+        "position",
+        "full_name",
+        "first_name",
+        "last_name",
+        "report_primary_injury",
+        "report_secondary_injury",
+        "report_status",
+        "practice_primary_injury",
+        "practice_secondary_injury",
+        "practice_status"
+      ],
+      "weeks": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "snap_counts_2026.csv": {
+      "rows": 4579,
+      "teams": 32,
+      "columns": [
+        "game_id",
+        "pfr_game_id",
+        "season",
+        "game_type",
+        "week",
+        "player",
+        "pfr_player_id",
+        "position",
+        "team",
+        "opponent",
+        "offense_snaps",
+        "offense_pct",
+        "defense_snaps",
+        "defense_pct",
+        "st_snaps",
+        "st_pct"
+      ],
+      "weeks": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "roster_2026.csv": {
+      "rows": 3020,
+      "teams": 32,
+      "columns": [
+        "season",
+        "team",
+        "position",
+        "depth_chart_position",
+        "jersey_number",
+        "status",
+        "full_name",
+        "first_name",
+        "last_name",
+        "birth_date",
+        "height",
+        "weight",
+        "college",
+        "gsis_id",
+        "espn_id",
+        "sportradar_id",
+        "yahoo_id",
+        "rotowire_id",
+        "pff_id",
+        "pfr_id",
+        "fantasy_data_id",
+        "sleeper_id",
+        "years_exp",
+        "headshot_url",
+        "ngs_position",
+        "week",
+        "game_type",
+        "status_description_abbr",
+        "football_name",
+        "esb_id",
+        "gsis_it_id",
+        "smart_id",
+        "entry_year",
+        "rookie_year",
+        "draft_club",
+        "draft_number"
+      ],
+      "weeks": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "depth_charts_2026.csv.gz": {
+      "rows": 594789,
+      "teams": 32,
+      "columns": [
+        "dt",
+        "team",
+        "player_name",
+        "espn_id",
+        "gsis_id",
+        "pos_grp_id",
+        "pos_grp",
+        "pos_id",
+        "pos_name",
+        "pos_abb",
+        "pos_slot",
+        "pos_rank"
+      ],
+      "weeks": [],
+      "latestDt": "2026-10-02T13:49:21Z",
+      "latestSnapshotTeams": 32,
+      "qbRowsWithMissingGsisId": 312
+    }
+  },
+  "snapIdentityChecks": [
+    {
+      "season": 2020,
+      "team": "SF",
+      "week": 5,
+      "qbSnaps": [
+        {
+          "player": "C.J. Beathard",
+          "pfrPlayerId": "BeatC.00",
+          "offenseSnaps": 33
+        },
+        {
+          "player": "Jimmy Garoppolo",
+          "pfrPlayerId": "GaroJi00",
+          "offenseSnaps": 31
+        }
+      ]
+    },
+    {
+      "season": 2021,
+      "team": "MIA",
+      "week": 2,
+      "qbSnaps": [
+        {
+          "player": "Jacoby Brissett",
+          "pfrPlayerId": "BrisJa00",
+          "offenseSnaps": 65
+        },
+        {
+          "player": "Tua Tagovailoa",
+          "pfrPlayerId": "TagoTu00",
+          "offenseSnaps": 9
+        }
+      ]
+    },
+    {
+      "season": 2021,
+      "team": "MIA",
+      "week": 10,
+      "qbSnaps": [
+        {
+          "player": "Jacoby Brissett",
+          "pfrPlayerId": "BrisJa00",
+          "offenseSnaps": 37
+        },
+        {
+          "player": "Tua Tagovailoa",
+          "pfrPlayerId": "TagoTu00",
+          "offenseSnaps": 32
+        }
+      ]
+    },
+    {
+      "season": 2022,
+      "team": "CAR",
+      "week": 11,
+      "qbSnaps": [
+        {
+          "player": "Baker Mayfield",
+          "pfrPlayerId": "MayfBa00",
+          "offenseSnaps": 57
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "pit-2016-knee",
+      "season": 2016,
+      "team": "PIT",
+      "truth": "injury_return",
+      "documentedReturnWeek": 9,
+      "description": "One missed start, Week 8 bye",
+      "truthSources": [
+        "https://www.steelers.com/news/tomlin-talks-ben-ladarius-progress-17999236",
+        "https://static.www.nfl.com/image/upload/v1677630400/gamecenter/10012016-1106-013b-30ec-6b0227774ca7.pdf"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 5,
+        "lastWeek": 10,
+        "reason": "Weeks 5-10 include two local anchor starts, the injury absence, bye and return."
+      },
+      "target": {
+        "team": "PIT",
+        "season": 2016,
+        "incumbentId": "00-0022924",
+        "onsetGameId": "2016_07_NE_PIT",
+        "onsetWeek": 7,
+        "missedGameIds": [
+          "2016_07_NE_PIT"
+        ],
+        "missedWeeks": [
+          7
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2016_09_PIT_BAL",
+        "returnWeek": 9,
+        "causeClass": "injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": true,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": true,
+            "participationOnly": true
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2016_05_NYJ_PIT",
+          "gameDate": "2016-10-09",
+          "season": 2016,
+          "team": "PIT",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_06_PIT_MIA",
+          "gameDate": "2016-10-16",
+          "season": 2016,
+          "team": "PIT",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_07_NE_PIT",
+          "gameDate": "2016-10-23",
+          "season": 2016,
+          "team": "PIT",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0030524",
+          "scheduleStarterName": "Landry Jones",
+          "injuries": [
+            {
+              "playerId": "00-0022924",
+              "status": "Out",
+              "injury": "Knee",
+              "dateModified": "2016-10-21T10:25:18Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2016_09_PIT_BAL",
+          "gameDate": "2016-11-06",
+          "season": 2016,
+          "team": "PIT",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": [
+            {
+              "playerId": "00-0022924",
+              "status": "Questionable",
+              "injury": "Knee",
+              "dateModified": "2016-11-04T10:14:41Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2016_10_DAL_PIT",
+          "gameDate": "2016-11-13",
+          "season": 2016,
+          "team": "PIT",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": [
+            {
+              "playerId": "00-0022924",
+              "status": "",
+              "injury": "",
+              "dateModified": "2016-11-11T10:47:08Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "gb-2017-collarbone",
+      "season": 2017,
+      "team": "GB",
+      "truth": "injury_return",
+      "documentedReturnWeek": 15,
+      "description": "Seven missed team games; IR rows sparse",
+      "truthSources": [
+        "https://www.packers.com/news/aaron-rodgers-confirms-he-s-medically-cleared-19970553"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 4,
+        "lastWeek": 15,
+        "reason": "Weeks 4-15 include two local anchor starts, bye, long absence and return."
+      },
+      "target": {
+        "team": "GB",
+        "season": 2017,
+        "incumbentId": "00-0023459",
+        "onsetGameId": "2017_07_NO_GB",
+        "onsetWeek": 7,
+        "missedGameIds": [
+          "2017_07_NO_GB",
+          "2017_09_DET_GB",
+          "2017_10_GB_CHI",
+          "2017_11_BAL_GB",
+          "2017_12_GB_PIT",
+          "2017_13_TB_GB",
+          "2017_14_GB_CLE"
+        ],
+        "missedWeeks": [
+          7,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2017_15_GB_CAR",
+        "returnWeek": 15,
+        "causeClass": "injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": true,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": true,
+            "participationOnly": true
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2017_04_CHI_GB",
+          "gameDate": "2017-09-28",
+          "season": 2017,
+          "team": "GB",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_05_GB_DAL",
+          "gameDate": "2017-10-08",
+          "season": 2017,
+          "team": "GB",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_06_GB_MIN",
+          "gameDate": "2017-10-15",
+          "season": 2017,
+          "team": "GB",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_07_NO_GB",
+          "gameDate": "2017-10-22",
+          "season": 2017,
+          "team": "GB",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": [
+            {
+              "playerId": "00-0023459",
+              "status": "Out",
+              "injury": "Right Collarbone",
+              "dateModified": "2017-10-20T12:55:52Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2017_09_DET_GB",
+          "gameDate": "2017-11-06",
+          "season": 2017,
+          "team": "GB",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_10_GB_CHI",
+          "gameDate": "2017-11-12",
+          "season": 2017,
+          "team": "GB",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_11_BAL_GB",
+          "gameDate": "2017-11-19",
+          "season": 2017,
+          "team": "GB",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": [
+            {
+              "playerId": "00-0031589",
+              "status": "",
+              "injury": "",
+              "dateModified": "2017-11-17T11:49:21Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2017_12_GB_PIT",
+          "gameDate": "2017-11-26",
+          "season": 2017,
+          "team": "GB",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_13_TB_GB",
+          "gameDate": "2017-12-03",
+          "season": 2017,
+          "team": "GB",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_14_GB_CLE",
+          "gameDate": "2017-12-10",
+          "season": 2017,
+          "team": "GB",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_15_GB_CAR",
+          "gameDate": "2017-12-17",
+          "season": 2017,
+          "team": "GB",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "caseId": "nyg-2017-benching",
+      "season": 2017,
+      "team": "NYG",
+      "truth": "non_injury_return",
+      "documentedReturnWeek": 14,
+      "description": "Benching then reinstatement",
+      "truthSources": [
+        "https://www.giants.com/news/geno-smith-ready-for-opportunity-19864474",
+        "https://www.giants.com/news/eli-manning-named-starting-qb-vs-dallas-19923495"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 11,
+        "lastWeek": 14,
+        "reason": "Weeks 11-14 isolate the two-start anchor and one-game benching/reinstatement."
+      },
+      "target": {
+        "team": "NYG",
+        "season": 2017,
+        "incumbentId": "00-0022803",
+        "onsetGameId": "2017_13_NYG_OAK",
+        "onsetWeek": 13,
+        "missedGameIds": [
+          "2017_13_NYG_OAK"
+        ],
+        "missedWeeks": [
+          13
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2017_14_DAL_NYG",
+        "returnWeek": 14,
+        "causeClass": "non_injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": false,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": false,
+            "participationOnly": true
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2017_11_KC_NYG",
+          "gameDate": "2017-11-19",
+          "season": 2017,
+          "team": "NYG",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_12_NYG_WAS",
+          "gameDate": "2017-11-23",
+          "season": 2017,
+          "team": "NYG",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_13_NYG_OAK",
+          "gameDate": "2017-12-03",
+          "season": 2017,
+          "team": "NYG",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0030565",
+          "scheduleStarterName": "Geno Smith",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_14_DAL_NYG",
+          "gameDate": "2017-12-10",
+          "season": 2017,
+          "team": "NYG",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "caseId": "kc-2019-knee",
+      "season": 2019,
+      "team": "KC",
+      "truth": "injury_return",
+      "documentedReturnWeek": 10,
+      "description": "Two missed starts; Out then Questionable",
+      "truthSources": [
+        "https://www.chiefs.com/news/chiefs-fall-to-titans-35-32-on-sunday-afternoon"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 6,
+        "lastWeek": 10,
+        "reason": "Weeks 6-10 include two local anchor starts and the midseason injury/return."
+      },
+      "target": {
+        "team": "KC",
+        "season": 2019,
+        "incumbentId": "00-0033873",
+        "onsetGameId": "2019_08_GB_KC",
+        "onsetWeek": 8,
+        "missedGameIds": [
+          "2019_08_GB_KC",
+          "2019_09_MIN_KC"
+        ],
+        "missedWeeks": [
+          8,
+          9
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2019_10_KC_TEN",
+        "returnWeek": 10,
+        "causeClass": "injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": true,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": true,
+            "participationOnly": true
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2019_06_HOU_KC",
+          "gameDate": "2019-10-13",
+          "season": 2019,
+          "team": "KC",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-10-11T12:41:25Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_07_KC_DEN",
+          "gameDate": "2019-10-17",
+          "season": 2019,
+          "team": "KC",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-10-16T10:41:11Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_08_GB_KC",
+          "gameDate": "2019-10-27",
+          "season": 2019,
+          "team": "KC",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0025708",
+          "scheduleStarterName": "Matt Moore",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "Out",
+              "injury": "Knee",
+              "dateModified": "2019-10-25T12:43:23Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_09_MIN_KC",
+          "gameDate": "2019-11-03",
+          "season": 2019,
+          "team": "KC",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0025708",
+          "scheduleStarterName": "Matt Moore",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "Questionable",
+              "injury": "Knee",
+              "dateModified": "2019-11-01T12:29:33Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_10_KC_TEN",
+          "gameDate": "2019-11-10",
+          "season": 2019,
+          "team": "KC",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0026197",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-11-08T12:39:59Z"
+            },
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-11-08T12:39:59Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "sf-2020-first-ankle",
+      "season": 2020,
+      "team": "SF",
+      "truth": "injury_return",
+      "documentedReturnWeek": 5,
+      "description": "First injury return; return game halftime removal",
+      "truthSources": [
+        "https://www.49ers.com/news/jimmy-garoppolo-george-kittle-49ers-injuries-mostert-sherman-bosa"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 1,
+        "lastWeek": 5,
+        "reason": "Weeks 1-5 cover the first established-starter injury and halftime-removal return."
+      },
+      "target": {
+        "team": "SF",
+        "season": 2020,
+        "incumbentId": "00-0031345",
+        "onsetGameId": "2020_03_SF_NYG",
+        "onsetWeek": 3,
+        "missedGameIds": [
+          "2020_03_SF_NYG",
+          "2020_04_PHI_SF"
+        ],
+        "missedWeeks": [
+          3,
+          4
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2020_05_MIA_SF",
+        "returnWeek": 5,
+        "causeClass": "injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": true,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": true,
+            "participationOnly": true
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2020_01_ARI_SF",
+          "gameDate": "2020-09-13",
+          "season": 2020,
+          "team": "SF",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_02_SF_NYJ",
+          "gameDate": "2020-09-20",
+          "season": 2020,
+          "team": "SF",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_03_SF_NYG",
+          "gameDate": "2020-09-27",
+          "season": 2020,
+          "team": "SF",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "Out",
+              "injury": "Ankle",
+              "dateModified": "2020-09-25T10:45:51Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_04_PHI_SF",
+          "gameDate": "2020-10-04",
+          "season": 2020,
+          "team": "SF",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "Out",
+              "injury": "Ankle",
+              "dateModified": "2020-10-02T13:37:38Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_05_MIA_SF",
+          "gameDate": "2020-10-11",
+          "season": 2020,
+          "team": "SF",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-10-09T13:36:15Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "sf-2020-second-ankle",
+      "season": 2020,
+      "team": "SF",
+      "truth": "open_absence",
+      "documentedReturnWeek": null,
+      "description": "Second absence has no same-season starter return",
+      "truthSources": [
+        "https://www.49ers.com/news/jimmy-garoppolo-george-kittle-49ers-injuries-mostert-sherman-bosa",
+        "https://www.49ers.com/team/transactions/2020"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 6,
+        "lastWeek": 17,
+        "reason": "Weeks 6-17 establish a local anchor after the first return and expose the second open/nested absence."
+      },
+      "target": {
+        "team": "SF",
+        "season": 2020,
+        "incumbentId": "00-0031345",
+        "onsetGameId": "2020_09_GB_SF",
+        "onsetWeek": 9,
+        "missedGameIds": [
+          "2020_09_GB_SF",
+          "2020_10_SF_NO",
+          "2020_12_SF_LA",
+          "2020_13_BUF_SF",
+          "2020_14_WAS_SF",
+          "2020_15_SF_DAL",
+          "2020_16_SF_ARI",
+          "2020_17_SEA_SF"
+        ],
+        "missedWeeks": [
+          9,
+          10,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": null,
+        "returnWeek": null,
+        "causeClass": "open_absence",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": false,
+            "participationOnly": false
+          },
+          "fullSeason": {
+            "injuryAware": false,
+            "participationOnly": false
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2020_06_LA_SF",
+          "gameDate": "2020-10-18",
+          "season": 2020,
+          "team": "SF",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-10-16T13:43:12Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_07_SF_NE",
+          "gameDate": "2020-10-25",
+          "season": 2020,
+          "team": "SF",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_08_SF_SEA",
+          "gameDate": "2020-11-01",
+          "season": 2020,
+          "team": "SF",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_09_GB_SF",
+          "gameDate": "2020-11-05",
+          "season": 2020,
+          "team": "SF",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "Out",
+              "injury": "Ankle",
+              "dateModified": "2020-11-04T12:53:31Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_10_SF_NO",
+          "gameDate": "2020-11-15",
+          "season": 2020,
+          "team": "SF",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_12_SF_LA",
+          "gameDate": "2020-11-29",
+          "season": 2020,
+          "team": "SF",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_13_BUF_SF",
+          "gameDate": "2020-12-07",
+          "season": 2020,
+          "team": "SF",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_14_WAS_SF",
+          "gameDate": "2020-12-13",
+          "season": 2020,
+          "team": "SF",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_15_SF_DAL",
+          "gameDate": "2020-12-20",
+          "season": 2020,
+          "team": "SF",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_16_SF_ARI",
+          "gameDate": "2020-12-26",
+          "season": 2020,
+          "team": "SF",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0033936",
+          "scheduleStarterName": "C.J. Beathard",
+          "injuries": [
+            {
+              "playerId": "00-0033319",
+              "status": "Out",
+              "injury": "right Elbow",
+              "dateModified": "2020-12-24T12:54:05Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_17_SEA_SF",
+          "gameDate": "2021-01-03",
+          "season": 2020,
+          "team": "SF",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0033936",
+          "scheduleStarterName": "C.J. Beathard",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "caseId": "mia-2020-rookie-change",
+      "season": 2020,
+      "team": "MIA",
+      "truth": "non_injury_return",
+      "documentedReturnWeek": 12,
+      "description": "Veteran replaced by rookie; veteran later substitutes for injured rookie",
+      "truthSources": [
+        "https://amp.nfl.com/news/brian-flores-starting-tua-tagovailoa-at-qb-the-best-thing-for-the-dolphins",
+        "https://www.miamidolphins.com/news/top-news-dolphins-announce-captains-starting-quarterback",
+        "https://www.miamidolphins.com/news/the-blitz-resilient-group"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 4,
+        "lastWeek": 12,
+        "reason": "Weeks 4-12 anchor Fitzpatrick and expose the rookie takeover and veteran spot return."
+      },
+      "target": {
+        "team": "MIA",
+        "season": 2020,
+        "incumbentId": "00-0023682",
+        "onsetGameId": "2020_08_LA_MIA",
+        "onsetWeek": 8,
+        "missedGameIds": [
+          "2020_08_LA_MIA",
+          "2020_09_MIA_ARI",
+          "2020_10_LAC_MIA",
+          "2020_11_MIA_DEN"
+        ],
+        "missedWeeks": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2020_12_MIA_NYJ",
+        "returnWeek": 12,
+        "causeClass": "non_injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": false,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": false,
+            "participationOnly": true
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2020_04_SEA_MIA",
+          "gameDate": "2020-10-04",
+          "season": 2020,
+          "team": "MIA",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "Illness",
+              "dateModified": "2020-10-02T10:17:38Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_05_MIA_SF",
+          "gameDate": "2020-10-11",
+          "season": 2020,
+          "team": "MIA",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_06_NYJ_MIA",
+          "gameDate": "2020-10-18",
+          "season": 2020,
+          "team": "MIA",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_08_LA_MIA",
+          "gameDate": "2020-11-01",
+          "season": 2020,
+          "team": "MIA",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_09_MIA_ARI",
+          "gameDate": "2020-11-08",
+          "season": 2020,
+          "team": "MIA",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_10_LAC_MIA",
+          "gameDate": "2020-11-15",
+          "season": 2020,
+          "team": "MIA",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_11_MIA_DEN",
+          "gameDate": "2020-11-22",
+          "season": 2020,
+          "team": "MIA",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-11-20T11:13:30Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_12_MIA_NYJ",
+          "gameDate": "2020-11-29",
+          "season": 2020,
+          "team": "MIA",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "left Thumb",
+              "dateModified": "2020-11-27T10:52:27Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "mia-2020-thumb",
+      "season": 2020,
+      "team": "MIA",
+      "truth": "injury_return",
+      "documentedReturnWeek": 13,
+      "description": "Rookie now established; one thumb-injury missed start",
+      "truthSources": [
+        "https://www.nfl.com/_amp/brian-flores-tua-tagovailoa-still-dolphins-starting-qb-if-healthy"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 8,
+        "lastWeek": 13,
+        "reason": "Weeks 8-13 locally establish Tua; this omits earlier Fitzpatrick tenure, which the full-season diagnostic retains."
+      },
+      "target": {
+        "team": "MIA",
+        "season": 2020,
+        "incumbentId": "00-0036212",
+        "onsetGameId": "2020_12_MIA_NYJ",
+        "onsetWeek": 12,
+        "missedGameIds": [
+          "2020_12_MIA_NYJ"
+        ],
+        "missedWeeks": [
+          12
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2020_13_CIN_MIA",
+        "returnWeek": 13,
+        "causeClass": "injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": false,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": false,
+            "participationOnly": false
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2020_08_LA_MIA",
+          "gameDate": "2020-11-01",
+          "season": 2020,
+          "team": "MIA",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_09_MIA_ARI",
+          "gameDate": "2020-11-08",
+          "season": 2020,
+          "team": "MIA",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_10_LAC_MIA",
+          "gameDate": "2020-11-15",
+          "season": 2020,
+          "team": "MIA",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_11_MIA_DEN",
+          "gameDate": "2020-11-22",
+          "season": 2020,
+          "team": "MIA",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-11-20T11:13:30Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_12_MIA_NYJ",
+          "gameDate": "2020-11-29",
+          "season": 2020,
+          "team": "MIA",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "left Thumb",
+              "dateModified": "2020-11-27T10:52:27Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_13_CIN_MIA",
+          "gameDate": "2020-12-06",
+          "season": 2020,
+          "team": "MIA",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "left Thumb",
+              "dateModified": "2020-12-04T11:30:57Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "mia-2021-ribs",
+      "season": 2021,
+      "team": "MIA",
+      "truth": "injury_return",
+      "documentedReturnWeek": 6,
+      "description": "First of two distinct injury episodes",
+      "truthSources": [
+        "https://www.nfl.com/news/dolphins-activate-qb-tua-tagovailoa-off-injured-reserve"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 1,
+        "lastWeek": 6,
+        "reason": "Weeks 1-6 expose the first injury/IR return."
+      },
+      "target": {
+        "team": "MIA",
+        "season": 2021,
+        "incumbentId": "00-0036212",
+        "onsetGameId": "2021_03_MIA_LV",
+        "onsetWeek": 3,
+        "missedGameIds": [
+          "2021_03_MIA_LV",
+          "2021_04_IND_MIA",
+          "2021_05_MIA_TB"
+        ],
+        "missedWeeks": [
+          3,
+          4,
+          5
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2021_06_MIA_JAX",
+        "returnWeek": 6,
+        "causeClass": "injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": true,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": true,
+            "participationOnly": true
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2021_01_MIA_NE",
+          "gameDate": "2021-09-12",
+          "season": 2021,
+          "team": "MIA",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_02_BUF_MIA",
+          "gameDate": "2021-09-19",
+          "season": 2021,
+          "team": "MIA",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_03_MIA_LV",
+          "gameDate": "2021-09-26",
+          "season": 2021,
+          "team": "MIA",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Out",
+              "injury": "Ribs",
+              "dateModified": "2021-09-24T19:43:51Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_04_IND_MIA",
+          "gameDate": "2021-10-03",
+          "season": 2021,
+          "team": "MIA",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_05_MIA_TB",
+          "gameDate": "2021-10-10",
+          "season": 2021,
+          "team": "MIA",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_06_MIA_JAX",
+          "gameDate": "2021-10-17",
+          "season": 2021,
+          "team": "MIA",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0033119",
+              "status": "Questionable",
+              "injury": "Hamstring",
+              "dateModified": "2021-10-15T17:30:20Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "mia-2021-finger",
+      "season": 2021,
+      "team": "MIA",
+      "truth": "injury_return",
+      "documentedReturnWeek": 11,
+      "description": "Participation return Week 10 is not a start; Questionable-only onset",
+      "truthSources": [
+        "https://static.clubs.nfl.com/image/upload/ravens/xuq2ylclxmchvzqpmh8o",
+        "https://static.www.nfl.com/league/apps/league-site/media-guides/2022/MIA.pdf"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 7,
+        "lastWeek": 11,
+        "reason": "Weeks 7-11 locally anchor Tua after the ribs return; full-season replay retains both episodes."
+      },
+      "target": {
+        "team": "MIA",
+        "season": 2021,
+        "incumbentId": "00-0036212",
+        "onsetGameId": "2021_09_HOU_MIA",
+        "onsetWeek": 9,
+        "missedGameIds": [
+          "2021_09_HOU_MIA",
+          "2021_10_BAL_MIA"
+        ],
+        "missedWeeks": [
+          9,
+          10
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2021_11_MIA_NYJ",
+        "returnWeek": 11,
+        "causeClass": "injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": false,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": false,
+            "participationOnly": true
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2021_07_ATL_MIA",
+          "gameDate": "2021-10-24",
+          "season": 2021,
+          "team": "MIA",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0033119",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-10-22T18:40:17Z"
+            },
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-10-22T18:40:17Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_08_MIA_BUF",
+          "gameDate": "2021-10-31",
+          "season": 2021,
+          "team": "MIA",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0033119",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-10-29T19:24:49Z"
+            },
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-10-29T19:24:49Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_09_HOU_MIA",
+          "gameDate": "2021-11-07",
+          "season": 2021,
+          "team": "MIA",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "Ribs",
+              "dateModified": "2021-11-05T19:56:11Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_10_BAL_MIA",
+          "gameDate": "2021-11-11",
+          "season": 2021,
+          "team": "MIA",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "left Finger",
+              "dateModified": "2021-11-10T20:47:53Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_11_MIA_NYJ",
+          "gameDate": "2021-11-21",
+          "season": 2021,
+          "team": "MIA",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0033119",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-11-19T19:49:15Z"
+            },
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-11-19T19:49:15Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caseId": "sea-2021-finger",
+      "season": 2021,
+      "team": "SEA",
+      "truth": "injury_return",
+      "documentedReturnWeek": 10,
+      "description": "Three missed starts plus Week 9 bye",
+      "truthSources": [
+        "https://www.seahawks.com/news/seahawks-qb-russell-wilson-cleared-for-full-return",
+        "https://www.seahawks.com/news/seahawks-qb-russell-wilson-finger-wasn-t-an-issue-but-i-ve-got-to-play-better"
+      ],
+      "annotations": [],
+      "crop": {
+        "firstWeek": 4,
+        "lastWeek": 10,
+        "reason": "Weeks 4-10 include two anchor starts, the injury absence, bye and return."
+      },
+      "target": {
+        "team": "SEA",
+        "season": 2021,
+        "incumbentId": "00-0029263",
+        "onsetGameId": "2021_06_SEA_PIT",
+        "onsetWeek": 6,
+        "missedGameIds": [
+          "2021_06_SEA_PIT",
+          "2021_07_NO_SEA",
+          "2021_08_JAX_SEA"
+        ],
+        "missedWeeks": [
+          6,
+          7,
+          8
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2021_10_SEA_GB",
+        "returnWeek": 10,
+        "causeClass": "injury_return",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": true,
+            "participationOnly": true
+          },
+          "fullSeason": {
+            "injuryAware": true,
+            "participationOnly": true
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2021_04_SEA_SF",
+          "gameDate": "2021-10-03",
+          "season": 2021,
+          "team": "SEA",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_05_LA_SEA",
+          "gameDate": "2021-10-07",
+          "season": 2021,
+          "team": "SEA",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_06_SEA_PIT",
+          "gameDate": "2021-10-17",
+          "season": 2021,
+          "team": "SEA",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0030565",
+          "scheduleStarterName": "Geno Smith",
+          "injuries": [
+            {
+              "playerId": "00-0029263",
+              "status": "Out",
+              "injury": "right Finger",
+              "dateModified": "2021-10-15T19:49:29Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_07_NO_SEA",
+          "gameDate": "2021-10-25",
+          "season": 2021,
+          "team": "SEA",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0030565",
+          "scheduleStarterName": "Geno Smith",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_08_JAX_SEA",
+          "gameDate": "2021-10-31",
+          "season": 2021,
+          "team": "SEA",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0030565",
+          "scheduleStarterName": "Geno Smith",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_10_SEA_GB",
+          "gameDate": "2021-11-14",
+          "season": 2021,
+          "team": "SEA",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "caseId": "car-2022-ambiguous",
+      "season": 2022,
+      "team": "CAR",
+      "truth": "ambiguous",
+      "documentedReturnWeek": 11,
+      "description": "Injury, demotion, replacement injury, starter-source conflict",
+      "truthSources": [
+        "https://www.panthers.com/news/panthers-release-baker-mayfield",
+        "https://www.panthers.com/news/inactives-sam-darnold-not-in-uniform-for-thursday-night-football"
+      ],
+      "annotations": [
+        "officialStarterId is manually adjudicated from the Panthers account, not a machine feed; raw games.csv remains unchanged. The same conflict annotation is retained in cropped and full-season evidence."
+      ],
+      "crop": {
+        "firstWeek": 4,
+        "lastWeek": 12,
+        "reason": "Weeks 4-12 expose the Baker injury/role mix and the adjudicated Week-11 source conflict."
+      },
+      "target": {
+        "team": "CAR",
+        "season": 2022,
+        "incumbentId": "00-0034855",
+        "onsetGameId": "2022_06_CAR_LA",
+        "onsetWeek": 6,
+        "missedGameIds": [
+          "2022_06_CAR_LA",
+          "2022_07_TB_CAR",
+          "2022_08_CAR_ATL",
+          "2022_09_CAR_CIN",
+          "2022_10_ATL_CAR"
+        ],
+        "missedWeeks": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "replacementWindow": "Completed team games from documented onset until the documented starting return; open cases through regular-season end.",
+        "returnGameId": "2022_11_CAR_BAL",
+        "returnWeek": 11,
+        "causeClass": "ambiguous",
+        "expectedDetectorResult": {
+          "cropped": {
+            "injuryAware": false,
+            "participationOnly": false
+          },
+          "fullSeason": {
+            "injuryAware": false,
+            "participationOnly": false
+          }
+        }
+      },
+      "games": [
+        {
+          "gameId": "2022_04_ARI_CAR",
+          "gameDate": "2022-10-02",
+          "season": 2022,
+          "team": "CAR",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0034855",
+          "scheduleStarterName": "Baker Mayfield",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_05_SF_CAR",
+          "gameDate": "2022-10-09",
+          "season": 2022,
+          "team": "CAR",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0034855",
+          "scheduleStarterName": "Baker Mayfield",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_06_CAR_LA",
+          "gameDate": "2022-10-16",
+          "season": 2022,
+          "team": "CAR",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": [
+            {
+              "playerId": "00-0034855",
+              "status": "Doubtful",
+              "injury": "Ankle",
+              "dateModified": "2022-10-14T16:46:20Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2022_07_TB_CAR",
+          "gameDate": "2022-10-23",
+          "season": 2022,
+          "team": "CAR",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": [
+            {
+              "playerId": "00-0034855",
+              "status": "Doubtful",
+              "injury": "Ankle",
+              "dateModified": "2022-10-21T17:32:16Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2022_08_CAR_ATL",
+          "gameDate": "2022-10-30",
+          "season": 2022,
+          "team": "CAR",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_09_CAR_CIN",
+          "gameDate": "2022-11-06",
+          "season": 2022,
+          "team": "CAR",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_10_ATL_CAR",
+          "gameDate": "2022-11-10",
+          "season": 2022,
+          "team": "CAR",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_11_CAR_BAL",
+          "gameDate": "2022-11-20",
+          "season": 2022,
+          "team": "CAR",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": [
+            {
+              "playerId": "00-0033275",
+              "status": "Out",
+              "injury": "Ankle",
+              "dateModified": "2022-11-18T17:40:28Z"
+            }
+          ],
+          "officialStarterId": "00-0034855",
+          "officialStarterEvidenceId": "panthers-2022-12-05-retrospective-account"
+        },
+        {
+          "gameId": "2022_12_DEN_CAR",
+          "gameDate": "2022-11-27",
+          "season": 2022,
+          "team": "CAR",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0034869",
+          "scheduleStarterName": "Sam Darnold",
+          "injuries": [
+            {
+              "playerId": "00-0033275",
+              "status": "Doubtful",
+              "injury": "Ankle",
+              "dateModified": "2022-11-25T18:18:15Z"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fullSeasons": [
+    {
+      "team": "PIT",
+      "season": 2016,
+      "games": [
+        {
+          "gameId": "2016_01_PIT_WAS",
+          "gameDate": "2016-09-12",
+          "season": 2016,
+          "team": "PIT",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_02_CIN_PIT",
+          "gameDate": "2016-09-18",
+          "season": 2016,
+          "team": "PIT",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_03_PIT_PHI",
+          "gameDate": "2016-09-25",
+          "season": 2016,
+          "team": "PIT",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": [
+            {
+              "playerId": "00-0030524",
+              "status": "",
+              "injury": "",
+              "dateModified": "2016-09-23T10:16:16Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2016_04_KC_PIT",
+          "gameDate": "2016-10-02",
+          "season": 2016,
+          "team": "PIT",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_05_NYJ_PIT",
+          "gameDate": "2016-10-09",
+          "season": 2016,
+          "team": "PIT",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_06_PIT_MIA",
+          "gameDate": "2016-10-16",
+          "season": 2016,
+          "team": "PIT",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_07_NE_PIT",
+          "gameDate": "2016-10-23",
+          "season": 2016,
+          "team": "PIT",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0030524",
+          "scheduleStarterName": "Landry Jones",
+          "injuries": [
+            {
+              "playerId": "00-0022924",
+              "status": "Out",
+              "injury": "Knee",
+              "dateModified": "2016-10-21T10:25:18Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2016_09_PIT_BAL",
+          "gameDate": "2016-11-06",
+          "season": 2016,
+          "team": "PIT",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": [
+            {
+              "playerId": "00-0022924",
+              "status": "Questionable",
+              "injury": "Knee",
+              "dateModified": "2016-11-04T10:14:41Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2016_10_DAL_PIT",
+          "gameDate": "2016-11-13",
+          "season": 2016,
+          "team": "PIT",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": [
+            {
+              "playerId": "00-0022924",
+              "status": "",
+              "injury": "",
+              "dateModified": "2016-11-11T10:47:08Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2016_11_PIT_CLE",
+          "gameDate": "2016-11-20",
+          "season": 2016,
+          "team": "PIT",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_12_PIT_IND",
+          "gameDate": "2016-11-24",
+          "season": 2016,
+          "team": "PIT",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_13_NYG_PIT",
+          "gameDate": "2016-12-04",
+          "season": 2016,
+          "team": "PIT",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": []
+        },
+        {
+          "gameId": "2016_14_PIT_BUF",
+          "gameDate": "2016-12-11",
+          "season": 2016,
+          "team": "PIT",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": [
+            {
+              "playerId": "00-0031266",
+              "status": "",
+              "injury": "",
+              "dateModified": "2016-12-08T12:25:50Z"
+            },
+            {
+              "playerId": "00-0022924",
+              "status": "",
+              "injury": "",
+              "dateModified": "2016-12-07T12:40:44Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2016_15_PIT_CIN",
+          "gameDate": "2016-12-18",
+          "season": 2016,
+          "team": "PIT",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": [
+            {
+              "playerId": "00-0022924",
+              "status": "",
+              "injury": "",
+              "dateModified": "2016-12-14T12:31:28Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2016_16_BAL_PIT",
+          "gameDate": "2016-12-25",
+          "season": 2016,
+          "team": "PIT",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0022924",
+          "scheduleStarterName": "Ben Roethlisberger",
+          "injuries": [
+            {
+              "playerId": "00-0022924",
+              "status": "",
+              "injury": "",
+              "dateModified": "2016-12-21T12:39:50Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2016_17_CLE_PIT",
+          "gameDate": "2017-01-01",
+          "season": 2016,
+          "team": "PIT",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0030524",
+          "scheduleStarterName": "Landry Jones",
+          "injuries": [
+            {
+              "playerId": "00-0022924",
+              "status": "",
+              "injury": "",
+              "dateModified": "2016-12-28T12:47:54Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "team": "GB",
+      "season": 2017,
+      "games": [
+        {
+          "gameId": "2017_01_SEA_GB",
+          "gameDate": "2017-09-10",
+          "season": 2017,
+          "team": "GB",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_02_GB_ATL",
+          "gameDate": "2017-09-17",
+          "season": 2017,
+          "team": "GB",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_03_CIN_GB",
+          "gameDate": "2017-09-24",
+          "season": 2017,
+          "team": "GB",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_04_CHI_GB",
+          "gameDate": "2017-09-28",
+          "season": 2017,
+          "team": "GB",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_05_GB_DAL",
+          "gameDate": "2017-10-08",
+          "season": 2017,
+          "team": "GB",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_06_GB_MIN",
+          "gameDate": "2017-10-15",
+          "season": 2017,
+          "team": "GB",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_07_NO_GB",
+          "gameDate": "2017-10-22",
+          "season": 2017,
+          "team": "GB",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": [
+            {
+              "playerId": "00-0023459",
+              "status": "Out",
+              "injury": "Right Collarbone",
+              "dateModified": "2017-10-20T12:55:52Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2017_09_DET_GB",
+          "gameDate": "2017-11-06",
+          "season": 2017,
+          "team": "GB",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_10_GB_CHI",
+          "gameDate": "2017-11-12",
+          "season": 2017,
+          "team": "GB",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_11_BAL_GB",
+          "gameDate": "2017-11-19",
+          "season": 2017,
+          "team": "GB",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": [
+            {
+              "playerId": "00-0031589",
+              "status": "",
+              "injury": "",
+              "dateModified": "2017-11-17T11:49:21Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2017_12_GB_PIT",
+          "gameDate": "2017-11-26",
+          "season": 2017,
+          "team": "GB",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_13_TB_GB",
+          "gameDate": "2017-12-03",
+          "season": 2017,
+          "team": "GB",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_14_GB_CLE",
+          "gameDate": "2017-12-10",
+          "season": 2017,
+          "team": "GB",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_15_GB_CAR",
+          "gameDate": "2017-12-17",
+          "season": 2017,
+          "team": "GB",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0023459",
+          "scheduleStarterName": "Aaron Rodgers",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_16_MIN_GB",
+          "gameDate": "2017-12-23",
+          "season": 2017,
+          "team": "GB",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_17_GB_DET",
+          "gameDate": "2017-12-31",
+          "season": 2017,
+          "team": "GB",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0031589",
+          "scheduleStarterName": "Brett Hundley",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "team": "NYG",
+      "season": 2017,
+      "games": [
+        {
+          "gameId": "2017_01_NYG_DAL",
+          "gameDate": "2017-09-10",
+          "season": 2017,
+          "team": "NYG",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_02_DET_NYG",
+          "gameDate": "2017-09-18",
+          "season": 2017,
+          "team": "NYG",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_03_NYG_PHI",
+          "gameDate": "2017-09-24",
+          "season": 2017,
+          "team": "NYG",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_04_NYG_TB",
+          "gameDate": "2017-10-01",
+          "season": 2017,
+          "team": "NYG",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_05_LAC_NYG",
+          "gameDate": "2017-10-08",
+          "season": 2017,
+          "team": "NYG",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_06_NYG_DEN",
+          "gameDate": "2017-10-15",
+          "season": 2017,
+          "team": "NYG",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_07_SEA_NYG",
+          "gameDate": "2017-10-22",
+          "season": 2017,
+          "team": "NYG",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_09_LA_NYG",
+          "gameDate": "2017-11-05",
+          "season": 2017,
+          "team": "NYG",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_10_NYG_SF",
+          "gameDate": "2017-11-12",
+          "season": 2017,
+          "team": "NYG",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_11_KC_NYG",
+          "gameDate": "2017-11-19",
+          "season": 2017,
+          "team": "NYG",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_12_NYG_WAS",
+          "gameDate": "2017-11-23",
+          "season": 2017,
+          "team": "NYG",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_13_NYG_OAK",
+          "gameDate": "2017-12-03",
+          "season": 2017,
+          "team": "NYG",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0030565",
+          "scheduleStarterName": "Geno Smith",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_14_DAL_NYG",
+          "gameDate": "2017-12-10",
+          "season": 2017,
+          "team": "NYG",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_15_PHI_NYG",
+          "gameDate": "2017-12-17",
+          "season": 2017,
+          "team": "NYG",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_16_NYG_ARI",
+          "gameDate": "2017-12-24",
+          "season": 2017,
+          "team": "NYG",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": []
+        },
+        {
+          "gameId": "2017_17_WAS_NYG",
+          "gameDate": "2017-12-31",
+          "season": 2017,
+          "team": "NYG",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0022803",
+          "scheduleStarterName": "Eli Manning",
+          "injuries": [
+            {
+              "playerId": "00-0030565",
+              "status": "",
+              "injury": "",
+              "dateModified": "2017-12-29T10:22:21Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "team": "KC",
+      "season": 2019,
+      "games": [
+        {
+          "gameId": "2019_01_KC_JAX",
+          "gameDate": "2019-09-08",
+          "season": 2019,
+          "team": "KC",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": []
+        },
+        {
+          "gameId": "2019_02_KC_OAK",
+          "gameDate": "2019-09-15",
+          "season": 2019,
+          "team": "KC",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-09-13T12:47:47Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_03_BAL_KC",
+          "gameDate": "2019-09-22",
+          "season": 2019,
+          "team": "KC",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-09-20T12:02:41Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_04_KC_DET",
+          "gameDate": "2019-09-29",
+          "season": 2019,
+          "team": "KC",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-09-27T11:57:35Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_05_IND_KC",
+          "gameDate": "2019-10-06",
+          "season": 2019,
+          "team": "KC",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-10-04T12:37:56Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_06_HOU_KC",
+          "gameDate": "2019-10-13",
+          "season": 2019,
+          "team": "KC",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-10-11T12:41:25Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_07_KC_DEN",
+          "gameDate": "2019-10-17",
+          "season": 2019,
+          "team": "KC",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-10-16T10:41:11Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_08_GB_KC",
+          "gameDate": "2019-10-27",
+          "season": 2019,
+          "team": "KC",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0025708",
+          "scheduleStarterName": "Matt Moore",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "Out",
+              "injury": "Knee",
+              "dateModified": "2019-10-25T12:43:23Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_09_MIN_KC",
+          "gameDate": "2019-11-03",
+          "season": 2019,
+          "team": "KC",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0025708",
+          "scheduleStarterName": "Matt Moore",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "Questionable",
+              "injury": "Knee",
+              "dateModified": "2019-11-01T12:29:33Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_10_KC_TEN",
+          "gameDate": "2019-11-10",
+          "season": 2019,
+          "team": "KC",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0026197",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-11-08T12:39:59Z"
+            },
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-11-08T12:39:59Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_11_KC_LAC",
+          "gameDate": "2019-11-18",
+          "season": 2019,
+          "team": "KC",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-11-16T12:15:44Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_13_OAK_KC",
+          "gameDate": "2019-12-01",
+          "season": 2019,
+          "team": "KC",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-11-29T12:27:34Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_14_KC_NE",
+          "gameDate": "2019-12-08",
+          "season": 2019,
+          "team": "KC",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-12-06T12:33:38Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_15_DEN_KC",
+          "gameDate": "2019-12-15",
+          "season": 2019,
+          "team": "KC",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-12-13T12:18:06Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_16_KC_CHI",
+          "gameDate": "2019-12-22",
+          "season": 2019,
+          "team": "KC",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": [
+            {
+              "playerId": "00-0033873",
+              "status": "",
+              "injury": "",
+              "dateModified": "2019-12-20T12:20:44Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2019_17_LAC_KC",
+          "gameDate": "2019-12-29",
+          "season": 2019,
+          "team": "KC",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0033873",
+          "scheduleStarterName": "Patrick Mahomes",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "team": "MIA",
+      "season": 2020,
+      "games": [
+        {
+          "gameId": "2020_01_MIA_NE",
+          "gameDate": "2020-09-13",
+          "season": 2020,
+          "team": "MIA",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-09-11T10:36:59Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_02_BUF_MIA",
+          "gameDate": "2020-09-20",
+          "season": 2020,
+          "team": "MIA",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_03_MIA_JAX",
+          "gameDate": "2020-09-24",
+          "season": 2020,
+          "team": "MIA",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_04_SEA_MIA",
+          "gameDate": "2020-10-04",
+          "season": 2020,
+          "team": "MIA",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "Illness",
+              "dateModified": "2020-10-02T10:17:38Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_05_MIA_SF",
+          "gameDate": "2020-10-11",
+          "season": 2020,
+          "team": "MIA",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_06_NYJ_MIA",
+          "gameDate": "2020-10-18",
+          "season": 2020,
+          "team": "MIA",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_08_LA_MIA",
+          "gameDate": "2020-11-01",
+          "season": 2020,
+          "team": "MIA",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_09_MIA_ARI",
+          "gameDate": "2020-11-08",
+          "season": 2020,
+          "team": "MIA",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_10_LAC_MIA",
+          "gameDate": "2020-11-15",
+          "season": 2020,
+          "team": "MIA",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_11_MIA_DEN",
+          "gameDate": "2020-11-22",
+          "season": 2020,
+          "team": "MIA",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-11-20T11:13:30Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_12_MIA_NYJ",
+          "gameDate": "2020-11-29",
+          "season": 2020,
+          "team": "MIA",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0023682",
+          "scheduleStarterName": "Ryan Fitzpatrick",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "left Thumb",
+              "dateModified": "2020-11-27T10:52:27Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_13_CIN_MIA",
+          "gameDate": "2020-12-06",
+          "season": 2020,
+          "team": "MIA",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "left Thumb",
+              "dateModified": "2020-12-04T11:30:57Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_14_KC_MIA",
+          "gameDate": "2020-12-13",
+          "season": 2020,
+          "team": "MIA",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-12-11T10:45:44Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_15_NE_MIA",
+          "gameDate": "2020-12-20",
+          "season": 2020,
+          "team": "MIA",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-12-18T11:01:18Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_16_MIA_LV",
+          "gameDate": "2020-12-26",
+          "season": 2020,
+          "team": "MIA",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_17_MIA_BUF",
+          "gameDate": "2021-01-03",
+          "season": 2020,
+          "team": "MIA",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "team": "SF",
+      "season": 2020,
+      "games": [
+        {
+          "gameId": "2020_01_ARI_SF",
+          "gameDate": "2020-09-13",
+          "season": 2020,
+          "team": "SF",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_02_SF_NYJ",
+          "gameDate": "2020-09-20",
+          "season": 2020,
+          "team": "SF",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_03_SF_NYG",
+          "gameDate": "2020-09-27",
+          "season": 2020,
+          "team": "SF",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "Out",
+              "injury": "Ankle",
+              "dateModified": "2020-09-25T10:45:51Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_04_PHI_SF",
+          "gameDate": "2020-10-04",
+          "season": 2020,
+          "team": "SF",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "Out",
+              "injury": "Ankle",
+              "dateModified": "2020-10-02T13:37:38Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_05_MIA_SF",
+          "gameDate": "2020-10-11",
+          "season": 2020,
+          "team": "SF",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-10-09T13:36:15Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_06_LA_SF",
+          "gameDate": "2020-10-18",
+          "season": 2020,
+          "team": "SF",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "",
+              "injury": "",
+              "dateModified": "2020-10-16T13:43:12Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_07_SF_NE",
+          "gameDate": "2020-10-25",
+          "season": 2020,
+          "team": "SF",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_08_SF_SEA",
+          "gameDate": "2020-11-01",
+          "season": 2020,
+          "team": "SF",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0031345",
+          "scheduleStarterName": "Jimmy Garoppolo",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_09_GB_SF",
+          "gameDate": "2020-11-05",
+          "season": 2020,
+          "team": "SF",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": [
+            {
+              "playerId": "00-0031345",
+              "status": "Out",
+              "injury": "Ankle",
+              "dateModified": "2020-11-04T12:53:31Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_10_SF_NO",
+          "gameDate": "2020-11-15",
+          "season": 2020,
+          "team": "SF",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_12_SF_LA",
+          "gameDate": "2020-11-29",
+          "season": 2020,
+          "team": "SF",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_13_BUF_SF",
+          "gameDate": "2020-12-07",
+          "season": 2020,
+          "team": "SF",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_14_WAS_SF",
+          "gameDate": "2020-12-13",
+          "season": 2020,
+          "team": "SF",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_15_SF_DAL",
+          "gameDate": "2020-12-20",
+          "season": 2020,
+          "team": "SF",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0033319",
+          "scheduleStarterName": "Nick Mullens",
+          "injuries": []
+        },
+        {
+          "gameId": "2020_16_SF_ARI",
+          "gameDate": "2020-12-26",
+          "season": 2020,
+          "team": "SF",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0033936",
+          "scheduleStarterName": "C.J. Beathard",
+          "injuries": [
+            {
+              "playerId": "00-0033319",
+              "status": "Out",
+              "injury": "right Elbow",
+              "dateModified": "2020-12-24T12:54:05Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2020_17_SEA_SF",
+          "gameDate": "2021-01-03",
+          "season": 2020,
+          "team": "SF",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0033936",
+          "scheduleStarterName": "C.J. Beathard",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "team": "MIA",
+      "season": 2021,
+      "games": [
+        {
+          "gameId": "2021_01_MIA_NE",
+          "gameDate": "2021-09-12",
+          "season": 2021,
+          "team": "MIA",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_02_BUF_MIA",
+          "gameDate": "2021-09-19",
+          "season": 2021,
+          "team": "MIA",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_03_MIA_LV",
+          "gameDate": "2021-09-26",
+          "season": 2021,
+          "team": "MIA",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Out",
+              "injury": "Ribs",
+              "dateModified": "2021-09-24T19:43:51Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_04_IND_MIA",
+          "gameDate": "2021-10-03",
+          "season": 2021,
+          "team": "MIA",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_05_MIA_TB",
+          "gameDate": "2021-10-10",
+          "season": 2021,
+          "team": "MIA",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_06_MIA_JAX",
+          "gameDate": "2021-10-17",
+          "season": 2021,
+          "team": "MIA",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0033119",
+              "status": "Questionable",
+              "injury": "Hamstring",
+              "dateModified": "2021-10-15T17:30:20Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_07_ATL_MIA",
+          "gameDate": "2021-10-24",
+          "season": 2021,
+          "team": "MIA",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0033119",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-10-22T18:40:17Z"
+            },
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-10-22T18:40:17Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_08_MIA_BUF",
+          "gameDate": "2021-10-31",
+          "season": 2021,
+          "team": "MIA",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0033119",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-10-29T19:24:49Z"
+            },
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-10-29T19:24:49Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_09_HOU_MIA",
+          "gameDate": "2021-11-07",
+          "season": 2021,
+          "team": "MIA",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "Ribs",
+              "dateModified": "2021-11-05T19:56:11Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_10_BAL_MIA",
+          "gameDate": "2021-11-11",
+          "season": 2021,
+          "team": "MIA",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0033119",
+          "scheduleStarterName": "Jacoby Brissett",
+          "injuries": [
+            {
+              "playerId": "00-0036212",
+              "status": "Questionable",
+              "injury": "left Finger",
+              "dateModified": "2021-11-10T20:47:53Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_11_MIA_NYJ",
+          "gameDate": "2021-11-21",
+          "season": 2021,
+          "team": "MIA",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": [
+            {
+              "playerId": "00-0033119",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-11-19T19:49:15Z"
+            },
+            {
+              "playerId": "00-0036212",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-11-19T19:49:15Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_12_CAR_MIA",
+          "gameDate": "2021-11-28",
+          "season": 2021,
+          "team": "MIA",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_13_NYG_MIA",
+          "gameDate": "2021-12-05",
+          "season": 2021,
+          "team": "MIA",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_15_NYJ_MIA",
+          "gameDate": "2021-12-19",
+          "season": 2021,
+          "team": "MIA",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_16_MIA_NO",
+          "gameDate": "2021-12-27",
+          "season": 2021,
+          "team": "MIA",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_17_MIA_TEN",
+          "gameDate": "2022-01-02",
+          "season": 2021,
+          "team": "MIA",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_18_NE_MIA",
+          "gameDate": "2022-01-09",
+          "season": 2021,
+          "team": "MIA",
+          "week": 18,
+          "completed": true,
+          "scheduleStarterId": "00-0036212",
+          "scheduleStarterName": "Tua Tagovailoa",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "team": "SEA",
+      "season": 2021,
+      "games": [
+        {
+          "gameId": "2021_01_SEA_IND",
+          "gameDate": "2021-09-12",
+          "season": 2021,
+          "team": "SEA",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": [
+            {
+              "playerId": "00-0030565",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-09-09T22:54:17Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_02_TEN_SEA",
+          "gameDate": "2021-09-19",
+          "season": 2021,
+          "team": "SEA",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_03_SEA_MIN",
+          "gameDate": "2021-09-26",
+          "season": 2021,
+          "team": "SEA",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_04_SEA_SF",
+          "gameDate": "2021-10-03",
+          "season": 2021,
+          "team": "SEA",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_05_LA_SEA",
+          "gameDate": "2021-10-07",
+          "season": 2021,
+          "team": "SEA",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_06_SEA_PIT",
+          "gameDate": "2021-10-17",
+          "season": 2021,
+          "team": "SEA",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0030565",
+          "scheduleStarterName": "Geno Smith",
+          "injuries": [
+            {
+              "playerId": "00-0029263",
+              "status": "Out",
+              "injury": "right Finger",
+              "dateModified": "2021-10-15T19:49:29Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_07_NO_SEA",
+          "gameDate": "2021-10-25",
+          "season": 2021,
+          "team": "SEA",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0030565",
+          "scheduleStarterName": "Geno Smith",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_08_JAX_SEA",
+          "gameDate": "2021-10-31",
+          "season": 2021,
+          "team": "SEA",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0030565",
+          "scheduleStarterName": "Geno Smith",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_10_SEA_GB",
+          "gameDate": "2021-11-14",
+          "season": 2021,
+          "team": "SEA",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_11_ARI_SEA",
+          "gameDate": "2021-11-21",
+          "season": 2021,
+          "team": "SEA",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": [
+            {
+              "playerId": "00-0029263",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-11-17T23:53:57Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_12_SEA_WAS",
+          "gameDate": "2021-11-29",
+          "season": 2021,
+          "team": "SEA",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": [
+            {
+              "playerId": "00-0030565",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-11-27T22:23:26Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_13_SF_SEA",
+          "gameDate": "2021-12-05",
+          "season": 2021,
+          "team": "SEA",
+          "week": 13,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_14_SEA_HOU",
+          "gameDate": "2021-12-12",
+          "season": 2021,
+          "team": "SEA",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_15_SEA_LA",
+          "gameDate": "2021-12-21",
+          "season": 2021,
+          "team": "SEA",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_16_CHI_SEA",
+          "gameDate": "2021-12-26",
+          "season": 2021,
+          "team": "SEA",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": [
+            {
+              "playerId": "00-0029263",
+              "status": "",
+              "injury": "",
+              "dateModified": "2021-12-23T23:56:10Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2021_17_DET_SEA",
+          "gameDate": "2022-01-02",
+          "season": 2021,
+          "team": "SEA",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        },
+        {
+          "gameId": "2021_18_SEA_ARI",
+          "gameDate": "2022-01-09",
+          "season": 2021,
+          "team": "SEA",
+          "week": 18,
+          "completed": true,
+          "scheduleStarterId": "00-0029263",
+          "scheduleStarterName": "Russell Wilson",
+          "injuries": []
+        }
+      ]
+    },
+    {
+      "team": "CAR",
+      "season": 2022,
+      "games": [
+        {
+          "gameId": "2022_01_CLE_CAR",
+          "gameDate": "2022-09-11",
+          "season": 2022,
+          "team": "CAR",
+          "week": 1,
+          "completed": true,
+          "scheduleStarterId": "00-0034855",
+          "scheduleStarterName": "Baker Mayfield",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_02_CAR_NYG",
+          "gameDate": "2022-09-18",
+          "season": 2022,
+          "team": "CAR",
+          "week": 2,
+          "completed": true,
+          "scheduleStarterId": "00-0034855",
+          "scheduleStarterName": "Baker Mayfield",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_03_NO_CAR",
+          "gameDate": "2022-09-25",
+          "season": 2022,
+          "team": "CAR",
+          "week": 3,
+          "completed": true,
+          "scheduleStarterId": "00-0034855",
+          "scheduleStarterName": "Baker Mayfield",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_04_ARI_CAR",
+          "gameDate": "2022-10-02",
+          "season": 2022,
+          "team": "CAR",
+          "week": 4,
+          "completed": true,
+          "scheduleStarterId": "00-0034855",
+          "scheduleStarterName": "Baker Mayfield",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_05_SF_CAR",
+          "gameDate": "2022-10-09",
+          "season": 2022,
+          "team": "CAR",
+          "week": 5,
+          "completed": true,
+          "scheduleStarterId": "00-0034855",
+          "scheduleStarterName": "Baker Mayfield",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_06_CAR_LA",
+          "gameDate": "2022-10-16",
+          "season": 2022,
+          "team": "CAR",
+          "week": 6,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": [
+            {
+              "playerId": "00-0034855",
+              "status": "Doubtful",
+              "injury": "Ankle",
+              "dateModified": "2022-10-14T16:46:20Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2022_07_TB_CAR",
+          "gameDate": "2022-10-23",
+          "season": 2022,
+          "team": "CAR",
+          "week": 7,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": [
+            {
+              "playerId": "00-0034855",
+              "status": "Doubtful",
+              "injury": "Ankle",
+              "dateModified": "2022-10-21T17:32:16Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2022_08_CAR_ATL",
+          "gameDate": "2022-10-30",
+          "season": 2022,
+          "team": "CAR",
+          "week": 8,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_09_CAR_CIN",
+          "gameDate": "2022-11-06",
+          "season": 2022,
+          "team": "CAR",
+          "week": 9,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_10_ATL_CAR",
+          "gameDate": "2022-11-10",
+          "season": 2022,
+          "team": "CAR",
+          "week": 10,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_11_CAR_BAL",
+          "gameDate": "2022-11-20",
+          "season": 2022,
+          "team": "CAR",
+          "week": 11,
+          "completed": true,
+          "scheduleStarterId": "00-0033275",
+          "scheduleStarterName": "Phillip Walker",
+          "injuries": [
+            {
+              "playerId": "00-0033275",
+              "status": "Out",
+              "injury": "Ankle",
+              "dateModified": "2022-11-18T17:40:28Z"
+            }
+          ],
+          "officialStarterId": "00-0034855",
+          "officialStarterEvidenceId": "panthers-2022-12-05-retrospective-account"
+        },
+        {
+          "gameId": "2022_12_DEN_CAR",
+          "gameDate": "2022-11-27",
+          "season": 2022,
+          "team": "CAR",
+          "week": 12,
+          "completed": true,
+          "scheduleStarterId": "00-0034869",
+          "scheduleStarterName": "Sam Darnold",
+          "injuries": [
+            {
+              "playerId": "00-0033275",
+              "status": "Doubtful",
+              "injury": "Ankle",
+              "dateModified": "2022-11-25T18:18:15Z"
+            }
+          ]
+        },
+        {
+          "gameId": "2022_14_CAR_SEA",
+          "gameDate": "2022-12-11",
+          "season": 2022,
+          "team": "CAR",
+          "week": 14,
+          "completed": true,
+          "scheduleStarterId": "00-0034869",
+          "scheduleStarterName": "Sam Darnold",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_15_PIT_CAR",
+          "gameDate": "2022-12-18",
+          "season": 2022,
+          "team": "CAR",
+          "week": 15,
+          "completed": true,
+          "scheduleStarterId": "00-0034869",
+          "scheduleStarterName": "Sam Darnold",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_16_DET_CAR",
+          "gameDate": "2022-12-24",
+          "season": 2022,
+          "team": "CAR",
+          "week": 16,
+          "completed": true,
+          "scheduleStarterId": "00-0034869",
+          "scheduleStarterName": "Sam Darnold",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_17_CAR_TB",
+          "gameDate": "2023-01-01",
+          "season": 2022,
+          "team": "CAR",
+          "week": 17,
+          "completed": true,
+          "scheduleStarterId": "00-0034869",
+          "scheduleStarterName": "Sam Darnold",
+          "injuries": []
+        },
+        {
+          "gameId": "2022_18_CAR_NO",
+          "gameDate": "2023-01-08",
+          "season": 2022,
+          "team": "CAR",
+          "week": 18,
+          "completed": true,
+          "scheduleStarterId": "00-0034869",
+          "scheduleStarterName": "Sam Darnold",
+          "injuries": []
+        }
+      ]
+    }
+  ]
+}

@@ -273,7 +273,7 @@ Post-return Brier change for each candidate, then with activation delayed until 
 | Detector-like, injury-aware, 2020-25 | 34 | +0.0008 | −0.0003 | −0.0006 | +0.0005 | −0.0005 |
 | Detector-like, participation-only | 212 | −0.0002 | −0.0003 | −0.0004 | −0.0000 | −0.0002 |
 
-**The detector-like population** emulates the Codex prototype rules at `e32ee2b`: season-scoped, REG games only, two-start tenure, a single Out row in the onset week, and same-season return. Of its 79 episodes, 64 are VERIFIED_MEDICAL in the primary ledger, 1 is ROLE_CHANGE and 14 are outside it. It cannot represent the 39 offseason returns, and 96 primary episodes are not detector injury-aware.
+**The detector-like population** was built from the Codex prototype rules at `e32ee2b`; targeted re-review independently matched all returned identities, support and taint flags against corrected `c765690` across 544 team/season streams. The rules remain: season-scoped, REG games only, two-start tenure, a single Out row in the onset week, and same-season return. Of its 79 episodes, 64 are VERIFIED_MEDICAL in the primary ledger, 1 is ROLE_CHANGE and 14 are outside it. It cannot represent the 39 offseason returns, and 96 primary episodes are not detector injury-aware.
 
 **On the stricter, production-like populations the benefit is near zero.** It also shrinks when activation waits for a completed return start, which is the earliest point the Codex lane considers verifiable.
 
@@ -380,11 +380,12 @@ The earlier conditional requirement still stands historically: *if* an automatic
 Internal research and debug machinery may still be kept if useful.
 
 The sequence is:
-1. retire the automatic correction;
-2. validate;
-3. owner accepts the retirement;
-4. revise the UX-19 plan for the no-automatic-correction state;
-5. separately authorize UX-19 implementation.
+1. separately authorize retirement/disablement of the automatic correction;
+2. implement that model change;
+3. independently validate against the accepted baseline/full-stack behaviour;
+4. owner accepts the retirement;
+5. revise the UX-19 plan for the no-automatic-correction state;
+6. separately authorize UX-19 implementation.
 
 ## 20. Limitations
 
@@ -416,10 +417,12 @@ The sequence is:
 ## 22. Active path and the retirement implementation contract
 
 **Active MD-03 path** (no step is complete; production behaviour is unchanged today):
-- **A.** Retire or disable the existing automatic QB-return correction, in a separately authorized implementation tranche.
-- **B.** Independently validate the resulting FORCE behaviour against the accepted baseline.
-- **C.** Obtain owner acceptance of that model change.
-- **D.** Revise the UX-19 removal plan for the no-automatic-correction state, then separately authorize UX-19 public-tool removal.
+- **A.** Separately authorize retirement/disablement of the existing automatic QB-return correction.
+- **B.** Implement that model change under the separate authorization.
+- **C.** Independently validate the resulting FORCE behaviour against the accepted baseline/full-stack behaviour.
+- **D.** Obtain owner acceptance of the retirement implementation.
+- **E.** Revise the UX-19 removal plan for the no-automatic-correction state.
+- **F.** Separately authorize UX-19 public-tool removal.
 
 **What the retirement tranche must determine and test** (these questions are not answered here):
 - every production path through which the automatic correction enters FORCE;

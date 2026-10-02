@@ -75,6 +75,25 @@
       "reason": "Baseline audit: game report missing: Luck, penalties, and market"
     },
     {
+      "file": "test_md03_qb_events.mjs",
+      "suites": [
+        "safe",
+        "qb",
+        "model"
+      ],
+      "classification": "regression",
+      "reason": "Offline MD-03 research contract and pinned historical replay; never permits production correction"
+    },
+    {
+      "file": "test_md03_qb_model_research.py",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression",
+      "timeoutMs": 60000
+    },
+    {
       "file": "test_postseason_state_audit.mjs",
       "suites": [
         "safe",
@@ -1847,15 +1866,6 @@
         "model"
       ],
       "classification": "regression"
-    },
-    {
-      "file": "test_md03_qb_model_research.py",
-      "suites": [
-        "safe",
-        "model"
-      ],
-      "classification": "regression",
-      "timeoutMs": 60000
     }
   ]
 }

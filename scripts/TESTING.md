@@ -18,12 +18,12 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 142 tests: 109 JavaScript and 33 Python |
+| `npm test` / `npm run test:safe` | 143 tests: 110 JavaScript and 33 Python |
 | `npm run test:release` | 17 release/correctness tests |
-| `npm run test:qb` | 26 QB/pressure regressions |
+| `npm run test:qb` | 27 QB/pressure/research regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
-| `npm run test:model` | 47 model/unit regressions |
+| `npm run test:model` | 48 model/unit/research regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
 
@@ -314,10 +314,123 @@ the B0/B2 separation, population-sensitivity coverage and that cluster-bootstrap
 point estimates equal the headline unique-game Brier. It touches no production
 code. `research/md03/build_cohort.py` defaults to PINNED REPRODUCTION; SOURCE
 REFRESH (`--refresh-sources`) is the only mode that rewrites the manifest.
-Catalog 254 entries: safe 142 (109 JavaScript / 33 Python), model 47, release 17,
+Standalone Claude lane record before integration: catalog 254 entries, safe 142 (109 JavaScript / 33 Python), model 47, release 17,
 QB 26, snapshot 6, server 30, 112 default exclusions unchanged. Authoritative LF export of the corrected
 version passed safe 142/142, model 47/47, release 17/17, QB 26/26, snapshot 6/6
 and server 30/30, plus the focused MD-03, V33, V45, V69, V149 propagation, QB
 correctness and V30 gate tests (8/8). A full pinned rebuild reproduced every
 ledger and result byte for byte, a tampered raw input was rejected before any
 write, and the canonical public build left generated files unchanged.
+
+## Cycle 5 MD-03 offline event research
+
+`node scripts/audit_md03_qb_events.mjs` replays the frozen local sample without
+network calls, production imports or file writes. `test_md03_qb_events.mjs` is
+cataloged in safe / QB / model; the standalone Codex lane had catalog 254, safe 142 (110 JS / 32 Python),
+model 47, QB 27; release 17, snapshot 6, server 30 and 112 exclusions unchanged.
+The 12-window sample and synthetic contracts exercise starter conflicts, byes,
+repeated episodes, role/transaction disqualifiers, unknown evidence, retraction
+and all-team symmetry. Every output denies production correction.
+`research/md03_build_sample.py SOURCE_DIRECTORY OUTPUT.json` reproduces the
+fixture from local source files matching its frozen manifest, without fetching
+or adopting a feed. See [investigation](../MD03_QB_EVENT_DETECTION_INVESTIGATION.md).
+
+Authoritative LF export passed safe 142/142, model 47/47, release 17/17 and
+QB 27/27. Focused MD-03 passed natively and in LF export; JS/MJS syntax,
+Python AST, fixture parsing, catalog/inventory, diff check and local document
+links passed. All 35 authoritative roadmap IDs remain unchanged and unique.
+Two diagnostic CLI runs were byte-identical; the local source-file rebuild
+matched the frozen fixture. The canonical public build in scratch reproduced
+generated output unchanged, and validation preserved all source-worktree
+status/hashes. Snapshot/server selections stay 6/30; those suites were not
+rerun for this research-only change.
+
+
+## Cycle 5 MD-03 detector cross-review corrections
+
+Historical standalone Codex follow-up to `e32ee2b`, still research-only. Its lane counts remained:
+254 catalog, safe 142 (110 JS / 32 Python), model 47, QB 27, release 17,
+snapshot 6, server 30 and 112 default exclusions. The schema-2 fixture names
+incumbent/onset/window/return/cause targets and crop reasons, and adds nine
+uncropped regular-season streams from the same 14 frozen inputs. The CLI scores
+only those targets and retains every competing event. Cropped counts remain
+injury-aware 6 TP / 0 FP / 2 FN / 2 TN and cause-free 8 TP / 2 FP / 0 FN / 0 TN;
+full-season cause-free changes to 7 TP / 2 FP / 1 FN / 0 TN because Tua's thumb
+target is not established under the earlier Fitzpatrick anchor. Both views
+have two open/ambiguous cases; none is population accuracy.
+
+Focused regression adds one-start tenure rejection, explicit
+`CROSS_SEASON_UNSUPPORTED`, `RETURN_IDENTITY_ONLY` semantics, tainted/nested/
+conflicting-return abstention, exact target/window/return matching, competing-
+episode non-credit and recursive denial of production authorization. Mutation
+probes kill one-start establishment, tainted qualification, identity-name
+overclaim, hidden cross-season reason and any-episode scoring. Broadening
+onset support for duplicate injury rows remains candidate-equivalent because
+the separate duplicate guard still taints and abstains; no artificial behavior
+was added. Fixture rebuilding remains local/hash-checked; no source is adopted.
+
+Authoritative LF validation passed: inventory/catalog 254; safe 142/142;
+model 47/47; release 17/17; QB 27/27; snapshot 6/6; server 30/30; focused
+MD-03 regression 1/1. All three changed JS/MJS files passed `node --check`,
+and the builder passed Python AST syntax validation. Two independent local
+fixture rebuilds were byte-identical to the committed fixture; rebuilt and
+committed evaluations matched, with cropped/full-season counts above. All
+14 pinned source hashes/sizes validated; a tampered source was rejected before
+output. Repeated diagnostic output was byte-identical. Mutation probes gave
+five kills and the documented candidate-equivalent survivor. All 35 roadmap
+IDs remained unique/unchanged and local roadmap references resolved. Canonical
+public build/parity and `git diff --check` passed; generated output and source
+worktree status/hashes were unchanged by validation.
+
+## Cycle 5 integration candidate (2026-10-02)
+
+`cycle5/integration` from exact `bd15a2c` preserves complete Claude
+`0a6dcb8` → `4b1759b` → `609cddf` → `a60dffa` and Codex `e32ee2b` →
+`c765690` histories. The current combined catalog has 255 entries: safe 143
+(110 JavaScript / 33 Python), model 48, QB 27, release 17, snapshot 6, server
+30 and 112 default exclusions. Both new entries are retained in normal sorted
+positions; the model regression retains its 60-second timeout. The earlier
+lane counts above are historical, not current integrated selections.
+
+Offline research reproduction (explicit local inputs; no source refresh):
+
+```text
+python -B research/md03/build_cohort.py --cache MODEL_SOURCE_DIRECTORY
+python -B research/md03/evaluate.py --write
+python -B research/md03/celo_prior_harness.py --write
+python -B research/md03/v33_original_evidence_audit.py --write
+python -B research/md03/classification_migration.py OLD_REVIEWED_LEDGER.json --write
+python -B research/md03_build_sample.py DETECTOR_SOURCE_DIRECTORY OUTPUT.json
+node scripts/audit_md03_qb_events.mjs
+node scripts/run_tests.mjs --test test_md03_qb_model_research.py
+node scripts/run_tests.mjs --test test_md03_qb_events.mjs
+```
+
+The model rebuild validates 62 frozen raw inputs before writing, while the
+detector builder validates 14. Source refresh is a separate deliberate evidence
+version. Research rebuilding belongs in scratch when preserving a worktree.
+The owner chose retirement/Null as product direction; production correction
+remains active until separately authorized implementation, independent
+validation and owner acceptance. UX-19 remains planned, unauthorized and
+blocked; its later plan revision is not performed here.
+
+Authoritative LF validation passed: catalog/inventory 255; safe 143/143,
+model 48/48, release 17/17, QB 27/27, snapshot 6/6 and server 30/30.
+Both MD-03 regressions plus active V30, V33, V45 freshness/unit-bridge,
+V69, V149 QB and QB correctness selections passed 11/11. All seven new
+Python files passed AST syntax checks; all three detector JS/MJS files
+passed node syntax checks. Two pinned rebuilds reproduced all nine model
+ledger/manifest/result outputs and the detector fixture byte for byte.
+All 62 model and 14 detector input hashes/sizes matched; same-size tampering
+was rejected before output writes in both builders. Repeated detector CLI
+output was byte-identical. No source refresh occurred.
+
+Canonical public build/parity and diff checks passed. All 35 authoritative
+IDs remain unique/unchanged, 169 local documentation links resolve, and
+unrelated roadmap items/governance remain unchanged from reviewed Claude.
+All 27 integrated paths are research, documentation or test tooling; all
+production Git blobs and native baseline checkout bytes remain unchanged
+from bd15a2c. Main and both lane worktrees retained their status/file hashes.
+This is a local integration candidate, pending independent final integration
+review; not merged to main, pushed or deployed. Retirement and UX-19
+implementation remain separately unauthorized.
