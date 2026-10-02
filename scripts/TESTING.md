@@ -382,7 +382,7 @@ IDs remained unique/unchanged and local roadmap references resolved. Canonical
 public build/parity and `git diff --check` passed; generated output and source
 worktree status/hashes were unchanged by validation.
 
-## Cycle 5 integration candidate (2026-10-02)
+## Cycle 5 integration / local-main closeout (2026-10-02)
 
 `cycle5/integration` from exact `bd15a2c` preserves complete Claude
 `0a6dcb8` → `4b1759b` → `609cddf` → `a60dffa` and Codex `e32ee2b` →
@@ -425,12 +425,16 @@ All 62 model and 14 detector input hashes/sizes matched; same-size tampering
 was rejected before output writes in both builders. Repeated detector CLI
 output was byte-identical. No source refresh occurred.
 
-Canonical public build/parity and diff checks passed. All 35 authoritative
+Integration-stage checks before the local-main merge: canonical public build/parity
+and diff checks passed. All 35 authoritative
 IDs remain unique/unchanged, 169 local documentation links resolve, and
 unrelated roadmap items/governance remain unchanged from reviewed Claude.
 All 27 integrated paths are research, documentation or test tooling; all
 production Git blobs and native baseline checkout bytes remain unchanged
 from bd15a2c. Main and both lane worktrees retained their status/file hashes.
-This is a local integration candidate, pending independent final integration
-review; not merged to main, pushed or deployed. Retirement and UX-19
-implementation remain separately unauthorized.
+Final independent review accepted A. READY TO MERGE TO MAIN. Local `main`
+was fast-forwarded from exact `bd15a2c` to reviewed integration `966828e`,
+preserving both complete lane histories. `origin/main` remains at `bd15a2c`;
+no push or deployment occurred. Closeout changes only merge/review status
+and history; retirement and UX-19 implementation remain separately
+unauthorized. The existing automatic correction remains active.
