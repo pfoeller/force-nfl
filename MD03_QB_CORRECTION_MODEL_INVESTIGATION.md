@@ -1,9 +1,13 @@
 # MD-03 QB-return correction: model investigation
 
-Roadmap item: `MD-03` (league-wide automatic QB-return correction), prerequisite for `UX-19` public removal.
+Roadmap item: `MD-03` (automatic QB-return correction). The owner decided on 2026-10-02 to retire the correction rather than generalize it; retirement is planned, not implemented, and remains the prerequisite for `UX-19` public removal.
 Lane: Cycle 5 model investigation, branch `cycle5/claude-md03-model`, base `bd15a2c682c0dd8c836ecfd42e615a31741988c7`. First version `0a6dcb8` (2026-10-02). **This version corrects it after Codex's independent cross-review (verdict C, findings F1-F9) and Claude's cross-review of the Codex detection lane.**
 
-**Research only.** No production model, rating, data feed, source ingestion, public tool or generated file changed. No candidate is selected and the predictive-feature policy is **not** passed. Event detection and source architecture belong to the Codex lane; free historical files are used here only as research evidence.
+**OWNER DECISION (2026-10-02): retire the current automatic QB-return correction rather than proceed with a generalized production replacement.** The owner judged that the remaining historical signal is too small and too population-sensitive relative to the unresolved detector, source, full-stack interaction and maintenance burden. This is a product and model-complexity judgment under uncertainty. It is **not** a finding that the research proved the effect is zero, and Null did not statistically "win". The owner may reconsider the concept if stronger evidence or cleaner data become available.
+
+The decision authorizes **planning** for retirement only. Nothing has been retired yet: production behaviour is unchanged until a separately authorized and validated implementation tranche (section 19).
+
+**This document is now retained research evidence.** It explains the retirement decision and supports any future reconsideration. Recording the decision changed no production model, rating, data feed, source ingestion, public tool or generated file. Candidates A, B0 and B2 are **not selected for current production**; they are not rejected permanently. The predictive-feature policy was **not** passed. Event detection and source architecture belong to the Codex lane; free historical files are used here only as research evidence.
 
 Reproduction: [research/md03/README.md](research/md03/README.md). Results: [md03_results.json](research/md03/results/md03_results.json), [classification_migration.json](research/md03/results/classification_migration.json), [v33_original_evidence_audit.json](research/md03/results/v33_original_evidence_audit.json), [celo_prior_harness.json](research/md03/results/celo_prior_harness.json).
 
@@ -18,8 +22,8 @@ Reproduction: [research/md03/README.md](research/md03/README.md). Results: [md03
   - On a population built with the Codex prototype's detection rules it is **about zero**: A +0.0005, B0 −0.0002.
 - **The 160-episode result must not be read as the effect the eventual production detector would deliver.**
 - **No incremental production effect is established.** Every number here compares a corrected and an uncorrected core-only Elo replay. The production FORCE forecast adds the V99 continuity layer (through Week 11), the unit-to-FORCE bridge, the V98 look-behind, a Celo/QB-aware season prior and a week-dependent market blend. The marginal production effect is **UNTESTED**: those layers may attenuate, reinforce or reverse the core-only effect.
-- **Candidate B0** (quality-gated damage, training-selected) is a research candidate eligible for further investigation. Production eligibility is not established. B2 (B0 plus a minimum of two missed starts) is post-hoc.
-- **No automatic correction remains a valid outcome.** If the owner chooses it, the existing governance path still applies (section 19).
+- **Candidate B0** (quality-gated damage, training-selected) was the best-supported research candidate. Production eligibility was never established. B2 (B0 plus a minimum of two missed starts) is post-hoc. **Neither, nor A, is selected for current production.**
+- **Owner decision:** retire the automatic correction (Null for the current product direction). The governance path is in section 19.
 
 ## 2. Baseline
 
@@ -241,7 +245,7 @@ Historical stored forecasts (`gameHistory`) include core plus V99, not the QB co
 
 **The marginal production effect is UNTESTED.** These layers may attenuate, reinforce or reverse the core-only effect. Nothing here is an upper bound.
 
-**Full-stack validation is a technical evidence requirement, not an owner vote.** Before any candidate can be accepted for production, it must be evaluated with all of the following against the real incumbent FORCE forecast:
+**Full-stack validation is a technical evidence requirement, not an owner vote.** Under the owner's retirement decision this applies only to a future reconsideration. Before any candidate can be accepted for production, it must be evaluated with all of the following against the real incumbent FORCE forecast:
 - the eventual production detector;
 - actual activation timing;
 - the exact selected contract;
@@ -329,7 +333,7 @@ KC scale check: V33 +15.75. B0 would give +26.5 on the replay's damage if its ga
 
 ## 18. Predictive-feature policy (F2)
 
-Candidate B0 has **not** passed the policy. It is a research candidate eligible for further investigation.
+Candidate B0 has **not** passed the policy. It was a research candidate eligible for further investigation; under the owner's retirement decision it is not selected for current production.
 
 | Gate ([policy](PREDICTIVE_FEATURE_POLICY_V30.md)) | A | B0 | B2 |
 | --- | --- | --- | --- |
@@ -343,7 +347,7 @@ Production eligibility is not established. Still missing:
 - prospective detector and source timing;
 - the B0 contract's own unvalidated pieces (quality-gate thresholds, decay choice, minimum absence, cause scope).
 
-## 19. Candidate contracts (none selected) and the null option
+## 19. Candidate contracts (not selected for current production) and the retirement path
 
 | | Null | A | B0 | B2 (post-hoc) |
 | --- | --- | --- | --- | --- |
@@ -355,12 +359,32 @@ Production eligibility is not established. Still missing:
 | Repeated | n/a | ends when the starter leaves; fresh window | same | same |
 | Overlay | n/a | display off after post-return measurement; disclosures follow Elo | same | same |
 
-**Null and UX-19 governance (F7).** Choosing Null would **not** automatically satisfy UX-19's existing MD-03 prerequisite. It would need:
-- an explicit owner revision or acceptance of the prerequisite path;
-- removing or disabling the current automatic correction, which is itself a separately authorized model change requiring validation;
-- separate authorization for UX-19 public removal.
+All three candidates are retained research evidence, **not selected for current production**.
 
-This document does not rewrite Cycle 4 governance.
+**Null / retirement governance (owner decision 2026-10-02).** The owner has explicitly revised the MD-03 prerequisite path and chosen to retire the automatic correction.
+- **What the decision authorizes:** PLANNING for retirement of the current automatic correction only. It does **not** authorize production edits.
+- **Retirement work:** removing or disabling the current automatic correction (the KC/V33 preset path and its consumers) needs a separately authorized implementation tranche.
+- **Validation:** that model change needs regression and full-stack validation (section 22), followed by owner acceptance.
+- **UX-19:** public-tool removal stays a separate, later authorization. Retiring the automatic correction and removing the public manual tool must not be collapsed into one unreviewed change.
+
+The earlier conditional requirement still stands historically: *if* an automatic correction is retained, it must be league-wide and support qualifying midseason and offseason cases. It no longer directs current work, because the feature is not being retained.
+
+**UX-19 consequence.** The Cycle 4 UX-19 removal plan assumed an automatic correction would remain, so it needs a bounded revision before UX-19 implementation. Once the automatic correction is retired, these retained-feature concepts need reassessment rather than automatic KEEP/REWORD:
+- the automatic QB-return correction chip;
+- base-projection correction context;
+- the matchup active-correction disclosure;
+- unit correction notes and tooltips;
+- Method copy describing an active automatic correction;
+- the O1, O2 and O3 disclosure decisions that presumed retained automatic behaviour.
+
+Internal research and debug machinery may still be kept if useful.
+
+The sequence is:
+1. retire the automatic correction;
+2. validate;
+3. owner accepts the retirement;
+4. revise the UX-19 plan for the no-automatic-correction state;
+5. separately authorize UX-19 implementation.
 
 ## 20. Limitations
 
@@ -372,15 +396,52 @@ This document does not rewrite Cycle 4 governance.
 - **Held-out reuse:** the held-out seasons were inspected before this correction.
 - **Data rights:** the committed ledgers hold derived nflverse facts (nflverse-data CC BY 4.0; `nflverse/nfldata` has no license file).
 
-## 21. Owner decisions needed (later, on corrected evidence)
+## 21. Owner decisions: closed and remaining
 
-1. Keep a correction, or Null (with the section 19 governance path).
-2. If kept, A, B0 or a successor, after full-stack validation.
-3. Injury scope: strict medical, probable or broader.
-4. Minimum absence, return verification, activation delay and decay range.
-5. How a retained correction should satisfy the offseason/cross-season capability that MD-03 already requires. The accepted MD-03 requirement includes a known offseason-return acceptance case, so any retained automatic correction needs a validated way to carry starter continuity across a season boundary. The owner may decide how that is satisfied; this investigation selects no mechanism, source or algorithm. Narrowing MD-03 to exclude offseason or cross-season cases would require an explicit owner revision of the accepted requirement. The Codex prototype remains within-season only and does not yet provide this capability, while offseason returns carry most of the historical signal in the core-only replay.
-6. Ledger storage and attribution.
+**Closed for the current direction (owner decision 2026-10-02):**
+- **Retain a correction or Null:** retire the automatic correction (Null for current production).
+- **A, B0 or B2:** none selected for current production. The research results are preserved, not rejected permanently.
+- **Cross-season support for a retained feature:** not pursued.
+  - Under the retained-feature path, the accepted MD-03 requirement needed a validated offseason/cross-season capability, because its acceptance cases include a known offseason return.
+  - The Codex prototype remains within-season only.
+  - Because the owner selected Null, current implementation work will not build the missing cross-season detector.
+  - If FORCE later revisits an automatic correction, the league-wide, offseason and midseason requirement returns unless the owner explicitly revises it.
 
-## 22. Recommended next step
+**Remaining governance matters** (owner or project governance, not technical votes):
+1. **Research ledgers and source rights:** keep the derived nflverse ledgers in the repository with attribution, or keep only hashes and scripts.
+2. **Future reconsideration:** what evidence would justify reopening the concept. At minimum it needs new owner authorization, a prospective detector and sources, and fresh validation against then-current production FORCE. The cause-scope, minimum-absence, decay and activation questions in sections 10-15 are unresolved.
 
-Combine this corrected evidence with the Codex detection lane into one cross-lane question set for the owner. Then define a full-stack historical evaluation harness that replays production FORCE layers with candidate overlays, as a separately authorized research step. UX-19 stays blocked.
+**Technical matters for the retirement tranche** (resolved by its design and validation, not by owner vote): see section 22.
+
+## 22. Active path and the retirement implementation contract
+
+**Active MD-03 path** (no step is complete; production behaviour is unchanged today):
+- **A.** Retire or disable the existing automatic QB-return correction, in a separately authorized implementation tranche.
+- **B.** Independently validate the resulting FORCE behaviour against the accepted baseline.
+- **C.** Obtain owner acceptance of that model change.
+- **D.** Revise the UX-19 removal plan for the no-automatic-correction state, then separately authorize UX-19 public-tool removal.
+
+**What the retirement tranche must determine and test** (these questions are not answered here):
+- every production path through which the automatic correction enters FORCE;
+- current and future rating paths (`effectiveQbCorrection`, `ratingsWithActiveQBCarryover`);
+- historical and canonical state paths (`canonicalGameTeamState`, week-2 entry states);
+- the team-page forecast path (`ratingsWithQBCarryover`);
+- matchup, rankings and playoff projections;
+- QB unit and display-overlay implications (`qbCarryoverUnitEffect`, `currentTeamState._qbScenario`, suppression);
+- rating ledger and debug paths;
+- the V33, V45, V69 and V149 test contracts affected;
+- whether disabling the correction requires changing or retiring the `qbCarryover` predictive-feature gate;
+- whether historical reconstruction keeps the historical QB-correction behaviour or applies the Null state prospectively only;
+- whether any persisted or public state assumes the automatic correction exists.
+
+**Acceptance contract for the retirement change.** The implementation must demonstrate that:
+- the automatic correction contributes exactly zero to current and future production forecasts;
+- no stale preset can reactivate it;
+- no automatic unit overlay is created from it;
+- no correction is silently kept on one route but removed on another;
+- non-QB-return FORCE behaviour is unchanged;
+- the historical-behaviour policy is explicit;
+- canonical forecast and test suites stay green;
+- UX-19 surfaces are untouched until separately authorized.
+
+This is a future acceptance contract, not current execution. The full-stack evaluation harness for candidate corrections (section 12) is not part of the current path; it would be needed only if the concept is reconsidered.
