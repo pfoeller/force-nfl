@@ -38,6 +38,14 @@
       "reason": "Baseline audit: penalty rankings missing Penalty impact"
     },
     {
+      "file": "test_flag_penalty_values.mjs",
+      "suites": [
+        "safe",
+        "release"
+      ],
+      "classification": "regression"
+    },
+    {
       "file": "test_force_brand.js",
       "suites": [
         "safe"

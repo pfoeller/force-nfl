@@ -3187,6 +3187,12 @@
   }
 
 
+  // FLAG EPA/WPA displays must preserve missing evidence before signed() or
+  // percentage conversion can coerce null to a measured zero.
+  function signedPenaltyImpact(n, d, suffix = '', scale = 1) {
+    return typeof n === 'number' && Number.isFinite(n) ? signed(n * scale, d, suffix) : '-';
+  }
+
   // V62 unified contextual FORCE-style scores. These are display diagnostics,
   // not predictive inputs. 50 is neutral; >50 favorable; <50 unfavorable.
   function contextScore(raw, scale, softness = 2) {
@@ -3297,7 +3303,7 @@
     ` + `</div>`;
     if (S.ratingView === 'penalties') return `<div class="grid three diagnostic-grid">
       <div class="card kpi flag-hero-card"><div class="flag-brandline"><span class="flag-word">FLAG</span><span>Flag Leverage &amp; Advantage Gauge</span></div><div class="value ${flagScoreClass(penaltyContextScore(pen))}">${pen.unavailable?'-':penaltyScoreText(penaltyContextScore(pen))}</div>${pen.unavailable?'':flagGauge(penaltyContextScore(pen))}<div class="sub">${pen.unavailable?'Current FLAG data unavailable.':`${flagScoreLabel(penaltyContextScore(pen))} · higher = more benefit from penalties actually called · 50 neutral`}</div></div>
-      <div class="card kpi"><div class="label">PENALTY EFFECT ON GAME VALUE</div><div class="value ${Number(pen.net_penalty_epa_per_game ?? pen.net_pen_epa) >= 0 ? 'positive' : 'negative'}">${pen.live ? `${signed(pen.net_penalty_epa_per_game,2)} expected points/game | ${signed(Number(pen.net_penalty_wpa_per_game)*100,1,' win-chance points/game')}` : '-'}</div><div class="sub">How much the called penalties changed expected scoring and win probability for this team, on average per game.</div></div>
+      <div class="card kpi"><div class="label">PENALTY EFFECT ON GAME VALUE</div><div class="value ${Number.isFinite(pen.net_penalty_epa_per_game) ? (pen.net_penalty_epa_per_game >= 0 ? 'positive' : 'negative') : ''}">${pen.live ? `${signedPenaltyImpact(pen.net_penalty_epa_per_game,2)} expected points/game | ${signedPenaltyImpact(pen.net_penalty_wpa_per_game,1,' win-chance points/game',100)}` : '-'}</div><div class="sub">How much the called penalties changed expected scoring and win probability for this team, on average per game.</div></div>
       <div class="card kpi"><div class="label">FIRST DOWNS VIA PENALTY</div><div class="value" style="font-size:25px">${pen.live ? `${pen.first_downs_via_penalty_for ?? '-'} / ${pen.first_downs_via_penalty_against ?? '-'}` : '-'}</div><div class="sub">First number is gained, second is allowed. Net: ${pen.live ? signed(pen.net_first_downs_via_penalty,0) : '-'}.</div></div>
       <div class="card kpi"><div class="label">TOUCHDOWNS ERASED BY PENALTY</div><div class="value" style="font-size:25px">${pen.live ? `${pen.tds_negated_benefit ?? '-'} / ${pen.tds_negated_harm ?? '-'}` : '-'}</div><div class="sub">First number is opponent touchdowns erased, second is this team's touchdowns erased. Net: ${pen.live ? signed(pen.net_tds_negated,0) : '-'}.</div></div>
       <div class="card kpi"><div class="label">TURNOVERS ERASED BY PENALTY</div><div class="value" style="font-size:25px">${pen.live ? `${pen.turnovers_negated_benefit ?? '-'} / ${pen.turnovers_negated_harm ?? '-'}` : '-'}</div><div class="sub">First number helped this team, second hurt it. Net: ${pen.live ? signed(pen.net_turnovers_negated,0) : '-'}.</div></div>
@@ -3383,7 +3389,7 @@
       const luckLead=`<td>${displayRank}</td><td><button class="team-link" data-team="${r.team}">${teamIdentity(r.team,{size:'xs'})}</button></td><td class="rating-cell"><b class="score">${fmt(score(r.liveElo))}</b>${ratingBar(r.liveElo)}</td>`;
       return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${luckLead}<td>${actualRecord}</td><td>${expectedRecord}</td><td class="${contextScoreClass(ls)}">${contextScoreText(ls)}</td></tr>`;
     }
-    if (S.ratingView === 'penalties') { const ps=penaltyContextScore(pen); return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${lead}<td class="flag-table-cell">${pen.unavailable?'-':`<b class="${flagScoreClass(ps)}">${penaltyScoreText(ps)}</b>${flagGauge(ps,true)}<small>${flagScoreLabel(ps)}</small>`}</td><td>${pen.live && !pen.unavailable ? `${signed(pen.net_penalty_epa_per_game,2,' EPA/g')} · ${signed(Number(pen.net_penalty_wpa_per_game)*100,1,' WPA pp/g')}` : '-'}</td><td>${pen.live ? signed(pen.net_first_downs_via_penalty,0) : '-'}</td><td>${pen.live ? signed(pen.net_tds_negated,0) : '-'}</td><td>${pen.pen_count_for ?? '-'} / ${pen.pen_count_against ?? '-'}</td><td>${pen.penalty_context_games ?? '-'}</td>${action}</tr>`; }
+    if (S.ratingView === 'penalties') { const ps=penaltyContextScore(pen); return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${lead}<td class="flag-table-cell">${pen.unavailable?'-':`<b class="${flagScoreClass(ps)}">${penaltyScoreText(ps)}</b>${flagGauge(ps,true)}<small>${flagScoreLabel(ps)}</small>`}</td><td>${pen.live && !pen.unavailable ? `${signedPenaltyImpact(pen.net_penalty_epa_per_game,2,' EPA/g')} · ${signedPenaltyImpact(pen.net_penalty_wpa_per_game,1,' WPA pp/g',100)}` : '-'}</td><td>${pen.live ? signed(pen.net_first_downs_via_penalty,0) : '-'}</td><td>${pen.live ? signed(pen.net_tds_negated,0) : '-'}</td><td>${pen.pen_count_for ?? '-'} / ${pen.pen_count_against ?? '-'}</td><td>${pen.penalty_context_games ?? '-'}</td>${action}</tr>`; }
     if (S.ratingView === 'units') {
       const unitLead = `<td>${displayRank}</td><td><button class="team-link" data-team="${r.team}">${teamIdentity(r.team, { size: 'xs' })}</button></td><td class="rating-cell"><b class="score ${bandClass(score(r.liveElo))}">${fmt(score(r.liveElo))}</b></td>`;
       return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${unitLead}${rawUnitCell(pr,'offenseComposite')}${rawUnitCell(pr,'defenseIndex')}${rawUnitCell(pr,'qbIndex')}${rawUnitCell(pr,'olIndex')}${rawUnitCell(pr,'passRushIndex')}${rawUnitCell(pr,'runDefenseIndex')}${rawUnitCell(pr,'coverageIndex')}${rawUnitCell(pr,'rbIndex')}${rawUnitCell(pr,'receiverIndex')}</tr>`;

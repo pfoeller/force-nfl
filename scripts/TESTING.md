@@ -18,8 +18,8 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 138 tests: 106 JavaScript and 32 Python |
-| `npm run test:release` | 16 release/correctness tests |
+| `npm test` / `npm run test:safe` | 139 tests: 107 JavaScript and 32 Python |
+| `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 26 QB/pressure regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
@@ -34,7 +34,7 @@ generated files unchanged. Use LF scratch for the known Windows CRLF-sensitive
 `test_v77_game_flow_blend.js` timing-source assertion; no production rewrite is
 needed for that line-ending issue.
 
-Cycle 2 integration verification (2026-10-02, `cycle2/integration`): catalog
+Pure Cycle 2 integration verification (2026-10-02, `cycle2/integration @ ce8fba6`): catalog
 validation found 250 entries, 138 safe (106 JavaScript / 32 Python) and 112
 default exclusions. Authoritative LF scratch passed safe 138/138, model 45/45,
 release 16/16, QB 26/26, snapshot 6/6 and server 30/30; both focused regressions
@@ -47,17 +47,32 @@ Desktop 1440×900 and mobile 375×812 smoke comparisons against reviewed Claude
 states; the pre-existing 397px stale-header mobile overflow remains deferred.
 This is review evidence, not merge-to-main, follow-on-work or deployment authority.
 
-The integration commit is withheld on the required missing-input semantic gate:
-the full-schedule synthetic fixture's BUF FLAG panel has `pen.live === true`,
-`pen.unavailable === true` and null penalty EPA/WPA inputs, yet renders
+The initial integration was withheld on the required missing-input semantic gate:
+the full-schedule synthetic fixture's BUF FLAG panel had `pen.live === true`,
+`pen.unavailable === true` and null penalty EPA/WPA inputs, yet rendered
 `0.00 expected points/game | 0.0 win-chance points/game`. Reproduced through
 `projectionAuditHarness(projectionSemanticsFixture({fullSchedule:true}))`, setting
 `S.ratingView = 'penalties'` and calling `teamPage('BUF')`, on both exact shared
-base `e7f0895` and the integrated tree. The unchanged `signed()` formatter coerces
-null to zero, and this secondary FLAG card guards `pen.live` alone. Existing
-automated suites pass but do not certify this broader invariant. Production
-correction is outside this integration-only assignment; no fix or follow-on
-authority is introduced here.
+base `e7f0895` and the pure integration tree. The unguarded `signed()` call coerced
+null to zero, and this secondary FLAG card guarded `pen.live` alone. Original
+automated suites passed but did not certify this broader invariant. The owner
+then explicitly authorized recording pure integration commit `ce8fba6`, followed
+by a separate bounded FLAG EPA/WPA presentation correction.
+
+Bounded FLAG correction verification (2026-10-02): catalog 251, safe 139
+(107 JavaScript / 32 Python), with 112 default exclusions. Authoritative LF
+scratch passed safe 139/139, model 45/45, release 17/17, QB 26/26, snapshot 6/6
+and server 30/30, plus separate FLAG, projection-semantics and UX-14 focused
+regressions. Native results matched except safe 138/139: only the known V77 CRLF
+timing-source assertion failed. The new FLAG regression detects the original
+defect at pure integration `ce8fba6`; 18 paired/mixed-value cases cover both
+renderers and unchanged current ratings. All nine changed integration/correction
+JS/MJS files passed syntax checks; public-build Python syntax and diff checks
+passed. Two full synthetic diagnostic outputs were byte-identical. Canonical
+public generation changed only the app mirror; all 33 generated files match
+their sources. Desktop/mobile FLAG smoke passed 12 cases with no page overflow
+or browser errors. This verification does not authorize main merge, deployment,
+unrelated defect corrections or another roadmap tranche.
 
 Selections overlap. Requirements are Node.js, Git and Python 3.10+; the safe
 suite uses standard-library Python only. Set `FORCE_TEST_PYTHON` to an executable
@@ -89,9 +104,10 @@ to report the complete selected result.
 
 ## Excluded and special tests
 
-The catalog has 250 entries including the runner, QB correctness, Customize audit,
-projection semantics audit, semantic migration, UX-14 public-explanation and
-UX-16 public-positioning regressions. Its 112 default exclusions remain visible in `test_catalog.json`;
+The catalog has 251 entries including the runner, QB correctness, Customize audit,
+FLAG penalty-value, projection semantics audit, semantic migration, UX-14
+public-explanation and UX-16 public-positioning regressions. Its 112 default
+exclusions remain visible in `test_catalog.json`;
 exclusion does not mean pass.
 102 retain failing historical assertions/fixtures. The remaining 10 are:
 
@@ -149,3 +165,11 @@ Run either focused regression through `node scripts/run_tests.mjs --test` follow
 by its filename. The [public explanation inventory](../UX14_PUBLIC_EXPLANATION_INVENTORY.md)
 records tranche A and its deferred gates; the regression does not authorize the
 remaining content tranche.
+
+Integration-discovered FLAG correctness coverage: `test_flag_penalty_values.mjs`
+is selected by safe/release. It exercises the real team card and adjacent rankings
+EPA/WPA cell with null, undefined, NaN and both infinities, mixed available/missing
+inputs, measured zeroes and positive/negative finite values. It also checks existing
+non-live/unavailable guards and unchanged FORCE ratings. Run it with
+`node scripts/run_tests.mjs --test test_flag_penalty_values.mjs`. The presentation
+uses the existing `-` placeholder; no generic formatter or model rule is changed.
