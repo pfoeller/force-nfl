@@ -301,18 +301,23 @@ syntax checks passed. Canonical public build/parity, diff and governance checks
 passed; post-merge validation left the main source worktree unchanged. No broad
 visual regression was needed because production/UI sources are unchanged.
 
-## Cycle 5 MD-03 model investigation (2026-10-02)
+## Cycle 5 MD-03 model investigation (2026-10-02; corrected after cross-review)
 
 `cycle5/claude-md03-model` from exact `bd15a2c` adds one research regression,
-`test_md03_qb_model_research.py` (safe, model). It re-derives every committed
-MD-03 result file from the committed ledgers offline, checks determinism across
-two runs, confirms the V33 6-case figures and the KC +15.75 Elo start still
-reproduce, and checks the study-design invariants (pinned input hashes, season
-splits, candidate B chosen without the held-out seasons, zero correction without
-measured damage). It touches no production code. Rebuilding the ledgers needs the
-network; see `research/md03/README.md`. Catalog 254 entries: safe 142
-(109 JavaScript / 33 Python), model 47, release 17, QB 26, snapshot 6, server 30,
-112 default exclusions unchanged. Authoritative LF export passed safe 142/142,
-model 47/47, release 17/17, QB 26/26, snapshot 6/6 and server 30/30. Native safe
-was 141/142 with only the known V77 CRLF assertion failing; the focused V33, V45
-bridge, V69, V149 propagation, QB correctness and MD-03 tests passed natively.
+`test_md03_qb_model_research.py` (safe, model; 60-second timeout). It re-derives
+every committed MD-03 result file from the committed ledgers offline, checks
+determinism, confirms all 62 raw inputs are pinned and that pinned reproduction
+rejects hash, size and missing-file mismatches, and checks the corrected cause
+classes (generic reserve codes are never medical; CAR 2010 Moore is a role change;
+the CAR 2022 Darnold takeover is not a return; MIA 2020 Tua thumb is detected),
+the B0/B2 separation, population-sensitivity coverage and that cluster-bootstrap
+point estimates equal the headline unique-game Brier. It touches no production
+code. `research/md03/build_cohort.py` defaults to PINNED REPRODUCTION; SOURCE
+REFRESH (`--refresh-sources`) is the only mode that rewrites the manifest.
+Catalog 254 entries: safe 142 (109 JavaScript / 33 Python), model 47, release 17,
+QB 26, snapshot 6, server 30, 112 default exclusions unchanged. Authoritative LF export of the corrected
+version passed safe 142/142, model 47/47, release 17/17, QB 26/26, snapshot 6/6
+and server 30/30, plus the focused MD-03, V33, V45, V69, V149 propagation, QB
+correctness and V30 gate tests (8/8). A full pinned rebuild reproduced every
+ledger and result byte for byte, a tampered raw input was rejected before any
+write, and the canonical public build left generated files unchanged.

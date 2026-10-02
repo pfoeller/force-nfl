@@ -1,21 +1,21 @@
 {
  "all": {
-  "baseline_brier": 0.223587,
-  "episodes": 44,
-  "literal_rule_delta": -0.000602,
-  "literal_rule_improved": 21,
-  "literal_rule_worsened": 13,
-  "starts_rule_delta": 0.000766,
-  "starts_rule_improved": 23
+  "baseline_brier": 0.227492,
+  "episodes": 39,
+  "literal_rule_delta": -0.000225,
+  "literal_rule_improved": 19,
+  "literal_rule_worsened": 11,
+  "starts_rule_delta": 0.000515,
+  "starts_rule_improved": 20
  },
- "episodes": 44,
+ "episodes": 39,
  "heldout_2020_2025": {
-  "baseline_brier": 0.235014,
+  "baseline_brier": 0.236673,
   "episodes": 21,
-  "literal_rule_delta": -0.00167,
+  "literal_rule_delta": -0.001234,
   "literal_rule_improved": 12,
   "literal_rule_worsened": 7,
-  "starts_rule_delta": -0.00187,
+  "starts_rule_delta": -0.000869,
   "starts_rule_improved": 12
  },
  "per_episode": {
@@ -30,12 +30,6 @@
    "missed": 6,
    "starts_rule_delta": -0.00609,
    "surviving_damage": 36.9587
-  },
-  "BUF_2009w11_00-0025479": {
-   "literal_rule_delta": 0.0,
-   "missed": 7,
-   "starts_rule_delta": 0.04955,
-   "surviving_damage": -30.2419
   },
   "BUF_2013w16_00-0030526": {
    "literal_rule_delta": 0.0,
@@ -66,12 +60,6 @@
    "missed": 4,
    "starts_rule_delta": 0.00208,
    "surviving_damage": 1.8395
-  },
-  "CIN_2018w13_00-0027973": {
-   "literal_rule_delta": 0.01245,
-   "missed": 5,
-   "starts_rule_delta": 0.01245,
-   "surviving_damage": 25.7189
   },
   "CIN_2020w12_00-0036442": {
    "literal_rule_delta": -0.0007,
@@ -139,12 +127,6 @@
    "starts_rule_delta": 0.00062,
    "surviving_damage": 73.8627
   },
-  "GB_2017w16_00-0023459": {
-   "literal_rule_delta": -0.00138,
-   "missed": 2,
-   "starts_rule_delta": -0.00138,
-   "surviving_damage": 29.8293
-  },
   "HOU_2017w09_00-0033537": {
    "literal_rule_delta": -0.0011,
    "missed": 9,
@@ -156,12 +138,6 @@
    "missed": 7,
    "starts_rule_delta": 0.00857,
    "surviving_damage": 31.8771
-  },
-  "IND_2017w01_00-0029668": {
-   "literal_rule_delta": 0.00522,
-   "missed": 16,
-   "starts_rule_delta": 0.00522,
-   "surviving_damage": 99.0923
   },
   "IND_2023w06_00-0039164": {
    "literal_rule_delta": 0.0,
@@ -235,17 +211,11 @@
    "starts_rule_delta": 0.01238,
    "surviving_damage": -36.7165
   },
-  "PIT_2019w03_00-0022924": {
-   "literal_rule_delta": -0.0092,
-   "missed": 14,
-   "starts_rule_delta": -0.02108,
-   "surviving_damage": 16.8899
-  },
-  "SF_2018w04_00-0031345": {
-   "literal_rule_delta": -0.02483,
-   "missed": 13,
-   "starts_rule_delta": -0.02483,
-   "surviving_damage": 46.8735
+  "PHI_2018w15_00-0032950": {
+   "literal_rule_delta": 0.0,
+   "missed": 5,
+   "starts_rule_delta": 0.00629,
+   "surviving_damage": -28.3623
   },
   "SF_2020w09_00-0031345": {
    "literal_rule_delta": -0.00207,
@@ -271,26 +241,26 @@
    "starts_rule_delta": -0.00119,
    "surviving_damage": 14.608
   },
-  "TEN_2016w17_00-0032268": {
-   "literal_rule_delta": 0.0,
-   "missed": 1,
-   "starts_rule_delta": -5e-05,
-   "surviving_damage": -16.7814
-  },
   "TEN_2022w16_00-0029701": {
    "literal_rule_delta": 0.0024,
    "missed": 3,
    "starts_rule_delta": 0.0024,
    "surviving_damage": 38.6446
+  },
+  "WAS_2019w17_00-0035232": {
+   "literal_rule_delta": -4e-05,
+   "missed": 1,
+   "starts_rule_delta": -4e-05,
+   "surviving_damage": 7.443
   }
  },
  "train_2009_2019": {
-  "baseline_brier": 0.213153,
-  "episodes": 23,
-  "literal_rule_delta": 0.000373,
-  "literal_rule_improved": 9,
-  "literal_rule_worsened": 6,
-  "starts_rule_delta": 0.003173,
-  "starts_rule_improved": 11
+  "baseline_brier": 0.216782,
+  "episodes": 18,
+  "literal_rule_delta": 0.000951,
+  "literal_rule_improved": 7,
+  "literal_rule_worsened": 4,
+  "starts_rule_delta": 0.002128,
+  "starts_rule_improved": 8
  }
 }

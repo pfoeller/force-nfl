@@ -2,7 +2,7 @@
  "games.csv": {
   "bytes": 2182457,
   "sha256": "14fc5583f0a27ec9213964617c091d348a1d62fa33a5de985c2cc3243a45b642",
-  "url": "https://github.com/nflverse/nfldata/raw/master/data/games.csv"
+  "url": "https://raw.githubusercontent.com/nflverse/nfldata/5898b6279be0829925f7bbda165d319b474e1825/data/games.csv"
  },
  "injuries_2009.csv": {
   "bytes": 555769,

@@ -3,7 +3,7 @@
 
 Uses the unmodified V33 harness functions (research/qb_carryover_event_study.py and
 qb_carryover_decay.run_decay: Celo season-end Elo prior, opponents fixed at their
-own reverted priors, first games of the return season) on every VERIFIED
+own reverted priors, first games of the return season) on every VERIFIED_MEDICAL
 offseason-return episode from the MD-03 ledger. This answers whether the V33
 evidence method itself reproduces its result outside the hand-picked cases.
 
@@ -38,11 +38,11 @@ def endelo(year, team):
 es.endelo = endelo  # adds only the 'LA' fallback; the harness math is untouched
 
 
-def cases(classes=('VERIFIED',)):
+def cases(classes=('VERIFIED_MEDICAL',)):
     led = json.loads((HERE / 'data' / 'episode_ledger.json').read_text(encoding='utf-8'))
     out = {}
     for e in led['episodes']:
-        if e['timing'] != 'OFF' or e['availability_class'] not in classes or not (1 <= e['missed'] <= 17):
+        if e['timing'] != 'OFF' or e['cause_class'] not in classes or not (1 <= e['missed'] <= 17):
             continue
         rows = []
         for r in e['eval']:

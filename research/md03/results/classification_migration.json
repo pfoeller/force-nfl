@@ -1,0 +1,90 @@
+{
+ "class_moves": {
+  "ABSENT -> PROBABLE_MEDICAL": 5,
+  "ABSENT -> ROLE_CHANGE": 7,
+  "ABSENT -> VERIFIED_MEDICAL": 7,
+  "AMBIGUOUS -> ABSENT": 15,
+  "AMBIGUOUS -> AMBIGUOUS_CAUSE": 12,
+  "AMBIGUOUS -> NONMEDICAL": 8,
+  "AMBIGUOUS -> ROLE_CHANGE": 33,
+  "PROBABLE -> ABSENT": 7,
+  "PROBABLE -> PROBABLE_MEDICAL": 68,
+  "PROBABLE -> ROLE_CHANGE": 4,
+  "PROBABLE -> VERIFIED_MEDICAL": 1,
+  "VERIFIED -> ABSENT": 9,
+  "VERIFIED -> AMBIGUOUS_CAUSE": 5,
+  "VERIFIED -> ROLE_CHANGE": 4,
+  "VERIFIED -> VERIFIED_MEDICAL": 152
+ },
+ "examples": {
+  "episode no longer exists (role takeover or detector correction)": [
+   "BUF_2009w11_00-0025479",
+   "CAR_2022w01_00-0034869",
+   "CHI_2020w04_00-0033869",
+   "IND_2017w01_00-0029668",
+   "LV_2024w09_00-0038579",
+   "SF_2010w08_00-0023436",
+   "TEN_2014w06_00-0027946",
+   "TEN_2023w08_00-0029701",
+   "WAS_2019w09_00-0028986"
+  ],
+  "generic reserve code only (not a documented medical list)": [
+   "CIN_2018w13_00-0027973",
+   "GB_2017w16_00-0023459",
+   "PIT_2019w03_00-0022924",
+   "SF_2018w04_00-0031345",
+   "TEN_2016w17_00-0032268"
+  ],
+  "healthy-not-starting week": [
+   "CAR_2010w03_00-0025708",
+   "JAX_2020w09_00-0035289",
+   "MIA_2010w10_00-0026197"
+  ],
+  "season-opener onset": [
+   "NYJ_2022w01_00-0037013"
+  ]
+ },
+ "joined_primary": 8,
+ "joined_primary_ids": [
+  "CAR_2024w08_00-0027973",
+  "CLE_2013w13_00-0023460",
+  "DET_2021w16_00-0033106",
+  "NYG_2019w14_00-0035710",
+  "PHI_2015w11_00-0027854",
+  "PHI_2018w15_00-0032950",
+  "TEN_2012w05_00-0027946",
+  "WAS_2019w17_00-0035232"
+ ],
+ "kept_in_primary": 152,
+ "left_primary": 18,
+ "left_primary_ids": [
+  "BUF_2009w11_00-0025479",
+  "CAR_2010w03_00-0025708",
+  "CAR_2022w01_00-0034869",
+  "CHI_2020w04_00-0033869",
+  "CIN_2018w13_00-0027973",
+  "GB_2017w16_00-0023459",
+  "IND_2017w01_00-0029668",
+  "JAX_2020w09_00-0035289",
+  "LV_2024w09_00-0038579",
+  "MIA_2010w10_00-0026197",
+  "NYJ_2022w01_00-0037013",
+  "PIT_2019w03_00-0022924",
+  "SF_2010w08_00-0023436",
+  "SF_2018w04_00-0031345",
+  "TEN_2014w06_00-0027946",
+  "TEN_2016w17_00-0032268",
+  "TEN_2023w08_00-0029701",
+  "WAS_2019w09_00-0028986"
+ ],
+ "new_ledger_episodes": 306,
+ "new_primary_verified_medical": 160,
+ "old_ledger_episodes": 318,
+ "old_primary_verified": 170,
+ "reasons_old_verified_not_verified_medical": {
+  "episode no longer exists (role takeover or detector correction)": 9,
+  "generic reserve code only (not a documented medical list)": 5,
+  "healthy-not-starting week": 3,
+  "season-opener onset": 1
+ }
+}
