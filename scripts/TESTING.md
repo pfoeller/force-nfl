@@ -18,12 +18,12 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 141 tests: 109 JavaScript and 32 Python |
+| `npm test` / `npm run test:safe` | 142 tests: 109 JavaScript and 33 Python |
 | `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 26 QB/pressure regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
-| `npm run test:model` | 46 model/unit regressions |
+| `npm run test:model` | 47 model/unit regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
 
@@ -300,3 +300,19 @@ byte-determinism. Fixture parse/contract validation and both changed JS/MJS
 syntax checks passed. Canonical public build/parity, diff and governance checks
 passed; post-merge validation left the main source worktree unchanged. No broad
 visual regression was needed because production/UI sources are unchanged.
+
+## Cycle 5 MD-03 model investigation (2026-10-02)
+
+`cycle5/claude-md03-model` from exact `bd15a2c` adds one research regression,
+`test_md03_qb_model_research.py` (safe, model). It re-derives every committed
+MD-03 result file from the committed ledgers offline, checks determinism across
+two runs, confirms the V33 6-case figures and the KC +15.75 Elo start still
+reproduce, and checks the study-design invariants (pinned input hashes, season
+splits, candidate B chosen without the held-out seasons, zero correction without
+measured damage). It touches no production code. Rebuilding the ledgers needs the
+network; see `research/md03/README.md`. Catalog 254 entries: safe 142
+(109 JavaScript / 33 Python), model 47, release 17, QB 26, snapshot 6, server 30,
+112 default exclusions unchanged. Authoritative LF export passed safe 142/142,
+model 47/47, release 17/17, QB 26/26, snapshot 6/6 and server 30/30. Native safe
+was 141/142 with only the known V77 CRLF assertion failing; the focused V33, V45
+bridge, V69, V149 propagation, QB correctness and MD-03 tests passed natively.

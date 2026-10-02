@@ -1847,6 +1847,14 @@
         "model"
       ],
       "classification": "regression"
+    },
+    {
+      "file": "test_md03_qb_model_research.py",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
     }
   ]
 }

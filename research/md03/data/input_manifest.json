@@ -1,0 +1,312 @@
+{
+ "games.csv": {
+  "bytes": 2182457,
+  "sha256": "14fc5583f0a27ec9213964617c091d348a1d62fa33a5de985c2cc3243a45b642",
+  "url": "https://github.com/nflverse/nfldata/raw/master/data/games.csv"
+ },
+ "injuries_2009.csv": {
+  "bytes": 555769,
+  "sha256": "75ded84697ed0b9c629d09e5d54c7cb3f80ebb97deb84df23b9004148276f448",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2009.csv"
+ },
+ "injuries_2010.csv": {
+  "bytes": 606845,
+  "sha256": "6e86b7aba42b9adf76c083686b9bc6fbd7943293b411893ffe952f3b71997519",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2010.csv"
+ },
+ "injuries_2011.csv": {
+  "bytes": 675650,
+  "sha256": "acf44d2952fec7d0806eed122e36d53f174ab742b25a4c6e9f3f1676da255a10",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2011.csv"
+ },
+ "injuries_2012.csv": {
+  "bytes": 752393,
+  "sha256": "8b8ce2ed5bd45bbb709e5402efa4fe930d63fedfce111df9b1fea08ffa51f237",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2012.csv"
+ },
+ "injuries_2013.csv": {
+  "bytes": 689228,
+  "sha256": "b84c71cf23be81375bbca62f7d2c51d53fa75330fbcf9f598ec4ac17fea7d8be",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2013.csv"
+ },
+ "injuries_2014.csv": {
+  "bytes": 692574,
+  "sha256": "e675fd5d86c3451d76e7c5d530095db1641347eb3f9796c9a30dd7a75e3ba634",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2014.csv"
+ },
+ "injuries_2015.csv": {
+  "bytes": 715948,
+  "sha256": "fbca54ef42594cc52facc0d8c8dd74802b812771b9e33032e44ae8c7e21b0360",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2015.csv"
+ },
+ "injuries_2016.csv": {
+  "bytes": 674980,
+  "sha256": "504e05968cb9c54ddc730fd9b6e7d1dd16a62db8029cc784d3d7bafcea7ff7cb",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2016.csv"
+ },
+ "injuries_2017.csv": {
+  "bytes": 665280,
+  "sha256": "0d5139fbf41b0866517bd2bd5fd85bb20dbd4dd9bc36a706fed030a88731de6f",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2017.csv"
+ },
+ "injuries_2018.csv": {
+  "bytes": 665119,
+  "sha256": "4724e1f37cc3076f564e997fbf269190e7dbe795a39315b903788e0a9c40065e",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2018.csv"
+ },
+ "injuries_2019.csv": {
+  "bytes": 700757,
+  "sha256": "daddfe8e04ddc3a29bce14f362e774fbadfb274c807f1f0fde7b5bf32aaf6cdf",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2019.csv"
+ },
+ "injuries_2020.csv": {
+  "bytes": 737474,
+  "sha256": "706cca82824214f6b73ba0c6e537d3ee39766a50c644b8974b9fc28d7518de90",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2020.csv"
+ },
+ "injuries_2021.csv": {
+  "bytes": 737083,
+  "sha256": "1049fb9ff0fe7cfcf3ba8bfe1f5a35d3aba985c461c8fb7bf5201735b6d34254",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2021.csv"
+ },
+ "injuries_2022.csv": {
+  "bytes": 752433,
+  "sha256": "5f0d60324e597edd1a2ced8540b04e40b51dd440591dd1df11b8d96343387c9e",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2022.csv"
+ },
+ "injuries_2023.csv": {
+  "bytes": 738501,
+  "sha256": "16b04e21da5aa3944cfa9c22cafcc84ed7e6d9866eaddf0344e9b8cbf2f63afe",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2023.csv"
+ },
+ "injuries_2024.csv": {
+  "bytes": 816989,
+  "sha256": "498bce8e13cb64b2ab9bb0ad6cb81d0a63c2ddb24016c9fc90c2de2126fae449",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2024.csv"
+ },
+ "injuries_2025.csv": {
+  "bytes": 696006,
+  "sha256": "873ca1606dd575bd01152508a243ef6b3a0f8f97b90b707217e62ee8c7ceb735",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2025.csv"
+ },
+ "roster_weekly_2009.csv": {
+  "bytes": 8544383,
+  "sha256": "dd1c0b662f169885ab5d9b7ee786b7aa7c0a50c7a4fe40566b87074c48bc99ca",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2009.csv"
+ },
+ "roster_weekly_2010.csv": {
+  "bytes": 8785543,
+  "sha256": "c415397ed98cbf9b5e038cb9415b9ed0d0b1d2611b09d39a7be521893b7c6533",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2010.csv"
+ },
+ "roster_weekly_2011.csv": {
+  "bytes": 8797631,
+  "sha256": "80de7a110233fa7569c26e298d6393b48349263f4dd117cf047612239801bc19",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2011.csv"
+ },
+ "roster_weekly_2012.csv": {
+  "bytes": 9045702,
+  "sha256": "262fd2f9a862c3b97275d91c60951f940a4e82989503b8359ac11b12a76c0e2f",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2012.csv"
+ },
+ "roster_weekly_2013.csv": {
+  "bytes": 9377446,
+  "sha256": "76c47a629075ffd75f9c4ee49fadb6dad45396be486af897078fee5722969781",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2013.csv"
+ },
+ "roster_weekly_2014.csv": {
+  "bytes": 9638161,
+  "sha256": "331022cd3b0c69d99c581f02b6fde6853e87ac431739c4b49841ee6e02893d6c",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2014.csv"
+ },
+ "roster_weekly_2015.csv": {
+  "bytes": 9955118,
+  "sha256": "198904f48eeebafc1f34028a00c1b8c0fc135aba04fc4b276e636ef87709751a",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2015.csv"
+ },
+ "roster_weekly_2016.csv": {
+  "bytes": 10803214,
+  "sha256": "ab05dfeffe6f9a1d969133cd6740f1625d135bfad672aaa916adb609ab662883",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2016.csv"
+ },
+ "roster_weekly_2017.csv": {
+  "bytes": 15945119,
+  "sha256": "fd3fe005b676fe0ad8d88c50701d71adef4287501397c33f479c9765cd8c45d4",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2017.csv"
+ },
+ "roster_weekly_2018.csv": {
+  "bytes": 16566753,
+  "sha256": "c3bca1ee53e63e21b964f1bb42c251e25b7b4b8c55210730dd4ded2f9d4a709a",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2018.csv"
+ },
+ "roster_weekly_2019.csv": {
+  "bytes": 16588230,
+  "sha256": "af6aa7b8aa7850c47fe307d548d66fa7c1cac88fe11e5951c781974cb6909e03",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2019.csv"
+ },
+ "roster_weekly_2020.csv": {
+  "bytes": 14333971,
+  "sha256": "0b948cca8735a2417cbda14464f4532aeee58d871e2fcd8464a23e969e45789e",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2020.csv"
+ },
+ "roster_weekly_2021.csv": {
+  "bytes": 15242660,
+  "sha256": "88adfe0fba5cbedd260d7928ad373476d4fb168d0213cb52ef1163ed5d3056b7",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2021.csv"
+ },
+ "roster_weekly_2022.csv": {
+  "bytes": 14790824,
+  "sha256": "bd6a50de334473c10f8058afa948fd0c6adc8a8b081da41c500cc0aa069c5312",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2022.csv"
+ },
+ "roster_weekly_2023.csv": {
+  "bytes": 14612235,
+  "sha256": "1433f1f239784dde7fcb35349d211a9b83abfc0156337b72ec4f923abf715bd3",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2023.csv"
+ },
+ "roster_weekly_2024.csv": {
+  "bytes": 14926918,
+  "sha256": "074ecaeb9325de943c11f7bbc941425626985090ef8386f90cd837fa5cb5d4b3",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2024.csv"
+ },
+ "roster_weekly_2025.csv": {
+  "bytes": 15385661,
+  "sha256": "c2f7a1ffebe06058400af1989d1cd2900cc5c9659f084623708a06d4e28de35b",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2025.csv"
+ },
+ "stats_player_week_1999.csv": {
+  "bytes": 7369576,
+  "sha256": "5bf732d1dcb4a8f1927af074c05d5534f4b91abd6434fd4cf6130e8a20a91d20",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_1999.csv"
+ },
+ "stats_player_week_2000.csv": {
+  "bytes": 7268743,
+  "sha256": "f0b95af81312d29de98947bd1e5aca049edfb1f9d7a7d74862f5c12bf47ad1bd",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2000.csv"
+ },
+ "stats_player_week_2001.csv": {
+  "bytes": 7344977,
+  "sha256": "3b3397b02d42be30f9f5bdcc8a6991227bc235dea18a76d9f294d246bd1b3449",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2001.csv"
+ },
+ "stats_player_week_2002.csv": {
+  "bytes": 7651673,
+  "sha256": "72bf998de6f6be8d22e277f31c106f9a516f8c095923fc7693546db8d08b187b",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2002.csv"
+ },
+ "stats_player_week_2003.csv": {
+  "bytes": 7390720,
+  "sha256": "c440795696eac49e7383051b358e68bb206037a37e0e855b5b92347fa7ece059",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2003.csv"
+ },
+ "stats_player_week_2004.csv": {
+  "bytes": 7401579,
+  "sha256": "f561943805c78786456d529d77f78bfdf97c6608511d189d91d2fdda1cefcc6d",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2004.csv"
+ },
+ "stats_player_week_2005.csv": {
+  "bytes": 7434902,
+  "sha256": "cfaaa943c6b869c5eedfc9611400f0ca47a972bdf30823528b5929f4f9298273",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2005.csv"
+ },
+ "stats_player_week_2006.csv": {
+  "bytes": 7418077,
+  "sha256": "32f5825b8e174ec00641c935de811d4deeb10b4a96807c5c1926f2a16d889714",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2006.csv"
+ },
+ "stats_player_week_2007.csv": {
+  "bytes": 7442890,
+  "sha256": "24829b3f384aad21da867c06180f572a45619c793e94cdbf9e828bd892fa7837",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2007.csv"
+ },
+ "stats_player_week_2008.csv": {
+  "bytes": 7420439,
+  "sha256": "1b0c72f0540f21c8d63f0f86717b821dd05bc97081480764db56ad74cd889856",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2008.csv"
+ },
+ "stats_player_week_2009.csv": {
+  "bytes": 7902720,
+  "sha256": "4f2dbdef657aa2c961595b2a2c832e0fb2a7c13e41c301380900faff266c3477",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2009.csv"
+ },
+ "stats_player_week_2010.csv": {
+  "bytes": 7859210,
+  "sha256": "76f33d484781a3bc1852aa8aab5003874ab219dcb6c67a7e2e881be9822c9d13",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2010.csv"
+ },
+ "stats_player_week_2011.csv": {
+  "bytes": 7800649,
+  "sha256": "c1720e9e5ed59b7def9486ae650ea73ee80dda1fd2ab97d50c5fb4f6565dbeaa",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2011.csv"
+ },
+ "stats_player_week_2012.csv": {
+  "bytes": 7796458,
+  "sha256": "5c8885d93ec529efa9d729cec1ef255f438ee27a59eba6e156a360fa0045b56b",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2012.csv"
+ },
+ "stats_player_week_2013.csv": {
+  "bytes": 7713866,
+  "sha256": "f7329a8f15084c9c23d841f14eb117fcc630d6c82913501f3c60f2d8f4e651a4",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2013.csv"
+ },
+ "stats_player_week_2014.csv": {
+  "bytes": 7883194,
+  "sha256": "a389b10d94eb8e6b9a153223d381aab821b0eff4cd73967835a21032192abc61",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2014.csv"
+ },
+ "stats_player_week_2015.csv": {
+  "bytes": 7881066,
+  "sha256": "21052baa3b3291a92faf3e6827891295010dca8cc5cefd5a909984b9d7b64664",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2015.csv"
+ },
+ "stats_player_week_2016.csv": {
+  "bytes": 7852359,
+  "sha256": "eb0264c65d1ef593196afcd4ba24e9f2e9b7942923bf6f4bb4639684e2c4d470",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2016.csv"
+ },
+ "stats_player_week_2017.csv": {
+  "bytes": 7821392,
+  "sha256": "592b0916065987b0b3afb0480162f03350d16b12250dc42b0f194e2ab1378563",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2017.csv"
+ },
+ "stats_player_week_2018.csv": {
+  "bytes": 7792665,
+  "sha256": "c53021bcfc9f89d30edd6f1fe145a1d7d6ce469efeec75974fe9f0adac568642",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2018.csv"
+ },
+ "stats_player_week_2019.csv": {
+  "bytes": 7767165,
+  "sha256": "a05558126b1209b80fe11a8f18938cb35816370bf9990975a87de49e9eed7376",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2019.csv"
+ },
+ "stats_player_week_2020.csv": {
+  "bytes": 7883270,
+  "sha256": "05b992676faccc8940efbf6242cb76358069372d31d7c2e02c1a4acdcd3cbe18",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2020.csv"
+ },
+ "stats_player_week_2021.csv": {
+  "bytes": 8477784,
+  "sha256": "41915fb49238902ad1f129ebf0405b11a1e710454ae0fe8f7b3e4f9145875f48",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2021.csv"
+ },
+ "stats_player_week_2022.csv": {
+  "bytes": 8408729,
+  "sha256": "ad426c3fe5bf1cc30c3f137fdfe96d054e19d400879ee4413129da49fa7b54be",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2022.csv"
+ },
+ "stats_player_week_2023.csv": {
+  "bytes": 8332874,
+  "sha256": "f19cb71a5de0dce7fd09376026237c9ee9d5a93fe13815a2ea3ec2d37204cb17",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2023.csv"
+ },
+ "stats_player_week_2024.csv": {
+  "bytes": 8470040,
+  "sha256": "3ddc45a84f759aa348ce465ae001752c530575455717657cdfe1f8abfcdb4759",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2024.csv"
+ },
+ "stats_player_week_2025.csv": {
+  "bytes": 8656387,
+  "sha256": "e5e0615b3d96a3eaebfaee91e55afb4a4e7fe0caf057454177bcd7d6ad4bcfc2",
+  "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv"
+ }
+}

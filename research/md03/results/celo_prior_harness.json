@@ -1,0 +1,296 @@
+{
+ "all": {
+  "baseline_brier": 0.223587,
+  "episodes": 44,
+  "literal_rule_delta": -0.000602,
+  "literal_rule_improved": 21,
+  "literal_rule_worsened": 13,
+  "starts_rule_delta": 0.000766,
+  "starts_rule_improved": 23
+ },
+ "episodes": 44,
+ "heldout_2020_2025": {
+  "baseline_brier": 0.235014,
+  "episodes": 21,
+  "literal_rule_delta": -0.00167,
+  "literal_rule_improved": 12,
+  "literal_rule_worsened": 7,
+  "starts_rule_delta": -0.00187,
+  "starts_rule_improved": 12
+ },
+ "per_episode": {
+  "BAL_2021w15_00-0034796": {
+   "literal_rule_delta": -0.00155,
+   "missed": 4,
+   "starts_rule_delta": -0.00155,
+   "surviving_damage": 41.5825
+  },
+  "BAL_2022w14_00-0034796": {
+   "literal_rule_delta": -0.00609,
+   "missed": 6,
+   "starts_rule_delta": -0.00609,
+   "surviving_damage": 36.9587
+  },
+  "BUF_2009w11_00-0025479": {
+   "literal_rule_delta": 0.0,
+   "missed": 7,
+   "starts_rule_delta": 0.04955,
+   "surviving_damage": -30.2419
+  },
+  "BUF_2013w16_00-0030526": {
+   "literal_rule_delta": 0.0,
+   "missed": 2,
+   "starts_rule_delta": -0.0028,
+   "surviving_damage": -21.7266
+  },
+  "CAR_2018w16_00-0027939": {
+   "literal_rule_delta": 0.0,
+   "missed": 2,
+   "starts_rule_delta": 0.01511,
+   "surviving_damage": -11.3399
+  },
+  "CHI_2011w12_00-0024226": {
+   "literal_rule_delta": -0.00662,
+   "missed": 6,
+   "starts_rule_delta": -0.00662,
+   "surviving_damage": 72.4914
+  },
+  "CHI_2022w18_00-0036945": {
+   "literal_rule_delta": 0.00144,
+   "missed": 1,
+   "starts_rule_delta": 0.00144,
+   "surviving_damage": 7.6471
+  },
+  "CIN_2015w15_00-0027973": {
+   "literal_rule_delta": 0.00016,
+   "missed": 4,
+   "starts_rule_delta": 0.00208,
+   "surviving_damage": 1.8395
+  },
+  "CIN_2018w13_00-0027973": {
+   "literal_rule_delta": 0.01245,
+   "missed": 5,
+   "starts_rule_delta": 0.01245,
+   "surviving_damage": 25.7189
+  },
+  "CIN_2020w12_00-0036442": {
+   "literal_rule_delta": -0.0007,
+   "missed": 6,
+   "starts_rule_delta": -0.00965,
+   "surviving_damage": 2.1397
+  },
+  "CIN_2023w12_00-0036442": {
+   "literal_rule_delta": 0.00311,
+   "missed": 7,
+   "starts_rule_delta": 0.01437,
+   "surviving_damage": 8.044
+  },
+  "CLE_2012w17_00-0029677": {
+   "literal_rule_delta": 0.00441,
+   "missed": 1,
+   "starts_rule_delta": 0.00441,
+   "surviving_damage": 10.154
+  },
+  "CLE_2023w11_00-0033537": {
+   "literal_rule_delta": 0.01539,
+   "missed": 9,
+   "starts_rule_delta": 0.01659,
+   "surviving_damage": 39.1735
+  },
+  "DAL_2010w08_00-0021678": {
+   "literal_rule_delta": 0.0,
+   "missed": 10,
+   "starts_rule_delta": 0.00327,
+   "surviving_damage": -0.6602
+  },
+  "DAL_2013w17_00-0021678": {
+   "literal_rule_delta": -0.00174,
+   "missed": 1,
+   "starts_rule_delta": -0.00174,
+   "surviving_damage": 6.7211
+  },
+  "DAL_2020w06_00-0033077": {
+   "literal_rule_delta": -0.02008,
+   "missed": 11,
+   "starts_rule_delta": -0.02118,
+   "surviving_damage": 39.6019
+  },
+  "DAL_2024w10_00-0033077": {
+   "literal_rule_delta": 0.00093,
+   "missed": 9,
+   "starts_rule_delta": 0.00191,
+   "surviving_damage": 26.6126
+  },
+  "DET_2009w14_00-0026498": {
+   "literal_rule_delta": 0.01716,
+   "missed": 4,
+   "starts_rule_delta": 0.01716,
+   "surviving_damage": 20.3827
+  },
+  "DET_2010w10_00-0026498": {
+   "literal_rule_delta": 0.0,
+   "missed": 8,
+   "starts_rule_delta": -0.02286,
+   "surviving_damage": -40.3268
+  },
+  "DET_2019w10_00-0026498": {
+   "literal_rule_delta": 0.00062,
+   "missed": 8,
+   "starts_rule_delta": 0.00062,
+   "surviving_damage": 73.8627
+  },
+  "GB_2017w16_00-0023459": {
+   "literal_rule_delta": -0.00138,
+   "missed": 2,
+   "starts_rule_delta": -0.00138,
+   "surviving_damage": 29.8293
+  },
+  "HOU_2017w09_00-0033537": {
+   "literal_rule_delta": -0.0011,
+   "missed": 9,
+   "starts_rule_delta": -0.0011,
+   "surviving_damage": 97.677
+  },
+  "IND_2015w11_00-0029668": {
+   "literal_rule_delta": 0.00774,
+   "missed": 7,
+   "starts_rule_delta": 0.00857,
+   "surviving_damage": 31.8771
+  },
+  "IND_2017w01_00-0029668": {
+   "literal_rule_delta": 0.00522,
+   "missed": 16,
+   "starts_rule_delta": 0.00522,
+   "surviving_damage": 99.0923
+  },
+  "IND_2023w06_00-0039164": {
+   "literal_rule_delta": 0.0,
+   "missed": 12,
+   "starts_rule_delta": 0.00306,
+   "surviving_damage": -6.6919
+  },
+  "JAX_2024w14_00-0036971": {
+   "literal_rule_delta": -0.00529,
+   "missed": 5,
+   "starts_rule_delta": -0.00892,
+   "surviving_damage": 15.2
+  },
+  "KC_2011w11_00-0023662": {
+   "literal_rule_delta": 0.0,
+   "missed": 7,
+   "starts_rule_delta": 0.01849,
+   "surviving_damage": -19.1094
+  },
+  "KC_2014w17_00-0023436": {
+   "literal_rule_delta": 0.0,
+   "missed": 1,
+   "starts_rule_delta": 0.00058,
+   "surviving_damage": -16.9342
+  },
+  "LAC_2023w15_00-0036355": {
+   "literal_rule_delta": -0.00547,
+   "missed": 4,
+   "starts_rule_delta": -0.00547,
+   "surviving_damage": 46.2162
+  },
+  "LA_2011w15_00-0027854": {
+   "literal_rule_delta": -0.00066,
+   "missed": 3,
+   "starts_rule_delta": -0.00082,
+   "surviving_damage": 11.4524
+  },
+  "LA_2022w12_00-0026498": {
+   "literal_rule_delta": -0.00365,
+   "missed": 7,
+   "starts_rule_delta": -0.00472,
+   "surviving_damage": 26.8727
+  },
+  "LV_2016w17_00-0031280": {
+   "literal_rule_delta": -0.00079,
+   "missed": 2,
+   "starts_rule_delta": -0.00079,
+   "surviving_damage": 42.4733
+  },
+  "MIA_2022w17_00-0036212": {
+   "literal_rule_delta": -0.00073,
+   "missed": 3,
+   "starts_rule_delta": -0.00718,
+   "surviving_damage": 1.5712
+  },
+  "NO_2021w09_00-0031503": {
+   "literal_rule_delta": 0.02354,
+   "missed": 10,
+   "starts_rule_delta": 0.02354,
+   "surviving_damage": 59.7879
+  },
+  "NYG_2021w13_00-0035710": {
+   "literal_rule_delta": -0.01746,
+   "missed": 6,
+   "starts_rule_delta": -0.01746,
+   "surviving_damage": 84.0572
+  },
+  "NYG_2023w10_00-0035710": {
+   "literal_rule_delta": 0.0,
+   "missed": 8,
+   "starts_rule_delta": 0.01238,
+   "surviving_damage": -36.7165
+  },
+  "PIT_2019w03_00-0022924": {
+   "literal_rule_delta": -0.0092,
+   "missed": 14,
+   "starts_rule_delta": -0.02108,
+   "surviving_damage": 16.8899
+  },
+  "SF_2018w04_00-0031345": {
+   "literal_rule_delta": -0.02483,
+   "missed": 13,
+   "starts_rule_delta": -0.02483,
+   "surviving_damage": 46.8735
+  },
+  "SF_2020w09_00-0031345": {
+   "literal_rule_delta": -0.00207,
+   "missed": 8,
+   "starts_rule_delta": -0.00207,
+   "surviving_damage": 62.7206
+  },
+  "SF_2024w18_00-0037834": {
+   "literal_rule_delta": -0.01021,
+   "missed": 1,
+   "starts_rule_delta": -0.01021,
+   "surviving_damage": 26.8315
+  },
+  "TEN_2013w11_00-0027946": {
+   "literal_rule_delta": -0.00024,
+   "missed": 7,
+   "starts_rule_delta": 0.00028,
+   "surviving_damage": 7.6932
+  },
+  "TEN_2015w16_00-0032268": {
+   "literal_rule_delta": -0.00119,
+   "missed": 2,
+   "starts_rule_delta": -0.00119,
+   "surviving_damage": 14.608
+  },
+  "TEN_2016w17_00-0032268": {
+   "literal_rule_delta": 0.0,
+   "missed": 1,
+   "starts_rule_delta": -5e-05,
+   "surviving_damage": -16.7814
+  },
+  "TEN_2022w16_00-0029701": {
+   "literal_rule_delta": 0.0024,
+   "missed": 3,
+   "starts_rule_delta": 0.0024,
+   "surviving_damage": 38.6446
+  }
+ },
+ "train_2009_2019": {
+  "baseline_brier": 0.213153,
+  "episodes": 23,
+  "literal_rule_delta": 0.000373,
+  "literal_rule_improved": 9,
+  "literal_rule_worsened": 6,
+  "starts_rule_delta": 0.003173,
+  "starts_rule_improved": 11
+ }
+}

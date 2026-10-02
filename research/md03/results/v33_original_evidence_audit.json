@@ -1,0 +1,140 @@
+{
+  "all11_7p5_h4": {
+    "delta": -0.006001,
+    "improved": 8
+  },
+  "excluded_by_gate_7p5_h4": {
+    "delta": -0.001371,
+    "episodes": [
+      "2008_NE_Brady",
+      "2022_LAR_Stafford",
+      "2023_CIN_Burrow",
+      "2024_DAL_Prescott",
+      "2024_JAX_Lawrence"
+    ],
+    "improved": 3
+  },
+  "gated_bootstrap_95": [
+    -0.021217,
+    -0.000137
+  ],
+  "gated_drop_one_mean_delta": {
+    "2017_HOU_Watson": -0.011637,
+    "2019_PIT_Roethlisberger": -0.005078,
+    "2020_DAL_Prescott": -0.007565,
+    "2020_SF_Garoppolo": -0.012672,
+    "2021_BAL_Jackson": -0.011464,
+    "2023_LAC_Herbert": -0.010737
+  },
+  "gated_in_sample_best": {
+    "delta": -0.016516,
+    "half": 16,
+    "on_grid_edge": true,
+    "ppm": 10
+  },
+  "gated_loo": {
+    "improved": 5,
+    "mean_delta": -0.016515,
+    "rows": [
+      {
+        "chosen": [
+          10,
+          16
+        ],
+        "delta": -0.019213,
+        "held_out": "2017_HOU_Watson"
+      },
+      {
+        "chosen": [
+          10,
+          16
+        ],
+        "delta": -0.052454,
+        "held_out": "2019_PIT_Roethlisberger"
+      },
+      {
+        "chosen": [
+          10,
+          16
+        ],
+        "delta": -0.034268,
+        "held_out": "2020_DAL_Prescott"
+      },
+      {
+        "chosen": [
+          10,
+          16
+        ],
+        "delta": 0.022637,
+        "held_out": "2020_SF_Garoppolo"
+      },
+      {
+        "chosen": [
+          10,
+          16
+        ],
+        "delta": -0.006014,
+        "held_out": "2021_BAL_Jackson"
+      },
+      {
+        "chosen": [
+          10,
+          16
+        ],
+        "delta": -0.009781,
+        "held_out": "2023_LAC_Herbert"
+      }
+    ]
+  },
+  "gated_share_of_total_improvement": {
+    "2017_HOU_Watson": 0.016,
+    "2019_PIT_Roethlisberger": 0.571,
+    "2020_DAL_Prescott": 0.361,
+    "2020_SF_Garoppolo": -0.071,
+    "2021_BAL_Jackson": 0.031,
+    "2023_LAC_Herbert": 0.092
+  },
+  "gated_sign_flip_p_two_sided": 0.1562,
+  "gated_subset": {
+    "baseline_brier": 0.2316760387,
+    "candidate_brier": 0.2218171743,
+    "delta": -0.0098588644,
+    "episodes": [
+      "2017_HOU_Watson",
+      "2019_PIT_Roethlisberger",
+      "2020_DAL_Prescott",
+      "2020_SF_Garoppolo",
+      "2021_BAL_Jackson",
+      "2023_LAC_Herbert"
+    ],
+    "games_per_episode": 8,
+    "improved": 5,
+    "total_games": 48
+  },
+  "missed_starts_recorded": {
+    "2008_NE_Brady": 15,
+    "2017_HOU_Watson": 10,
+    "2019_PIT_Roethlisberger": 14,
+    "2020_DAL_Prescott": 11,
+    "2020_SF_Garoppolo": 10,
+    "2021_BAL_Jackson": 5,
+    "2022_LAR_Stafford": 8,
+    "2023_CIN_Burrow": 7,
+    "2023_LAC_Herbert": 4,
+    "2024_DAL_Prescott": 9,
+    "2024_JAX_Lawrence": 7
+  },
+  "per_episode_delta_7p5_h4_w1_8": {
+    "2008_NE_Brady": -0.006126,
+    "2017_HOU_Watson": -0.000969,
+    "2019_PIT_Roethlisberger": -0.033765,
+    "2020_DAL_Prescott": -0.021326,
+    "2020_SF_Garoppolo": 0.004207,
+    "2021_BAL_Jackson": -0.001831,
+    "2022_LAR_Stafford": -0.005225,
+    "2023_CIN_Burrow": 0.014369,
+    "2023_LAC_Herbert": -0.005468,
+    "2024_DAL_Prescott": 0.002319,
+    "2024_JAX_Lawrence": -0.012193
+  }
+}
