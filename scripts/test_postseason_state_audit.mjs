@@ -7,6 +7,7 @@ import {spawnSync} from 'node:child_process';
 import {scheduleEvidence,outcomeSpace,tiebreakBoundaryEvidence} from './lib/postseason_state_audit.js';
 import {projectionSemanticsFixture} from './lib/projection_semantics_fixture.js';
 import {appHarness} from './lib/force_app_harness.js';
+import {validateSourceContracts} from './lib/postseason_source_contract.js';
 
 const app = appHarness({hooks:'scheduleFromBootstrapText'});
 const teams = Object.keys(app.context.window.MODEL_DATA.teams);
@@ -100,3 +101,67 @@ try {
 const bad=spawnSync(process.execPath,['scripts/audit_postseason_state.mjs','--bogus'],{encoding:'utf8'});
 assert.notEqual(bad.status,0);
 console.log('PASS: UX-25 offline source feasibility evidence, real 2026-season calendar, tiebreak boundary, ties, structural counts, validation and deterministic provenance');
+
+// Cycle 4 documentary inventory is not a runtime source adapter or state proof.
+const matrix = JSON.parse(fs.readFileSync('scripts/fixtures/ux25_source_contracts.json','utf8'));
+const matrixBefore = JSON.stringify(matrix);
+const research = validateSourceContracts(matrix);
+assert.equal(JSON.stringify(matrix),matrixBefore,'research validation is read-only');
+assert.equal(research.productionReady,false);
+assert.equal(research.strategySelected,null);
+assert.ok(Object.values(research.coverageClaims).every(n=>n>0),'supported, absent, conditional and unknown all retained');
+const candidate = id => matrix.sources.find(s=>s.id===id);
+assert.equal(candidate('sportsdataio').outcomes.playoffClinched.status,'INFERABLE','route clinches are not exhaustive berth flags');
+assert.equal(candidate('balldontlie').outcomes.exactSeedLocked.status,'NO','current playoff_seed is not a seed-lock field');
+assert.equal(candidate('nfl-public-api').outcomes.playoffClinched.status,'UNKNOWN','no API discovery does not prove unsupported');
+assert.equal(candidate('sportradar').outcomes.byeEliminated.status,'INFERABLE','conditional overall-elimination proof, not a separate provider flag');
+assert.equal(candidate('sportradar').outcomes.byeClinched.status,'UNKNOWN','enum name does not establish verified bye mapping');
+assert.equal(candidate('espn').outcomes.conferenceRank.status,'YES','observed current position is supported, not a lock');
+for(const id of ['nfl-pro','espn','cbs','sportradar','sportsdataio']) {
+  for(const outcome of ['divisionEliminated','byeEliminated']) assert.equal(candidate(id).outcomes[outcome].proof,'overallEliminated');
+  assert.notEqual(candidate(id).outcomes.exactSeedLocked.proof,'overallEliminated');
+}
+const matrixSource = (m,id) => m.sources.find(s=>s.id===id);
+const mutations = [
+  ['source adoption', m=>m.strategySelected='sportradar'],
+  ['production certification', m=>m.productionReady=true],
+  ['missing claim citation', m=>m.sources[0].outcomes.playoffClinched.refs=[]],
+  ['invalid status', m=>m.sources[0].outcomes.playoffEliminated.status=false],
+  ['non-inference proof', m=>m.sources[0].outcomes.playoffEliminated.proof='divisionOther'],
+  ['invented proof', m=>m.sources[0].outcomes.divisionEliminated.proof='current-rank-is-locked'],
+  ['missing proof premises', m=>m.proofs.divisionOther.premises=['division clinched']],
+  ['guessed affordability', m=>matrixSource(m,'sportradar').priceClass='low/modest'],
+  ['invalid minimum price', m=>matrixSource(m,'balldontlie').minimumMonthlyUsd=0],
+  ['collapsed outcome', m=>delete m.sources[0].outcomes.byeEliminated],
+  ['duplicate source', m=>m.sources.push(structuredClone(m.sources[0]))],
+  ['UNKNOWN to YES with unrelated existing ref', m=>Object.assign(matrixSource(m,'nfl-public-api').outcomes.playoffClinched,{status:'YES',refs:['bdl']})],
+  ['NO to YES', m=>matrixSource(m,'nfldata').outcomes.playoffEliminated.status='YES'],
+  ['NO to UNKNOWN', m=>matrixSource(m,'nfldata').outcomes.playoffEliminated.status='UNKNOWN'],
+  ['exact seed YES from current rank', m=>Object.assign(matrixSource(m,'balldontlie').outcomes.exactSeedLocked,{status:'YES',basis:'playoff_seed is rank',refs:['bdl']})],
+  ['wrong proof/outcome pairing', m=>matrixSource(m,'nfl-standings').outcomes.divisionEliminated.proof='byeOther'],
+  ['overall elimination used as seed proof', m=>matrixSource(m,'espn').outcomes.exactSeedLocked.proof='overallEliminated'],
+  ['invented numeric price', m=>matrixSource(m,'sportsdataio').minimumMonthlyUsd=9.99],
+  ['fabricated published price evidence', m=>{const s=matrixSource(m,'sportradar');s.minimumMonthlyUsd=9.99;s.costEvidence={mode:'published',minimumMonthlyUsd:9.99,refs:['sr'],basis:'invented quote'};}],
+  ['paid source relabeled free', m=>{const s=matrixSource(m,'sportsdataio');s.kind='FREE';s.priceClass='free';s.currentCost='$0';}],
+  ['published price citation substituted', m=>matrixSource(m,'balldontlie').costEvidence.refs=['sd']],
+  ['published price URL substituted', m=>m.refs.bdl=m.refs.sd],
+  ['quote-only cost asserted known', m=>matrixSource(m,'sportsdataio').currentCost='USD 10/month'],
+  ['canonical proof replaced by valid alternative', m=>matrixSource(m,'espn').outcomes.byeEliminated.proof='byeOther'],
+];
+for(const [label,change] of mutations) {
+  const invalid=structuredClone(matrix);change(invalid);
+  assert.throws(()=>validateSourceContracts(invalid),label+' must fail offline contract validation');
+}
+// Every one of the 104 cells is pinned: even a syntactically valid status/ref change fails.
+let pinnedCellMutations=0;
+for(const [index,s] of matrix.sources.entries()) for(const outcome of matrix.outcomes) {
+  const invalid=structuredClone(matrix),c=invalid.sources[index].outcomes[outcome];
+  c.status=c.status==='YES'?'UNKNOWN':'YES';delete c.proof;c.refs=['bdl'];
+  assert.throws(()=>validateSourceContracts(invalid),s.id+'/'+outcome+' reclassification');pinnedCellMutations++;
+}
+// All six proof names are rejected on an incompatible outcome before baseline matching.
+for(const [proof,outcome] of [['divisionOther','byeEliminated'],['byeOther','divisionEliminated'],['byeSeed1','playoffClinched'],['qualifiedBerth','byeClinched'],['homefieldBye','exactSeedLocked'],['overallEliminated','exactSeedLocked']]) {
+  const invalid=structuredClone(matrix);Object.assign(invalid.sources[0].outcomes[outcome],{status:'INFERABLE',proof,refs:['format']});
+  assert.throws(()=>validateSourceContracts(invalid),/Proof does not support/);
+}
+console.log('PASS: UX-25 Cycle 4 canonical coverage/price guards; '+mutations.length+' named attacks, '+pinnedCellMutations+' cell reclassifications and 6 proof-direction attacks rejected');

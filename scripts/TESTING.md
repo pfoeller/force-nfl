@@ -253,3 +253,49 @@ unverified. The [source assessment](../UX25_POSTSEASON_STATE_SOURCING.md) compar
 compute/external/hybrid options. No actual-state solver, feed, formatter or
 production behavior is implemented. Standalone lane catalog: 252; safe: 140; model: 46; release:
 17; default exclusions: 112 unchanged.
+
+Cycle 4 UX-25 source-contract research extends the existing focused regression
+with the [offline matrix](fixtures/ux25_source_contracts.json) and
+[claim validator](lib/postseason_source_contract.js). It distinguishes documented,
+bounded-absent, conditionally inferable and unknown source coverage. It pins the
+13×8 status/proof table and source price/access classes, allowlists proof outcomes,
+guards explicit seed-lock claims and requires curated published numeric-price
+evidence. Mutation attacks reject classification changes, wrong-direction proofs,
+rank-as-lock, invented prices and paid-to-free relabeling. The validator rejects
+source adoption and preserves all Cycle 3 behavior and byte-determinism checks. It neither parses live provider payloads nor proves
+actual state or citation semantics/production rights. A classification change
+requires deliberate fixture and validator baseline review. Run `node scripts/run_tests.mjs --test test_postseason_state_audit.mjs`.
+The [contract investigation](../UX25_SOURCE_CONTRACT_INVESTIGATION.md) leaves
+display PLANNED and strategy/owner decisions open. Catalog membership unchanged.
+Cycle 4 authoritative LF export: catalog 253 (safe 141, exclusions 112); safe
+141/141, model 46/46, release 17/17; focused UX-25 plus UX-10 2/2. Native UX-25
+1/1 and both changed JS/MJS syntax checks passed. Canonical public build/parity
+was unchanged; diagnostic byte-determinism retained. Final diff/governance
+checks passed; no production/model/generated change.
+
+## Cycle 4 integration verification (2026-10-02)
+
+`cycle4/integration` combines complete reviewed Claude `bb73001` and Codex
+`dba8573` histories from exact `a5f55575`. The roadmap history conflict
+retains both lane entries; the integrated roadmap has 35 unique authoritative
+IDs, including MD-03, and 140 checked local documentation links resolve.
+UX-19 planning remains REVIEW and removal PLANNED/not authorized/BLOCKED on
+separately implemented and independently validated MD-03. Its current-state
+examples describe `a5f5557`; removal acceptance must use the accepted post-MD-03
+baseline. UX-25 research remains REVIEW, display PLANNED, and source/budget/UX-11
+decisions remain open. Main is unchanged; final independent integration review
+is still pending. No production/model/data/UI/generated change.
+
+Authoritative LF-clean export: catalog 253; safe 141 (109 JavaScript, 32 Python);
+model 46; release 17; QB 26; snapshot 6; server 30; default exclusions 112.
+Safe 141/141, model 46/46, release 17/17, QB 26/26, snapshot 6/6 and server
+30/30 passed with zero failures. Twelve focused tests passed: UX-25, UX-10,
+UX-14 tranches A/B, FLAG unavailable values, QB Customize, QB correctness,
+V149 QB propagation, and V33/V30/V45/V69 preservation.
+
+The unchanged UX-25 regression rejects all 134 mutation attacks (24 named,
+104 cell reclassifications, six proof-direction cases) and retains diagnostic
+byte-determinism. Fixture parse/contract validation and both changed JS/MJS
+syntax checks passed. Canonical public build/parity, diff and governance checks
+passed; validation left the integration source worktree unchanged. No broad
+visual regression was needed because production/UI sources are unchanged.
