@@ -18,12 +18,12 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 141 tests: 109 JavaScript and 32 Python |
+| `npm test` / `npm run test:safe` | 142 tests: 110 JavaScript and 32 Python |
 | `npm run test:release` | 17 release/correctness tests |
-| `npm run test:qb` | 26 QB/pressure regressions |
+| `npm run test:qb` | 27 QB/pressure/research regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
-| `npm run test:model` | 46 model/unit regressions |
+| `npm run test:model` | 47 model/unit/research regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
 
@@ -300,3 +300,26 @@ byte-determinism. Fixture parse/contract validation and both changed JS/MJS
 syntax checks passed. Canonical public build/parity, diff and governance checks
 passed; post-merge validation left the main source worktree unchanged. No broad
 visual regression was needed because production/UI sources are unchanged.
+
+## Cycle 5 MD-03 offline event research
+
+`node scripts/audit_md03_qb_events.mjs` replays the frozen local sample without
+network calls, production imports or file writes. `test_md03_qb_events.mjs` is
+cataloged in safe / QB / model; catalog is 254, safe 142 (110 JS / 32 Python),
+model 47, QB 27; release 17, snapshot 6, server 30 and 112 exclusions unchanged.
+The 12-window sample and synthetic contracts exercise starter conflicts, byes,
+repeated episodes, role/transaction disqualifiers, unknown evidence, retraction
+and all-team symmetry. Every output denies production correction.
+`research/md03_build_sample.py SOURCE_DIRECTORY OUTPUT.json` reproduces the
+fixture from local source files matching its frozen manifest, without fetching
+or adopting a feed. See [investigation](../MD03_QB_EVENT_DETECTION_INVESTIGATION.md).
+
+Authoritative LF export passed safe 142/142, model 47/47, release 17/17 and
+QB 27/27. Focused MD-03 passed natively and in LF export; JS/MJS syntax,
+Python AST, fixture parsing, catalog/inventory, diff check and local document
+links passed. All 35 authoritative roadmap IDs remain unchanged and unique.
+Two diagnostic CLI runs were byte-identical; the local source-file rebuild
+matched the frozen fixture. The canonical public build in scratch reproduced
+generated output unchanged, and validation preserved all source-worktree
+status/hashes. Snapshot/server selections stay 6/30; those suites were not
+rerun for this research-only change.

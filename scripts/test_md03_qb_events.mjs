@@ -1,0 +1,73 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {detectQbEpisodes,resolveStarter,evaluateSample} from './lib/md03_qb_events.js';
+const fixture=JSON.parse(fs.readFileSync(new URL('./fixtures/md03_qb_episode_sample.json',import.meta.url),'utf8'));
+const model={window:{}};
+vm.runInNewContext(fs.readFileSync(new URL('../data/model-data.js',import.meta.url),'utf8'),model);
+const teams=Object.keys(model.window.MODEL_DATA.teams);
+assert.equal(teams.length,32);
+const game=(week,starter,extras={})=>({gameId:`synthetic-game-${week}`,gameDate:`2026-09-${String(week).padStart(2,'0')}`,season:2026,team:'opaque-team',week,completed:true,scheduleStarterId:starter,...extras});
+const injury={playerId:'opaque-qb-a',status:'Out',injury:'Knee'};
+const sequence=()=>[game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,'opaque-qb-b',{injuries:[injury]}),game(4,'opaque-qb-a')];
+const run=(games,extras={})=>detectQbEpisodes({team:'opaque-team',season:2026,games,...extras});
+const initial=sequence(), before=JSON.stringify(initial), result=run(initial);
+assert.equal(JSON.stringify(initial),before,'pure replay leaves evidence unchanged');
+assert.equal(result.episodes[0].missedStarts,1);
+assert.equal(result.episodes[0].injurySupportedReturnCandidate,true);
+assert.equal(result.episodes[0].productionCorrectionAllowed,false);
+const structural=JSON.stringify(result).replaceAll('"opaque-team"','"TEAM"').replaceAll('"opaque-team|','"TEAM|');
+for(const team of teams) {
+ const r=detectQbEpisodes({team,season:2026,games:sequence().map(g=>({...g,team}))});
+ assert.equal(JSON.stringify(r).replaceAll(`"${team}"`,'"TEAM"').replaceAll(`"${team}|`,'"TEAM|'),structural,'same schema and behavior for every team');
+}
+const renamed=run(sequence().map(g=>({...g,scheduleStarterId:g.scheduleStarterId.replace('opaque-qb','renamed-player'),injuries:(g.injuries||[]).map(i=>({...i,playerId:i.playerId.replace('opaque-qb','renamed-player')}))})));
+assert.equal(renamed.episodes[0].injurySupportedReturnCandidate,true,'no QB ID or name special case');
+const source=fs.readFileSync(new URL('./lib/md03_qb_events.js',import.meta.url),'utf8');
+for(const sample of fixture.cases)for(const g of sample.games)assert.ok(!source.includes(g.scheduleStarterName),'no historical player-name branches');
+assert.ok(!/Mahomes|Garoppolo|Tagovailoa|Roethlisberger|Mayfield/.test(source));
+const bye=run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,null,{kind:'BYE',completed:false}),game(4,'opaque-qb-b',{injuries:[injury]}),game(5,'opaque-qb-a')]);
+assert.equal(bye.episodes[0].missedStarts,1,'bye does not increment absence');
+assert.ok(bye.trace.some(t=>t.reason==='BYE_NOT_ABSENCE'));
+const repeat=run([...sequence(),game(5,'opaque-qb-b',{injuries:[injury]}),game(6,'opaque-qb-a')]);
+assert.equal(repeat.episodes.length,2);
+assert.notEqual(repeat.episodes[0].episodeId,repeat.episodes[1].episodeId);
+assert.deepEqual(repeat.episodes.map(e=>e.missedStarts),[1,1]);
+for(const broken of [game(3,null),game(3,'opaque-qb-b',{completed:false}),game(3,'opaque-qb-b',{officialStarterId:'opaque-qb-a',officialStarterEvidenceId:'official-record'}),game(3,'opaque-qb-b',{team:'other-team'})]) {
+ const r=run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),broken,game(4,'opaque-qb-a')]);
+ assert.equal(r.blocked,true);assert.equal(r.productionCorrectionAllowed,false);
+ assert.ok(r.trace.at(-1).reason==='REPLAY_REQUIRED_AFTER_EVIDENCE_GAP');
+}
+assert.equal(resolveStarter(game(1,null,{mostSnapsId:'opaque-qb-a',dominantDropbacksId:'opaque-qb-a',depthChartId:'opaque-qb-a'})).playerId,null,'usage and depth chart do not establish official start');
+assert.equal(resolveStarter(game(1,null,{officialStarterId:'opaque-qb-a'})).reason,'OFFICIAL_STARTER_EVIDENCE_MISSING');
+assert.equal(resolveStarter(game(1,null,{officialStarterId:'opaque-qb-a',officialStarterEvidenceId:'official-record'})).playerId,'opaque-qb-a');
+for(const reason of ['BENCHING','PERMANENT_CHANGE','ROOKIE_TAKEOVER','TRADE','RELEASE','REST','SUSPENSION','ROTATION']) {
+ const r=run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,'opaque-qb-b',{injuries:[injury]}),game(4,'opaque-qb-b',{change:{subjectId:'opaque-qb-a',reason,evidenceId:'documented-change'}}),game(5,'opaque-qb-a')]);
+ assert.equal(r.episodes[0].state,'PERMANENT_CHANGE',reason);
+ assert.equal(r.episodes[0].injurySupportedReturnCandidate,false,reason);
+ assert.equal(r.productionCorrectionAllowed,false);
+}
+assert.equal(run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,'opaque-qb-b',{change:{subjectId:'opaque-qb-a',reason:'TRADE'}})]).blocked,true,'unsubstantiated transaction blocks');
+assert.equal(run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,'opaque-qb-b',{change:{subjectId:'opaque-qb-a',reason:'invented',evidenceId:'x'}})]).blocked,true);
+const duplicate=run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,'opaque-qb-b',{injuries:[injury,{...injury,status:'Questionable'}]}),game(4,'opaque-qb-a')]);
+assert.equal(duplicate.episodes[0].state,'UNKNOWN');assert.equal(duplicate.episodes[0].injurySupportedReturnCandidate,false);
+const nested=run([game(1,'opaque-qb-a'),game(2,'opaque-qb-a'),game(3,'opaque-qb-b',{injuries:[injury]}),game(4,'opaque-qb-c',{injuries:[{...injury,playerId:'opaque-qb-b'}]}),game(5,'opaque-qb-a')]);
+assert.equal(nested.episodes[0].state,'UNKNOWN');assert.ok(nested.episodes[0].reasons.includes('MULTIPLE_INJURED_QBS_REQUIRES_ROLE_RESOLUTION'));
+const different=run([...sequence(),game(5,'opaque-qb-b',{change:{subjectId:'opaque-qb-a',reason:'PERMANENT_CHANGE',evidenceId:'change'}}),game(6,'opaque-qb-b'),game(7,'opaque-qb-c',{injuries:[{...injury,playerId:'opaque-qb-b'}]}),game(8,'opaque-qb-b')]);
+assert.equal(different.episodes.length,2);assert.notEqual(different.episodes[0].originalStarterId,different.episodes[1].originalStarterId,'two established QBs retain independent identities');
+assert.equal(run(sequence(),{asOf:'2026-09-10T00:00:00Z'}).blocked,true,'historical evidence without observed-at watermarks cannot become causal');
+assert.equal(run(sequence().map(g=>({...g,observedAt:'2026-09-20T00:00:00Z'})),{asOf:'2026-09-10T00:00:00Z'}).blocked,true,'future snapshot rejected');
+const corrected=sequence();corrected[2].scheduleStarterId='opaque-qb-a';corrected[2].injuries=[];
+assert.equal(run(corrected).episodes.length,0,'replay retracts corrected absence');
+assert.throws(()=>run([game(1,'opaque-qb-a'),game(1,'opaque-qb-a')]),/duplicate/);
+const report=evaluateSample(fixture);
+assert.deepEqual(report.metrics,{injuryAware:{truePositives:6,falsePositives:0,falseNegatives:2,trueNegatives:2,unknown:2},participationOnly:{truePositives:8,falsePositives:2,falseNegatives:0,trueNegatives:0,unknown:2}});
+assert.equal(fixture.cases.length,12);assert.equal(new Set(fixture.cases.map(c=>c.team)).size,8);assert.equal(new Set(fixture.cases.map(c=>c.season)).size,6);
+assert.equal(report.rows.find(r=>r.caseId==='car-2022-ambiguous').blocked,true,'independently documented starter conflict blocks');
+assert.equal(report.rows.find(r=>r.caseId==='mia-2021-finger').episodes[0].returnWeek,11,'in-game participation in Week 10 is not starter return');
+assert.equal(report.rows.find(r=>r.caseId==='gb-2017-collarbone').episodes[0].missedStarts,7,'bye excluded from long absence');
+assert.ok(report.rows.every(r=>r.productionCorrectionAllowed===false));
+for(const s of fixture.sources)assert.match(s.sha256,/^[a-f0-9]{64}$/);
+assert.ok(!fixture.currentSourceCoverage['injuries_2026.csv'].columns.includes('date_modified'),'observed schema gap stays explicit');
+assert.equal(JSON.stringify(evaluateSample(fixture)),JSON.stringify(report),'diagnostic determinism');
+console.log('PASS: MD-03 offline episode contract, 32-team symmetry, repeated/ambiguous/transaction/retraction cases and 12-window historical replay');
