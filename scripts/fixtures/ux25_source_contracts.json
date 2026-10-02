@@ -32,7 +32,7 @@
     "seedContract": "https://nflseedr.com/reference/nfl_standings.html",
     "seedRules": "https://nflseedr.com/articles/tiebreaker.html",
     "espn": "https://www.espn.com/nfl/standings/_/playoff",
-    "espnApi": "https://site.web.api.espn.com/apis/v2/sports/football/nfl/standings?season=2025",
+    "espnApi": "https://site.api.espn.com/apis/v2/sports/football/nfl/standings?season=2025",
     "disney": "https://disneytermsofuse.com/english/",
     "cbs": "https://www.cbssports.com/nfl/standings/",
     "cbsTerms": "https://www.viacomcbs.legal/us/en/cbsi/terms-of-use",
@@ -48,7 +48,15 @@
     "sdAccess": "https://sportsdata.io/developers",
     "sdReplay": "https://sportsdata.io/developers/replay",
     "bdl": "https://nfl.balldontlie.io/",
-    "bdlTerms": "https://www.balldontlie.io/terms.html"
+    "bdlTerms": "https://www.balldontlie.io/terms.html",
+    "nflApiDocs": "https://api.nfl.com/docs/league/standings",
+    "nflDeveloper": "https://developer.nfl.com/get-started/overview",
+    "espnApiCurrent": "https://site.api.espn.com/apis/v2/sports/football/nfl/standings?season=2026",
+    "nfldataStandings": "https://github.com/nflverse/nfldata/blob/master/data/standings.csv",
+    "nfldataDictionary": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md",
+    "wikimediaReuse": "https://www.mediawiki.org/wiki/Wikimedia_APIs/Content_reuse",
+    "wikimediaAccess": "https://www.mediawiki.org/wiki/Wikimedia_APIs/Access_policy",
+    "mysportsfeedsPrice": "https://www.mysportsfeeds.com/feed-pricing/"
   },
   "proofs": {
     "divisionOther": {
@@ -122,6 +130,20 @@
       "refs": [
         "format",
         "nflScenarios"
+      ]
+    },
+    "overallEliminated": {
+      "premises": [
+        "applicable standard NFL postseason format: every division champion and first-round-bye team qualifies for playoffs",
+        "verified source meaning and positive overall-eliminated marker authoritative/final for that team",
+        "same season, results watermark and normalized team/group identities",
+        "fresh non-conflicting evidence; corrections invalidate dependent claims",
+        "no exceptional league ruling invalidates qualification implication"
+      ],
+      "conclusion": "Overall playoff elimination implies division-title elimination and first-round-bye elimination for that team only; no exact seed inference.",
+      "refs": [
+        "format",
+        "rules"
       ]
     }
   },
@@ -198,6 +220,14 @@
             "nflStandings"
           ]
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "nflStandings",
+          "nflTerms"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -243,11 +273,13 @@
         },
         "divisionEliminated": {
           "status": "INFERABLE",
-          "basis": "Conditional other-member proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "nflPro"
+            "nflPro",
+            "format",
+            "rules"
           ],
-          "proof": "divisionOther"
+          "proof": "overallEliminated"
         },
         "byeClinched": {
           "status": "YES",
@@ -258,11 +290,13 @@
         },
         "byeEliminated": {
           "status": "INFERABLE",
-          "basis": "Conditional other-conference-team proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "nflPro"
+            "nflPro",
+            "format",
+            "rules"
           ],
-          "proof": "byeOther"
+          "proof": "overallEliminated"
         },
         "exactSeedLocked": {
           "status": "INFERABLE",
@@ -279,6 +313,14 @@
             "nflPro"
           ]
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "nflPro",
+          "nflTerms"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -348,68 +390,125 @@
           "basis": "Bulletin is not a complete ranked table",
           "refs": []
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "nflScenarios",
+          "nflTerms"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
       "id": "nfl-public-api",
       "name": "NFL-owned public machine API discovery",
       "kind": "FREE",
-      "authentication": "No login for retrieved/indexed public text; undocumented backend access UNKNOWN",
+      "authentication": "UNKNOWN; old documentation redirects to gated NFL developer portal",
       "rateLimits": "UNKNOWN; no published API quota verified",
-      "productionUse": "UNKNOWN; free viewing is not automated production permission",
-      "currentCost": "$0 public viewing; production data rights/cost UNKNOWN",
+      "productionUse": "UNKNOWN; no production rights or automated-use grant verified",
+      "currentCost": "UNKNOWN; developer access/production cost unverified",
       "priceClass": "unclear",
       "freshness": "No contractual source watermark or latency verified",
       "correctionFinality": "UNKNOWN; no terminal-flag revision contract verified",
-      "history": "Historical pages/publications exist; point-in-time revisions UNKNOWN",
+      "history": "Indexed legacy schema reported by independent review; current/historical payload availability unverified",
       "mapping": "Names/slugs require pinned aliases; not adopted",
-      "automation": "No documented unauthenticated comprehensive standings-state API located",
-      "confidence": "UNKNOWN; discovery failure is not proof no API exists",
+      "automation": "Indexed schema lead only; gated documentation and actual payload/schema availability unverified",
+      "confidence": "Indexed legacy lead, not an adequate or verified production source",
       "refs": [
-        "nflStandings",
-        "nflPro"
+        "nflApiDocs",
+        "nflDeveloper",
+        "nflTerms"
       ],
       "outcomes": {
         "playoffClinched": {
           "status": "UNKNOWN",
-          "basis": "No documented state contract verified for this outcome.",
-          "refs": []
+          "basis": "Indexed legacy fields/status values are a schema lead only; access, semantics and actual payload availability unverified. NOT_CLINCH_PLAYOFF and NOT_IN_PLAYOFF must not become elimination.",
+          "refs": [
+            "nflApiDocs",
+            "nflDeveloper"
+          ]
         },
         "playoffEliminated": {
           "status": "UNKNOWN",
-          "basis": "No documented state contract verified for this outcome.",
-          "refs": []
+          "basis": "Indexed legacy fields/status values are a schema lead only; access, semantics and actual payload availability unverified. NOT_CLINCH_PLAYOFF and NOT_IN_PLAYOFF must not become elimination.",
+          "refs": [
+            "nflApiDocs",
+            "nflDeveloper"
+          ]
         },
         "divisionClinched": {
           "status": "UNKNOWN",
-          "basis": "No documented state contract verified for this outcome.",
-          "refs": []
+          "basis": "Indexed legacy fields/status values are a schema lead only; access, semantics and actual payload availability unverified. NOT_CLINCH_PLAYOFF and NOT_IN_PLAYOFF must not become elimination.",
+          "refs": [
+            "nflApiDocs",
+            "nflDeveloper"
+          ]
         },
         "divisionEliminated": {
           "status": "UNKNOWN",
-          "basis": "No documented state contract verified for this outcome.",
-          "refs": []
+          "basis": "Indexed legacy fields/status values are a schema lead only; access, semantics and actual payload availability unverified. NOT_CLINCH_PLAYOFF and NOT_IN_PLAYOFF must not become elimination.",
+          "refs": [
+            "nflApiDocs",
+            "nflDeveloper"
+          ]
         },
         "byeClinched": {
           "status": "UNKNOWN",
-          "basis": "No documented state contract verified for this outcome.",
-          "refs": []
+          "basis": "Indexed legacy fields/status values are a schema lead only; access, semantics and actual payload availability unverified. NOT_CLINCH_PLAYOFF and NOT_IN_PLAYOFF must not become elimination.",
+          "refs": [
+            "nflApiDocs",
+            "nflDeveloper"
+          ]
         },
         "byeEliminated": {
           "status": "UNKNOWN",
-          "basis": "No documented state contract verified for this outcome.",
-          "refs": []
+          "basis": "Indexed legacy fields/status values are a schema lead only; access, semantics and actual payload availability unverified. NOT_CLINCH_PLAYOFF and NOT_IN_PLAYOFF must not become elimination.",
+          "refs": [
+            "nflApiDocs",
+            "nflDeveloper"
+          ]
         },
         "exactSeedLocked": {
           "status": "UNKNOWN",
-          "basis": "No documented state contract verified for this outcome.",
-          "refs": []
+          "basis": "Indexed legacy fields/status values are a schema lead only; access, semantics and actual payload availability unverified. NOT_CLINCH_PLAYOFF and NOT_IN_PLAYOFF must not become elimination.",
+          "refs": [
+            "nflApiDocs",
+            "nflDeveloper"
+          ]
         },
         "conferenceRank": {
           "status": "UNKNOWN",
-          "basis": "No documented state contract verified for this outcome.",
-          "refs": []
+          "basis": "Indexed legacy fields/status values are a schema lead only; access, semantics and actual payload availability unverified. NOT_CLINCH_PLAYOFF and NOT_IN_PLAYOFF must not become elimination.",
+          "refs": [
+            "nflApiDocs",
+            "nflDeveloper"
+          ]
         }
+      },
+      "schemaLead": {
+        "provenance": "Indexed legacy documentation reported by independent cross-review; correction recheck reached gated developer portal, not schema/payload",
+        "fields": [
+          "clinchDivision",
+          "clinchDivisionAndHomefield",
+          "clinchWildcard",
+          "clinchingScenarios",
+          "playoffStatus"
+        ],
+        "reportedStatusValues": {
+          "CLINCH_PLAYOFF": "May represent positive qualification; mapping unverified",
+          "NOT_CLINCH_PLAYOFF": "In the hunt is not elimination",
+          "NOT_IN_PLAYOFF": "Outside Looking In is current-position/status; not mathematical elimination without verified semantics"
+        }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "nflApiDocs",
+          "nflDeveloper",
+          "nflTerms"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -423,7 +522,7 @@
       "priceClass": "unclear",
       "freshness": "Documented game/schedule update cadence 5 minutes in season; not a guaranteed finality SLA",
       "correctionFinality": "UNKNOWN; no terminal-flag revision contract verified",
-      "history": "Multi-season schedule/results; corrected files overwrite current view; revision ledger not verified",
+      "history": "Multi-season schedule/results; corrected files overwrite current view; revision ledger not verified; separate standings.csv is a free historical final-season validation oracle (not live state), with exact dataset rights/finality still unverified",
       "mapping": "game_id + season/game_type + source team codes; preserve alias map and original IDs",
       "automation": "Already fetched by FORCE; extra provenance/finality inputs needed",
       "confidence": "High input-schema confidence; no explicit state flags",
@@ -490,6 +589,16 @@
             "schedules"
           ]
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "nfldata",
+          "nfldataRoot",
+          "schedules",
+          "updates"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -568,6 +677,14 @@
             "updates"
           ]
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "dataLicense",
+          "updates"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -646,26 +763,35 @@
             "seedContract"
           ]
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "seedCode",
+          "seedContract"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
       "id": "espn",
       "name": "ESPN public standings / undocumented API candidate",
       "kind": "FREE",
-      "authentication": "No login for retrieved/indexed public text; undocumented backend access UNKNOWN",
+      "authentication": "Unauthenticated site.api.espn.com current/historical standings requests returned 32 entries each; access is not a production grant",
       "rateLimits": "UNKNOWN; no published API quota verified",
       "productionUse": "No production grant verified; Disney terms restrict commercial and automated extraction without authorization",
       "currentCost": "$0 public viewing; production data rights/cost UNKNOWN",
       "priceClass": "unclear",
-      "freshness": "Historical indexed 2025 text says postgame updates; current API response inaccessible through web tool",
+      "freshness": "2026 and 2025 season queries returned during correction research; no covered-through watermark or latency/finality guarantee verified",
       "correctionFinality": "UNKNOWN; no terminal-flag revision contract verified",
-      "history": "Historical pages/publications exist; point-in-time revisions UNKNOWN",
+      "history": "2025 response observed with clincher codes *, e, y, z; historical code meanings/revisions require verification",
       "mapping": "HTML team names/slugs; machine ID/clincher schema NOT verified",
-      "automation": "HTML/indexed text is fragile; no stable approved API verified",
-      "confidence": "Indexed HTML legend; machine schema UNKNOWN",
+      "automation": "Machine endpoint responds without credentials; undocumented schema/code mapping and Disney automated/commercial-use rights remain unresolved",
+      "confidence": "Observed machine field presence and current-position data; terminal mappings remain surface-specific documentary evidence",
       "refs": [
         "espn",
         "espnApi",
+        "espnApiCurrent",
         "disney"
       ],
       "outcomes": {
@@ -693,11 +819,13 @@
         },
         "divisionEliminated": {
           "status": "INFERABLE",
-          "basis": "Conditional other-member proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "espn"
+            "espn",
+            "format",
+            "rules"
           ],
-          "proof": "divisionOther"
+          "proof": "overallEliminated"
         },
         "byeClinched": {
           "status": "YES",
@@ -708,11 +836,13 @@
         },
         "byeEliminated": {
           "status": "INFERABLE",
-          "basis": "Conditional other-conference-team proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "espn"
+            "espn",
+            "format",
+            "rules"
           ],
-          "proof": "byeOther"
+          "proof": "overallEliminated"
         },
         "exactSeedLocked": {
           "status": "INFERABLE",
@@ -723,10 +853,43 @@
           "proof": "byeSeed1"
         },
         "conferenceRank": {
-          "status": "UNKNOWN",
-          "basis": "Verified view was a historical table; API rank contract not established",
-          "refs": []
+          "status": "YES",
+          "basis": "Observed playoffSeed gives current conference position; not exact seed lock. No schema stability/finality or production-use guarantee.",
+          "refs": [
+            "espnApi",
+            "espnApiCurrent"
+          ]
         }
+      },
+      "schemaObservation": {
+        "checkedAt": "2026-10-02",
+        "seasons": [
+          2026,
+          2025
+        ],
+        "entriesPerSeason": 32,
+        "fields": [
+          "clincher",
+          "playoffSeed",
+          "lockedDivRank"
+        ],
+        "historicalClincherDisplayValues": [
+          "*",
+          "e",
+          "y",
+          "z"
+        ],
+        "boundaries": "clincher present in historical response, absent in observed 2026 entries; observed code pattern is not a verified mapping. playoffSeed is current position, not lock; lockedDivRank semantics UNKNOWN."
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "espn",
+          "espnApi",
+          "espnApiCurrent",
+          "disney"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -772,11 +935,13 @@
         },
         "divisionEliminated": {
           "status": "INFERABLE",
-          "basis": "Conditional other-member proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "cbs"
+            "cbs",
+            "format",
+            "rules"
           ],
-          "proof": "divisionOther"
+          "proof": "overallEliminated"
         },
         "byeClinched": {
           "status": "YES",
@@ -787,11 +952,13 @@
         },
         "byeEliminated": {
           "status": "INFERABLE",
-          "basis": "Conditional other-conference-team proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "cbs"
+            "cbs",
+            "format",
+            "rules"
           ],
-          "proof": "byeOther"
+          "proof": "overallEliminated"
         },
         "exactSeedLocked": {
           "status": "INFERABLE",
@@ -806,6 +973,14 @@
           "basis": "Division ordering is not an explicit authoritative conference rank contract",
           "refs": []
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "cbs",
+          "cbsTerms"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -868,6 +1043,14 @@
           "basis": "No documented state contract verified for this outcome.",
           "refs": []
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "yahoo",
+          "yahooTerms"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -915,26 +1098,31 @@
         },
         "divisionEliminated": {
           "status": "INFERABLE",
-          "basis": "No separate flag; conditional other-member proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "sr"
+            "sr",
+            "format",
+            "rules"
           ],
-          "proof": "divisionOther"
+          "proof": "overallEliminated"
         },
         "byeClinched": {
-          "status": "YES",
-          "basis": "division_first_round_bye; verify enum meaning/precedence",
+          "status": "UNKNOWN",
+          "basis": "division_first_round_bye enum name is documented, but terminal meaning/precedence mapping is not sufficiently verified for YES.",
           "refs": [
-            "sr"
+            "sr",
+            "srGuide"
           ]
         },
         "byeEliminated": {
           "status": "INFERABLE",
-          "basis": "No separate flag; conditional other-team proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "sr"
+            "sr",
+            "format",
+            "rules"
           ],
-          "proof": "byeOther"
+          "proof": "overallEliminated"
         },
         "exactSeedLocked": {
           "status": "INFERABLE",
@@ -951,6 +1139,16 @@
             "sr"
           ]
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "sr",
+          "srGuide",
+          "srAccount",
+          "srTerms"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -1001,11 +1199,13 @@
         },
         "divisionEliminated": {
           "status": "INFERABLE",
-          "basis": "No separate field; conditional other-member proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "sd"
+            "sd",
+            "format",
+            "rules"
           ],
-          "proof": "divisionOther"
+          "proof": "overallEliminated"
         },
         "byeClinched": {
           "status": "YES",
@@ -1016,11 +1216,13 @@
         },
         "byeEliminated": {
           "status": "INFERABLE",
-          "basis": "No separate field; conditional other-team proof only",
+          "basis": "Conditional overall-elimination subsumption after authoritative/final marker semantics and applicable format are verified; not an explicit provider field or exhaustive early-state detection. Other-winner certificates remain separate alternatives.",
           "refs": [
-            "sd"
+            "sd",
+            "format",
+            "rules"
           ],
-          "proof": "byeOther"
+          "proof": "overallEliminated"
         },
         "exactSeedLocked": {
           "status": "INFERABLE",
@@ -1037,6 +1239,17 @@
             "sd"
           ]
         }
+      },
+      "costEvidence": {
+        "mode": "unknown",
+        "refs": [
+          "sd",
+          "sdGuide",
+          "sdLicense",
+          "sdAccess",
+          "sdReplay"
+        ],
+        "basis": "No published numeric monthly production minimum verified for this reviewed source scope; FREE denotes publicly viewable/input/code candidate, not production rights"
       }
     },
     {
@@ -1116,6 +1329,14 @@
             "bdl"
           ]
         }
+      },
+      "costEvidence": {
+        "mode": "published",
+        "minimumMonthlyUsd": 9.99,
+        "refs": [
+          "bdl"
+        ],
+        "basis": "Published ALL-STAR minimum standings tier USD 9.99/month; owner has not approved purchase"
       }
     }
   ]

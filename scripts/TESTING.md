@@ -257,10 +257,14 @@ production behavior is implemented. Standalone lane catalog: 252; safe: 140; mod
 Cycle 4 UX-25 source-contract research extends the existing focused regression
 with the [offline matrix](fixtures/ux25_source_contracts.json) and
 [claim validator](lib/postseason_source_contract.js). It distinguishes documented,
-bounded-absent, conditionally inferable and unknown source coverage; rejects
-guessed affordability and source adoption; and preserves all Cycle 3 behavior
-and byte-determinism checks. It neither parses live provider payloads nor proves
-actual state. Run `node scripts/run_tests.mjs --test test_postseason_state_audit.mjs`.
+bounded-absent, conditionally inferable and unknown source coverage. It pins the
+13×8 status/proof table and source price/access classes, allowlists proof outcomes,
+guards explicit seed-lock claims and requires curated published numeric-price
+evidence. Mutation attacks reject classification changes, wrong-direction proofs,
+rank-as-lock, invented prices and paid-to-free relabeling. The validator rejects
+source adoption and preserves all Cycle 3 behavior and byte-determinism checks. It neither parses live provider payloads nor proves
+actual state or citation semantics/production rights. A classification change
+requires deliberate fixture and validator baseline review. Run `node scripts/run_tests.mjs --test test_postseason_state_audit.mjs`.
 The [contract investigation](../UX25_SOURCE_CONTRACT_INVESTIGATION.md) leaves
 display PLANNED and strategy/owner decisions open. Catalog membership unchanged.
 Cycle 4 authoritative LF export: catalog 253 (safe 141, exclusions 112); safe
