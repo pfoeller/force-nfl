@@ -2,7 +2,7 @@
 
 Roadmap item: `UX-14` (public methodology depth). Decision status CONFIRMED; this document is the required inventory and classification step. Prepared 2026-10-01 on `claude/roadmap-lane` from `main @ 8fc1f87`.
 
-**No approved UX-14 removal, relocation or simplification has been implemented.** The owner disposition below records approval of the R/D lists and the simplification direction. Implementing them still needs its own separately authorized content tranche. Technical/model documentation stays available internally. UX-16's separately reviewed prototype-positioning change is the only production edit in these lanes.
+**Implementation status (2026-10-01):** content tranche A (R1–R9, D3, D4, D7) is implemented on `cycle2/claude-product` and awaits lane review; see the `UX-14` entry in `FORCE_ROADMAP.md`. Every other approved row below is not yet implemented. The owner disposition below records approval of the R/D lists and the simplification direction. Implementing them still needs its own separately authorized content tranche. Technical/model documentation stays available internally. UX-16's separately reviewed prototype-positioning change is the only production edit in these lanes.
 
 ## Owner disposition (2026-10-01)
 

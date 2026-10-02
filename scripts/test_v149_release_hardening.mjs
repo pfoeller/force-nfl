@@ -45,7 +45,8 @@ for(const [candidate,expectedReady] of [[oldFlow,false],[flow,true],[{...flow,qb
     ok(api.S.statsWarning.includes('QB input unavailable'),'old startup schema has visible warning');
     ok(api.qbDebug('BUF').unavailable && api.qbDebug('BUF').measuredQbIndex===null,'QB diagnostics cannot report neutral/prior value as live');
     ok(!Number.isFinite(api.displayProfile('KC').qbIndex),'returning-starter unit overlay cannot conceal unavailable measured QB input');
-    ok(api.qbRankingsPage().includes('QB input unavailable'),'QB page carries availability warning');
+    // UX-14 R3: the public page states this in plain English; the raw warning stays in state.
+    ok(api.qbRankingsPage().includes('Quarterback ratings are unavailable until current QB data loads.'),'QB page carries availability warning');
   }
 }
 {

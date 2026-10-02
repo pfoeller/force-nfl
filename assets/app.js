@@ -25,6 +25,7 @@
   const PUBLIC_STALE_LIVE_BACKOFF_MS = 30 * 60 * 1000;
   const PUBLIC_MISSING_SNAPSHOT_TIMEOUT_MS = 12000;
   const PUBLIC_MISSING_SNAPSHOT_BACKOFF_MS = 30 * 60 * 1000;
+  const STALE_WARNING_PREFIX = 'Stale data:';
   const FORCE_BOOT_STARTED_AT = (typeof performance !== 'undefined' && typeof performance.now === 'function') ? performance.now() : Date.now();
 
   // V85 diagnostic instrumentation. Keep a bounded in-browser event log so a
@@ -551,7 +552,7 @@
       S.statsWarning=[S.statsWarning,S.qbInputWarning].filter(Boolean).join(' · ') || null;
       if (S.snapshotFreshness.stale) {
         const age=Number.isFinite(S.snapshotFreshness.ageMinutes)?`${Math.floor(S.snapshotFreshness.ageMinutes)} minutes old`:'of unknown age';
-        S.statsWarning = [S.statsWarning, `Stale data: showing the last known good snapshot (${age}). Live refresh is unavailable or still pending.`].filter(Boolean).join(' · ');
+        S.statsWarning = [S.statsWarning, `${STALE_WARNING_PREFIX} showing the last known good snapshot (${age}). Live refresh is unavailable or still pending.`].filter(Boolean).join(' · ');
       }
 
       const builtMs = Date.parse(snapshot.builtAt || '');
@@ -805,6 +806,32 @@
     const check=S.snapshotCheckMessage ? `${S.snapshotCheckMessage} · checked ${checked} · ` : '';
     if (!USE_HASH_ROUTING && check) return `${check}Data updated ${age}${S.snapshotFreshness?.stale?' · stale':S.statsError||S.statsWarning?' · degraded':''}`;
     return `${check}Updated ${age}${metricState} · auto in ${untilMin}m`;
+  }
+
+  // UX-14 R3/R4: feed keys, provider names and fallback mechanics stay in state,
+  // diagnostics and the localhost banner. Visitors get the same honest status in
+  // plain English.
+  function dataStatusBanners() {
+    const banner=(text,info=false)=>`<div class="refresh-warning${info?' refresh-warning-info':''}">${text}</div>`;
+    if (USE_HASH_ROUTING) {
+      return (S.refreshError ? banner(S.lastRefreshAt ? 'Refresh failed. Kept the last good data.' : `Live-data bootstrap failed: ${S.refreshError}`) : '')
+        + (S.statsError ? banner(`Some live metrics could not refresh (${S.statsError}). Current values are suppressed unless a fresh or last-known-good live snapshot is available.`) : '')
+        + (S.statsWarning ? banner(`Live metrics refreshed; ${S.statsWarning}.`, true) : '');
+    }
+    const parts=String(S.statsWarning || '').split(' · ').filter(Boolean);
+    const stale=Boolean(S.snapshotFreshness?.stale) || parts.some(part=>part.startsWith(STALE_WARNING_PREFIX));
+    const delayed=parts.some(part=>!part.startsWith(STALE_WARNING_PREFIX));
+    const qbUnavailable=Boolean(S.qbInputWarning) && !LP?.gameFlowQbStatus?.(S.liveGameFlow2026)?.ready;
+    const ageMinutes=Number(S.snapshotFreshness?.ageMinutes);
+    const age=Number.isFinite(ageMinutes) ? `, from ${Math.floor(ageMinutes)} minutes ago,` : '';
+    const notes=[
+      stale ? `FORCE is showing the last good data${age} while fresh data loads.` : '',
+      delayed ? 'Some inputs are delayed, so a few values may not reflect the latest games.' : '',
+      qbUnavailable ? 'Quarterback ratings are unavailable until current QB data loads.' : ''
+    ].filter(Boolean).join(' ');
+    return (S.refreshError ? banner(S.lastRefreshAt ? 'Refresh failed. Kept the last good data.' : 'FORCE did not load completely. Please reload the page.') : '')
+      + (S.statsError ? banner('Some current stats could not load. Affected values stay hidden until good data is available.') : '')
+      + (notes ? banner(notes, true) : '');
   }
 
   function connectionLabel() {
@@ -2283,7 +2310,7 @@
       const usable=Boolean(x.usable ?? current);
       const pending=Boolean(x.pending || (usable&&!current));
       const detail=key==='passRush'
-        ? (current ? `${x.provider || p?._live?.passRushProvider || 'current source'} · ${x.games||games}/${games} games` : 'missing current pressure')
+        ? (current ? `${x.games||games}/${games} games covered` : 'missing current pressure')
         : key==='schedule' ? `through Week ${x.throughWeek||f.latestCompletedWeek||'-'}`
         : current ? `through Week ${x.throughWeek||f.latestCompletedWeek||'-'}`
         : pending ? `Week ${x.throughWeek||'-'} retained · Week ${f.latestCompletedWeek||'-'} pending`
@@ -2488,7 +2515,7 @@
     const v = raw == null || raw === '' ? NaN : Number(raw);
     let detail = '';
     if (key === 'qbIndex' && p?._qbScenario && Number.isFinite(Number(p?._qbScenario?.baseQbIndex))) {
-      detail=` title="Displayed QB includes returning-QB scenario overlay: ${fmt(Number(p._qbScenario.baseQbIndex),1)} measured base → ${fmt(v,1)} scenario value. Use FORCE_QB_DEBUG(team) for both values."`;
+      detail=` title="Displayed QB includes returning-QB scenario overlay: ${fmt(Number(p._qbScenario.baseQbIndex),1)} measured base → ${fmt(v,1)} scenario value."`;
     }
     if (key === 'passRushIndex') {
       const ready=Boolean(p?._live?.passRushPressureReady && Number(p?._live?.passRushGames)>0);
@@ -3273,7 +3300,7 @@
       <div class="card kpi"><div class="label">3RD/4TH-DOWN DRIVE SAVES</div><div class="value" style="font-size:25px">${pen.live ? `${pen.drive_saves_benefit ?? '-'} / ${pen.drive_saves_harm ?? '-'}` : '-'}</div><div class="sub">Accepted penalties that kept a drive alive on third or fourth down. Net: ${pen.live ? signed(pen.net_drive_saves,0) : '-'}.</div></div>
       <div class="card kpi"><div class="label">2026 SAMPLE</div><div class="value">${pen.penalty_context_games ?? '-'}</div><div class="sub">Completed 2026 games represented in FLAG.</div></div>
       <div class="card kpi"><div class="label">TRACKED YARDS FOR / AGAINST</div><div class="value" style="font-size:25px">${pen.pen_yards_for ?? '-'} / ${pen.pen_yards_against ?? '-'}</div><div class="sub">Penalty yards gained from opponents first, penalty yards assessed against this team second.</div></div>
-      <div class="card kpi"><div class="label">DATA STATUS</div><div class="value" style="font-size:20px">${pen.live && !pen.unavailable ? 'LIVE 2026' : 'UNAVAILABLE'}</div><div class="sub">${pen.source || 'Current-season penalty context unavailable.'}</div></div>
+      <div class="card kpi"><div class="label">DATA STATUS</div><div class="value" style="font-size:20px">${pen.live && !pen.unavailable ? 'LIVE 2026' : 'UNAVAILABLE'}</div><div class="sub">${pen.live && !pen.unavailable ? 'Current-season penalty data.' : 'Current-season penalty context unavailable.'}</div></div>
     </div>`;
     if (S.ratingView === 'units') return `<div class="unit-board card">
       ${unitBoardRow(pr, 'Overall offense', 'offenseComposite')}
@@ -3288,7 +3315,7 @@
       ${unitBoardRow(pr, 'Pts/drive prevention', 'pointsAllowedPerDriveIndex')}
     </div>`;
     if (S.ratingView === 'advanced') return `<div class="grid three diagnostic-grid">
-      <div class="card kpi"><div class="label">RAW ELO</div><div class="value">${fmt(r)}</div><div class="sub">Base snapshot ${fmt(b.elo)} · bridge ${signed(r - b.elo, 1)}</div></div>
+      <div class="card kpi"><div class="label">RAW ELO</div><div class="value">${fmt(r)}</div></div>
       <div class="card kpi"><div class="label">OFFENSIVE EFFICIENCY PER PLAY</div><div class="value ${Number(pr.off_epa) >= 0 ? 'positive' : 'negative'}">${pr.off_epa != null ? signed(pr.off_epa, 3) : '-'}</div><div class="sub">${pr._live?.games ? `${liveProfileStatus(t)} | current-season efficiency with early games gently steadied by the preseason baseline` : 'Preseason offensive efficiency baseline' }.</div></div>
       <div class="card kpi"><div class="label">SCORING PROFILE</div><div class="value" style="font-size:25px">${scoring.ppg_for != null ? `${fmt(scoring.ppg_for)} / ${fmt(scoring.ppg_against)}` : '-'}</div><div class="sub">Points scored / allowed per game.</div></div>
       <div class="card kpi"><div class="label">RECENT VS SPREAD</div><div class="value ${spreadHistoryReady(ai) ? contextScoreClass(spreadContextScore(ai)) : ''}">${spreadHistoryReady(ai) ? contextScoreText(spreadContextScore(ai)) : ''}</div><div class="sub">${spreadHistoryReady(ai) ? `0–100 · 50 neutral · raw decayed/shrunk residual ${signed(ai.residual,2,' pts')}. Team history, not a matchup mirror.` : ai ? `${ai.marketGames ?? 0}/4 market-tracked games. Value appears after four games.` : 'Adaptive data unavailable.'}</div></div>
@@ -3816,7 +3843,7 @@
       ].map(([k, v]) => `<button data-nav="${k}" class="${active === k ? 'active' : ''}">${v}</button>`).join('')}</nav>
       <div class="top-actions"><span class="status"><i class="dot ${S.refreshError ? 'warn' : ''}"></i>${connectionLabel()}</span><button class="ghost refresh-button" id="refreshData" title="${USE_HASH_ROUTING?'Update schedule plus all current team/player/unit sources and recompute FORCE everywhere':'Check the latest published canonical snapshot'}">↻ Refresh</button><button class="ghost export-button" id="exportPng" title="Save this page as a PNG">Export PNG</button><span class="refresh-meta" id="refreshMeta">${refreshText()}</span><button class="ghost" data-nav="names">About FORCE</button></div>
     </header>
-    <main class="shell"><div id="exportCapture" class="export-capture">${S.refreshError ? `<div class="refresh-warning">${S.lastRefreshAt ? 'Refresh failed. Kept the last good data.' : `Live-data bootstrap failed: ${S.refreshError}`}</div>` : ''}${S.statsError ? `<div class="refresh-warning">Some live metrics could not refresh (${S.statsError}). Current values are suppressed unless a fresh or last-known-good live snapshot is available.</div>` : ''}${S.statsWarning ? `<div class="refresh-warning refresh-warning-info">Live metrics refreshed; ${S.statsWarning}.</div>` : ''}${content}
+    <main class="shell"><div id="exportCapture" class="export-capture">${dataStatusBanners()}${content}
       <div class="footer">FORCE | Ratings and forecasts refresh with current data when available. FORCE Score measures team strength. Luck and FLAG add context but do not directly change the public forecast. See Method for a plain-language explanation of how the model works.</div></div>
     </main>`;
   }
@@ -3902,7 +3929,7 @@
         ${g.homeScore != null ? duel('Postgame FORCE Score', g.away, g.home, historicalPostAway?.forceScore, historicalPostHome?.forceScore, 'Postgame rating', 'Postgame rating') : ''}
         ${duel(g.homeScore != null ? 'Current FORCE Score' : 'FORCE Score', g.away, g.home, awayState.forceScore, homeState.forceScore, g.homeScore != null ? 'Latest rating' : '0–100 strength', g.homeScore != null ? 'Latest rating' : '0–100 strength')}
         ${duel('Offensive profile', g.away, g.home, ap.offenseComposite, hp.offenseComposite, awayOffNote, homeOffNote)}
-        ${duel('Defensive profile', g.away, g.home, ap.defenseIndex, hp.defenseIndex, '36% coverage · 16% pass rush · 28% run defense · 20% pts/drive', '36% coverage · 16% pass rush · 28% run defense · 20% pts/drive')}
+        ${duel('Defensive profile', g.away, g.home, ap.defenseIndex, hp.defenseIndex)}
         ${duel('Quarterback play', g.away, g.home, ap.qbIndex, hp.qbIndex, awayQbNote, homeQbNote)}
         ${duel('Offensive line', g.away, g.home, ap.olIndex, hp.olIndex, ap.ol ? `${fmt((1-ap.ol.pressure_rate_allowed)*100,1)}% disruption-free dropback proxy` : '', hp.ol ? `${fmt((1-hp.ol.pressure_rate_allowed)*100,1)}% disruption-free dropback proxy` : '')}
         ${duel('Pass rush', g.away, g.home, ap.passRushIndex, hp.passRushIndex, ap.dl ? passRushRateLabel(ap) : '', hp.dl ? passRushRateLabel(hp) : '')}
@@ -4232,12 +4259,11 @@
       <p>FORCEcast is the public game prediction. Early in the season it listens more heavily to the betting market because there is not much new-season evidence yet. The market supplies 75% of the Week 1 prediction, 50% in Week 2, 25% in Week 3, 15% in Week 4, 10% in Week 5, and 5% from Week 6 onward. The win probability and predicted line come from the same final prediction. The predicted score is then generated from 25,000 possession-level simulations centered on that FORCEcast expectation and the matchup's scoring environment.</p>
       <p>The displayed score is adjusted toward point totals that actually occur in football. That keeps the score realistic without changing the underlying win probability. Because of that, the exact score can differ slightly from the betting-style line.</p>
       <h2>Unit profiles</h2>
-      <p><b>Offense:</b> 45% overall offensive performance, 25% quarterback play, 15% receivers, and 15% offensive line.</p>
-      <p><b>Defense:</b> 36% coverage, 28% run defense, 20% points allowed per opponent drive, and 16% pass rush.</p>
-      <p>Those percentages describe how the overall offense and defense scores are built. They are not four extra adjustments piled on top of the final FORCE Score.</p>
+      <p><b>Offense:</b> built mostly from overall offensive performance and quarterback play, with receivers and the offensive line filling out the rest.</p>
+      <p><b>Defense:</b> leans most heavily on coverage and run defense, with points allowed per drive and pass rush also included.</p>
+      <p>Those ingredients describe how the overall offense and defense scores are built. They are not four extra adjustments piled on top of the final FORCE Score.</p>
       <h2>How new games change unit ratings</h2>
       <p>Early-season samples are noisy, so FORCE does not let one game completely replace what was known before the season. After one game, a typical unit is roughly half current-season evidence and half preseason baseline. After two games, about two-thirds comes from the current season. By four games, about four-fifths comes from the current season. If the early team results are dramatically different from expectations, FORCE can trust the new evidence somewhat faster.</p>
-      <p>Quarterback play focuses mostly on passing efficiency, then pass success and completion performance relative to expectation. Positive rushing value can add a smaller bonus. Receiver ratings try to separate what the receiving group created from what came simply from the quarterback and passing environment. Running back ratings lean mostly on rushing efficiency, with receiving work making up the smaller share.</p>
       <p>Pass rush uses the freshest reliable pressure information available. If detailed pressure charting is missing, FORCE can fall back to current QB hits and sacks. It does not treat missing pressure data as zero.</p>
       <h2>How unit ratings reach the team rating</h2>
       <p>When a unit gets better or worse, that movement can change the overall FORCE Score. The effect is limited so a single noisy unit cannot overwhelm the entire team rating. Missing unit data simply add no new movement until reliable data arrive.</p>
@@ -4283,12 +4309,10 @@
       <div class="brand-language card">
         <div><b>FORCE Score</b><span>Team strength on a 0 to 100 scale. 50 is average, and the endpoints are intentionally difficult to reach.</span></div>
         <div><b>FORCE Rankings</b><span>Teams ordered by FORCE Score.</span></div>
-        <div><b>FORCEcast</b><span>Win odds, line, and score.</span></div>
         <div><b>FORCEcast</b><span>Single public win odds, line, and score; blends market by week when available.</span></div>
         <div><b>FORCE Adaptive</b><span>Research version that tests whether some teams should lean a little more or less on the betting market.</span></div>
         <div><b>Roster Lab</b><span>Player what-if tool. Kept plain on purpose.</span></div>
       </div>
-      <div class="notice" style="margin-top:16px"><b>Brand principle:</b> use FORCE where it adds meaning. Keep ordinary football terms ordinary.</div>
     </div>`, 'names');
   }
 
@@ -5228,8 +5252,11 @@
     return required.filter(([,value])=>!value).map(([name])=>name);
   }
 
+  // UX-14 R5: the missing-module list stays in diagnostics (and on localhost);
+  // visitors get a plain reload message.
   function runtimeModuleBlocked(missing) {
-    return `<main class="shell"><section class="card method data-integrity-block"><div class="eyebrow">Runtime integrity gate</div><h1>FORCE did not load completely</h1><p>Required model modules are missing: <b>${missing.join(', ')}</b>.</p><p>FORCE will not silently fall back to simplified ratings or score rounding. Reload the app from the complete V82 bundle.</p></section></main>`;
+    const detail=USE_HASH_ROUTING ? `<p>Required model modules are missing: <b>${missing.join(', ')}</b>.</p>` : '';
+    return `<main class="shell"><section class="card method data-integrity-block"><h1>FORCE did not load completely</h1>${detail}<p>Please reload the page. FORCE does not show partial ratings or forecasts while part of the app is missing.</p></section></main>`;
   }
 
 

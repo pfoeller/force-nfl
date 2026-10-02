@@ -131,6 +131,13 @@
       "python": true
     },
     {
+      "file": "test_ux14_public_explanations.mjs",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression"
+    },
+    {
       "file": "test_ux16_public_positioning.mjs",
       "suites": [
         "safe"
