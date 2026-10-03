@@ -1338,7 +1338,7 @@
           <div class="scenario-stat"><span>PROJECTED WINS</span><strong>${fmt(before.ew)} → ${fmt(after.ew)}</strong><small>${after.ew >= before.ew ? '+' : ''}${fmt(after.ew-before.ew,2)} expected wins.</small></div>
           ${nextMarkup}
         </div>
-        <div class="warning carryover-warning"><b>Why the automatic correction is cautious:</b> in the historical test, this idea improved predictions more often than it hurt them, but it did not help every team. FORCE therefore uses it only for verified replacement-QB cases, starts with a modest correction, and cuts that correction in half about every four team games.</div>
+        <div class="warning carryover-warning"><b>Historical research, manual what-if:</b> Historical tests found a small benefit that depended on which cases were included. FORCE does not apply an automatic correction. The research is preserved, and this lab lets you test a manual what-if.</div>
       </div>
     </section>`;
   }

@@ -112,6 +112,23 @@ ok(sim.teams.KC.force===api.score(api.currentRatings().KC),'playoff projection u
 const method=api.model();
 ok(method.includes('NOT APPLIED') && !method.includes('LIMITED USE') && !method.includes('limited returning-QB correction'),'Method copy states no automatic correction');
 
+// 6. Rendered copy must describe retirement even with legacy data or a manual value.
+for (const [label,sources] of [['default',{}],['legacy',legacySources]]) {
+  const h=build({sources});
+  for (const manual of [false,true]) {
+    h.api.S.qbCarryover={enabled:manual,team:'KC',qb:'Patrick Mahomes',restoreElo:47.3};
+    for (const t of ['KC','BUF']) {
+      const html=h.api.teamPage(t), context=`${label}: ${t}, manual ${manual?'on':'off'}`;
+      const warning=html.match(/<div class="warning carryover-warning">([\s\S]*?)<\/div>/)?.[1];
+      ok(Boolean(warning),`${context}: research warning remains visible`);
+      ok(warning.includes('FORCE does not apply an automatic correction.'),`${context}: warning states the retired policy`);
+      ok(!/Why the automatic correction is cautious:|FORCE therefore uses it only for verified replacement-QB cases|cuts that correction in half about every four team games/.test(warning),`${context}: warning does not claim active automatic use or decay`);
+      ok(['id="qbCarryoverQB"','id="qbCarryoverElo"','id="applyQBCarryover"','id="clearQBCarryover"'].every(id=>html.includes(id)),`${context}: manual controls remain available`);
+      ok(html.includes(manual&&t==='KC'?'>MANUAL<':'>OFF<'),`${context}: rendered manual state matches the fixture`);
+    }
+  }
+}
+
 // 9. Manual QB Return Lab still works through its real handlers.
 const els={app:{innerHTML:''},qbCarryoverQB:{value:'Patrick Mahomes'},qbCarryoverElo:{value:'47.3'},qbCarryoverValue:{textContent:''},
   applyQBCarryover:{onclick:null},clearQBCarryover:{onclick:null}};

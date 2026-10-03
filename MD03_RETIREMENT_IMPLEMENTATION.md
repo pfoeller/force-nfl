@@ -20,7 +20,7 @@ The owner retired the automatic correction as a decision under uncertainty. The 
 | Stale preset | Yes: any preset with `autoEligible:true` became live on every route. |
 | Persistence | None. `localStorage` holds only `forceRatingView`; no URL, server, snapshot or export path stores carryover state. A fresh bundle starts with manual off. |
 | Server / Worker / snapshot | No reference. `force_server.py` "carryover" hits are unrelated penalty calibration strings. |
-| Contracts asserting automatic behaviour | `test_v33_qb_regime.js`, `test_v30_predictive_gates.js`, `test_v69_canonical_historical_state.js` (catalogued, safe); `test_qb_carryover_ui.js` and `test_v14_matchup_clarity.js` (default-excluded, already failing at base for other reasons); `scripts/validate_bundle.py` (not catalogued). Research tests (`test_md03_qb_model_research.py`, `test_md03_qb_events.mjs`) reproduce V33 offline and never touch production. |
+| Relevant contracts at base | `test_v33_qb_regime.js`, `test_v30_predictive_gates.js`, `test_v69_canonical_historical_state.js` (catalogued, safe automatic contracts); `test_qb_carryover_ui.js` (default-excluded AUTO/reset UI contract; already failing at base on obsolete preset wording); `test_v14_matchup_clarity.js` (default-excluded manual preview/scenario contract, with no AUTO assertions; its incomplete bundle triggers the current integrity gate at base); `scripts/validate_bundle.py` (not catalogued). Research tests (`test_md03_qb_model_research.py`, `test_md03_qb_events.mjs`) reproduce V33 offline and never touch production. |
 
 ## 2. Retirement implementation
 
@@ -30,7 +30,7 @@ Production entry points removed, not masked:
 - `effectiveQbCorrection(t)` returns the manual value when the lab is active, otherwise 0.
 - `ratingsWithQBCarryover` / `ratingsWithActiveQBCarryover` apply only manual values and no longer consult the gate. At base the gate was always open, so manual behaviour is unchanged (the existing quirk that a manual value for a team without a preset changes only that team page is preserved).
 - `canonicalGameTeamState()` and both `week2EntryState()` branches no longer add a QB restore; `qbRestore` remains in the state objects as an explicit 0 so ledger and audit consumers keep their shape.
-- Copy that asserted an automatic correction now says FORCE does not apply one: the QB Return Lab intro and preset sentence, the chip (MANUAL/OFF), quick-button labels (`Clear QB fix` instead of `Use auto QB fix`), the team-page overlay label, and the Method "QB return correction" paragraph, STATUS card (`NOT APPLIED`) and predictive-feature sentence. Controls, layout and the lab itself are unchanged. No em dashes.
+- Copy that asserted an automatic correction now says FORCE does not apply one: the QB Return Lab intro, preset sentence and research warning, the chip (MANUAL/OFF), quick-button labels (`Clear QB fix` instead of `Use auto QB fix`), the team-page overlay label, and the Method "QB return correction" paragraph, STATUS card (`NOT APPLIED`) and predictive-feature sentence. Controls, layout and the lab itself are unchanged. No em dashes.
 
 Data and dormant machinery:
 
@@ -62,7 +62,7 @@ Method: the real ordered bundle (`scripts/lib/force_app_harness.js`) was run on 
 | Any other team's rating, state, units, ledger or history | No change in any state (31 teams). |
 | FORCEcast | Only the two KC games move: DEN–KC home probability 0.5372 → 0.5305; IND–KC 0.6600 → 0.6480 (bundled). Integer Monte Carlo predicted scores for those games were unchanged in these states. Opponents' expected wins move with those probabilities (DEN +0.007, IND +0.012). |
 | Season projection | KC playoff odds 35.0% → 34.0%, division 34.4% → 33.4% (bundled). Other teams' odds move by up to about 0.6 points through shared standings, and representative-season records for some teams change in preseason; no team rating changes. No change once every game is complete. |
-| Pages / PNG exports | Rankings (KC row and quick button, KC moves 16th → 17th), every team page (lab copy), KC team page, KC matchups, Playoffs, Divisions, slate and Method. Exports render these pages, so they change the same way. QB Rankings unchanged. |
+| Pages / PNG exports | Rankings (KC row and quick button, KC moves 16th → 18th), every team page (lab copy), KC team page, KC matchups, Playoffs, Divisions, slate and Method. Exports render these pages, so they change the same way. QB Rankings unchanged. |
 | Manual KC 47.3 | Current rating, forecasts and projections identical to base. |
 | Manual for a team without a preset (BUF) | Identical to base apart from KC's automatic part disappearing. |
 | Roster Lab | No code change; it never consumed the automatic correction. |
@@ -70,7 +70,7 @@ Method: the real ordered bundle (`scripts/lib/force_app_harness.js`) was run on 
 
 ## 6. Tests
 
-New `scripts/test_md03_retirement.mjs` (safe, qb, model; 1,346 checks) drives the real bundle: preseason, bundled and played states with no automatic correction on any route for all 32 teams; legacy `autoEligible:true` preset plus a reopened gate producing outputs identical to the retired default; the resolver unreachable (requesting it as a hook throws `ReferenceError`); rankings, team, matchup, FORCEcast, season projection, Method, ledger and debug paths; historical pre/post states; the manual lab through its real Apply, Reset and quick-button handlers; and a fresh start. It fails on the base tree, as do the updated V30, V33 and V69 contracts. `scripts/lib/force_app_harness.js` gained an optional `sources` override so a test can load legacy data; existing callers are unaffected.
+New `scripts/test_md03_retirement.mjs` (safe, qb, model; 1,386 checks) drives the real bundle: preseason, bundled and played states with no automatic correction on any route for all 32 teams; legacy `autoEligible:true` preset plus a reopened gate producing outputs identical to the retired default; the resolver unreachable (requesting it as a hook throws `ReferenceError`); rankings, team, matchup, FORCEcast, season projection, Method, ledger and debug paths; the rendered retirement warning and retained controls under default/legacy data with manual input off/on; historical pre/post states; the manual lab through its real Apply, Reset and quick-button handlers; and a fresh start. It fails on the base tree, as do the updated V30, V33 and V69 contracts. `scripts/lib/force_app_harness.js` gained an optional `sources` override so a test can load legacy data; existing callers are unaffected.
 
 Updated contracts: V33 keeps every V33 calculation check on an explicitly re-enabled copy of the preset and the benchmark record checks, and now asserts the production retirement; V30 asserts the gate is retired with zero weight while the historical benchmark record stays; V69 asserts no historical QB restore. `validate_bundle.py` asserts the retired flags. Suite results are recorded in [scripts/TESTING.md](scripts/TESTING.md).
 
@@ -78,5 +78,6 @@ Updated contracts: V33 keeps every V33 calculation check on an explicitly re-ena
 
 - Independent validation and owner acceptance (MD-03 steps C and D).
 - The UX-19 plan revision (step E) needs to handle D10 and the automatic-chip, base-projection, matchup disclosure and Method items in light of this state.
-- `test_qb_carryover_ui.js` and `test_v14_matchup_clarity.js` remain default-excluded; their automatic-state expectations are now intentionally obsolete in addition to their earlier baseline failures.
+- `test_qb_carryover_ui.js` remains default-excluded; its AUTO/reset expectations are now intentionally obsolete, and it already failed at base on obsolete preset wording.
+- `test_v14_matchup_clarity.js` remains default-excluded; it tests a manual preview/scenario, contains no AUTO assertions, and fails at both base and retirement because its incomplete bundle triggers the current integrity gate.
 - An already-open browser tab keeps the old bundle and its automatic correction until it reloads.
