@@ -416,7 +416,7 @@ The sequence is:
 
 ## 22. Active path and the retirement implementation contract
 
-**Status update (2026-10-02, Cycle 6):** steps A and B are done on review branch `cycle6/claude-md03-retirement` from `0e6b745` ([implementation and evidence](MD03_RETIREMENT_IMPLEMENTATION.md)); independent validation (C) and owner acceptance (D) are PENDING, and the text below is kept as written for the validator.
+**Status update (2026-10-03, Cycle 6):** steps A and B are done on `cycle6/claude-md03-retirement` from `0e6b745` ([implementation and evidence](MD03_RETIREMENT_IMPLEMENTATION.md)); independent validation (C) PASSED; the owner accepted the retirement (D) at `8e6a180` on 2026-10-03; the UX-19 plan revision (E) is done and awaits independent review; F is not authorized. The text below is kept as written.
 
 **Active MD-03 path** (no step is complete; production behaviour is unchanged today):
 - **A.** Separately authorize retirement/disablement of the existing automatic QB-return correction.

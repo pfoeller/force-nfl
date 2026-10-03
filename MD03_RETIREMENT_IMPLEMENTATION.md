@@ -1,6 +1,6 @@
 # MD-03 automatic QB-return correction retirement (Cycle 6)
 
-**Status:** owner retirement decision CONFIRMED (2026-10-02); retirement IMPLEMENTED ON REVIEW BRANCH `cycle6/claude-md03-retirement` from exact `0e6b745d5cff5fdf8be18ff5676212f3247512f1`; independent validation PENDING; owner acceptance PENDING. Not pushed, merged or deployed. `UX-19` plan revision stays BLOCKED and `UX-19` implementation stays unauthorized. MD-03 is not complete.
+**Status:** owner retirement decision CONFIRMED (2026-10-02); retirement IMPLEMENTED on `cycle6/claude-md03-retirement` from exact `0e6b745d5cff5fdf8be18ff5676212f3247512f1` (`a40feed`, correction `8e6a180`); independent validation PASSED (Codex full validation, then targeted re-review of the three corrections: "A. CORRECTIONS VERIFIED — READY FOR OWNER ACCEPTANCE"); owner acceptance ACCEPTED on 2026-10-03 at `8e6a180`. Not pushed, merged or deployed. The `UX-19` plan was revised for this state on 2026-10-03 and awaits independent review; `UX-19` implementation stays NOT AUTHORIZED. MD-03 is not complete.
 
 The owner retired the automatic correction as a decision under uncertainty. The corrected Cycle 5 research found a small, population-sensitive historical signal, about zero on detector-like populations, with marginal value in the production stack untested. That is not a finding that the effect is zero or that candidates A, B0 or B2 are invalid. All research is preserved ([model investigation](MD03_QB_CORRECTION_MODEL_INVESTIGATION.md), [detector investigation](MD03_QB_EVENT_DETECTION_INVESTIGATION.md), [V33 research](QB_REGIME_RESEARCH_V33.md), `research/`).
 
@@ -76,8 +76,8 @@ Updated contracts: V33 keeps every V33 calculation check on an explicitly re-ena
 
 ## 7. Open points for validation
 
-- Independent validation and owner acceptance (MD-03 steps C and D).
-- The UX-19 plan revision (step E) needs to handle D10 and the automatic-chip, base-projection, matchup disclosure and Method items in light of this state.
+- Independent validation and owner acceptance (MD-03 steps C and D): done; validation PASSED and the owner accepted `8e6a180` on 2026-10-03.
+- The UX-19 plan revision (step E): done 2026-10-03 in [UX19_QB_RETURN_REMOVAL_PLAN.md](UX19_QB_RETURN_REMOVAL_PLAN.md); independent plan review pending.
 - `test_qb_carryover_ui.js` remains default-excluded; its AUTO/reset expectations are now intentionally obsolete, and it already failed at base on obsolete preset wording.
 - `test_v14_matchup_clarity.js` remains default-excluded; it tests a manual preview/scenario, contains no AUTO assertions, and fails at both base and retirement because its incomplete bundle triggers the current integrity gate.
 - An already-open browser tab keeps the old bundle and its automatic correction until it reloads.

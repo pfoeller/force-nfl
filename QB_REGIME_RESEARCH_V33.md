@@ -1,6 +1,6 @@
 # V33 returning-QB regime research
 
-**Status (2026-10-02, MD-03 Cycle 6, review branch):** the owner retired the automatic correction from current production as a decision under uncertainty; it was not disproven. Production now applies no automatic QB-return correction. This research and `model/qb_regime.js` are preserved unchanged for possible future reconsideration. See [MD-03 retirement implementation](MD03_RETIREMENT_IMPLEMENTATION.md).
+**Status (2026-10-03, MD-03 Cycle 6):** the owner retired the automatic correction from current production as a decision under uncertainty; it was not disproven. The retirement passed independent validation and was accepted by the owner on 2026-10-03, and the accepted candidate applies no automatic QB-return correction. This research and `model/qb_regime.js` are preserved unchanged for possible future reconsideration. See [MD-03 retirement implementation](MD03_RETIREMENT_IMPLEMENTATION.md).
 
 ## Decision
 

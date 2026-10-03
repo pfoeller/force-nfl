@@ -2,432 +2,320 @@
 
 Roadmap item: `UX-19` (remove public QB adjustment / QB-return tool). Decision status CONFIRMED (owner, 2026-10-01). This document is the planning prerequisite named in the item's acceptance contract: "a bounded public-removal plan identifying retained internal capability, followed by separately authorized removal."
 
-Prepared 2026-10-02 on `cycle4/claude-product` from exact `main @ a5f5557` (`c9d03fe`), then corrected after Codex's independent cross-review and the owner's O1-O5 decisions (same date, follow-up commit). **Planning only. Nothing was removed.** No production, model, data, test or generated `public/` file changed. Line numbers refer to `a5f5557`. This plan does not authorize the removal tranche.
+**Planning only. Nothing is removed by this document, and it authorizes no implementation.** UX-19 implementation (MD-03 step F) is NOT AUTHORIZED and needs a separate owner authorization.
 
-**Prerequisite added 2026-10-02 (owner requirement): public removal is BLOCKED until a league-wide automatic QB-return correction exists and has been independently validated and accepted by the owner.** Any retained automatic correction must operate for any team and quarterback, including midseason qualifying injury and return cases; the current KC-only preset is not an acceptable final state. The sequence is: (A) investigate/design and separately implement league-wide automatic detection and correction under explicit authorization; (B) validate it independently and obtain owner acceptance; (C) only then remove the public manual tool under the boundary in this plan. The prerequisite is roadmap item `MD-03` and is defined in section 14. Everything in sections 1-13 remains the reviewed removal boundary for step C. Where they describe the V33 KC preset, they describe the **current state**, not the target state.
+## 0. Revision history and current baseline
 
-**Dependency update (2026-10-02, MD-03 owner decision):** The owner chose to **retire** the automatic QB-return correction instead of generalizing it (see `MD-03` in the [roadmap](FORCE_ROADMAP.md) and the [model investigation](MD03_QB_CORRECTION_MODEL_INVESTIGATION.md)). The league-wide prerequisite described below and in section 14 is superseded for current work: UX-19 removal now waits for a separately authorized retirement of the automatic correction, its independent validation and owner acceptance. This plan was written assuming an automatic correction would remain, so it needs a **bounded revision before execution**. O1/O2/O3 and the KEEP/REWORD treatment of the automatic-correction chip, base-projection context, matchup disclosure, unit notes/tooltips and Method copy must be reassessed for the no-automatic-correction state. The rest of the reviewed removal boundary is unchanged by this note, and the note authorizes nothing.
+- **First version (2026-10-02, Cycle 4, `cycle4/claude-product` from `a5f5557`)**, corrected after Codex cross-review and the owner's O1-O5 decisions. It assumed the automatic V33 QB-return correction would stay, and later recorded a superseded league-wide `MD-03` prerequisite. That version is preserved in git history (for example at `8e6a180`).
+- **This revision (2026-10-03, Cycle 6, `cycle6/claude-md03-retirement` on top of `8e6a180`)** rewrites the plan for the accepted no-automatic-correction state. The owner accepted the `MD-03` retirement at `8e6a180` on 2026-10-03 after Claude implementation and evidence, Codex independent full validation, Claude's bounded correction of three review findings, and a Codex targeted re-review ("A. CORRECTIONS VERIFIED — READY FOR OWNER ACCEPTANCE"). See [MD-03 retirement implementation](MD03_RETIREMENT_IMPLEMENTATION.md) and `MD-03` in the [roadmap](FORCE_ROADMAP.md). That retirement is a decision under uncertainty, not a finding that QB-return effects are zero; the research is preserved for possible reconsideration.
+
+Line numbers below refer to `8e6a180` (`assets/styles.css` is unchanged since `a5f5557`). Function names are authoritative if lines drift.
+
+**Accepted production baseline this plan is written against:**
+
+| Area | State at `8e6a180` |
+| --- | --- |
+| Automatic correction | None. No automatic eligibility, no decay, no automatic current, historical (V69) or V99 Week-2 correction. `assets/app.js` no longer reads `model/qb_regime.js` or the `qbCarryover` gate; legacy `autoEligible:true` or an accepted gate, alone or together, cannot reactivate it (`scripts/test_md03_retirement.mjs`). |
+| Manual what-if | Still public and functional. A visitor explicitly applies a value (QB Return Lab Apply, or a quick button for a preset team). It changes applicable current ratings, forecasts and projections, never historical canonical states. State is in-memory only (`S.qbCarryover`, app.js:307, initializer `enabled:false`). The pre-existing scope quirk stays: a manual value for a team without a preset changes only that team page. Status language is MANUAL/OFF. |
+| Research | V33 rule, `model/qb_regime.js`, `data/qb-carryover.js` values (including the former 15.75 Elo initial restore), `QB_REGIME_RESEARCH_V33.md`, `QB_CARRYOVER_RESEARCH*.md`, `research/` and the Cycle 5 MD-03 investigations are preserved as evidence only. Nothing in research implies production activation. |
+| Public copy | Already truthful: the Lab and Method say FORCE applies no automatic QB-return correction, research is preserved, and a manual what-if is available on team pages. |
 
 ## 1. Summary
 
-- **Removal is blocked on `MD-03`** until separately implemented, independently validated and accepted by the owner (section 14). The findings below stay valid for the eventual removal step.
-- The public tool is a **manual override** of the automatic V33 returning-QB correction. It has two entry points: the **QB Return Lab** panel on every team page and the **QB quick button** (`quickQbButton`) on home, rankings, teams, team hero and matchup hero.
-- Manual state lives only in the in-memory `S.qbCarryover` object. No `localStorage`, URL, hash, export or server path reads or writes it. A freshly loaded bundle always starts with `enabled:false`. An already-open tab running the old bundle keeps its old code and in-memory state until it reloads.
-- **Default behavior does not depend on the tool.** With `S.qbCarryover.enabled === false`, current and future ratings, rankings and projections use only the automatic correction. Removing every public writer of `S.qbCarryover` leaves default output identical. This was checked with a real-bundle probe (section 9).
-- **The manual state is global while it is set.** One click on the home-page KC button replaces the automatic KC correction (+13.2 Elo in the probe after one game) with the preset's full +47.3 Elo, with no decay, in the current-rating paths that read `effectiveQbCorrection`. Those paths include rankings, matchups, playoffs and PNG exports, and the value stays until Reset or reload. In the probe, a KC home game moved from 56.0% to 61.6%.
-- **The manual state is also incoherent for the 31 teams without a preset.** The Lab slider works on any team page. For such a team it changes that team page's projection (+40 Elo in the probe) and the displayed QB unit (50 to 67.9), which also appears in the QB Rankings **FORCE Default** column. It does not change league forecasts or rankings. This is extra evidence for removal, not a separate fix.
-- Some surfaces that look like tool UI are **disclosures of the automatic correction** (team hero chip, "base projection", matchup "returning-QB adjustment active", unit notes). The owner decided (O1) to keep them and reword them in plain automatic-correction language.
-- **QB Rankings Customize (`UX-08`)** shares no state or handler with the tool. It recomputes its own weighted composite from measured component scores plus its own context adjustments. It does not score from the displayed (possibly overlaid) Default value (section 2).
+- The public tool is now the **only** source of any QB-return correction in production. With no manual value set, every rating, forecast, projection, page and export equals the canonical no-correction state.
+- It has two entry points: the **QB Return Lab** panel on every team page and the **QB quick button** (`quickQbButton`) on home, rankings, teams, team hero and matchup hero. Every other public QB-return element only displays a manual value.
+- Removing every public writer of `S.qbCarryover` therefore makes all remaining QB-return display paths unreachable in production. The plan removes those displays too, rather than keeping dormant public markup.
+- The manual state is global while set (one click on the KC button raises KC by the +47.3 Elo preset on rankings, matchups, playoffs and exports until Reset or reload) and incoherent for the 31 teams without a preset. Both remain reasons for removal.
+- **QB Rankings Customize (`UX-08`)** shares no state or handler with the tool (section 2).
+- Internal, research and test capability is kept where it is safely isolated (section 5). Roster Lab shares no QB-return primitive (section 5.2).
 
-## 2. Three concepts and their shared code
+## 2. Concepts and shared code
 
 | Concept | What it is | State | Code that is only this concept | Code shared with another concept |
 | --- | --- | --- | --- | --- |
-| **A. Public manual QB-return tool (UX-19 target)** | Visitor-set override of the returning-QB Elo correction for one team | `S.qbCarryover = {enabled, team, qb, restoreElo}` (app.js:304). Public writers: Lab Apply (5462), Lab Reset (5466), quick-button handler (5474-5475). | `quickQbButton` 1290-1299; `qbCarryoverPanel` 1305-1350; handlers 5454-5478; tool-only CSS (section 8.2) | Manual branch of `effectiveQbCorrection` 1236-1240 and `qbCarryoverActive` 1263-1265; the `S.qbCarryover.qb` label fallback in `qbCarryoverUnitEffect` 1993 |
-| **B. Automatic verified QB correction (current baseline; KC-only preset today; to be generalized under `MD-03`)** | V33 rule: `min(surviving damage, 7.5 Elo × verified missed starts × 70%)`, 60 Elo cap, 4-game half-life, only for presets with `autoEligible`, `verifiedReplacementWindow` and `expectedStarterReturned`. KC (Mahomes) is the only preset. | Data `data/qb-carryover.js`; gate `qbCarryover` in `data/predictive-feature-gates.js` | `model/qb_regime.js` (`FORCE_QB_REGIME.correction`); `automaticQbRegimeCorrection` 1230-1234; `predictiveQbCarryoverAllowed` 1267; `qbCarryoverPreset` 1221; historical paths that call `QR.correction` directly: `canonicalGameTeamState` 1934-1938, week-2 entry states 2085 and 2095; `LP.applyQbCarryoverScenario` (live_profiles.js:508); `suppressQbUnitScenarioOverlay` 1255-1261 | Current/future paths through `effectiveQbCorrection`: `ratingsWithActiveQBCarryover` 1280-1288, `ratingsWithQBCarryover` 1271-1277 (team page), `qbCarryoverUnitEffect` 1973-2005, `currentTeamState` 2010-2031 (`_qbScenario` overlay), `ratingLedger` 2113 |
-| **C. QB Rankings Default and Customize (UX-08, keep, separate gate)** | Default ranks the canonical displayed QB value. Customize ranks a visitor-weighted composite. | `S.qbRankingMode`, `S.qbWeights` | `qbCustomRawScore`, `qbCustomScore` 4127-4136; `[data-qb-mode]` and `[data-qb-weight]` handlers 5411-5412 | Both read `qbDebug(t)` via `qbComponentScores` 4094. **Default** reads `displayedQbIndex` (4149), which comes from `currentTeamState` and so can reflect the automatic overlay today, and the manual overlay while it is set. **Customize** uses `qbDebug`'s measured component scores (`passEpaScore`, `anyAScore`, `passSuccessScore`, `rushingValueScore`, `cpoeScore` from `profile(t).qb`), its own calibration, `opponentRatingAdjustment`, `olRatingAdjustment` and `qbRecencyAdjustment`. It never uses the overlaid Default value as its score. |
+| **A. Public manual QB-return tool (UX-19 target)** | Visitor-set Elo restore for one team | `S.qbCarryover = {enabled, team, qb, restoreElo}` (307). Public writers: Lab Apply (5454), Lab Reset (5458), quick-button handler (5460-5469). | `quickQbButton` 1286-1294; `qbCarryoverPanel` 1300-1345; handlers 5446-5470; tool-only CSS (section 8.2) | The internal manual chain in B |
+| **B. Internal manual-override chain (retained, O4)** | Applies a manual value when `S.qbCarryover` is set; otherwise identity | `S.qbCarryover` | `effectiveQbCorrection` 1235 (manual or 0), `qbCarryoverActive` 1261, `ratingsWithQBCarryover` 1268, `ratingsWithActiveQBCarryover` 1277, `qbCarryoverUnitEffect` 1966, `suppressQbUnitScenarioOverlay` 1253, `currentTeamState._qbScenario` 2000-2028, `qbCarryoverPreset` 1224 | `LP.applyQbCarryoverScenario` (live_profiles.js:508, pure transform, also used by V27/V28 research tests); `ratingsWithActiveQBCarryover` is the ratings source for home, rankings, teams, matchups, playoffs, divisions and slate; `currentTeamState` feeds every "current" view, `qbDebug` and `ratingLedger` |
+| **C. Retired automatic V33 correction (research only)** | V33 rule kept as a record | `data/qb-carryover.js` (preset not auto-eligible), `qbCarryover` gate `retired-md03-cycle6`, weight 0 | `model/qb_regime.js` (loaded by `index.html`, called by nothing in production) | None in production |
+| **D. QB Rankings Default and Customize (UX-08, separate gate)** | Default ranks the displayed QB value; Customize ranks a visitor-weighted composite | `S.qbRankingMode`, `S.qbWeights` | `qbCustomRawScore`, `qbCustomScore`; `[data-qb-mode]`/`[data-qb-weight]` handlers | Both read `qbDebug` via `qbComponentScores` (4087). Default reads `displayedQbIndex`, which equals the measured value unless a manual unit overlay is set. Customize uses measured component scores and never the overlaid value. |
 
-**Where A and B meet.** Current and future rating paths commonly meet in `effectiveQbCorrection`, which returns the manual value when `qbCarryoverActive(t)` is true and the automatic value otherwise. Historical game-state paths (`canonicalGameTeamState`, week-2 entry states) call `QR.correction` directly, so manual state never reached them. The overlay QB label also reads `S.qbCarryover.qb` as a fallback (1993). Removing every public writer of `S.qbCarryover` removes A's public effect; the consumers must stay because they carry B.
+**Where A and B meet.** Every public effect of A flows through B. Removing A's writers leaves B as an identity in production; B stays because O4 keeps it and because tests drive it (section 5).
 
-**Existing reset/name-fallback coupling (recorded, not fixed).** Lab Reset only sets `enabled:false`; it keeps `team`, `qb` and `restoreElo`. Because `qbCarryoverUnitEffect` labels an automatic overlay with `qbOverride || S.qbCarryover.qb || preset.qb`, a stale manual QB name leaks into the automatic label. Probe: apply the Lab on BUF with QB "Josh Allen", Reset, then let KC's automatic overlay appear; the KC overlay is labeled "Josh Allen". After removal no public path can write that name, so the label stays the initializer's "Patrick Mahomes". That equals today's KC preset only by coincidence of the hard-coded default. Fixing the fallback order is out of scope.
+**Existing reset/name-fallback coupling (recorded, not fixed).** Lab Reset only sets `enabled:false` and keeps `team`, `qb` and `restoreElo`; `qbCarryoverUnitEffect` labels an overlay with `qbOverride || S.qbCarryover.qb || preset.qb`. With no automatic overlay this only matters for internal manual use. Fixing it is out of scope.
 
-## 3. Current public surface inventory
+## 3. Current public surface inventory (`8e6a180`)
 
-"Public" means rendered on forceratings.com (not gated by `USE_HASH_ROUTING` or localhost). KC is the only team with a preset (current state).
+"Public" means rendered on forceratings.com. KC is the only team with a preset. Every display surface below fires only while a manual value is set.
 
-| # | Surface | File / function | User-visible behavior | State read / written | Downstream effect | Concept |
-| --- | --- | --- | --- | --- | --- | --- |
-| S1 | Home, FORCE Rankings card header | `home` 4033 → `quickQbButton('KC')` | Hard-coded KC button ("QB auto +N", "Apply QB fix" or "Use auto QB fix"). Visible at all widths, shrunk under 650px | reads; click writes `S.qbCarryover` | Click sets KC manual +47.3 Elo | A |
-| S2 | Home, top-8 rank rows | `home` 4026 `.home-qb-fix` | Same button in the KC row when KC is top 8. Hidden under 950px | same | same | A |
-| S3 | Rankings Strength, FLAG, Advanced | `rankingHeader` 3388, `rankingRow` 3399 | "QB return" column; KC cell holds the button, others show "-" via `.qb-action-cell:empty::after`. Not on Luck or Units | same | same | A |
-| S4 | Teams directory cards | `teams` 4177 | Button under the KC card | same | same | A |
-| S5 | Team hero, quick button | `teamPage` 4198 | KC: button with detail line. **Every other team: "No verified QB-return preset"** | same | same | A |
-| S6 | Team hero, correction chip | `teamPage` 4196-4198 | "QB auto +N Elo" or "QB manual +N Elo" chip and struck-through base Elo | reads `effectiveQbCorrection` | display | B (manual variant is A) |
-| S7 | Team hero, record line | `teamPage` 4199 | "· base projection N wins" when a correction is in effect | same | display | B |
-| S8 | QB Return Lab panel | `qbCarryoverPanel` 1305-1350, on every team page (4205) | AUTO/MANUAL/OFF chip, explainer, preset paragraph or "No preset for this team. Use the slider for a one-off what-if.", QB select, 0 to 80 Elo slider, Apply/Reset, before→after results, D10 warning | reads/writes `S.qbCarryover` | Apply sets manual state for any team | A (explainer and D10 describe B) |
-| S9 | Matchup hero | `matchupPage` 3945, 3947 | Button under the KC side | same as S1 | same | A |
-| S10 | Matchup prediction note | `matchupPage` 3987 | "returning-QB adjustment active" when either side has a unit overlay | reads overlay | display | B |
-| S11 | Matchup duel and QB notes | `scenarioMetricNote` 2256-2268 via 3939-3942; QB name 3941, 3972, 3976 | "QB-return scenario · was N"; overlay QB name | reads `_qbScenario` | display | B |
-| S12 | Rankings Units QB tooltip | `rawUnitCell` 2529-2530 | `title` "Displayed QB includes returning-QB scenario overlay: …" | reads `_qbScenario` | display | B |
-| S13 | Unit cells / team unit board | `unitCell` 2282-2288; `unitBoardRow` 2567-2572 | "N base" sub-values; "N base · QB-return scenario" | reads `_qbScenario` | display | B |
-| S14 | QB Rankings FORCE Default column | `qbRankingsPage` 4149 | Shows `displayedQbIndex` (includes any overlay) | reads `currentTeamState` | display | C reading B (and A while set) |
-| S15 | Method, QB return correction | `model` 4301-4307 | Paragraph ("…only to verified situations…"), three evidence KPIs, status card "Automatic only for verified cases; manual what-if available on team pages." | none | none | B plus A clause |
-| S16 | Method, forecast inputs | `model` 4325 | "…and the limited returning-QB correction." | none | none | B |
-| S17 | Teams intro | `teams` 4173 | "Rating, context, schedule, and what-ifs." | none | none | A wording |
-| S18 | Home hero / About positioning | 4030, 4334 | "roster what-ifs" | none | none | Roster Lab, not A |
-| S19 | PNG export | `exportCurrentPagePng` 5177; `prepareCloneForSocialExport` 5154 | See section 8.3 | DOM | Shares manual what-if numbers as if published | A |
-| S20 | Accessibility / keyboard | S1-S5, S8, S9 | Quick buttons and Lab controls are tab stops. Buttons carry only a `title` ("Open manual override for … carryover correction"), which does not match the click behavior. Lab: `select#qbCarryoverQB`, `input#qbCarryoverElo` (range), `output#qbCarryoverValue`, Apply/Reset buttons | n/a | n/a | A |
+| # | Surface | File / function | User-visible behavior | State | Concept |
+| --- | --- | --- | --- | --- | --- |
+| S1 | Home, FORCE Rankings card header | `home` 4026 → `quickQbButton('KC')` | KC button "Apply QB fix" / "Clear QB fix". Visible at all widths, shrunk under 650px | reads; click writes `S.qbCarryover` | A |
+| S2 | Home, top-8 rank rows | `home` 4019 `.home-qb-fix` | Same button in the KC row when KC is top 8. Hidden under 950px | same | A |
+| S3 | Rankings Strength, FLAG, Advanced | `rankingHeader` 3378-3386, `rankingRow` 3392 | "QB return" column; KC cell holds the button, others show "-". Not on Luck or Units | same | A |
+| S4 | Teams directory cards | `teams` 4170 | Button under the KC card | same | A |
+| S5 | Team hero, quick button | `teamPage` 4190 | KC: button with detail line. Every other team: "No verified QB-return preset" | same | A |
+| S6 | Team hero, overlay chip | `teamPage` 4188-4190 | "QB manual +N Elo" and struck-through base Elo while manual is set | reads `effectiveQbCorrection` | A display |
+| S7 | Team hero, record line | `teamPage` 4191 | "· base projection N wins" while manual is set | same | A display |
+| S8 | QB Return Lab panel | `qbCarryoverPanel` 1300-1345, on every team page (4197) | MANUAL/OFF chip, explainer, preset paragraph or "No preset for this team…", QB select, 0-80 Elo slider, Apply/Reset, before→after results, "Historical research, manual what-if" warning | reads/writes `S.qbCarryover` | A |
+| S9 | Matchup hero | `matchupPage` 3938, 3940 | Button under the KC side | same as S1 | A |
+| S10 | Matchup prediction note | `matchupPage` 3930, 3980 | "returning-QB adjustment active" when either side has a manual unit overlay | reads `_qbScenario` | A display |
+| S11 | Matchup duel and QB notes | `scenarioMetricNote` 2249-2261; overlay QB name in matchup QB lines | "QB-return scenario · was N"; overlay QB name | reads `_qbScenario` | A display |
+| S12 | Rankings Units QB tooltip | `rawUnitCell` 2518-2523 | `title` "Displayed QB includes returning-QB scenario overlay: …" | reads `_qbScenario` | A display |
+| S13 | Unit cells / team unit board | `unitCell` 2275; `unitBoardRow` 2560-2564 | "N base" sub-values; "N base · QB-return scenario" | reads `_qbScenario` | A display |
+| S14 | QB Rankings FORCE Default column | `qbRankingsPage` 4137 | Shows `displayedQbIndex` (includes a manual overlay while set) | reads `currentTeamState` | D reading A |
+| S15 | Method, "QB return correction" section | `model` 4290-4299 | Paragraph (historical research, no automatic correction applied, research kept), three historical V33 evidence KPIs, STATUS card "NOT APPLIED" / "No automatic correction; manual what-if available on team pages." | none | research note plus A clause |
+| S16 | Method, forecast inputs | `model` 4317 | "core team rating and validated betting-market information" (already has no QB-return clause) | none | none |
+| S17 | Teams intro | `teams` 4166 | "Rating, context, schedule, and what-ifs." | none | A wording |
+| S18 | Home hero / About positioning | home, About | "roster what-ifs" | none | Roster Lab, not A |
+| S19 | PNG export | `exportCurrentPagePng`, `prepareCloneForSocialExport` 5146 | See section 8.3 | DOM | A |
+| S20 | Accessibility / keyboard | S1-S5, S8, S9 | Quick buttons and Lab controls are tab stops; buttons carry only a `title` | n/a | A |
 
-Not public: the console hooks `FORCE_QB_DEBUG` (2441), `FORCE_CURRENT_TEAM_STATE` (2037), `FORCE_RATING_LEDGER` (2438), and test-harness writes to `S.qbCarryover`.
+Not public: console hooks `FORCE_QB_DEBUG` (2434), `FORCE_CURRENT_TEAM_STATE` (2030), `FORCE_RATING_LEDGER` (2431), `FORCE_CANONICAL_GAME_TEAM_STATE`, and test-harness writes to `S.qbCarryover`. `qbDebug` exposes `qbRegimeCorrection`/`scenario` fields, which are null unless a manual value is set.
 
-## 4. Owner decisions (approved 2026-10-02 for the removal tranche)
+## 4. Owner decisions
 
-Each question is recorded by the kind of decision it is, so no question is treated as still open.
+### 4.1 Earlier decisions (2026-10-02) under the accepted retirement
 
-| # | Kind | Decision |
+| # | Original decision (summary) | Status after retirement |
 | --- | --- | --- |
-| O1 | Product / disclosure decision | **Keep and reword** the team-level automatic-correction disclosures. The team hero chip stays when a correction is active; base-projection context may stay; the matchup active-correction disclosure stays; relevant unit notes and tooltips may stay. Replace "QB auto/manual", "QB-return scenario" and similar what-if wording with plain automatic-correction language. Preferred concepts: "QB return correction +N Elo" and "Includes verified QB return correction." Exact copy may be polished in the FORCE voice if that meaning is kept. |
-| O2 | Product / disclosure decision | **D10-b, conceptually.** The detailed explanation stays in Method and internal research (`QB_REGIME_RESEARCH_V33.md`). A short team-level statement remains when an automatic correction is active, and the O1 team-level disclosure supplies it; no duplicate text. A tooltip is never the only D10 placement. |
-| O3 | Approved editorial copy (not a gate or model contract) | Method status card sub reads: "Used only in verified cases, and it fades as the starter plays." |
-| O4 | Already-constrained preservation, now decided | **Keep** `S.qbCarryover` and the internal manual-override branch, unreachable from public UI. No new public or localhost UI setter; no deletion of frozen research/debug machinery; the frozen V33 contract is not reopened. Adding a debug setter or deleting the branch would need separate authorization. Keeping the automatic V33 correction unchanged applies only as the **current baseline** while `MD-03` investigates the generalized replacement; it is not approval to ship the final UX-19 state with KC as the only eligible preset. |
-| O5 | Approved editorial copy | Teams intro target wording: "Ratings, context and schedule." Not implemented in this planning pass. |
+| O1 | Keep and reword team-level **automatic**-correction disclosures (hero chip, base projection, matchup disclosure, unit notes) | **SUPERSEDED.** Its premise, an active automatic correction to disclose, no longer exists. With no automatic correction and no public manual writer, these surfaces can never fire in production, so the plan removes them (section 8.1). |
+| O2 | D10-b: detailed rationale in Method and research, short team-level statement via O1 when a correction is active | **SUPERSEDED** for the team-level statement (nothing is ever active). What remains public after removal is the Method question in 4.2. |
+| O3 | Method status card copy "Used only in verified cases, and it fades as the starter plays." | **SUPERSEDED.** It would be false. The retirement already replaced the card with "NOT APPLIED". |
+| O4 | Keep `S.qbCarryover` and the internal manual-override branch, unreachable from public UI; no new public or localhost setter; do not delete frozen research/debug machinery | **STILL APPLIES** and already answers the internal-preservation question (section 5). Its old clause about keeping the automatic V33 correction as the current baseline is moot: the automatic correction is retired, and its research record is kept. |
+| O5 | Teams intro target wording "Ratings, context and schedule." | **STILL APPLIES.** |
 
-## 5. Retained internal capability
+### 4.2 Open owner decision before UX-19 implementation
+
+- **N1. Method "QB return correction" section after public removal.** Existing direction does not settle it: D10 assumed a retained automatic correction, and the UX-14 "simplify public" direction prefers concepts over research numbers. Options:
+  - (a) **Recommended:** keep a short public note that FORCE applies no automatic QB-return correction and that earlier research is preserved; remove the "manual what-if available on team pages" clause; move the three historical V33 KPIs to technical docs only.
+  - (b) Keep the section as today minus the manual clause, including the historical KPIs.
+  - (c) Remove the section entirely; the topic lives only in technical docs.
+
+  Whatever is chosen, the implementation removes the manual clause in the same change that removes the tool, and updates `test_ux14_tranche_b.mjs` at the same time (section 10.1).
+
+No other owner decision is needed. Removing the whole Lab section rather than only its controls follows from the confirmed UX-19 decision and the 2026-10-01 intake ("remove public QB adjustment/QB-return tool"). Keeping internal machinery is settled by O4. Copy wording beyond N1 may be polished in the FORCE voice.
+
+## 5. Retained internal and research capability
+
+### 5.1 Disposition
 
 | Capability | Location | Disposition |
 | --- | --- | --- |
-| Automatic verified correction rule | `model/qb_regime.js`, `data/qb-carryover.js`, `qbCarryover` gate | **KEEP as the current baseline** until `MD-03` delivers an independently validated and owner-accepted league-wide replacement. Not the target final architecture; the removal tranche itself does not change it. |
-| Automatic correction consumers in current and historical FORCE | `automaticQbRegimeCorrection`, `predictiveQbCarryoverAllowed`, `ratingsWithActiveQBCarryover`, `ratingsWithQBCarryover`, `effectiveQbCorrection`, `canonicalGameTeamState`, week-2 entry states | **KEEP** in the removal tranche; names and call sites unchanged (V33, V45 and V69 assert them). `MD-03` may change what feeds them, under its own authorization. |
-| Unit overlay transform and suppression | `LP.applyQbCarryoverScenario`, `qbCarryoverUnitEffect`, `suppressQbUnitScenarioOverlay`, `currentTeamState._qbScenario` | **KEEP**; `qbCarryoverUnitEffect(t, ratings, restoreOverride, qbOverride)` stays as the test/debug what-if entry point |
-| Internal manual override | `S.qbCarryover` (304), override branch in `effectiveQbCorrection` (1238), `qbCarryoverActive` | **KEEP INTERNAL, no public writer** (O4) |
-| Canonical FORCE QB Rating, availability and starter selection | `model/live_profiles.js`, `qbDebug`, `qbComponentScores` | **KEEP**, untouched |
-| QB Rankings Default and Customize | `qbRankingsPage`, `qbCustomRawScore`, `qbCustomScore` | **KEEP**, untouched (UX-08 gate) |
-| Debug hooks | `FORCE_QB_DEBUG`, `FORCE_CURRENT_TEAM_STATE`, `FORCE_RATING_LEDGER`, `FORCE_CANONICAL_GAME_TEAM_STATE` | **KEEP INTERNAL** |
-| Research and D10 rationale | `QB_REGIME_RESEARCH_V33.md` (5 of 6 gated episodes improved, line 13; 4-game half-life and the +47.3 preset described as an aggressive counterfactual, line 37), `QB_CARRYOVER_RESEARCH*.md`, `research/qb_carryover_event_study.py`, `QBC.study` | **KEEP INTERNAL**; no new document needed |
-| Public controls, handlers, "No verified QB-return preset", "QB return" column | S1-S5, S8, S9, S3; handlers 5454-5478 | **REMOVE PUBLIC** |
-| `quickQbButton`, `qbCarryoverPanel` render functions | 1290-1299, 1305-1350 | **REMOVE ENTIRELY** once no caller remains (no test imports them by name) |
+| Internal manual override | `S.qbCarryover` (307, `enabled:false` initializer), `effectiveQbCorrection`, `qbCarryoverActive` | **PRESERVE INTERNALLY**, no public writer (O4) |
+| Internal what-if chain | `ratingsWithQBCarryover`, `ratingsWithActiveQBCarryover`, `qbCarryoverUnitEffect(t, ratings, restoreOverride, qbOverride)`, `suppressQbUnitScenarioOverlay`, `currentTeamState._qbScenario` | **PRESERVE INTERNALLY.** Identity in production without manual state. Names and call sites unchanged: V45 asserts `ratingsWithActiveQBCarryover` in home/teams/matchups, and `test_v149_qb_propagation.mjs` and `test_projection_semantics_audit.mjs` drive `qbCarryoverUnitEffect` and `S.qbCarryover`. |
+| Unit overlay transform | `LP.applyQbCarryoverScenario` (live_profiles.js:508) | **PRESERVE INTERNALLY.** Pure model transform; V27/V28 research tests call it. |
+| Preset record | `data/qb-carryover.js` (`autoEligible:false`, `automaticRetired:true`, `suggestedRestoreElo` 47.3, V33 values), `qbCarryoverPreset` | **PRESERVE AS RESEARCH.** Still the internal manual default and the V33 record; no longer read by any public UI after removal. |
+| Retired V33 calculation and gate | `model/qb_regime.js`, `qbCarryover` gate (`retired-md03-cycle6`, weight 0) | **PRESERVE AS RESEARCH.** Unchanged; not called by production. `test_v33_qb_regime.js` checks the math on an explicitly re-enabled preset copy. |
+| Research documents and code | `QB_REGIME_RESEARCH_V33.md`, `QB_CARRYOVER_RESEARCH*.md`, `research/`, `MD03_QB_CORRECTION_MODEL_INVESTIGATION.md`, `MD03_QB_EVENT_DETECTION_INVESTIGATION.md`, `QBC.study` | **PRESERVE AS RESEARCH** |
+| Debug hooks | `FORCE_QB_DEBUG`, `FORCE_CURRENT_TEAM_STATE`, `FORCE_RATING_LEDGER`, `FORCE_CANONICAL_GAME_TEAM_STATE` | **PRESERVE INTERNALLY** (not public pages) |
+| Canonical QB rating, availability, starter selection | `model/live_profiles.js`, `qbDebug`, `qbComponentScores` | **OUT OF SCOPE**, untouched |
+| QB Rankings Default and Customize | `qbRankingsPage`, `qbCustomRawScore`, `qbCustomScore` | **OUT OF SCOPE** (UX-08 gate) |
+| Public controls, handlers and render functions | S1-S5, S8, S9, S3; `quickQbButton`, `qbCarryoverPanel`; handlers 5446-5470 | **REMOVE** (render functions removed entirely once no caller remains; no test imports them by name) |
+| Public manual displays | S6, S7, S10-S13 markup and the "returning-QB adjustment active" note | **REMOVE** (unreachable without a public writer; O1 superseded) |
 | Tool-only CSS | section 8.2 | **REMOVE** at selector level only |
+
+No research-only public entry point survives, and O4 forbids adding a localhost or debug setter without separate authorization. Internal use stays possible through the test harness (`scripts/lib/force_app_harness.js`, including its `sources` override) and the console hooks.
+
+### 5.2 Roster Lab and shared-primitive boundary
+
+- Roster Lab (`lab`, 4213) reads `currentRatings()` and its own scenario state (`S.scenario`). It does not call `effectiveQbCorrection`, `ratingsWith*QBCarryover`, `qbCarryoverUnitEffect`, `LP.applyQbCarryoverScenario` or `S.qbCarryover`. Removing the QB-return tool cannot change Roster Lab.
+- Roster Lab **does** share CSS with the QB Return Lab: `.scenario-hero` and `.scenario-stat*` (styles.css line 2). These must stay.
+- `.primary-action` is used only by the Lab Apply button today; remove it only if an implementation-time source search still finds no other user.
+- The "roster what-ifs" copy on home/About describes Roster Lab and stays.
+- No other what-if tool or planned feature consumes the QB-return chain. `MD-04` (Roster Lab marginal value) and `MD-05` (attribution-isolated ratings) must not assume it.
 
 ## 6. Persisted manual state
 
-Traced readers and writers of `S.qbCarryover`: the initializer (304), Apply (5462), Reset (5466), the quick button (5474-5475) and test harnesses. `localStorage` holds only `forceRatingView` (302, 5502). Routing carries only the route. The diagnostics payload records `location.hash`, not carryover state. The Worker, Python server and snapshot never mention it. PNG export renders the current DOM and stores nothing.
-
-The only persistence is within one open tab: a manual value survives SPA navigation, Back/Forward and snapshot refreshes until Reset or reload.
+Readers and writers of `S.qbCarryover`: the initializer (307), Apply (5454), Reset (5458), the quick button (5466-5467) and test harnesses. `localStorage` holds only `forceRatingView`. Routing carries only the route. The Worker, Python server and snapshot never mention it. PNG export renders the current DOM and stores nothing. The only persistence is within one open tab until Reset or reload.
 
 | Contract | Consequence | Assessment |
 | --- | --- | --- |
-| Ignore old values | No stored value exists across loads. A tab still running the old bundle keeps its old code and in-memory value until it reloads; the reload loads the new bundle with `enabled:false`. | Satisfied automatically |
-| Clear on migration | Nothing stored to clear | Not needed |
-| Retain but inaccessible | Matches O4: the object stays, nothing public writes it | Decided (O4) |
+| Ignore old values | No stored value exists across loads. An old open tab keeps its code and in-memory value until reload, which loads the new bundle with `enabled:false`. | Satisfied automatically |
+| Clear on migration | Nothing stored | Not needed |
+| Retain but inaccessible | O4: the object stays, nothing public writes it | Decided (O4) |
 | One-time migration | Nothing to migrate | Not applicable |
 
-Stale manual state cannot change forecasts **in the new bundle** if the tranche removes every public writer and keeps the `enabled:false` initializer. Acceptance tests A2 and A3 (section 10) prove that by source search and by behavior. An old open tab is outside any code change; it ends at reload.
+After removal, stale manual state cannot change any output in the new bundle; acceptance tests A2 and A3 prove it by source search and behavior.
 
-## 7. Automatic-correction disclosure and D10 (decided)
+## 7. Public copy after removal
 
-- **Stays unchanged:** Method "QB return correction" paragraph (4302), which already says the correction applies "only to verified situations" and fades; the evidence KPIs (4304-4305); the forecast-inputs sentence (4325).
-- **Method status card (O3):** "Used only in verified cases, and it fades as the starter plays."
-- **Team-level disclosures (O1):** keep and reword. Target concepts:
-  - S6 chip: "QB return correction +N Elo". It must be a visible text element, not only a `title`.
-  - S7: keep base-projection context in plain words.
-  - S10: the matchup disclosure stays, worded as "Includes verified QB return correction" or equivalent.
-  - S11-S13: drop "scenario" wording; keep or reword the unit notes in automatic-correction language.
-- **D10 (O2):** the detailed rationale lives in Method and `QB_REGIME_RESEARCH_V33.md`. On a team page with an active correction, the O1 chip/context is the short statement; no separate duplicate line. On touch and keyboard, the statement must be readable without hovering.
-- **Known disclosure gap to watch (not a new decision):** S10 fires only when the unit overlay exists. Once the returning starter has current-season stats the overlay is suppressed, so a KC game can carry the Elo correction with no matchup disclosure. The tranche should make the retained matchup disclosure follow the Elo correction (`effectiveQbCorrection > 0` for either side) so O1's "matchup active-correction disclosure stays" holds. That is a display condition only, not a model change.
+- **Remove with the tool:** the Lab explainer, preset paragraph, "No preset for this team…", the "Historical research, manual what-if" warning, MANUAL/OFF chip, "Apply QB fix"/"Clear QB fix", "QB manual +N Elo", "base projection", "returning-QB adjustment active", "QB-return scenario" notes and tooltips, and "No verified QB-return preset".
+- **Method (S15):** governed by N1. Under every option the "manual what-if available on team pages" clause goes, because it becomes false when the tool goes. Until UX-19 is implemented it stays, because it is true today and `test_ux14_tranche_b.mjs` guards it.
+- **Method forecast inputs (S16):** no change; it already names no QB-return correction.
+- **Teams intro (S17):** "Ratings, context and schedule." (O5).
+- **Technical docs:** `QB_REGIME_RESEARCH_V33.md`, the MD-03 investigations and `MD03_RETIREMENT_IMPLEMENTATION.md` keep the full research and retirement record.
+- No em dashes in new public copy.
 
 ## 8. Removal boundary
 
 ### 8.1 Surface matrix
 
-| Surface | Element | Action |
+| Surface | Element | Classification |
 | --- | --- | --- |
 | Home | Card-header KC button (S1) | REMOVE |
 | Home | Rank-row button and `.home-qb-fix` span (S2) | REMOVE, with the grid change in 8.2 |
-| Home | "roster what-ifs" hero copy | NO CHANGE (Roster Lab) |
-| Home | Ratings and forecasts via `ratingsWithActiveQBCarryover` | KEEP |
+| Home | "roster what-ifs" hero copy (S18) | OUT OF SCOPE (Roster Lab) |
+| Home | Ratings and forecasts via `ratingsWithActiveQBCarryover` | PRESERVE INTERNALLY (identity without manual state) |
 | Rankings | "QB return" header and action cells on Strength/FLAG/Advanced (S3) | REMOVE |
-| Rankings | Units QB tooltip and "base" sub-values (S12, S13) | KEEP BUT REWORD (O1) |
+| Rankings | Units QB scenario tooltip and "base · QB-return scenario" notes (S12, S13) | REMOVE the scenario-specific `title`/notes; keep the cells |
 | Teams directory | KC card button (S4) | REMOVE |
-| Teams directory | Intro (S17) | CHANGE COPY to "Ratings, context and schedule." (O5) |
+| Teams directory | Intro (S17) | REWORD to "Ratings, context and schedule." (O5) |
 | Team page | Hero quick button and "No verified QB-return preset" (S5) | REMOVE |
-| Team page | Hero chip (S6) | KEEP BUT REWORD: "QB return correction +N Elo", visible text; no "manual" variant |
-| Team page | "base projection N wins" (S7) | KEEP BUT REWORD (O1) |
-| Team page | QB Return Lab panel (S8) | REMOVE |
-| Team page | D10 statement | Supplied by the reworded S6/S7 disclosure (O2) |
+| Team page | Hero "QB manual +N Elo" chip and struck-through base Elo (S6) | REMOVE |
+| Team page | "· base projection N wins" (S7) | REMOVE |
+| Team page | QB Return Lab panel, including QB selector, slider/value, Apply, Reset, MANUAL/OFF chip, explainer and warning (S8) | REMOVE (whole section) |
 | Matchup | Hero buttons (S9) | REMOVE |
-| Matchup | Active-correction note (S10) | KEEP BUT REWORD; show whenever either side has an active correction |
-| Matchup | Duel/QB notes (S11) | KEEP BUT REWORD; QB name from canonical/preset source |
-| Matchup | Forecast values | NO CHANGE |
-| QB Rankings | Default and Customize (S14) | NO CHANGE (UX-08) |
-| Method | QB return correction paragraph and KPIs (S15) | KEEP |
-| Method | Status card sub | CHANGE COPY (O3) |
-| Method | Forecast-inputs sentence (S16) | NO CHANGE |
-| About | Positioning and glossary | NO CHANGE |
+| Matchup | "returning-QB adjustment active" note (S10) | REMOVE |
+| Matchup | "QB-return scenario · was N" duel/QB notes and overlay QB name (S11) | REMOVE the scenario note; QB name falls back to the measured starter as today without manual state |
+| Matchup | Forecast values | No change |
+| QB Rankings | Default and Customize (S14) | OUT OF SCOPE (UX-08) |
+| Method | QB return correction section (S15) | REWORD or REMOVE per N1; the manual clause goes in all options |
+| Method | Forecast-inputs sentence (S16) | No change |
+| About | Positioning and glossary | OUT OF SCOPE |
+| Forecast/projection propagation | `ratingsWithActiveQBCarryover` into home, rankings, teams, matchups, playoffs, divisions, slate | PRESERVE INTERNALLY; no public input remains |
 | Exports | Rankings "QB return" column; team Lab card; manual-state numbers (S19) | REMOVE, following source removal (8.3) |
+| Debug/ledger | Console hooks; `qbDebug` scenario fields; ledger `qbElo` | PRESERVE INTERNALLY (not public pages) |
 | Mobile | Card-header KC button, team/matchup hero buttons, Lab stacked controls | REMOVE with their elements |
-| Accessibility labels | Quick-button `title`s; Lab labels | REMOVE with elements; retained disclosures get visible text |
+| Accessibility labels | Quick-button `title`s; Lab labels | REMOVE with elements |
 | Keyboard | Quick buttons, select, range, Apply, Reset | REMOVE from focus order by removing elements; no `tabindex` workarounds |
-| Persisted state | `S.qbCarryover` | KEEP INTERNAL, `enabled:false` initializer unchanged, no public writer (O4) |
-| Internal/debug APIs | `qbCarryoverUnitEffect`, `currentTeamState`, debug hooks, automatic-correction functions | KEEP |
-| Event handlers | `#qbCarryoverElo`, `#applyQBCarryover`, `#clearQBCarryover`, `[data-qbquick]` (5454-5478) | REMOVE |
+| Persisted state | `S.qbCarryover` | PRESERVE INTERNALLY, `enabled:false` initializer unchanged, no public writer (O4) |
+| Event handlers | `#qbCarryoverElo`, `#applyQBCarryover`, `#clearQBCarryover`, `[data-qbquick]` (5446-5470) | REMOVE |
 | Generated `public/` | `public/assets/app.js`, `public/assets/styles.css` | Regenerate with `scripts/build_public.py`; never hand-edit |
 
-### 8.2 CSS and grid boundary (selector level)
+### 8.2 CSS and grid boundary (selector level, `assets/styles.css`)
 
-Do not delete line ranges. Several lines in `assets/styles.css` mix tool selectors with shared ones.
+Do not delete line ranges. Several lines mix tool selectors with shared ones.
 
 **Tool-only selectors, safe to remove once their markup is gone:**
 - Line 64: `.carryover-card`.
-- Line 65: `.carryover-card .card-head h2`, `.carryover-copy`, `.carryover-preset`, `.carryover-preset b`, `.carryover-controls`, `.carryover-controls label`, `.carryover-controls select`, `.range-line`, `.range-line input`, `.range-line output` (only the Lab uses `range-line`), `.carryover-actions`, `.carryover-results`, `.carryover-warning`, `.carryover-on`.
+- Line 65: `.carryover-card .card-head h2`, `.carryover-copy`, `.carryover-preset`, `.carryover-preset b`, `.carryover-controls` and its `label`/`select`, `.range-line` and its `input`/`output` (only the Lab uses `range-line`), `.carryover-actions`, `.carryover-results`, `.carryover-warning`, `.carryover-on`, and `.carryover-inline` and `.muted-strike` (only S6 uses them now that no retained chip exists; confirm by source search).
 - Line 66: the whole `@media(max-width:950px)` block (carryover controls only).
 - Lines 82-85: `.qb-quick`, `.qb-quick:hover`, `.qb-quick.active`, `.qb-quick small`, `.qb-quick.active small`.
 - Line 86: `.qb-action-cell`, `.qb-action-cell:empty::after`.
 - Line 87: `.team-quick-fix`.
 - Line 88: `.home-qb-fix`.
 - Line 92: only `.team-directory-card>.qb-quick`.
-- Line 93: only `.home-qb-fix{display:none}`, `.rank-row>.home-qb-fix` (from the selector list `.rank-row>.raw,.rank-row>.home-qb-fix`) and `.qb-action-cell{min-width:80px}`.
+- Line 93: only `.home-qb-fix{display:none}`, `.rank-row>.home-qb-fix` (from `.rank-row>.raw,.rank-row>.home-qb-fix`) and `.qb-action-cell{min-width:80px}`.
 - Lines 94-95: only `.card-head-actions .qb-quick` (both rules).
-- `.primary-action` (line 65 and the line 310 override) is used only by the Lab Apply button today. Remove both only if a source search at implementation time still finds no other user.
+- `.primary-action` (line 65 and the line 310 override): only if a source search still finds no other user.
 
 **Shared rules that must stay:**
-- `.carryover-inline` and `.muted-strike` (line 65), if the reworded S6 chip reuses them; otherwise rename with the markup.
-- `.scenario-hero`, `.scenario-stat*` (line 2): Roster Lab uses them (4251-4254).
-- `.scenario-unit-cell small`, `.unit-scenario-note`, `.scenario-unit-row` (line 130): retained unit disclosures (O1).
-- `.team-directory-card`, `.team-directory-link` (line 92); `.card-head-actions` container (line 94), which still holds the "32 teams" chip; the rest of line 93's responsive rules (`.matchup-pair`, `.rank-row` 4-track mobile grid, `.rank-row>.raw`, `.matchup-team.home-team`).
-- `.name-verdict*`, `.recommended-name` (line 65) are unused naming-lab leftovers, not part of the tool. Leave them; removing them is out of scope.
+- `.scenario-hero`, `.scenario-stat*` (line 2): Roster Lab uses them.
+- `.scenario-unit-cell small`, `.unit-scenario-note`, `.scenario-unit-row` (line 130): remove only if the S12/S13 removal leaves no user; confirm by source search.
+- `.team-directory-card`, `.team-directory-link` (line 92); the `.card-head-actions` container (line 94), which still holds the "32 teams" chip; the rest of line 93's responsive rules.
+- `.name-verdict*`, `.recommended-name` (line 65): unused naming-lab leftovers, out of scope.
 
 **Grid and table structure:**
-- Home `.rank-row` base grid (line 2) has 5 tracks: `36px 1fr 74px 72px 78px` (rank, team, score, Elo, record). Line 89 overrides it with a sixth track `minmax(0,92px)` for `.home-qb-fix`. When the span goes, remove the line-89 override so the 5-track base applies. Mobile (≤950px) uses `30px 1fr 68px 58px` with `.raw` hidden and is otherwise unaffected.
-- Rankings tables are `<table>` markup: remove the "QB return" `<th>` in `rankingHeader` and the `<td class="qb-action-cell">` in `rankingRow` for Strength, FLAG and Advanced together, so header and row counts match. No rankings `colspan` or `nth-child` width rule depends on that column. The generic `.diagnostic-table td:nth-child(n+4)` tabular-number rule is unaffected.
+- Home `.rank-row` base grid (line 2) has 5 tracks; line 89 adds a sixth track for `.home-qb-fix`. Remove the line-89 override with the span.
+- Rankings tables: remove the "QB return" `<th>` in `rankingHeader` and the `<td class="qb-action-cell">` in `rankingRow` together for Strength, FLAG and Advanced. No `colspan` or `nth-child` width rule depends on that column.
 
-### 8.3 Export behavior (corrected)
+### 8.3 Export behavior
 
-What the exporter does today:
-- `exportCurrentPagePng` (5177) clones the page and removes `.footer, .matchup-warning, .matchup-back, .qb-quick` (5205). On rankings routes it also removes `.section-title, .diagnostic-viewer, .diagnostic-note, .penalty-sort-toolbar, p.raw` (5210).
-- `prepareCloneForSocialExport` (5154) then:
-  1. calls `simplifyInteractiveControlsForExport` (5139), which replaces every `button` and `a` (except `.export-preserve-control`) with a `span` that keeps class, inner HTML, style and `aria-label`;
-  2. removes a fixed list of notes;
-  3. removes every `.sub` and `small` element.
-- It does **not** transform `select`, `input` or `output`. A team-page export therefore carries the QB Return Lab card, including its `select#qbCarryoverQB`, range `input#qbCarryoverElo` and `output` as cloned form elements, its Apply/Reset buttons turned into spans, and its before→after `strong` values (the `small` notes are removed).
-- The rankings exports keep the "QB return" header; KC's button cell becomes empty and shows "-".
+Today `exportCurrentPagePng` clones the page and removes `.footer, .matchup-warning, .matchup-back, .qb-quick` (5197); `prepareCloneForSocialExport` (5146) turns buttons and links into spans and removes `.sub` and `small`, but does not transform `select`, `input` or `output`. A team-page export therefore carries the Lab card with its form elements and before→after values, and rankings exports keep the "QB return" header with "-" cells.
 
-Required after removal: exported rankings contain no "QB return" column; exported team pages contain no Lab card, no manual controls and no manual-state output; exported numbers equal the automatic-only state. The `.qb-quick` cleanup selector can stay (it is harmless and `test_v21_export_packing.js` asserts it).
+Required after removal: exported rankings have no "QB return" column; exported team pages have no Lab card, no manual controls and no manual-state output; exported numbers equal the canonical no-correction state. The `.qb-quick` cleanup selector can stay (harmless; `test_v21_export_packing.js` asserts it).
 
 ## 9. Model / forecast impact
 
-**Expectation confirmed: removing the public tool does not by itself change default output.** Evidence:
+**Removal of the public tool does not change default output.** With `S.qbCarryover.enabled === false` (the initializer and the only state after removal), `effectiveQbCorrection` returns 0, `ratingsWithActiveQBCarryover` and `ratingsWithQBCarryover` return their input, and `currentTeamState` has no overlay. Historical states never read manual state. The Cycle 6 before/after audit ([MD-03 retirement](MD03_RETIREMENT_IMPLEMENTATION.md), section 5) already establishes the no-correction values for every team.
 
-- Code: current/future consumers read `effectiveQbCorrection`, which returns the automatic value whenever `qbCarryoverActive(t)` is false. `qbCarryoverActive` requires `S.qbCarryover.enabled`, which initializes to `false` (304) and becomes `true` only through the Lab Apply and quick-button handlers. Historical paths call `QR.correction` directly and never read manual state.
-- Real-bundle probe (scratch only; fixture style of `test_v149_qb_propagation.mjs`, via `scripts/lib/force_app_harness.js` on `a5f5557`):
+Coupling to respect:
+1. `ratingsWithActiveQBCarryover`, `effectiveQbCorrection`, `qbCarryoverUnitEffect` and `currentTeamState` look like tool code but are the internal chain (O4) and are asserted by V45 and V149 tests. Keep them.
+2. The overlay QB label still falls back through `S.qbCarryover.qb`; keep the object and do not change the fallback order.
 
-| State | KC Elo (active) | KC vs DEN home win prob. | BUF Elo (league) | BUF Elo (team-page path) | BUF displayed QB unit |
-| --- | --- | --- | --- | --- | --- |
-| Default (`enabled:false`) | 1508.92 (core 1495.67 + auto 13.24) | 56.02% | 1482.92 | 1482.92 | 50.0 |
-| Quick button on KC (manual 47.3) | 1542.97 | 61.60% | 1482.92 | 1482.92 | 50.0 |
-| After Reset | same as Default | 56.02% | 1482.92 | 1482.92 | 50.0 |
-| Lab on BUF (manual 40) | 1508.92 | 56.02% | 1482.92 | **1522.92** | **67.9** |
-| Auto only, KC starter not measured | 1508.92 | 56.02% | 1482.92 | 1482.92 | 50.0 (KC overlay 55.8) |
-
-**Coupling risks the removal must respect:**
-1. `ratingsWithActiveQBCarryover`, `ratingsWithQBCarryover`, `effectiveQbCorrection`, `qbCarryoverUnitEffect` and `currentTeamState` look like tool code but carry the automatic correction into current ratings, projections and the QB Rankings Default value. They must stay.
-2. The overlay QB label falls back through `S.qbCarryover.qb` (section 2). Keep the object (O4); do not change the fallback order in this tranche.
-3. The automatic overlay (`_qbScenario`) exists for B as well as A. Rewording S10-S13 must not remove the overlay or its data.
-
-**Pre-existing inconsistencies (not fixed; reported for UX-09/UX-10 intake):**
-- `teamPage` forecasts its schedule with `ratingsWithQBCarryover(t, …)`, which applies only the viewed team's correction. On another team's page, a game against KC omits KC's automatic correction, while matchup and rankings include it.
-- Roster Lab (`lab`, 4223) starts from `currentRatings()`, which excludes the automatic correction.
+**Inconsistencies resolved by the retirement:** the team-page schedule omitting an opponent's automatic correction, and Roster Lab's baseline excluding it, no longer apply, because no automatic correction exists. Roster Lab's broader baseline question stays under `UX-09`.
 
 ## 10. Test impact and future acceptance criteria
 
-### 10.1 Existing tests (exact files and current catalog membership at `a5f5557`)
+### 10.1 Existing tests (catalog membership at `8e6a180`)
 
-| Test | Catalog suites / classification | QB-return relevance | Removal-tranche action |
+| Test | Catalog suites / classification | QB-return relevance today | Removal-tranche action |
 | --- | --- | --- | --- |
-| `test_ux14_tranche_b.mjs` | safe / regression | Line 165 asserts `Use auto QB fix\|carryover correction` and `<th>QB return</th>` exist; line 166 asserts Method contains "manual what-if available on team pages"; line 45 slices Method at `<h2>QB return correction</h2>` | **Replace** the UX-19 parts of 165-166 with negative assertions in the new UX-19 test; keep the UX-08 half (`1.20x expansion`) and the line-45 slice heading. Document as intentional UX-19 supersession. |
+| `test_md03_retirement.mjs` | safe, qb, model / regression | Automatic-zero, legacy-inert and historical checks; also drives the public Lab (rendered warning, MANUAL/OFF, Apply/Reset/quick handlers) | **Keep** every automatic-zero, legacy preset/gate, resolver, historical, ledger and fresh-start check. **Replace** the public-Lab sections (rendered warning/controls and the real-handler block) with harness-level manual checks (O4) plus the UX-19 negative assertions; record as intentional supersession. |
+| `test_ux14_tranche_b.mjs` | safe / regression | Asserts `Use auto QB fix\|carryover correction` and `<th>QB return</th>` exist; asserts Method contains "manual what-if available on team pages"; slices Method at `<h2>QB return correction</h2>` | **Replace** the UX-19 parts with negative assertions in the new UX-19 test; keep the UX-08 half (`1.20x expansion`). Update the Method clause guard and, if N1 removes the section, the slice heading. Document as intentional UX-19 supersession. |
 | `test_ux14_public_explanations.mjs` | safe / regression | No QB-return assertion | No change |
 | `test_v21_export_packing.js` | safe / regression | Export cleanup regex contains `.qb-quick` | No change (selector kept) |
-| `test_v117_luck_table.js` | safe, model / regression | Luck rows exclude `quickQbButton` | No change; its comment becomes stale (comment only) |
-| `test_v33_qb_regime.js` | safe, qb, model / **frozen-regression** | Rule values, gate, exact manual-override line, decay call | No change (O4) |
-| `test_v30_predictive_gates.js` | safe / regression | `qbCarryover` gate, `predictiveQbCarryoverAllowed()` | No change |
-| `test_v45_unit_force_bridge.js` | safe, model / regression | `ratingsWithActiveQBCarryover` signature and use in `matchups`, `home`, `teams` | No change; preservation evidence |
-| `test_v69_canonical_historical_state.js` | safe / **frozen-regression** | Historical `QR.correction(qbCarryoverPreset(t),gamesPlayed)` | No change |
+| `test_v117_luck_table.js` | safe, model / regression | Luck rows exclude `quickQbButton` | No change; comment becomes stale |
+| `test_v33_qb_regime.js` | safe, qb, model / frozen-regression | Retired production assertions plus V33 math on a re-enabled preset copy | No change |
+| `test_v30_predictive_gates.js` | safe / regression | `qbCarryover` gate retired, weight 0; manual +47.3 line-movement math | No change |
+| `test_v69_canonical_historical_state.js` | safe / frozen-regression | No historical QB restore | No change |
+| `test_v45_unit_force_bridge.js` | safe, model / regression | `ratingsWithActiveQBCarryover` use in matchups, home, teams | No change; preservation evidence |
 | `test_v149_qb_propagation.mjs` | safe, release, qb / regression | `ratingsWithActiveQBCarryover`; `qbCarryoverUnitEffect` overrides and suppression | No change |
 | `test_projection_semantics_audit.mjs` (+ `lib/projection_semantics_audit.js`) | safe, model / regression | Drives manual KC through `Object.assign(S.qbCarryover, …)` | No change (O4) |
-| `test_qb_customize_audit.mjs` | safe, qb, model / regression | `scenarioGap` = displayed minus measured QB | No change (automatic overlay remains) |
-| `test_qb_correctness.mjs` | safe, release, qb, model / regression | Canonical QB; no tool assertion | No change; preservation evidence |
-| `test_v123_playoff_record_seed_coherence.js` | safe, model / regression | Stubs `QB_CARRYOVER` | No change |
-| `test_v124_representative_playoff_projection.js` | safe, model / regression | Stubs `QB_CARRYOVER` | No change |
-| `test_v75_playoff_structure.js` | safe, model / regression | Stubs `QB_CARRYOVER`, `FORCE_QB_REGIME:null` | No change |
-| `test_v40_team_logos.js` | safe / regression | Loads `data/qb-carryover.js` and `model/qb_regime.js` in its bundle list | No change (files stay) |
-| `test_qb_carryover_ui.js` | none (default exclusion) / historical-fixture | Drives Lab DOM ids | Leave excluded and unrepaired; note as superseded by UX-19 |
-| `test_v14_matchup_clarity.js` | none / historical-fixture | Drives Lab DOM ids and expects a "QB-return scenario" effect | Same |
-| `test_v10_ui.js` | none / historical-fixture | Expects `data-qbquick="KC"` in the home card header | Same |
-| `test_v118_playoffs.js` | none / historical-fixture | Stubs `QB_CARRYOVER` | No change |
-| `test_v11_ui.js`, `test_v16_spread_sign.js`, `test_v24_refresh_integration.js` | none / historical-fixture | Load `data/qb-carryover.js` only | No change |
-| `test_v27_metric_transform_smoke.js`, `test_v28_metric_transform_smoke.js` | none / research-artifact | Call `LP.applyQbCarryoverScenario` | No change (transform stays) |
-| `scripts/validate_bundle.py` | not in catalog (legacy validator) | Asserts `'QB Return Lab' in app`; runs `test_qb_carryover_ui.js` | Leave; record as superseded |
+| `test_qb_customize_audit.mjs` | safe, qb, model / regression | `scenarioGap` = displayed minus measured QB | No change; gap is zero without manual state |
+| `test_qb_correctness.mjs` | safe, release, qb, model / regression | Canonical QB | No change |
+| `test_v123_*`, `test_v124_*`, `test_v75_*` | safe, model / regression | Stub `QB_CARRYOVER` | No change |
+| `test_v40_team_logos.js` | safe / regression | Loads `data/qb-carryover.js` and `model/qb_regime.js` | No change (files stay) |
+| `test_qb_carryover_ui.js` | default-excluded / historical | AUTO/reset UI contract; obsolete since retirement and failing at base on preset wording | Leave excluded; note as superseded by UX-19 |
+| `test_v14_matchup_clarity.js` | default-excluded / historical | Manual preview/scenario contract; fails on the current integrity gate | Leave excluded; note as superseded by UX-19 |
+| `test_v10_ui.js` | default-excluded / historical | Expects `data-qbquick="KC"` | Leave excluded |
+| `test_v27_*`, `test_v28_metric_transform_smoke.js` | default-excluded / research | Call `LP.applyQbCarryoverScenario` | No change (transform stays) |
+| `scripts/validate_bundle.py` | not catalogued | Asserts retired flags and `'QB Return Lab' in app` | Update the Lab assertion or record as superseded |
 
 ### 10.2 New regression for the removal tranche
 
-Suggested name `scripts/test_ux19_qb_return_removal.mjs` (safe suite; real bundle through `force_app_harness.js`). The golden fixture must freeze:
-- harness time (`now`);
-- schedule and completed games;
-- profiles, including each team's current starter name and `playerStatGames`, so overlay suppression is deterministic;
-- `S.engineCache` ratings;
-- presets, gates and every other environmental input.
+Suggested name `scripts/test_ux19_qb_return_removal.mjs` (safe suite; real bundle through `force_app_harness.js`). Freeze harness time, schedule and completed games, profiles (including starter names and `playerStatGames`), `S.engineCache`, presets, gates and other inputs. Capture golden values from the accepted `8e6a180` baseline (or the then-current accepted main) on that fixture before the removal edit, and compare unrounded values with a documented tolerance (for example `1e-9`).
 
-Golden values are captured from the accepted post-`MD-03` baseline commit (today that would be `a5f5557`) on that same fixture, before the removal edit. Unrounded values are compared with a documented absolute tolerance (for example `1e-9` for Elo and probabilities) wherever exact equality is not guaranteed.
-
-- **A1. Public tool gone.** Render home, rankings (Strength, FLAG, Advanced, Units, Luck), teams, team pages for KC and a non-preset team, a KC matchup, QB Rankings (Default and Customize), Method and About. None contains `data-qbquick`, `qb-quick`, `QB Return Lab`, `qbCarryoverQB`, `qbCarryoverElo`, `applyQBCarryover`, `clearQBCarryover`, `<th>QB return</th>`, "No verified QB-return preset", "manual what-if", "Apply QB fix", "Use auto QB fix", "QB manual" or "QB-return scenario".
-- **A2. No public writer (source-level proof).** A source search of `assets/app.js` finds no assignment to `S.qbCarryover` or its fields outside the initializer, and no remaining manual-control ids or `data-qbquick`. Event-binding absence is supporting evidence, not the only proof.
-- **A3. No public writer (behavior).** After rendering every page and running the binding pass with a DOM stub that records handlers, `S.qbCarryover.enabled === false` and no handler is bound to the removed ids or `[data-qbquick]`.
-- **A4. Default outputs identical.** League ratings, `forecastFor` probabilities for a fixed game set, `seasonProjection` expected wins and `currentTeamState(t).elo` equal the golden values within tolerance.
-- **A5. Automatic correction preserved.**
-  - For every team, `ratingsWithActiveQBCarryover()[t] − currentRatings()[t]` equals the then-canonical automatic correction delivered by `MD-03` (today: `FORCE_QB_REGIME.correction(preset, gamesPlayed)` for KC only), and is zero for every nonqualifying team.
-  - A qualifying team's overlay appears when its returning starter has no current-season stats and is suppressed when he does (KC in today's fixture; any qualifying team after `MD-03`).
-- **A6. QB Rankings FORCE Default correct.** The Default rating equals `displayedQbIndex` from `currentTeamState`. With the unmeasured-starter fixture, the automatic overlay still moves KC's Default value as designed.
-- **A7. QB Rankings Customize unchanged.** For fixed weights, `qbCustomRawScore`, `qbCustomScore` and the rendered Customize ranking order equal golden values. Customize never reads `displayedQbIndex`.
-- **A8. Disclosures (O1/O2/O3).**
-  - With an active correction, the team hero shows a visible text disclosure meaning "QB return correction +N Elo", and the matchup shows a visible active-correction disclosure.
-  - The matchup disclosure also appears when the overlay is suppressed but the Elo correction is active.
-  - The Method status card reads "Used only in verified cases, and it fades as the starter plays." The Method paragraph keeps the verified-cases statement.
-  - No retained disclosure relies on `title` alone.
-- **A9. Exports.** A rankings export clone has no "QB return" header. A team export clone has no Lab card, no `select`/range `input`/`output` from the Lab and no manual-state output.
-- **A10. Internal capability present.** `FORCE_QB_DEBUG`, `FORCE_CURRENT_TEAM_STATE` and `FORCE_RATING_LEDGER` exist. `qbCarryoverUnitEffect(t, ratings, override)` still returns a what-if result. Setting `S.qbCarryover` in the harness still overrides as before (O4).
+- **A1. Public controls absent.** Home, rankings (Strength, FLAG, Advanced, Units, Luck), teams, team pages for KC and a non-preset team, a KC matchup, QB Rankings (Default and Customize), Method and About contain none of: `data-qbquick`, `qb-quick`, `QB Return Lab`, `qbCarryoverQB`, `qbCarryoverElo`, `applyQBCarryover`, `clearQBCarryover`, `<th>QB return</th>`, "No verified QB-return preset", "Apply QB fix", "Clear QB fix", "QB manual", "base projection", "returning-QB adjustment active", "QB-return scenario".
+- **A2. No public MANUAL/OFF state.** No `carryover-on`, no MANUAL/OFF chip and no Lab warning on any page.
+- **A3. No public writer (source).** `assets/app.js` has no assignment to `S.qbCarryover` or its fields outside the initializer.
+- **A4. No public writer (behavior).** After rendering every page and running the binding pass with a DOM stub that records handlers, `S.qbCarryover.enabled === false` and nothing is bound to the removed ids or `[data-qbquick]`.
+- **A5. Canonical ratings unchanged.** `currentRatings()`, `currentTeamState(t).elo` and `ratingsWithActiveQBCarryover()` equal the golden values for all 32 teams.
+- **A6. Automatic correction still zero and not reactivated.** Rerun the automatic-zero and legacy preset/gate checks from `test_md03_retirement.mjs` against the removal tree; no automatic resolver or `QR.correction(` reappears.
+- **A7. Forecasts and projections unchanged.** `forecastFor` probabilities for a fixed game set, Monte Carlo score projections and `seasonProjection` expected wins and odds equal golden values (no manual scenario in either tree).
+- **A8. Historical states unchanged.** `canonicalGameTeamState` pre/post and `week2EntryState` equal golden values; `qbRestore` stays 0.
+- **A9. Internal capability preserved.** Setting `S.qbCarryover` in the harness still changes `ratingsWithActiveQBCarryover` and `currentTeamState` as before; `qbCarryoverUnitEffect(t, ratings, override)` returns a what-if; `LP.applyQbCarryoverScenario` works; `FORCE_QB_DEBUG`, `FORCE_CURRENT_TEAM_STATE`, `FORCE_RATING_LEDGER` exist; `model/qb_regime.js` math still reproduces V33 on a re-enabled preset copy.
+- **A10. Roster Lab intact.** Roster Lab renders with `.scenario-hero`/`.scenario-stat` styling and its add/remove feedback is unchanged against golden values.
+- **A11. Exports.** A rankings export clone has no "QB return" header; a team export clone has no Lab card, no Lab `select`/range `input`/`output` and no manual-state output.
+- **A12. Method copy.** Method no longer contains "manual what-if available on team pages", and matches the N1 choice.
+- **A13. QB Rankings.** Default equals the measured `qbIndex` for every team; Customize ranking for fixed weights equals golden values.
 
 ### 10.3 Acceptance criteria for the removal tranche
 
-- **Entry condition:** `MD-03`'s league-wide automatic correction is implemented, independently validated and accepted by the owner before this tranche starts (section 14).
-- A1-A10 pass. `test_ux14_tranche_b.mjs` is updated as in 10.1 with intent documented. Safe, release, QB, model, snapshot and server suites pass in an LF export (native Windows: only the known V77 CRLF failure).
+- **Entry conditions:** `MD-03` retirement accepted (met 2026-10-03 at `8e6a180`); N1 decided; separate UX-19 implementation authorization (MD-03 step F).
+- A1-A13 pass. `test_md03_retirement.mjs` and `test_ux14_tranche_b.mjs` are updated as in 10.1 with intent documented. Safe, release, QB, model, snapshot and server suites pass in an LF export (native Windows: only the known V77 CRLF failure is acceptable).
 - `scripts/build_public.py` regenerates `public/`; generated files match source.
-- Desktop 1440×900 and mobile 375×812 checks of home, rankings (Strength/FLAG/Advanced), teams, KC and BUF team pages, a KC matchup and Method show:
-  - no QB-return controls;
-  - no empty column or grid gap;
-  - no new horizontal overflow;
-  - no console errors;
-  - retained disclosures readable without hover on touch and focusable or visible for keyboard users.
-- No model, data, Worker, server or forecast change in the removal tranche itself; the automatic-correction data and model files stay exactly as `MD-03` left them.
+- Desktop 1440×900 and mobile 375×812 checks of home, rankings (Strength/FLAG/Advanced/Units), teams, KC and BUF team pages, a KC matchup, Roster Lab and Method show the intended controls gone on both widths, no empty column or grid gap, no new horizontal overflow and no console errors.
+- No model, data, Worker, server or forecast change in the removal tranche.
 
 ## 11. Files expected in the removal tranche
 
-- `assets/app.js`:
-  - remove S1-S5, S8 and S9 renderers and calls, `quickQbButton`, `qbCarryoverPanel`, handlers 5454-5478 and the "QB return" column;
-  - reword S6, S7 and S10-S13 (O1);
-  - make the matchup disclosure follow the active Elo correction;
-  - apply O3 and O5 copy.
-- `assets/styles.css`: selector-level removals and the line-89 grid override (section 8.2).
+- `assets/app.js`: remove S1-S5, S8, S9 renderers and calls, `quickQbButton`, `qbCarryoverPanel`, handlers 5446-5470, the "QB return" column, and the S6, S7, S10-S13 manual displays; apply O5 and N1 copy.
+- `assets/styles.css`: selector-level removals and the line-89 grid override (8.2).
 - `public/assets/app.js`, `public/assets/styles.css`: regenerated only.
-- `scripts/test_ux19_qb_return_removal.mjs` (new), `scripts/test_ux14_tranche_b.mjs` (guard replacement), `scripts/test_catalog.json`, `scripts/TESTING.md`.
-- `FORCE_ROADMAP.md` (UX-19 and UX-14 D10 status), `UX14_PUBLIC_EXPLANATION_INVENTORY.md` (D10 and section D status).
-- Not expected: `model/*`, `data/*`, `src/index.js`, `force_server.py`, `index.html`, `QB_REGIME_RESEARCH_V33.md`.
+- `scripts/test_ux19_qb_return_removal.mjs` (new), `scripts/test_md03_retirement.mjs` and `scripts/test_ux14_tranche_b.mjs` (supersession updates), `scripts/test_catalog.json`, `scripts/TESTING.md`, and optionally `scripts/validate_bundle.py`.
+- `FORCE_ROADMAP.md` (UX-19, UX-14 D10, MD-03 step F status), `UX14_PUBLIC_EXPLANATION_INVENTORY.md` (D10 status).
+- Not expected: `model/*`, `data/*`, `src/index.js`, `force_server.py`, `index.html`, research documents.
 
 ## 12. Final contract for the removal tranche
 
-- **REMOVE PUBLIC:**
-  - quick QB buttons (S1, S2, S4, S5, S9);
-  - QB Return Lab (S8);
-  - rankings "QB return" column (S3);
-  - "No verified QB-return preset";
-  - manual handlers and focus targets;
-  - dead tool CSS;
-  - manual export artifacts.
-- **KEEP:**
-  - the automatic correction as delivered by `MD-03` (league-wide), and all its consumers; the KC-only V33 preset is only the current baseline;
-  - canonical QB rating;
-  - QB Rankings Default and Customize;
-  - internal manual-override machinery (`S.qbCarryover`, override branch);
-  - debug and research machinery;
-  - Method QB return paragraph and evidence.
-- **KEEP BUT REWORD:**
-  - team-level automatic-correction chip and base-projection context;
-  - matchup and unit correction disclosures;
-  - Method status card;
-  - Teams intro.
-- **D10:** Method and internal research hold the rationale; the retained O1 team-level disclosure is the short active-team statement.
+- **REMOVE PUBLIC:** quick QB buttons (S1, S2, S4, S5, S9); the whole QB Return Lab section (S8); the rankings "QB return" column (S3); manual displays (S6, S7, S10-S13); "No verified QB-return preset"; manual handlers and focus targets; dead tool CSS; manual export artifacts; the Method "manual what-if available on team pages" clause.
+- **REWORD:** Teams intro (O5); Method QB-return section per N1.
+- **PRESERVE INTERNALLY:** `S.qbCarryover` and the manual-override chain; `qbCarryoverUnitEffect`; `LP.applyQbCarryoverScenario`; `ratingsWithActiveQBCarryover` as the ratings source; debug hooks.
+- **PRESERVE AS RESEARCH:** `model/qb_regime.js`, `data/qb-carryover.js` record, retired gate entry, V33 and MD-03 research documents and code.
+- **OUT OF SCOPE:** canonical QB rating, QB Rankings Default/Customize (UX-08), Roster Lab, forecast/model/data, routing, Worker, server.
 
 ## 13. Non-goals and preserved features
 
-- The removal tranche itself makes no change to the automatic correction's data, gate, decay or eligibility. Generalizing them is `MD-03`'s separate prerequisite work, not part of UX-19; the KC-only preset is current state, not target state.
+- No change to the retired automatic correction, its data, gate or research record, and no reconsideration of an automatic correction (that would need new owner authorization under `MD-03` and fresh validation against then-current FORCE).
 - No change to the canonical QB rating, QB weights, opponent/pressure/recency context, offense composite, FORCE bridge, FORCEcast, market blend, playoffs, Luck, FLAG or score simulation.
 - QB Rankings Customize (`UX-08`) unchanged and still gated; UX-14 D1/D2 remain gated.
-- Roster Lab and its immediate feedback (PRESERVE) unchanged; its baseline question stays under `UX-09`.
-- No fix for the team-page schedule baseline inconsistency or the reset/name-fallback coupling.
+- Roster Lab and its immediate feedback unchanged; its baseline question stays under `UX-09`.
+- No fix for the reset/name-fallback coupling.
 - No localhost or debug setter for the manual override (O4).
 - Routing, per-page URLs, loader, export pipeline, security gates and the Worker unchanged.
 - Other UX-14 groups and gates (`UX-08`, `UX-15`, `UX-17`, `UX-18`, `UX-31`) remain under their own items.
 
-## 14. Prerequisite: league-wide automatic QB-return correction (`MD-03`)
+## 14. MD-03 dependency (satisfied) and superseded prerequisite
 
-**Owner requirement (CONFIRMED 2026-10-02):** "Any retained automatic QB-return correction must operate generally across teams/QBs and support midseason qualifying injury/return cases." The design and implementation are not decided; `MD-03` is the roadmap item. This section bounds what the future investigation must establish. It does not choose a mechanism, source or formula, and authorizes no work.
+The UX-19 public removal originally waited on `MD-03`. The sequence and its state after this revision:
 
-### 14.1 Current state versus target
+| Step | State |
+| --- | --- |
+| A. Authorize retirement | Done (owner, 2026-10-02) |
+| B. Implement retirement | Done (`a40feed` + correction `8e6a180`, `cycle6/claude-md03-retirement`) |
+| C. Independent validation | PASSED (Codex full validation; targeted re-review of the corrections returned "A. CORRECTIONS VERIFIED — READY FOR OWNER ACCEPTANCE") |
+| D. Owner acceptance | ACCEPTED (owner, 2026-10-03, at `8e6a180`) |
+| E. Revise this plan for the no-automatic-correction state | Done in this revision; independent plan review PENDING |
+| F. Separately authorize UX-19 implementation | NOT AUTHORIZED |
 
-| Aspect | Current state (V33, `a5f5557`) | Target (MD-03) |
-| --- | --- | --- |
-| Eligibility | Hand-authored preset in `data/qb-carryover.js`; KC / Patrick Mahomes only; flags `autoEligible`, `verifiedReplacementWindow`, `expectedStarterReturned` set by hand | Eligibility arises dynamically from data for any team and QB; all 32 teams pass through the same logic |
-| Timing | One offseason episode (2025 Weeks 16-18 absence, 2026 return); decay counted from 2026 team games | Also midseason injuries, returns and repeated episodes within a season |
-| Magnitude | `min(measured surviving damage, 7.5 Elo × verified missed starts × 70% offseason survival)`, 60 Elo pre-reversion cap | Candidate only; must be validated across many episodes, including within-season cases where offseason survival does not apply |
-| Decay / transition | 4-team-game half-life; unit overlay suppressed once the named starter has current-season player stats | Candidate only; must define the transition for midseason returns |
-| Unit display | `LP.applyQbCarryoverScenario` overlay through `currentTeamState` | Must work for any qualifying team and label the QB from the detected regime, not from `S.qbCarryover.qb` |
-| Presets | Required for the correction to exist at all | Must **not** be required for normal operation. A preset may remain for research, override or exceptional manual validation |
-
-The KC-only state is the current baseline only. It is not the final product state, and UX-19's public removal waits on the target’s independent validation and owner acceptance.
-
-### 14.2 Capability contract
-
-For any team and quarterback, a future system must be able to establish:
-
-1. The established, current starting QB identity.
-2. Missed starts or a meaningful absence.
-3. The replacement-QB period.
-4. A verified return of the expected starter.
-5. Qualifying replacement-window evidence.
-6. How much surviving team/QB degradation is attributable to that regime.
-7. A correction cap and decay.
-8. Automatic suppression or transition once current-season starter data is sufficient.
-9. Midseason injuries and returns.
-10. Repeated injury/return episodes.
-11. Starter changes from benching or performance, which must not be mistaken for an injury return.
-12. Trades or permanent starter changes.
-13. Rookie or new-starter situations.
-14. Bye-week boundaries (a bye is not a missed start).
-15. Incomplete or conflicting injury/starter evidence, which must resolve to "no correction" with a recorded reason, never to a guessed correction.
-
-### 14.3 Data and authority questions (to investigate, not decided)
-
-Facts already checked for this plan (2026-10-02):
-- The schedule CSV FORCE already fetches (`nflverse/nfldata` `games.csv`) has per-game `away_qb_id`, `home_qb_id`, `away_qb_name` and `home_qb_name` columns, filled for 2026 games. FORCE does not read them today. That repository has no license file.
-- `nflverse` publishes injury, depth-chart, snap-count and participation datasets (nflreadr dictionaries exist). Its update page states that injuries update daily during the season, depth charts daily, snap counts four times a day, and that depth charts stopped being assigned a week from 2025.
-
-None of these has been validated for this purpose. Questions the investigation must answer:
-
-- Which source reliably identifies actual starts and QB participation (starter columns, play-by-play dropbacks, snap counts)?
-- What source, if any, establishes injury, absence and return status? Do the free nflverse injury reports qualify, and under what license and update timing?
-- Can FORCE infer the regime safely from game participation and starter history alone, or is an explicit injury designation required?
-- How is an injury return distinguished from a benching or a permanent depth-chart change (injury designations, depth-chart order, trades, transaction data)?
-- What happens when starter information changes after a game (stat corrections, late data)? How are corrections and finality handled, and which watermark applies?
-- Source policy: free first whenever adequate; a modest paid source only if no adequate free route exists; no large data expense; no adoption without owner approval.
-
-### 14.4 Model questions (to investigate, not decided)
-
-The V33 rule is kept as a **candidate** generalized calculation, not discarded and not assumed to generalize. The investigation must test four pieces separately:
-
-- **A. Event detection / eligibility.** Replaces the hand-set preset flags; this is the main new work.
-- **B. Correction magnitude.** Whether "7.5 Elo per verified missed start", the 60 Elo cap and the measured-surviving-damage bound hold across many episodes, and what replaces the 70% offseason survival factor for midseason cases.
-- **C. Decay / transition.** Whether a 4-team-game half-life and the "starter has current-season stats" suppression rule hold midseason and across repeated episodes.
-- **D. Unit-display overlay.** Whether `applyQbCarryoverScenario` and its suppression rule display coherently for any team.
-
-Each piece needs causal, held-out validation under the [predictive feature policy](PREDICTIVE_FEATURE_POLICY_V30.md), using many historical QB-return episodes rather than the original 11-episode / 6-case gated study alone. A piece that does not generalize must be replaced or dropped with owner direction, not kept silently.
-
-### 14.5 Future acceptance cases
-
-Synthetic and historical fixtures must cover at least:
-
-1. KC / Mahomes-style known offseason return (regression against today's V33 behavior where applicable).
-2. A non-KC established starter injured and returning midseason.
-3. An injury that occurs after the season starts.
-4. A replacement who performs much worse.
-5. A replacement who performs similarly or better.
-6. A starter who misses only one game.
-7. A starter benched rather than injured.
-8. A permanent QB change (trade, release or new long-term starter).
-9. A rookie or new starter.
-10. A returning QB who immediately has measurable current-season data.
-11. A second injury/return episode for the same team or QB.
-12. No qualifying case for most teams.
-
-The system must prove that:
-- normal operation needs no team-name or QB-name special casing;
-- all 32 teams pass through the same eligibility logic;
-- nonqualifying teams receive exactly zero correction;
-- a qualifying midseason case becomes active without any code or data preset edit.
-
-### 14.6 Sequence and ownership
-
-1. **`MD-03` investigation:** answer 14.3 and 14.4 and propose a mechanism with evidence; owner decides.
-2. **`MD-03` implementation:** separately authorized; frozen V33/V69 tests are only reopened with explicit owner direction.
-3. **Independent validation:** cases in 14.5, plus no change for nonqualifying teams.
-4. **Owner acceptance:** the independently validated `MD-03` baseline must be accepted by the owner before UX-19 removal.
-5. **UX-19 public removal:** separately authorized; sections 1-13, with A5 and A6 run against the independently validated, owner-accepted `MD-03` baseline.
-
-The UX-19 owner decisions O1-O3 and O5 apply unchanged at step 5. Under the generalized system, the O1 team-level disclosure and the matchup disclosure must appear for any qualifying team, not only KC. O4 is unchanged.
+**Superseded league-wide prerequisite (historical).** On 2026-10-02 the owner first required that any retained automatic correction work for any team and QB, including midseason injury and return cases, before UX-19 removal. The same day the owner chose retirement instead. That league-wide capability contract, its data/model questions and its 12 acceptance cases now live only in the `MD-03` roadmap entry as the "historical retained-feature" requirement, which applies only if an automatic correction is ever reconsidered. It is not a UX-19 entry condition. The full original text is in git history.
