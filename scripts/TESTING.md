@@ -18,7 +18,7 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 144 tests: 111 JavaScript and 33 Python |
+| `npm test` / `npm run test:safe` | 145 tests: 112 JavaScript and 33 Python |
 | `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 28 QB/pressure/research regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
@@ -26,6 +26,22 @@ example `node scripts/test_v149_release_hardening.mjs`.
 | `npm run test:model` | 49 model/unit/research regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
+
+Cycle 6 UX-19 public QB-return tool removal (2026-10-03,
+`cycle6/claude-ux19-removal` from exact `fe09e67`, implementation `f562928`,
+review branch, not pushed or merged): new `test_ux19_qb_return_removal.mjs`
+(safe; `timeoutMs` 420000; about three minutes) compares canonical ratings,
+units, forecasts, Monte Carlo scores, season projections, historical and V99
+states, Roster Lab and QB Rankings with `scripts/fixtures/ux19_golden.json`,
+captured at `fe09e67`. Catalog 257 entries, 145 safe (112 JavaScript / 33
+Python) and 112 unchanged default exclusions. Authoritative LF clone of
+`f562928` passed safe 145/145, model 49/49, release 17/17, QB 28/28, snapshot
+6/6 and server 30/30. Native CRLF safe 144/145 with only the known V77 CRLF
+timing-source assertion failing. The new test fails on `fe09e67` and on five
+scratch mutations (a reintroduced public writer, the QB return column, a
+MANUAL/OFF chip, the Method manual clause, and a one-Elo model change).
+`test_md03_retirement.mjs` now runs 1,357 checks after its public-Lab
+assertions were superseded; its automatic-retirement checks are unchanged.
 
 Cycle 6 MD-03 retirement (2026-10-02, `cycle6/claude-md03-retirement` from exact
 `0e6b745`, review branch, not pushed or merged): new
