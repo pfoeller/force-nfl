@@ -1,11 +1,13 @@
 # MD-03 QB-return correction: model investigation
 
-Roadmap item: `MD-03` (automatic QB-return correction). The owner decided on 2026-10-02 to retire the correction rather than generalize it; retirement is planned, not implemented, and remains the prerequisite for `UX-19` public removal.
+Roadmap item: `MD-03` (automatic QB-return correction). The owner decided on 2026-10-02 to retire the correction rather than generalize it.
+
+**Current status (2026-10-03):** retirement decision CONFIRMED; retirement IMPLEMENTED on `cycle6/claude-md03-retirement` (`a40feed`, correction `8e6a180`; see [implementation and evidence](MD03_RETIREMENT_IMPLEMENTATION.md)); independent validation PASSED; owner acceptance ACCEPTED on 2026-10-03; generalized replacement INACTIVE; this research PRESERVED. The `UX-19` removal plan has been REVISED for the no-automatic-correction state; the revised plan's independent review found it substantively sound (Codex verdict B, minor supporting-document corrections only); those corrections and a targeted re-review are pending. Owner decision N1 is open, and `UX-19` implementation is NOT AUTHORIZED. The rest of this document is the Cycle 5 research record and keeps its original wording.
 Lane: Cycle 5 model investigation, branch `cycle5/claude-md03-model`, base `bd15a2c682c0dd8c836ecfd42e615a31741988c7`. First version `0a6dcb8` (2026-10-02). **This version corrects it after Codex's independent cross-review (verdict C, findings F1-F9) and Claude's cross-review of the Codex detection lane.**
 
 **OWNER DECISION (2026-10-02): retire the current automatic QB-return correction rather than proceed with a generalized production replacement.** The owner judged that the remaining historical signal is too small and too population-sensitive relative to the unresolved detector, source, full-stack interaction and maintenance burden. This is a product and model-complexity judgment under uncertainty. It is **not** a finding that the research proved the effect is zero, and Null did not statistically "win". The owner may reconsider the concept if stronger evidence or cleaner data become available.
 
-The decision authorizes **planning** for retirement only. Nothing has been retired yet: production behaviour is unchanged until a separately authorized and validated implementation tranche (section 19).
+*At the time of this investigation (2026-10-02)*, the decision authorized **planning** for retirement only, and production behaviour was unchanged until a separately authorized and validated implementation tranche (section 19). That tranche has since been implemented, validated and accepted (current status above).
 
 **This document is now retained research evidence.** It explains the retirement decision and supports any future reconsideration. Recording the decision changed no production model, rating, data feed, source ingestion, public tool or generated file. Candidates A, B0 and B2 are **not selected for current production**; they are not rejected permanently. The predictive-feature policy was **not** passed. Event detection and source architecture belong to the Codex lane; free historical files are used here only as research evidence.
 
@@ -414,11 +416,22 @@ The sequence is:
 
 **Technical matters for the retirement tranche** (resolved by its design and validation, not by owner vote): see section 22.
 
-## 22. Active path and the retirement implementation contract
+## 22. Retirement path (governance history) and current status
 
-**Status update (2026-10-03, Cycle 6):** steps A and B are done on `cycle6/claude-md03-retirement` from `0e6b745` ([implementation and evidence](MD03_RETIREMENT_IMPLEMENTATION.md)); independent validation (C) PASSED; the owner accepted the retirement (D) at `8e6a180` on 2026-10-03; the UX-19 plan revision (E) is done and awaits independent review; F is not authorized. The text below is kept as written.
+**Current status and remaining gate (2026-10-03):**
 
-**Active MD-03 path** (no step is complete; production behaviour is unchanged today):
+| Step | Status |
+| --- | --- |
+| A. Authorize retirement | COMPLETED (owner, 2026-10-02) |
+| B. Implement retirement | COMPLETED (`a40feed`, correction `8e6a180`; [implementation and evidence](MD03_RETIREMENT_IMPLEMENTATION.md)) |
+| C. Independent validation | COMPLETED, PASSED |
+| D. Owner acceptance | COMPLETED, ACCEPTED 2026-10-03 at `8e6a180` |
+| E. Revise the UX-19 plan | Revision COMPLETED (2026-10-03); the revised plan's independent review found it substantively sound (Codex verdict B, minor supporting-document corrections only); those corrections and a targeted re-review are pending |
+| F. Authorize UX-19 implementation | NOT AUTHORIZED; also waits on owner decision N1 |
+
+The generalized league-wide replacement is not active. The rest of this section is the historical retirement contract as written during Cycle 5, kept for the record.
+
+**Former active path (historical, as written 2026-10-02, when no step was complete and production behaviour was unchanged):**
 - **A.** Separately authorize retirement/disablement of the existing automatic QB-return correction.
 - **B.** Implement that model change under the separate authorization.
 - **C.** Independently validate the resulting FORCE behaviour against the accepted baseline/full-stack behaviour.
@@ -426,7 +439,7 @@ The sequence is:
 - **E.** Revise the UX-19 removal plan for the no-automatic-correction state.
 - **F.** Separately authorize UX-19 public-tool removal.
 
-**What the retirement tranche must determine and test** (these questions are not answered here):
+**What the retirement tranche had to determine and test** (historical; answered in the [implementation evidence](MD03_RETIREMENT_IMPLEMENTATION.md)):
 - every production path through which the automatic correction enters FORCE;
 - current and future rating paths (`effectiveQbCorrection`, `ratingsWithActiveQBCarryover`);
 - historical and canonical state paths (`canonicalGameTeamState`, week-2 entry states);
@@ -439,7 +452,7 @@ The sequence is:
 - whether historical reconstruction keeps the historical QB-correction behaviour or applies the Null state prospectively only;
 - whether any persisted or public state assumes the automatic correction exists.
 
-**Acceptance contract for the retirement change.** The implementation must demonstrate that:
+**Acceptance contract for the retirement change** (historical; satisfied by the accepted implementation). The implementation had to demonstrate that:
 - the automatic correction contributes exactly zero to current and future production forecasts;
 - no stale preset can reactivate it;
 - no automatic unit overlay is created from it;
@@ -449,4 +462,4 @@ The sequence is:
 - canonical forecast and test suites stay green;
 - UX-19 surfaces are untouched until separately authorized.
 
-This is a future acceptance contract, not current execution. The full-stack evaluation harness for candidate corrections (section 12) is not part of the current path; it would be needed only if the concept is reconsidered.
+When written, this was a future acceptance contract, not current execution. The full-stack evaluation harness for candidate corrections (section 12) was not part of the retirement path; it would be needed only if the concept is reconsidered.
