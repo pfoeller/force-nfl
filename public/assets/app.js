@@ -13,7 +13,8 @@
   // production. The app deliberately reads neither the V33 regime module nor the
   // qbCarryover predictive gate, so no preset, eligibility flag or gate value can
   // restore it. model/qb_regime.js and data/qb-carryover.js remain as research
-  // records and as the manual QB Return Lab preset source.
+  // records and as the internal manual-override preset source. UX-19 removed the
+  // public QB Return Lab; nothing public writes S.qbCarryover.
   const ER = window.FORCE_EARLY_REGIME || null;
   const RC = window.FORCE_RATING_CONTINUITY || null;
   const RS = window.FORCE_RETROSPECTIVE_STRENGTH || null;
@@ -1230,16 +1231,12 @@
     return S.schedule.filter((g) => g.homeScore != null && g.awayScore != null && (g.home === t || g.away === t)).length;
   }
 
-  // MD-03 (Cycle 6): only an explicit manual QB Return Lab value can produce a
-  // QB-return correction. There is no automatic fallback.
+  // MD-03 (Cycle 6): only an explicit internal manual value (S.qbCarryover, no
+  // public writer since UX-19) can produce a QB-return correction. There is no
+  // automatic fallback.
   function effectiveQbCorrection(t) {
     t = canon(t);
     return qbCarryoverActive(t) ? Number(S.qbCarryover.restoreElo || 0) : 0;
-  }
-
-  function qbCandidates(t) {
-    return D.players.filter((p) => p.team === canon(t) && p.pos === 'QB')
-      .sort((a, b) => b.impact - a.impact);
   }
 
   function samePersonName(a,b) {
@@ -1262,9 +1259,9 @@
     return !!(S.qbCarryover.enabled && S.qbCarryover.team === canon(t) && Number(S.qbCarryover.restoreElo) > 0);
   }
 
-  // A manual QB Return Lab value is an explicit user what-if, not a predictive
-  // feature, so it no longer depends on the retired qbCarryover gate. Before
-  // MD-03 retirement that gate was always open, so manual behaviour is unchanged.
+  // An internal manual value is an explicit what-if, not a predictive feature, so
+  // it does not depend on the retired qbCarryover gate. These helpers are the
+  // identity in production, where nothing sets S.qbCarryover (UX-19, O4).
   function ratingsWithQBCarryover(t, source = currentRatings()) {
     const out = { ...source };
     t = canon(t);
@@ -1283,65 +1280,6 @@
     return out;
   }
 
-  function quickQbButton(t, compact = true) {
-    t = canon(t);
-    const preset = qbCarryoverPreset(t);
-    if (!preset) return compact ? '' : '<span class="raw">No verified QB-return preset</span>';
-    const active = qbCarryoverActive(t);
-    const label = active ? 'Clear QB fix' : 'Apply QB fix';
-    const detail = active ? `${preset.qb} | manual +${fmt(S.qbCarryover.restoreElo)} Elo` : `${preset.qb} | +${fmt(preset.suggestedRestoreElo)} Elo`;
-    return `<button type="button" class="qb-quick ${active ? 'active' : ''}" data-qbquick="${t}" title="${active ? 'Clear manual' : 'Open manual override for'} ${preset.qb} carryover correction">${label}${compact ? '' : `<small>${detail}</small>`}</button>`;
-  }
-
-  function teamProbability(g, fc, t) {
-    return g.home === t ? fc.probability : 1 - fc.probability;
-  }
-
-  function qbCarryoverPanel(t, baseRatings) {
-    t = canon(t);
-    const preset = qbCarryoverPreset(t);
-    const active = qbCarryoverActive(t);
-    const effectiveRestore = effectiveQbCorrection(t);
-    const qbs = qbCandidates(t);
-    const selectedQB = active ? S.qbCarryover.qb : (preset?.qb || qbs[0]?.name || 'Returning starter');
-    const restore = active ? Number(S.qbCarryover.restoreElo) : Number(preset?.suggestedRestoreElo ?? 30);
-    const adjusted = { ...baseRatings, [t]: (baseRatings[t] ?? D.meta.meanElo) + restore };
-    const unitPreview = qbCarryoverUnitEffect(t, baseRatings, restore, selectedQB);
-    const before = projected(t, baseRatings), after = projected(t, adjusted);
-    const future = sortedSchedule().find((g) => g.homeScore == null && (g.home === t || g.away === t));
-    let nextMarkup = '<div class="scenario-stat"><span>NEXT GAME</span><strong>-</strong><small>No future game loaded.</small></div>';
-    if (future) {
-      const bf = forecastFor(future, baseRatings), af = forecastFor(future, adjusted);
-      const bp = teamProbability(future, bf, t), ap = teamProbability(future, af, t);
-      const bproj = exactScoreProjection(future, bf), aproj = exactScoreProjection(future, af);
-      const nextOpp = future.home === t ? future.away : future.home;
-      nextMarkup = `<div class="scenario-stat"><span class="next-game-team">NEXT GAME | <span class="opp-prefix">${future.home === t ? 'vs' : '@'}</span> ${teamIdentity(nextOpp, { size: 'xs' })}</span><strong>${Math.round(bp*100)}% → ${Math.round(ap*100)}%</strong><small>FORCEcast${bf.marketAvailable ? `, with ${Math.round(bf.marketWeight*100)}% of the prediction coming from the betting market` : ''}<br>Predicted line: ${logoizeTeamCodes(predictedLineLabel(future, bproj))} → ${logoizeTeamCodes(predictedLineLabel(future, aproj))}<br>Predicted score: ${logoizeTeamCodes(`${future.away} ${bproj.away} / ${future.home} ${bproj.home}`)} → ${logoizeTeamCodes(`${future.away} ${aproj.away} / ${future.home} ${aproj.home}`)}</small></div>`;
-    }
-    const research = QBC.study || {};
-    const presetCopy = preset
-      ? `<div class="carryover-preset"><b>${preset.qb}:</b> FORCE estimates that the replacement-QB stretch lowered the team rating by about ${fmt(preset.rawBackupWindowEloDamage)} Elo at the time. About ${fmt(preset.postReversionCarryoverDamage)} Elo of that effect carried into the new season. FORCE does not apply an automatic correction for this. The slider lets you test one.</div>`
-      : `<div class="carryover-preset">No preset for this team. Use the slider for a one-off what-if.</div>`;
-    return `<section class="card carryover-card">
-      <div class="card-head"><div><div class="eyebrow">Returning quarterback adjustment</div><h2>QB Return Lab</h2></div><span class="chip ${active ? 'carryover-on' : ''}">${active ? 'MANUAL' : 'OFF'}</span></div>
-      <div class="card-body">
-        <p class="carryover-copy">When a team spent time with a replacement quarterback, its team rating can still reflect some of those games after the regular starter returns. FORCE does not automatically correct for this. This lab lets you try giving back part of that lost rating as a what-if. Defense is left alone.</p>
-        ${presetCopy}
-        <div class="carryover-controls">
-          <label>Returning QB<select id="qbCarryoverQB">${(qbs.length ? qbs : [{name:selectedQB}]).map((q) => `<option value="${q.name}" ${q.name === selectedQB ? 'selected' : ''}>${q.name}</option>`).join('')}</select></label>
-          <label>Rating restored <div class="range-line"><input id="qbCarryoverElo" type="range" min="0" max="80" step="0.5" value="${restore}"><output id="qbCarryoverValue">+${fmt(restore)} Elo</output></div></label>
-          <div class="carryover-actions"><button class="primary-action" id="applyQBCarryover">Apply</button><button class="ghost" id="clearQBCarryover" ${active ? '' : 'disabled'}>Reset</button></div>
-        </div>
-        <div class="scenario-hero carryover-results">
-          <div class="scenario-stat"><span>FORCE SCORE</span><strong>${fmt(score(baseRatings[t]))} → ${fmt(score(adjusted[t]))}</strong><small>Elo ${fmt(baseRatings[t])} → ${fmt(adjusted[t])}</small></div>
-          <div class="scenario-stat"><span>OFFENSE PROFILE</span><strong>${fmt(unitPreview?.baseProfile?.offenseComposite ?? profile(t).offenseComposite)} → ${fmt(unitPreview?.profile?.offenseComposite ?? profile(t).offenseComposite)}</strong><small>Defense stays unchanged. The QB-specific correction is carried by offense.</small></div>
-          <div class="scenario-stat"><span>QB UNIT</span><strong>${fmt(unitPreview?.baseProfile?.qbIndex ?? profile(t).qbIndex)} → ${fmt(unitPreview?.profile?.qbIndex ?? profile(t).qbIndex)}</strong><small>The displayed QB grade stays based on current QB play. This what-if changes the team rating separately.</small></div>
-          <div class="scenario-stat"><span>PROJECTED WINS</span><strong>${fmt(before.ew)} → ${fmt(after.ew)}</strong><small>${after.ew >= before.ew ? '+' : ''}${fmt(after.ew-before.ew,2)} expected wins.</small></div>
-          ${nextMarkup}
-        </div>
-        <div class="warning carryover-warning"><b>Historical research, manual what-if:</b> Historical tests found a small benefit that depended on which cases were included. FORCE does not apply an automatic correction. The research is preserved, and this lab lets you test a manual what-if.</div>
-      </div>
-    </section>`;
-  }
   function records() {
     const out = {};
     Object.keys(D.teams).forEach((t) => { out[t] = { w: 0, l: 0, t: 0 }; });
@@ -1947,9 +1885,10 @@
     }).join('');
   }
 
-  // The bundled unit snapshot is historical. A QB-return scenario changes the
-  // current/future team prior, so the unit display needs a matching scenario
-  // overlay rather than showing an unchanged offense next to an adjusted team.
+  // The bundled unit snapshot is historical. An internal QB-return scenario changes
+  // the current/future team prior, so the unit profile carries a matching scenario
+  // overlay rather than an unchanged offense next to an adjusted team. Since UX-19
+  // no public page renders scenario notes for it.
   //
   // Current offensive composite weights, recovered from the bundled model:
   // V102 offense: 20% scoring/drive outcome + 30% QB + 15% receivers + 15% OL + 20% RB.
@@ -2060,7 +1999,7 @@
   // bridge, and QB regime). Current movement is decomposed into like-for-like
   // deltas from that state; no hidden rebase is allowed. MD-03 (Cycle 6): the
   // retired automatic QB regime is zero in the entry state too, so the QB delta
-  // now carries only an explicit manual QB Return Lab value.
+  // now carries only an explicit internal manual value.
   function week2EntryState(t) {
     t=canon(t);
     const completed=sortedSchedule().filter((g)=>Number(g.week)<2 && g.homeScore!=null&&g.awayScore!=null&&(g.home===t||g.away===t));
@@ -2246,43 +2185,16 @@
     return result;
   }
 
-  function scenarioMetricNote(p, key) {
-    const s = p?._qbScenario;
-    if (!s) return '';
-    const map = {
-      offenseComposite: s.baseOffenseComposite,
-      offenseIndex: s.baseOffenseIndex,
-      qbIndex: s.baseQbIndex
-    };
-    if (!(key in map)) return '';
-    const before = Number(map[key]), after = Number(p[key]);
-    if (!Number.isFinite(before) || !Number.isFinite(after) || Math.abs(after - before) < 0.05) return '';
-    return `QB-return scenario · was ${fmt(before,0)}`;
-  }
-
-  function scenarioBaseValue(p, key) {
-    const s = p?._qbScenario;
-    if (!s) return null;
-    const map = {
-      offenseComposite: s.baseOffenseComposite,
-      offenseIndex: s.baseOffenseIndex,
-      qbIndex: s.baseQbIndex
-    };
-    const v = map[key];
-    return Number.isFinite(Number(v)) ? Number(v) : null;
-  }
-
   function unitCell(p, key) {
     const raw = p?.[key];
     const v = raw == null || raw === '' ? NaN : Number(raw);
     if (!Number.isFinite(v)) return '<td>-</td>';
-    const b = scenarioBaseValue(p, key);
-    return `<td class="${b != null ? 'scenario-unit-cell' : ''}"><b>${fmt(v,0)}</b>${b != null && Math.abs(v-b) >= .05 ? `<small>${fmt(b,0)} base</small>` : ''}</td>`;
+    return `<td><b>${fmt(v,0)}</b></td>`;
   }
 
   // Rankings > Units is intentionally a clean numeric board: no scenario notes,
-  // no base values, and no QB-return affordance.  Scenario detail remains on the
-  // team/matchup pages where it has context.
+  // no base values, and no QB-return affordance. Since UX-19 no public page shows
+  // QB-return scenario detail.
   // Public copy names what a pass-rush number measures, not which provider
   // supplied it. Provider IDs stay in profiles, diagnostics and passRushDebug.
   const TRACKED_PRESSURE_PROVIDERS=['manual-current','ftn-play-level','statrankings-current','pfr-advanced'];
@@ -2519,9 +2431,6 @@
     const raw = p?.[key];
     const v = raw == null || raw === '' ? NaN : Number(raw);
     let detail = '';
-    if (key === 'qbIndex' && p?._qbScenario && Number.isFinite(Number(p?._qbScenario?.baseQbIndex))) {
-      detail=` title="Displayed QB includes returning-QB scenario overlay: ${fmt(Number(p._qbScenario.baseQbIndex),1)} measured base → ${fmt(v,1)} scenario value."`;
-    }
     if (key === 'passRushIndex') {
       const ready=Boolean(p?._live?.passRushPressureReady && Number(p?._live?.passRushGames)>0);
       if (!ready && Number(p?._live?.games)>0) {
@@ -2560,9 +2469,7 @@
   function unitBoardRow(p, label, key) {
     const raw = p?.[key];
     const v = raw == null || raw === '' ? NaN : Number(raw);
-    const b = scenarioBaseValue(p, key);
-    const note = b != null && Math.abs(v-b) >= .05 ? `<small class="unit-scenario-note">${fmt(b,1)} base · QB-return scenario</small>` : '';
-    return `<div class="unit-row ${note ? 'scenario-unit-row' : ''}"><span>${label}${note}</span><strong>${Number.isFinite(v) ? fmt(v,1) : '-'}</strong><div class="unit-meter"><i style="width:${Math.max(0, Math.min(100, v || 0))}%"></i></div></div>`;
+    return `<div class="unit-row"><span>${label}</span><strong>${Number.isFinite(v) ? fmt(v,1) : '-'}</strong><div class="unit-meter"><i style="width:${Math.max(0, Math.min(100, v || 0))}%"></i></div></div>`;
   }
 
   function edgeBadge(offTeam, defTeam, edge) {
@@ -3378,7 +3285,7 @@
   function rankingHeader(view = S.ratingView) {
     if (view === 'units') return `<tr><th class="metric-rank-head">${rankLabel()} rank</th><th>Team</th>${sortHeader('FORCE','force')}${sortHeader('Offense','off')}${sortHeader('Defense','def')}${sortHeader('QB','qb')}${sortHeader('O-Line','ol')}${sortHeader('Pass Rush','passRush')}${sortHeader('Run Defense','runDef')}${sortHeader('Coverage','cov')}${sortHeader('RB','rb')}${sortHeader('Receiver','rec')}</tr>`;
     const lead = `<tr><th class="metric-rank-head">${rankLabel()} rank</th><th>Team</th>${sortHeader('FORCE','force')}`;
-    const action = '<th>QB return</th></tr>';
+    const action = '</tr>';
     if (view === 'luck') return `<tr><th class="metric-rank-head">${rankLabel()} rank</th><th>Team</th>${sortHeader('FORCE','force')}${sortHeader('Actual record','actualWins')}${sortHeader('Expected record','expectedWins')}${sortHeader('Luck score','luck')}</tr>`;
     if (view === 'penalties') return lead + `${sortHeader('FLAG','penEPA')}<th>Causal EPA / WPA</th><th>Net penalty 1st downs</th><th>Net erased TDs</th><th>Events for/against</th>${sortHeader('Live games','decisive')}` + action;
     if (view === 'advanced') return lead + `${sortHeader('Elo','elo')}${sortHeader('Since base','sinceBase')}${sortHeader('Off EPA','offEpa')}<th>PF/PA</th>${sortHeader('Recent vs spread','vsVegas')}${sortHeader('Vegas wt.','vegasWeight')}` + action;
@@ -3389,7 +3296,6 @@
     const pr = displayProfile(r.team), l = pr.luck || {}, pen = pr.penalty || {}, sc = pr.scoring || {}, ai = adaptiveTeamInfo(r.team);
     const subRank = S.rankSort.key !== 'force' ? `<small class="table-subrank">FORCE #${forceRank}</small>` : `<small>${r.division}</small>`;
     const lead = `<td>${displayRank}</td><td><button class="team-link" data-team="${r.team}">${teamIdentity(r.team, { size: 'xs', sub: subRank })}</button></td><td class="rating-cell"><b class="score">${fmt(score(r.liveElo))}</b>${ratingBar(r.liveElo)}</td>`;
-    const action = `<td class="qb-action-cell">${quickQbButton(r.team)}</td>`;
     if (S.ratingView === 'luck') {
       const ls=luckContextScore(l);
       const actualW=Number(l.w ?? r.w ?? 0), actualL=Number(l.l ?? r.l ?? 0), actualT=Number(l.t ?? r.t ?? 0);
@@ -3400,13 +3306,13 @@
       const luckLead=`<td>${displayRank}</td><td><button class="team-link" data-team="${r.team}">${teamIdentity(r.team,{size:'xs'})}</button></td><td class="rating-cell"><b class="score">${fmt(score(r.liveElo))}</b>${ratingBar(r.liveElo)}</td>`;
       return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${luckLead}<td>${actualRecord}</td><td>${expectedRecord}</td><td class="${contextScoreClass(ls)}">${contextScoreText(ls)}</td></tr>`;
     }
-    if (S.ratingView === 'penalties') { const ps=penaltyContextScore(pen); return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${lead}<td class="flag-table-cell">${pen.unavailable?'-':`<b class="${flagScoreClass(ps)}">${penaltyScoreText(ps)}</b>${flagGauge(ps,true)}<small>${flagScoreLabel(ps)}</small>`}</td><td>${pen.live && !pen.unavailable ? `${signedPenaltyImpact(pen.net_penalty_epa_per_game,2,' EPA/g')} · ${signedPenaltyImpact(pen.net_penalty_wpa_per_game,1,' WPA pp/g',100)}` : '-'}</td><td>${pen.live ? signed(pen.net_first_downs_via_penalty,0) : '-'}</td><td>${pen.live ? signed(pen.net_tds_negated,0) : '-'}</td><td>${pen.pen_count_for ?? '-'} / ${pen.pen_count_against ?? '-'}</td><td>${pen.penalty_context_games ?? '-'}</td>${action}</tr>`; }
+    if (S.ratingView === 'penalties') { const ps=penaltyContextScore(pen); return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${lead}<td class="flag-table-cell">${pen.unavailable?'-':`<b class="${flagScoreClass(ps)}">${penaltyScoreText(ps)}</b>${flagGauge(ps,true)}<small>${flagScoreLabel(ps)}</small>`}</td><td>${pen.live && !pen.unavailable ? `${signedPenaltyImpact(pen.net_penalty_epa_per_game,2,' EPA/g')} · ${signedPenaltyImpact(pen.net_penalty_wpa_per_game,1,' WPA pp/g',100)}` : '-'}</td><td>${pen.live ? signed(pen.net_first_downs_via_penalty,0) : '-'}</td><td>${pen.live ? signed(pen.net_tds_negated,0) : '-'}</td><td>${pen.pen_count_for ?? '-'} / ${pen.pen_count_against ?? '-'}</td><td>${pen.penalty_context_games ?? '-'}</td></tr>`; }
     if (S.ratingView === 'units') {
       const unitLead = `<td>${displayRank}</td><td><button class="team-link" data-team="${r.team}">${teamIdentity(r.team, { size: 'xs' })}</button></td><td class="rating-cell"><b class="score ${bandClass(score(r.liveElo))}">${fmt(score(r.liveElo))}</b></td>`;
       return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${unitLead}${rawUnitCell(pr,'offenseComposite')}${rawUnitCell(pr,'defenseIndex')}${rawUnitCell(pr,'qbIndex')}${rawUnitCell(pr,'olIndex')}${rawUnitCell(pr,'passRushIndex')}${rawUnitCell(pr,'runDefenseIndex')}${rawUnitCell(pr,'coverageIndex')}${rawUnitCell(pr,'rbIndex')}${rawUnitCell(pr,'receiverIndex')}</tr>`;
     }
-    if (S.ratingView === 'advanced') return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${lead}<td class="raw">${fmt(r.liveElo)}</td><td class="${r.liveElo >= r.elo ? 'positive' : 'negative'}">${signed(r.liveElo-r.elo,1)}</td><td>${pr.off_epa != null ? signed(pr.off_epa,3) : '-'}</td><td>${sc.ppg_for != null ? `${fmt(sc.ppg_for)}/${fmt(sc.ppg_against)}` : '-'}</td><td class="${spreadHistoryReady(ai) ? contextScoreClass(spreadContextScore(ai)) : ''}">${spreadHistoryReady(ai) ? contextScoreText(spreadContextScore(ai)) : ''}</td><td>${ai ? Math.round(ai.marketWeight*100)+'%' : '-'}</td>${action}</tr>`;
-    return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${lead}<td class="raw">${fmt(r.liveElo)}</td><td class="${r.liveElo >= r.elo ? 'positive' : 'negative'}">${signed(r.liveElo-r.elo,1)}</td><td>${r.w ?? '-'}-${r.l ?? '-'}${r.t ? '-' + r.t : ''}</td>${action}</tr>`;
+    if (S.ratingView === 'advanced') return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${lead}<td class="raw">${fmt(r.liveElo)}</td><td class="${r.liveElo >= r.elo ? 'positive' : 'negative'}">${signed(r.liveElo-r.elo,1)}</td><td>${pr.off_epa != null ? signed(pr.off_epa,3) : '-'}</td><td>${sc.ppg_for != null ? `${fmt(sc.ppg_for)}/${fmt(sc.ppg_against)}` : '-'}</td><td class="${spreadHistoryReady(ai) ? contextScoreClass(spreadContextScore(ai)) : ''}">${spreadHistoryReady(ai) ? contextScoreText(spreadContextScore(ai)) : ''}</td><td>${ai ? Math.round(ai.marketWeight*100)+'%' : '-'}</td></tr>`;
+    return `<tr data-filter="${r.name.toLowerCase()} ${r.team.toLowerCase()}">${lead}<td class="raw">${fmt(r.liveElo)}</td><td class="${r.liveElo >= r.elo ? 'positive' : 'negative'}">${signed(r.liveElo-r.elo,1)}</td><td>${r.w ?? '-'}-${r.l ?? '-'}${r.t ? '-' + r.t : ''}</td></tr>`;
   }
 
   function sourceLabel(fc) {
@@ -3927,17 +3833,16 @@
     const actualWinnerLine = actualMargin == null ? null : actualMargin > 0 ? `${g.home} by ${actualMargin}` : actualMargin < 0 ? `${g.away} by ${Math.abs(actualMargin)}` : 'Tie';
     const marginError = actualMargin == null ? null : Math.abs(proj.margin - actualMargin);
     const totalError = g.homeScore == null ? null : Math.abs(proj.total - (g.homeScore + g.awayScore));
-    const scenarioTeams = [ap._qbScenario ? g.away : null, hp._qbScenario ? g.home : null].filter(Boolean);
     const unitSnapshotLabel = '2026 ratings';
-    const awayOffNote = [scenarioMetricNote(ap, 'offenseComposite'), ap.off_epa != null ? `${fmt(ap.off_epa,3)} expected points per play | ${liveProfileStatus(g.away)}` : ''].filter(Boolean).join(' | ');
-    const homeOffNote = [scenarioMetricNote(hp, 'offenseComposite'), hp.off_epa != null ? `${fmt(hp.off_epa,3)} expected points per play | ${liveProfileStatus(g.home)}` : ''].filter(Boolean).join(' | ');
-    const awayQbNote = [scenarioMetricNote(ap, 'qbIndex'), qbAway.qb ? `${ap._qbScenario?.qb || qbAway.qb} | ${fmt(qbAway.epa_per_play,3)} expected points per play | ${liveProfileStatus(g.away, 'player')}` : 'QB profile'].filter(Boolean).join(' | ');
-    const homeQbNote = [scenarioMetricNote(hp, 'qbIndex'), qbHome.qb ? `${hp._qbScenario?.qb || qbHome.qb} | ${fmt(qbHome.epa_per_play,3)} expected points per play | ${liveProfileStatus(g.home, 'player')}` : 'QB profile'].filter(Boolean).join(' | ');
+    const awayOffNote = [ap.off_epa != null ? `${fmt(ap.off_epa,3)} expected points per play | ${liveProfileStatus(g.away)}` : ''].filter(Boolean).join(' | ');
+    const homeOffNote = [hp.off_epa != null ? `${fmt(hp.off_epa,3)} expected points per play | ${liveProfileStatus(g.home)}` : ''].filter(Boolean).join(' | ');
+    const awayQbNote = [qbAway.qb ? `${qbAway.qb} | ${fmt(qbAway.epa_per_play,3)} expected points per play | ${liveProfileStatus(g.away, 'player')}` : 'QB profile'].filter(Boolean).join(' | ');
+    const homeQbNote = [qbHome.qb ? `${qbHome.qb} | ${fmt(qbHome.epa_per_play,3)} expected points per play | ${liveProfileStatus(g.home, 'player')}` : 'QB profile'].filter(Boolean).join(' | ');
     return layout(`<div class="matchup-back"><button class="ghost" data-nav="matchups">← Matchups</button></div>
       <section class="matchup-hero card">
-        <div class="matchup-team away-team" style="${teamAccentStyle(g.away)}">${teamMark(g.away, 'lg', 'right')}<div><div class="eyebrow">${team(g.away).division}</div><h1>${team(g.away).name}</h1><div class="raw">Pregame FORCE ${fmt(score(preAway))}</div>${quickQbButton(g.away)}</div></div>
+        <div class="matchup-team away-team" style="${teamAccentStyle(g.away)}">${teamMark(g.away, 'lg', 'right')}<div><div class="eyebrow">${team(g.away).division}</div><h1>${team(g.away).name}</h1><div class="raw">Pregame FORCE ${fmt(score(preAway))}</div></div></div>
         <div class="matchup-center"><div class="raw">WEEK ${g.week} · ${g.date}${g.time ? ` · ${formatKickoffTime(g.date,g.time)}` : ''}</div><div class="matchup-prob"><strong>${Math.round((1 - fc.probability) * 100)}%</strong><span>@</span><strong>${Math.round(fc.probability * 100)}%</strong></div><div>${sourceLabel(fc)}${g.divisional ? ' <span class="chip">DIVISION</span>' : ''}</div>${resultText ? `<div class="final-score">FINAL · ${logoizeTeamCodes(resultText, 'xs')}</div>` : ''}</div>
-        <div class="matchup-team home-team" style="${teamAccentStyle(g.home)}">${teamMark(g.home, 'lg', 'left')}<div><div class="eyebrow">${team(g.home).division}</div><h1>${team(g.home).name}</h1><div class="raw">Pregame FORCE ${fmt(score(preHome))}</div>${quickQbButton(g.home)}</div></div>
+        <div class="matchup-team home-team" style="${teamAccentStyle(g.home)}">${teamMark(g.home, 'lg', 'left')}<div><div class="eyebrow">${team(g.home).division}</div><h1>${team(g.home).name}</h1><div class="raw">Pregame FORCE ${fmt(score(preHome))}</div></div></div>
       </section>
       <div class="grid three matchup-kpis" style="margin-top:16px">
         <div class="card kpi"><div class="label">FORCEcast</div><div class="value">${Math.round(fc.probability * 100)}%</div><div class="sub team-kpi-sub">${teamToken(g.home)} <span>home win${fc.marketAvailable && fc.marketWeight != null ? `; ${Math.round(fc.marketWeight * 100)}% of this prediction comes from the betting market` : '; FORCE only because no usable market line is available'}</span></div></div>
@@ -3962,11 +3867,11 @@
       <div class="grid two matchup-pair matchup-analysis" style="margin-top:16px">
         <section class="card team-accent-card" style="${teamAccentStyle(g.away)}"><div class="card-head"><h2 class="headed-team matchup-versus-title">${teamToken(g.away, 'xs')}<span>offense vs</span>${teamToken(g.home, 'xs')}<span>defense</span></h2>${edgeBadge(g.away, g.home, offAwayVsHome)}</div><div class="card-body">
           ${matchupBreakdown(g.away, g.home, ap, hp)}
-          <p class="raw matchup-qb-line">QB data: ${ap._qbScenario?.qb || qbAway.qb || '-'}${qbAway.epa_per_play != null ? ` | ${fmt(qbAway.epa_per_play,3)} expected points per play | ${fmt(qbAway.cpoe,1)} completion percentage points above expectation` : ''}</p>
+          <p class="raw matchup-qb-line">QB data: ${qbAway.qb || '-'}${qbAway.epa_per_play != null ? ` | ${fmt(qbAway.epa_per_play,3)} expected points per play | ${fmt(qbAway.cpoe,1)} completion percentage points above expectation` : ''}</p>
         </div></section>
         <section class="card team-accent-card" style="${teamAccentStyle(g.home)}"><div class="card-head"><h2 class="headed-team matchup-versus-title">${teamToken(g.home, 'xs')}<span>offense vs</span>${teamToken(g.away, 'xs')}<span>defense</span></h2>${edgeBadge(g.home, g.away, offHomeVsAway)}</div><div class="card-body">
           ${matchupBreakdown(g.home, g.away, hp, ap)}
-          <p class="raw matchup-qb-line">QB data: ${hp._qbScenario?.qb || qbHome.qb || '-'}${qbHome.epa_per_play != null ? ` | ${fmt(qbHome.epa_per_play,3)} expected points per play | ${fmt(qbHome.cpoe,1)} completion percentage points above expectation` : ''}</p>
+          <p class="raw matchup-qb-line">QB data: ${qbHome.qb || '-'}${qbHome.epa_per_play != null ? ` | ${fmt(qbHome.epa_per_play,3)} expected points per play | ${fmt(qbHome.cpoe,1)} completion percentage points above expectation` : ''}</p>
         </div></section>
       </div>
       <div class="section-title"><div><div class="eyebrow">Context</div><h2>Luck, FLAG, and market</h2></div></div>
@@ -3977,7 +3882,7 @@
       </div>
       <section class="prediction-finale card">
         <div class="eyebrow">FORCEcast</div><div class="prediction-grid ${g.homeScore != null ? 'three-up' : ''}">
-          <div><span>Predicted line</span><strong class="rich-team-line">${logoizeForecastTeamCodes(lineLabel, 'xs')}</strong><small>Comes from the same win probability shown above${fc.marketAvailable && fc.marketWeight != null ? ` | ${Math.round(fc.marketWeight * 100)}% from the market and ${Math.round(fc.modelWeight * 100)}% from FORCE` : ''}${scenarioTeams.length ? ` | returning-QB adjustment active` : ''}.</small></div>
+          <div><span>Predicted line</span><strong class="rich-team-line">${logoizeForecastTeamCodes(lineLabel, 'xs')}</strong><small>Comes from the same win probability shown above${fc.marketAvailable && fc.marketWeight != null ? ` | ${Math.round(fc.marketWeight * 100)}% from the market and ${Math.round(fc.modelWeight * 100)}% from FORCE` : ''}.</small></div>
           <div class="exact"><span>Predicted final score</span><strong class="rich-team-line">${logoizeForecastTeamCodes(`${g.away} ${proj.away} · ${g.home} ${proj.home}`, 'xs')}</strong><small>The predicted score comes from thousands of drive-by-drive game simulations centered on FORCEcast's expected matchup strength and scoring environment. Pace, drive results, and ordinary game-to-game swings in offense can move the representative score away from the betting-style line. Treat the exact score as less certain than the line or win probability.</small></div>
           ${g.homeScore != null ? `<div class="actual-result"><span>Actual final</span><strong class="rich-team-line">${logoizeTeamCodes(`${g.away} ${g.awayScore} · ${g.home} ${g.homeScore}`, 'xs')}</strong><small>${logoizeTeamCodes(actualWinnerLine)} · margin error ${fmt(marginError)} · total error ${fmt(totalError)}.</small></div>` : ''}
         </div>
@@ -4016,14 +3921,13 @@
       <div><span class="score">${fmt(score(r.liveElo))}</span>${ratingBar(r.liveElo)}</div>
       <span class="raw">${Math.round(r.liveElo)} Elo</span>
       <span class="raw">${recs[r.team].w}-${recs[r.team].l}${recs[r.team].t ? '-' + recs[r.team].t : ''}</span>
-      <span class="home-qb-fix">${quickQbButton(r.team)}</span>
     </div>`).join('');
     const biggest = rr.slice().sort((a, b) => (b.liveElo - b.elo) - (a.liveElo - a.elo))[0];
     return layout(`<div class="eyebrow">Football Objective Rating & Comparative Efficiency</div>
       <div class="hero"><div><h1>NFL strength, explained.</h1><p>Ratings, forecasts, matchup edges, and roster what-ifs.</p></div>
       <div class="score-explain"><strong>FORCE Score</strong><div class="raw">50 is average | 0 and 100 are theoretical limits | red 0 to 40 | yellow 41 to 70 | green 71+</div></div></div>
       <div class="grid two">
-        <section class="card"><div class="card-head"><h2>FORCE Rankings</h2><div class="card-head-actions"><span class="chip">32 teams</span>${quickQbButton('KC')}</div></div>${cards}<div class="card-body ranking-entry-actions"><button class="ghost" data-nav="rankings">See all 32 →</button><span class="raw">Views: Strength · Luck · FLAG · Units · Advanced</span></div></section>
+        <section class="card"><div class="card-head"><h2>FORCE Rankings</h2><div class="card-head-actions"><span class="chip">32 teams</span></div></div>${cards}<div class="card-body ranking-entry-actions"><button class="ghost" data-nav="rankings">See all 32 →</button><span class="raw">Views: Strength · Luck · FLAG · Units · Advanced</span></div></section>
         <section class="card"><div class="card-head"><h2>Week ${currentWeek}</h2><span class="pill-live">${S.live ? 'LIVE' : (S.connectionState==='offline' ? 'OFFLINE' : S.refreshing ? 'CONNECTING' : 'UNAVAILABLE')}</span></div>${weekGames.length ? weekGames.map((g) => gameCard(g, ratings)).join('') : '<div class="loading">No games loaded.</div>'}</section>
       </div>
       <div class="grid two" style="margin-top:16px">
@@ -4163,38 +4067,32 @@
 
   function teams() {
     const ratings = ratingsWithActiveQBCarryover();
-    return layout(`<div class="section-title"><div><div class="eyebrow">Teams</div><h2>Team profiles</h2><p>Rating, context, schedule, and what-ifs.</p></div></div>
+    return layout(`<div class="section-title"><div><div class="eyebrow">Teams</div><h2>Team profiles</h2><p>Ratings, context and schedule.</p></div></div>
       <div class="grid three">${Object.keys(D.teams).sort((a, b) => D.teams[a].name.localeCompare(D.teams[b].name)).map((t) => {
         const r = ratings[t] || D.meta.meanElo;
         const p = projected(t, ratings);
-        return `<article class="card kpi team-directory-card team-accent-card" style="${teamAccentStyle(t)}"><button class="team-link team-directory-link" data-team="${t}"><div class="label">${D.teams[t].division}</div><div class="team-directory-name">${teamMark(t, 'sm')}<div class="value" style="font-size:21px">${D.teams[t].name}</div></div><div class="sub">FORCE ${fmt(score(r))} · ${fmt(p.ew)} projected wins</div>${ratingBar(r)}</button>${quickQbButton(t)}</article>`;
+        return `<article class="card kpi team-directory-card team-accent-card" style="${teamAccentStyle(t)}"><button class="team-link team-directory-link" data-team="${t}"><div class="label">${D.teams[t].division}</div><div class="team-directory-name">${teamMark(t, 'sm')}<div class="value" style="font-size:21px">${D.teams[t].name}</div></div><div class="sub">FORCE ${fmt(score(r))} · ${fmt(p.ew)} projected wins</div>${ratingBar(r)}</button></article>`;
       }).join('')}</div>`, 'teams');
   }
 
   function teamPage(t) {
     t = canon(t); S.team = t;
     const baseRatings = currentRatings();
-    const active = qbCarryoverActive(t);
-    const effectiveRestore = effectiveQbCorrection(t);
     const state = currentTeamState(t, baseRatings);
     const ratings = ratingsWithQBCarryover(t, baseRatings);
     const r = state.elo;
-    const rawR = state.rawElo;
     const b = base(t);
     const p = projected(t, ratings);
-    const baseP = projected(t, baseRatings);
     const sched = S.schedule.filter((g) => g.home === t || g.away === t).sort((a, b2) => a.date.localeCompare(b2.date));
     const current = `${p.w}-${p.l}${p.t ? '-' + p.t : ''}`;
-    const overlay = effectiveRestore > 0 ? `<span class="carryover-inline">QB manual +${fmt(r-rawR)} Elo</span>` : '';
     return layout(`<section class="card team-hero">
-      ${teamMark(t, 'xl')}<div><div class="eyebrow">${team(t).division}</div><h1>${team(t).name}</h1><div class="raw">Elo ${fmt(r)}${effectiveRestore > 0 ? ` <span class="muted-strike">${fmt(rawR)} base</span>` : ''} · 2025 base ${fmt(b.elo)} · FORCE Score ${fmt(score(r))} ${overlay}</div>${ratingBar(r, 'bar team-bar')}<div class="team-quick-fix">${quickQbButton(t, false)}</div></div>
-      <div class="record-big"><strong>${fmt(p.ew)}–${fmt(17 - p.ew)}</strong><span>projected record · current ${current}${effectiveRestore > 0 ? ` · base projection ${fmt(baseP.ew)} wins` : ''}</span></div>
+      ${teamMark(t, 'xl')}<div><div class="eyebrow">${team(t).division}</div><h1>${team(t).name}</h1><div class="raw">Elo ${fmt(r)} · 2025 base ${fmt(b.elo)} · FORCE Score ${fmt(score(r))}</div>${ratingBar(r, 'bar team-bar')}</div>
+      <div class="record-big"><strong>${fmt(p.ew)}–${fmt(17 - p.ew)}</strong><span>projected record · current ${current}</span></div>
       </section>
       <div class="team-view-toolbar"><div><div class="eyebrow">Explore the team</div><h2>Choose a view</h2></div>${ratingViewControl()}</div>
       ${diagnosticNotice()}
       ${teamDiagnosticPanel(t, r, b, p)}
       ${S.ratingView === 'penalties' ? flagSwingTeamPanel(t) : ''}
-      ${qbCarryoverPanel(t, baseRatings)}
       <div class="section-title"><div><div class="eyebrow">2026 Season</div><h2>Schedule & forecast</h2></div></div>
       <section class="card">${sched.length ? sched.map((g) => {
         const opp = g.home === t ? g.away : g.home;
@@ -4290,13 +4188,8 @@
       <p>On matchup pages, the overall edge compares one team's offense with the other team's defense. The QB versus coverage and offensive line versus pass rush rows explain parts of that matchup; they are not added a second time.</p>
       <h2>Luck</h2>
       <p>Luck asks whether a team's results have been better or worse than its underlying play would normally produce. Most of it compares actual scoring margin with the margin normally associated with the team's play-by-play efficiency. The rest comes from penalty impact (FLAG), fumble recoveries, and unusually fortunate or unfortunate wins and losses. A team can therefore be excellent and still rate as unlucky if it is playing even better than the scoreboard shows.</p>
-      <h2>QB return correction</h2>
-      <p>A stretch with a replacement quarterback can pull down a team's rating even after the regular starter comes back. Historical testing suggested that giving back a modest part of that lost rating can help in some cases, but the benefit was small and depended on which cases were included. FORCE therefore does not currently apply an automatic correction. The research is kept in case the idea is revisited.</p>
-      <div class="grid three brier-grid">
-        <div class="card kpi"><div class="label">FIRST FOUR WEEKS</div><div class="value positive">-0.0104</div><div class="sub">Historical prediction error improved in 6 of 11 cases.</div></div>
-        <div class="card kpi"><div class="label">FIRST EIGHT WEEKS</div><div class="value positive">-0.0094</div><div class="sub">Historical prediction error improved in 7 of 11 cases.</div></div>
-        <div class="card kpi"><div class="label">STATUS</div><div class="value" style="font-size:22px">NOT APPLIED</div><div class="sub">No automatic correction; manual what-if available on team pages.</div></div>
-      </div>
+      <h2>QB return adjustment</h2>
+      <p>FORCE does not apply an automatic QB-return adjustment. Historical testing found a small effect that varied depending on which cases were included, so the automatic correction was retired. The research is preserved for future evaluation.</p>
       <h2>FORCE Adaptive</h2>
       <p>This is a research feature that asks whether the betting market has consistently known something about a particular team that FORCE has missed. It only uses earlier games when judging a later game, and it keeps any adjustment small.</p>
       <div class="formula">Look at earlier games only → compare FORCE with the market → require repeated evidence → limit the size of the adjustment → test the next game.</div>
@@ -5442,32 +5335,6 @@
     if (exportBtn) exportBtn.onclick = () => exportCurrentPagePng(exportBtn);
     const exportBtnMobile = document.getElementById('exportPngMobile');
     if (exportBtnMobile) exportBtnMobile.onclick = () => exportCurrentPagePng(exportBtnMobile);
-
-    const qbcRange = document.getElementById('qbCarryoverElo');
-    const qbcOut = document.getElementById('qbCarryoverValue');
-    if (qbcRange && qbcOut) qbcRange.oninput = () => { qbcOut.textContent = `+${fmt(Number(qbcRange.value))} Elo`; };
-    const applyQbc = document.getElementById('applyQBCarryover');
-    if (applyQbc) applyQbc.onclick = () => {
-      const teamCode = S.team;
-      const qbSel = document.getElementById('qbCarryoverQB');
-      const elo = document.getElementById('qbCarryoverElo');
-      S.qbCarryover = { enabled: true, team: teamCode, qb: qbSel?.value || 'Returning starter', restoreElo: Math.max(0, Number(elo?.value || 0)) };
-      render();
-    };
-    const clearQbc = document.getElementById('clearQBCarryover');
-    if (clearQbc) clearQbc.onclick = () => { S.qbCarryover.enabled = false; render(); };
-
-    document.querySelectorAll('[data-qbquick]').forEach((b) => {
-      b.onclick = (e) => {
-        e.preventDefault(); e.stopPropagation();
-        const t = canon(b.dataset.qbquick);
-        const preset = qbCarryoverPreset(t);
-        if (!preset) return;
-        if (qbCarryoverActive(t)) S.qbCarryover.enabled = false;
-        else S.qbCarryover = { enabled: true, team: t, qb: preset.qb, restoreElo: Number(preset.suggestedRestoreElo || 0) };
-        render();
-      };
-    });
 
     document.querySelectorAll('[data-ranksort]').forEach((b) => {
       b.onclick = () => {

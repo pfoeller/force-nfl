@@ -42,7 +42,7 @@ ok(!luckWeights.test(panel('luck')),'Luck team panel has no weights');
 const context=visibleText(api.contextCard(liveTeam));
 ok(!luckWeights.test(context) && /expected wins/.test(context) && /50 neutral/.test(context),`matchup Luck context keeps record/expected wins without weights: ${context}`);
 const method=api.model();
-const luckMethod=visibleText(method.slice(method.indexOf('<h2>Luck</h2>'),method.indexOf('<h2>QB return correction</h2>')));
+const luckMethod=visibleText(method.slice(method.indexOf('<h2>Luck</h2>'),method.indexOf('<h2>QB return adjustment</h2>')));
 ok(luckMethod.length>40 && !luckWeights.test(luckMethod),'Method Luck section drops weights');
 ok(/Most of it compares actual scoring margin/.test(luckMethod) && /fumble recoveries/.test(luckMethod),'Method Luck section keeps the concepts');
 const L=api.liveProfiles();
@@ -162,8 +162,9 @@ ok(/A 50 is neutral/.test(flagTeam) && /does not decide whether a call was corre
 // Public copy introduced here uses no em dash; gated rows are untouched.
 for (const [label,text] of [['luck',luckNotice],['status',statusCases.map(c=>c[2]).join(' ')],['fallback tooltip',disruptionTip],['method blend',earlyMethod],['playoffs',playoffs],['matchup score',matchup.match(/The predicted score comes from[^.]*\./)?.[0]||''],['flag',flagRankings]]) ok(!/—/.test(text),`${label} copy has no em dash`);
 ok(/The market supplies 75% of the Week 1 prediction/.test(method) && /25,000 possession-level simulations centered on that FORCEcast expectation/.test(method),'Method FORCEcast/market row is untouched pending UX-18');
-ok(/1\.20x expansion/.test(app) && /Use auto QB fix|carryover correction/.test(app) && /<th>QB return<\/th>/.test(app),'QB Rankings (UX-08) and QB-return (UX-19) surfaces are untouched');
-ok(/manual what-if available on team pages/.test(method),'D10/UX-19 Method status clause is untouched');
+// UX-19 supersession: the public QB-return tool is removed; its absence is asserted in test_ux19_qb_return_removal.mjs.
+ok(/1\.20x expansion/.test(app) && !/data-qbquick|<th>QB return<\/th>/.test(app),'QB Rankings (UX-08) untouched; public QB-return (UX-19) surfaces removed');
+ok(!/manual what-if/.test(method) && /FORCE does not apply an automatic QB-return adjustment\./.test(method),'D10/UX-19 Method clause replaced by the N1(a) note');
 ok(JSON.stringify(api.currentRatings())===ratings,'rendering changes no FORCE rating');
 ok(app===fs.readFileSync('public/assets/app.js','utf8'),'public app mirror matches canonical source');
 console.log(`PASS: UX-14 content tranche B public copy (${checks} checks)`);

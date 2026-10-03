@@ -201,6 +201,15 @@
       "classification": "regression"
     },
     {
+      "file": "test_ux19_qb_return_removal.mjs",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression",
+      "reason": "UX-19 Cycle 6: real-bundle proof that the public QB-return tool, its writers and displays are gone while canonical outputs equal the reviewed fe09e67 golden values and the internal/research chain (O4) still works",
+      "timeoutMs": 420000
+    },
+    {
       "file": "test_ux16_public_positioning.mjs",
       "suites": [
         "safe"

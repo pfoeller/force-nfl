@@ -102,7 +102,8 @@ const {api}=now;
 const rankingsHtml=api.rankings();
 ok(!rankingsHtml.includes('QB auto') && !rankingsHtml.includes('qb-quick active'),'rankings show no automatic QB fix');
 const teamHtml=api.teamPage('KC');
-ok(teamHtml.includes('QB Return Lab') && teamHtml.includes('>OFF<') && teamHtml.includes('Apply QB fix'),'KC team page shows the manual lab, off');
+// UX-19 supersession: the public QB Return Lab was removed (see test_ux19_qb_return_removal.mjs).
+ok(!teamHtml.includes('QB Return Lab') && !teamHtml.includes('data-qbquick'),'KC team page has no public QB-return tool (UX-19)');
 ok(!teamHtml.includes('>AUTO<') && !teamHtml.includes('muted-strike') && !teamHtml.includes('automatic correction is now'),'KC team page shows no automatic overlay');
 const kcFuture=api.sortedSchedule().find(g=>g.homeScore==null&&(g.home==='KC'||g.away==='KC')) || kcGames[0];
 ok(api.forecastFor(kcFuture,api.ratingsWithActiveQBCarryover()).probability===api.forecastFor(kcFuture,api.currentRatings()).probability,'KC FORCEcast uses canonical ratings only');
@@ -110,50 +111,38 @@ ok(!api.matchupPage(kcFuture).includes('returning-QB adjustment active'),'KC mat
 const sim=api.seasonProjection();
 ok(sim.teams.KC.force===api.score(api.currentRatings().KC),'playoff projection uses the canonical KC rating');
 const method=api.model();
-ok(method.includes('NOT APPLIED') && !method.includes('LIMITED USE') && !method.includes('limited returning-QB correction'),'Method copy states no automatic correction');
+ok(method.includes('FORCE does not apply an automatic QB-return adjustment.') && !method.includes('LIMITED USE') && !method.includes('limited returning-QB correction'),'Method copy states no automatic correction (UX-19 N1(a) wording)');
 
-// 6. Rendered copy must describe retirement even with legacy data or a manual value.
+// 6. Rendered copy never claims an automatic correction, even with legacy data or an
+// internal manual value. UX-19 supersession: the public Lab, its warning and its
+// MANUAL/OFF chip no longer exist, so this checks that nothing of them renders.
 for (const [label,sources] of [['default',{}],['legacy',legacySources]]) {
   const h=build({sources});
   for (const manual of [false,true]) {
     h.api.S.qbCarryover={enabled:manual,team:'KC',qb:'Patrick Mahomes',restoreElo:47.3};
     for (const t of ['KC','BUF']) {
       const html=h.api.teamPage(t), context=`${label}: ${t}, manual ${manual?'on':'off'}`;
-      const warning=html.match(/<div class="warning carryover-warning">([\s\S]*?)<\/div>/)?.[1];
-      ok(Boolean(warning),`${context}: research warning remains visible`);
-      ok(warning.includes('FORCE does not apply an automatic correction.'),`${context}: warning states the retired policy`);
-      ok(!/Why the automatic correction is cautious:|FORCE therefore uses it only for verified replacement-QB cases|cuts that correction in half about every four team games/.test(warning),`${context}: warning does not claim active automatic use or decay`);
-      ok(['id="qbCarryoverQB"','id="qbCarryoverElo"','id="applyQBCarryover"','id="clearQBCarryover"'].every(id=>html.includes(id)),`${context}: manual controls remain available`);
-      ok(html.includes(manual&&t==='KC'?'>MANUAL<':'>OFF<'),`${context}: rendered manual state matches the fixture`);
+      ok(!/Why the automatic correction is cautious:|FORCE therefore uses it only for verified replacement-QB cases|cuts that correction in half about every four team games|QB auto|>AUTO</.test(html),`${context}: no claim of active automatic use or decay`);
+      ok(!/carryover-warning|QB Return Lab|>MANUAL<|>OFF<|QB manual|base projection/.test(html),`${context}: no public Lab or manual-state display (UX-19)`);
     }
   }
 }
 
-// 9. Manual QB Return Lab still works through its real handlers.
-const els={app:{innerHTML:''},qbCarryoverQB:{value:'Patrick Mahomes'},qbCarryoverElo:{value:'47.3'},qbCarryoverValue:{textContent:''},
-  applyQBCarryover:{onclick:null},clearQBCarryover:{onclick:null}};
-const quick={dataset:{qbquick:'KC'},onclick:null};
-const doc={getElementById(id){return els[id]||null;},querySelector(){return null;},querySelectorAll(sel){return sel==='[data-qbquick]'?[quick]:[];},addEventListener(){}};
-const m=build({document:doc,mutate:played}); m.context.location.hash='#teams/KC';
+// 9. Internal manual override (O4) still propagates exactly as before, without any
+// public control. UX-19 supersession: the public Apply/Reset/quick-button handlers
+// were removed, so the harness writes S.qbCarryover directly.
+const m=build({mutate:played});
 const base=m.api.currentRatings();
-m.api.render();
-ok(els.app.innerHTML.includes('>OFF<') && typeof els.applyQBCarryover.onclick==='function','manual lab renders with live Apply control');
-els.applyQBCarryover.onclick();
-ok(m.api.S.qbCarryover.enabled && m.api.S.qbCarryover.team==='KC' && m.api.S.qbCarryover.restoreElo===47.3,'Apply stores the manual value');
-ok(els.app.innerHTML.includes('>MANUAL<') && els.app.innerHTML.includes('QB manual +47.3 Elo') && els.app.innerHTML.includes('base projection'),'manual state is shown');
-ok(Math.abs(m.api.ratingsWithActiveQBCarryover().KC-(base.KC+47.3))<1e-9 && Math.abs(m.api.currentTeamState('KC').elo-(base.KC+47.3))<1e-9,'manual value moves KC everywhere as before');
-ok(Math.abs(m.api.ratingLedger('KC').current.qbElo-47.3)<1e-9 && m.api.ratingLedger('KC').entry.qbElo===0,'ledger attributes the manual value only');
-for (const t of Object.keys(base)) if (t!=='KC') ok(m.api.ratingsWithActiveQBCarryover()[t]===base[t],`manual KC value leaves ${t} unchanged`);
-ok(kcGames.every(g=>m.api.canonicalGameTeamState(g,'KC','post').qbRestore===0),'manual what-if never rewrites historical states');
-els.clearQBCarryover.onclick();
-ok(!m.api.S.qbCarryover.enabled && els.app.innerHTML.includes('>OFF<') && m.api.ratingsWithActiveQBCarryover().KC===base.KC,'Reset returns to no correction');
-quick.onclick({preventDefault(){},stopPropagation(){}});
-ok(m.api.S.qbCarryover.enabled && m.api.S.qbCarryover.restoreElo===47.3 && els.app.innerHTML.includes('Clear QB fix'),'quick button applies the KC preset value');
-quick.onclick({preventDefault(){},stopPropagation(){}});
-ok(!m.api.S.qbCarryover.enabled && m.api.ratingsWithActiveQBCarryover().KC===base.KC,'quick button clears it');
-// Pre-retirement behaviour for a team without a preset is preserved: team page only.
+m.api.S.qbCarryover={enabled:true,team:'KC',qb:'Patrick Mahomes',restoreElo:47.3};
+ok(Math.abs(m.api.ratingsWithActiveQBCarryover().KC-(base.KC+47.3))<1e-9 && Math.abs(m.api.currentTeamState('KC').elo-(base.KC+47.3))<1e-9,'internal manual value moves KC everywhere as before');
+ok(Math.abs(m.api.ratingLedger('KC').current.qbElo-47.3)<1e-9 && m.api.ratingLedger('KC').entry.qbElo===0,'ledger attributes the internal manual value only');
+for (const t of Object.keys(base)) if (t!=='KC') ok(m.api.ratingsWithActiveQBCarryover()[t]===base[t],`internal KC value leaves ${t} unchanged`);
+ok(kcGames.every(g=>m.api.canonicalGameTeamState(g,'KC','post').qbRestore===0),'internal what-if never rewrites historical states');
+m.api.S.qbCarryover.enabled=false;
+ok(m.api.ratingsWithActiveQBCarryover().KC===base.KC && m.api.currentTeamState('KC').elo===base.KC,'disabling the internal value returns to no correction');
+// Pre-retirement scope for a team without a preset is preserved: team-page path only.
 m.api.S.qbCarryover={enabled:true,team:'BUF',qb:'QB',restoreElo:20};
-ok(m.api.ratingsWithQBCarryover('BUF').BUF===base.BUF+20 && m.api.ratingsWithActiveQBCarryover().BUF===base.BUF,'non-preset manual value keeps its pre-retirement scope');
+ok(m.api.ratingsWithQBCarryover('BUF').BUF===base.BUF+20 && m.api.ratingsWithActiveQBCarryover().BUF===base.BUF,'non-preset internal value keeps its pre-retirement scope');
 
 // 10. Fresh state: nothing persisted can resurrect a correction.
 const fresh=build();
