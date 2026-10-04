@@ -2,7 +2,7 @@
 
 Roadmap item: `UX-19` (remove public QB adjustment / QB-return tool). Decision status CONFIRMED (owner, 2026-10-01). This document is the planning prerequisite named in the item's acceptance contract: "a bounded public-removal plan identifying retained internal capability, followed by separately authorized removal."
 
-**This document is a plan; it removed nothing itself.** On 2026-10-03 the owner resolved N1 as option (a) and separately authorized UX-19 implementation (MD-03 step F) under this reviewed plan. The removal is implemented on review branch `cycle6/claude-ux19-removal` from exact `fe09e67`; independent implementation validation and owner acceptance are pending. Sections 1-3 and 5-12 describe the pre-removal state at `fe09e67` and the removal boundary, and are kept as written apart from N1 and status.
+**This document is a plan; it removed nothing itself.** On 2026-10-03 the owner resolved N1 as option (a) and separately authorized UX-19 implementation (MD-03 step F) under this reviewed plan. The removal is implemented on review branch `cycle6/claude-ux19-removal` from exact `fe09e67` (`f562928`, `7dc67e8`, corrections `538a4d9`); independent implementation validation PASSED and the owner ACCEPTED the implementation on 2026-10-04. It is ready for integration and not yet merged, pushed or deployed. Sections 1-3 and 5-12 describe the pre-removal state at `fe09e67` and the removal boundary, and are kept as written apart from N1 and status.
 
 ## 0. Revision history and current baseline
 
@@ -316,6 +316,6 @@ The UX-19 public removal originally waited on `MD-03`. The sequence and its stat
 | C. Independent validation | PASSED (Codex full validation; targeted re-review of the corrections returned "A. CORRECTIONS VERIFIED — READY FOR OWNER ACCEPTANCE") |
 | D. Owner acceptance | ACCEPTED (owner, 2026-10-03, at `8e6a180`) |
 | E. Revise this plan for the no-automatic-correction state | Done; independent review accepted it after supporting-document corrections (`fe09e67`) |
-| F. Separately authorize UX-19 implementation | AUTHORIZED (owner, 2026-10-03, with N1 option (a)); implemented on `cycle6/claude-ux19-removal`, validation and acceptance pending |
+| F. Separately authorize UX-19 implementation | AUTHORIZED (owner, 2026-10-03, with N1 option (a)); implemented on `cycle6/claude-ux19-removal`, independently validated and owner-ACCEPTED 2026-10-04; ready for integration |
 
 **Superseded league-wide prerequisite (historical).** On 2026-10-02 the owner first required that any retained automatic correction work for any team and QB, including midseason injury and return cases, before UX-19 removal. The same day the owner chose retirement instead. That league-wide capability contract, its data/model questions and its 12 acceptance cases now live only in the `MD-03` roadmap entry as the "historical retained-feature" requirement, which applies only if an automatic correction is ever reconsidered. It is not a UX-19 entry condition. The full original text is in git history.
