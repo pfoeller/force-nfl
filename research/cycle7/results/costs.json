@@ -1,0 +1,106 @@
+{
+  "assumptions": {
+    "pollMinutes": 240,
+    "cadenceSeconds": 60,
+    "postseasonGames": 13,
+    "regularGames": 272,
+    "note": "B is 3 distinct games/week x18 plus6 selected playoff games; actual schedule may differ. A seasonal featured case is separate from one event. 16 is conservative maximum simultaneous pairings, not typical Sunday count.",
+    "BDLmonthlyUSD": 39.99,
+    "activeMonths": 6,
+    "BDLplaysPagesConservative": 4,
+    "BDLGOATlimitPerMinute": 600
+  },
+  "modes": [
+    {
+      "scope": "A one event",
+      "regular": 1,
+      "postseason": 0,
+      "peak": 1,
+      "activeMonths": 1,
+      "gameMinutes": 240,
+      "oneEndpointCalls": 240,
+      "fiveRequestReconcileCalls": 1200,
+      "meanMonthCalls": 1200,
+      "peakCallsMinute": 5,
+      "BDLscopeUSD": 39.99,
+      "SDIOcommercialUSD": null,
+      "SportradarUSD": null
+    },
+    {
+      "scope": "A weekly featured",
+      "regular": 18,
+      "postseason": 3,
+      "peak": 1,
+      "gameMinutes": 5040,
+      "oneEndpointCalls": 5040,
+      "fiveRequestReconcileCalls": 25200,
+      "meanMonthCalls": 4200,
+      "peakCallsMinute": 5,
+      "BDLscopeUSD": 239.94,
+      "SDIOcommercialUSD": null,
+      "SportradarUSD": null
+    },
+    {
+      "scope": "B TNF/SNF/MNF planning envelope",
+      "regular": 54,
+      "postseason": 6,
+      "peak": 2,
+      "gameMinutes": 14400,
+      "oneEndpointCalls": 14400,
+      "fiveRequestReconcileCalls": 72000,
+      "meanMonthCalls": 12000,
+      "peakCallsMinute": 10,
+      "BDLscopeUSD": 239.94,
+      "SDIOcommercialUSD": null,
+      "SportradarUSD": null
+    },
+    {
+      "scope": "C paid all",
+      "regular": 272,
+      "postseason": 13,
+      "peak": 16,
+      "gameMinutes": 68400,
+      "oneEndpointCalls": 68400,
+      "fiveRequestReconcileCalls": 342000,
+      "meanMonthCalls": 57000,
+      "peakCallsMinute": 80,
+      "BDLscopeUSD": 239.94,
+      "SDIOcommercialUSD": null,
+      "SportradarUSD": null
+    },
+    {
+      "scope": "D public all",
+      "regular": 272,
+      "postseason": 13,
+      "peak": 16,
+      "gameMinutes": 68400,
+      "oneEndpointCalls": 68400,
+      "fiveRequestReconcileCalls": 342000,
+      "meanMonthCalls": 57000,
+      "peakCallsMinute": 80,
+      "BDLscopeUSD": 239.94,
+      "SDIOcommercialUSD": null,
+      "SportradarUSD": null
+    }
+  ],
+  "worst": {
+    "durationMinutes": 360,
+    "games": 285,
+    "requestsPerPoll": 22,
+    "calls": 2257200,
+    "peakCallsMinute": 352,
+    "headroomAt600": 248,
+    "note": "10 pages plus game metadata, doubled for bounded retries; fail closed beyond page cap"
+  },
+  "hostCosts": {
+    "upstreamUSDPerCall": 0,
+    "note": "BDL fixed monthly tier; host/cache/fanout cost is additional and unpriced without viewer count and infrastructure quota.",
+    "downstreamExample": {
+      "viewers": 1000,
+      "hours": 4,
+      "payloadKiB": 2,
+      "oneMinuteReads": 240000,
+      "egressMiB": 468.75
+    }
+  }
+}

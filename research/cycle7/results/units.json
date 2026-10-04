@@ -1,0 +1,264 @@
+{
+  "boundary": "outcome proxies, not production grades or full-stack promotion evidence",
+  "bundled_prior_correlations": {
+    "coverageIndex": {
+      "available": 32,
+      "parent_current_elo_corr": 0.6350188936813275
+    },
+    "olIndex": {
+      "available": 32,
+      "parent_current_elo_corr": 0.3775073832723024
+    },
+    "olIndex/rbIndex": null,
+    "passRushIndex": {
+      "available": 0,
+      "parent_current_elo_corr": null
+    },
+    "passRushIndex/coverageIndex": null,
+    "pointsScoredPerDriveIndex": {
+      "available": 0,
+      "parent_current_elo_corr": null
+    },
+    "qbIndex": {
+      "available": 32,
+      "parent_current_elo_corr": 0.6113757053882196
+    },
+    "qbIndex/olIndex": 0.4119414451241859,
+    "qbIndex/receiverIndex": 0.8352136252149642,
+    "rbIndex": {
+      "available": 0,
+      "parent_current_elo_corr": null
+    },
+    "receiverIndex": {
+      "available": 32,
+      "parent_current_elo_corr": 0.5000477826587892
+    },
+    "runDefenseIndex": {
+      "available": 0,
+      "parent_current_elo_corr": null
+    }
+  },
+  "n_test": 544,
+  "n_train": 544,
+  "overlaps": {
+    "pass_epa/receiver_epa": {
+      "game_corr": 0.9380660662104178,
+      "paired_games": 544,
+      "season_team_corr": 0.9749299152357843
+    },
+    "pass_rush/coverage": {
+      "game_corr": 0.25011266846179664,
+      "paired_games": 544,
+      "season_team_corr": 0.4902241696310026
+    },
+    "qb_epa/off_epa": {
+      "game_corr": 0.9238481912291083,
+      "paired_games": 544,
+      "season_team_corr": 0.9663553529469917
+    },
+    "qb_epa/protection": {
+      "game_corr": 0.3812891548088995,
+      "paired_games": 544,
+      "season_team_corr": 0.5230852639919773
+    },
+    "rb_epa/off_epa": {
+      "game_corr": 0.4261571672991449,
+      "paired_games": 544,
+      "season_team_corr": 0.7094708157483425
+    },
+    "receiver_epa/off_epa": {
+      "game_corr": 0.7921299512089482,
+      "paired_games": 544,
+      "season_team_corr": 0.8755559426864168
+    },
+    "rush_block_proxy/rb_epa": {
+      "game_corr": 0.3635025583356303,
+      "paired_games": 544,
+      "season_team_corr": 0.5007118463944572
+    }
+  },
+  "prototypes": {
+    "ol_rb": {
+      "beta_ridge": 0.6701079480162443,
+      "center_train": 0.8178831081108217,
+      "corr_after": 0.08251455100143244,
+      "corr_before": 0.3635025583356303,
+      "erased_shared_sd": 0.06264240697647618,
+      "max_rank_movement": 9,
+      "next_game_raw_only_mse": 0.048852424784324694,
+      "next_game_raw_plus_shared_mse": 0.04868897824580737,
+      "next_game_residual_only_mse": 0.04888694732691465,
+      "next_game_residual_plus_shared_mse": 0.04868942968285307,
+      "next_game_rows": 512,
+      "parent_offense_corr_after": 0.42521480270451806,
+      "parent_offense_corr_before": 0.4261571672991449,
+      "rank_moves": {
+        "ARI": -2,
+        "ATL": -1,
+        "BUF": 4,
+        "CAR": 5,
+        "CIN": 8,
+        "CLE": -6,
+        "DAL": 5,
+        "DEN": 1,
+        "DET": -2,
+        "GB": 3,
+        "KC": 7,
+        "LA": 3,
+        "LAC": -6,
+        "MIA": -9,
+        "MIN": -1,
+        "NE": -5,
+        "NYG": 1,
+        "NYJ": 1,
+        "PHI": -5,
+        "SEA": -1,
+        "SF": -1,
+        "TEN": 1
+      },
+      "raw_half_stability": 0.05260546594410817,
+      "residual_half_stability": -0.03975085757121485,
+      "season_raw_vs_bundled_current_elo_corr": 0.325644565664243,
+      "season_residual_vs_bundled_current_elo_corr": 0.36129075255798826,
+      "x": "rush_block_proxy",
+      "y": "rb_epa"
+    },
+    "qb_ol": {
+      "beta_ridge": 1.125852327922668,
+      "center_train": -0.15192613807788158,
+      "corr_after": 0.11762162828989321,
+      "corr_before": 0.3812891548088995,
+      "erased_shared_sd": 0.08803159913926803,
+      "max_rank_movement": 9,
+      "next_game_raw_only_mse": 0.10484437160873039,
+      "next_game_raw_plus_shared_mse": 0.10455393913231315,
+      "next_game_residual_only_mse": 0.10559821623612448,
+      "next_game_residual_plus_shared_mse": 0.10456915421288343,
+      "next_game_rows": 512,
+      "parent_offense_corr_after": 0.8894024148670789,
+      "parent_offense_corr_before": 0.9238481912291083,
+      "rank_moves": {
+        "ARI": -4,
+        "BAL": -5,
+        "BUF": 2,
+        "CHI": 6,
+        "CIN": -2,
+        "DEN": 5,
+        "DET": -3,
+        "GB": -1,
+        "HOU": 4,
+        "IND": -3,
+        "JAX": 3,
+        "KC": -8,
+        "LA": 1,
+        "LAC": -9,
+        "MIA": 1,
+        "NO": 1,
+        "NYG": -9,
+        "PHI": 5,
+        "PIT": 4,
+        "SEA": 6,
+        "SF": 1,
+        "TB": 6,
+        "WAS": -1
+      },
+      "raw_half_stability": 0.5554735401444327,
+      "residual_half_stability": 0.46532806884344535,
+      "season_raw_vs_bundled_current_elo_corr": 0.6078086681127606,
+      "season_residual_vs_bundled_current_elo_corr": 0.5546523880729397,
+      "x": "protection",
+      "y": "qb_epa"
+    },
+    "qb_receiver": {
+      "beta_ridge": 0.6878899813094567,
+      "center_train": 0.17352501566586429,
+      "corr_after": 0.6976861172750123,
+      "corr_before": 0.9380660662104178,
+      "erased_shared_sd": 0.2283705078179897,
+      "max_rank_movement": 7,
+      "next_game_raw_only_mse": 0.14733130253353607,
+      "next_game_raw_plus_shared_mse": 0.14762396063879968,
+      "next_game_residual_only_mse": 0.14707179504239798,
+      "next_game_residual_plus_shared_mse": 0.14762668917060634,
+      "next_game_rows": 512,
+      "parent_offense_corr_after": 0.5878899396126893,
+      "parent_offense_corr_before": 0.7921299512089482,
+      "rank_moves": {
+        "ARI": -3,
+        "ATL": 3,
+        "BAL": -1,
+        "BUF": 6,
+        "CAR": -2,
+        "CHI": -4,
+        "CIN": -5,
+        "DAL": -1,
+        "DEN": 1,
+        "DET": 1,
+        "HOU": -2,
+        "IND": 6,
+        "JAX": 3,
+        "KC": -6,
+        "LA": 5,
+        "LAC": 2,
+        "LV": -2,
+        "MIA": -5,
+        "MIN": -2,
+        "NO": -4,
+        "PHI": -4,
+        "PIT": 1,
+        "SEA": 4,
+        "SF": 7,
+        "TB": 6,
+        "TEN": -2,
+        "WAS": -2
+      },
+      "raw_half_stability": 0.5092856806315835,
+      "residual_half_stability": 0.2870487118176251,
+      "season_raw_vs_bundled_current_elo_corr": 0.5536476761982708,
+      "season_residual_vs_bundled_current_elo_corr": 0.45640960402720626,
+      "x": "pass_epa",
+      "y": "receiver_epa"
+    },
+    "rush_coverage": {
+      "beta_ridge": 0.7219751805657523,
+      "center_train": 0.15192613807788158,
+      "corr_after": 0.08241688574803105,
+      "corr_before": 0.25011266846179664,
+      "erased_shared_sd": 0.05645201249557704,
+      "max_rank_movement": 3,
+      "next_game_raw_only_mse": 0.11273320953883717,
+      "next_game_raw_plus_shared_mse": 0.11342918258674956,
+      "next_game_residual_only_mse": 0.11258623911555192,
+      "next_game_residual_plus_shared_mse": 0.11342565265208407,
+      "next_game_rows": 512,
+      "parent_offense_corr_after": null,
+      "parent_offense_corr_before": null,
+      "rank_moves": {
+        "ATL": 1,
+        "BAL": -1,
+        "BUF": -2,
+        "CAR": -1,
+        "CLE": 1,
+        "DAL": 2,
+        "DEN": 3,
+        "DET": 1,
+        "LAC": -1,
+        "LV": 1,
+        "NE": -1,
+        "NO": 1,
+        "NYG": 2,
+        "NYJ": -3,
+        "PIT": 1,
+        "SF": -3,
+        "TB": -2,
+        "WAS": 1
+      },
+      "raw_half_stability": 0.3855717628986259,
+      "residual_half_stability": 0.363342495620332,
+      "season_raw_vs_bundled_current_elo_corr": 0.7218811555991973,
+      "season_residual_vs_bundled_current_elo_corr": 0.7184164375908829,
+      "x": "pass_rush",
+      "y": "coverage"
+    }
+  }
+}

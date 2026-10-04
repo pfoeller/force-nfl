@@ -1,0 +1,26 @@
+{
+  "counts": {
+    "2024": {
+      "excluded_state_rows": 10494,
+      "games": 272,
+      "minute_states": 16422,
+      "ot_rows": 259,
+      "pbp_rows": 49492,
+      "tied_games": 0,
+      "unit_rows": 544
+    },
+    "2025": {
+      "excluded_state_rows": 10443,
+      "games": 272,
+      "minute_states": 16225,
+      "ot_rows": 284,
+      "pbp_rows": 48771,
+      "tied_games": 1,
+      "unit_rows": 544
+    }
+  },
+  "derived_sha256": {
+    "unit_games.csv": "6c8c5a406b02b77d5ac6defb7291e9167dacaf50417c53ddca9c4baf4c3d6805",
+    "wp_states.csv": "e2f276b41a5337ff61a0b627a2641163dc555a2941f4c90c22bedccbddf66218"
+  }
+}

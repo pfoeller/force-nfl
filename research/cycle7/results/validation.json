@@ -1,0 +1,48 @@
+{
+  "authoritative_suites": {
+    "model": {
+      "failed": 0,
+      "passed": 49,
+      "seconds": 45.13
+    },
+    "release": {
+      "failed": 0,
+      "passed": 17,
+      "seconds": 12.6
+    },
+    "safe": {
+      "failed": 0,
+      "passed": 145,
+      "seconds": 210.25
+    }
+  },
+  "base": "cf391daa2d43a44fe9d742ea0b96cc537d1a7136",
+  "catalog_entries": 257,
+  "corrupt_raw_input_control": "PASS hash mismatch refused before fixture writes",
+  "date": "2026-10-04",
+  "default_exclusions": 112,
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.14"
+  },
+  "initial_non_authoritative_archive_safe": "144/145; known V77 CRLF timing-source assertion; resolved by explicit scratch-only LF normalization",
+  "inventory_catalog": "PASS",
+  "links": "PASS 190 local links/anchors",
+  "main_and_remote_at_handoff": "cf391daa2d43a44fe9d742ea0b96cc537d1a7136 (remote queried directly)",
+  "native_research_checks": "PASS: twice byte-identical against saved evidence, after clock/UTF-8/identity audit",
+  "production_diff": "No assets/public/model/data/server/Worker/test/config/snapshot changes",
+  "public_build": "PASS",
+  "public_parity": "PASS (scratch only; no production/generated edits)",
+  "research": "PASS: all six scripts, two byte-identical diagnostic reruns, pinned extraction reproduced, syntax and mutation/negative controls",
+  "review": "adversarial independent review pending; no feature promoted",
+  "roadmap_governance": "PASS only selected MD blocks + one history row",
+  "roadmap_ids": 47,
+  "suite_memberships": {
+    "model": 49,
+    "qb": 28,
+    "release": 17,
+    "safe": 145,
+    "server": 30,
+    "snapshot": 6
+  }
+}

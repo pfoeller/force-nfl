@@ -1,0 +1,2289 @@
+{
+  "base": "cf391daa2d43a44fe9d742ea0b96cc537d1a7136",
+  "supportedPositions": {
+    "QB": 53,
+    "RB": 60,
+    "WR": 96
+  },
+  "duplicateGroups": [
+    {
+      "name": "Ty.Johnson",
+      "rows": [
+        {
+          "name": "Ty.Johnson",
+          "team": "BUF",
+          "pos": "RB",
+          "impact": 8,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": 0.1338
+        },
+        {
+          "name": "Ty.Johnson",
+          "team": "BUF",
+          "pos": "WR",
+          "impact": 2.4,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": 0.3364
+        }
+      ]
+    },
+    {
+      "name": "K.Monangai",
+      "rows": [
+        {
+          "name": "K.Monangai",
+          "team": "CHI",
+          "pos": "RB",
+          "impact": -1.7,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.0814
+        },
+        {
+          "name": "K.Monangai",
+          "team": "CHI",
+          "pos": "WR",
+          "impact": -7.7,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.269
+        }
+      ]
+    },
+    {
+      "name": "Q.Judkins",
+      "rows": [
+        {
+          "name": "Q.Judkins",
+          "team": "CLE",
+          "pos": "RB",
+          "impact": -4.7,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.1462
+        },
+        {
+          "name": "Q.Judkins",
+          "team": "CLE",
+          "pos": "WR",
+          "impact": -6.8,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.2164
+        }
+      ]
+    },
+    {
+      "name": "J.Williams",
+      "rows": [
+        {
+          "name": "J.Williams",
+          "team": "DAL",
+          "pos": "RB",
+          "impact": 5.6,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": 0.0798
+        },
+        {
+          "name": "J.Williams",
+          "team": "DET",
+          "pos": "WR",
+          "impact": 5.9,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": 0.5518
+        }
+      ]
+    },
+    {
+      "name": "I.Pacheco",
+      "rows": [
+        {
+          "name": "I.Pacheco",
+          "team": "KC",
+          "pos": "RB",
+          "impact": -4.5,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.1431
+        },
+        {
+          "name": "I.Pacheco",
+          "team": "KC",
+          "pos": "WR",
+          "impact": -6.6,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.2042
+        }
+      ]
+    },
+    {
+      "name": "A.Jeanty",
+      "rows": [
+        {
+          "name": "A.Jeanty",
+          "team": "LV",
+          "pos": "RB",
+          "impact": -7,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.1981
+        },
+        {
+          "name": "A.Jeanty",
+          "team": "LV",
+          "pos": "WR",
+          "impact": -5.1,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.1129
+        }
+      ]
+    },
+    {
+      "name": "O.Hampton",
+      "rows": [
+        {
+          "name": "O.Hampton",
+          "team": "LAC",
+          "pos": "RB",
+          "impact": 1.5,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.0094
+        },
+        {
+          "name": "O.Hampton",
+          "team": "LAC",
+          "pos": "WR",
+          "impact": -2.9,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": 0.0186
+        }
+      ]
+    },
+    {
+      "name": "A.Jones",
+      "rows": [
+        {
+          "name": "A.Jones",
+          "team": "MIN",
+          "pos": "RB",
+          "impact": -2.3,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.0945
+        },
+        {
+          "name": "A.Jones",
+          "team": "MIN",
+          "pos": "WR",
+          "impact": -6.4,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.1934
+        }
+      ]
+    },
+    {
+      "name": "T.Tracy",
+      "rows": [
+        {
+          "name": "T.Tracy",
+          "team": "NYG",
+          "pos": "RB",
+          "impact": -1.4,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.0732
+        },
+        {
+          "name": "T.Tracy",
+          "team": "NYG",
+          "pos": "WR",
+          "impact": -4.7,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.0875
+        }
+      ]
+    },
+    {
+      "name": "B.Robinson",
+      "rows": [
+        {
+          "name": "B.Robinson",
+          "team": "ATL",
+          "pos": "WR",
+          "impact": 0.5,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": 0.2267
+        },
+        {
+          "name": "B.Robinson",
+          "team": "SF",
+          "pos": "RB",
+          "impact": 3.4,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": 0.0324
+        }
+      ]
+    },
+    {
+      "name": "R.White",
+      "rows": [
+        {
+          "name": "R.White",
+          "team": "TB",
+          "pos": "RB",
+          "impact": 5.2,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": 0.0713
+        },
+        {
+          "name": "R.White",
+          "team": "TB",
+          "pos": "WR",
+          "impact": -3.4,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.0079
+        }
+      ]
+    },
+    {
+      "name": "T.Pollard",
+      "rows": [
+        {
+          "name": "T.Pollard",
+          "team": "TEN",
+          "pos": "RB",
+          "impact": -2.6,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.1013
+        },
+        {
+          "name": "T.Pollard",
+          "team": "TEN",
+          "pos": "WR",
+          "impact": -6.9,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.2198
+        }
+      ]
+    },
+    {
+      "name": "J.McNichols",
+      "rows": [
+        {
+          "name": "J.McNichols",
+          "team": "WAS",
+          "pos": "RB",
+          "impact": 0.6,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.0303
+        },
+        {
+          "name": "J.McNichols",
+          "team": "WAS",
+          "pos": "WR",
+          "impact": -3.3,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": -0.0069
+        }
+      ]
+    }
+  ],
+  "nameAliasCases": [
+    {
+      "team": "DAL",
+      "add": "J.Williams",
+      "removed": [],
+      "delta": 5.6,
+      "renderedDelta": "+5.6",
+      "forceDelta": 0.9628610729023208,
+      "expectedWinsDelta": 0.009297535535394141,
+      "uiReachable": true,
+      "offered": [
+        {
+          "name": "J.Williams",
+          "team": "DET",
+          "pos": "WR",
+          "impact": 5.9,
+          "confidence": "experimental",
+          "source": "2025 evaluative composite → heuristic Elo bridge",
+          "metric": 0.5518
+        }
+      ],
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      }
+    }
+  ],
+  "duplicateNames": [
+    "Ty.Johnson",
+    "K.Monangai",
+    "Q.Judkins",
+    "J.Williams",
+    "I.Pacheco",
+    "A.Jeanty",
+    "O.Hampton",
+    "A.Jones",
+    "T.Tracy",
+    "B.Robinson",
+    "R.White",
+    "T.Pollard",
+    "J.McNichols"
+  ],
+  "current": [
+    {
+      "team": "MIA",
+      "add": null,
+      "removed": [
+        "Tua Tagovailoa"
+      ],
+      "delta": 8,
+      "renderedDelta": "+8.0",
+      "forceDelta": 1.3755158184319143,
+      "expectedWinsDelta": 0.008869660497070497,
+      "uiReachable": true
+    },
+    {
+      "team": "BAL",
+      "add": "Kirk Cousins",
+      "removed": [],
+      "delta": -39,
+      "renderedDelta": "-39.0",
+      "forceDelta": -7.039711191335741,
+      "expectedWinsDelta": -0.053992424225755675,
+      "uiReachable": true
+    },
+    {
+      "team": "MIA",
+      "add": "Lamar Jackson",
+      "removed": [],
+      "delta": 56,
+      "renderedDelta": "+56.0",
+      "forceDelta": 9.628610729023386,
+      "expectedWinsDelta": 0.06797301372729636,
+      "uiReachable": true
+    },
+    {
+      "team": "MIA",
+      "add": "Lamar Jackson",
+      "removed": [
+        "Tua Tagovailoa"
+      ],
+      "delta": 64,
+      "renderedDelta": "+64.0",
+      "forceDelta": 11.0041265474553,
+      "expectedWinsDelta": 0.07877933282052285,
+      "uiReachable": true
+    },
+    {
+      "team": "MIA",
+      "add": null,
+      "removed": [
+        "O.Gordon"
+      ],
+      "delta": 7.9,
+      "renderedDelta": "+7.9",
+      "forceDelta": 1.3583218707015305,
+      "expectedWinsDelta": 0.008757047045848232,
+      "uiReachable": true
+    },
+    {
+      "team": "MIA",
+      "add": null,
+      "removed": [
+        "M.Washington"
+      ],
+      "delta": 5.6,
+      "renderedDelta": "+5.6",
+      "forceDelta": 0.9628610729023208,
+      "expectedWinsDelta": 0.006179117719404603,
+      "uiReachable": true
+    },
+    {
+      "team": "ARI",
+      "add": "D.Waller",
+      "removed": [],
+      "delta": 9.8,
+      "renderedDelta": "+9.8",
+      "forceDelta": 1.6850068775790845,
+      "expectedWinsDelta": 0.009685669422657028,
+      "uiReachable": true
+    },
+    {
+      "team": "MIA",
+      "add": "Ty.Johnson",
+      "removed": [],
+      "delta": 8,
+      "renderedDelta": "+8.0",
+      "forceDelta": 1.3755158184319143,
+      "expectedWinsDelta": 0.008869660497070497,
+      "uiReachable": true
+    }
+  ],
+  "synthetic": [
+    {
+      "pos": "QB",
+      "kind": "role",
+      "case": "elite-to-elite",
+      "delta": 0
+    },
+    {
+      "pos": "QB",
+      "kind": "role",
+      "case": "elite-to-weak",
+      "delta": 37
+    },
+    {
+      "pos": "QB",
+      "kind": "role",
+      "case": "weaker-behind-elite",
+      "delta": 0
+    },
+    {
+      "pos": "QB",
+      "kind": "role",
+      "case": "replace-upgrade",
+      "delta": 10
+    },
+    {
+      "pos": "QB",
+      "kind": "role",
+      "case": "replace-downgrade",
+      "delta": -15
+    },
+    {
+      "pos": "QB",
+      "kind": "role",
+      "case": "multiple-additions",
+      "delta": 37
+    },
+    {
+      "pos": "QB",
+      "kind": "role",
+      "case": "remove-then-add",
+      "delta": -5
+    },
+    {
+      "pos": "QB",
+      "kind": "role",
+      "case": "remove-negative",
+      "delta": 0
+    },
+    {
+      "pos": "QB",
+      "kind": "usage",
+      "case": "elite-to-elite",
+      "delta": 0
+    },
+    {
+      "pos": "QB",
+      "kind": "usage",
+      "case": "elite-to-weak",
+      "delta": 37
+    },
+    {
+      "pos": "QB",
+      "kind": "usage",
+      "case": "weaker-behind-elite",
+      "delta": 0
+    },
+    {
+      "pos": "QB",
+      "kind": "usage",
+      "case": "replace-upgrade",
+      "delta": 10
+    },
+    {
+      "pos": "QB",
+      "kind": "usage",
+      "case": "replace-downgrade",
+      "delta": -15
+    },
+    {
+      "pos": "QB",
+      "kind": "usage",
+      "case": "multiple-additions",
+      "delta": 37
+    },
+    {
+      "pos": "QB",
+      "kind": "usage",
+      "case": "remove-then-add",
+      "delta": -5
+    },
+    {
+      "pos": "QB",
+      "kind": "usage",
+      "case": "remove-negative",
+      "delta": 0
+    },
+    {
+      "pos": "QB",
+      "kind": "role",
+      "case": "successive-margins",
+      "margins": [
+        37,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "pos": "QB",
+      "kind": "usage",
+      "case": "successive-margins",
+      "margins": [
+        37,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "pos": "RB",
+      "kind": "role",
+      "case": "elite-to-elite",
+      "delta": 5
+    },
+    {
+      "pos": "RB",
+      "kind": "role",
+      "case": "elite-to-weak",
+      "delta": 21
+    },
+    {
+      "pos": "RB",
+      "kind": "role",
+      "case": "weaker-behind-elite",
+      "delta": 0
+    },
+    {
+      "pos": "RB",
+      "kind": "role",
+      "case": "replace-upgrade",
+      "delta": 5
+    },
+    {
+      "pos": "RB",
+      "kind": "role",
+      "case": "replace-downgrade",
+      "delta": -15
+    },
+    {
+      "pos": "RB",
+      "kind": "role",
+      "case": "multiple-additions",
+      "delta": 37
+    },
+    {
+      "pos": "RB",
+      "kind": "role",
+      "case": "remove-then-add",
+      "delta": -2.5
+    },
+    {
+      "pos": "RB",
+      "kind": "role",
+      "case": "remove-negative",
+      "delta": 0
+    },
+    {
+      "pos": "RB",
+      "kind": "usage",
+      "case": "elite-to-elite",
+      "delta": 4
+    },
+    {
+      "pos": "RB",
+      "kind": "usage",
+      "case": "elite-to-weak",
+      "delta": 25.6
+    },
+    {
+      "pos": "RB",
+      "kind": "usage",
+      "case": "weaker-behind-elite",
+      "delta": 0
+    },
+    {
+      "pos": "RB",
+      "kind": "usage",
+      "case": "replace-upgrade",
+      "delta": 6.5
+    },
+    {
+      "pos": "RB",
+      "kind": "usage",
+      "case": "replace-downgrade",
+      "delta": -15
+    },
+    {
+      "pos": "RB",
+      "kind": "usage",
+      "case": "multiple-additions",
+      "delta": 36.3
+    },
+    {
+      "pos": "RB",
+      "kind": "usage",
+      "case": "remove-then-add",
+      "delta": -3.25
+    },
+    {
+      "pos": "RB",
+      "kind": "usage",
+      "case": "remove-negative",
+      "delta": 0
+    },
+    {
+      "pos": "RB",
+      "kind": "role",
+      "case": "successive-margins",
+      "margins": [
+        21,
+        16,
+        0,
+        0
+      ]
+    },
+    {
+      "pos": "RB",
+      "kind": "usage",
+      "case": "successive-margins",
+      "margins": [
+        25.6,
+        8.499999999999996,
+        2.200000000000003,
+        0
+      ]
+    },
+    {
+      "pos": "WR",
+      "kind": "role",
+      "case": "elite-to-elite",
+      "delta": 8.333333333333336
+    },
+    {
+      "pos": "WR",
+      "kind": "role",
+      "case": "elite-to-weak",
+      "delta": 15.000000000000002
+    },
+    {
+      "pos": "WR",
+      "kind": "role",
+      "case": "weaker-behind-elite",
+      "delta": 0
+    },
+    {
+      "pos": "WR",
+      "kind": "role",
+      "case": "replace-upgrade",
+      "delta": 3.3333333333333357
+    },
+    {
+      "pos": "WR",
+      "kind": "role",
+      "case": "replace-downgrade",
+      "delta": -14.999999999999993
+    },
+    {
+      "pos": "WR",
+      "kind": "role",
+      "case": "multiple-additions",
+      "delta": 34.666666666666664
+    },
+    {
+      "pos": "WR",
+      "kind": "role",
+      "case": "remove-then-add",
+      "delta": -1.6666666666666643
+    },
+    {
+      "pos": "WR",
+      "kind": "role",
+      "case": "remove-negative",
+      "delta": 0
+    },
+    {
+      "pos": "WR",
+      "kind": "usage",
+      "case": "elite-to-elite",
+      "delta": 6
+    },
+    {
+      "pos": "WR",
+      "kind": "usage",
+      "case": "elite-to-weak",
+      "delta": 20.6
+    },
+    {
+      "pos": "WR",
+      "kind": "usage",
+      "case": "weaker-behind-elite",
+      "delta": 0
+    },
+    {
+      "pos": "WR",
+      "kind": "usage",
+      "case": "replace-upgrade",
+      "delta": 5
+    },
+    {
+      "pos": "WR",
+      "kind": "usage",
+      "case": "replace-downgrade",
+      "delta": -15
+    },
+    {
+      "pos": "WR",
+      "kind": "usage",
+      "case": "multiple-additions",
+      "delta": 35.6
+    },
+    {
+      "pos": "WR",
+      "kind": "usage",
+      "case": "remove-then-add",
+      "delta": -2.5
+    },
+    {
+      "pos": "WR",
+      "kind": "usage",
+      "case": "remove-negative",
+      "delta": 0
+    },
+    {
+      "pos": "WR",
+      "kind": "role",
+      "case": "successive-margins",
+      "margins": [
+        15.000000000000002,
+        12.333333333333332,
+        7.333333333333329,
+        0
+      ]
+    },
+    {
+      "pos": "WR",
+      "kind": "usage",
+      "case": "successive-margins",
+      "margins": [
+        20.6,
+        10.600000000000001,
+        4.399999999999999,
+        0
+      ]
+    }
+  ],
+  "realCandidates": [
+    {
+      "team": "MIA",
+      "add": null,
+      "removed": [
+        "Tua Tagovailoa"
+      ],
+      "delta": 8,
+      "renderedDelta": "+8.0",
+      "forceDelta": 1.3755158184319143,
+      "expectedWinsDelta": 0.008869660497070497,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 0
+    },
+    {
+      "team": "MIA",
+      "add": null,
+      "removed": [
+        "Tua Tagovailoa"
+      ],
+      "delta": 8,
+      "renderedDelta": "+8.0",
+      "forceDelta": 1.3755158184319143,
+      "expectedWinsDelta": 0.008869660497070497,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 0
+    },
+    {
+      "team": "BAL",
+      "add": "Kirk Cousins",
+      "removed": [],
+      "delta": -39,
+      "renderedDelta": "-39.0",
+      "forceDelta": -7.039711191335741,
+      "expectedWinsDelta": -0.053992424225755675,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 0
+    },
+    {
+      "team": "BAL",
+      "add": "Kirk Cousins",
+      "removed": [],
+      "delta": -39,
+      "renderedDelta": "-39.0",
+      "forceDelta": -7.039711191335741,
+      "expectedWinsDelta": -0.053992424225755675,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 0
+    },
+    {
+      "team": "MIA",
+      "add": "Lamar Jackson",
+      "removed": [],
+      "delta": 56,
+      "renderedDelta": "+56.0",
+      "forceDelta": 9.628610729023386,
+      "expectedWinsDelta": 0.06797301372729636,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 48
+    },
+    {
+      "team": "MIA",
+      "add": "Lamar Jackson",
+      "removed": [],
+      "delta": 56,
+      "renderedDelta": "+56.0",
+      "forceDelta": 9.628610729023386,
+      "expectedWinsDelta": 0.06797301372729636,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 48
+    },
+    {
+      "team": "MIA",
+      "add": "Lamar Jackson",
+      "removed": [
+        "Tua Tagovailoa"
+      ],
+      "delta": 64,
+      "renderedDelta": "+64.0",
+      "forceDelta": 11.0041265474553,
+      "expectedWinsDelta": 0.07877933282052285,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 48
+    },
+    {
+      "team": "MIA",
+      "add": "Lamar Jackson",
+      "removed": [
+        "Tua Tagovailoa"
+      ],
+      "delta": 64,
+      "renderedDelta": "+64.0",
+      "forceDelta": 11.0041265474553,
+      "expectedWinsDelta": 0.07877933282052285,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 48
+    },
+    {
+      "team": "MIA",
+      "add": null,
+      "removed": [
+        "O.Gordon"
+      ],
+      "delta": 7.9,
+      "renderedDelta": "+7.9",
+      "forceDelta": 1.3583218707015305,
+      "expectedWinsDelta": 0.008757047045848232,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 0
+    },
+    {
+      "team": "MIA",
+      "add": null,
+      "removed": [
+        "O.Gordon"
+      ],
+      "delta": 7.9,
+      "renderedDelta": "+7.9",
+      "forceDelta": 1.3583218707015305,
+      "expectedWinsDelta": 0.008757047045848232,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 0
+    },
+    {
+      "team": "MIA",
+      "add": null,
+      "removed": [
+        "M.Washington"
+      ],
+      "delta": 5.6,
+      "renderedDelta": "+5.6",
+      "forceDelta": 0.9628610729023208,
+      "expectedWinsDelta": 0.006179117719404603,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 0
+    },
+    {
+      "team": "MIA",
+      "add": null,
+      "removed": [
+        "M.Washington"
+      ],
+      "delta": 5.6,
+      "renderedDelta": "+5.6",
+      "forceDelta": 0.9628610729023208,
+      "expectedWinsDelta": 0.006179117719404603,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 0
+    },
+    {
+      "team": "ARI",
+      "add": "D.Waller",
+      "removed": [],
+      "delta": 9.8,
+      "renderedDelta": "+9.8",
+      "forceDelta": 1.6850068775790845,
+      "expectedWinsDelta": 0.009685669422657028,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 2.333333333333333
+    },
+    {
+      "team": "ARI",
+      "add": "D.Waller",
+      "removed": [],
+      "delta": 9.8,
+      "renderedDelta": "+9.8",
+      "forceDelta": 1.6850068775790845,
+      "expectedWinsDelta": 0.009685669422657028,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 3.1900000000000004
+    },
+    {
+      "team": "MIA",
+      "add": "Ty.Johnson",
+      "removed": [],
+      "delta": 8,
+      "renderedDelta": "+8.0",
+      "forceDelta": 1.3755158184319143,
+      "expectedWinsDelta": 0.008869660497070497,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 4
+    },
+    {
+      "team": "MIA",
+      "add": "Ty.Johnson",
+      "removed": [],
+      "delta": 8,
+      "renderedDelta": "+8.0",
+      "forceDelta": 1.3755158184319143,
+      "expectedWinsDelta": 0.008869660497070497,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 5.2
+    }
+  ],
+  "insurance": {
+    "healthy": 0,
+    "starterAbsenceProbability": 0.1,
+    "backupUpgrade": 25,
+    "valueAtTenPercent": 2.5
+  },
+  "negativeReplacementSensitivity": [
+    {
+      "replacement": 0,
+      "delta": 0
+    },
+    {
+      "replacement": -20,
+      "delta": -12
+    }
+  ],
+  "profileRows": [
+    {
+      "team": "ARI",
+      "currentElo": 1437.9989267362685,
+      "coreElo": 1437.9989267362685,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 22.6,
+      "receiverIndex": 80.6,
+      "olIndex": 29,
+      "rbIndex": null,
+      "coverageIndex": 16.1,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "ATL",
+      "currentElo": 1485.451408150629,
+      "coreElo": 1485.451408150629,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 38.7,
+      "receiverIndex": 32.3,
+      "olIndex": 83.9,
+      "rbIndex": null,
+      "coverageIndex": 61.3,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "BAL",
+      "currentElo": 1562.1982845034686,
+      "coreElo": 1562.1982845034686,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 58.1,
+      "receiverIndex": 51.6,
+      "olIndex": 32.3,
+      "rbIndex": null,
+      "coverageIndex": 35.5,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "BUF",
+      "currentElo": 1628.7728608304071,
+      "coreElo": 1628.7728608304071,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 77.4,
+      "receiverIndex": 61.3,
+      "olIndex": 71,
+      "rbIndex": null,
+      "coverageIndex": 83.9,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "CAR",
+      "currentElo": 1410.594062095596,
+      "coreElo": 1410.594062095596,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 19.4,
+      "receiverIndex": 25.8,
+      "olIndex": 41.9,
+      "rbIndex": null,
+      "coverageIndex": 25.8,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "CHI",
+      "currentElo": 1553.4159379044038,
+      "coreElo": 1553.4159379044038,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 67.7,
+      "receiverIndex": 54.8,
+      "olIndex": 93.5,
+      "rbIndex": null,
+      "coverageIndex": 51.6,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "CIN",
+      "currentElo": 1494.9359951559134,
+      "coreElo": 1494.9359951559134,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 16.1,
+      "receiverIndex": 35.5,
+      "olIndex": 87.1,
+      "rbIndex": null,
+      "coverageIndex": 12.9,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "CLE",
+      "currentElo": 1421.20176403522,
+      "coreElo": 1421.20176403522,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 3.2,
+      "receiverIndex": 0,
+      "olIndex": 0,
+      "rbIndex": null,
+      "coverageIndex": 90.3,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "DAL",
+      "currentElo": 1424.0852049078749,
+      "coreElo": 1424.0852049078749,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 87.1,
+      "receiverIndex": 83.9,
+      "olIndex": 74.2,
+      "rbIndex": null,
+      "coverageIndex": 3.2,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "DEN",
+      "currentElo": 1599.9199999999998,
+      "coreElo": 1599.9199999999998,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 64.5,
+      "receiverIndex": 38.7,
+      "olIndex": 90.3,
+      "rbIndex": null,
+      "coverageIndex": 77.4,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "DET",
+      "currentElo": 1544.0195839029254,
+      "coreElo": 1544.0195839029254,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 80.6,
+      "receiverIndex": 93.5,
+      "olIndex": 38.7,
+      "rbIndex": null,
+      "coverageIndex": 58.1,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "GB",
+      "currentElo": 1509.208195268598,
+      "coreElo": 1509.208195268598,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 100,
+      "receiverIndex": 90.3,
+      "olIndex": 54.8,
+      "rbIndex": null,
+      "coverageIndex": 32.3,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "HOU",
+      "currentElo": 1580.5871391695928,
+      "coreElo": 1580.5871391695928,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 45.2,
+      "receiverIndex": 71,
+      "olIndex": 48.4,
+      "rbIndex": null,
+      "coverageIndex": 100,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "IND",
+      "currentElo": 1446.5417154965314,
+      "coreElo": 1446.5417154965314,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 74.2,
+      "receiverIndex": 64.5,
+      "olIndex": 67.7,
+      "rbIndex": null,
+      "coverageIndex": 45.2,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "JAX",
+      "currentElo": 1589.4282359647798,
+      "coreElo": 1589.4282359647798,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 61.3,
+      "receiverIndex": 58.1,
+      "olIndex": 45.2,
+      "rbIndex": null,
+      "coverageIndex": 96.8,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "KC",
+      "currentElo": 1486.8,
+      "coreElo": 1486.8,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 71,
+      "receiverIndex": 67.7,
+      "olIndex": 19.4,
+      "rbIndex": null,
+      "coverageIndex": 54.8,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "LAC",
+      "currentElo": 1488.9110732637314,
+      "coreElo": 1488.9110732637314,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 48.4,
+      "receiverIndex": 45.2,
+      "olIndex": 3.2,
+      "rbIndex": null,
+      "coverageIndex": 74.2,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "LAR",
+      "currentElo": 1557.3025518329518,
+      "coreElo": 1557.3025518329518,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 90.3,
+      "receiverIndex": 96.8,
+      "olIndex": 100,
+      "rbIndex": null,
+      "coverageIndex": 71,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "LV",
+      "currentElo": 1388.119856240211,
+      "coreElo": 1388.119856240211,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 9.7,
+      "receiverIndex": 22.6,
+      "olIndex": 9.7,
+      "rbIndex": null,
+      "coverageIndex": 29,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "MIA",
+      "currentElo": 1434.910143759789,
+      "coreElo": 1434.910143759789,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 29,
+      "receiverIndex": 29,
+      "olIndex": 64.5,
+      "rbIndex": null,
+      "coverageIndex": 19.4,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "MIN",
+      "currentElo": 1587.591804731402,
+      "coreElo": 1587.591804731402,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 12.9,
+      "receiverIndex": 9.7,
+      "olIndex": 22.6,
+      "rbIndex": null,
+      "coverageIndex": 93.5,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "NE",
+      "currentElo": 1582.8659819647755,
+      "coreElo": 1582.8659819647755,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 96.8,
+      "receiverIndex": 100,
+      "olIndex": 16.1,
+      "rbIndex": null,
+      "coverageIndex": 67.7,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "NO",
+      "currentElo": 1439.5904160970745,
+      "coreElo": 1439.5904160970745,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 41.9,
+      "receiverIndex": 41.9,
+      "olIndex": 51.6,
+      "rbIndex": null,
+      "coverageIndex": 64.5,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "NYG",
+      "currentElo": 1454.384795092125,
+      "coreElo": 1454.384795092125,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 25.8,
+      "receiverIndex": 12.9,
+      "olIndex": 12.9,
+      "rbIndex": null,
+      "coverageIndex": 48.4,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "NYJ",
+      "currentElo": 1400.0188200279304,
+      "coreElo": 1400.0188200279304,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 0,
+      "receiverIndex": 3.2,
+      "olIndex": 6.5,
+      "rbIndex": null,
+      "coverageIndex": 0,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "PHI",
+      "currentElo": 1568.249166523435,
+      "coreElo": 1568.249166523435,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 54.8,
+      "receiverIndex": 74.2,
+      "olIndex": 58.1,
+      "rbIndex": null,
+      "coverageIndex": 87.1,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "PIT",
+      "currentElo": 1537.428591849371,
+      "coreElo": 1537.428591849371,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 32.3,
+      "receiverIndex": 19.4,
+      "olIndex": 96.8,
+      "rbIndex": null,
+      "coverageIndex": 41.9,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "SEA",
+      "currentElo": 1688.6540180352242,
+      "coreElo": 1688.6540180352242,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 93.5,
+      "receiverIndex": 87.1,
+      "olIndex": 80.6,
+      "rbIndex": null,
+      "coverageIndex": 80.6,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "SF",
+      "currentElo": 1587.3774481670482,
+      "coreElo": 1587.3774481670482,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 83.9,
+      "receiverIndex": 77.4,
+      "olIndex": 61.3,
+      "rbIndex": null,
+      "coverageIndex": 22.6,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "TB",
+      "currentElo": 1459.9740048440867,
+      "coreElo": 1459.9740048440867,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 51.6,
+      "receiverIndex": 6.5,
+      "olIndex": 77.4,
+      "rbIndex": null,
+      "coverageIndex": 38.7,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "TEN",
+      "currentElo": 1347.1311799720695,
+      "coreElo": 1347.1311799720695,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 6.5,
+      "receiverIndex": 16.1,
+      "olIndex": 35.5,
+      "rbIndex": null,
+      "coverageIndex": 9.7,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    },
+    {
+      "team": "WAS",
+      "currentElo": 1464.2208334765648,
+      "coreElo": 1464.2208334765648,
+      "pointsScoredPerDriveIndex": null,
+      "qbIndex": 35.5,
+      "receiverIndex": 48.4,
+      "olIndex": 25.8,
+      "rbIndex": null,
+      "coverageIndex": 6.5,
+      "passRushIndex": null,
+      "runDefenseIndex": null,
+      "pointsAllowedPerDriveIndex": null
+    }
+  ],
+  "bridgeSensitivity": [
+    {
+      "key": "pointsScoredPerDriveIndex",
+      "baseElo": 1505,
+      "elo": 1510.54,
+      "eloDelta": 5.54,
+      "baseForce": 50,
+      "forceScore": 50.99999999999999,
+      "forceDelta": 0.9999999999999929,
+      "bridgePoints": 1,
+      "weightedUnitDelta": 2,
+      "availableWeight": 1,
+      "components": [
+        {
+          "key": "pointsScoredPerDriveIndex",
+          "weight": 0.2,
+          "current": 60,
+          "prior": 50,
+          "delta": 10,
+          "contribution": 2
+        },
+        {
+          "key": "qbIndex",
+          "weight": 0.12,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "receiverIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "olIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "rbIndex",
+          "weight": 0.07,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "coverageIndex",
+          "weight": 0.162,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "passRushIndex",
+          "weight": 0.072,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "runDefenseIndex",
+          "weight": 0.126,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "pointsAllowedPerDriveIndex",
+          "weight": 0.09,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        }
+      ]
+    },
+    {
+      "key": "qbIndex",
+      "baseElo": 1505,
+      "elo": 1508.324,
+      "eloDelta": 3.324,
+      "baseForce": 50,
+      "forceScore": 50.600000000000016,
+      "forceDelta": 0.6000000000000156,
+      "bridgePoints": 0.6,
+      "weightedUnitDelta": 1.2,
+      "availableWeight": 1,
+      "components": [
+        {
+          "key": "pointsScoredPerDriveIndex",
+          "weight": 0.2,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "qbIndex",
+          "weight": 0.12,
+          "current": 60,
+          "prior": 50,
+          "delta": 10,
+          "contribution": 1.2
+        },
+        {
+          "key": "receiverIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "olIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "rbIndex",
+          "weight": 0.07,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "coverageIndex",
+          "weight": 0.162,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "passRushIndex",
+          "weight": 0.072,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "runDefenseIndex",
+          "weight": 0.126,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "pointsAllowedPerDriveIndex",
+          "weight": 0.09,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        }
+      ]
+    },
+    {
+      "key": "receiverIndex",
+      "baseElo": 1505,
+      "elo": 1507.216,
+      "eloDelta": 2.216,
+      "baseForce": 50,
+      "forceScore": 50.399999999999984,
+      "forceDelta": 0.39999999999998437,
+      "bridgePoints": 0.4,
+      "weightedUnitDelta": 0.8,
+      "availableWeight": 1,
+      "components": [
+        {
+          "key": "pointsScoredPerDriveIndex",
+          "weight": 0.2,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "qbIndex",
+          "weight": 0.12,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "receiverIndex",
+          "weight": 0.08,
+          "current": 60,
+          "prior": 50,
+          "delta": 10,
+          "contribution": 0.8
+        },
+        {
+          "key": "olIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "rbIndex",
+          "weight": 0.07,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "coverageIndex",
+          "weight": 0.162,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "passRushIndex",
+          "weight": 0.072,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "runDefenseIndex",
+          "weight": 0.126,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "pointsAllowedPerDriveIndex",
+          "weight": 0.09,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        }
+      ]
+    },
+    {
+      "key": "olIndex",
+      "baseElo": 1505,
+      "elo": 1507.216,
+      "eloDelta": 2.216,
+      "baseForce": 50,
+      "forceScore": 50.399999999999984,
+      "forceDelta": 0.39999999999998437,
+      "bridgePoints": 0.4,
+      "weightedUnitDelta": 0.8,
+      "availableWeight": 1,
+      "components": [
+        {
+          "key": "pointsScoredPerDriveIndex",
+          "weight": 0.2,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "qbIndex",
+          "weight": 0.12,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "receiverIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "olIndex",
+          "weight": 0.08,
+          "current": 60,
+          "prior": 50,
+          "delta": 10,
+          "contribution": 0.8
+        },
+        {
+          "key": "rbIndex",
+          "weight": 0.07,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "coverageIndex",
+          "weight": 0.162,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "passRushIndex",
+          "weight": 0.072,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "runDefenseIndex",
+          "weight": 0.126,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "pointsAllowedPerDriveIndex",
+          "weight": 0.09,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        }
+      ]
+    },
+    {
+      "key": "rbIndex",
+      "baseElo": 1505,
+      "elo": 1506.939,
+      "eloDelta": 1.9390000000000003,
+      "baseForce": 50,
+      "forceScore": 50.350000000000016,
+      "forceDelta": 0.35000000000001563,
+      "bridgePoints": 0.35000000000000003,
+      "weightedUnitDelta": 0.7000000000000001,
+      "availableWeight": 1,
+      "components": [
+        {
+          "key": "pointsScoredPerDriveIndex",
+          "weight": 0.2,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "qbIndex",
+          "weight": 0.12,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "receiverIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "olIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "rbIndex",
+          "weight": 0.07,
+          "current": 60,
+          "prior": 50,
+          "delta": 10,
+          "contribution": 0.7000000000000001
+        },
+        {
+          "key": "coverageIndex",
+          "weight": 0.162,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "passRushIndex",
+          "weight": 0.072,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "runDefenseIndex",
+          "weight": 0.126,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "pointsAllowedPerDriveIndex",
+          "weight": 0.09,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        }
+      ]
+    },
+    {
+      "key": "coverageIndex",
+      "baseElo": 1505,
+      "elo": 1509.4874,
+      "eloDelta": 4.4874,
+      "baseForce": 50,
+      "forceScore": 50.809999999999995,
+      "forceDelta": 0.8099999999999952,
+      "bridgePoints": 0.81,
+      "weightedUnitDelta": 1.62,
+      "availableWeight": 1,
+      "components": [
+        {
+          "key": "pointsScoredPerDriveIndex",
+          "weight": 0.2,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "qbIndex",
+          "weight": 0.12,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "receiverIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "olIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "rbIndex",
+          "weight": 0.07,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "coverageIndex",
+          "weight": 0.162,
+          "current": 60,
+          "prior": 50,
+          "delta": 10,
+          "contribution": 1.62
+        },
+        {
+          "key": "passRushIndex",
+          "weight": 0.072,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "runDefenseIndex",
+          "weight": 0.126,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "pointsAllowedPerDriveIndex",
+          "weight": 0.09,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        }
+      ]
+    },
+    {
+      "key": "passRushIndex",
+      "baseElo": 1505,
+      "elo": 1506.9944,
+      "eloDelta": 1.9944,
+      "baseForce": 50,
+      "forceScore": 50.36000000000001,
+      "forceDelta": 0.36000000000000654,
+      "bridgePoints": 0.36,
+      "weightedUnitDelta": 0.72,
+      "availableWeight": 1,
+      "components": [
+        {
+          "key": "pointsScoredPerDriveIndex",
+          "weight": 0.2,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "qbIndex",
+          "weight": 0.12,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "receiverIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "olIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "rbIndex",
+          "weight": 0.07,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "coverageIndex",
+          "weight": 0.162,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "passRushIndex",
+          "weight": 0.072,
+          "current": 60,
+          "prior": 50,
+          "delta": 10,
+          "contribution": 0.72
+        },
+        {
+          "key": "runDefenseIndex",
+          "weight": 0.126,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "pointsAllowedPerDriveIndex",
+          "weight": 0.09,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        }
+      ]
+    },
+    {
+      "key": "runDefenseIndex",
+      "baseElo": 1505,
+      "elo": 1508.4902,
+      "eloDelta": 3.4902,
+      "baseForce": 50,
+      "forceScore": 50.629999999999995,
+      "forceDelta": 0.6299999999999955,
+      "bridgePoints": 0.63,
+      "weightedUnitDelta": 1.26,
+      "availableWeight": 1,
+      "components": [
+        {
+          "key": "pointsScoredPerDriveIndex",
+          "weight": 0.2,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "qbIndex",
+          "weight": 0.12,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "receiverIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "olIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "rbIndex",
+          "weight": 0.07,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "coverageIndex",
+          "weight": 0.162,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "passRushIndex",
+          "weight": 0.072,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "runDefenseIndex",
+          "weight": 0.126,
+          "current": 60,
+          "prior": 50,
+          "delta": 10,
+          "contribution": 1.26
+        },
+        {
+          "key": "pointsAllowedPerDriveIndex",
+          "weight": 0.09,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        }
+      ]
+    },
+    {
+      "key": "pointsAllowedPerDriveIndex",
+      "baseElo": 1505,
+      "elo": 1507.493,
+      "eloDelta": 2.493,
+      "baseForce": 50,
+      "forceScore": 50.44999999999999,
+      "forceDelta": 0.44999999999998863,
+      "bridgePoints": 0.44999999999999996,
+      "weightedUnitDelta": 0.8999999999999999,
+      "availableWeight": 1,
+      "components": [
+        {
+          "key": "pointsScoredPerDriveIndex",
+          "weight": 0.2,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "qbIndex",
+          "weight": 0.12,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "receiverIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "olIndex",
+          "weight": 0.08,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "rbIndex",
+          "weight": 0.07,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "coverageIndex",
+          "weight": 0.162,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "passRushIndex",
+          "weight": 0.072,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "runDefenseIndex",
+          "weight": 0.126,
+          "current": 50,
+          "prior": 50,
+          "delta": 0,
+          "contribution": 0
+        },
+        {
+          "key": "pointsAllowedPerDriveIndex",
+          "weight": 0.09,
+          "current": 60,
+          "prior": 50,
+          "delta": 10,
+          "contribution": 0.8999999999999999
+        }
+      ]
+    }
+  ],
+  "checks": 60,
+  "sourceMutation": {
+    "signedRemovalDelta": -8
+  },
+  "meta": {
+    "sourceGenerated": "2026-07-16 10:48",
+    "modelSeasons": [
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "baseLastSeason": 2025,
+    "prototypeDate": "2026-09-14",
+    "meanElo": 1505,
+    "anchorMin": 1214.2,
+    "anchorMax": 1782,
+    "anchorMinLabel": "weakest 2008–2025 end-season snapshot",
+    "anchorMaxLabel": "strongest 2008–2025 end-season snapshot",
+    "offseasonReversionPolicy": "30% toward mean for 2021+ seasons; 33.3% legacy setting"
+  }
+}
