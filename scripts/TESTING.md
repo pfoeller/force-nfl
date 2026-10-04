@@ -48,7 +48,9 @@ Fixture provenance log: Cycle 6, `fe09e67` (current).
 
 Cycle 6 UX-19 public QB-return tool removal (2026-10-03,
 `cycle6/claude-ux19-removal` from exact `fe09e67`, implementation `f562928`,
-review branch, not pushed or merged): new `test_ux19_qb_return_removal.mjs`
+independently validated and owner-accepted, integrated onto local
+`main @ cb80c827` on 2026-10-04; not pushed or deployed): new
+`test_ux19_qb_return_removal.mjs`
 (safe; `timeoutMs` 420000; about three minutes) compares canonical ratings,
 units, forecasts, Monte Carlo scores, season projections, historical and V99
 states, Roster Lab and QB Rankings with `scripts/fixtures/ux19_golden.json`,
@@ -63,7 +65,8 @@ MANUAL/OFF chip, the Method manual clause, and a one-Elo model change).
 assertions were superseded; its automatic-retirement checks are unchanged.
 
 Cycle 6 MD-03 retirement (2026-10-02, `cycle6/claude-md03-retirement` from exact
-`0e6b745`, review branch, not pushed or merged): new
+`0e6b745`, independently validated and owner-accepted, integrated onto local
+`main @ cb80c827` on 2026-10-04; not pushed or deployed): new
 `test_md03_retirement.mjs` (safe, qb, model; `timeoutMs` 120000) brings the
 catalog to 256 entries, 144 safe (111 JavaScript / 33 Python) and 112 unchanged
 default exclusions. Authoritative LF clone passed safe 144/144, model 49/49,
