@@ -46,7 +46,11 @@ assert 'forceRatingView' in app and 'data-ratingview' in app
 assert all(x in app for x in ['Luck', 'Penalties', 'Units', 'Advanced'])
 assert 'model/unit_force_bridge.js' in html and 'model/adaptive_v3.js' in html and 'model/score_normalizer.js' in html and 'model/live_profiles.js' in html and 'data/opening-lines.js' in html and 'data/matchup-data.js' in html and 'data/qb-carryover.js' in html and 'data/predictive-feature-gates.js' in html and 'model/predictive_features.js' in html and 'model/qb_regime.js' in html and 'model/early_regime.js' in html and 'model/retrospective_strength.js' in html and 'model/unit_prior_controller.js' in html
 # UX-19 removed the public QB Return Lab; the internal manual chain stays (O4).
-assert 'QB Return Lab' not in app and 'ratingsWithQBCarryover' in app
+# Check the removed renderers, markup and control ids rather than the phrase,
+# which may still appear in historical source comments.
+ux19_public_lab=['function qbCarryoverPanel(','function quickQbButton(','<h2>QB Return Lab</h2>','carryover-card','data-qbquick','id="qbCarryoverQB"','id="qbCarryoverElo"','id="applyQBCarryover"','id="clearQBCarryover"','<th>QB return</th>']
+assert not [x for x in ux19_public_lab if x in app], [x for x in ux19_public_lab if x in app]
+assert 'ratingsWithQBCarryover' in app and 'qbCarryoverUnitEffect' in app
 assert 'refreshLiveMetrics' in app and '/api/team-stats' in app and '/api/player-stats' in app and '/api/ftn-charting' in app and '/api/pfr-pass' in app and '/api/pfr-pass-prior' in app and '/api/current-pressure' in app and '/api/schedule' in app
 server=(root/'force_server.py').read_text()
 assert 'stats_team_week_2026.csv' in server and 'stats_player_week_2026.csv' in server and 'ftn_charting_2026.csv' in server and 'advstats_week_pass_2026.csv' in server and 'advstats_week_pass_2025.csv' in server and 'games.csv' in server and 'STAT_RANKINGS_URL' in server and 'pressure-current.manual.json' in server

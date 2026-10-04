@@ -2,7 +2,7 @@
 
 Roadmap item: `MD-03` (automatic QB-return correction). The owner decided on 2026-10-02 to retire the correction rather than generalize it.
 
-**Current status (2026-10-03):** retirement decision CONFIRMED; retirement IMPLEMENTED on `cycle6/claude-md03-retirement` (`a40feed`, correction `8e6a180`; see [implementation and evidence](MD03_RETIREMENT_IMPLEMENTATION.md)); independent validation PASSED; owner acceptance ACCEPTED on 2026-10-03; generalized replacement INACTIVE; this research PRESERVED. The `UX-19` removal plan has been REVISED for the no-automatic-correction state; the revised plan's independent review found it substantively sound (Codex verdict B, minor supporting-document corrections only); those corrections and a targeted re-review are pending. Update (2026-10-03): the re-review accepted the revised plan at `fe09e67`, the owner resolved N1 as option (a), and `UX-19` implementation was authorized and is implemented on a review branch pending validation. The rest of this document is the Cycle 5 research record and keeps its original wording.
+**Current status (2026-10-03):** retirement decision CONFIRMED; retirement IMPLEMENTED on `cycle6/claude-md03-retirement` (`a40feed`, correction `8e6a180`; see [implementation and evidence](MD03_RETIREMENT_IMPLEMENTATION.md)); independent validation PASSED; owner acceptance ACCEPTED on 2026-10-03; generalized replacement INACTIVE; this research PRESERVED. The `UX-19` removal plan was REVISED for the no-automatic-correction state and its independent plan review is done (accepted on targeted re-review at `fe09e67`); the owner resolved N1 as option (a) and authorized `UX-19` implementation. Downstream (2026-10-04): the UX-19 plan revision and its independent plan review are done (re-review accepted at `fe09e67`); the owner resolved N1 as option (a) and separately authorized UX-19 implementation; UX-19 is implemented on review branch `cycle6/claude-ux19-removal` at `f562928`; independent implementation validation found only bounded test/documentation corrections, which are pending targeted re-review; owner acceptance of the UX-19 implementation is PENDING; UX-19 is not COMPLETE; nothing is merged, pushed or deployed. MD-03 steps A-F are satisfied, and MD-03 stays non-COMPLETE pending integration and closeout. The rest of this document is the Cycle 5 research record and keeps its original wording.
 Lane: Cycle 5 model investigation, branch `cycle5/claude-md03-model`, base `bd15a2c682c0dd8c836ecfd42e615a31741988c7`. First version `0a6dcb8` (2026-10-02). **This version corrects it after Codex's independent cross-review (verdict C, findings F1-F9) and Claude's cross-review of the Codex detection lane.**
 
 **OWNER DECISION (2026-10-02): retire the current automatic QB-return correction rather than proceed with a generalized production replacement.** The owner judged that the remaining historical signal is too small and too population-sensitive relative to the unresolved detector, source, full-stack interaction and maintenance burden. This is a product and model-complexity judgment under uncertainty. It is **not** a finding that the research proved the effect is zero, and Null did not statistically "win". The owner may reconsider the concept if stronger evidence or cleaner data become available.
@@ -418,7 +418,7 @@ The sequence is:
 
 ## 22. Retirement path (governance history) and current status
 
-**Current status and remaining gate (2026-10-03):**
+**Current status (2026-10-04):**
 
 | Step | Status |
 | --- | --- |
@@ -426,8 +426,10 @@ The sequence is:
 | B. Implement retirement | COMPLETED (`a40feed`, correction `8e6a180`; [implementation and evidence](MD03_RETIREMENT_IMPLEMENTATION.md)) |
 | C. Independent validation | COMPLETED, PASSED |
 | D. Owner acceptance | COMPLETED, ACCEPTED 2026-10-03 at `8e6a180` |
-| E. Revise the UX-19 plan | Revision COMPLETED (2026-10-03); the revised plan's independent review found it substantively sound (Codex verdict B, minor supporting-document corrections only); those corrections and a targeted re-review are pending |
-| F. Authorize UX-19 implementation | AUTHORIZED 2026-10-03 with N1 option (a); implemented on review branch `cycle6/claude-ux19-removal`, validation and acceptance pending under `UX-19` |
+| E. UX-19 plan revision and independent plan review | DONE (revised 2026-10-03; plan re-review accepted at `fe09e67`) |
+| F. UX-19 implementation authorization | DONE / AUTHORIZED (owner, 2026-10-03, with N1 option (a)) |
+
+**Downstream state (UX-19 implementation, not part of A-F):** implemented on review branch `cycle6/claude-ux19-removal` at `f562928`; independent implementation validation found only bounded test/documentation corrections, pending targeted re-review; UX-19 owner acceptance PENDING; UX-19 not COMPLETE; MD-03 remains non-COMPLETE pending integration and closeout. Plan review (step E) and implementation review (UX-19) are separate reviews.
 
 The generalized league-wide replacement is not active. The rest of this section is the historical retirement contract as written during Cycle 5, kept for the record.
 

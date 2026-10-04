@@ -27,6 +27,25 @@ example `node scripts/test_v149_release_hardening.mjs`.
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
 
+### Golden fixture: `scripts/fixtures/ux19_golden.json`
+
+This fixture is the independently reviewed UX-19 parity baseline. It was captured
+from the reviewed pre-removal tree `fe09e673783814eb9367add2c2f50253b02965d9`
+(Cycle 6) with `node scripts/test_ux19_qb_return_removal.mjs --capture`, and a
+repeat capture was byte-identical.
+
+- Normal test runs only read it. They must never regenerate or overwrite it, and
+  `--capture` is never part of a suite.
+- A failing parity check is a finding, not a fixture problem. Do not "fix" it by
+  running `--capture` or replacing the file.
+- An intended, separately authorized model or data change may require a
+  recapture. That is a deliberate action: capture from the accepted comparison
+  tree, review why each expected value changed, and commit the new fixture on
+  its own with the source SHA in the commit message and in this section.
+- Replacing the committed fixture requires that review before it is accepted.
+
+Fixture provenance log: Cycle 6, `fe09e67` (current).
+
 Cycle 6 UX-19 public QB-return tool removal (2026-10-03,
 `cycle6/claude-ux19-removal` from exact `fe09e67`, implementation `f562928`,
 review branch, not pushed or merged): new `test_ux19_qb_return_removal.mjs`

@@ -8,6 +8,8 @@ import {appHarness} from './lib/force_app_harness.js';
 // check drives the real ordered browser bundle. Golden values in
 // scripts/fixtures/ux19_golden.json were captured from the reviewed pre-removal
 // tree (fe09e67) with `node scripts/test_ux19_qb_return_removal.mjs --capture`.
+// Normal runs only read the fixture. Recapture is a deliberate, reviewed action
+// with an auditable source SHA; see "Golden fixture" in scripts/TESTING.md.
 const CAPTURE=process.argv.includes('--capture');
 const goldenPath='scripts/fixtures/ux19_golden.json';
 let checks=0;
@@ -113,27 +115,89 @@ ok((app.match(/qbCarryover:\s*\{\s*enabled:\s*false/g)||[]).length===1,'A3: init
 ok(!/localStorage[^\n]*qbCarryover|sessionStorage|URLSearchParams[^\n]*qb|qbquick|location\.search[^\n]*qb/i.test(app),'A3: no storage, URL or route writer');
 ok(!/window\.\w+\s*=\s*S\b|window\.FORCE_\w*\s*=\s*\{[^}]*\bS\b/.test(app),'A3: application state is not exposed as a public global');
 
-// A4. No public writer by behaviour: render every route and record what bind() attaches.
-const bound=new Map(); const queried=new Set();
-const element=(key)=>new Proxy({dataset:{},classList:{add(){},remove(){},toggle(){},contains(){return false;}},style:{},value:'',checked:false,innerHTML:'',textContent:'',
-  addEventListener(type){bound.set(`${key}:${type}`,true);},querySelectorAll(){return [];},querySelector(){return null;},closest(){return null;},getAttribute(){return null;},setAttribute(){},focus(){}},
-  {set(t,p,v){if(/^on/.test(String(p))&&typeof v==='function')bound.set(`${key}:${String(p)}`,true);t[p]=v;return true;}});
-const ids=new Map(), lists=new Map();
-const doc={getElementById(id){if(!ids.has(id))ids.set(id,element('#'+id));return ids.get(id);},querySelector(){return null;},
-  querySelectorAll(sel){queried.add(sel);if(!lists.has(sel))lists.set(sel,[element(sel)]);return lists.get(sel);},addEventListener(){},body:element('body'),documentElement:element('html')};
-const b=build({document:doc,mutate:played});
-const kcGame=b.api.sortedSchedule().find(g=>g.home==='KC'||g.away==='KC');
-for (const route of ['','rankings','qbs','divisions','playoffs','slate','matchups','teams','teams/KC','teams/BUF','lab','model','names',`game/${b.api.gameKey(kcGame)}`]) {
-  b.context.location.hash=route?`#${route}`:'#home';
-  b.api.render();
+// A4. No public writer by behaviour. Render public routes with a DOM stub built
+// from the rendered markup, record what bind() attaches, then actually invoke
+// those handlers (clicks, changes, inputs, searches, sorts, view tabs, QB
+// Customize, team/game navigation, Roster Lab) and check that the internal
+// QB-return state never becomes active. A3 remains the source-level audit.
+const INITIAL_QBC={enabled:false,team:'KC',qb:'Patrick Mahomes',restoreElo:47.3};
+// Routes cover every handler bind() attaches; home, divisions and playoffs only
+// repeat the team/game/nav links already exercised here and are slow to render.
+const A4_ROUTES=['rankings','qbs','teams','teams/KC','matchups','lab','model','slate','names'];
+function a4Harness(sources={}) {
+  const ids=new Map(), snapshot=[]; let capture=null;
+  const camel=(s)=>s.replace(/-([a-z])/g,(_,c)=>c.toUpperCase());
+  const element=(key,dataset={},value='')=>{
+    const el={key,dataset,value,checked:false,disabled:false,innerHTML:'',textContent:'',style:{},_listeners:{},
+      classList:{add(){},remove(){},toggle(){},contains(){return false;}},
+      addEventListener(type,fn){this._listeners[type]=fn;},querySelectorAll(){return [];},querySelector(){return null;},
+      closest(){return null;},getAttribute(){return null;},setAttribute(){},focus(){},blur(){},scrollIntoView(){}};
+    return el;
+  };
+  const doc={
+    getElementById(id){if(!ids.has(id))ids.set(id,element('#'+id,{},id==='weekFilter'||id==='slateWeek'?'1':id==='rankSearch'||id==='gameSearch'?'kansas':''));const el=ids.get(id);capture?.push(el);return el;},
+    querySelector(){return null;},
+    querySelectorAll(sel){
+      const html=ids.get('app')?.innerHTML||'';
+      const m=sel.match(/^\[data-([\w-]+)\]$/);
+      let els=[];
+      if (m) {
+        const values=[...new Set([...html.matchAll(new RegExp(`data-${m[1]}="([^"]*)"`,'g'))].map(x=>x[1]))];
+        // One real value per selector (KC first) keeps the run bounded but realistic.
+        values.sort((a,b)=>(b.includes('KC')-a.includes('KC')));
+        els=values.slice(0,1).map(v=>element(sel,{[camel(m[1])]:v},m[1]==='qb-weight'?'40':v));
+      } else if (sel.startsWith('.')||sel.startsWith('#')) els=[element(sel)];
+      capture?.push(...els);
+      return els;
+    },
+    addEventListener(){},body:element('body'),documentElement:element('html'),createElement:()=>element('created')
+  };
+  const h=appHarness({sources,document:doc,hooks,fetch:()=>new Promise(()=>{})});
+  played(h.api.S); h.api.S.scheduleVersion++; h.api.S.engineCache=null;
+  return {...h,doc,ids,setCapture:(arr)=>{capture=arr;}};
 }
-b.context.location.hash='#rankings';
-for (const view of ['penalties','advanced','units','luck']) { b.api.S.ratingView=view; b.api.render(); }
-b.api.S.ratingView='power';
-ok(b.api.S.qbCarryover.enabled===false,'A4: rendering and binding every route leaves the internal value disabled');
-for (const id of ['qbCarryoverQB','qbCarryoverElo','qbCarryoverValue','applyQBCarryover','clearQBCarryover']) ok(![...bound.keys()].some(k=>k.startsWith('#'+id+':')),`A4: nothing bound to #${id}`);
-ok(!queried.has('[data-qbquick]') && ![...bound.keys()].some(k=>k.startsWith('[data-qbquick]')),'A4: no quick-button binding');
-ok(bound.size>0 && queried.has('[data-team]'),'A4: the binding pass really ran');
+async function behaviouralA4(h, routes=A4_ROUTES) {
+  const {api,context}=h, S=api.S;
+  const before=JSON.stringify(api.currentRatings());
+  const invoked=new Set(), violations=[];
+  const ev={preventDefault(){},stopPropagation(){},target:null,key:'Enter'};
+  const fire=async(el,type,fn)=>{
+    try { const r=fn.call(el,{...ev,target:el,currentTarget:el,type}); if (r&&typeof r.then==='function') await Promise.race([r.catch(()=>{}),new Promise(res=>setImmediate(res))]); } catch (_) {}
+    invoked.add(`${el.key}:${type}`);
+    const q=S.qbCarryover;
+    if (JSON.stringify(q)!==JSON.stringify(INITIAL_QBC)) violations.push(`${el.key}:${type} changed S.qbCarryover to ${JSON.stringify(q)}`);
+  };
+  for (const route of routes) {
+    context.location.hash=`#${route}`;
+    const captured=[]; h.setCapture(captured); api.render(); h.setCapture(null);
+    for (const el of captured) {
+      const handlers=[...Object.entries(el).filter(([k,v])=>/^on/.test(k)&&typeof v==='function').map(([k,v])=>[k.slice(2),v]),...Object.entries(el._listeners)];
+      for (const [type,fn] of handlers) {
+        if (invoked.has(`${el.key}:${type}`)) continue;
+        context.location.hash=`#${route}`;
+        await fire(el,type,fn);
+      }
+    }
+  }
+  for (const t of Object.keys(api.currentRatings())) if (api.effectiveQbCorrection(t)!==0) violations.push(`${t} effective correction ${api.effectiveQbCorrection(t)}`);
+  if (JSON.stringify(api.ratingsWithActiveQBCarryover())!==JSON.stringify(api.currentRatings())) violations.push('active ratings differ from canonical ratings');
+  if (JSON.stringify(api.currentRatings())!==before) violations.push('canonical ratings changed during public interactions');
+  return {invoked,violations};
+}
+const a4=await behaviouralA4(a4Harness());
+for (const key of ['[data-team]:click','[data-nav]:click','[data-ratingview]:click','[data-ranksort]:click','[data-qb-mode]:click','[data-qb-weight]:input','#rankSearch:input','[data-labteam]:click','[data-remove]:change','[data-game]:click'])
+  ok(a4.invoked.has(key),`A4: behavioural pass invoked ${key} (${[...a4.invoked].join(', ')})`);
+ok(a4.invoked.size>=15,`A4: behavioural pass invoked a broad set of public handlers (${a4.invoked.size})`);
+ok(a4.violations.length===0,`A4: invoking public handlers never activates the internal QB-return state: ${a4.violations.join('; ')}`);
+for (const id of ['qbCarryoverQB','qbCarryoverElo','qbCarryoverValue','applyQBCarryover','clearQBCarryover']) ok(![...a4.invoked].some(k=>k.startsWith('#'+id+':')),`A4: nothing bound to #${id}`);
+ok(![...a4.invoked].some(k=>k.startsWith('[data-qbquick]')),'A4: no quick-button binding');
+// A4 negative control: the exact weakness found in validation. A public writer
+// injected into the reachable team-link handler must be caught by the same path.
+const teamHandler="document.querySelectorAll('[data-team]').forEach((b) => { b.onclick = () => { navigateRoute('teams/' + b.dataset.team); }; });";
+ok(app.includes(teamHandler),'A4 control: team-link handler found for injection');
+const injected=app.replace(teamHandler,"document.querySelectorAll('[data-team]').forEach((b) => { b.onclick = () => { Object.assign(S.qbCarryover,{ enabled:true, team:'KC', restoreElo:47.3 }); navigateRoute('teams/' + b.dataset.team); }; });");
+const a4Bad=await behaviouralA4(a4Harness({'assets/app.js':injected}),['rankings']);
+ok(a4Bad.invoked.has('[data-team]:click') && a4Bad.violations.some(v=>v.startsWith('[data-team]:click changed S.qbCarryover')) && a4Bad.violations.some(v=>/^KC effective correction 47\.3/.test(v)),`A4 control: injected public writer is detected (${a4Bad.violations.slice(0,2).join('; ')})`);
 
 // A5, A7, A8, A10, A13. Canonical outputs equal the reviewed pre-removal tree.
 const G=JSON.parse(fs.readFileSync(goldenPath,'utf8'));
