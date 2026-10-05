@@ -44,7 +44,15 @@ repeat capture was byte-identical.
   its own with the source SHA in the commit message and in this section.
 - Replacing the committed fixture requires that review before it is accepted.
 
-Fixture provenance log: Cycle 6, `fe09e67` (current).
+Fixture provenance log: Cycle 7 MD-04, `f984ed9` (current); Cycle 6, `fe09e67`.
+
+Cycle 7 recapture (2026-10-05, from an LF export of `f984ed9`, repeat capture
+byte-identical): only the twelve Roster Lab HTML hashes changed (`lab` KC, BUF,
+MIA and their first-removal variants, bundled and played). Lab option and
+checkbox values are now `team|pos|name` row keys, so the markup changes while the
+selected rows and their deltas do not. Every other golden value (ratings, active
+ratings, teams/units, forecasts, Monte Carlo scores, historical and V99 states,
+season projections, QB Rankings) is unchanged from the `fe09e67` capture.
 
 Cycle 7 MD-04 decision-free Roster Lab accounting/identity tranche (2026-10-05,
 `cycle7/claude-md04-accounting` from exact `b066de7`; not merged, pushed or
