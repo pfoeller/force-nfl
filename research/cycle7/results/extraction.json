@@ -1,4 +1,5 @@
 {
+  "canceled_play_source": "play_type == 'no_play'; pinned PBP has no no_play column",
   "counts": {
     "2024": {
       "excluded_state_rows": 10494,
@@ -20,7 +21,42 @@
     }
   },
   "derived_sha256": {
-    "unit_games.csv": "6c8c5a406b02b77d5ac6defb7291e9167dacaf50417c53ddca9c4baf4c3d6805",
-    "wp_states.csv": "e2f276b41a5337ff61a0b627a2641163dc555a2941f4c90c22bedccbddf66218"
-  }
+    "unit_games.csv": "e5012000c97773e4837dbeebfd675be2ffe1cd37daa1e0bf83abe1a5f10b6828",
+    "wp_states.csv": "e602798b5ff66ceeac5f15dd40a4efc22a4d16ad70296295f92d348577542ece"
+  },
+  "raw_inputs_verified": [
+    {
+      "bytes": 19362351,
+      "kind": "pbp",
+      "name": "pbp_2024.csv.gz",
+      "sha256": "23370d5d10f8104d80d46a1fc5e61f4f6f5a3263fe96fe2dd629913cfcb08c06",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2024.csv.gz",
+      "year": 2024
+    },
+    {
+      "bytes": 8470040,
+      "kind": "players",
+      "name": "players_2024.csv",
+      "sha256": "3ddc45a84f759aa348ce465ae001752c530575455717657cdfe1f8abfcdb4759",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2024.csv",
+      "year": 2024
+    },
+    {
+      "bytes": 19105296,
+      "kind": "pbp",
+      "name": "pbp_2025.csv.gz",
+      "sha256": "2f135887790a013fd004e609e37096bb4816d5cc80b9f19122e1bad478961978",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2025.csv.gz",
+      "year": 2025
+    },
+    {
+      "bytes": 8656387,
+      "kind": "players",
+      "name": "players_2025.csv",
+      "sha256": "e5e0615b3d96a3eaebfaee91e55afb4a4e7fe0caf057454177bcd7d6ad4bcfc2",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv",
+      "year": 2025
+    }
+  ],
+  "wp_score_source": "pre-play score_differential, home perspective by posteam"
 }

@@ -21,6 +21,18 @@ train,test=data(2024),data(2025)
 for x,y in [('qb_epa','protection'),('pass_epa','receiver_epa'),('rush_block_proxy','rb_epa'),('pass_rush','coverage'),('qb_epa','off_epa'),('receiver_epa','off_epa'),('rb_epa','off_epa')]:
  a,b=arr(test,x),arr(test,y);aa,bb=aggregate(test,a),aggregate(test,b)
  out['overlaps'][f'{x}/{y}']={'game_corr':corr(a,b),'season_team_corr':corr(np.array(list(aa.values())),np.array(list(bb.values()))),'paired_games':int((np.isfinite(a)&np.isfinite(b)).sum())}
+# All original pairs share/overlap plays; correlation is not attribution harm.
+out['overlap_interpretation']='shared-play/part-whole outcome arithmetic; no literal full-value double charge proven'
+out['disjoint_shared_play_diagnostics']={}
+for name,xkey,ykey in [('receiver_vs_non_wrte','receiver_epa','non_wrte_epa'),('clean_qb_vs_protection','clean_qb_epa','protection'),('nonstuff_rb_vs_notstuffed','nonstuff_rb_epa','rush_block_proxy'),('clean_coverage_vs_disruption','clean_coverage','pass_rush')]:
+ a,b=arr(test,xkey),arr(test,ykey)
+ out['disjoint_shared_play_diagnostics'][name]={'x':xkey,'y':ykey,'game_corr':corr(a,b),'paired_team_games':int((np.isfinite(a)&np.isfinite(b)).sum()),'boundary':'receiver/non-WRTE are disjoint attempts; other probes remove shared adverse plays but do not identify causal skill'}
+# Part-whole null: keep real receiver outcomes and weights; shuffle only the
+# disjoint non-WRTE game component. High r remains without shared QB signal.
+recv=arr(test,'receiver_epa');non=arr(test,'non_wrte_epa');share=arr(test,'receiver_n')/arr(test,'pass_n')
+assert np.allclose(share*recv+(1-share)*non,arr(test,'pass_epa'),rtol=1e-12,atol=1e-12)
+rng=np.random.default_rng(71005);null=np.array([corr(recv,share*recv+(1-share)*rng.permutation(non)) for _ in range(1000)])
+out['disjoint_shared_play_diagnostics']['part_whole_shuffle_null']={'seed':71005,'shuffles':1000,'mean_game_corr':float(null.mean()),'shuffle_interval_95':np.quantile(null,[.025,.975]).tolist(),'receiver_attempt_share':float(arr(test,'receiver_n').sum()/arr(test,'pass_n').sum()),'boundary':'permutation distribution, not a population-confidence interval; receiver component retained algebraically'}
 for name,xkey,ykey in [('qb_ol','protection','qb_epa'),('ol_rb','rush_block_proxy','rb_epa'),('rush_coverage','pass_rush','coverage'),('qb_receiver','pass_epa','receiver_epa')]:
  x,y=arr(train,xkey),arr(train,ykey);ok=np.isfinite(x)&np.isfinite(y);center=float(x[ok].mean());beta=float(np.mean((x[ok]-center)*(y[ok]-y[ok].mean()))/(np.var(x[ok])*1.5))
  xt,yt=arr(test,xkey),arr(test,ykey);shared=beta*(xt-center);residual=yt-shared
@@ -61,6 +73,9 @@ for name,probe in out['prototypes'].items():
  probe['season_residual_vs_bundled_current_elo_corr']=corr(np.array([vals[t] for t in teams]),np.array([by_team['LAR' if t=='LA' else t] for t in teams]))
 # Real 2025 prior-profile grades and current/core parent correlations, distinct from proxies.
 p=json.loads((HERE/'results/roster_and_bridge.json').read_text(encoding='utf-8'));profiles=p['profileRows'];out['bundled_prior_correlations']={}
+out['offline_bridge_materiality']=p['offlineBridgeMateriality']
+assert all(r['currentElo']==r['coreElo'] for r in profiles),'offline bridge must be zero in this pinned bundle'
+out['bundled_elo_boundary']='current equals core for all 32 offline teams; these correlations cannot measure production bridge magnitude'
 for key in ['qbIndex','receiverIndex','olIndex','rbIndex','coverageIndex','passRushIndex','runDefenseIndex','pointsScoredPerDriveIndex']:
  v=np.array([float(r[key]) if r[key]!=None else np.nan for r in profiles]);parent=np.array([r['currentElo'] for r in profiles]);out['bundled_prior_correlations'][key]={'parent_current_elo_corr':corr(v,parent),'available':int(np.isfinite(v).sum())}
 for a,b in [('qbIndex','olIndex'),('qbIndex','receiverIndex'),('olIndex','rbIndex'),('passRushIndex','coverageIndex')]:out['bundled_prior_correlations'][f'{a}/{b}']=corr(np.array([r[a] for r in profiles],dtype=float),np.array([r[b] for r in profiles],dtype=float))

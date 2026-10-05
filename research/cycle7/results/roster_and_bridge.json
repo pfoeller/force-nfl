@@ -308,25 +308,16 @@
   ],
   "nameAliasCases": [
     {
-      "team": "DAL",
-      "add": "J.Williams",
-      "removed": [],
-      "delta": 5.6,
-      "renderedDelta": "+5.6",
-      "forceDelta": 0.9628610729023208,
-      "expectedWinsDelta": 0.009297535535394141,
-      "uiReachable": true,
-      "offered": [
-        {
-          "name": "J.Williams",
-          "team": "DET",
-          "pos": "WR",
-          "impact": 5.9,
-          "confidence": "experimental",
-          "source": "2025 evaluative composite → heuristic Elo bridge",
-          "metric": 0.5518
-        }
-      ],
+      "team": "ARI",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
       "resolved": {
         "name": "J.Williams",
         "team": "DAL",
@@ -335,9 +326,2150 @@
         "confidence": "experimental",
         "source": "2025 evaluative composite → heuristic Elo bridge",
         "metric": 0.0798
-      }
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "ARI",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "ARI",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "ATL",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "ATL",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "ATL",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "BAL",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "BAL",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "BAL",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "BUF",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "BUF",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "CAR",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "CAR",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "CAR",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "CHI",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "CHI",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "CHI",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "CIN",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "CIN",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "CIN",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "CLE",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "CLE",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "CLE",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "DAL",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "DAL",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "DAL",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "DEN",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "DEN",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "DEN",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "DET",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "DET",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "GB",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "GB",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "GB",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "HOU",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "HOU",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "HOU",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "IND",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "IND",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "IND",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "JAX",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "JAX",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "JAX",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "KC",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "KC",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "KC",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "LAC",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "LAC",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "LAC",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "LAR",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "LAR",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "LAR",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "LV",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "LV",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "LV",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "MIA",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "MIA",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "MIA",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "MIN",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "MIN",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "MIN",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "NE",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "NE",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "NE",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "NO",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "NO",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "NO",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "NYG",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "NYG",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "NYG",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "NYJ",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "NYJ",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "NYJ",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "PHI",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "PHI",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "PHI",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "PIT",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "PIT",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "PIT",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "SEA",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "SEA",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "SEA",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "SF",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "SF",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "TB",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "TB",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "TB",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "TEN",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "TEN",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "TEN",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
+    },
+    {
+      "team": "WAS",
+      "offered": {
+        "name": "J.Williams",
+        "team": "DET",
+        "pos": "WR",
+        "impact": 5.9,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.5518
+      },
+      "resolved": {
+        "name": "J.Williams",
+        "team": "DAL",
+        "pos": "RB",
+        "impact": 5.6,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0798
+      },
+      "renderedDelta": "+5.6",
+      "delta": 5.6
+    },
+    {
+      "team": "WAS",
+      "offered": {
+        "name": "B.Robinson",
+        "team": "SF",
+        "pos": "RB",
+        "impact": 3.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.0324
+      },
+      "resolved": {
+        "name": "B.Robinson",
+        "team": "ATL",
+        "pos": "WR",
+        "impact": 0.5,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.2267
+      },
+      "renderedDelta": "+0.5",
+      "delta": 0.5
+    },
+    {
+      "team": "WAS",
+      "offered": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "WR",
+        "impact": 2.4,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.3364
+      },
+      "resolved": {
+        "name": "Ty.Johnson",
+        "team": "BUF",
+        "pos": "RB",
+        "impact": 8,
+        "confidence": "experimental",
+        "source": "2025 evaluative composite → heuristic Elo bridge",
+        "metric": 0.1338
+      },
+      "renderedDelta": "+8.0",
+      "delta": 8
     }
   ],
+  "identityReach": {
+    "offeredRows": [
+      "DET/WR/J.Williams",
+      "SF/RB/B.Robinson",
+      "BUF/WR/Ty.Johnson"
+    ],
+    "teamOptionCombinations": 93
+  },
+  "duplicateCheckbox": {
+    "team": "BUF",
+    "name": "Ty.Johnson",
+    "checkedRows": 2,
+    "resolved": {
+      "name": "Ty.Johnson",
+      "team": "BUF",
+      "pos": "RB",
+      "impact": 8,
+      "confidence": "experimental",
+      "source": "2025 evaluative composite → heuristic Elo bridge",
+      "metric": 0.1338
+    },
+    "delta": -8
+  },
   "duplicateNames": [
     "Ty.Johnson",
     "K.Monangai",
@@ -364,6 +2496,8 @@
       "renderedDelta": "+8.0",
       "forceDelta": 1.3755158184319143,
       "expectedWinsDelta": 0.008869660497070497,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true
     },
     {
@@ -374,6 +2508,8 @@
       "renderedDelta": "-39.0",
       "forceDelta": -7.039711191335741,
       "expectedWinsDelta": -0.053992424225755675,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true
     },
     {
@@ -384,6 +2520,8 @@
       "renderedDelta": "+56.0",
       "forceDelta": 9.628610729023386,
       "expectedWinsDelta": 0.06797301372729636,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true
     },
     {
@@ -396,6 +2534,8 @@
       "renderedDelta": "+64.0",
       "forceDelta": 11.0041265474553,
       "expectedWinsDelta": 0.07877933282052285,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true
     },
     {
@@ -408,6 +2548,8 @@
       "renderedDelta": "+7.9",
       "forceDelta": 1.3583218707015305,
       "expectedWinsDelta": 0.008757047045848232,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true
     },
     {
@@ -420,6 +2562,8 @@
       "renderedDelta": "+5.6",
       "forceDelta": 0.9628610729023208,
       "expectedWinsDelta": 0.006179117719404603,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true
     },
     {
@@ -430,6 +2574,8 @@
       "renderedDelta": "+9.8",
       "forceDelta": 1.6850068775790845,
       "expectedWinsDelta": 0.009685669422657028,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true
     },
     {
@@ -440,6 +2586,50 @@
       "renderedDelta": "+8.0",
       "forceDelta": 1.3755158184319143,
       "expectedWinsDelta": 0.008869660497070497,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
+      "uiReachable": true
+    },
+    {
+      "team": "NYJ",
+      "add": null,
+      "removed": [
+        "Tyrod Taylor"
+      ],
+      "delta": 119,
+      "renderedDelta": "+119.0",
+      "forceDelta": 20.58088214038296,
+      "expectedWinsDelta": 0.19075253521973057,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
+      "uiReachable": true
+    },
+    {
+      "team": "BAL",
+      "add": null,
+      "removed": [
+        "Cooper Rush"
+      ],
+      "delta": 67,
+      "renderedDelta": "+67.0",
+      "forceDelta": 12.093862815884478,
+      "expectedWinsDelta": 0.0776650040111968,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
+      "uiReachable": true
+    },
+    {
+      "team": "BUF",
+      "add": null,
+      "removed": [
+        "Ty.Johnson"
+      ],
+      "delta": -8,
+      "renderedDelta": "-8.0",
+      "forceDelta": -1.444043321299631,
+      "expectedWinsDelta": -0.012597828407203915,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true
     }
   ],
@@ -810,6 +3000,8 @@
       "renderedDelta": "+8.0",
       "forceDelta": 1.3755158184319143,
       "expectedWinsDelta": 0.008869660497070497,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "role",
       "candidateDelta": 0
@@ -824,6 +3016,8 @@
       "renderedDelta": "+8.0",
       "forceDelta": 1.3755158184319143,
       "expectedWinsDelta": 0.008869660497070497,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "usage",
       "candidateDelta": 0
@@ -836,6 +3030,8 @@
       "renderedDelta": "-39.0",
       "forceDelta": -7.039711191335741,
       "expectedWinsDelta": -0.053992424225755675,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "role",
       "candidateDelta": 0
@@ -848,6 +3044,8 @@
       "renderedDelta": "-39.0",
       "forceDelta": -7.039711191335741,
       "expectedWinsDelta": -0.053992424225755675,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "usage",
       "candidateDelta": 0
@@ -860,6 +3058,8 @@
       "renderedDelta": "+56.0",
       "forceDelta": 9.628610729023386,
       "expectedWinsDelta": 0.06797301372729636,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "role",
       "candidateDelta": 48
@@ -872,6 +3072,8 @@
       "renderedDelta": "+56.0",
       "forceDelta": 9.628610729023386,
       "expectedWinsDelta": 0.06797301372729636,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "usage",
       "candidateDelta": 48
@@ -886,6 +3088,8 @@
       "renderedDelta": "+64.0",
       "forceDelta": 11.0041265474553,
       "expectedWinsDelta": 0.07877933282052285,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "role",
       "candidateDelta": 48
@@ -900,6 +3104,8 @@
       "renderedDelta": "+64.0",
       "forceDelta": 11.0041265474553,
       "expectedWinsDelta": 0.07877933282052285,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "usage",
       "candidateDelta": 48
@@ -914,6 +3120,8 @@
       "renderedDelta": "+7.9",
       "forceDelta": 1.3583218707015305,
       "expectedWinsDelta": 0.008757047045848232,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "role",
       "candidateDelta": 0
@@ -928,6 +3136,8 @@
       "renderedDelta": "+7.9",
       "forceDelta": 1.3583218707015305,
       "expectedWinsDelta": 0.008757047045848232,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "usage",
       "candidateDelta": 0
@@ -942,6 +3152,8 @@
       "renderedDelta": "+5.6",
       "forceDelta": 0.9628610729023208,
       "expectedWinsDelta": 0.006179117719404603,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "role",
       "candidateDelta": 0
@@ -956,6 +3168,8 @@
       "renderedDelta": "+5.6",
       "forceDelta": 0.9628610729023208,
       "expectedWinsDelta": 0.006179117719404603,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "usage",
       "candidateDelta": 0
@@ -968,6 +3182,8 @@
       "renderedDelta": "+9.8",
       "forceDelta": 1.6850068775790845,
       "expectedWinsDelta": 0.009685669422657028,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "role",
       "candidateDelta": 2.333333333333333
@@ -980,6 +3196,8 @@
       "renderedDelta": "+9.8",
       "forceDelta": 1.6850068775790845,
       "expectedWinsDelta": 0.009685669422657028,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "usage",
       "candidateDelta": 3.1900000000000004
@@ -992,6 +3210,8 @@
       "renderedDelta": "+8.0",
       "forceDelta": 1.3755158184319143,
       "expectedWinsDelta": 0.008869660497070497,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "role",
       "candidateDelta": 4
@@ -1004,9 +3224,107 @@
       "renderedDelta": "+8.0",
       "forceDelta": 1.3755158184319143,
       "expectedWinsDelta": 0.008869660497070497,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
       "uiReachable": true,
       "kind": "usage",
       "candidateDelta": 5.2
+    },
+    {
+      "team": "NYJ",
+      "add": null,
+      "removed": [
+        "Tyrod Taylor"
+      ],
+      "delta": 119,
+      "renderedDelta": "+119.0",
+      "forceDelta": 20.58088214038296,
+      "expectedWinsDelta": 0.19075253521973057,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 0
+    },
+    {
+      "team": "NYJ",
+      "add": null,
+      "removed": [
+        "Tyrod Taylor"
+      ],
+      "delta": 119,
+      "renderedDelta": "+119.0",
+      "forceDelta": 20.58088214038296,
+      "expectedWinsDelta": 0.19075253521973057,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 0
+    },
+    {
+      "team": "BAL",
+      "add": null,
+      "removed": [
+        "Cooper Rush"
+      ],
+      "delta": 67,
+      "renderedDelta": "+67.0",
+      "forceDelta": 12.093862815884478,
+      "expectedWinsDelta": 0.0776650040111968,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": 0
+    },
+    {
+      "team": "BAL",
+      "add": null,
+      "removed": [
+        "Cooper Rush"
+      ],
+      "delta": 67,
+      "renderedDelta": "+67.0",
+      "forceDelta": 12.093862815884478,
+      "expectedWinsDelta": 0.0776650040111968,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": 0
+    },
+    {
+      "team": "BUF",
+      "add": null,
+      "removed": [
+        "Ty.Johnson"
+      ],
+      "delta": -8,
+      "renderedDelta": "-8.0",
+      "forceDelta": -1.444043321299631,
+      "expectedWinsDelta": -0.012597828407203915,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
+      "uiReachable": true,
+      "kind": "role",
+      "candidateDelta": -1.2000000000000002
+    },
+    {
+      "team": "BUF",
+      "add": null,
+      "removed": [
+        "Ty.Johnson"
+      ],
+      "delta": -8,
+      "renderedDelta": "-8.0",
+      "forceDelta": -1.444043321299631,
+      "expectedWinsDelta": -0.012597828407203915,
+      "expectedWinsDecisionUseful": false,
+      "remainingSnapshotGames": 1,
+      "uiReachable": true,
+      "kind": "usage",
+      "candidateDelta": -1.3599999999999994
     }
   ],
   "insurance": {
@@ -2251,9 +4569,110 @@
       ]
     }
   ],
+  "offlineBridgeMateriality": {
+    "teams": 32,
+    "zeroBridgeTeams": 32,
+    "maxAbsElo": 0,
+    "boundary": "offline live profiles equal priors; current Elo equals core Elo, not a measured production bridge"
+  },
+  "expectedWinsBoundary": "Not decision-useful: MIA has only one remaining fallback fixture game; not a season projection",
+  "prototypeBoundary": "60 mostly construction/invariant checks, not football validity; Math.max clamps pre and post values to synthetic replacement benchmark; mixed WR/TE/RB-alias bucket is not a realistic role allocation",
   "checks": 60,
   "sourceMutation": {
-    "signedRemovalDelta": -8
+    "signedRemovalDelta": -8,
+    "incumbentExclusion": [
+      {
+        "team": "MIA",
+        "add": null,
+        "removed": [
+          "Tua Tagovailoa"
+        ],
+        "before": 8,
+        "after": 8
+      },
+      {
+        "team": "BAL",
+        "add": "Kirk Cousins",
+        "removed": [],
+        "before": -39,
+        "after": -39
+      },
+      {
+        "team": "MIA",
+        "add": "Lamar Jackson",
+        "removed": [],
+        "before": 56,
+        "after": 56
+      },
+      {
+        "team": "MIA",
+        "add": "Lamar Jackson",
+        "removed": [
+          "Tua Tagovailoa"
+        ],
+        "before": 64,
+        "after": 56
+      },
+      {
+        "team": "MIA",
+        "add": null,
+        "removed": [
+          "O.Gordon"
+        ],
+        "before": 7.9,
+        "after": 7.9
+      },
+      {
+        "team": "MIA",
+        "add": null,
+        "removed": [
+          "M.Washington"
+        ],
+        "before": 5.6,
+        "after": 5.6
+      },
+      {
+        "team": "ARI",
+        "add": "D.Waller",
+        "removed": [],
+        "before": 9.8,
+        "after": 9.8
+      },
+      {
+        "team": "MIA",
+        "add": "Ty.Johnson",
+        "removed": [],
+        "before": 8,
+        "after": 8
+      },
+      {
+        "team": "NYJ",
+        "add": null,
+        "removed": [
+          "Tyrod Taylor"
+        ],
+        "before": 119,
+        "after": 119
+      },
+      {
+        "team": "BAL",
+        "add": null,
+        "removed": [
+          "Cooper Rush"
+        ],
+        "before": 67,
+        "after": 67
+      },
+      {
+        "team": "BUF",
+        "add": null,
+        "removed": [
+          "Ty.Johnson"
+        ],
+        "before": -8,
+        "after": -8
+      }
+    ]
   },
   "meta": {
     "sourceGenerated": "2026-07-16 10:48",

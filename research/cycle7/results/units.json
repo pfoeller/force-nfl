@@ -1,5 +1,6 @@
 {
   "boundary": "outcome proxies, not production grades or full-stack promotion evidence",
+  "bundled_elo_boundary": "current equals core for all 32 offline teams; these correlations cannot measure production bridge magnitude",
   "bundled_prior_correlations": {
     "coverageIndex": {
       "available": 32,
@@ -38,8 +39,56 @@
       "parent_current_elo_corr": null
     }
   },
+  "disjoint_shared_play_diagnostics": {
+    "clean_coverage_vs_disruption": {
+      "boundary": "receiver/non-WRTE are disjoint attempts; other probes remove shared adverse plays but do not identify causal skill",
+      "game_corr": 0.19034584986646458,
+      "paired_team_games": 544,
+      "x": "clean_coverage",
+      "y": "pass_rush"
+    },
+    "clean_qb_vs_protection": {
+      "boundary": "receiver/non-WRTE are disjoint attempts; other probes remove shared adverse plays but do not identify causal skill",
+      "game_corr": 0.19034584986646463,
+      "paired_team_games": 544,
+      "x": "clean_qb_epa",
+      "y": "protection"
+    },
+    "nonstuff_rb_vs_notstuffed": {
+      "boundary": "receiver/non-WRTE are disjoint attempts; other probes remove shared adverse plays but do not identify causal skill",
+      "game_corr": -0.12689362201198892,
+      "paired_team_games": 544,
+      "x": "nonstuff_rb_epa",
+      "y": "rush_block_proxy"
+    },
+    "part_whole_shuffle_null": {
+      "boundary": "permutation distribution, not a population-confidence interval; receiver component retained algebraically",
+      "mean_game_corr": 0.9049871855055895,
+      "receiver_attempt_share": 0.7810357739501124,
+      "seed": 71005,
+      "shuffle_interval_95": [
+        0.8898991118167762,
+        0.9174430466548603
+      ],
+      "shuffles": 1000
+    },
+    "receiver_vs_non_wrte": {
+      "boundary": "receiver/non-WRTE are disjoint attempts; other probes remove shared adverse plays but do not identify causal skill",
+      "game_corr": 0.0763619535149664,
+      "paired_team_games": 544,
+      "x": "receiver_epa",
+      "y": "non_wrte_epa"
+    }
+  },
   "n_test": 544,
   "n_train": 544,
+  "offline_bridge_materiality": {
+    "boundary": "offline live profiles equal priors; current Elo equals core Elo, not a measured production bridge",
+    "maxAbsElo": 0,
+    "teams": 32,
+    "zeroBridgeTeams": 32
+  },
+  "overlap_interpretation": "shared-play/part-whole outcome arithmetic; no literal full-value double charge proven",
   "overlaps": {
     "pass_epa/receiver_epa": {
       "game_corr": 0.9380660662104178,

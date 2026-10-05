@@ -3,39 +3,49 @@
     "model": {
       "failed": 0,
       "passed": 49,
-      "seconds": 45.13
+      "seconds": 42.11
     },
     "release": {
       "failed": 0,
       "passed": 17,
-      "seconds": 12.6
+      "seconds": 11.15
     },
     "safe": {
       "failed": 0,
       "passed": 145,
-      "seconds": 210.25
+      "seconds": 196.79
     }
   },
   "base": "cf391daa2d43a44fe9d742ea0b96cc537d1a7136",
   "catalog_entries": 257,
-  "corrupt_raw_input_control": "PASS hash mismatch refused before fixture writes",
+  "correction_controls": [
+    "pre-play home-perspective score source AST/assignment and poisoned-post-score mutations",
+    "93 reachable identity failures; BUF duplicate checkbox first-row removal",
+    "incumbent exclusion 64 to 56; other ten cases unchanged",
+    "32 offline zero bridges; current Elo equals core Elo",
+    "five disjoint/shared-play/null diagnostics; seeded 1000-permutation null",
+    "future-final prior mutation and neutral-prior identity retained",
+    "no production/runtime/provider/tests/generated changes"
+  ],
+  "correction_parent": "24b0e5331490d1eb55730abb979471f7fbf61651",
+  "corrupt_raw_input_control": "PASS same-byte-length corrupted raw PBP refused by SHA before fixture writes",
   "date": "2026-10-04",
   "default_exclusions": 112,
   "environment": {
     "numpy": "2.3.5",
     "python": "3.12.14"
   },
-  "initial_non_authoritative_archive_safe": "144/145; known V77 CRLF timing-source assertion; resolved by explicit scratch-only LF normalization",
-  "inventory_catalog": "PASS",
+  "initial_non_authoritative_archive_safe": "Historical investigation run: 144/145, known V77 CRLF assertion. Correction validation exported with core.autocrlf=false and verified LF; all 145 pass.",
+  "inventory_catalog": "PASS correction LF scratch, catalog and discovered inventory match",
   "links": "PASS 190 local links/anchors",
   "main_and_remote_at_handoff": "cf391daa2d43a44fe9d742ea0b96cc537d1a7136 (remote queried directly)",
-  "native_research_checks": "PASS: twice byte-identical against saved evidence, after clock/UTF-8/identity audit",
+  "native_research_checks": "PASS corrected twice byte-identical against saved evidence",
   "production_diff": "No assets/public/model/data/server/Worker/test/config/snapshot changes",
-  "public_build": "PASS",
-  "public_parity": "PASS (scratch only; no production/generated edits)",
-  "research": "PASS: all six scripts, two byte-identical diagnostic reruns, pinned extraction reproduced, syntax and mutation/negative controls",
-  "review": "adversarial independent review pending; no feature promoted",
-  "roadmap_governance": "PASS only selected MD blocks + one history row",
+  "public_build": "PASS correction LF scratch",
+  "public_parity": "PASS no diff, scratch clean",
+  "research": "PASS corrected extraction twice byte-identical against saved fixtures/results; all four producers twice byte-identical in native and LF worktrees; pinned raw bytes/URLs/SHA verified; syntax and mutation controls",
+  "review": "Claude adversarial review: minor research corrections required; nine bounded corrections applied; targeted re-review pending; no feature promoted",
+  "roadmap_governance": "PASS only selected pending-review wording and Cycle7 history row relocation/evidence wording; no direction/priority/phase/owner decision changed",
   "roadmap_ids": 47,
   "suite_memberships": {
     "model": 49,
