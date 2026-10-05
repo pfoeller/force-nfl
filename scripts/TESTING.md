@@ -29,8 +29,8 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 ### Golden fixture: `scripts/fixtures/ux19_golden.json`
 
-This fixture is the independently reviewed UX-19 parity baseline. It was captured
-from the reviewed pre-removal tree `fe09e673783814eb9367add2c2f50253b02965d9`
+This fixture records UX-19 production-output parity. Its original independently
+reviewed baseline was captured from the reviewed pre-removal tree `fe09e673783814eb9367add2c2f50253b02965d9`
 (Cycle 6) with `node scripts/test_ux19_qb_return_removal.mjs --capture`, and a
 repeat capture was byte-identical.
 
@@ -44,7 +44,48 @@ repeat capture was byte-identical.
   its own with the source SHA in the commit message and in this section.
 - Replacing the committed fixture requires that review before it is accepted.
 
-Fixture provenance log: Cycle 7 MD-04, `f984ed9` (current); Cycle 6, `fe09e67`.
+Fixture provenance log: Cycle 8 MD-07, `cdcfa8de4eed10f26be0c28b05583c4240586537` (current authorized transition, independent fixture review pending); Cycle 7 MD-04, `f984ed9`; Cycle 6, `fe09e67`.
+
+Cycle 8 MD-07 fixture-only transition (2026-10-05): captured with
+`node scripts/test_ux19_qb_return_removal.mjs --capture` from a clean LF export
+of accepted implementation `cdcfa8de4eed10f26be0c28b05583c4240586537`.
+A second clean export produced byte-identical capture. The owner separately
+authorized this fixture transition after Claude independently verified the
+V115 LIVE_FITTED implementation with no correction required and found no
+unrelated movement. The named Codex validation scratch was moved out of main;
+supplied attachments were preserved. Fixture acceptance remains PENDING
+independent review; this note grants no merge, push or deployment authority.
+
+Whole-tree comparison covers 2,248 leaf fields with exactly four changes:
+
+| Bundled field | Previous | Captured | Classification |
+| --- | ---: | ---: | --- |
+| DEN RB (`teams.DEN.units[4]`) | 27.36350417032484 | 31.40625 | Direct authorized RB output |
+| KC RB (`teams.KC.units[4]`) | 16.638284326313986 | 18.281250000000004 | Direct authorized RB output |
+| DEN offense (`teams.DEN.units[0]`) | 51.227465379671074 | 52.521792294828295 | Expected derived offense output |
+| KC offense (`teams.KC.units[0]`) | 47.03958027579622 | 47.56498243187875 | Expected derived offense output |
+
+Existing offense weights (.20 scoring/drive, .30 QB, .15 receivers, .15 OL,
+.20 RB) give raw-composite deltas .8085491659350339 for DEN and
+.3285931347372042 for KC. The unchanged softness-35 normalized tanh calibration
+reproduces both old/new offense values; only the RB input changes.
+Played state has zero changes. All other 2,244 leaves—including ratings,
+active ratings, games/forecasts, projection, Lab, QB Rankings and other units—
+match exactly. These are bundled fixture values, not the separate frozen
+live-snapshot impact bracket.
+
+Fixture SHA-256: previous
+`dccab41d90066edbcff92710ee3ec76af7c0f91d715e82a8c967719f4cf63379`;
+captured
+`c8b1390dcd1033ad40d40b464ed60a5d097e0da578abc5768d556d4fd41eb24a`.
+The complete parent/candidate fixture comparison is reproducible with
+`git diff cdcfa8de4eed10f26be0c28b05583c4240586537 -- scripts/fixtures/ux19_golden.json`;
+normal UX-19 runs read the recaptured fixture without changing test logic.
+
+Authoritative LF post-transition validation: inventory/catalog 259; safe
+147/147; model 50/50; release 17/17; QB 28/28; snapshot 6/6; server 30/30.
+The unchanged focused V115 RB prior-frame test passed 1,060 checks. No gate,
+test logic, catalog membership or production source changed.
 
 Cycle 7 recapture (2026-10-05, from an LF export of `f984ed9`, repeat capture
 byte-identical): only the twelve Roster Lab HTML hashes changed (`lab` KC, BUF,
@@ -519,10 +560,12 @@ Catalog 259; safe 147; model 50; default exclusions 112.
 Canonical `scripts/build_public.py` regenerates the tracked model mirror.
 Implementation review/owner acceptance pending; no merge/push/deploy.
 
-LF authoritative result: inventory 259; safe 146/147; model 50/50; release
+LF authoritative result at implementation source `cdcfa8d`: inventory 259;
+safe 146/147; model 50/50; release
 17/17; QB 28/28; snapshot 6/6; server 30/30. The sole safe failure is
 `test_ux19_qb_return_removal.mjs` A5/A13 bundled teams unchanged, because the
 golden pins pre-correction RB/derived offense unit grades. It passes on parent
 `207f4b5`; this is not pre-existing. The fixture/test is unchanged.
-No recapture or exclusion performed; normal gate remains blocked pending
-the existing separately reviewed fixture transition.
+At implementation source `cdcfa8d` no recapture or exclusion was performed;
+normal safe was blocked. The subsequent separately authorized fixture-only
+transition is recorded in the Golden fixture section above.
