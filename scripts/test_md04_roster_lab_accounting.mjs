@@ -162,4 +162,33 @@ for (const [label,edits] of Object.entries(mutations)) {
   ok(failures>0,`mutation ${label}: detected by the identity/accounting contract (${failures} failing cases)`);
 }
 
+// Duplicate FULL-key control (validation R1): a future dataset with two rows
+// sharing team, position and name must make both addition and removal abstain.
+const modelData=fs.readFileSync('data/model-data.js','utf8');
+const wright=row('MIA','J.Wright','RB'), dupKey=key(wright);
+const duplicated=modelData+`\n;(function(){const P=window.MODEL_DATA.players;const r=P.find(p=>p.team==='MIA'&&p.pos==='RB'&&p.name==='J.Wright');P.push({...r,impact:-2});})();\n`;
+const removedOld=['const removed = teamPlayers.filter((p) => removedRows.has(p));','const removed = teamPlayers.filter((p) => S.scenario.removed.has(labPlayerKey(p)));'];
+const checkedOld=["${removed.includes(p) ? 'checked' : ''}","${S.scenario.removed.has(labPlayerKey(p)) ? 'checked' : ''}"];
+function duplicateRun(source=app) {
+  const m=build({'data/model-data.js':duplicated,'assets/app.js':source}), mS=m.api.S, MP=m.context.window.MODEL_DATA.players;
+  const before=JSON.stringify(m.api.currentRatings());
+  mS.team='MIA'; mS.scenario={add:null,removed:new Set([dupKey])}; const rmHtml=m.api.lab();
+  mS.team='BUF'; mS.scenario={add:dupKey,removed:new Set()}; const addHtml=m.api.lab();
+  return {rows:MP.filter(p=>m.api.labPlayerKey(p)===dupKey).length,lookup:m.api.labPlayer(dupKey),removal:rawDelta(rmHtml),addition:rawDelta(addHtml),
+    checked:(rmHtml.match(new RegExp(`data-remove="${dupKey.replace(/[.|]/g,'\\$&')}" checked`,'g'))||[]).length,boxes:(rmHtml.match(new RegExp(`data-remove="${dupKey.replace(/[.|]/g,'\\$&')}"`,'g'))||[]).length,
+    canonicalSame:JSON.stringify(m.api.currentRatings())===before && before===canonical};
+}
+{
+  const d=duplicateRun();
+  eq(d.rows,2,'R1: mutated fixture has two rows with the same full key');
+  eq(d.lookup,null,'R1: unique lookup rejects the ambiguous full key');
+  eq(d.addition,0,'R1: addition through the ambiguous key has no effect');
+  eq(d.removal,0,'R1: removal through the ambiguous key has no effect');
+  ok(d.boxes===2 && d.checked===0,'R1: the public removal path removes and checks neither duplicate row');
+  ok(d.canonicalSame,'R1: canonical ratings unchanged with the duplicate fixture');
+  for (const [from] of [removedOld,checkedOld]) ok(app.includes(from),'R1 control: current removal source anchor present');
+  const old=duplicateRun(app.replace(removedOld[0],removedOld[1]).replace(checkedOld[0],checkedOld[1]));
+  ok(old.removal!==0 && old.checked===2,`R1 control: the old removal implementation removes both rows (${old.removal}, ${old.checked} checked) and fails this regression`);
+}
+
 console.log(`MD-04 Roster Lab accounting: ${checks} checks passed`);

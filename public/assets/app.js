@@ -4129,7 +4129,10 @@
     // One transaction: apply removals first, then evaluate the single addition
     // against the remaining room. Impacts and the forced-replacement rule for
     // QB additions are unchanged; only the incumbent now excludes removed rows.
-    const removed = teamPlayers.filter((p) => S.scenario.removed.has(labPlayerKey(p)));
+    // Removal keys resolve through the same unique-row rule as the addition, so
+    // an ambiguous or unknown key removes nothing.
+    const removedRows = new Set([...S.scenario.removed].map(labPlayer));
+    const removed = teamPlayers.filter((p) => removedRows.has(p));
     const remaining = teamPlayers.filter((p) => !removed.includes(p));
     let delta = 0;
     removed.forEach((p) => { delta -= p.impact; });
@@ -4151,7 +4154,7 @@
         <div class="control"><label>Team</label><select id="labTeam">${Object.keys(D.teams).sort().map((x) => `<option ${x === t ? 'selected' : ''}>${x}</option>`).join('')}</select></div>
         <div class="control"><label>Add / trade for a player</label><select id="addPlayer"><option value="">No addition</option>${others.map((p) => `<option value="${labPlayerKey(p)}" ${S.scenario.add === labPlayerKey(p) ? 'selected' : ''}>${p.name} · ${p.pos} · ${p.team} (${p.impact >= 0 ? '+' : ''}${p.impact})</option>`).join('')}</select></div>
         <div class="card-head"><h3>Remove / injury</h3><span class="chip">toggle players</span></div>
-        <div class="roster-list">${teamPlayers.map((p) => `<label class="player"><input type="checkbox" data-remove="${labPlayerKey(p)}" ${S.scenario.removed.has(labPlayerKey(p)) ? 'checked' : ''}><span>${p.name}<small>${p.pos} · ${p.confidence === 'experimental' ? 'experimental' : 'validated QB signal'}</small></span><span class="impact">${p.impact >= 0 ? '+' : ''}${p.impact}</span></label>`).join('') || '<div class="loading">No player rows in base snapshot</div>'}</div>
+        <div class="roster-list">${teamPlayers.map((p) => `<label class="player"><input type="checkbox" data-remove="${labPlayerKey(p)}" ${removed.includes(p) ? 'checked' : ''}><span>${p.name}<small>${p.pos} · ${p.confidence === 'experimental' ? 'experimental' : 'validated QB signal'}</small></span><span class="impact">${p.impact >= 0 ? '+' : ''}${p.impact}</span></label>`).join('') || '<div class="loading">No player rows in base snapshot</div>'}</div>
       </aside><section>
         <div class="card scenario-hero">
           <div class="scenario-stat"><span>FORCE Score</span><strong>${fmt(score(r + delta))}</strong>${ratingBar(r + delta)}<div class="change ${delta >= 0 ? 'positive' : 'negative'}">${delta >= 0 ? '+' : ''}${fmt(score(r + delta) - score(r))}</div></div>

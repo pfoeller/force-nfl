@@ -16,6 +16,16 @@ python -B research/cycle7/check.py
 
 `check.py` repeats the four commands twice and verifies committed numeric evidence by LF-normalized bytes and fixture hashes (tolerating Git CRLF checkout conversion), important assertions and syntax. Use the Python configured for the project; no package installation is required in the supplied bundled runtime. The observed environment is recorded in results/validation.json; floating-point last-bit differences on another NumPy/BLAS platform should be investigated and compared with tolerance, not silently recaptured.
 
+## Historical Roster Lab baseline
+
+The Roster Lab reproduction was captured against the reviewed pre-implementation baseline `b066de747f20e1f2ae3872f554496eb8ba5b67cd`. `roster.mjs` reproduces the **pre-tranche** public control representation (bare player names as option, checkbox and lookup values) and the pathology inventory recorded in `results/roster_and_bridge.json`.
+
+The owner-authorized MD-04 decision-free tranche (`cycle7/claude-md04-accounting`) intentionally changed those control values to `team|pos|name` row keys. Running `roster.mjs`, and therefore `check.py`, directly on a post-tranche tree is expected to fail the "actual rendering agrees to its one-decimal precision" assertion. That failure is a baseline mismatch, not corrupted research.
+
+- To reproduce the original research, use an LF-clean export or worktree of `b066de7` (for example `git -c core.autocrlf=false archive b066de7 | tar -x -C <scratch>`), then run the commands above there.
+- Do not rewrite or recapture the historical fixtures or results because the public control representation changed. The Cycle 7 findings describe the baseline they were captured on.
+- Current Roster Lab behaviour is validated by `scripts/test_md04_roster_lab_accounting.mjs` and the current production test suites, not by this package.
+
 ## Inputs and extraction
 
 `inputs.json` pins four public nflverse files by URL, bytes and SHA-256 (2024/2025 regular-season PBP and weekly player positions). Raw downloads remain outside Git. For independent extraction, retrieve those URLs into a scratch directory, verify pins, then:
