@@ -16,8 +16,8 @@
   "rb_prior_intent/history.json": "1df92cce292c6b33f47eacbbd0a6813b588b5af000d539b3fc6486da18765502",
   "rb_prior_intent/history.md": "5905462ccdc7ef8337c84031c6df4af4b607c1ecd9d226ecd5a1576e7d9c3e87",
   "rb_prior_intent/intent_matrix.json": "d927eb3b61eb03a2dac6b68c56563d60aeba7a5a9eb1ee23e2b6051b97199fbc",
-  "rb_prior_intent/README.md": "5e2b5f7fc4df67582dc294a425585219742a3ed018d36e4b7266ac225a680888",
-  "README.md": "a0fd81dd5d04eb609a55d699bdfa018cc934b206da7592990e411288396c9b30",
+  "rb_prior_intent/README.md": "5edb5b48b12833838bfe40e9fd063117b3d091995e0a0a1df3dc7c7167a3b618",
+  "README.md": "d2cfacfacad64c58ed538754d6294ccfe669326fb4e3445c430fa7b7fc14833b",
   "results/benchmark_alignment.json": "1b7858f95c56ab56e1d503dffd818a38da66d1338c623144a2b6940f600a5130",
   "results/compression_robustness.json": "6b41bbd324fa337cd59281ca8518c387af00bfe9df87dab05935cfd070ce3c07",
   "results/historical_availability.json": "6ec44fbbc84bd11f512367ff08be622609948345bc4c5ba8917b9c27ed95edce",
@@ -29,5 +29,5 @@
   "results/unit_summary.json": "e950168c67653b609917e893ba2cf4ce36ced2d9b2e222de54f4527ffb07d875",
   "semantic_contract.mjs": "d13a0688a43cf4ad4780fae416df98b60524de19e970601c4d181b16e7d517a3",
   "stats.mjs": "45feebea12b9f9396419725b9cefd0ce0611e45e2a7aa10cf7098ebebb8a6058",
-  "rb_prior_intent/IMPLEMENTATION.md": "313e484f3f684b56ce838fb7654f89fb1898a445874799a1667c6af00ba74031"
+  "rb_prior_intent/IMPLEMENTATION.md": "776d65383a9155aff9018420a4f97d2353237591819bce9fbd1171269f438120"
 }

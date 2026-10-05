@@ -21,7 +21,7 @@ profile-only calls; UNADJUSTED mainly reflects callback leakage. Ranking
 aesthetics, smaller movement, Walker/KC appearance and benchmark fit did not
 select this frame.
 
-**Owner acceptance / integration readiness — 2026-10-05:** Owner ACCEPTED implementation/source `cdcfa8de4eed10f26be0c28b05583c4240586537` and UX-19 fixture transition `e35145aac5a66bb141d6dc8593b2902d0fc52503` after independent implementation and fixture reviews PASSED. Claude's targeted fixture verdict was **A. FIXTURE TRANSITION VERIFIED — READY FOR OWNER ACCEPTANCE**; required corrections NONE. Current execution: **REVIEW / INVESTIGATE; ACCEPTED — READY FOR INTEGRATION** onto local main; Priority unset; MD-07 NOT COMPLETE. Merged/integrated NO; pushed NO; deployed NO. Acceptance introduces no follow-on research, implementation, integration or deployment authority.
+**Owner acceptance / integration readiness — 2026-10-05:** Owner ACCEPTED implementation/source `cdcfa8de4eed10f26be0c28b05583c4240586537` and UX-19 fixture transition `e35145aac5a66bb141d6dc8593b2902d0fc52503` after independent implementation and fixture reviews PASSED. Claude's targeted fixture verdict was **A. FIXTURE TRANSITION VERIFIED — READY FOR OWNER ACCEPTANCE**; required corrections NONE. Execution at acceptance: **REVIEW / INVESTIGATE; ACCEPTED — READY FOR INTEGRATION** onto local main; Priority unset; MD-07 NOT COMPLETE. Merged/integrated NO; pushed NO; deployed NO. Superseded by local integration onto `main` on 2026-10-05 (fast-forward to `e840fad`, not pushed or deployed); MD-07 execution is now COMPLETE for the authorized bounded tranches only. Acceptance introduces no follow-on research, implementation, integration or deployment authority.
 
 At implementation/source `cdcfa8de4eed10f26be0c28b05583c4240586537`,
 acceptance was pending independent review and the normal safe gate was **146/147**:
@@ -148,10 +148,11 @@ those three default-excluded failures are pre-existing, not repaired.
 
 ## Review boundary
 
-MD-07 REVIEW / INVESTIGATE, Priority unset, NOT COMPLETE; both research
-tranches OWNER ACCEPTED; owner frame LIVE_FITTED; correction completed,
-independent implementation/fixture reviews PASSED; owner ACCEPTED 2026-10-05;
-required corrections NONE; ACCEPTED — READY FOR INTEGRATION. MD-05 REVIEW/BANKED, MD-06 REVIEW /
+MD-07 execution COMPLETE for the authorized bounded tranches only; Decision
+INVESTIGATE; Priority unset; both research tranches OWNER ACCEPTED; owner frame
+LIVE_FITTED; correction completed, independent implementation/fixture reviews
+PASSED; owner ACCEPTED 2026-10-05; required corrections NONE; integrated onto
+local main 2026-10-05 by fast-forward, not pushed or deployed. MD-05 REVIEW/BANKED, MD-06 REVIEW /
 NOT AUTHORIZED, MD-08 and UX-41 PLANNED / NOT AUTHORIZED preserved.
 Historical research matrix, inputs and all measurement results are retained.
 No merge, push, deployment, new capture or unrelated work.

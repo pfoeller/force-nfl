@@ -59,8 +59,9 @@ supplied attachments were preserved. Independent fixture review PASSED:
 **A. FIXTURE TRANSITION VERIFIED — READY FOR OWNER ACCEPTANCE**. The owner
 then ACCEPTED implementation/source `cdcfa8de4eed10f26be0c28b05583c4240586537`
 and fixture transition `e35145aac5a66bb141d6dc8593b2902d0fc52503` on 2026-10-05;
-required corrections NONE. Current state: ACCEPTED — READY FOR INTEGRATION;
-not merged, pushed or deployed. This note grants no follow-on or release authority.
+required corrections NONE. State at acceptance: ACCEPTED — READY FOR INTEGRATION.
+Integrated onto local main by fast-forward on 2026-10-05; not pushed or deployed.
+This note grants no follow-on or release authority.
 
 Whole-tree comparison covers 2,248 leaf fields with exactly four changes:
 
@@ -566,8 +567,9 @@ grades/games; no private-feed replay or total FORCE/forecast claim.
 Catalog 259; safe 147; model 50; default exclusions 112.
 Canonical `scripts/build_public.py` regenerates the tracked model mirror.
 Independent implementation/fixture reviews PASSED; owner ACCEPTED 2026-10-05;
-required corrections NONE; ACCEPTED — READY FOR INTEGRATION.
-MD-07 REVIEW / INVESTIGATE, Priority unset, NOT COMPLETE; no merge/push/deploy.
+required corrections NONE; integrated onto local main 2026-10-05 (fast-forward).
+MD-07 execution COMPLETE for the authorized bounded tranches only; Decision
+INVESTIGATE; Priority unset; not pushed or deployed.
 
 Historical LF authoritative result at implementation source `cdcfa8d`,
 before the subsequently accepted fixture transition: inventory 259;
