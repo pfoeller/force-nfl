@@ -1,0 +1,701 @@
+{
+  "diagnosis": {
+    "qbIndex": {
+      "classification": "A. RAW-SIGNAL COMPRESSION",
+      "stabilizationIqrRatio": 0.48913054791641275,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "receiverIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": 0.5863988505937808,
+      "currentVsHistoricalRawIqrRatio": 1.4465002681284933,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "olIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": null,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "rbIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": 0.5485120735616749,
+      "currentVsHistoricalRawIqrRatio": 1.3258896918067367,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "coverageIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": null,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "passRushIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": null,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "runDefenseIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": null,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "pointsScoredPerDriveIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": null,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "pointsAllowedPerDriveIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": null,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "offenseComposite": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": null,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "defenseIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": null,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    },
+    "offenseIndex": {
+      "classification": "D. NEITHER",
+      "stabilizationIqrRatio": null,
+      "currentVsHistoricalRawIqrRatio": null,
+      "normalizationConcern": "NONE",
+      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+    }
+  },
+  "matrix": [
+    {
+      "key": "qbIndex",
+      "label": "QB play",
+      "displaySd": 23.674186497030618,
+      "displayMiddle80": 61.87201798541621,
+      "rawSd": 0.18473365837756142,
+      "rawIqr": 0.2891460217437444,
+      "clustering": "VERY WIDE",
+      "strongestAdjacent": {
+        "pair": [
+          "pointsScoredPerDriveIndex",
+          "qbIndex"
+        ],
+        "r": 0.8501560045390025
+      },
+      "core": {
+        "n": 32,
+        "pearson": 0.5509340066100012,
+        "spearman": 0.5216275659824047
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.9101949537901685,
+        "spearman": 0.9277859237536656
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "qbEpaPerPlay",
+          "r": 0.9379697704893699,
+          "boundary": "ingredient"
+        },
+        {
+          "key": "qbAnyA",
+          "r": 0.9160305834454315,
+          "boundary": "ingredient"
+        },
+        {
+          "key": "qbPassSuccessRate",
+          "r": 0.8540956737875975,
+          "boundary": "ingredient"
+        },
+        {
+          "key": "qbCpoe",
+          "r": 0.7162952583326625,
+          "boundary": "ingredient"
+        }
+      ],
+      "bankResult": [
+        {
+          "team": "SF",
+          "result": "PASS"
+        }
+      ],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "normalization": "NONE",
+      "rawDiagnosis": "A. RAW-SIGNAL COMPRESSION"
+    },
+    {
+      "key": "receiverIndex",
+      "label": "Receivers",
+      "displaySd": 19.815452760252366,
+      "displayMiddle80": 46.56566315670938,
+      "rawSd": 0.09802156703238026,
+      "rawIqr": 0.1323534112160164,
+      "clustering": "REASONABLY DISCRIMINATIVE",
+      "strongestAdjacent": {
+        "pair": [
+          "qbIndex",
+          "receiverIndex"
+        ],
+        "r": 0.7560165250593802
+      },
+      "core": {
+        "n": 32,
+        "pearson": 0.43772352803475356,
+        "spearman": 0.38343108504398826
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.7599244563420956,
+        "spearman": 0.7741935483870968
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "wrteYardsPerTarget",
+          "r": 0.6727398601363426,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "wrteFirstDownRate",
+          "r": 0.8505057271244013,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "recvEpa",
+          "r": 0.8970523777057096,
+          "boundary": "pre-residual ingredient"
+        }
+      ],
+      "bankResult": [
+        {
+          "team": "SF",
+          "result": "PASS"
+        },
+        {
+          "team": "PHI",
+          "result": "PASS"
+        },
+        {
+          "team": "CHI",
+          "result": "PASS"
+        }
+      ],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "B. MEASUREMENT APPEARS DIRECTIONALLY SOUND BUT CONTEXT-INDEPENDENCE IS WEAK",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "olIndex",
+      "label": "Offensive line",
+      "displaySd": 17.752207871004455,
+      "displayMiddle80": 44.94234005078125,
+      "rawSd": 0.02921556171151265,
+      "rawIqr": 0.03384699343660963,
+      "clustering": "REASONABLY DISCRIMINATIVE",
+      "strongestAdjacent": {
+        "pair": [
+          "rbIndex",
+          "olIndex"
+        ],
+        "r": 0.3933796679479792
+      },
+      "core": {
+        "n": 32,
+        "pearson": 0.24824550682810206,
+        "spearman": 0.2437683284457478
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.37966888964296686,
+        "spearman": 0.29802052785923755
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "sackAllowed",
+          "r": 0.48302351925616194,
+          "boundary": "adjacent non-formula outcome"
+        },
+        {
+          "key": "pbpPressureAllowedRate",
+          "r": 0.9749251807880455,
+          "boundary": "ingredient"
+        },
+        {
+          "key": "teamRushYpc",
+          "r": 0.39124762408006625,
+          "boundary": "scope contrast, not pass-protection ground truth"
+        }
+      ],
+      "bankResult": [
+        {
+          "team": "SF",
+          "result": "PASS"
+        }
+      ],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "rbIndex",
+      "label": "RB",
+      "displaySd": 18.614690505481747,
+      "displayMiddle80": 46.89049490544401,
+      "rawSd": 0.10285977210001508,
+      "rawIqr": 0.1444170587081624,
+      "clustering": "REASONABLY DISCRIMINATIVE",
+      "strongestAdjacent": {
+        "pair": [
+          "pointsScoredPerDriveIndex",
+          "rbIndex"
+        ],
+        "r": 0.4489316283420966
+      },
+      "core": {
+        "n": 32,
+        "pearson": 0.38995850191123754,
+        "spearman": 0.4145894428152493
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.5009433860530053,
+        "spearman": 0.42045454545454547
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "rbYpc",
+          "r": 0.7582829856528552,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "rbFirstDownRate",
+          "r": 0.847305398806546,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "rbExplosive20Rate",
+          "r": 0.49124078448927533,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "rbRushEpa",
+          "r": 0.8571081663063549,
+          "boundary": "ingredient"
+        },
+        {
+          "key": "rbReceivingYardsPerTarget",
+          "r": 0.44914515716816217,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "bankResult": [
+        {
+          "team": "BUF",
+          "result": "PASS"
+        },
+        {
+          "team": "KC",
+          "result": "PASS"
+        },
+        {
+          "team": "JAX",
+          "result": "PASS"
+        },
+        {
+          "team": "TEN",
+          "result": "PASS"
+        }
+      ],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "B. MEASUREMENT APPEARS DIRECTIONALLY SOUND BUT CONTEXT-INDEPENDENCE IS WEAK",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "coverageIndex",
+      "label": "Coverage",
+      "displaySd": 23.948176422862392,
+      "displayMiddle80": 64.67496217612207,
+      "rawSd": 0.1421039298007453,
+      "rawIqr": 0.14294506071641205,
+      "clustering": "VERY WIDE",
+      "strongestAdjacent": {
+        "pair": [
+          "pointsAllowedPerDriveIndex",
+          "coverageIndex"
+        ],
+        "r": 0.8217155358335021
+      },
+      "core": {
+        "n": 32,
+        "pearson": 0.6208888571713065,
+        "spearman": 0.6085043988269795
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.8035012512124919,
+        "spearman": 0.7525659824046921
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "coverageSuccessAllowed",
+          "r": 0.807947203338516,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "passYardsAllowedPerAttempt",
+          "r": 0.6795513160830241,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "oppPassEpa",
+          "r": 0.932535040484077,
+          "boundary": "ingredient"
+        }
+      ],
+      "bankResult": [
+        {
+          "team": "MIN",
+          "result": "PASS"
+        },
+        {
+          "team": "KC",
+          "result": "PASS"
+        },
+        {
+          "team": "DET",
+          "result": "PASS"
+        }
+      ],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "passRushIndex",
+      "label": "Pass rush",
+      "displaySd": 25.74172113939674,
+      "displayMiddle80": 69.79788848427447,
+      "rawSd": 0.08311824284408205,
+      "rawIqr": 0.11842767618656255,
+      "clustering": "VERY WIDE",
+      "strongestAdjacent": {
+        "pair": [
+          "pointsAllowedPerDriveIndex",
+          "passRushIndex"
+        ],
+        "r": 0.14427614434646838
+      },
+      "core": {
+        "n": 32,
+        "pearson": 0.2700590434557028,
+        "spearman": 0.2657624633431085
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.20802791870738846,
+        "spearman": 0.1744868035190616
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "frontSackRate",
+          "r": 0.7983815488914423,
+          "boundary": "ingredient/adjacent"
+        },
+        {
+          "key": "frontPressureRate",
+          "r": 0.9528379349357098,
+          "boundary": "provider-heterogeneous ingredient/proxy"
+        }
+      ],
+      "bankResult": [
+        {
+          "team": "MIN",
+          "result": "QUESTIONABLE"
+        }
+      ],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "E. INSUFFICIENT EVIDENCE",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "runDefenseIndex",
+      "label": "Run defense",
+      "displaySd": 24.899593751912757,
+      "displayMiddle80": 69.81072267595886,
+      "rawSd": 0.08413106283200887,
+      "rawIqr": 0.11087009713679376,
+      "clustering": "VERY WIDE",
+      "strongestAdjacent": {
+        "pair": [
+          "pointsAllowedPerDriveIndex",
+          "runDefenseIndex"
+        ],
+        "r": 0.23753145546547091
+      },
+      "core": {
+        "n": 32,
+        "pearson": -0.2246840948829743,
+        "spearman": -0.25806451612903225
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.514351108481736,
+        "spearman": 0.4838709677419355
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "rushYpcAllowed",
+          "r": 0.6036588532237795,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "rushFirstDownRateAllowed",
+          "r": 0.578919560903026,
+          "boundary": "first-down proxy, not EPA success rate"
+        },
+        {
+          "key": "rushExplosive20Allowed",
+          "r": 0.3627584327582583,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "oppRushEpa",
+          "r": 0.9625697629151049,
+          "boundary": "ingredient"
+        }
+      ],
+      "bankResult": [
+        {
+          "team": "TB",
+          "result": "PASS"
+        }
+      ],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "pointsScoredPerDriveIndex",
+      "label": "Scoring/drive",
+      "displaySd": 25.878367000445703,
+      "displayMiddle80": 66.99974418757768,
+      "rawSd": 0.5877403878893339,
+      "rawIqr": 0.9075561066840132,
+      "clustering": "VERY WIDE",
+      "strongestAdjacent": {
+        "pair": [
+          "pointsScoredPerDriveIndex",
+          "qbIndex"
+        ],
+        "r": 0.8501560045390025
+      },
+      "core": {
+        "n": 32,
+        "pearson": 0.5770054940894619,
+        "spearman": 0.5443548387096774
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.9124471116599284,
+        "spearman": 0.8958944281524927
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "offensivePointsPerDrive",
+          "r": 0.979017546168891,
+          "boundary": "ingredient"
+        },
+        {
+          "key": "pointsForPerGame",
+          "r": 0.93664753381633,
+          "boundary": "related outcome, includes non-offensive scoring"
+        }
+      ],
+      "bankResult": [],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "pointsAllowedPerDriveIndex",
+      "label": "Pts/drive prevention",
+      "displaySd": 23.694353808549447,
+      "displayMiddle80": 63.81451612903228,
+      "rawSd": 0.4401833617784486,
+      "rawIqr": 0.6317829457364341,
+      "clustering": "VERY WIDE",
+      "strongestAdjacent": {
+        "pair": [
+          "pointsAllowedPerDriveIndex",
+          "coverageIndex"
+        ],
+        "r": 0.8217155358335021
+      },
+      "core": {
+        "n": 32,
+        "pearson": 0.5816947402015604,
+        "spearman": 0.5607699452611602
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.7977418437945105,
+        "spearman": 0.8089825983777378
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "defensivePointsPerDrive",
+          "r": 0.9790372479977862,
+          "boundary": "ingredient"
+        },
+        {
+          "key": "pointsAgainstPerGame",
+          "r": 0.9154288233743206,
+          "boundary": "related outcome, includes non-offensive scoring"
+        }
+      ],
+      "bankResult": [
+        {
+          "team": "MIN",
+          "result": "PASS"
+        }
+      ],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "offenseComposite",
+      "label": "Overall offense",
+      "displaySd": 23.747862936282708,
+      "displayMiddle80": 60.30451173051328,
+      "rawSd": 16.863510882164558,
+      "rawIqr": 28.324692404309545,
+      "clustering": "VERY WIDE",
+      "strongestAdjacent": null,
+      "core": {
+        "n": 32,
+        "pearson": 0.6078881327021954,
+        "spearman": 0.6022727272727273
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.9627729384058329,
+        "spearman": 0.9494134897360704
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "offEpa",
+          "r": 0.9627729384058329,
+          "boundary": "related same-source outcome"
+        },
+        {
+          "key": "offensivePointsPerDrive",
+          "r": 0.926739656828663,
+          "boundary": "component input"
+        }
+      ],
+      "bankResult": [],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "defenseIndex",
+      "label": "Overall defense",
+      "displaySd": 20.995004139624324,
+      "displayMiddle80": 53.25436469346465,
+      "rawSd": 16.53396250872707,
+      "rawIqr": 22.7349070473771,
+      "clustering": "REASONABLY DISCRIMINATIVE",
+      "strongestAdjacent": null,
+      "core": {
+        "n": 32,
+        "pearson": 0.4605769583875933,
+        "spearman": 0.40725806451612906
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.9089563458736283,
+        "spearman": 0.8823313782991202
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "defEpa",
+          "r": 0.9089563458736283,
+          "boundary": "related same-source outcome"
+        },
+        {
+          "key": "defensivePointsPerDrive",
+          "r": 0.8629901944768668,
+          "boundary": "component input"
+        }
+      ],
+      "bankResult": [],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    },
+    {
+      "key": "offenseIndex",
+      "label": "Team efficiency (diagnostic)",
+      "displaySd": 26.028728317701717,
+      "displayMiddle80": 69.70161995486208,
+      "rawSd": 0.11398223666217715,
+      "rawIqr": 0.17284889908877882,
+      "clustering": "VERY WIDE",
+      "strongestAdjacent": null,
+      "core": {
+        "n": 32,
+        "pearson": 0.5591083574951736,
+        "spearman": 0.5652492668621701
+      },
+      "teamOutcome": {
+        "n": 32,
+        "pearson": 0.974663299982609,
+        "spearman": 0.9915689149560117
+      },
+      "benchmarkAlignment": [
+        {
+          "key": "offEpa",
+          "r": 0.974663299982609,
+          "boundary": "ingredient"
+        }
+      ],
+      "bankResult": [],
+      "predictiveEvidence": "UNAVAILABLE",
+      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "normalization": "NONE",
+      "rawDiagnosis": "D. NEITHER"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "base": "fd585891214db483112f52d4746106c606afeb43",
+  "deployedBaseEvidence": "All 18 published ordered scripts match base; Cloudflare Workers check for fd585891 successful, version 6f108636-5d00-425e-8588-41e1b08cc4b7",
+  "capture": {
+    "capturedAt": "2026-10-05T18:03:19.979028Z",
+    "url": "https://forceratings.com/api/bootstrap",
+    "status": 200,
+    "bytes": 8356380,
+    "sha256": "1c78e575e4252cc8073bffcba471b1c1ecb31f7707f9c83145492b84824945dd"
+  },
+  "builtAt": "2026-10-05T18:01:57.385Z",
+  "generation": "1791223317385-dfe3e0cd-b518-4dc4-97e6-1d81b11f1c76",
+  "normalizedSHA256": "b84d5d17e49f5114053bcc2c69ca31024a0a088136b6047b75460fef34e8b247",
+  "publicHashes": {
+    "data/model-data.js": "fa852ce51b25bebd57fa49dca4e2d8e73575ced372e37ea5c6e30fb76217e8ac",
+    "data/opening-lines.js": "98394b8b5c55d1e8a9ab7167fe346f452920a8647f0b31382a1066d79bc1d7f8",
+    "data/matchup-data.js": "88b100a3e10158990398b46740c7d01e2048cf05d1601a03ae3c6b0f1613357d",
+    "data/qb-carryover.js": "b3d7e714ec44929342f9ef8f0ca370dcc6e8a19b9b44673b9ddc4f2acd7175cd",
+    "data/predictive-feature-gates.js": "dc9ec6730fd34be795635cf032a1e578bf9ca1db0c98608f6f81664b3ae2111e",
+    "data/game-flow-priors-2025.js": "1ef9bf9a810e60d601dc218518a7b87a546d2cf8e5ac14e5ddca0e536955981e",
+    "model/predictive_features.js": "d9f25a5aae7d45185e49e712cfb6ab735a260053edf846224f5729be92dbb919",
+    "model/qb_regime.js": "4f4f04a71ee08aa059a0bf16b752c2e13558f331d1c2279e626234a753c7df52",
+    "model/early_regime.js": "f164f33730af3fd84e1c3f5b229e1edd0841f40038d0d90714f33c5db71e8fa5",
+    "model/rating_continuity.js": "5b5e5cfdbf11f17a9ae60b649f904aca97782cb14e14f629b327f0522655ffb9",
+    "model/retrospective_strength.js": "b776b8a81633bc250d67d6867edcc7073f34121b8c6de430da3e606057450b61",
+    "model/unit_prior_controller.js": "d5b62e123bd474ee10e328c6048bcab10754cc7f03a5de57e935953596d6d49e",
+    "model/forecast_v2.js": "efde8328047e19a9baad7dfbcbdc86c286106e0f75338db971b85aa0152f3c02",
+    "model/score_normalizer.js": "1cd8c16ce468cec4ef799b6148dcddc518f9d1dfb21e901efeb03876f76f437a",
+    "model/unit_force_bridge.js": "1882dd71c1efcd479b604e924e3ed547bb60af9c16122a3bc453b1a815a3ac51",
+    "model/live_profiles.js": "544b9827f7b7a566e6cab40b074d578f7ed0e1eb09144cd04daf4a11cc22fd72",
+    "model/adaptive_v3.js": "b60c65b20286d364a85888f554c4914aef425bf5c45a50e812b63600ddd7472a",
+    "assets/app.js": "edf63f78105a6d539bda2c3605b02ef3df66283cbd6a9cc95ab14802b32e0ce0"
+  },
+  "normalization": "Only FORCE-derived team-level numeric signals, stages, grades, effective priors, benchmark aggregates, sample/freshness/provider metadata and anonymous historical distribution quartiles. No bootstrap/feed/player/FTN/PFR/PBP rows committed.",
+  "traceParity": "Entire profile object and current ratings equal uninstrumented production VM",
+  "benchmarkBoundary": "Non-formula current outcomes share production feeds. They are not independent providers, causal unit skill, or predictive holdouts. External official-team fact summaries separately sourced.",
+  "historicalBoundary": "Exact causal historical production unit reconstruction unavailable: time-pinned current pressure/provider archive, regime priors and evolving live data absent. No historical test attempted."
+}

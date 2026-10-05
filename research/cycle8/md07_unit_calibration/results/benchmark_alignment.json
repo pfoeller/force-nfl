@@ -1,0 +1,6742 @@
+{
+  "qbIndex": [
+    {
+      "benchmark": "qbEpaPerPlay",
+      "direction": "higher",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.9379697704893699,
+      "spearman": 0.9618768328445748,
+      "top5Overlap": 3,
+      "bottom5Overlap": 4,
+      "leaveOneTeamOutPearson": [
+        0.9331490377918622,
+        0.9527505741577583
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "SF",
+          "value": 0.5154451239221336,
+          "rank": 1
+        },
+        {
+          "team": "BAL",
+          "value": 0.36088900677606195,
+          "rank": 2
+        },
+        {
+          "team": "JAX",
+          "value": 0.29678430920637844,
+          "rank": 3
+        },
+        {
+          "team": "BUF",
+          "value": 0.2649474596672414,
+          "rank": 4
+        },
+        {
+          "team": "DAL",
+          "value": 0.25878825571446323,
+          "rank": 5
+        },
+        {
+          "team": "CAR",
+          "value": 0.23002249452566975,
+          "rank": 6
+        },
+        {
+          "team": "DET",
+          "value": 0.222378535292228,
+          "rank": 7
+        },
+        {
+          "team": "KC",
+          "value": 0.21331832165320502,
+          "rank": 8
+        },
+        {
+          "team": "CHI",
+          "value": 0.20605848168830726,
+          "rank": 9
+        },
+        {
+          "team": "SEA",
+          "value": 0.1932763384589704,
+          "rank": 10
+        },
+        {
+          "team": "LV",
+          "value": 0.16146050881695237,
+          "rank": 11
+        },
+        {
+          "team": "CIN",
+          "value": 0.1346482735623148,
+          "rank": 12
+        },
+        {
+          "team": "NYJ",
+          "value": 0.10312987293107512,
+          "rank": 13
+        },
+        {
+          "team": "NYG",
+          "value": 0.08364164726796783,
+          "rank": 14
+        },
+        {
+          "team": "CLE",
+          "value": 0.0748772392586645,
+          "rank": 15
+        },
+        {
+          "team": "HOU",
+          "value": 0.06542602586196046,
+          "rank": 16
+        },
+        {
+          "team": "NO",
+          "value": 0.04131738300877343,
+          "rank": 17
+        },
+        {
+          "team": "LAR",
+          "value": 0.0391404415982202,
+          "rank": 18
+        },
+        {
+          "team": "WAS",
+          "value": 0.03266781171325695,
+          "rank": 19
+        },
+        {
+          "team": "GB",
+          "value": -0.0011177604017211728,
+          "rank": 20
+        },
+        {
+          "team": "ARI",
+          "value": -0.0020285957535654707,
+          "rank": 21
+        },
+        {
+          "team": "NE",
+          "value": -0.0048085457275674525,
+          "rank": 22
+        },
+        {
+          "team": "DEN",
+          "value": -0.014468124243061264,
+          "rank": 23
+        },
+        {
+          "team": "MIN",
+          "value": -0.07964155544494553,
+          "rank": 24
+        },
+        {
+          "team": "TEN",
+          "value": -0.08616565392201413,
+          "rank": 25
+        },
+        {
+          "team": "PHI",
+          "value": -0.1040004088390308,
+          "rank": 26
+        },
+        {
+          "team": "MIA",
+          "value": -0.12308937491753011,
+          "rank": 27
+        },
+        {
+          "team": "PIT",
+          "value": -0.1428391808696094,
+          "rank": 28
+        },
+        {
+          "team": "IND",
+          "value": -0.16081775523161398,
+          "rank": 29
+        },
+        {
+          "team": "LAC",
+          "value": -0.16318702851625,
+          "rank": 30
+        },
+        {
+          "team": "TB",
+          "value": -0.20515833092194444,
+          "rank": 31
+        },
+        {
+          "team": "ATL",
+          "value": -0.3762653016251367,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "qbAnyA",
+      "direction": "higher",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.9160305834454315,
+      "spearman": 0.9479472140762464,
+      "top5Overlap": 4,
+      "bottom5Overlap": 4,
+      "leaveOneTeamOutPearson": [
+        0.9093674296325666,
+        0.9320680975980189
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "SF",
+          "value": 10.460176991150442,
+          "rank": 1
+        },
+        {
+          "team": "BAL",
+          "value": 9.294642857142858,
+          "rank": 2
+        },
+        {
+          "team": "KC",
+          "value": 8.126865671641792,
+          "rank": 3
+        },
+        {
+          "team": "SEA",
+          "value": 8.121951219512194,
+          "rank": 4
+        },
+        {
+          "team": "DET",
+          "value": 7.863905325443787,
+          "rank": 5
+        },
+        {
+          "team": "JAX",
+          "value": 7.741071428571429,
+          "rank": 6
+        },
+        {
+          "team": "BUF",
+          "value": 7.609375,
+          "rank": 7
+        },
+        {
+          "team": "CAR",
+          "value": 7.485549132947977,
+          "rank": 8
+        },
+        {
+          "team": "DAL",
+          "value": 7.352564102564102,
+          "rank": 9
+        },
+        {
+          "team": "HOU",
+          "value": 7.110429447852761,
+          "rank": 10
+        },
+        {
+          "team": "NYJ",
+          "value": 7.038759689922481,
+          "rank": 11
+        },
+        {
+          "team": "LV",
+          "value": 6.97986577181208,
+          "rank": 12
+        },
+        {
+          "team": "CIN",
+          "value": 6.716867469879518,
+          "rank": 13
+        },
+        {
+          "team": "CHI",
+          "value": 6.625899280575539,
+          "rank": 14
+        },
+        {
+          "team": "CLE",
+          "value": 6.496062992125984,
+          "rank": 15
+        },
+        {
+          "team": "GB",
+          "value": 6.308641975308642,
+          "rank": 16
+        },
+        {
+          "team": "WAS",
+          "value": 6.271428571428571,
+          "rank": 17
+        },
+        {
+          "team": "NO",
+          "value": 6.119718309859155,
+          "rank": 18
+        },
+        {
+          "team": "LAR",
+          "value": 5.912280701754386,
+          "rank": 19
+        },
+        {
+          "team": "NYG",
+          "value": 5.495934959349594,
+          "rank": 20
+        },
+        {
+          "team": "DEN",
+          "value": 5.435714285714286,
+          "rank": 21
+        },
+        {
+          "team": "TEN",
+          "value": 5.272,
+          "rank": 22
+        },
+        {
+          "team": "MIA",
+          "value": 5.12280701754386,
+          "rank": 23
+        },
+        {
+          "team": "PIT",
+          "value": 5.1017964071856285,
+          "rank": 24
+        },
+        {
+          "team": "MIN",
+          "value": 4.991869918699187,
+          "rank": 25
+        },
+        {
+          "team": "PHI",
+          "value": 4.748031496062992,
+          "rank": 26
+        },
+        {
+          "team": "NE",
+          "value": 4.575757575757576,
+          "rank": 27
+        },
+        {
+          "team": "ARI",
+          "value": 4.509433962264151,
+          "rank": 28
+        },
+        {
+          "team": "LAC",
+          "value": 4.206106870229007,
+          "rank": 29
+        },
+        {
+          "team": "IND",
+          "value": 4.135714285714286,
+          "rank": 30
+        },
+        {
+          "team": "TB",
+          "value": 3.6901408450704225,
+          "rank": 31
+        },
+        {
+          "team": "ATL",
+          "value": 3.1744186046511627,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "qbPassSuccessRate",
+      "direction": "higher",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.8540956737875975,
+      "spearman": 0.8368768328445748,
+      "top5Overlap": 4,
+      "bottom5Overlap": 2,
+      "leaveOneTeamOutPearson": [
+        0.8373437973737763,
+        0.882832083978228
+      ],
+      "outliers": [
+        {
+          "team": "BUF",
+          "value": 73.54361160880545,
+          "rank": 8,
+          "benchmarkRank": 21,
+          "benchmarkValue": 0.453781512605042
+        },
+        {
+          "team": "NO",
+          "value": 54.3641876379542,
+          "rank": 16,
+          "benchmarkRank": 5,
+          "benchmarkValue": 0.5419847328244275
+        },
+        {
+          "team": "CLE",
+          "value": 52.42596927730455,
+          "rank": 17,
+          "benchmarkRank": 6,
+          "benchmarkValue": 0.5344827586206896
+        }
+      ],
+      "ranks": [
+        {
+          "team": "BAL",
+          "value": 0.6019417475728155,
+          "rank": 1
+        },
+        {
+          "team": "SF",
+          "value": 0.5982142857142857,
+          "rank": 2
+        },
+        {
+          "team": "JAX",
+          "value": 0.5728155339805825,
+          "rank": 3
+        },
+        {
+          "team": "DET",
+          "value": 0.546583850931677,
+          "rank": 4
+        },
+        {
+          "team": "NO",
+          "value": 0.5419847328244275,
+          "rank": 5
+        },
+        {
+          "team": "CLE",
+          "value": 0.5344827586206896,
+          "rank": 6
+        },
+        {
+          "team": "CHI",
+          "value": 0.5343511450381679,
+          "rank": 7
+        },
+        {
+          "team": "LV",
+          "value": 0.524822695035461,
+          "rank": 8
+        },
+        {
+          "team": "NYJ",
+          "value": 0.5172413793103449,
+          "rank": 9
+        },
+        {
+          "team": "SEA",
+          "value": 0.5169491525423728,
+          "rank": 10
+        },
+        {
+          "team": "KC",
+          "value": 0.515625,
+          "rank": 11
+        },
+        {
+          "team": "DAL",
+          "value": 0.5133333333333333,
+          "rank": 12
+        },
+        {
+          "team": "CIN",
+          "value": 0.5031847133757962,
+          "rank": 13
+        },
+        {
+          "team": "HOU",
+          "value": 0.5,
+          "rank": 14
+        },
+        {
+          "team": "NE",
+          "value": 0.4959349593495935,
+          "rank": 15
+        },
+        {
+          "team": "LAR",
+          "value": 0.4876543209876543,
+          "rank": 16
+        },
+        {
+          "team": "ARI",
+          "value": 0.48344370860927155,
+          "rank": 17
+        },
+        {
+          "team": "CAR",
+          "value": 0.47530864197530864,
+          "rank": 18
+        },
+        {
+          "team": "NYG",
+          "value": 0.4732142857142857,
+          "rank": 19
+        },
+        {
+          "team": "PIT",
+          "value": 0.45454545454545453,
+          "rank": 20
+        },
+        {
+          "team": "BUF",
+          "value": 0.453781512605042,
+          "rank": 21
+        },
+        {
+          "team": "ATL",
+          "value": 0.4430379746835443,
+          "rank": 22
+        },
+        {
+          "team": "DEN",
+          "value": 0.43703703703703706,
+          "rank": 23
+        },
+        {
+          "team": "TEN",
+          "value": 0.4369747899159664,
+          "rank": 24
+        },
+        {
+          "team": "GB",
+          "value": 0.42857142857142855,
+          "rank": 25
+        },
+        {
+          "team": "LAC",
+          "value": 0.425,
+          "rank": 26
+        },
+        {
+          "team": "IND",
+          "value": 0.42424242424242425,
+          "rank": 27
+        },
+        {
+          "team": "PHI",
+          "value": 0.41739130434782606,
+          "rank": 28
+        },
+        {
+          "team": "TB",
+          "value": 0.40476190476190477,
+          "rank": 29
+        },
+        {
+          "team": "WAS",
+          "value": 0.40145985401459855,
+          "rank": 30
+        },
+        {
+          "team": "MIA",
+          "value": 0.3883495145631068,
+          "rank": 31
+        },
+        {
+          "team": "MIN",
+          "value": 0.37272727272727274,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "qbCpoe",
+      "direction": "higher",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.7162952583326625,
+      "spearman": 0.7316715542521994,
+      "top5Overlap": 2,
+      "bottom5Overlap": 2,
+      "leaveOneTeamOutPearson": [
+        0.6937574500696104,
+        0.7448423577851782
+      ],
+      "outliers": [
+        {
+          "team": "DET",
+          "value": 83.19759090625946,
+          "rank": 4,
+          "benchmarkRank": 16,
+          "benchmarkValue": 1.507490296189819
+        },
+        {
+          "team": "KC",
+          "value": 81.56938094647701,
+          "rank": 5,
+          "benchmarkRank": 19,
+          "benchmarkValue": 0.6467892553024526
+        },
+        {
+          "team": "NYJ",
+          "value": 57.0050058628835,
+          "rank": 14,
+          "benchmarkRank": 3,
+          "benchmarkValue": 7.89888457714036
+        },
+        {
+          "team": "GB",
+          "value": 45.96323048046074,
+          "rank": 19,
+          "benchmarkRank": 30,
+          "benchmarkValue": -7.090622999754948
+        },
+        {
+          "team": "TEN",
+          "value": 27.327377255048955,
+          "rank": 25,
+          "benchmarkRank": 12,
+          "benchmarkValue": 2.950783750973181
+        },
+        {
+          "team": "TB",
+          "value": 17.246115490562552,
+          "rank": 32,
+          "benchmarkRank": 22,
+          "benchmarkValue": -0.7046043733128939
+        }
+      ],
+      "ranks": [
+        {
+          "team": "JAX",
+          "value": 9.579811302951084,
+          "rank": 1
+        },
+        {
+          "team": "BAL",
+          "value": 8.088991472025546,
+          "rank": 2
+        },
+        {
+          "team": "NYJ",
+          "value": 7.89888457714036,
+          "rank": 3
+        },
+        {
+          "team": "BUF",
+          "value": 6.138877513385756,
+          "rank": 4
+        },
+        {
+          "team": "CHI",
+          "value": 5.855941920318225,
+          "rank": 5
+        },
+        {
+          "team": "CIN",
+          "value": 5.595666243079121,
+          "rank": 6
+        },
+        {
+          "team": "DAL",
+          "value": 5.437207237848641,
+          "rank": 7
+        },
+        {
+          "team": "CAR",
+          "value": 5.062759777124804,
+          "rank": 8
+        },
+        {
+          "team": "SF",
+          "value": 4.613819204612704,
+          "rank": 9
+        },
+        {
+          "team": "NO",
+          "value": 4.495199836946867,
+          "rank": 10
+        },
+        {
+          "team": "SEA",
+          "value": 4.492174944353362,
+          "rank": 11
+        },
+        {
+          "team": "TEN",
+          "value": 2.950783750973181,
+          "rank": 12
+        },
+        {
+          "team": "NE",
+          "value": 2.3085385713618316,
+          "rank": 13
+        },
+        {
+          "team": "ARI",
+          "value": 2.124467441216415,
+          "rank": 14
+        },
+        {
+          "team": "LV",
+          "value": 1.598129338842946,
+          "rank": 15
+        },
+        {
+          "team": "DET",
+          "value": 1.507490296189819,
+          "rank": 16
+        },
+        {
+          "team": "CLE",
+          "value": 1.2716073343501715,
+          "rank": 17
+        },
+        {
+          "team": "HOU",
+          "value": 0.8616307106450799,
+          "rank": 18
+        },
+        {
+          "team": "KC",
+          "value": 0.6467892553024526,
+          "rank": 19
+        },
+        {
+          "team": "PHI",
+          "value": 0.4873770019827648,
+          "rank": 20
+        },
+        {
+          "team": "LAR",
+          "value": -0.16613818564640637,
+          "rank": 21
+        },
+        {
+          "team": "TB",
+          "value": -0.7046043733128939,
+          "rank": 22
+        },
+        {
+          "team": "MIN",
+          "value": -0.9652866881822014,
+          "rank": 23
+        },
+        {
+          "team": "IND",
+          "value": -1.801665266205104,
+          "rank": 24
+        },
+        {
+          "team": "WAS",
+          "value": -2.117331195924793,
+          "rank": 25
+        },
+        {
+          "team": "DEN",
+          "value": -3.0942816724752644,
+          "rank": 26
+        },
+        {
+          "team": "NYG",
+          "value": -3.4738822288963114,
+          "rank": 27
+        },
+        {
+          "team": "PIT",
+          "value": -3.946195357686853,
+          "rank": 28
+        },
+        {
+          "team": "LAC",
+          "value": -4.13449470810539,
+          "rank": 29
+        },
+        {
+          "team": "GB",
+          "value": -7.090622999754948,
+          "rank": 30
+        },
+        {
+          "team": "ATL",
+          "value": -7.789362792962628,
+          "rank": 31
+        },
+        {
+          "team": "MIA",
+          "value": -8.739793584184739,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "receiverIndex": [
+    {
+      "benchmark": "wrteYardsPerTarget",
+      "direction": "higher",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.6727398601363426,
+      "spearman": 0.7030791788856305,
+      "top5Overlap": 2,
+      "bottom5Overlap": 1,
+      "leaveOneTeamOutPearson": [
+        0.6472478010199716,
+        0.7049834148317589
+      ],
+      "outliers": [
+        {
+          "team": "DAL",
+          "value": 79.5873491633852,
+          "rank": 2,
+          "benchmarkRank": 15,
+          "benchmarkValue": 7.991935483870968
+        },
+        {
+          "team": "LV",
+          "value": 62.239614523527536,
+          "rank": 6,
+          "benchmarkRank": 17,
+          "benchmarkValue": 7.898148148148148
+        },
+        {
+          "team": "PHI",
+          "value": 58.377898844264436,
+          "rank": 10,
+          "benchmarkRank": 22,
+          "benchmarkValue": 7.53932584269663
+        },
+        {
+          "team": "BUF",
+          "value": 57.85467076728438,
+          "rank": 12,
+          "benchmarkRank": 2,
+          "benchmarkValue": 10.117021276595745
+        },
+        {
+          "team": "ARI",
+          "value": 31.107565167054666,
+          "rank": 22,
+          "benchmarkRank": 32,
+          "benchmarkValue": 5.976
+        },
+        {
+          "team": "MIA",
+          "value": 16.124800550928953,
+          "rank": 31,
+          "benchmarkRank": 19,
+          "benchmarkValue": 7.695121951219512
+        },
+        {
+          "team": "LAC",
+          "value": 13.653442401995331,
+          "rank": 32,
+          "benchmarkRank": 20,
+          "benchmarkValue": 7.615384615384615
+        }
+      ],
+      "ranks": [
+        {
+          "team": "BAL",
+          "value": 10.584269662921349,
+          "rank": 1
+        },
+        {
+          "team": "BUF",
+          "value": 10.117021276595745,
+          "rank": 2
+        },
+        {
+          "team": "KC",
+          "value": 9.408602150537634,
+          "rank": 3
+        },
+        {
+          "team": "SF",
+          "value": 9.405063291139241,
+          "rank": 4
+        },
+        {
+          "team": "SEA",
+          "value": 9.173913043478262,
+          "rank": 5
+        },
+        {
+          "team": "JAX",
+          "value": 9.058823529411764,
+          "rank": 6
+        },
+        {
+          "team": "CAR",
+          "value": 8.687022900763358,
+          "rank": 7
+        },
+        {
+          "team": "NO",
+          "value": 8.595959595959595,
+          "rank": 8
+        },
+        {
+          "team": "HOU",
+          "value": 8.549180327868852,
+          "rank": 9
+        },
+        {
+          "team": "NYJ",
+          "value": 8.397849462365592,
+          "rank": 10
+        },
+        {
+          "team": "NE",
+          "value": 8.319148936170214,
+          "rank": 11
+        },
+        {
+          "team": "CIN",
+          "value": 8.268292682926829,
+          "rank": 12
+        },
+        {
+          "team": "LAR",
+          "value": 8.16260162601626,
+          "rank": 13
+        },
+        {
+          "team": "CHI",
+          "value": 8.134615384615385,
+          "rank": 14
+        },
+        {
+          "team": "DAL",
+          "value": 7.991935483870968,
+          "rank": 15
+        },
+        {
+          "team": "CLE",
+          "value": 7.976744186046512,
+          "rank": 16
+        },
+        {
+          "team": "LV",
+          "value": 7.898148148148148,
+          "rank": 17
+        },
+        {
+          "team": "DET",
+          "value": 7.738095238095238,
+          "rank": 18
+        },
+        {
+          "team": "MIA",
+          "value": 7.695121951219512,
+          "rank": 19
+        },
+        {
+          "team": "LAC",
+          "value": 7.615384615384615,
+          "rank": 20
+        },
+        {
+          "team": "MIN",
+          "value": 7.604938271604938,
+          "rank": 21
+        },
+        {
+          "team": "PHI",
+          "value": 7.53932584269663,
+          "rank": 22
+        },
+        {
+          "team": "ATL",
+          "value": 7.454545454545454,
+          "rank": 23
+        },
+        {
+          "team": "TEN",
+          "value": 7.355555555555555,
+          "rank": 24
+        },
+        {
+          "team": "GB",
+          "value": 7.312977099236641,
+          "rank": 25
+        },
+        {
+          "team": "PIT",
+          "value": 7.076923076923077,
+          "rank": 26
+        },
+        {
+          "team": "TB",
+          "value": 7,
+          "rank": 27
+        },
+        {
+          "team": "NYG",
+          "value": 6.797872340425532,
+          "rank": 28
+        },
+        {
+          "team": "IND",
+          "value": 6.457142857142857,
+          "rank": 29
+        },
+        {
+          "team": "DEN",
+          "value": 6.4222222222222225,
+          "rank": 30
+        },
+        {
+          "team": "WAS",
+          "value": 6.1,
+          "rank": 31
+        },
+        {
+          "team": "ARI",
+          "value": 5.976,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "wrteFirstDownRate",
+      "direction": "higher",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.8505057271244013,
+      "spearman": 0.8566715542521994,
+      "top5Overlap": 4,
+      "bottom5Overlap": 2,
+      "leaveOneTeamOutPearson": [
+        0.8299424418747685,
+        0.8709635582909451
+      ],
+      "outliers": [
+        {
+          "team": "PHI",
+          "value": 58.377898844264436,
+          "rank": 10,
+          "benchmarkRank": 21,
+          "benchmarkValue": 0.3595505617977528
+        },
+        {
+          "team": "SEA",
+          "value": 57.58645689038468,
+          "rank": 13,
+          "benchmarkRank": 2,
+          "benchmarkValue": 0.4891304347826087
+        }
+      ],
+      "ranks": [
+        {
+          "team": "SF",
+          "value": 0.4936708860759494,
+          "rank": 1
+        },
+        {
+          "team": "SEA",
+          "value": 0.4891304347826087,
+          "rank": 2
+        },
+        {
+          "team": "JAX",
+          "value": 0.47058823529411764,
+          "rank": 3
+        },
+        {
+          "team": "BAL",
+          "value": 0.4606741573033708,
+          "rank": 4
+        },
+        {
+          "team": "NO",
+          "value": 0.45454545454545453,
+          "rank": 5
+        },
+        {
+          "team": "LV",
+          "value": 0.4537037037037037,
+          "rank": 6
+        },
+        {
+          "team": "DAL",
+          "value": 0.4435483870967742,
+          "rank": 7
+        },
+        {
+          "team": "CAR",
+          "value": 0.4351145038167939,
+          "rank": 8
+        },
+        {
+          "team": "BUF",
+          "value": 0.425531914893617,
+          "rank": 9
+        },
+        {
+          "team": "CIN",
+          "value": 0.42276422764227645,
+          "rank": 10
+        },
+        {
+          "team": "KC",
+          "value": 0.40860215053763443,
+          "rank": 11
+        },
+        {
+          "team": "CHI",
+          "value": 0.3942307692307692,
+          "rank": 12
+        },
+        {
+          "team": "DET",
+          "value": 0.3888888888888889,
+          "rank": 13
+        },
+        {
+          "team": "NE",
+          "value": 0.3723404255319149,
+          "rank": 14
+        },
+        {
+          "team": "CLE",
+          "value": 0.37209302325581395,
+          "rank": 15
+        },
+        {
+          "team": "HOU",
+          "value": 0.36885245901639346,
+          "rank": 16
+        },
+        {
+          "team": "TEN",
+          "value": 0.36666666666666664,
+          "rank": 17
+        },
+        {
+          "team": "LAR",
+          "value": 0.36585365853658536,
+          "rank": 18
+        },
+        {
+          "team": "NYJ",
+          "value": 0.3655913978494624,
+          "rank": 19
+        },
+        {
+          "team": "NYG",
+          "value": 0.3617021276595745,
+          "rank": 20
+        },
+        {
+          "team": "PHI",
+          "value": 0.3595505617977528,
+          "rank": 21
+        },
+        {
+          "team": "MIN",
+          "value": 0.35802469135802467,
+          "rank": 22
+        },
+        {
+          "team": "DEN",
+          "value": 0.35555555555555557,
+          "rank": 23
+        },
+        {
+          "team": "ARI",
+          "value": 0.352,
+          "rank": 24
+        },
+        {
+          "team": "TB",
+          "value": 0.32978723404255317,
+          "rank": 25
+        },
+        {
+          "team": "LAC",
+          "value": 0.32967032967032966,
+          "rank": 26
+        },
+        {
+          "team": "GB",
+          "value": 0.3282442748091603,
+          "rank": 27
+        },
+        {
+          "team": "ATL",
+          "value": 0.32727272727272727,
+          "rank": 28
+        },
+        {
+          "team": "IND",
+          "value": 0.3238095238095238,
+          "rank": 29
+        },
+        {
+          "team": "PIT",
+          "value": 0.3162393162393162,
+          "rank": 30
+        },
+        {
+          "team": "WAS",
+          "value": 0.3,
+          "rank": 31
+        },
+        {
+          "team": "MIA",
+          "value": 0.2804878048780488,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "recvEpa",
+      "direction": "higher",
+      "boundary": "pre-residual ingredient",
+      "n": 32,
+      "pearson": 0.8970523777057096,
+      "spearman": 0.8837976539589443,
+      "top5Overlap": 4,
+      "bottom5Overlap": 4,
+      "leaveOneTeamOutPearson": [
+        0.883546847220784,
+        0.9153332403338403
+      ],
+      "outliers": [
+        {
+          "team": "TEN",
+          "value": 52.17365906493853,
+          "rank": 16,
+          "benchmarkRank": 26,
+          "benchmarkValue": 0.1167155698531815
+        },
+        {
+          "team": "NYJ",
+          "value": 51.66668016736907,
+          "rank": 17,
+          "benchmarkRank": 6,
+          "benchmarkValue": 0.4216547069458313
+        }
+      ],
+      "ranks": [
+        {
+          "team": "SF",
+          "value": 0.7114866737369697,
+          "rank": 1
+        },
+        {
+          "team": "BAL",
+          "value": 0.5779929797534574,
+          "rank": 2
+        },
+        {
+          "team": "JAX",
+          "value": 0.5657007801238547,
+          "rank": 3
+        },
+        {
+          "team": "DAL",
+          "value": 0.49041662408684816,
+          "rank": 4
+        },
+        {
+          "team": "BUF",
+          "value": 0.45561256536951694,
+          "rank": 5
+        },
+        {
+          "team": "NYJ",
+          "value": 0.4216547069458313,
+          "rank": 6
+        },
+        {
+          "team": "NO",
+          "value": 0.41058029667235046,
+          "rank": 7
+        },
+        {
+          "team": "CAR",
+          "value": 0.40031900214043936,
+          "rank": 8
+        },
+        {
+          "team": "DET",
+          "value": 0.38323665531646317,
+          "rank": 9
+        },
+        {
+          "team": "KC",
+          "value": 0.3820717557400182,
+          "rank": 10
+        },
+        {
+          "team": "LV",
+          "value": 0.3581008347862427,
+          "rank": 11
+        },
+        {
+          "team": "CIN",
+          "value": 0.34574349792129216,
+          "rank": 12
+        },
+        {
+          "team": "SEA",
+          "value": 0.319346551910319,
+          "rank": 13
+        },
+        {
+          "team": "CHI",
+          "value": 0.30426312929383215,
+          "rank": 14
+        },
+        {
+          "team": "HOU",
+          "value": 0.29906112701581855,
+          "rank": 15
+        },
+        {
+          "team": "CLE",
+          "value": 0.29314050896841753,
+          "rank": 16
+        },
+        {
+          "team": "MIN",
+          "value": 0.2779167125144442,
+          "rank": 17
+        },
+        {
+          "team": "PHI",
+          "value": 0.17129192805735707,
+          "rank": 18
+        },
+        {
+          "team": "LAR",
+          "value": 0.17122293734464802,
+          "rank": 19
+        },
+        {
+          "team": "NE",
+          "value": 0.17027621696602488,
+          "rank": 20
+        },
+        {
+          "team": "NYG",
+          "value": 0.14890052028071546,
+          "rank": 21
+        },
+        {
+          "team": "PIT",
+          "value": 0.1401575548401765,
+          "rank": 22
+        },
+        {
+          "team": "GB",
+          "value": 0.1396646804097901,
+          "rank": 23
+        },
+        {
+          "team": "WAS",
+          "value": 0.122426317233317,
+          "rank": 24
+        },
+        {
+          "team": "IND",
+          "value": 0.11794342257373039,
+          "rank": 25
+        },
+        {
+          "team": "TEN",
+          "value": 0.1167155698531815,
+          "rank": 26
+        },
+        {
+          "team": "ARI",
+          "value": 0.09350145871265078,
+          "rank": 27
+        },
+        {
+          "team": "DEN",
+          "value": 0.08238402279773689,
+          "rank": 28
+        },
+        {
+          "team": "TB",
+          "value": 0.02751299180829583,
+          "rank": 29
+        },
+        {
+          "team": "MIA",
+          "value": 0.004425817679926471,
+          "rank": 30
+        },
+        {
+          "team": "LAC",
+          "value": -0.059841159186317654,
+          "rank": 31
+        },
+        {
+          "team": "ATL",
+          "value": -0.13857456625361986,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "olIndex": [
+    {
+      "benchmark": "sackAllowed",
+      "direction": "lower",
+      "boundary": "adjacent non-formula outcome",
+      "n": 32,
+      "pearson": 0.48302351925616194,
+      "spearman": 0.36693548387096775,
+      "top5Overlap": 2,
+      "bottom5Overlap": 0,
+      "leaveOneTeamOutPearson": [
+        0.35444038598463123,
+        0.5335461278445197
+      ],
+      "outliers": [
+        {
+          "team": "BAL",
+          "value": 69.66859050999321,
+          "rank": 3,
+          "benchmarkRank": 17,
+          "benchmarkValue": 0.0625
+        },
+        {
+          "team": "ATL",
+          "value": 63.96475220493838,
+          "rank": 5,
+          "benchmarkRank": 24,
+          "benchmarkValue": 0.08139534883720931
+        },
+        {
+          "team": "NO",
+          "value": 53.490384674843575,
+          "rank": 8,
+          "benchmarkRank": 19,
+          "benchmarkValue": 0.07042253521126761
+        },
+        {
+          "team": "MIA",
+          "value": 45.326341249056014,
+          "rank": 12,
+          "benchmarkRank": 30,
+          "benchmarkValue": 0.09649122807017543
+        },
+        {
+          "team": "LAR",
+          "value": 44.45993535290239,
+          "rank": 14,
+          "benchmarkRank": 3,
+          "benchmarkValue": 0.03508771929824561
+        },
+        {
+          "team": "MIN",
+          "value": 35.73152238099992,
+          "rank": 19,
+          "benchmarkRank": 31,
+          "benchmarkValue": 0.10569105691056911
+        },
+        {
+          "team": "LV",
+          "value": 27.858023246973243,
+          "rank": 26,
+          "benchmarkRank": 2,
+          "benchmarkValue": 0.03355704697986577
+        },
+        {
+          "team": "WAS",
+          "value": 26.461450773386836,
+          "rank": 27,
+          "benchmarkRank": 4,
+          "benchmarkValue": 0.035211267605633804
+        },
+        {
+          "team": "GB",
+          "value": 23.303287407714187,
+          "rank": 30,
+          "benchmarkRank": 12,
+          "benchmarkValue": 0.04938271604938271
+        }
+      ],
+      "ranks": [
+        {
+          "team": "SF",
+          "value": 0,
+          "rank": 1
+        },
+        {
+          "team": "LV",
+          "value": 0.03355704697986577,
+          "rank": 2
+        },
+        {
+          "team": "LAR",
+          "value": 0.03508771929824561,
+          "rank": 3
+        },
+        {
+          "team": "WAS",
+          "value": 0.035211267605633804,
+          "rank": 4
+        },
+        {
+          "team": "DEN",
+          "value": 0.03571428571428571,
+          "rank": 5
+        },
+        {
+          "team": "DAL",
+          "value": 0.038461538461538464,
+          "rank": 6
+        },
+        {
+          "team": "ARI",
+          "value": 0.0440251572327044,
+          "rank": 7
+        },
+        {
+          "team": "KC",
+          "value": 0.04477611940298507,
+          "rank": 8
+        },
+        {
+          "team": "DET",
+          "value": 0.047337278106508875,
+          "rank": 9
+        },
+        {
+          "team": "TEN",
+          "value": 0.048,
+          "rank": 10
+        },
+        {
+          "team": "SEA",
+          "value": 0.04838709677419355,
+          "rank": 11
+        },
+        {
+          "team": "GB",
+          "value": 0.04938271604938271,
+          "rank": 12
+        },
+        {
+          "team": "CHI",
+          "value": 0.050359712230215826,
+          "rank": 13
+        },
+        {
+          "team": "CIN",
+          "value": 0.05421686746987952,
+          "rank": 14
+        },
+        {
+          "team": "IND",
+          "value": 0.05714285714285714,
+          "rank": 15
+        },
+        {
+          "team": "CAR",
+          "value": 0.057803468208092484,
+          "rank": 16
+        },
+        {
+          "team": "BAL",
+          "value": 0.0625,
+          "rank": 17
+        },
+        {
+          "team": "BUF",
+          "value": 0.0703125,
+          "rank": 18
+        },
+        {
+          "team": "NO",
+          "value": 0.07042253521126761,
+          "rank": 19
+        },
+        {
+          "team": "JAX",
+          "value": 0.07142857142857142,
+          "rank": 20
+        },
+        {
+          "team": "HOU",
+          "value": 0.07317073170731707,
+          "rank": 21
+        },
+        {
+          "team": "NE",
+          "value": 0.07518796992481203,
+          "rank": 22
+        },
+        {
+          "team": "PIT",
+          "value": 0.07738095238095238,
+          "rank": 23
+        },
+        {
+          "team": "ATL",
+          "value": 0.08139534883720931,
+          "rank": 24
+        },
+        {
+          "team": "CLE",
+          "value": 0.08661417322834646,
+          "rank": 25
+        },
+        {
+          "team": "NYG",
+          "value": 0.08943089430894309,
+          "rank": 26
+        },
+        {
+          "team": "LAC",
+          "value": 0.09090909090909091,
+          "rank": 27
+        },
+        {
+          "team": "NYJ",
+          "value": 0.09302325581395349,
+          "rank": 28
+        },
+        {
+          "team": "PHI",
+          "value": 0.09448818897637795,
+          "rank": 29
+        },
+        {
+          "team": "MIA",
+          "value": 0.09649122807017543,
+          "rank": 30
+        },
+        {
+          "team": "MIN",
+          "value": 0.10569105691056911,
+          "rank": 31
+        },
+        {
+          "team": "TB",
+          "value": 0.11267605633802817,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "pbpPressureAllowedRate",
+      "direction": "lower",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.9749251807880455,
+      "spearman": 0.951150219373729,
+      "top5Overlap": 4,
+      "bottom5Overlap": 4,
+      "leaveOneTeamOutPearson": [
+        0.9690743785299748,
+        0.977087838425304
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "SF",
+          "value": 0.09821428571428571,
+          "rank": 1
+        },
+        {
+          "team": "DEN",
+          "value": 0.10714285714285714,
+          "rank": 2
+        },
+        {
+          "team": "BAL",
+          "value": 0.11818181818181818,
+          "rank": 3
+        },
+        {
+          "team": "CHI",
+          "value": 0.13043478260869565,
+          "rank": 4
+        },
+        {
+          "team": "TEN",
+          "value": 0.136,
+          "rank": 5
+        },
+        {
+          "team": "ATL",
+          "value": 0.13953488372093023,
+          "rank": 6
+        },
+        {
+          "team": "ARI",
+          "value": 0.14556962025316456,
+          "rank": 7
+        },
+        {
+          "team": "NO",
+          "value": 0.14893617021276595,
+          "rank": 8
+        },
+        {
+          "team": "DET",
+          "value": 0.15384615384615385,
+          "rank": 9
+        },
+        {
+          "team": "KC",
+          "value": 0.15671641791044777,
+          "rank": 10
+        },
+        {
+          "team": "BUF",
+          "value": 0.1640625,
+          "rank": 11
+        },
+        {
+          "team": "DAL",
+          "value": 0.16666666666666666,
+          "rank": 12.5
+        },
+        {
+          "team": "MIA",
+          "value": 0.16666666666666666,
+          "rank": 12.5
+        },
+        {
+          "team": "HOU",
+          "value": 0.16875,
+          "rank": 14
+        },
+        {
+          "team": "MIN",
+          "value": 0.17073170731707318,
+          "rank": 15
+        },
+        {
+          "team": "LAR",
+          "value": 0.17261904761904762,
+          "rank": 16
+        },
+        {
+          "team": "NE",
+          "value": 0.17293233082706766,
+          "rank": 17
+        },
+        {
+          "team": "IND",
+          "value": 0.17857142857142858,
+          "rank": 18
+        },
+        {
+          "team": "NYJ",
+          "value": 0.1796875,
+          "rank": 19
+        },
+        {
+          "team": "CAR",
+          "value": 0.18023255813953487,
+          "rank": 20
+        },
+        {
+          "team": "PHI",
+          "value": 0.18110236220472442,
+          "rank": 21
+        },
+        {
+          "team": "LV",
+          "value": 0.18493150684931506,
+          "rank": 22
+        },
+        {
+          "team": "SEA",
+          "value": 0.18548387096774194,
+          "rank": 23
+        },
+        {
+          "team": "PIT",
+          "value": 0.18562874251497005,
+          "rank": 24
+        },
+        {
+          "team": "CLE",
+          "value": 0.1889763779527559,
+          "rank": 25
+        },
+        {
+          "team": "WAS",
+          "value": 0.19014084507042253,
+          "rank": 26
+        },
+        {
+          "team": "CIN",
+          "value": 0.1927710843373494,
+          "rank": 27
+        },
+        {
+          "team": "TB",
+          "value": 0.19718309859154928,
+          "rank": 28
+        },
+        {
+          "team": "JAX",
+          "value": 0.1981981981981982,
+          "rank": 29
+        },
+        {
+          "team": "NYG",
+          "value": 0.2032520325203252,
+          "rank": 30
+        },
+        {
+          "team": "GB",
+          "value": 0.2037037037037037,
+          "rank": 31
+        },
+        {
+          "team": "LAC",
+          "value": 0.23484848484848486,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "teamRushYpc",
+      "direction": "higher",
+      "boundary": "scope contrast, not pass-protection ground truth",
+      "n": 32,
+      "pearson": 0.39124762408006625,
+      "spearman": 0.3980938416422287,
+      "top5Overlap": 3,
+      "bottom5Overlap": 1,
+      "leaveOneTeamOutPearson": [
+        0.34279514635500485,
+        0.5132091859556289
+      ],
+      "outliers": [
+        {
+          "team": "DEN",
+          "value": 83.69133681811027,
+          "rank": 2,
+          "benchmarkRank": 27,
+          "benchmarkValue": 3.611111111111111
+        },
+        {
+          "team": "TEN",
+          "value": 59.99684694792301,
+          "rank": 6,
+          "benchmarkRank": 17,
+          "benchmarkValue": 3.9555555555555557
+        },
+        {
+          "team": "ARI",
+          "value": 54.33969387592856,
+          "rank": 7,
+          "benchmarkRank": 21,
+          "benchmarkValue": 3.8653846153846154
+        },
+        {
+          "team": "NO",
+          "value": 53.490384674843575,
+          "rank": 8,
+          "benchmarkRank": 23,
+          "benchmarkValue": 3.8
+        },
+        {
+          "team": "DAL",
+          "value": 46.214462955611644,
+          "rank": 11,
+          "benchmarkRank": 22,
+          "benchmarkValue": 3.8085106382978724
+        },
+        {
+          "team": "KC",
+          "value": 44.93485364813027,
+          "rank": 13,
+          "benchmarkRank": 1,
+          "benchmarkValue": 5.5
+        },
+        {
+          "team": "HOU",
+          "value": 40.29440521804248,
+          "rank": 15,
+          "benchmarkRank": 29,
+          "benchmarkValue": 3.511111111111111
+        },
+        {
+          "team": "CAR",
+          "value": 32.79477402074545,
+          "rank": 23,
+          "benchmarkRank": 9,
+          "benchmarkValue": 4.4
+        },
+        {
+          "team": "TB",
+          "value": 30.08499283584797,
+          "rank": 24,
+          "benchmarkRank": 10,
+          "benchmarkValue": 4.371134020618556
+        },
+        {
+          "team": "WAS",
+          "value": 26.461450773386836,
+          "rank": 27,
+          "benchmarkRank": 14,
+          "benchmarkValue": 4.203389830508475
+        },
+        {
+          "team": "JAX",
+          "value": 24.078218633316858,
+          "rank": 29,
+          "benchmarkRank": 16,
+          "benchmarkValue": 4.150442477876106
+        },
+        {
+          "team": "LAC",
+          "value": 9.75510408718225,
+          "rank": 32,
+          "benchmarkRank": 12,
+          "benchmarkValue": 4.300884955752212
+        }
+      ],
+      "ranks": [
+        {
+          "team": "KC",
+          "value": 5.5,
+          "rank": 1
+        },
+        {
+          "team": "BUF",
+          "value": 5.054545454545455,
+          "rank": 2
+        },
+        {
+          "team": "ATL",
+          "value": 4.990384615384615,
+          "rank": 3
+        },
+        {
+          "team": "CHI",
+          "value": 4.937106918238993,
+          "rank": 4
+        },
+        {
+          "team": "BAL",
+          "value": 4.834645669291339,
+          "rank": 5
+        },
+        {
+          "team": "LAR",
+          "value": 4.828571428571428,
+          "rank": 6
+        },
+        {
+          "team": "SF",
+          "value": 4.773913043478261,
+          "rank": 7
+        },
+        {
+          "team": "PIT",
+          "value": 4.406976744186046,
+          "rank": 8
+        },
+        {
+          "team": "CAR",
+          "value": 4.4,
+          "rank": 9
+        },
+        {
+          "team": "TB",
+          "value": 4.371134020618556,
+          "rank": 10
+        },
+        {
+          "team": "MIA",
+          "value": 4.333333333333333,
+          "rank": 11
+        },
+        {
+          "team": "LAC",
+          "value": 4.300884955752212,
+          "rank": 12
+        },
+        {
+          "team": "PHI",
+          "value": 4.233009708737864,
+          "rank": 13
+        },
+        {
+          "team": "WAS",
+          "value": 4.203389830508475,
+          "rank": 14
+        },
+        {
+          "team": "DET",
+          "value": 4.163265306122449,
+          "rank": 15
+        },
+        {
+          "team": "JAX",
+          "value": 4.150442477876106,
+          "rank": 16
+        },
+        {
+          "team": "TEN",
+          "value": 3.9555555555555557,
+          "rank": 17
+        },
+        {
+          "team": "NE",
+          "value": 3.925,
+          "rank": 18
+        },
+        {
+          "team": "SEA",
+          "value": 3.9026548672566372,
+          "rank": 19
+        },
+        {
+          "team": "IND",
+          "value": 3.8761061946902653,
+          "rank": 20
+        },
+        {
+          "team": "ARI",
+          "value": 3.8653846153846154,
+          "rank": 21
+        },
+        {
+          "team": "DAL",
+          "value": 3.8085106382978724,
+          "rank": 22
+        },
+        {
+          "team": "NO",
+          "value": 3.8,
+          "rank": 23
+        },
+        {
+          "team": "NYG",
+          "value": 3.7142857142857144,
+          "rank": 24
+        },
+        {
+          "team": "MIN",
+          "value": 3.6810344827586206,
+          "rank": 25
+        },
+        {
+          "team": "CLE",
+          "value": 3.676470588235294,
+          "rank": 26
+        },
+        {
+          "team": "DEN",
+          "value": 3.611111111111111,
+          "rank": 27
+        },
+        {
+          "team": "CIN",
+          "value": 3.5783132530120483,
+          "rank": 28
+        },
+        {
+          "team": "HOU",
+          "value": 3.511111111111111,
+          "rank": 29
+        },
+        {
+          "team": "NYJ",
+          "value": 3.393939393939394,
+          "rank": 30
+        },
+        {
+          "team": "GB",
+          "value": 3.1780821917808217,
+          "rank": 31
+        },
+        {
+          "team": "LV",
+          "value": 3.1260504201680672,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "rbIndex": [
+    {
+      "benchmark": "rbYpc",
+      "direction": "higher",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.7582829856528552,
+      "spearman": 0.7144428152492669,
+      "top5Overlap": 4,
+      "bottom5Overlap": 1,
+      "leaveOneTeamOutPearson": [
+        0.7192872958727731,
+        0.7837414309241824
+      ],
+      "outliers": [
+        {
+          "team": "DEN",
+          "value": 60.77846736341944,
+          "rank": 11,
+          "benchmarkRank": 24,
+          "benchmarkValue": 3.5972222222222223
+        },
+        {
+          "team": "NYJ",
+          "value": 54.95557828914774,
+          "rank": 13,
+          "benchmarkRank": 31,
+          "benchmarkValue": 3.369047619047619
+        },
+        {
+          "team": "WAS",
+          "value": 41.3339215304239,
+          "rank": 20,
+          "benchmarkRank": 30,
+          "benchmarkValue": 3.4479166666666665
+        },
+        {
+          "team": "PHI",
+          "value": 33.38747810277485,
+          "rank": 26,
+          "benchmarkRank": 14,
+          "benchmarkValue": 4.10126582278481
+        },
+        {
+          "team": "TEN",
+          "value": 27.289165061694447,
+          "rank": 29,
+          "benchmarkRank": 18,
+          "benchmarkValue": 3.9210526315789473
+        }
+      ],
+      "ranks": [
+        {
+          "team": "BUF",
+          "value": 5.851351351351352,
+          "rank": 1
+        },
+        {
+          "team": "KC",
+          "value": 5.757281553398058,
+          "rank": 2
+        },
+        {
+          "team": "LAR",
+          "value": 5.163043478260869,
+          "rank": 3
+        },
+        {
+          "team": "ATL",
+          "value": 5.010416666666667,
+          "rank": 4
+        },
+        {
+          "team": "CHI",
+          "value": 4.894736842105263,
+          "rank": 5
+        },
+        {
+          "team": "PIT",
+          "value": 4.75,
+          "rank": 6
+        },
+        {
+          "team": "JAX",
+          "value": 4.479166666666667,
+          "rank": 7
+        },
+        {
+          "team": "DET",
+          "value": 4.415730337078652,
+          "rank": 8
+        },
+        {
+          "team": "CAR",
+          "value": 4.35632183908046,
+          "rank": 9
+        },
+        {
+          "team": "LAC",
+          "value": 4.271739130434782,
+          "rank": 10
+        },
+        {
+          "team": "BAL",
+          "value": 4.213592233009709,
+          "rank": 11
+        },
+        {
+          "team": "SF",
+          "value": 4.152941176470589,
+          "rank": 12
+        },
+        {
+          "team": "MIA",
+          "value": 4.112676056338028,
+          "rank": 13
+        },
+        {
+          "team": "PHI",
+          "value": 4.10126582278481,
+          "rank": 14
+        },
+        {
+          "team": "IND",
+          "value": 4.061224489795919,
+          "rank": 15
+        },
+        {
+          "team": "ARI",
+          "value": 4.033707865168539,
+          "rank": 16
+        },
+        {
+          "team": "MIN",
+          "value": 3.9479166666666665,
+          "rank": 17
+        },
+        {
+          "team": "TEN",
+          "value": 3.9210526315789473,
+          "rank": 18
+        },
+        {
+          "team": "TB",
+          "value": 3.8472222222222223,
+          "rank": 19
+        },
+        {
+          "team": "DAL",
+          "value": 3.6923076923076925,
+          "rank": 20
+        },
+        {
+          "team": "SEA",
+          "value": 3.679611650485437,
+          "rank": 21
+        },
+        {
+          "team": "LV",
+          "value": 3.6037735849056602,
+          "rank": 22
+        },
+        {
+          "team": "NO",
+          "value": 3.6,
+          "rank": 23
+        },
+        {
+          "team": "DEN",
+          "value": 3.5972222222222223,
+          "rank": 24
+        },
+        {
+          "team": "CLE",
+          "value": 3.5671641791044775,
+          "rank": 25
+        },
+        {
+          "team": "GB",
+          "value": 3.5538461538461537,
+          "rank": 26
+        },
+        {
+          "team": "NYG",
+          "value": 3.533980582524272,
+          "rank": 27
+        },
+        {
+          "team": "CIN",
+          "value": 3.507042253521127,
+          "rank": 28
+        },
+        {
+          "team": "NE",
+          "value": 3.46875,
+          "rank": 29
+        },
+        {
+          "team": "WAS",
+          "value": 3.4479166666666665,
+          "rank": 30
+        },
+        {
+          "team": "NYJ",
+          "value": 3.369047619047619,
+          "rank": 31
+        },
+        {
+          "team": "HOU",
+          "value": 2.8533333333333335,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "rbFirstDownRate",
+      "direction": "higher",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.847305398806546,
+      "spearman": 0.8577452023134908,
+      "top5Overlap": 4,
+      "bottom5Overlap": 2,
+      "leaveOneTeamOutPearson": [
+        0.8287369802945201,
+        0.8720588111675397
+      ],
+      "outliers": [
+        {
+          "team": "CHI",
+          "value": 72.4527214891729,
+          "rank": 5,
+          "benchmarkRank": 16,
+          "benchmarkValue": 0.21804511278195488
+        },
+        {
+          "team": "NO",
+          "value": 37.751179105916776,
+          "rank": 21,
+          "benchmarkRank": 11,
+          "benchmarkValue": 0.24615384615384617
+        },
+        {
+          "team": "LV",
+          "value": 23.550957514408346,
+          "rank": 31,
+          "benchmarkRank": 20,
+          "benchmarkValue": 0.18867924528301888
+        }
+      ],
+      "ranks": [
+        {
+          "team": "DET",
+          "value": 0.3146067415730337,
+          "rank": 1
+        },
+        {
+          "team": "BUF",
+          "value": 0.2972972972972973,
+          "rank": 2
+        },
+        {
+          "team": "ATL",
+          "value": 0.2916666666666667,
+          "rank": 3
+        },
+        {
+          "team": "KC",
+          "value": 0.27184466019417475,
+          "rank": 4
+        },
+        {
+          "team": "JAX",
+          "value": 0.2708333333333333,
+          "rank": 5
+        },
+        {
+          "team": "LAR",
+          "value": 0.2608695652173913,
+          "rank": 6
+        },
+        {
+          "team": "IND",
+          "value": 0.25510204081632654,
+          "rank": 7
+        },
+        {
+          "team": "BAL",
+          "value": 0.2524271844660194,
+          "rank": 8
+        },
+        {
+          "team": "NYJ",
+          "value": 0.25,
+          "rank": 9.5
+        },
+        {
+          "team": "PIT",
+          "value": 0.25,
+          "rank": 9.5
+        },
+        {
+          "team": "NO",
+          "value": 0.24615384615384617,
+          "rank": 11
+        },
+        {
+          "team": "DAL",
+          "value": 0.24358974358974358,
+          "rank": 12
+        },
+        {
+          "team": "CAR",
+          "value": 0.22988505747126436,
+          "rank": 13
+        },
+        {
+          "team": "LAC",
+          "value": 0.22826086956521738,
+          "rank": 14
+        },
+        {
+          "team": "SF",
+          "value": 0.2235294117647059,
+          "rank": 15
+        },
+        {
+          "team": "CHI",
+          "value": 0.21804511278195488,
+          "rank": 16
+        },
+        {
+          "team": "TB",
+          "value": 0.20833333333333334,
+          "rank": 17.5
+        },
+        {
+          "team": "WAS",
+          "value": 0.20833333333333334,
+          "rank": 17.5
+        },
+        {
+          "team": "DEN",
+          "value": 0.19444444444444445,
+          "rank": 19
+        },
+        {
+          "team": "LV",
+          "value": 0.18867924528301888,
+          "rank": 20
+        },
+        {
+          "team": "NE",
+          "value": 0.1875,
+          "rank": 21
+        },
+        {
+          "team": "MIA",
+          "value": 0.18309859154929578,
+          "rank": 22
+        },
+        {
+          "team": "ARI",
+          "value": 0.1797752808988764,
+          "rank": 23
+        },
+        {
+          "team": "NYG",
+          "value": 0.17475728155339806,
+          "rank": 24
+        },
+        {
+          "team": "HOU",
+          "value": 0.17333333333333334,
+          "rank": 25
+        },
+        {
+          "team": "GB",
+          "value": 0.16923076923076924,
+          "rank": 26
+        },
+        {
+          "team": "CIN",
+          "value": 0.16901408450704225,
+          "rank": 27
+        },
+        {
+          "team": "MIN",
+          "value": 0.16666666666666666,
+          "rank": 28
+        },
+        {
+          "team": "SEA",
+          "value": 0.1650485436893204,
+          "rank": 29
+        },
+        {
+          "team": "PHI",
+          "value": 0.16455696202531644,
+          "rank": 30
+        },
+        {
+          "team": "TEN",
+          "value": 0.15789473684210525,
+          "rank": 31
+        },
+        {
+          "team": "CLE",
+          "value": 0.14925373134328357,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "rbExplosive20Rate",
+      "direction": "higher",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.49124078448927533,
+      "spearman": 0.43649262958937096,
+      "top5Overlap": 3,
+      "bottom5Overlap": 0,
+      "leaveOneTeamOutPearson": [
+        0.4019483459900556,
+        0.5960941210237354
+      ],
+      "outliers": [
+        {
+          "team": "DET",
+          "value": 76.2598445245371,
+          "rank": 2,
+          "benchmarkRank": 20.5,
+          "benchmarkValue": 0.011235955056179775
+        },
+        {
+          "team": "SF",
+          "value": 63.38600026326955,
+          "rank": 10,
+          "benchmarkRank": 28.5,
+          "benchmarkValue": 0
+        },
+        {
+          "team": "DEN",
+          "value": 60.77846736341944,
+          "rank": 11,
+          "benchmarkRank": 28.5,
+          "benchmarkValue": 0
+        },
+        {
+          "team": "NYJ",
+          "value": 54.95557828914774,
+          "rank": 13,
+          "benchmarkRank": 28.5,
+          "benchmarkValue": 0
+        },
+        {
+          "team": "PIT",
+          "value": 53.03756845029379,
+          "rank": 15,
+          "benchmarkRank": 3,
+          "benchmarkValue": 0.039473684210526314
+        },
+        {
+          "team": "NE",
+          "value": 36.80257662470616,
+          "rank": 22,
+          "benchmarkRank": 11,
+          "benchmarkValue": 0.020833333333333332
+        },
+        {
+          "team": "MIN",
+          "value": 34.86127703987559,
+          "rank": 24,
+          "benchmarkRank": 11,
+          "benchmarkValue": 0.020833333333333332
+        },
+        {
+          "team": "TEN",
+          "value": 27.289165061694447,
+          "rank": 29,
+          "benchmarkRank": 17,
+          "benchmarkValue": 0.013157894736842105
+        },
+        {
+          "team": "GB",
+          "value": 12.717324785147435,
+          "rank": 32,
+          "benchmarkRank": 6,
+          "benchmarkValue": 0.03076923076923077
+        }
+      ],
+      "ranks": [
+        {
+          "team": "KC",
+          "value": 0.05825242718446602,
+          "rank": 1
+        },
+        {
+          "team": "BUF",
+          "value": 0.05405405405405406,
+          "rank": 2
+        },
+        {
+          "team": "PIT",
+          "value": 0.039473684210526314,
+          "rank": 3
+        },
+        {
+          "team": "LAR",
+          "value": 0.03260869565217391,
+          "rank": 4
+        },
+        {
+          "team": "ATL",
+          "value": 0.03125,
+          "rank": 5
+        },
+        {
+          "team": "GB",
+          "value": 0.03076923076923077,
+          "rank": 6
+        },
+        {
+          "team": "CHI",
+          "value": 0.03007518796992481,
+          "rank": 7
+        },
+        {
+          "team": "BAL",
+          "value": 0.02912621359223301,
+          "rank": 8
+        },
+        {
+          "team": "CAR",
+          "value": 0.022988505747126436,
+          "rank": 9
+        },
+        {
+          "team": "JAX",
+          "value": 0.020833333333333332,
+          "rank": 11
+        },
+        {
+          "team": "MIN",
+          "value": 0.020833333333333332,
+          "rank": 11
+        },
+        {
+          "team": "NE",
+          "value": 0.020833333333333332,
+          "rank": 11
+        },
+        {
+          "team": "IND",
+          "value": 0.02040816326530612,
+          "rank": 13
+        },
+        {
+          "team": "CLE",
+          "value": 0.014925373134328358,
+          "rank": 14
+        },
+        {
+          "team": "MIA",
+          "value": 0.014084507042253521,
+          "rank": 15
+        },
+        {
+          "team": "TB",
+          "value": 0.013888888888888888,
+          "rank": 16
+        },
+        {
+          "team": "TEN",
+          "value": 0.013157894736842105,
+          "rank": 17
+        },
+        {
+          "team": "DAL",
+          "value": 0.01282051282051282,
+          "rank": 18
+        },
+        {
+          "team": "PHI",
+          "value": 0.012658227848101266,
+          "rank": 19
+        },
+        {
+          "team": "ARI",
+          "value": 0.011235955056179775,
+          "rank": 20.5
+        },
+        {
+          "team": "DET",
+          "value": 0.011235955056179775,
+          "rank": 20.5
+        },
+        {
+          "team": "LAC",
+          "value": 0.010869565217391304,
+          "rank": 22
+        },
+        {
+          "team": "SEA",
+          "value": 0.009708737864077669,
+          "rank": 23
+        },
+        {
+          "team": "LV",
+          "value": 0.009433962264150943,
+          "rank": 24
+        },
+        {
+          "team": "CIN",
+          "value": 0,
+          "rank": 28.5
+        },
+        {
+          "team": "DEN",
+          "value": 0,
+          "rank": 28.5
+        },
+        {
+          "team": "HOU",
+          "value": 0,
+          "rank": 28.5
+        },
+        {
+          "team": "NO",
+          "value": 0,
+          "rank": 28.5
+        },
+        {
+          "team": "NYG",
+          "value": 0,
+          "rank": 28.5
+        },
+        {
+          "team": "NYJ",
+          "value": 0,
+          "rank": 28.5
+        },
+        {
+          "team": "SF",
+          "value": 0,
+          "rank": 28.5
+        },
+        {
+          "team": "WAS",
+          "value": 0,
+          "rank": 28.5
+        }
+      ]
+    },
+    {
+      "benchmark": "rbRushEpa",
+      "direction": "higher",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.8571081663063549,
+      "spearman": 0.8372434017595308,
+      "top5Overlap": 3,
+      "bottom5Overlap": 3,
+      "leaveOneTeamOutPearson": [
+        0.8348726862009891,
+        0.8791947475227504
+      ],
+      "outliers": [
+        {
+          "team": "CAR",
+          "value": 67.2878505100604,
+          "rank": 8,
+          "benchmarkRank": 20,
+          "benchmarkValue": -0.11735499542338185
+        },
+        {
+          "team": "NYJ",
+          "value": 54.95557828914774,
+          "rank": 13,
+          "benchmarkRank": 23,
+          "benchmarkValue": -0.14592234031659743
+        },
+        {
+          "team": "NO",
+          "value": 37.751179105916776,
+          "rank": 21,
+          "benchmarkRank": 11,
+          "benchmarkValue": -0.04447989874864003
+        },
+        {
+          "team": "TEN",
+          "value": 27.289165061694447,
+          "rank": 29,
+          "benchmarkRank": 17,
+          "benchmarkValue": -0.09473301756511354
+        }
+      ],
+      "ranks": [
+        {
+          "team": "BUF",
+          "value": 0.11654647429885868,
+          "rank": 1
+        },
+        {
+          "team": "KC",
+          "value": 0.09216672893038022,
+          "rank": 2
+        },
+        {
+          "team": "ATL",
+          "value": 0.08187944820854237,
+          "rank": 3
+        },
+        {
+          "team": "IND",
+          "value": 0.058798175999755634,
+          "rank": 4
+        },
+        {
+          "team": "JAX",
+          "value": 0.04821382755150045,
+          "rank": 5
+        },
+        {
+          "team": "LAR",
+          "value": -0.007728477422104889,
+          "rank": 6
+        },
+        {
+          "team": "DET",
+          "value": -0.009950000736892905,
+          "rank": 7
+        },
+        {
+          "team": "CHI",
+          "value": -0.011148772858647668,
+          "rank": 8
+        },
+        {
+          "team": "DAL",
+          "value": -0.025770273485343467,
+          "rank": 9
+        },
+        {
+          "team": "TB",
+          "value": -0.03169308408016354,
+          "rank": 10
+        },
+        {
+          "team": "NO",
+          "value": -0.04447989874864003,
+          "rank": 11
+        },
+        {
+          "team": "BAL",
+          "value": -0.044672634084058194,
+          "rank": 12
+        },
+        {
+          "team": "SF",
+          "value": -0.05813559134120992,
+          "rank": 13
+        },
+        {
+          "team": "PIT",
+          "value": -0.06232754532768578,
+          "rank": 14
+        },
+        {
+          "team": "DEN",
+          "value": -0.07769374029386447,
+          "rank": 15
+        },
+        {
+          "team": "ARI",
+          "value": -0.08123344027029886,
+          "rank": 16
+        },
+        {
+          "team": "TEN",
+          "value": -0.09473301756511354,
+          "rank": 17
+        },
+        {
+          "team": "PHI",
+          "value": -0.1023575829144879,
+          "rank": 18
+        },
+        {
+          "team": "MIA",
+          "value": -0.11176491374872193,
+          "rank": 19
+        },
+        {
+          "team": "CAR",
+          "value": -0.11735499542338185,
+          "rank": 20
+        },
+        {
+          "team": "MIN",
+          "value": -0.12442981791392604,
+          "rank": 21
+        },
+        {
+          "team": "NE",
+          "value": -0.13146185678003033,
+          "rank": 22
+        },
+        {
+          "team": "NYJ",
+          "value": -0.14592234031659743,
+          "rank": 23
+        },
+        {
+          "team": "CIN",
+          "value": -0.14763035425263746,
+          "rank": 24
+        },
+        {
+          "team": "LAC",
+          "value": -0.14772227991555817,
+          "rank": 25
+        },
+        {
+          "team": "WAS",
+          "value": -0.16601491700639925,
+          "rank": 26
+        },
+        {
+          "team": "LV",
+          "value": -0.18599049022848574,
+          "rank": 27
+        },
+        {
+          "team": "CLE",
+          "value": -0.21693441227778668,
+          "rank": 28
+        },
+        {
+          "team": "NYG",
+          "value": -0.22138811753558005,
+          "rank": 29
+        },
+        {
+          "team": "SEA",
+          "value": -0.2485299205067862,
+          "rank": 30
+        },
+        {
+          "team": "HOU",
+          "value": -0.2685963787390569,
+          "rank": 31
+        },
+        {
+          "team": "GB",
+          "value": -0.35332243852675543,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "rbReceivingYardsPerTarget",
+      "direction": "higher",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.44914515716816217,
+      "spearman": 0.45784457478005863,
+      "top5Overlap": 3,
+      "bottom5Overlap": 1,
+      "leaveOneTeamOutPearson": [
+        0.41356754218824243,
+        0.5055116750016113
+      ],
+      "outliers": [
+        {
+          "team": "BUF",
+          "value": 85.43127288797906,
+          "rank": 1,
+          "benchmarkRank": 17,
+          "benchmarkValue": 5.117647058823529
+        },
+        {
+          "team": "IND",
+          "value": 69.82457485662317,
+          "rank": 6,
+          "benchmarkRank": 25,
+          "benchmarkValue": 4.222222222222222
+        },
+        {
+          "team": "DAL",
+          "value": 55.60417959882105,
+          "rank": 12,
+          "benchmarkRank": 28,
+          "benchmarkValue": 3.7
+        },
+        {
+          "team": "TB",
+          "value": 48.32390390664414,
+          "rank": 17,
+          "benchmarkRank": 27,
+          "benchmarkValue": 3.888888888888889
+        },
+        {
+          "team": "ARI",
+          "value": 44.211330738636065,
+          "rank": 19,
+          "benchmarkRank": 30,
+          "benchmarkValue": 3.0869565217391304
+        },
+        {
+          "team": "NO",
+          "value": 37.751179105916776,
+          "rank": 21,
+          "benchmarkRank": 31,
+          "benchmarkValue": 2.64
+        },
+        {
+          "team": "NYG",
+          "value": 28.889901266345174,
+          "rank": 27,
+          "benchmarkRank": 16,
+          "benchmarkValue": 5.294117647058823
+        },
+        {
+          "team": "SEA",
+          "value": 24.783993950423273,
+          "rank": 30,
+          "benchmarkRank": 8,
+          "benchmarkValue": 6.608695652173913
+        },
+        {
+          "team": "LV",
+          "value": 23.550957514408346,
+          "rank": 31,
+          "benchmarkRank": 11,
+          "benchmarkValue": 6.178571428571429
+        }
+      ],
+      "ranks": [
+        {
+          "team": "CAR",
+          "value": 8.125,
+          "rank": 1
+        },
+        {
+          "team": "CHI",
+          "value": 7.647058823529412,
+          "rank": 2
+        },
+        {
+          "team": "ATL",
+          "value": 7.444444444444445,
+          "rank": 3
+        },
+        {
+          "team": "DET",
+          "value": 7.242424242424242,
+          "rank": 4
+        },
+        {
+          "team": "NYJ",
+          "value": 7.117647058823529,
+          "rank": 5
+        },
+        {
+          "team": "DEN",
+          "value": 6.885714285714286,
+          "rank": 6
+        },
+        {
+          "team": "BAL",
+          "value": 6.769230769230769,
+          "rank": 7
+        },
+        {
+          "team": "SEA",
+          "value": 6.608695652173913,
+          "rank": 8
+        },
+        {
+          "team": "KC",
+          "value": 6.48,
+          "rank": 9
+        },
+        {
+          "team": "PIT",
+          "value": 6.333333333333333,
+          "rank": 10
+        },
+        {
+          "team": "LV",
+          "value": 6.178571428571429,
+          "rank": 11
+        },
+        {
+          "team": "SF",
+          "value": 6.066666666666666,
+          "rank": 12
+        },
+        {
+          "team": "LAR",
+          "value": 6,
+          "rank": 13
+        },
+        {
+          "team": "CLE",
+          "value": 5.827586206896552,
+          "rank": 14
+        },
+        {
+          "team": "WAS",
+          "value": 5.666666666666667,
+          "rank": 15
+        },
+        {
+          "team": "NYG",
+          "value": 5.294117647058823,
+          "rank": 16
+        },
+        {
+          "team": "BUF",
+          "value": 5.117647058823529,
+          "rank": 17
+        },
+        {
+          "team": "JAX",
+          "value": 5,
+          "rank": 18
+        },
+        {
+          "team": "HOU",
+          "value": 4.9375,
+          "rank": 19
+        },
+        {
+          "team": "LAC",
+          "value": 4.92,
+          "rank": 20
+        },
+        {
+          "team": "NE",
+          "value": 4.916666666666667,
+          "rank": 21
+        },
+        {
+          "team": "MIN",
+          "value": 4.894736842105263,
+          "rank": 22
+        },
+        {
+          "team": "CIN",
+          "value": 4.8125,
+          "rank": 23
+        },
+        {
+          "team": "GB",
+          "value": 4.368421052631579,
+          "rank": 24
+        },
+        {
+          "team": "IND",
+          "value": 4.222222222222222,
+          "rank": 25
+        },
+        {
+          "team": "MIA",
+          "value": 4.05,
+          "rank": 26
+        },
+        {
+          "team": "TB",
+          "value": 3.888888888888889,
+          "rank": 27
+        },
+        {
+          "team": "DAL",
+          "value": 3.7,
+          "rank": 28
+        },
+        {
+          "team": "TEN",
+          "value": 3.5555555555555554,
+          "rank": 29
+        },
+        {
+          "team": "ARI",
+          "value": 3.0869565217391304,
+          "rank": 30
+        },
+        {
+          "team": "NO",
+          "value": 2.64,
+          "rank": 31
+        },
+        {
+          "team": "PHI",
+          "value": 2.4705882352941178,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "coverageIndex": [
+    {
+      "benchmark": "coverageSuccessAllowed",
+      "direction": "lower",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.807947203338516,
+      "spearman": 0.776270060627976,
+      "top5Overlap": 3,
+      "bottom5Overlap": 3,
+      "leaveOneTeamOutPearson": [
+        0.7824400044193965,
+        0.8479786491351092
+      ],
+      "outliers": [
+        {
+          "team": "LV",
+          "value": 70.85399509494671,
+          "rank": 7,
+          "benchmarkRank": 17,
+          "benchmarkValue": 0.47619047619047616
+        },
+        {
+          "team": "JAX",
+          "value": 64.06633597006778,
+          "rank": 10,
+          "benchmarkRank": 25,
+          "benchmarkValue": 0.5144927536231884
+        },
+        {
+          "team": "HOU",
+          "value": 34.772828794218285,
+          "rank": 22,
+          "benchmarkRank": 5,
+          "benchmarkValue": 0.4326241134751773
+        }
+      ],
+      "ranks": [
+        {
+          "team": "MIN",
+          "value": 0.36153846153846153,
+          "rank": 1
+        },
+        {
+          "team": "LAR",
+          "value": 0.4094488188976378,
+          "rank": 2
+        },
+        {
+          "team": "CHI",
+          "value": 0.41414141414141414,
+          "rank": 3
+        },
+        {
+          "team": "ATL",
+          "value": 0.4153846153846154,
+          "rank": 4
+        },
+        {
+          "team": "HOU",
+          "value": 0.4326241134751773,
+          "rank": 5
+        },
+        {
+          "team": "SEA",
+          "value": 0.43548387096774194,
+          "rank": 6
+        },
+        {
+          "team": "SF",
+          "value": 0.4444444444444444,
+          "rank": 7
+        },
+        {
+          "team": "NE",
+          "value": 0.456,
+          "rank": 8
+        },
+        {
+          "team": "TB",
+          "value": 0.4596774193548387,
+          "rank": 9
+        },
+        {
+          "team": "DEN",
+          "value": 0.463768115942029,
+          "rank": 10
+        },
+        {
+          "team": "CAR",
+          "value": 0.4722222222222222,
+          "rank": 12
+        },
+        {
+          "team": "CLE",
+          "value": 0.4722222222222222,
+          "rank": 12
+        },
+        {
+          "team": "KC",
+          "value": 0.4722222222222222,
+          "rank": 12
+        },
+        {
+          "team": "IND",
+          "value": 0.4740740740740741,
+          "rank": 14.5
+        },
+        {
+          "team": "NYG",
+          "value": 0.4740740740740741,
+          "rank": 14.5
+        },
+        {
+          "team": "PHI",
+          "value": 0.4748201438848921,
+          "rank": 16
+        },
+        {
+          "team": "LV",
+          "value": 0.47619047619047616,
+          "rank": 17
+        },
+        {
+          "team": "BAL",
+          "value": 0.47794117647058826,
+          "rank": 18
+        },
+        {
+          "team": "WAS",
+          "value": 0.49264705882352944,
+          "rank": 19
+        },
+        {
+          "team": "CIN",
+          "value": 0.4927536231884058,
+          "rank": 20
+        },
+        {
+          "team": "LAC",
+          "value": 0.5,
+          "rank": 21.5
+        },
+        {
+          "team": "TEN",
+          "value": 0.5,
+          "rank": 21.5
+        },
+        {
+          "team": "GB",
+          "value": 0.5086206896551724,
+          "rank": 23
+        },
+        {
+          "team": "ARI",
+          "value": 0.5137614678899083,
+          "rank": 24
+        },
+        {
+          "team": "JAX",
+          "value": 0.5144927536231884,
+          "rank": 25
+        },
+        {
+          "team": "BUF",
+          "value": 0.5238095238095238,
+          "rank": 26
+        },
+        {
+          "team": "PIT",
+          "value": 0.5263157894736842,
+          "rank": 27
+        },
+        {
+          "team": "NYJ",
+          "value": 0.5354330708661418,
+          "rank": 28
+        },
+        {
+          "team": "NO",
+          "value": 0.5392156862745098,
+          "rank": 29
+        },
+        {
+          "team": "MIA",
+          "value": 0.5398230088495575,
+          "rank": 30
+        },
+        {
+          "team": "DET",
+          "value": 0.5548780487804879,
+          "rank": 31
+        },
+        {
+          "team": "DAL",
+          "value": 0.6283185840707964,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "passYardsAllowedPerAttempt",
+      "direction": "lower",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.6795513160830241,
+      "spearman": 0.6418621700879765,
+      "top5Overlap": 3,
+      "bottom5Overlap": 3,
+      "leaveOneTeamOutPearson": [
+        0.6315262763421581,
+        0.7360355220211049
+      ],
+      "outliers": [
+        {
+          "team": "MIN",
+          "value": 93.54655145263992,
+          "rank": 1,
+          "benchmarkRank": 11,
+          "benchmarkValue": 6.7251908396946565
+        },
+        {
+          "team": "CHI",
+          "value": 80.50337940870051,
+          "rank": 5,
+          "benchmarkRank": 22,
+          "benchmarkValue": 7.838383838383838
+        },
+        {
+          "team": "LV",
+          "value": 70.85399509494671,
+          "rank": 7,
+          "benchmarkRank": 18,
+          "benchmarkValue": 7.079365079365079
+        },
+        {
+          "team": "JAX",
+          "value": 64.06633597006778,
+          "rank": 10,
+          "benchmarkRank": 31,
+          "benchmarkValue": 8.44927536231884
+        },
+        {
+          "team": "NYJ",
+          "value": 41.70967741935485,
+          "rank": 19,
+          "benchmarkRank": 7,
+          "benchmarkValue": 6.47244094488189
+        },
+        {
+          "team": "NO",
+          "value": 31.279724586928417,
+          "rank": 25,
+          "benchmarkRank": 10,
+          "benchmarkValue": 6.689320388349515
+        }
+      ],
+      "ranks": [
+        {
+          "team": "LAR",
+          "value": 4.84251968503937,
+          "rank": 1
+        },
+        {
+          "team": "SEA",
+          "value": 5.201612903225806,
+          "rank": 2
+        },
+        {
+          "team": "SF",
+          "value": 5.924137931034482,
+          "rank": 3
+        },
+        {
+          "team": "KC",
+          "value": 6.2312925170068025,
+          "rank": 4
+        },
+        {
+          "team": "NYG",
+          "value": 6.242647058823529,
+          "rank": 5
+        },
+        {
+          "team": "ATL",
+          "value": 6.3076923076923075,
+          "rank": 6
+        },
+        {
+          "team": "NYJ",
+          "value": 6.47244094488189,
+          "rank": 7
+        },
+        {
+          "team": "NE",
+          "value": 6.523809523809524,
+          "rank": 8
+        },
+        {
+          "team": "PHI",
+          "value": 6.553956834532374,
+          "rank": 9
+        },
+        {
+          "team": "NO",
+          "value": 6.689320388349515,
+          "rank": 10
+        },
+        {
+          "team": "MIN",
+          "value": 6.7251908396946565,
+          "rank": 11
+        },
+        {
+          "team": "BAL",
+          "value": 6.735294117647059,
+          "rank": 12
+        },
+        {
+          "team": "CAR",
+          "value": 6.736111111111111,
+          "rank": 13
+        },
+        {
+          "team": "GB",
+          "value": 6.854700854700854,
+          "rank": 14
+        },
+        {
+          "team": "TB",
+          "value": 6.911290322580645,
+          "rank": 15
+        },
+        {
+          "team": "DEN",
+          "value": 6.957446808510638,
+          "rank": 16
+        },
+        {
+          "team": "CLE",
+          "value": 7.0137931034482754,
+          "rank": 17
+        },
+        {
+          "team": "LV",
+          "value": 7.079365079365079,
+          "rank": 18
+        },
+        {
+          "team": "BUF",
+          "value": 7.45578231292517,
+          "rank": 19
+        },
+        {
+          "team": "WAS",
+          "value": 7.485294117647059,
+          "rank": 20
+        },
+        {
+          "team": "CIN",
+          "value": 7.716312056737588,
+          "rank": 21
+        },
+        {
+          "team": "CHI",
+          "value": 7.838383838383838,
+          "rank": 22
+        },
+        {
+          "team": "TEN",
+          "value": 7.875,
+          "rank": 23
+        },
+        {
+          "team": "HOU",
+          "value": 7.879432624113475,
+          "rank": 24
+        },
+        {
+          "team": "PIT",
+          "value": 7.9035087719298245,
+          "rank": 25
+        },
+        {
+          "team": "LAC",
+          "value": 7.912280701754386,
+          "rank": 26
+        },
+        {
+          "team": "DET",
+          "value": 7.927272727272728,
+          "rank": 27
+        },
+        {
+          "team": "IND",
+          "value": 8.125,
+          "rank": 28
+        },
+        {
+          "team": "MIA",
+          "value": 8.31858407079646,
+          "rank": 29
+        },
+        {
+          "team": "DAL",
+          "value": 8.434782608695652,
+          "rank": 30
+        },
+        {
+          "team": "JAX",
+          "value": 8.44927536231884,
+          "rank": 31
+        },
+        {
+          "team": "ARI",
+          "value": 9.091743119266056,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "oppPassEpa",
+      "direction": "lower",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.932535040484077,
+      "spearman": 0.9633431085043989,
+      "top5Overlap": 5,
+      "bottom5Overlap": 4,
+      "leaveOneTeamOutPearson": [
+        0.9232696553129902,
+        0.9441288358221056
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "LAR",
+          "value": -0.13792483712357922,
+          "rank": 1
+        },
+        {
+          "team": "MIN",
+          "value": -0.0025989745898591,
+          "rank": 2
+        },
+        {
+          "team": "SEA",
+          "value": 0.01055406604260458,
+          "rank": 3
+        },
+        {
+          "team": "KC",
+          "value": 0.019707609674983792,
+          "rank": 4
+        },
+        {
+          "team": "CHI",
+          "value": 0.020352975344622413,
+          "rank": 5
+        },
+        {
+          "team": "ATL",
+          "value": 0.05973314374964694,
+          "rank": 6
+        },
+        {
+          "team": "NYG",
+          "value": 0.06542490138613972,
+          "rank": 7
+        },
+        {
+          "team": "JAX",
+          "value": 0.09091453878348513,
+          "rank": 8
+        },
+        {
+          "team": "LV",
+          "value": 0.09200675030246978,
+          "rank": 9
+        },
+        {
+          "team": "TB",
+          "value": 0.09791451538934061,
+          "rank": 10
+        },
+        {
+          "team": "BAL",
+          "value": 0.10395031901637675,
+          "rank": 11
+        },
+        {
+          "team": "DEN",
+          "value": 0.10646061626936029,
+          "rank": 12
+        },
+        {
+          "team": "SF",
+          "value": 0.1083384251943092,
+          "rank": 13
+        },
+        {
+          "team": "NE",
+          "value": 0.11806510714411658,
+          "rank": 14
+        },
+        {
+          "team": "CAR",
+          "value": 0.1184468465573481,
+          "rank": 15
+        },
+        {
+          "team": "PHI",
+          "value": 0.1306253779456905,
+          "rank": 16
+        },
+        {
+          "team": "CLE",
+          "value": 0.1558909890434461,
+          "rank": 17
+        },
+        {
+          "team": "NYJ",
+          "value": 0.16068864905068264,
+          "rank": 18
+        },
+        {
+          "team": "PIT",
+          "value": 0.16314046375970803,
+          "rank": 19
+        },
+        {
+          "team": "LAC",
+          "value": 0.1693359396422604,
+          "rank": 20
+        },
+        {
+          "team": "WAS",
+          "value": 0.17300412629794182,
+          "rank": 21
+        },
+        {
+          "team": "GB",
+          "value": 0.19259813387696886,
+          "rank": 22
+        },
+        {
+          "team": "IND",
+          "value": 0.21087846780445127,
+          "rank": 23
+        },
+        {
+          "team": "CIN",
+          "value": 0.22869885585403407,
+          "rank": 24
+        },
+        {
+          "team": "NO",
+          "value": 0.2526184649944404,
+          "rank": 25
+        },
+        {
+          "team": "TEN",
+          "value": 0.31602658588084076,
+          "rank": 26
+        },
+        {
+          "team": "HOU",
+          "value": 0.3275797015062378,
+          "rank": 27
+        },
+        {
+          "team": "BUF",
+          "value": 0.32893291903928307,
+          "rank": 28
+        },
+        {
+          "team": "MIA",
+          "value": 0.38997123354799895,
+          "rank": 29
+        },
+        {
+          "team": "ARI",
+          "value": 0.44971116530366073,
+          "rank": 30
+        },
+        {
+          "team": "DET",
+          "value": 0.4527804440714257,
+          "rank": 31
+        },
+        {
+          "team": "DAL",
+          "value": 0.48726516870071207,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "passRushIndex": [
+    {
+      "benchmark": "frontSackRate",
+      "direction": "higher",
+      "boundary": "ingredient/adjacent",
+      "n": 32,
+      "pearson": 0.7983815488914423,
+      "spearman": 0.7997066944616158,
+      "top5Overlap": 2,
+      "bottom5Overlap": 3,
+      "leaveOneTeamOutPearson": [
+        0.7711286075779703,
+        0.8401955717974215
+      ],
+      "outliers": [
+        {
+          "team": "DEN",
+          "value": 68.09735543030338,
+          "rank": 10,
+          "benchmarkRank": 20,
+          "benchmarkValue": 0.053691275167785234
+        },
+        {
+          "team": "ATL",
+          "value": 64.3711472130192,
+          "rank": 12,
+          "benchmarkRank": 27,
+          "benchmarkValue": 0.037037037037037035
+        },
+        {
+          "team": "ARI",
+          "value": 36.42336983913563,
+          "rank": 22,
+          "benchmarkRank": 12,
+          "benchmarkValue": 0.06837606837606838
+        },
+        {
+          "team": "NYJ",
+          "value": 19.140120967741936,
+          "rank": 26,
+          "benchmarkRank": 14,
+          "benchmarkValue": 0.0661764705882353
+        }
+      ],
+      "ranks": [
+        {
+          "team": "MIN",
+          "value": 0.10884353741496598,
+          "rank": 1
+        },
+        {
+          "team": "CHI",
+          "value": 0.09174311926605505,
+          "rank": 2
+        },
+        {
+          "team": "CIN",
+          "value": 0.09032258064516129,
+          "rank": 3.5
+        },
+        {
+          "team": "HOU",
+          "value": 0.09032258064516129,
+          "rank": 3.5
+        },
+        {
+          "team": "LV",
+          "value": 0.08695652173913043,
+          "rank": 5
+        },
+        {
+          "team": "DET",
+          "value": 0.08333333333333333,
+          "rank": 6
+        },
+        {
+          "team": "SEA",
+          "value": 0.08148148148148149,
+          "rank": 7
+        },
+        {
+          "team": "LAC",
+          "value": 0.08064516129032258,
+          "rank": 8.5
+        },
+        {
+          "team": "PIT",
+          "value": 0.08064516129032258,
+          "rank": 8.5
+        },
+        {
+          "team": "GB",
+          "value": 0.07874015748031496,
+          "rank": 10
+        },
+        {
+          "team": "CLE",
+          "value": 0.07643312101910828,
+          "rank": 11
+        },
+        {
+          "team": "ARI",
+          "value": 0.06837606837606838,
+          "rank": 12
+        },
+        {
+          "team": "TEN",
+          "value": 0.06666666666666667,
+          "rank": 13
+        },
+        {
+          "team": "NYJ",
+          "value": 0.0661764705882353,
+          "rank": 14
+        },
+        {
+          "team": "BUF",
+          "value": 0.06369426751592357,
+          "rank": 15
+        },
+        {
+          "team": "NO",
+          "value": 0.06363636363636363,
+          "rank": 16
+        },
+        {
+          "team": "IND",
+          "value": 0.06206896551724138,
+          "rank": 17
+        },
+        {
+          "team": "JAX",
+          "value": 0.060810810810810814,
+          "rank": 18
+        },
+        {
+          "team": "NE",
+          "value": 0.05970149253731343,
+          "rank": 19
+        },
+        {
+          "team": "DEN",
+          "value": 0.053691275167785234,
+          "rank": 20
+        },
+        {
+          "team": "LAR",
+          "value": 0.05223880597014925,
+          "rank": 21
+        },
+        {
+          "team": "BAL",
+          "value": 0.04895104895104895,
+          "rank": 22.5
+        },
+        {
+          "team": "WAS",
+          "value": 0.04895104895104895,
+          "rank": 22.5
+        },
+        {
+          "team": "TB",
+          "value": 0.046153846153846156,
+          "rank": 24
+        },
+        {
+          "team": "CAR",
+          "value": 0.046052631578947366,
+          "rank": 25
+        },
+        {
+          "team": "SF",
+          "value": 0.039735099337748346,
+          "rank": 26
+        },
+        {
+          "team": "ATL",
+          "value": 0.037037037037037035,
+          "rank": 27
+        },
+        {
+          "team": "MIA",
+          "value": 0.03418803418803419,
+          "rank": 28
+        },
+        {
+          "team": "DAL",
+          "value": 0.03361344537815126,
+          "rank": 29
+        },
+        {
+          "team": "PHI",
+          "value": 0.027972027972027972,
+          "rank": 30
+        },
+        {
+          "team": "NYG",
+          "value": 0.02158273381294964,
+          "rank": 31
+        },
+        {
+          "team": "KC",
+          "value": 0.019867549668874173,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "frontPressureRate",
+      "direction": "higher",
+      "boundary": "provider-heterogeneous ingredient/proxy",
+      "n": 32,
+      "pearson": 0.9528379349357098,
+      "spearman": 0.9736070381231672,
+      "top5Overlap": 4,
+      "bottom5Overlap": 5,
+      "leaveOneTeamOutPearson": [
+        0.9497962405051111,
+        0.9597787551875864
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "MIN",
+          "value": 0.38095238095238093,
+          "rank": 1
+        },
+        {
+          "team": "LV",
+          "value": 0.34782608695652173,
+          "rank": 2
+        },
+        {
+          "team": "LAC",
+          "value": 0.3387096774193548,
+          "rank": 3
+        },
+        {
+          "team": "SEA",
+          "value": 0.3111111111111111,
+          "rank": 4
+        },
+        {
+          "team": "HOU",
+          "value": 0.3032258064516129,
+          "rank": 5
+        },
+        {
+          "team": "DET",
+          "value": 0.2777777777777778,
+          "rank": 6
+        },
+        {
+          "team": "CHI",
+          "value": 0.27522935779816515,
+          "rank": 7
+        },
+        {
+          "team": "BUF",
+          "value": 0.27388535031847133,
+          "rank": 8
+        },
+        {
+          "team": "CIN",
+          "value": 0.2709677419354839,
+          "rank": 9
+        },
+        {
+          "team": "GB",
+          "value": 0.2677165354330709,
+          "rank": 10
+        },
+        {
+          "team": "PIT",
+          "value": 0.2661290322580645,
+          "rank": 11
+        },
+        {
+          "team": "DEN",
+          "value": 0.2550335570469799,
+          "rank": 12
+        },
+        {
+          "team": "NO",
+          "value": 0.24545454545454545,
+          "rank": 13
+        },
+        {
+          "team": "JAX",
+          "value": 0.24324324324324326,
+          "rank": 14
+        },
+        {
+          "team": "CLE",
+          "value": 0.24203821656050956,
+          "rank": 15
+        },
+        {
+          "team": "IND",
+          "value": 0.2413793103448276,
+          "rank": 16
+        },
+        {
+          "team": "NE",
+          "value": 0.23134328358208955,
+          "rank": 17
+        },
+        {
+          "team": "BAL",
+          "value": 0.23076923076923078,
+          "rank": 18
+        },
+        {
+          "team": "ATL",
+          "value": 0.22962962962962963,
+          "rank": 19
+        },
+        {
+          "team": "ARI",
+          "value": 0.2222222222222222,
+          "rank": 20
+        },
+        {
+          "team": "WAS",
+          "value": 0.2097902097902098,
+          "rank": 21
+        },
+        {
+          "team": "TEN",
+          "value": 0.20833333333333334,
+          "rank": 22
+        },
+        {
+          "team": "LAR",
+          "value": 0.20149253731343283,
+          "rank": 23
+        },
+        {
+          "team": "DAL",
+          "value": 0.18487394957983194,
+          "rank": 24
+        },
+        {
+          "team": "MIA",
+          "value": 0.1794871794871795,
+          "rank": 25
+        },
+        {
+          "team": "NYJ",
+          "value": 0.17647058823529413,
+          "rank": 26
+        },
+        {
+          "team": "SF",
+          "value": 0.17218543046357615,
+          "rank": 27
+        },
+        {
+          "team": "TB",
+          "value": 0.16923076923076924,
+          "rank": 28
+        },
+        {
+          "team": "CAR",
+          "value": 0.15789473684210525,
+          "rank": 29
+        },
+        {
+          "team": "KC",
+          "value": 0.152317880794702,
+          "rank": 30
+        },
+        {
+          "team": "PHI",
+          "value": 0.11888111888111888,
+          "rank": 31
+        },
+        {
+          "team": "NYG",
+          "value": 0.11510791366906475,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "runDefenseIndex": [
+    {
+      "benchmark": "rushYpcAllowed",
+      "direction": "lower",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.6036588532237795,
+      "spearman": 0.5828445747800587,
+      "top5Overlap": 2,
+      "bottom5Overlap": 2,
+      "leaveOneTeamOutPearson": [
+        0.5640697226412228,
+        0.6736550481480337
+      ],
+      "outliers": [
+        {
+          "team": "ARI",
+          "value": 86.64163738043632,
+          "rank": 3,
+          "benchmarkRank": 18,
+          "benchmarkValue": 4.196428571428571
+        },
+        {
+          "team": "MIN",
+          "value": 76.95071939911227,
+          "rank": 6,
+          "benchmarkRank": 16,
+          "benchmarkValue": 4.153846153846154
+        },
+        {
+          "team": "NYJ",
+          "value": 73.83870967741936,
+          "rank": 8,
+          "benchmarkRank": 19,
+          "benchmarkValue": 4.258620689655173
+        },
+        {
+          "team": "CIN",
+          "value": 65.1384176725503,
+          "rank": 10,
+          "benchmarkRank": 23,
+          "benchmarkValue": 4.5227272727272725
+        },
+        {
+          "team": "LV",
+          "value": 64.88893867866838,
+          "rank": 11,
+          "benchmarkRank": 31,
+          "benchmarkValue": 5.173076923076923
+        },
+        {
+          "team": "HOU",
+          "value": 60.245012876129344,
+          "rank": 14,
+          "benchmarkRank": 4,
+          "benchmarkValue": 3.35
+        },
+        {
+          "team": "SF",
+          "value": 40.48501221552633,
+          "rank": 20,
+          "benchmarkRank": 9,
+          "benchmarkValue": 3.7289719626168223
+        },
+        {
+          "team": "PHI",
+          "value": 31.118708983440456,
+          "rank": 24,
+          "benchmarkRank": 14,
+          "benchmarkValue": 4.033057851239669
+        },
+        {
+          "team": "WAS",
+          "value": 30.47763330380519,
+          "rank": 25,
+          "benchmarkRank": 13,
+          "benchmarkValue": 3.978723404255319
+        },
+        {
+          "team": "BUF",
+          "value": 15.424484442370883,
+          "rank": 29,
+          "benchmarkRank": 15,
+          "benchmarkValue": 4.034782608695652
+        },
+        {
+          "team": "NE",
+          "value": 10.055243434885647,
+          "rank": 32,
+          "benchmarkRank": 21,
+          "benchmarkValue": 4.378947368421053
+        }
+      ],
+      "ranks": [
+        {
+          "team": "ATL",
+          "value": 2.75,
+          "rank": 1
+        },
+        {
+          "team": "TB",
+          "value": 3.204081632653061,
+          "rank": 2
+        },
+        {
+          "team": "JAX",
+          "value": 3.2637362637362637,
+          "rank": 3
+        },
+        {
+          "team": "HOU",
+          "value": 3.35,
+          "rank": 4
+        },
+        {
+          "team": "KC",
+          "value": 3.5673076923076925,
+          "rank": 5
+        },
+        {
+          "team": "MIA",
+          "value": 3.6333333333333333,
+          "rank": 6
+        },
+        {
+          "team": "SEA",
+          "value": 3.642857142857143,
+          "rank": 7
+        },
+        {
+          "team": "TEN",
+          "value": 3.6641791044776117,
+          "rank": 8
+        },
+        {
+          "team": "SF",
+          "value": 3.7289719626168223,
+          "rank": 9
+        },
+        {
+          "team": "LAC",
+          "value": 3.7751937984496124,
+          "rank": 10
+        },
+        {
+          "team": "BAL",
+          "value": 3.883495145631068,
+          "rank": 11
+        },
+        {
+          "team": "LAR",
+          "value": 3.9611650485436893,
+          "rank": 12
+        },
+        {
+          "team": "WAS",
+          "value": 3.978723404255319,
+          "rank": 13
+        },
+        {
+          "team": "PHI",
+          "value": 4.033057851239669,
+          "rank": 14
+        },
+        {
+          "team": "BUF",
+          "value": 4.034782608695652,
+          "rank": 15
+        },
+        {
+          "team": "MIN",
+          "value": 4.153846153846154,
+          "rank": 16
+        },
+        {
+          "team": "GB",
+          "value": 4.18796992481203,
+          "rank": 17
+        },
+        {
+          "team": "ARI",
+          "value": 4.196428571428571,
+          "rank": 18
+        },
+        {
+          "team": "NYJ",
+          "value": 4.258620689655173,
+          "rank": 19
+        },
+        {
+          "team": "PIT",
+          "value": 4.336538461538462,
+          "rank": 20
+        },
+        {
+          "team": "NE",
+          "value": 4.378947368421053,
+          "rank": 21
+        },
+        {
+          "team": "DET",
+          "value": 4.435185185185185,
+          "rank": 22
+        },
+        {
+          "team": "CIN",
+          "value": 4.5227272727272725,
+          "rank": 23
+        },
+        {
+          "team": "CLE",
+          "value": 4.575757575757576,
+          "rank": 24
+        },
+        {
+          "team": "NYG",
+          "value": 4.688172043010753,
+          "rank": 25
+        },
+        {
+          "team": "NO",
+          "value": 4.7073170731707314,
+          "rank": 26
+        },
+        {
+          "team": "DEN",
+          "value": 4.758333333333334,
+          "rank": 27
+        },
+        {
+          "team": "DAL",
+          "value": 4.76984126984127,
+          "rank": 28
+        },
+        {
+          "team": "IND",
+          "value": 4.807339449541284,
+          "rank": 29
+        },
+        {
+          "team": "CHI",
+          "value": 4.9397590361445785,
+          "rank": 30
+        },
+        {
+          "team": "LV",
+          "value": 5.173076923076923,
+          "rank": 31
+        },
+        {
+          "team": "CAR",
+          "value": 5.396551724137931,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "rushFirstDownRateAllowed",
+      "direction": "lower",
+      "boundary": "first-down proxy, not EPA success rate",
+      "n": 32,
+      "pearson": 0.578919560903026,
+      "spearman": 0.603061133501555,
+      "top5Overlap": 2,
+      "bottom5Overlap": 1,
+      "leaveOneTeamOutPearson": [
+        0.5404067325105258,
+        0.6257937676417428
+      ],
+      "outliers": [
+        {
+          "team": "NYJ",
+          "value": 73.83870967741936,
+          "rank": 8,
+          "benchmarkRank": 21,
+          "benchmarkValue": 0.25
+        },
+        {
+          "team": "LV",
+          "value": 64.88893867866838,
+          "rank": 11,
+          "benchmarkRank": 23.5,
+          "benchmarkValue": 0.25961538461538464
+        },
+        {
+          "team": "BAL",
+          "value": 49.7529242801412,
+          "rank": 16,
+          "benchmarkRank": 27,
+          "benchmarkValue": 0.27184466019417475
+        },
+        {
+          "team": "NO",
+          "value": 43.8336208397847,
+          "rank": 18,
+          "benchmarkRank": 31,
+          "benchmarkValue": 0.3170731707317073
+        },
+        {
+          "team": "SF",
+          "value": 40.48501221552633,
+          "rank": 20,
+          "benchmarkRank": 7,
+          "benchmarkValue": 0.21495327102803738
+        },
+        {
+          "team": "DET",
+          "value": 31.540713444346352,
+          "rank": 22,
+          "benchmarkRank": 32,
+          "benchmarkValue": 0.3425925925925926
+        },
+        {
+          "team": "WAS",
+          "value": 30.47763330380519,
+          "rank": 25,
+          "benchmarkRank": 5,
+          "benchmarkValue": 0.2127659574468085
+        },
+        {
+          "team": "CAR",
+          "value": 17.257249893850442,
+          "rank": 28,
+          "benchmarkRank": 18,
+          "benchmarkValue": 0.2413793103448276
+        },
+        {
+          "team": "BUF",
+          "value": 15.424484442370883,
+          "rank": 29,
+          "benchmarkRank": 19,
+          "benchmarkValue": 0.24347826086956523
+        },
+        {
+          "team": "CHI",
+          "value": 10.458970733157763,
+          "rank": 31,
+          "benchmarkRank": 14,
+          "benchmarkValue": 0.2289156626506024
+        },
+        {
+          "team": "NE",
+          "value": 10.055243434885647,
+          "rank": 32,
+          "benchmarkRank": 22,
+          "benchmarkValue": 0.25263157894736843
+        }
+      ],
+      "ranks": [
+        {
+          "team": "ATL",
+          "value": 0.17307692307692307,
+          "rank": 1
+        },
+        {
+          "team": "LAC",
+          "value": 0.1937984496124031,
+          "rank": 2
+        },
+        {
+          "team": "SEA",
+          "value": 0.19642857142857142,
+          "rank": 3
+        },
+        {
+          "team": "MIN",
+          "value": 0.1978021978021978,
+          "rank": 4
+        },
+        {
+          "team": "WAS",
+          "value": 0.2127659574468085,
+          "rank": 5
+        },
+        {
+          "team": "TB",
+          "value": 0.21428571428571427,
+          "rank": 6
+        },
+        {
+          "team": "SF",
+          "value": 0.21495327102803738,
+          "rank": 7
+        },
+        {
+          "team": "MIA",
+          "value": 0.21666666666666667,
+          "rank": 8
+        },
+        {
+          "team": "JAX",
+          "value": 0.21978021978021978,
+          "rank": 9
+        },
+        {
+          "team": "KC",
+          "value": 0.22115384615384615,
+          "rank": 10
+        },
+        {
+          "team": "ARI",
+          "value": 0.22321428571428573,
+          "rank": 11
+        },
+        {
+          "team": "LAR",
+          "value": 0.22330097087378642,
+          "rank": 12
+        },
+        {
+          "team": "CIN",
+          "value": 0.22727272727272727,
+          "rank": 13
+        },
+        {
+          "team": "CHI",
+          "value": 0.2289156626506024,
+          "rank": 14
+        },
+        {
+          "team": "HOU",
+          "value": 0.23,
+          "rank": 15
+        },
+        {
+          "team": "TEN",
+          "value": 0.23880597014925373,
+          "rank": 16
+        },
+        {
+          "team": "PHI",
+          "value": 0.2396694214876033,
+          "rank": 17
+        },
+        {
+          "team": "CAR",
+          "value": 0.2413793103448276,
+          "rank": 18
+        },
+        {
+          "team": "BUF",
+          "value": 0.24347826086956523,
+          "rank": 19
+        },
+        {
+          "team": "NYG",
+          "value": 0.24731182795698925,
+          "rank": 20
+        },
+        {
+          "team": "NYJ",
+          "value": 0.25,
+          "rank": 21
+        },
+        {
+          "team": "NE",
+          "value": 0.25263157894736843,
+          "rank": 22
+        },
+        {
+          "team": "LV",
+          "value": 0.25961538461538464,
+          "rank": 23.5
+        },
+        {
+          "team": "PIT",
+          "value": 0.25961538461538464,
+          "rank": 23.5
+        },
+        {
+          "team": "DAL",
+          "value": 0.2619047619047619,
+          "rank": 25
+        },
+        {
+          "team": "GB",
+          "value": 0.2631578947368421,
+          "rank": 26
+        },
+        {
+          "team": "BAL",
+          "value": 0.27184466019417475,
+          "rank": 27
+        },
+        {
+          "team": "CLE",
+          "value": 0.29292929292929293,
+          "rank": 28
+        },
+        {
+          "team": "IND",
+          "value": 0.30275229357798167,
+          "rank": 29
+        },
+        {
+          "team": "DEN",
+          "value": 0.30833333333333335,
+          "rank": 30
+        },
+        {
+          "team": "NO",
+          "value": 0.3170731707317073,
+          "rank": 31
+        },
+        {
+          "team": "DET",
+          "value": 0.3425925925925926,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "rushExplosive20Allowed",
+      "direction": "lower",
+      "boundary": "non-formula same-source outcome",
+      "n": 32,
+      "pearson": 0.3627584327582583,
+      "spearman": 0.3243857417425205,
+      "top5Overlap": 1,
+      "bottom5Overlap": 2,
+      "leaveOneTeamOutPearson": [
+        0.32013270517552045,
+        0.46476661578280226
+      ],
+      "outliers": [
+        {
+          "team": "TB",
+          "value": 90.53001934824908,
+          "rank": 1,
+          "benchmarkRank": 18,
+          "benchmarkValue": 0.02040816326530612
+        },
+        {
+          "team": "SEA",
+          "value": 86.69442681717781,
+          "rank": 2,
+          "benchmarkRank": 15.5,
+          "benchmarkValue": 0.017857142857142856
+        },
+        {
+          "team": "ARI",
+          "value": 86.64163738043632,
+          "rank": 3,
+          "benchmarkRank": 15.5,
+          "benchmarkValue": 0.017857142857142856
+        },
+        {
+          "team": "CIN",
+          "value": 65.1384176725503,
+          "rank": 10,
+          "benchmarkRank": 30,
+          "benchmarkValue": 0.045454545454545456
+        },
+        {
+          "team": "LV",
+          "value": 64.88893867866838,
+          "rank": 11,
+          "benchmarkRank": 26,
+          "benchmarkValue": 0.038461538461538464
+        },
+        {
+          "team": "LAR",
+          "value": 58.30952038933444,
+          "rank": 15,
+          "benchmarkRank": 3.5,
+          "benchmarkValue": 0
+        },
+        {
+          "team": "PIT",
+          "value": 43.34029782091707,
+          "rank": 19,
+          "benchmarkRank": 32,
+          "benchmarkValue": 0.04807692307692308
+        },
+        {
+          "team": "SF",
+          "value": 40.48501221552633,
+          "rank": 20,
+          "benchmarkRank": 3.5,
+          "benchmarkValue": 0
+        },
+        {
+          "team": "PHI",
+          "value": 31.118708983440456,
+          "rank": 24,
+          "benchmarkRank": 14,
+          "benchmarkValue": 0.01652892561983471
+        },
+        {
+          "team": "BUF",
+          "value": 15.424484442370883,
+          "rank": 29,
+          "benchmarkRank": 9,
+          "benchmarkValue": 0.008695652173913044
+        },
+        {
+          "team": "NE",
+          "value": 10.055243434885647,
+          "rank": 32,
+          "benchmarkRank": 3.5,
+          "benchmarkValue": 0
+        }
+      ],
+      "ranks": [
+        {
+          "team": "ATL",
+          "value": 0,
+          "rank": 3.5
+        },
+        {
+          "team": "JAX",
+          "value": 0,
+          "rank": 3.5
+        },
+        {
+          "team": "LAR",
+          "value": 0,
+          "rank": 3.5
+        },
+        {
+          "team": "NE",
+          "value": 0,
+          "rank": 3.5
+        },
+        {
+          "team": "SF",
+          "value": 0,
+          "rank": 3.5
+        },
+        {
+          "team": "TEN",
+          "value": 0,
+          "rank": 3.5
+        },
+        {
+          "team": "MIA",
+          "value": 0.008333333333333333,
+          "rank": 7
+        },
+        {
+          "team": "NYJ",
+          "value": 0.008620689655172414,
+          "rank": 8
+        },
+        {
+          "team": "BUF",
+          "value": 0.008695652173913044,
+          "rank": 9
+        },
+        {
+          "team": "KC",
+          "value": 0.009615384615384616,
+          "rank": 10
+        },
+        {
+          "team": "HOU",
+          "value": 0.01,
+          "rank": 11
+        },
+        {
+          "team": "MIN",
+          "value": 0.01098901098901099,
+          "rank": 12
+        },
+        {
+          "team": "LAC",
+          "value": 0.015503875968992248,
+          "rank": 13
+        },
+        {
+          "team": "PHI",
+          "value": 0.01652892561983471,
+          "rank": 14
+        },
+        {
+          "team": "ARI",
+          "value": 0.017857142857142856,
+          "rank": 15.5
+        },
+        {
+          "team": "SEA",
+          "value": 0.017857142857142856,
+          "rank": 15.5
+        },
+        {
+          "team": "CLE",
+          "value": 0.020202020202020204,
+          "rank": 17
+        },
+        {
+          "team": "TB",
+          "value": 0.02040816326530612,
+          "rank": 18
+        },
+        {
+          "team": "WAS",
+          "value": 0.02127659574468085,
+          "rank": 19
+        },
+        {
+          "team": "NYG",
+          "value": 0.021505376344086023,
+          "rank": 20
+        },
+        {
+          "team": "NO",
+          "value": 0.024390243902439025,
+          "rank": 21
+        },
+        {
+          "team": "IND",
+          "value": 0.027522935779816515,
+          "rank": 22
+        },
+        {
+          "team": "BAL",
+          "value": 0.02912621359223301,
+          "rank": 23
+        },
+        {
+          "team": "GB",
+          "value": 0.03007518796992481,
+          "rank": 24
+        },
+        {
+          "team": "CHI",
+          "value": 0.03614457831325301,
+          "rank": 25
+        },
+        {
+          "team": "LV",
+          "value": 0.038461538461538464,
+          "rank": 26
+        },
+        {
+          "team": "DAL",
+          "value": 0.03968253968253968,
+          "rank": 27
+        },
+        {
+          "team": "DEN",
+          "value": 0.041666666666666664,
+          "rank": 28
+        },
+        {
+          "team": "CAR",
+          "value": 0.04310344827586207,
+          "rank": 29
+        },
+        {
+          "team": "CIN",
+          "value": 0.045454545454545456,
+          "rank": 30
+        },
+        {
+          "team": "DET",
+          "value": 0.046296296296296294,
+          "rank": 31
+        },
+        {
+          "team": "PIT",
+          "value": 0.04807692307692308,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "oppRushEpa",
+      "direction": "lower",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.9625697629151049,
+      "spearman": 0.9853372434017595,
+      "top5Overlap": 5,
+      "bottom5Overlap": 5,
+      "leaveOneTeamOutPearson": [
+        0.9593825439890666,
+        0.9766084373704446
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "ATL",
+          "value": -0.2646064634766213,
+          "rank": 1
+        },
+        {
+          "team": "ARI",
+          "value": -0.20857015547064833,
+          "rank": 2
+        },
+        {
+          "team": "TB",
+          "value": -0.1915890199574869,
+          "rank": 3
+        },
+        {
+          "team": "MIA",
+          "value": -0.17593596978387785,
+          "rank": 4
+        },
+        {
+          "team": "SEA",
+          "value": -0.15720979518872527,
+          "rank": 5
+        },
+        {
+          "team": "MIN",
+          "value": -0.14840140947523112,
+          "rank": 6
+        },
+        {
+          "team": "NYJ",
+          "value": -0.1279754790161838,
+          "rank": 7
+        },
+        {
+          "team": "LAC",
+          "value": -0.12057957151889946,
+          "rank": 8
+        },
+        {
+          "team": "CIN",
+          "value": -0.10622584732844911,
+          "rank": 9
+        },
+        {
+          "team": "JAX",
+          "value": -0.10290033553637927,
+          "rank": 10
+        },
+        {
+          "team": "LV",
+          "value": -0.09558367279674075,
+          "rank": 11
+        },
+        {
+          "team": "KC",
+          "value": -0.09444881012535336,
+          "rank": 12
+        },
+        {
+          "team": "TEN",
+          "value": -0.0921288285388645,
+          "rank": 13
+        },
+        {
+          "team": "HOU",
+          "value": -0.0794532081915532,
+          "rank": 14
+        },
+        {
+          "team": "LAR",
+          "value": -0.07025986523609874,
+          "rank": 15
+        },
+        {
+          "team": "NYG",
+          "value": -0.054277510826616124,
+          "rank": 16
+        },
+        {
+          "team": "BAL",
+          "value": -0.04958958135239898,
+          "rank": 17
+        },
+        {
+          "team": "SF",
+          "value": -0.04597273375690692,
+          "rank": 18
+        },
+        {
+          "team": "DAL",
+          "value": -0.03578028777967183,
+          "rank": 19
+        },
+        {
+          "team": "PIT",
+          "value": -0.02850386136992096,
+          "rank": 20
+        },
+        {
+          "team": "NO",
+          "value": -0.028391574522929074,
+          "rank": 21
+        },
+        {
+          "team": "WAS",
+          "value": -0.006723814713587021,
+          "rank": 22
+        },
+        {
+          "team": "PHI",
+          "value": -0.002322934603723393,
+          "rank": 23
+        },
+        {
+          "team": "DET",
+          "value": 0.00001648303495370583,
+          "rank": 24
+        },
+        {
+          "team": "GB",
+          "value": 0.004173825938067143,
+          "rank": 25
+        },
+        {
+          "team": "CLE",
+          "value": 0.02128066787257293,
+          "rank": 26
+        },
+        {
+          "team": "IND",
+          "value": 0.033893492408216055,
+          "rank": 27
+        },
+        {
+          "team": "BUF",
+          "value": 0.033925155649153826,
+          "rank": 28
+        },
+        {
+          "team": "CAR",
+          "value": 0.03634319092789715,
+          "rank": 29
+        },
+        {
+          "team": "CHI",
+          "value": 0.03655282404843206,
+          "rank": 30
+        },
+        {
+          "team": "NE",
+          "value": 0.05865915127490685,
+          "rank": 31
+        },
+        {
+          "team": "DEN",
+          "value": 0.0969632805904742,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "pointsScoredPerDriveIndex": [
+    {
+      "benchmark": "offensivePointsPerDrive",
+      "direction": "higher",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.979017546168891,
+      "spearman": 0.98891027818872,
+      "top5Overlap": 5,
+      "bottom5Overlap": 5,
+      "leaveOneTeamOutPearson": [
+        0.9772813681968994,
+        0.9827593872658527
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "DAL",
+          "value": 3.388888888888889,
+          "rank": 1.5
+        },
+        {
+          "team": "SF",
+          "value": 3.388888888888889,
+          "rank": 1.5
+        },
+        {
+          "team": "BUF",
+          "value": 3.0238095238095237,
+          "rank": 3
+        },
+        {
+          "team": "JAX",
+          "value": 2.9714285714285715,
+          "rank": 4
+        },
+        {
+          "team": "DET",
+          "value": 2.902439024390244,
+          "rank": 5
+        },
+        {
+          "team": "KC",
+          "value": 2.744186046511628,
+          "rank": 6
+        },
+        {
+          "team": "CHI",
+          "value": 2.6666666666666665,
+          "rank": 7
+        },
+        {
+          "team": "BAL",
+          "value": 2.6363636363636362,
+          "rank": 8
+        },
+        {
+          "team": "LV",
+          "value": 2.627906976744186,
+          "rank": 9
+        },
+        {
+          "team": "CAR",
+          "value": 2.6136363636363638,
+          "rank": 10
+        },
+        {
+          "team": "NO",
+          "value": 2.4545454545454546,
+          "rank": 11
+        },
+        {
+          "team": "CIN",
+          "value": 2.3947368421052633,
+          "rank": 12
+        },
+        {
+          "team": "SEA",
+          "value": 2.3333333333333335,
+          "rank": 13
+        },
+        {
+          "team": "IND",
+          "value": 2.2666666666666666,
+          "rank": 14
+        },
+        {
+          "team": "CLE",
+          "value": 2.025,
+          "rank": 15
+        },
+        {
+          "team": "ARI",
+          "value": 2.0232558139534884,
+          "rank": 16
+        },
+        {
+          "team": "NYG",
+          "value": 1.9487179487179487,
+          "rank": 17
+        },
+        {
+          "team": "LAR",
+          "value": 1.9318181818181819,
+          "rank": 18
+        },
+        {
+          "team": "NYJ",
+          "value": 1.9,
+          "rank": 19
+        },
+        {
+          "team": "HOU",
+          "value": 1.8666666666666667,
+          "rank": 20
+        },
+        {
+          "team": "PHI",
+          "value": 1.829268292682927,
+          "rank": 21
+        },
+        {
+          "team": "MIN",
+          "value": 1.8181818181818181,
+          "rank": 22
+        },
+        {
+          "team": "WAS",
+          "value": 1.7826086956521738,
+          "rank": 23
+        },
+        {
+          "team": "DEN",
+          "value": 1.7435897435897436,
+          "rank": 24
+        },
+        {
+          "team": "GB",
+          "value": 1.6590909090909092,
+          "rank": 25
+        },
+        {
+          "team": "TB",
+          "value": 1.627906976744186,
+          "rank": 26
+        },
+        {
+          "team": "PIT",
+          "value": 1.5434782608695652,
+          "rank": 27
+        },
+        {
+          "team": "ATL",
+          "value": 1.457142857142857,
+          "rank": 28
+        },
+        {
+          "team": "TEN",
+          "value": 1.4473684210526316,
+          "rank": 29
+        },
+        {
+          "team": "NE",
+          "value": 1.4390243902439024,
+          "rank": 30
+        },
+        {
+          "team": "LAC",
+          "value": 1.425531914893617,
+          "rank": 31
+        },
+        {
+          "team": "MIA",
+          "value": 1.2432432432432432,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "pointsForPerGame",
+      "direction": "higher",
+      "boundary": "related outcome, includes non-offensive scoring",
+      "n": 32,
+      "pearson": 0.93664753381633,
+      "spearman": 0.9307057901572116,
+      "top5Overlap": 4,
+      "bottom5Overlap": 5,
+      "leaveOneTeamOutPearson": [
+        0.9308178868350736,
+        0.945131389561909
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "BUF",
+          "value": 31.75,
+          "rank": 1
+        },
+        {
+          "team": "DAL",
+          "value": 30.5,
+          "rank": 2.5
+        },
+        {
+          "team": "SF",
+          "value": 30.5,
+          "rank": 2.5
+        },
+        {
+          "team": "CAR",
+          "value": 30.25,
+          "rank": 4
+        },
+        {
+          "team": "DET",
+          "value": 29.75,
+          "rank": 5
+        },
+        {
+          "team": "KC",
+          "value": 29.5,
+          "rank": 6
+        },
+        {
+          "team": "BAL",
+          "value": 29,
+          "rank": 7
+        },
+        {
+          "team": "LV",
+          "value": 28.75,
+          "rank": 8
+        },
+        {
+          "team": "CHI",
+          "value": 28,
+          "rank": 9
+        },
+        {
+          "team": "NO",
+          "value": 27,
+          "rank": 10
+        },
+        {
+          "team": "SEA",
+          "value": 26.25,
+          "rank": 11
+        },
+        {
+          "team": "JAX",
+          "value": 26,
+          "rank": 12
+        },
+        {
+          "team": "IND",
+          "value": 25.5,
+          "rank": 13
+        },
+        {
+          "team": "CIN",
+          "value": 24.25,
+          "rank": 14
+        },
+        {
+          "team": "WAS",
+          "value": 22,
+          "rank": 15
+        },
+        {
+          "team": "ARI",
+          "value": 21.75,
+          "rank": 16
+        },
+        {
+          "team": "MIN",
+          "value": 21.5,
+          "rank": 17
+        },
+        {
+          "team": "LAR",
+          "value": 21.25,
+          "rank": 18
+        },
+        {
+          "team": "HOU",
+          "value": 21,
+          "rank": 19
+        },
+        {
+          "team": "NYG",
+          "value": 20.5,
+          "rank": 20
+        },
+        {
+          "team": "CLE",
+          "value": 20.25,
+          "rank": 21
+        },
+        {
+          "team": "PIT",
+          "value": 19.25,
+          "rank": 22
+        },
+        {
+          "team": "NYJ",
+          "value": 19,
+          "rank": 23.5
+        },
+        {
+          "team": "TB",
+          "value": 19,
+          "rank": 23.5
+        },
+        {
+          "team": "PHI",
+          "value": 18.75,
+          "rank": 25
+        },
+        {
+          "team": "DEN",
+          "value": 18.5,
+          "rank": 26
+        },
+        {
+          "team": "GB",
+          "value": 18.25,
+          "rank": 27
+        },
+        {
+          "team": "ATL",
+          "value": 17,
+          "rank": 28
+        },
+        {
+          "team": "LAC",
+          "value": 16.75,
+          "rank": 29
+        },
+        {
+          "team": "NE",
+          "value": 16.25,
+          "rank": 30
+        },
+        {
+          "team": "TEN",
+          "value": 13.75,
+          "rank": 31
+        },
+        {
+          "team": "MIA",
+          "value": 11.5,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "pointsAllowedPerDriveIndex": [
+    {
+      "benchmark": "defensivePointsPerDrive",
+      "direction": "lower",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.9790372479977862,
+      "spearman": 1,
+      "top5Overlap": 5,
+      "bottom5Overlap": 5,
+      "leaveOneTeamOutPearson": [
+        0.9771860594922908,
+        0.9855663209027552
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "MIN",
+          "value": 1.108695652173913,
+          "rank": 1
+        },
+        {
+          "team": "JAX",
+          "value": 1.4324324324324325,
+          "rank": 2
+        },
+        {
+          "team": "SEA",
+          "value": 1.488888888888889,
+          "rank": 3
+        },
+        {
+          "team": "CHI",
+          "value": 1.6666666666666667,
+          "rank": 4
+        },
+        {
+          "team": "ATL",
+          "value": 1.696969696969697,
+          "rank": 5
+        },
+        {
+          "team": "SF",
+          "value": 1.7777777777777777,
+          "rank": 6
+        },
+        {
+          "team": "LV",
+          "value": 1.826086956521739,
+          "rank": 7
+        },
+        {
+          "team": "LAR",
+          "value": 1.8333333333333333,
+          "rank": 8.5
+        },
+        {
+          "team": "NE",
+          "value": 1.8333333333333333,
+          "rank": 8.5
+        },
+        {
+          "team": "KC",
+          "value": 1.8780487804878048,
+          "rank": 10
+        },
+        {
+          "team": "PIT",
+          "value": 1.8837209302325582,
+          "rank": 11
+        },
+        {
+          "team": "NYG",
+          "value": 1.975,
+          "rank": 12
+        },
+        {
+          "team": "TB",
+          "value": 2,
+          "rank": 13
+        },
+        {
+          "team": "TEN",
+          "value": 2.075,
+          "rank": 14
+        },
+        {
+          "team": "CIN",
+          "value": 2.0789473684210527,
+          "rank": 15
+        },
+        {
+          "team": "DEN",
+          "value": 2.186046511627907,
+          "rank": 16
+        },
+        {
+          "team": "CLE",
+          "value": 2.2093023255813953,
+          "rank": 17
+        },
+        {
+          "team": "NYJ",
+          "value": 2.210526315789474,
+          "rank": 18
+        },
+        {
+          "team": "PHI",
+          "value": 2.2142857142857144,
+          "rank": 19
+        },
+        {
+          "team": "IND",
+          "value": 2.260869565217391,
+          "rank": 20.5
+        },
+        {
+          "team": "LAC",
+          "value": 2.260869565217391,
+          "rank": 20.5
+        },
+        {
+          "team": "BAL",
+          "value": 2.2857142857142856,
+          "rank": 22
+        },
+        {
+          "team": "CAR",
+          "value": 2.369565217391304,
+          "rank": 23
+        },
+        {
+          "team": "GB",
+          "value": 2.441860465116279,
+          "rank": 24
+        },
+        {
+          "team": "HOU",
+          "value": 2.5348837209302326,
+          "rank": 25
+        },
+        {
+          "team": "BUF",
+          "value": 2.5476190476190474,
+          "rank": 26
+        },
+        {
+          "team": "NO",
+          "value": 2.59375,
+          "rank": 27
+        },
+        {
+          "team": "ARI",
+          "value": 2.707317073170732,
+          "rank": 28
+        },
+        {
+          "team": "WAS",
+          "value": 2.7111111111111112,
+          "rank": 29
+        },
+        {
+          "team": "MIA",
+          "value": 2.72972972972973,
+          "rank": 30
+        },
+        {
+          "team": "DAL",
+          "value": 2.871794871794872,
+          "rank": 31
+        },
+        {
+          "team": "DET",
+          "value": 3.097560975609756,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "pointsAgainstPerGame",
+      "direction": "lower",
+      "boundary": "related outcome, includes non-offensive scoring",
+      "n": 32,
+      "pearson": 0.9154288233743206,
+      "spearman": 0.9217790353394315,
+      "top5Overlap": 4,
+      "bottom5Overlap": 4,
+      "leaveOneTeamOutPearson": [
+        0.9064797448791237,
+        0.9340793420024339
+      ],
+      "outliers": [
+        {
+          "team": "ATL",
+          "value": 77.82258064516128,
+          "rank": 5,
+          "benchmarkRank": 15,
+          "benchmarkValue": 22.666666666666668
+        }
+      ],
+      "ranks": [
+        {
+          "team": "MIN",
+          "value": 12.75,
+          "rank": 1
+        },
+        {
+          "team": "JAX",
+          "value": 13.25,
+          "rank": 2
+        },
+        {
+          "team": "SF",
+          "value": 16,
+          "rank": 3
+        },
+        {
+          "team": "CHI",
+          "value": 16.25,
+          "rank": 4
+        },
+        {
+          "team": "SEA",
+          "value": 18.25,
+          "rank": 5
+        },
+        {
+          "team": "KC",
+          "value": 19.25,
+          "rank": 6.5
+        },
+        {
+          "team": "NE",
+          "value": 19.25,
+          "rank": 6.5
+        },
+        {
+          "team": "NYG",
+          "value": 19.75,
+          "rank": 8
+        },
+        {
+          "team": "LAR",
+          "value": 20.75,
+          "rank": 9.5
+        },
+        {
+          "team": "TEN",
+          "value": 20.75,
+          "rank": 9.5
+        },
+        {
+          "team": "LV",
+          "value": 21,
+          "rank": 11.5
+        },
+        {
+          "team": "NYJ",
+          "value": 21,
+          "rank": 11.5
+        },
+        {
+          "team": "CIN",
+          "value": 21.25,
+          "rank": 13
+        },
+        {
+          "team": "PIT",
+          "value": 21.75,
+          "rank": 14
+        },
+        {
+          "team": "ATL",
+          "value": 22.666666666666668,
+          "rank": 15
+        },
+        {
+          "team": "PHI",
+          "value": 23.25,
+          "rank": 16
+        },
+        {
+          "team": "DEN",
+          "value": 23.5,
+          "rank": 17
+        },
+        {
+          "team": "CLE",
+          "value": 23.75,
+          "rank": 18
+        },
+        {
+          "team": "BAL",
+          "value": 24,
+          "rank": 19.5
+        },
+        {
+          "team": "TB",
+          "value": 24,
+          "rank": 19.5
+        },
+        {
+          "team": "MIA",
+          "value": 25.25,
+          "rank": 21
+        },
+        {
+          "team": "IND",
+          "value": 26,
+          "rank": 22
+        },
+        {
+          "team": "GB",
+          "value": 26.25,
+          "rank": 23
+        },
+        {
+          "team": "LAC",
+          "value": 26.5,
+          "rank": 24
+        },
+        {
+          "team": "BUF",
+          "value": 26.75,
+          "rank": 25
+        },
+        {
+          "team": "CAR",
+          "value": 27.25,
+          "rank": 26.5
+        },
+        {
+          "team": "HOU",
+          "value": 27.25,
+          "rank": 26.5
+        },
+        {
+          "team": "NO",
+          "value": 27.666666666666668,
+          "rank": 28
+        },
+        {
+          "team": "DAL",
+          "value": 28,
+          "rank": 29
+        },
+        {
+          "team": "ARI",
+          "value": 29.25,
+          "rank": 30
+        },
+        {
+          "team": "WAS",
+          "value": 30.5,
+          "rank": 31
+        },
+        {
+          "team": "DET",
+          "value": 31.75,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "offenseComposite": [
+    {
+      "benchmark": "offEpa",
+      "direction": "higher",
+      "boundary": "related same-source outcome",
+      "n": 32,
+      "pearson": 0.9627729384058329,
+      "spearman": 0.9494134897360704,
+      "top5Overlap": 4,
+      "bottom5Overlap": 3,
+      "leaveOneTeamOutPearson": [
+        0.9599023040050719,
+        0.9682698250759048
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "SF",
+          "value": 0.2784525563413367,
+          "rank": 1
+        },
+        {
+          "team": "BUF",
+          "value": 0.1932527064900339,
+          "rank": 2
+        },
+        {
+          "team": "DAL",
+          "value": 0.18632502793923372,
+          "rank": 3
+        },
+        {
+          "team": "JAX",
+          "value": 0.17381960614195563,
+          "rank": 4
+        },
+        {
+          "team": "BAL",
+          "value": 0.1649791239511164,
+          "rank": 5
+        },
+        {
+          "team": "DET",
+          "value": 0.15662901285243847,
+          "rank": 6
+        },
+        {
+          "team": "KC",
+          "value": 0.15247807297447732,
+          "rank": 7
+        },
+        {
+          "team": "CAR",
+          "value": 0.11255741168358964,
+          "rank": 8
+        },
+        {
+          "team": "CHI",
+          "value": 0.09282642709693822,
+          "rank": 9
+        },
+        {
+          "team": "CIN",
+          "value": 0.041670726162703,
+          "rank": 10
+        },
+        {
+          "team": "NO",
+          "value": 0.0255583550801359,
+          "rank": 11
+        },
+        {
+          "team": "LAR",
+          "value": 0.023220725560276802,
+          "rank": 12
+        },
+        {
+          "team": "NYJ",
+          "value": 0.006856140502954071,
+          "rank": 13
+        },
+        {
+          "team": "CLE",
+          "value": 0.0014577470451238145,
+          "rank": 14
+        },
+        {
+          "team": "SEA",
+          "value": 0.001457156100069663,
+          "rank": 15
+        },
+        {
+          "team": "LV",
+          "value": -0.015454067226145764,
+          "rank": 16
+        },
+        {
+          "team": "HOU",
+          "value": -0.027154808247162588,
+          "rank": 17
+        },
+        {
+          "team": "DEN",
+          "value": -0.029819899281003485,
+          "rank": 18
+        },
+        {
+          "team": "NE",
+          "value": -0.03275175782726652,
+          "rank": 19
+        },
+        {
+          "team": "WAS",
+          "value": -0.032859167726312616,
+          "rank": 20
+        },
+        {
+          "team": "ARI",
+          "value": -0.03879995463998677,
+          "rank": 21
+        },
+        {
+          "team": "IND",
+          "value": -0.04348080142614499,
+          "rank": 22
+        },
+        {
+          "team": "NYG",
+          "value": -0.05843044720435941,
+          "rank": 23
+        },
+        {
+          "team": "TEN",
+          "value": -0.07049262268679439,
+          "rank": 24
+        },
+        {
+          "team": "GB",
+          "value": -0.08888103532032783,
+          "rank": 25
+        },
+        {
+          "team": "PHI",
+          "value": -0.09091617011334974,
+          "rank": 26
+        },
+        {
+          "team": "PIT",
+          "value": -0.09949707098649178,
+          "rank": 27
+        },
+        {
+          "team": "MIN",
+          "value": -0.11960650797635156,
+          "rank": 28
+        },
+        {
+          "team": "MIA",
+          "value": -0.12275452467928225,
+          "rank": 29
+        },
+        {
+          "team": "TB",
+          "value": -0.14241768424302573,
+          "rank": 30
+        },
+        {
+          "team": "ATL",
+          "value": -0.14974945949761798,
+          "rank": 31
+        },
+        {
+          "team": "LAC",
+          "value": -0.15916777641367233,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "offensivePointsPerDrive",
+      "direction": "higher",
+      "boundary": "component input",
+      "n": 32,
+      "pearson": 0.926739656828663,
+      "spearman": 0.9119237505076705,
+      "top5Overlap": 4,
+      "bottom5Overlap": 2,
+      "leaveOneTeamOutPearson": [
+        0.9170423590725281,
+        0.9342646194251425
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "DAL",
+          "value": 3.388888888888889,
+          "rank": 1.5
+        },
+        {
+          "team": "SF",
+          "value": 3.388888888888889,
+          "rank": 1.5
+        },
+        {
+          "team": "BUF",
+          "value": 3.0238095238095237,
+          "rank": 3
+        },
+        {
+          "team": "JAX",
+          "value": 2.9714285714285715,
+          "rank": 4
+        },
+        {
+          "team": "DET",
+          "value": 2.902439024390244,
+          "rank": 5
+        },
+        {
+          "team": "KC",
+          "value": 2.744186046511628,
+          "rank": 6
+        },
+        {
+          "team": "CHI",
+          "value": 2.6666666666666665,
+          "rank": 7
+        },
+        {
+          "team": "BAL",
+          "value": 2.6363636363636362,
+          "rank": 8
+        },
+        {
+          "team": "LV",
+          "value": 2.627906976744186,
+          "rank": 9
+        },
+        {
+          "team": "CAR",
+          "value": 2.6136363636363638,
+          "rank": 10
+        },
+        {
+          "team": "NO",
+          "value": 2.4545454545454546,
+          "rank": 11
+        },
+        {
+          "team": "CIN",
+          "value": 2.3947368421052633,
+          "rank": 12
+        },
+        {
+          "team": "SEA",
+          "value": 2.3333333333333335,
+          "rank": 13
+        },
+        {
+          "team": "IND",
+          "value": 2.2666666666666666,
+          "rank": 14
+        },
+        {
+          "team": "CLE",
+          "value": 2.025,
+          "rank": 15
+        },
+        {
+          "team": "ARI",
+          "value": 2.0232558139534884,
+          "rank": 16
+        },
+        {
+          "team": "NYG",
+          "value": 1.9487179487179487,
+          "rank": 17
+        },
+        {
+          "team": "LAR",
+          "value": 1.9318181818181819,
+          "rank": 18
+        },
+        {
+          "team": "NYJ",
+          "value": 1.9,
+          "rank": 19
+        },
+        {
+          "team": "HOU",
+          "value": 1.8666666666666667,
+          "rank": 20
+        },
+        {
+          "team": "PHI",
+          "value": 1.829268292682927,
+          "rank": 21
+        },
+        {
+          "team": "MIN",
+          "value": 1.8181818181818181,
+          "rank": 22
+        },
+        {
+          "team": "WAS",
+          "value": 1.7826086956521738,
+          "rank": 23
+        },
+        {
+          "team": "DEN",
+          "value": 1.7435897435897436,
+          "rank": 24
+        },
+        {
+          "team": "GB",
+          "value": 1.6590909090909092,
+          "rank": 25
+        },
+        {
+          "team": "TB",
+          "value": 1.627906976744186,
+          "rank": 26
+        },
+        {
+          "team": "PIT",
+          "value": 1.5434782608695652,
+          "rank": 27
+        },
+        {
+          "team": "ATL",
+          "value": 1.457142857142857,
+          "rank": 28
+        },
+        {
+          "team": "TEN",
+          "value": 1.4473684210526316,
+          "rank": 29
+        },
+        {
+          "team": "NE",
+          "value": 1.4390243902439024,
+          "rank": 30
+        },
+        {
+          "team": "LAC",
+          "value": 1.425531914893617,
+          "rank": 31
+        },
+        {
+          "team": "MIA",
+          "value": 1.2432432432432432,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "defenseIndex": [
+    {
+      "benchmark": "defEpa",
+      "direction": "higher",
+      "boundary": "related same-source outcome",
+      "n": 32,
+      "pearson": 0.9089563458736283,
+      "spearman": 0.8823313782991202,
+      "top5Overlap": 4,
+      "bottom5Overlap": 4,
+      "leaveOneTeamOutPearson": [
+        0.8931208916286986,
+        0.9255262768814464
+      ],
+      "outliers": [
+        {
+          "team": "DEN",
+          "value": 50.05045846472383,
+          "rank": 13,
+          "benchmarkRank": 25,
+          "benchmarkValue": -0.048417101236081825
+        },
+        {
+          "team": "WAS",
+          "value": 21.074363434067013,
+          "rank": 31,
+          "benchmarkRank": 17,
+          "benchmarkValue": -0.031203265472369613
+        }
+      ],
+      "ranks": [
+        {
+          "team": "MIN",
+          "value": 0.18423103812010166,
+          "rank": 1
+        },
+        {
+          "team": "SEA",
+          "value": 0.14196519470557958,
+          "rank": 2
+        },
+        {
+          "team": "LAR",
+          "value": 0.12339104757581411,
+          "rank": 3
+        },
+        {
+          "team": "LV",
+          "value": 0.07389257782095242,
+          "rank": 4
+        },
+        {
+          "team": "TB",
+          "value": 0.07110652350563415,
+          "rank": 5
+        },
+        {
+          "team": "JAX",
+          "value": 0.05446412782019663,
+          "rank": 6
+        },
+        {
+          "team": "KC",
+          "value": 0.04935955107786894,
+          "rank": 7
+        },
+        {
+          "team": "ATL",
+          "value": 0.047064085218337645,
+          "rank": 8
+        },
+        {
+          "team": "CIN",
+          "value": 0.027213427262461117,
+          "rank": 9
+        },
+        {
+          "team": "LAC",
+          "value": 0.02435884977952361,
+          "rank": 10
+        },
+        {
+          "team": "NYJ",
+          "value": 0.021004679735296426,
+          "rank": 11
+        },
+        {
+          "team": "CHI",
+          "value": 0.014034777221042604,
+          "rank": 12
+        },
+        {
+          "team": "NYG",
+          "value": 0.0029466428868798354,
+          "rank": 13
+        },
+        {
+          "team": "NE",
+          "value": -0.001964939329658868,
+          "rank": 14
+        },
+        {
+          "team": "CLE",
+          "value": -0.01592572627439899,
+          "rank": 15
+        },
+        {
+          "team": "PIT",
+          "value": -0.016854591459441355,
+          "rank": 16
+        },
+        {
+          "team": "WAS",
+          "value": -0.031203265472369613,
+          "rank": 17
+        },
+        {
+          "team": "SF",
+          "value": -0.03451230273201849,
+          "rank": 18
+        },
+        {
+          "team": "HOU",
+          "value": -0.03529480307460202,
+          "rank": 19
+        },
+        {
+          "team": "BAL",
+          "value": -0.04044518523186379,
+          "rank": 20
+        },
+        {
+          "team": "GB",
+          "value": -0.0405610174654396,
+          "rank": 21
+        },
+        {
+          "team": "PHI",
+          "value": -0.044986727463617315,
+          "rank": 22
+        },
+        {
+          "team": "CAR",
+          "value": -0.04549598438188473,
+          "rank": 23
+        },
+        {
+          "team": "TEN",
+          "value": -0.047488128411824065,
+          "rank": 24
+        },
+        {
+          "team": "DEN",
+          "value": -0.048417101236081825,
+          "rank": 25
+        },
+        {
+          "team": "IND",
+          "value": -0.05873281111373707,
+          "rank": 26
+        },
+        {
+          "team": "ARI",
+          "value": -0.06085395514097676,
+          "rank": 27
+        },
+        {
+          "team": "MIA",
+          "value": -0.06274582450742751,
+          "rank": 28
+        },
+        {
+          "team": "NO",
+          "value": -0.08242279149798103,
+          "rank": 29
+        },
+        {
+          "team": "BUF",
+          "value": -0.10526145544589086,
+          "rank": 30
+        },
+        {
+          "team": "DET",
+          "value": -0.15780631060302697,
+          "rank": 31
+        },
+        {
+          "team": "DAL",
+          "value": -0.20562908588734907,
+          "rank": 32
+        }
+      ]
+    },
+    {
+      "benchmark": "defensivePointsPerDrive",
+      "direction": "lower",
+      "boundary": "component input",
+      "n": 32,
+      "pearson": 0.8629901944768668,
+      "spearman": 0.8608616093319412,
+      "top5Overlap": 3,
+      "bottom5Overlap": 4,
+      "leaveOneTeamOutPearson": [
+        0.8378927601663819,
+        0.8796436326464117
+      ],
+      "outliers": [
+        {
+          "team": "LAC",
+          "value": 62.41988068401951,
+          "rank": 10,
+          "benchmarkRank": 20.5,
+          "benchmarkValue": 2.260869565217391
+        },
+        {
+          "team": "NE",
+          "value": 42.3384254079255,
+          "rank": 20,
+          "benchmarkRank": 8.5,
+          "benchmarkValue": 1.8333333333333333
+        }
+      ],
+      "ranks": [
+        {
+          "team": "MIN",
+          "value": 1.108695652173913,
+          "rank": 1
+        },
+        {
+          "team": "JAX",
+          "value": 1.4324324324324325,
+          "rank": 2
+        },
+        {
+          "team": "SEA",
+          "value": 1.488888888888889,
+          "rank": 3
+        },
+        {
+          "team": "CHI",
+          "value": 1.6666666666666667,
+          "rank": 4
+        },
+        {
+          "team": "ATL",
+          "value": 1.696969696969697,
+          "rank": 5
+        },
+        {
+          "team": "SF",
+          "value": 1.7777777777777777,
+          "rank": 6
+        },
+        {
+          "team": "LV",
+          "value": 1.826086956521739,
+          "rank": 7
+        },
+        {
+          "team": "LAR",
+          "value": 1.8333333333333333,
+          "rank": 8.5
+        },
+        {
+          "team": "NE",
+          "value": 1.8333333333333333,
+          "rank": 8.5
+        },
+        {
+          "team": "KC",
+          "value": 1.8780487804878048,
+          "rank": 10
+        },
+        {
+          "team": "PIT",
+          "value": 1.8837209302325582,
+          "rank": 11
+        },
+        {
+          "team": "NYG",
+          "value": 1.975,
+          "rank": 12
+        },
+        {
+          "team": "TB",
+          "value": 2,
+          "rank": 13
+        },
+        {
+          "team": "TEN",
+          "value": 2.075,
+          "rank": 14
+        },
+        {
+          "team": "CIN",
+          "value": 2.0789473684210527,
+          "rank": 15
+        },
+        {
+          "team": "DEN",
+          "value": 2.186046511627907,
+          "rank": 16
+        },
+        {
+          "team": "CLE",
+          "value": 2.2093023255813953,
+          "rank": 17
+        },
+        {
+          "team": "NYJ",
+          "value": 2.210526315789474,
+          "rank": 18
+        },
+        {
+          "team": "PHI",
+          "value": 2.2142857142857144,
+          "rank": 19
+        },
+        {
+          "team": "IND",
+          "value": 2.260869565217391,
+          "rank": 20.5
+        },
+        {
+          "team": "LAC",
+          "value": 2.260869565217391,
+          "rank": 20.5
+        },
+        {
+          "team": "BAL",
+          "value": 2.2857142857142856,
+          "rank": 22
+        },
+        {
+          "team": "CAR",
+          "value": 2.369565217391304,
+          "rank": 23
+        },
+        {
+          "team": "GB",
+          "value": 2.441860465116279,
+          "rank": 24
+        },
+        {
+          "team": "HOU",
+          "value": 2.5348837209302326,
+          "rank": 25
+        },
+        {
+          "team": "BUF",
+          "value": 2.5476190476190474,
+          "rank": 26
+        },
+        {
+          "team": "NO",
+          "value": 2.59375,
+          "rank": 27
+        },
+        {
+          "team": "ARI",
+          "value": 2.707317073170732,
+          "rank": 28
+        },
+        {
+          "team": "WAS",
+          "value": 2.7111111111111112,
+          "rank": 29
+        },
+        {
+          "team": "MIA",
+          "value": 2.72972972972973,
+          "rank": 30
+        },
+        {
+          "team": "DAL",
+          "value": 2.871794871794872,
+          "rank": 31
+        },
+        {
+          "team": "DET",
+          "value": 3.097560975609756,
+          "rank": 32
+        }
+      ]
+    }
+  ],
+  "offenseIndex": [
+    {
+      "benchmark": "offEpa",
+      "direction": "higher",
+      "boundary": "ingredient",
+      "n": 32,
+      "pearson": 0.974663299982609,
+      "spearman": 0.9915689149560117,
+      "top5Overlap": 4,
+      "bottom5Overlap": 5,
+      "leaveOneTeamOutPearson": [
+        0.9723264841733607,
+        0.97992861922582
+      ],
+      "outliers": [],
+      "ranks": [
+        {
+          "team": "SF",
+          "value": 0.2784525563413367,
+          "rank": 1
+        },
+        {
+          "team": "BUF",
+          "value": 0.1932527064900339,
+          "rank": 2
+        },
+        {
+          "team": "DAL",
+          "value": 0.18632502793923372,
+          "rank": 3
+        },
+        {
+          "team": "JAX",
+          "value": 0.17381960614195563,
+          "rank": 4
+        },
+        {
+          "team": "BAL",
+          "value": 0.1649791239511164,
+          "rank": 5
+        },
+        {
+          "team": "DET",
+          "value": 0.15662901285243847,
+          "rank": 6
+        },
+        {
+          "team": "KC",
+          "value": 0.15247807297447732,
+          "rank": 7
+        },
+        {
+          "team": "CAR",
+          "value": 0.11255741168358964,
+          "rank": 8
+        },
+        {
+          "team": "CHI",
+          "value": 0.09282642709693822,
+          "rank": 9
+        },
+        {
+          "team": "CIN",
+          "value": 0.041670726162703,
+          "rank": 10
+        },
+        {
+          "team": "NO",
+          "value": 0.0255583550801359,
+          "rank": 11
+        },
+        {
+          "team": "LAR",
+          "value": 0.023220725560276802,
+          "rank": 12
+        },
+        {
+          "team": "NYJ",
+          "value": 0.006856140502954071,
+          "rank": 13
+        },
+        {
+          "team": "CLE",
+          "value": 0.0014577470451238145,
+          "rank": 14
+        },
+        {
+          "team": "SEA",
+          "value": 0.001457156100069663,
+          "rank": 15
+        },
+        {
+          "team": "LV",
+          "value": -0.015454067226145764,
+          "rank": 16
+        },
+        {
+          "team": "HOU",
+          "value": -0.027154808247162588,
+          "rank": 17
+        },
+        {
+          "team": "DEN",
+          "value": -0.029819899281003485,
+          "rank": 18
+        },
+        {
+          "team": "NE",
+          "value": -0.03275175782726652,
+          "rank": 19
+        },
+        {
+          "team": "WAS",
+          "value": -0.032859167726312616,
+          "rank": 20
+        },
+        {
+          "team": "ARI",
+          "value": -0.03879995463998677,
+          "rank": 21
+        },
+        {
+          "team": "IND",
+          "value": -0.04348080142614499,
+          "rank": 22
+        },
+        {
+          "team": "NYG",
+          "value": -0.05843044720435941,
+          "rank": 23
+        },
+        {
+          "team": "TEN",
+          "value": -0.07049262268679439,
+          "rank": 24
+        },
+        {
+          "team": "GB",
+          "value": -0.08888103532032783,
+          "rank": 25
+        },
+        {
+          "team": "PHI",
+          "value": -0.09091617011334974,
+          "rank": 26
+        },
+        {
+          "team": "PIT",
+          "value": -0.09949707098649178,
+          "rank": 27
+        },
+        {
+          "team": "MIN",
+          "value": -0.11960650797635156,
+          "rank": 28
+        },
+        {
+          "team": "MIA",
+          "value": -0.12275452467928225,
+          "rank": 29
+        },
+        {
+          "team": "TB",
+          "value": -0.14241768424302573,
+          "rank": 30
+        },
+        {
+          "team": "ATL",
+          "value": -0.14974945949761798,
+          "rank": 31
+        },
+        {
+          "team": "LAC",
+          "value": -0.15916777641367233,
+          "rank": 32
+        }
+      ]
+    }
+  ]
+}

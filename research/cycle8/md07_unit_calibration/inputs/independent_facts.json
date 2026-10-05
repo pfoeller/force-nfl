@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "sources": [
+    {
+      "url": "https://www.chiefs.com/team/players-roster/kenneth-walker-iii/splits/",
+      "retrievedAt": "2026-10-05T18:14:10.681218Z",
+      "status": 200,
+      "bytes": 311622,
+      "sha256": "5656ea657f1a061e38b77b84c9a1d4060def2341f6580ebb4b0a636866a55f4f",
+      "source": "Kansas City Chiefs official public website"
+    },
+    {
+      "url": "https://www.chiefs.com/news/ken-walker-earns-afc-offensive-player-of-the-month-honors-for-september",
+      "retrievedAt": "2026-10-05T18:14:11.250812Z",
+      "status": 200,
+      "bytes": 298420,
+      "sha256": "4b0b7beba31fdfa7325f71cfa32337d45f8cf6b0ad6f29a7a0e7340374405db4",
+      "source": "Kansas City Chiefs official public website"
+    },
+    {
+      "url": "https://www.49ers.com/team/stats/2026/reg",
+      "retrievedAt": "2026-10-05T18:25:02.893994+00:00",
+      "status": 200,
+      "bytes": 372904,
+      "sha256": "c32a47ba577f914f57d06c74c885c386153c558149ab2dbd151fe602df29c127",
+      "source": "Official team public website; selected facts independently checked with browser reader"
+    },
+    {
+      "url": "https://www.buffalobills.com/team/stats/2026/reg",
+      "retrievedAt": "2026-10-05T18:25:04.345920+00:00",
+      "status": 200,
+      "bytes": 385453,
+      "sha256": "91a69dd03c7067bae7a2c1190b440a6245fab1d2013e34ecd6cf3e64543c0185",
+      "source": "Official team public website; selected facts independently checked with browser reader"
+    },
+    {
+      "url": "https://www.vikings.com/team/stats/2026/reg",
+      "retrievedAt": "2026-10-05T18:25:05.849070+00:00",
+      "status": 200,
+      "bytes": 390609,
+      "sha256": "4c7510aa45ee50a698cd8a8ea357553ef60c3e12856a45b42699adf5116d22f9",
+      "source": "Official team public website; selected facts independently checked with browser reader"
+    },
+    {
+      "url": "https://www.vikings.com/schedule/",
+      "retrievedAt": "2026-10-05T18:25:06.255990+00:00",
+      "status": 200,
+      "bytes": 407665,
+      "sha256": "bebbc1037de95f785efd4cd2e98dcb46da6bf825f758d733470ca649ab319de8",
+      "source": "Official team public website; selected facts independently checked with browser reader"
+    },
+    {
+      "url": "https://www.vikings.com/game-day/2026/dolphins-reg-week4/box-score",
+      "retrievedAt": "2026-10-05T18:25:07.100274+00:00",
+      "status": 200,
+      "bytes": 303179,
+      "sha256": "0a63ad606bfbf05ec74f0109898d6d95590409434ff384836dab97c04a628d58",
+      "source": "Official team public website; selected facts independently checked with browser reader"
+    }
+  ],
+  "walker": {
+    "team": "KC",
+    "season": 2026,
+    "games": 4,
+    "carries": 87,
+    "rushingYards": 537,
+    "yardsPerCarry": 6.172413793103448,
+    "rushingTds": 4,
+    "receivingYards": 84,
+    "signedWithKC": "2026-03-12",
+    "throughWeek": 4,
+    "septemberLeagueRushingLead": {
+      "throughWeek": 3,
+      "yards": 360,
+      "publicationDate": "2026-10-01"
+    }
+  },
+  "scope": "Facts manually verified against official page by browser reader. The September lead is NOT a verified Week-4 league ranking or yard-per-carry lead. Seattle is no longer Walker's team. Independent production outcome facts, not a tuned calibration target. No full page text/provider row redistributed.",
+  "teamFacts": [
+    {
+      "team": "SF",
+      "units": [
+        "qbIndex",
+        "receiverIndex",
+        "olIndex"
+      ],
+      "source": "https://www.49ers.com/team/stats/2026/reg",
+      "throughWeek": 4,
+      "facts": {
+        "passingYards": 1007,
+        "passAttempts": 113,
+        "passTds": 11,
+        "passInts": 1,
+        "sacksAllowed": 0,
+        "kittleReceivingYards": 244,
+        "evansReceivingYards": 213
+      },
+      "boundary": "Official current team-season outputs; receiver player totals do not identify isolated skill and zero sacks is not zero pressure"
+    },
+    {
+      "team": "BUF",
+      "units": [
+        "rbIndex"
+      ],
+      "source": "https://www.buffalobills.com/team/stats/2026/reg",
+      "throughWeek": 4,
+      "facts": {
+        "cookCarries": 70,
+        "cookRushYards": 421,
+        "cookRushTds": 3,
+        "cookReceivingYards": 24
+      },
+      "boundary": "One RB plus team-room derived data; public yards output does not define full unit quality"
+    },
+    {
+      "team": "KC",
+      "units": [
+        "rbIndex"
+      ],
+      "source": "https://www.chiefs.com/team/players-roster/kenneth-walker-iii/splits/",
+      "throughWeek": 4,
+      "facts": {
+        "walkerCarries": 87,
+        "walkerRushYards": 537,
+        "walkerRushTds": 4,
+        "walkerReceivingYards": 84
+      },
+      "boundary": "Current official player output; neither Week-4 league lead nor a full-room rating target"
+    },
+    {
+      "team": "MIN",
+      "units": [
+        "passRushIndex"
+      ],
+      "source": "https://www.vikings.com/team/stats/2026/reg",
+      "throughWeek": 4,
+      "facts": {
+        "defensiveSacks": 16,
+        "opponentPassAttempts": 131
+      },
+      "boundary": "Official sack output corroborates disruption; it is an ingredient-related check, not independently charted true pressure"
+    },
+    {
+      "team": "MIN",
+      "units": [
+        "coverageIndex"
+      ],
+      "source": "https://www.vikings.com/game-day/2026/dolphins-reg-week4/box-score",
+      "throughWeek": 4,
+      "facts": {
+        "week4OpponentPassingYards": 85,
+        "week4OpponentCompletions": 9,
+        "week4OpponentAttempts": 17,
+        "week4OpponentPassTds": 0
+      },
+      "boundary": "One game output; corroboration only, not season-wide isolated coverage certification"
+    },
+    {
+      "team": "MIN",
+      "units": [
+        "pointsAllowedPerDriveIndex"
+      ],
+      "source": "https://www.vikings.com/schedule/",
+      "throughWeek": 4,
+      "facts": {
+        "pointsAllowedByWeek": [
+          22,
+          3,
+          16,
+          10
+        ],
+        "pointsAllowedPerGame": 12.75
+      },
+      "boundary": "Season total scoreboard points may include non-offensive scoring; not identical to qualifying offensive points per drive"
+    }
+  ]
+}

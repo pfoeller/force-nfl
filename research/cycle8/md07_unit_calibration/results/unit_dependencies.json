@@ -1,0 +1,1995 @@
+{
+  "pairs": [
+    {
+      "a": "qbIndex",
+      "b": "receiverIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.7560165250593802,
+        "spearman": 0.7734604105571847
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.7823669257828588,
+        "spearman": 0.7459677419354839
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.7613278851518055,
+        "spearman": 0.7360703812316716
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.6861586628424264,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": 0.2389744236869044,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": 0.30534709240975894,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "qbIndex",
+      "b": "olIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.25173482203098085,
+        "spearman": 0.23350439882697946
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.2973458710720208,
+        "spearman": 0.19686554935582676
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.25812332697039425,
+        "spearman": 0.24709009360489242
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.14221223038629374,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": -0.24490056038684105,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": 0.018743346215899123,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "qbIndex",
+      "b": "rbIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.2727941477036929,
+        "spearman": 0.2562316715542522
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.29780297497310826,
+        "spearman": 0.25733137829912023
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.2478963087748088,
+        "spearman": 0.218841642228739
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.07541221252981317,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": -0.510962564949686,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": -0.23016151043344926,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "receiverIndex",
+      "b": "olIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.2122006265927831,
+        "spearman": 0.22763929618768328
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.3424843206762274,
+        "spearman": 0.23334249937613358
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.2503554333286222,
+        "spearman": 0.23389240314528392
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.11887703409937456,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": -0.12691494142249887,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": -0.0021487328636883023,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "receiverIndex",
+      "b": "rbIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.06534201341847116,
+        "spearman": 0.017595307917888565
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.019421568635923363,
+        "spearman": -0.03775659824046921
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.065343287600291,
+        "spearman": 0.05865102639296188
+      },
+      "partialCore": {
+        "n": 32,
+        "r": -0.1272475776206377,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": -0.5605276690653757,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": -0.4842975346458395,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "rbIndex",
+      "b": "olIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.3933796679479792,
+        "spearman": 0.4153225806451613
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.3008227703426117,
+        "spearman": 0.3548712323583618
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.41391208507932276,
+        "spearman": 0.41389423691383315
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.33247942224657845,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": 0.2537696858906089,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": 0.30141905475971514,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "pointsScoredPerDriveIndex",
+      "b": "qbIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.8501560045390025,
+        "spearman": 0.842008797653959
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.8518090421823321,
+        "spearman": 0.8794794281277996
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.8482751632341196,
+        "spearman": 0.8516176371575149
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.7808928188165781,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": 0.11595005569805927,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": 0.20548819677224006,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "pointsScoredPerDriveIndex",
+      "b": "receiverIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.7159821406249836,
+        "spearman": 0.7448680351906158
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.7839446349564378,
+        "spearman": 0.7581339964019548
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.7421901105280365,
+        "spearman": 0.7628998290679245
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.6310617311482378,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": 0.08493557423567491,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": -0.3591081318142686,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "pointsScoredPerDriveIndex",
+      "b": "olIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.2561210335414818,
+        "spearman": 0.21480938416422288
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.293084430381018,
+        "spearman": 0.25087076076993586
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.2513007248273635,
+        "spearman": 0.25087076076993586
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.14267660083619668,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": -0.2385563777287572,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": -0.09044106133365097,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "pointsScoredPerDriveIndex",
+      "b": "rbIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.4489316283420966,
+        "spearman": 0.4043255131964809
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.4059706587575212,
+        "spearman": 0.3191274873635888
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.40819165989512557,
+        "spearman": 0.3737512617658573
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.2977384789580635,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "offEpa",
+        "result": {
+          "n": 32,
+          "r": -0.02302053261393762,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "offensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": 0.11440193205134187,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "coverageIndex",
+      "b": "passRushIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.1018341950555269,
+        "spearman": 0.09310850439882698
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.012264144408661137,
+        "spearman": 0.0036656891495601175
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.03121457388651179,
+        "spearman": 0.0034836819357311763
+      },
+      "partialCore": {
+        "n": 32,
+        "r": -0.08723490773616059,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "defEpa",
+        "result": {
+          "n": 32,
+          "r": -0.11217377892330421,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "defensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": -0.1354171511747543,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "coverageIndex",
+      "b": "runDefenseIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.10784615748004821,
+        "spearman": 0.10447214076246335
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.017747681449441804,
+        "spearman": 0.14919354838709678
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.11332627093066688,
+        "spearman": 0.11496150387912882
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.3238177500299874,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "defEpa",
+        "result": {
+          "n": 32,
+          "r": -0.5982835305800245,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "defensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": -0.07531007312622871,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "passRushIndex",
+      "b": "runDefenseIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.04091304817482643,
+        "spearman": 0.04985337243401759
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.09613256320020802,
+        "spearman": 0.036290322580645164
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.030990161495815287,
+        "spearman": 0.025293255131964808
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.10827996660383714,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "defEpa",
+        "result": {
+          "n": 32,
+          "r": -0.07878504795742047,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "defensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": 0.12145488178914038,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "pointsAllowedPerDriveIndex",
+      "b": "coverageIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.8217155358335021,
+        "spearman": 0.8309807655667992
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.8044061649846078,
+        "spearman": 0.8458295284194158
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.8278916164701337,
+        "spearman": 0.8268842977845609
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.7222819753163223,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "defEpa",
+        "result": {
+          "n": 32,
+          "r": 0.5034692611431072,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "defensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": 0.0643871804947966,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "pointsAllowedPerDriveIndex",
+      "b": "passRushIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.14427614434646838,
+        "spearman": 0.16241980107923762
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.21692691714757176,
+        "spearman": 0.1618698468995111
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.14448547490407201,
+        "spearman": 0.14463794926807955
+      },
+      "partialCore": {
+        "n": 32,
+        "r": -0.016363690250776466,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "defEpa",
+        "result": {
+          "n": 32,
+          "r": -0.03675172025745774,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "defensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": -0.09030910301751183,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    },
+    {
+      "a": "pointsAllowedPerDriveIndex",
+      "b": "runDefenseIndex",
+      "display": {
+        "n": 32,
+        "pearson": 0.23753145546547091,
+        "spearman": 0.2304308013054195
+      },
+      "rawQualityProxy": {
+        "n": 32,
+        "pearson": 0.23938196091211514,
+        "spearman": 0.22346471502888338
+      },
+      "liveGrade": {
+        "n": 32,
+        "pearson": 0.22346471502888332,
+        "spearman": 0.22346471502888338
+      },
+      "partialCore": {
+        "n": 32,
+        "r": 0.46457797735525147,
+        "controls": 1,
+        "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+      },
+      "partialOutcome": {
+        "control": "defEpa",
+        "result": {
+          "n": 32,
+          "r": -0.33413522824259784,
+          "controls": 1,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      },
+      "partialCoreAndAdjacentOutcome": {
+        "controls": [
+          "core",
+          "defensivePointsPerDrive"
+        ],
+        "result": {
+          "n": 32,
+          "r": -0.09588548338698093,
+          "controls": 2,
+          "reason": "descriptive partial Pearson; controls are not causal confounder identification"
+        }
+      }
+    }
+  ],
+  "receiver": {
+    "beta": 0.5879714747913416,
+    "unadjustedVsQbAttempt": {
+      "n": 32,
+      "pearson": 0.9495804331118919,
+      "spearman": 0.9303519061583577
+    },
+    "residualVsQbAttempt": {
+      "n": 32,
+      "pearson": 0.7895158899706437,
+      "spearman": 0.749633431085044
+    },
+    "stabilizedVsQbAttempt": {
+      "n": 32,
+      "pearson": 0.7762126595184913,
+      "spearman": 0.751099706744868
+    },
+    "displayVsQbDisplay": {
+      "n": 32,
+      "pearson": 0.7560165250593802,
+      "spearman": 0.7734604105571847
+    },
+    "displayVsPassingEpa": {
+      "n": 32,
+      "pearson": 0.7522230112944938,
+      "spearman": 0.7467008797653959
+    },
+    "displayVsPassSuccess": {
+      "n": 32,
+      "pearson": 0.6546884421049157,
+      "spearman": 0.6766862170087976
+    },
+    "displayVsScoring": {
+      "n": 32,
+      "pearson": 0.7159821406249836,
+      "spearman": 0.7448680351906158
+    },
+    "top5OverlapWithQb": 3,
+    "stabilizationIqrRatio": 0.5863988505937808,
+    "rawToHistoricalIqr": 1.4465002681284933
+  },
+  "rb": {
+    "rushVsDisplay": {
+      "n": 32,
+      "pearson": 0.8571081663063549,
+      "spearman": 0.8372434017595308
+    },
+    "receivingVsDisplay": {
+      "n": 32,
+      "pearson": 0.36852223741051815,
+      "spearman": 0.39222873900293254
+    },
+    "rushStabilizationIqrRatio": 0.6204063164977773,
+    "recvStabilizationIqrRatio": 0.36454934306330866,
+    "compositeStabilizationIqrRatio": 0.5485120735616749,
+    "rawToHistoricalIqr": 1.3258896918067367
+  },
+  "discordance": {
+    "receiverIndex__qbIndex": [
+      {
+        "team": "PHI",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 58.377898844264436,
+        "rankA": 10,
+        "scoreB": 23.3011824471744,
+        "rankB": 26,
+        "gap": -16
+      },
+      {
+        "team": "MIN",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 56.73309219326913,
+        "rankA": 15,
+        "scoreB": 21.928653679124178,
+        "rankB": 28,
+        "gap": -13
+      },
+      {
+        "team": "NO",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 64.92302433569529,
+        "rankA": 5,
+        "scoreB": 54.3641876379542,
+        "rankB": 16,
+        "gap": -11
+      },
+      {
+        "team": "CHI",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 40.83576049058819,
+        "rankA": 19,
+        "scoreB": 72.61650189215976,
+        "rankB": 9,
+        "gap": 10
+      },
+      {
+        "team": "TEN",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 52.17365906493853,
+        "rankA": 16,
+        "scoreB": 27.327377255048955,
+        "rankB": 25,
+        "gap": -9
+      },
+      {
+        "team": "NYG",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 22.021243407896357,
+        "rankA": 28,
+        "scoreB": 43.527918195317085,
+        "rankB": 20,
+        "gap": 8
+      },
+      {
+        "team": "DET",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 58.333353636796346,
+        "rankA": 11,
+        "scoreB": 83.19759090625946,
+        "rankB": 4,
+        "gap": 7
+      },
+      {
+        "team": "IND",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 29.80357077568167,
+        "rankA": 23,
+        "scoreB": 21.056513579116466,
+        "rankB": 30,
+        "gap": -7
+      },
+      {
+        "team": "SEA",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 57.58645689038468,
+        "rankA": 13,
+        "scoreB": 80.22300310423259,
+        "rankB": 6,
+        "gap": 7
+      },
+      {
+        "team": "DEN",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 23.521290352990267,
+        "rankA": 27,
+        "scoreB": 39.272738647170456,
+        "rankB": 21,
+        "gap": 6
+      },
+      {
+        "team": "GB",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 26.884568482061386,
+        "rankA": 25,
+        "scoreB": 45.96323048046074,
+        "rankB": 19,
+        "gap": 6
+      },
+      {
+        "team": "LAR",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 34.31051965184841,
+        "rankA": 21,
+        "scoreB": 56.84136360929546,
+        "rankB": 15,
+        "gap": 6
+      },
+      {
+        "team": "CIN",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 60.635356489585334,
+        "rankA": 7,
+        "scoreB": 64.90766568222833,
+        "rankB": 12,
+        "gap": -5
+      },
+      {
+        "team": "DAL",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 79.5873491633852,
+        "rankA": 2,
+        "scoreB": 78.98465861681615,
+        "rankB": 7,
+        "gap": -5
+      },
+      {
+        "team": "LV",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 62.239614523527536,
+        "rankA": 6,
+        "scoreB": 65.83639281505997,
+        "rankB": 11,
+        "gap": -5
+      },
+      {
+        "team": "BUF",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 57.85467076728438,
+        "rankA": 12,
+        "scoreB": 73.54361160880545,
+        "rankB": 8,
+        "gap": 4
+      },
+      {
+        "team": "CAR",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 57.36676246146626,
+        "rankA": 14,
+        "scoreB": 70.18453919095955,
+        "rankB": 10,
+        "gap": 4
+      },
+      {
+        "team": "HOU",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 58.60338345376119,
+        "rankA": 9,
+        "scoreB": 61.62000659601258,
+        "rankB": 13,
+        "gap": -4
+      },
+      {
+        "team": "MIA",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 16.124800550928953,
+        "rankA": 31,
+        "scoreB": 22.004847136288184,
+        "rankB": 27,
+        "gap": 4
+      },
+      {
+        "team": "CLE",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 34.812336530103366,
+        "rankA": 20,
+        "scoreB": 52.42596927730455,
+        "rankB": 17,
+        "gap": 3
+      },
+      {
+        "team": "KC",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 59.222347373566286,
+        "rankA": 8,
+        "scoreB": 81.56938094647701,
+        "rankB": 5,
+        "gap": 3
+      },
+      {
+        "team": "NYJ",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 51.66668016736907,
+        "rankA": 17,
+        "scoreB": 57.0050058628835,
+        "rankB": 14,
+        "gap": 3
+      },
+      {
+        "team": "TB",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 18.962535473576946,
+        "rankA": 29,
+        "scoreB": 17.246115490562552,
+        "rankB": 32,
+        "gap": -3
+      },
+      {
+        "team": "BAL",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 65.93529665572082,
+        "rankA": 4,
+        "scoreB": 87.17443124546773,
+        "rankB": 2,
+        "gap": 2
+      },
+      {
+        "team": "PIT",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 24.709586666586357,
+        "rankA": 26,
+        "scoreB": 27.72406535203951,
+        "rankB": 24,
+        "gap": 2
+      },
+      {
+        "team": "WAS",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 27.725655201766607,
+        "rankA": 24,
+        "scoreB": 36.90459576401899,
+        "rankB": 22,
+        "gap": 2
+      },
+      {
+        "team": "ARI",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 31.107565167054666,
+        "rankA": 22,
+        "scoreB": 36.78793963696406,
+        "rankB": 23,
+        "gap": -1
+      },
+      {
+        "team": "ATL",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 16.71802547956963,
+        "rankA": 30,
+        "scoreB": 21.07765172994733,
+        "rankB": 29,
+        "gap": 1
+      },
+      {
+        "team": "LAC",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 13.653442401995331,
+        "rankA": 32,
+        "scoreB": 17.826830262239756,
+        "rankB": 31,
+        "gap": 1
+      },
+      {
+        "team": "JAX",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 77.94535641770915,
+        "rankA": 3,
+        "scoreB": 84.97731184325885,
+        "rankB": 3,
+        "gap": 0
+      },
+      {
+        "team": "NE",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 45.45948929025496,
+        "rankA": 18,
+        "scoreB": 52.25122821386236,
+        "rankB": 18,
+        "gap": 0
+      },
+      {
+        "team": "SF",
+        "a": "receiverIndex",
+        "b": "qbIndex",
+        "scoreA": 83.70345026952738,
+        "rankA": 1,
+        "scoreB": 92.87650569436806,
+        "rankB": 1,
+        "gap": 0
+      }
+    ],
+    "rbIndex__olIndex": [
+      {
+        "team": "TEN",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 27.289165061694447,
+        "rankA": 29,
+        "scoreB": 59.99684694792301,
+        "rankB": 6,
+        "gap": 23
+      },
+      {
+        "team": "JAX",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 66.9837758195689,
+        "rankA": 9,
+        "scoreB": 24.078218633316858,
+        "rankB": 29,
+        "gap": -20
+      },
+      {
+        "team": "LAC",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 50.89671378027218,
+        "rankA": 16,
+        "scoreB": 9.75510408718225,
+        "rankB": 32,
+        "gap": -16
+      },
+      {
+        "team": "CAR",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 67.2878505100604,
+        "rankA": 8,
+        "scoreB": 32.79477402074545,
+        "rankB": 23,
+        "gap": -15
+      },
+      {
+        "team": "HOU",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 27.556115332338997,
+        "rankA": 28,
+        "scoreB": 40.29440521804248,
+        "rankB": 15,
+        "gap": 13
+      },
+      {
+        "team": "NO",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 37.751179105916776,
+        "rankA": 21,
+        "scoreB": 53.490384674843575,
+        "rankB": 8,
+        "gap": 13
+      },
+      {
+        "team": "SEA",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 24.783993950423273,
+        "rankA": 30,
+        "scoreB": 37.13074075563397,
+        "rankB": 17,
+        "gap": 13
+      },
+      {
+        "team": "ARI",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 44.211330738636065,
+        "rankA": 19,
+        "scoreB": 54.33969387592856,
+        "rankB": 7,
+        "gap": 12
+      },
+      {
+        "team": "IND",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 69.82457485662317,
+        "rankA": 6,
+        "scoreB": 36.573631586535555,
+        "rankB": 18,
+        "gap": -12
+      },
+      {
+        "team": "NYJ",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 54.95557828914774,
+        "rankA": 13,
+        "scoreB": 28.844081906465636,
+        "rankB": 25,
+        "gap": -12
+      },
+      {
+        "team": "BAL",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 54.498425623186094,
+        "rankA": 14,
+        "scoreB": 69.66859050999321,
+        "rankB": 3,
+        "gap": 11
+      },
+      {
+        "team": "KC",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 76.0672022546311,
+        "rankA": 3,
+        "scoreB": 44.93485364813027,
+        "rankB": 13,
+        "gap": -10
+      },
+      {
+        "team": "BUF",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 85.43127288797906,
+        "rankA": 1,
+        "scoreB": 48.08250291156893,
+        "rankB": 10,
+        "gap": -9
+      },
+      {
+        "team": "DEN",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 60.77846736341944,
+        "rankA": 11,
+        "scoreB": 83.69133681811027,
+        "rankB": 2,
+        "gap": 9
+      },
+      {
+        "team": "SF",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 63.38600026326955,
+        "rankA": 10,
+        "scoreB": 85.42103091561734,
+        "rankB": 1,
+        "gap": 9
+      },
+      {
+        "team": "DET",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 76.2598445245371,
+        "rankA": 2,
+        "scoreB": 49.04517433199932,
+        "rankB": 9,
+        "gap": -7
+      },
+      {
+        "team": "LAR",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 69.30095217251336,
+        "rankA": 7,
+        "scoreB": 44.45993535290239,
+        "rankB": 14,
+        "gap": -7
+      },
+      {
+        "team": "TB",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 48.32390390664414,
+        "rankA": 17,
+        "scoreB": 30.08499283584797,
+        "rankB": 24,
+        "gap": -7
+      },
+      {
+        "team": "WAS",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 41.3339215304239,
+        "rankA": 20,
+        "scoreB": 26.461450773386836,
+        "rankB": 27,
+        "gap": -7
+      },
+      {
+        "team": "MIA",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 44.69227666703391,
+        "rankA": 18,
+        "scoreB": 45.326341249056014,
+        "rankB": 12,
+        "gap": 6
+      },
+      {
+        "team": "PHI",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 33.38747810277485,
+        "rankA": 26,
+        "scoreB": 34.25793410828496,
+        "rankB": 20,
+        "gap": 6
+      },
+      {
+        "team": "CLE",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 35.76482186317263,
+        "rankA": 23,
+        "scoreB": 24.682404057344304,
+        "rankB": 28,
+        "gap": -5
+      },
+      {
+        "team": "LV",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 23.550957514408346,
+        "rankA": 31,
+        "scoreB": 27.858023246973243,
+        "rankB": 26,
+        "gap": 5
+      },
+      {
+        "team": "MIN",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 34.86127703987559,
+        "rankA": 24,
+        "scoreB": 35.73152238099992,
+        "rankB": 19,
+        "gap": 5
+      },
+      {
+        "team": "NYG",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 28.889901266345174,
+        "rankA": 27,
+        "scoreB": 18.781012346797826,
+        "rankB": 31,
+        "gap": -4
+      },
+      {
+        "team": "CIN",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 33.46874170424221,
+        "rankA": 25,
+        "scoreB": 32.82922081877564,
+        "rankB": 22,
+        "gap": 3
+      },
+      {
+        "team": "GB",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 12.717324785147435,
+        "rankA": 32,
+        "scoreB": 23.303287407714187,
+        "rankB": 30,
+        "gap": 2
+      },
+      {
+        "team": "ATL",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 74.40120316142847,
+        "rankA": 4,
+        "scoreB": 63.96475220493838,
+        "rankB": 5,
+        "gap": -1
+      },
+      {
+        "team": "CHI",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 72.4527214891729,
+        "rankA": 5,
+        "scoreB": 69.64944667334112,
+        "rankB": 4,
+        "gap": 1
+      },
+      {
+        "team": "DAL",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 55.60417959882105,
+        "rankA": 12,
+        "scoreB": 46.214462955611644,
+        "rankB": 11,
+        "gap": 1
+      },
+      {
+        "team": "NE",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 36.80257662470616,
+        "rankA": 22,
+        "scoreB": 33.56467720385003,
+        "rankB": 21,
+        "gap": 1
+      },
+      {
+        "team": "PIT",
+        "a": "rbIndex",
+        "b": "olIndex",
+        "scoreA": 53.03756845029379,
+        "rankA": 15,
+        "scoreB": 38.54977362507913,
+        "rankB": 16,
+        "gap": -1
+      }
+    ],
+    "coverageIndex__passRushIndex": [
+      {
+        "team": "DET",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 14.582368546952774,
+        "rankA": 30,
+        "scoreB": 81.53241906475932,
+        "rankB": 5,
+        "gap": 25
+      },
+      {
+        "team": "KC",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 82.64480371177697,
+        "rankA": 4,
+        "scoreB": 14.935669554306296,
+        "rankB": 29,
+        "gap": -25
+      },
+      {
+        "team": "NYG",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 64.64200782994766,
+        "rankA": 9,
+        "scoreB": 11.016763799219834,
+        "rankB": 31,
+        "gap": -22
+      },
+      {
+        "team": "BUF",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 28.94101519403342,
+        "rankA": 26,
+        "scoreB": 74.93321915818538,
+        "rankB": 7,
+        "gap": 19
+      },
+      {
+        "team": "CAR",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 59.79319232183512,
+        "rankA": 11,
+        "scoreB": 11.297668674329937,
+        "rankB": 30,
+        "gap": -19
+      },
+      {
+        "team": "LAR",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 93.5075074153014,
+        "rankA": 2,
+        "scoreB": 37.91786721881797,
+        "rankB": 21,
+        "gap": -19
+      },
+      {
+        "team": "PHI",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 58.213453883492825,
+        "rankA": 13,
+        "scoreB": 9.822436575295335,
+        "rankB": 32,
+        "gap": -19
+      },
+      {
+        "team": "HOU",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 34.772828794218285,
+        "rankA": 22,
+        "scoreB": 79.8073801357641,
+        "rankB": 6,
+        "gap": 16
+      },
+      {
+        "team": "LAC",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 44.78552337948824,
+        "rankA": 18,
+        "scoreB": 86.65184705141658,
+        "rankB": 3,
+        "gap": 15
+      },
+      {
+        "team": "SF",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 58.86902315356812,
+        "rankA": 12,
+        "scoreB": 16.123119334157472,
+        "rankB": 27,
+        "gap": -15
+      },
+      {
+        "team": "GB",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 31.788172944083854,
+        "rankA": 23,
+        "scoreB": 70.21914765238128,
+        "rankB": 9,
+        "gap": 14
+      },
+      {
+        "team": "CIN",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 31.433602650432245,
+        "rankA": 24,
+        "scoreB": 66.86446097696094,
+        "rankB": 11,
+        "gap": 13
+      },
+      {
+        "team": "TB",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 55.56531492833497,
+        "rankA": 15,
+        "scoreB": 15.6862800166871,
+        "rankB": 28,
+        "gap": -13
+      },
+      {
+        "team": "NO",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 31.279724586928417,
+        "rankA": 25,
+        "scoreB": 54.61176798240838,
+        "rankB": 14,
+        "gap": 11
+      },
+      {
+        "team": "TEN",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 17.226833181339195,
+        "rankA": 29,
+        "scoreB": 39.30444790682005,
+        "rankB": 20,
+        "gap": 9
+      },
+      {
+        "team": "DAL",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 3.5417753458175096,
+        "rankA": 32,
+        "scoreB": 34.02060424525559,
+        "rankB": 24,
+        "gap": 8
+      },
+      {
+        "team": "NYJ",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 41.70967741935485,
+        "rankA": 19,
+        "scoreB": 19.140120967741936,
+        "rankB": 26,
+        "gap": -7
+      },
+      {
+        "team": "ARI",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 22.515492421419804,
+        "rankA": 28,
+        "scoreB": 36.42336983913563,
+        "rankB": 22,
+        "gap": 6
+      },
+      {
+        "team": "ATL",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 73.6749561183983,
+        "rankA": 6,
+        "scoreB": 64.3711472130192,
+        "rankB": 12,
+        "gap": -6
+      },
+      {
+        "team": "IND",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 40.603690215149115,
+        "rankA": 21,
+        "scoreB": 51.86760031386861,
+        "rankB": 15,
+        "gap": 6
+      },
+      {
+        "team": "MIA",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 11.092601851856205,
+        "rankA": 31,
+        "scoreB": 25.741442313265576,
+        "rankB": 25,
+        "gap": 6
+      },
+      {
+        "team": "WAS",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 28.760917242695545,
+        "rankA": 27,
+        "scoreB": 34.79138594333329,
+        "rankB": 23,
+        "gap": 4
+      },
+      {
+        "team": "BAL",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 54.63689612355074,
+        "rankA": 16,
+        "scoreB": 40.926276562819346,
+        "rankB": 19,
+        "gap": -3
+      },
+      {
+        "team": "CHI",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 80.50337940870051,
+        "rankA": 5,
+        "scoreB": 73.26322998977946,
+        "rankB": 8,
+        "gap": -3
+      },
+      {
+        "team": "JAX",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 64.06633597006778,
+        "rankA": 10,
+        "scoreB": 56.239880887291065,
+        "rankB": 13,
+        "gap": -3
+      },
+      {
+        "team": "LV",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 70.85399509494671,
+        "rankA": 7,
+        "scoreB": 85.17264130926989,
+        "rankB": 4,
+        "gap": 3
+      },
+      {
+        "team": "NE",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 56.24725849100025,
+        "rankA": 14,
+        "scoreB": 46.44375340354036,
+        "rankB": 17,
+        "gap": -3
+      },
+      {
+        "team": "DEN",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 68.66504179976143,
+        "rankA": 8,
+        "scoreB": 68.09735543030338,
+        "rankB": 10,
+        "gap": -2
+      },
+      {
+        "team": "PIT",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 41.69983531700492,
+        "rankA": 20,
+        "scoreB": 45.53684548393161,
+        "rankB": 18,
+        "gap": 2
+      },
+      {
+        "team": "CLE",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 54.00238922732062,
+        "rankA": 17,
+        "scoreB": 49.69550909236201,
+        "rankB": 16,
+        "gap": 1
+      },
+      {
+        "team": "SEA",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 86.0436854753909,
+        "rankA": 3,
+        "scoreB": 86.99257579697887,
+        "rankB": 2,
+        "gap": 1
+      },
+      {
+        "team": "MIN",
+        "a": "coverageIndex",
+        "b": "passRushIndex",
+        "scoreA": 93.54655145263992,
+        "rankA": 1,
+        "scoreB": 96.38540599950753,
+        "rankB": 1,
+        "gap": 0
+      }
+    ]
+  },
+  "providers": {
+    "nflverse-weekly-disruption": {
+      "n": 28,
+      "teams": [
+        "ARI",
+        "BAL",
+        "BUF",
+        "CAR",
+        "CHI",
+        "CIN",
+        "DAL",
+        "DEN",
+        "DET",
+        "GB",
+        "HOU",
+        "IND",
+        "JAX",
+        "KC",
+        "LAC",
+        "LAR",
+        "LV",
+        "MIA",
+        "MIN",
+        "NE",
+        "NYG",
+        "NYJ",
+        "PHI",
+        "SEA",
+        "SF",
+        "TB",
+        "TEN",
+        "WAS"
+      ],
+      "display": {
+        "n": 28,
+        "missing": 0,
+        "min": 9.822436575295335,
+        "max": 96.38540599950753,
+        "mean": 48.986370361471145,
+        "median": 43.685014983179855,
+        "sd": 27.343091880652064,
+        "p10": 13.844269290313388,
+        "p25": 24.091111976884665,
+        "p75": 73.68072728188093,
+        "p90": 85.6164030319139,
+        "iqr": 49.58961530499627,
+        "range": 86.56296942421218,
+        "middle80": 71.77213374160051,
+        "tailCount": 5,
+        "top5Spread": 14.852986934748202,
+        "bottom5Spread": 5.863843441391765,
+        "top5Mean": 87.34697784438644,
+        "bottom5Mean": 12.5517637239677,
+        "top5MinusMedian": 43.66196286120659,
+        "medianMinusBottom5": 31.133251259212155,
+        "withinMedian": {
+          "2": 0,
+          "5": 3,
+          "10": 8
+        },
+        "adjacentSpacing": [
+          1.1943272239244997,
+          0.2809048751101031,
+          3.6380008799763583,
+          0.7506104623808039,
+          0.43683931747037263,
+          3.0170016335844636,
+          6.60132134552364,
+          8.279161931990014,
+          0.7707816980776983,
+          1.6319838958023425,
+          1.4944973796823362,
+          1.3865806880020841,
+          1.6218286559992947,
+          5.517476840721017,
+          5.423846910328244,
+          4.372280573422458,
+          10.624580089669877,
+          1.232894453342439,
+          2.1217922220779,
+          3.04408233739818,
+          1.6699891684059196,
+          4.874160977578725,
+          1.7250389289952182,
+          3.640222244510568,
+          1.4792057421466893,
+          0.3407287455622878,
+          9.392830202528657
+        ],
+        "distinct": 28
+      },
+      "raw": {
+        "n": 28,
+        "missing": 0,
+        "min": 0.14676258992805757,
+        "max": 0.5006802721088435,
+        "mean": 0.3037893675055469,
+        "median": 0.29899801690846467,
+        "sd": 0.0879098639654911,
+        "p10": 0.2027448588358313,
+        "p25": 0.23373554550025138,
+        "p75": 0.36263440860215057,
+        "p90": 0.41576105137395464,
+        "iqr": 0.12889886310189919,
+        "range": 0.3539176821807859,
+        "middle80": 0.21301619253812334,
+        "tailCount": 5,
+        "top5Spread": 0.10068027210884345,
+        "bottom5Spread": 0.07477587161040397,
+        "top5Mean": 0.4394979576995205,
+        "bottom5Mean": 0.18415408379519407,
+        "top5MinusMedian": 0.14049994079105582,
+        "medianMinusBottom5": 0.1148439331132706,
+        "withinMedian": {
+          "2": 28,
+          "5": 28,
+          "10": 28
+        },
+        "adjacentSpacing": [
+          0.007083563918096281,
+          0.036882322975038184,
+          0.017166260020913232,
+          0.013643724696356274,
+          0.0009780947529291761,
+          0.006543272768438357,
+          0.0062342885872297416,
+          0.0029411764705882526,
+          0.024451273046532024,
+          0.008642104164492237,
+          0.005337995337995338,
+          0.017350427350427355,
+          0.0024864024864024725,
+          0.00498904080993634,
+          0.0129902213072568,
+          0.0017334575955266218,
+          0.011300562307273665,
+          0.025239126988321092,
+          0.00138422187672399,
+          0.007150195192110187,
+          0.005376344086021445,
+          0.0003058103975535631,
+          0.03302752293577982,
+          0.00592592592592589,
+          0.032783751493428936,
+          0.01346423562412341,
+          0.04850635906536521
+        ],
+        "distinct": 28
+      },
+      "boundary": "Nonrandom provider assignment; charted true pressure and weekly hit+sack proxy are not interchangeable."
+    },
+    "pfr-advanced": {
+      "n": 4,
+      "teams": [
+        "ATL",
+        "CLE",
+        "NO",
+        "PIT"
+      ],
+      "display": {
+        "n": 4,
+        "missing": 0,
+        "min": 45.53684548393161,
+        "max": 64.3711472130192,
+        "mean": 53.553817442930296,
+        "median": 52.15363853738519,
+        "sd": 7.023038256664096,
+        "p10": 46.78444456646073,
+        "p25": 48.65584319025441,
+        "p75": 57.051612790061085,
+        "p90": 61.443333443835954,
+        "iqr": 8.395769599806677,
+        "range": 18.834301729087592,
+        "middle80": 14.658888877375226,
+        "tailCount": 4,
+        "top5Spread": null,
+        "bottom5Spread": null,
+        "top5Mean": null,
+        "bottom5Mean": null,
+        "top5MinusMedian": null,
+        "medianMinusBottom5": null,
+        "withinMedian": {
+          "2": 0,
+          "5": 2,
+          "10": 3
+        },
+        "adjacentSpacing": [
+          4.158663608430402,
+          4.916258890046372,
+          9.759379230610818
+        ],
+        "distinct": 4
+      },
+      "raw": {
+        "n": 4,
+        "missing": 0,
+        "min": 0.2548370773595032,
+        "max": 0.2968189680154004,
+        "mean": 0.27143075066108924,
+        "median": 0.2670334786347266,
+        "sd": 0.015997937282934308,
+        "p10": 0.25678373065782406,
+        "p25": 0.2597037106053054,
+        "p75": 0.27876051869051044,
+        "p90": 0.2895955882854444,
+        "iqr": 0.019056808085205046,
+        "range": 0.04198189065589725,
+        "middle80": 0.032811857627620344,
+        "tailCount": 4,
+        "top5Spread": null,
+        "bottom5Spread": null,
+        "top5Mean": null,
+        "bottom5Mean": null,
+        "top5MinusMedian": null,
+        "medianMinusBottom5": null,
+        "withinMedian": {
+          "2": 4,
+          "5": 4,
+          "10": 4
+        },
+        "adjacentSpacing": [
+          0.006488844327736276,
+          0.011415113894974294,
+          0.024077932433186677
+        ],
+        "distinct": 4
+      },
+      "boundary": "Nonrandom provider assignment; charted true pressure and weekly hit+sack proxy are not interchangeable."
+    }
+  }
+}

@@ -1,0 +1,2822 @@
+{
+  "criteria": "PASS: direction of score broadly aligns with non-formula observable facts, or discordance is explained by scope/prior/components. QUESTIONABLE: opposite score/benchmark quartiles or important construct ambiguity. CLEAR PATHOLOGY requires two genuinely independent facts on the same intended construct and unexplained opposite tails; this package cannot certify that with same-feed benchmarks alone.",
+  "cases": [
+    {
+      "team": "SF",
+      "unit": "qbIndex",
+      "reason": "Highest displayed offense-unit tail",
+      "raw": 0.5154451239221336,
+      "display": 92.87650569436806,
+      "rank": 1,
+      "checks": [
+        {
+          "key": "qbEpaPerPlay",
+          "value": 0.5154451239221336,
+          "rank": 1,
+          "boundary": "ingredient"
+        },
+        {
+          "key": "qbAnyA",
+          "value": 10.460176991150442,
+          "rank": 1,
+          "boundary": "ingredient"
+        }
+      ],
+      "officialFacts": [
+        {
+          "team": "SF",
+          "units": [
+            "qbIndex",
+            "receiverIndex",
+            "olIndex"
+          ],
+          "source": "https://www.49ers.com/team/stats/2026/reg",
+          "throughWeek": 4,
+          "facts": {
+            "passingYards": 1007,
+            "passAttempts": 113,
+            "passTds": 11,
+            "passInts": 1,
+            "sacksAllowed": 0,
+            "kittleReceivingYards": 244,
+            "evansReceivingYards": 213
+          },
+          "boundary": "Official current team-season outputs; receiver player totals do not identify isolated skill and zero sacks is not zero pressure"
+        }
+      ],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "SF",
+      "unit": "receiverIndex",
+      "reason": "Highest displayed offense-unit tail",
+      "raw": 0.4369131868325436,
+      "display": 83.70345026952738,
+      "rank": 1,
+      "checks": [
+        {
+          "key": "wrteYardsPerTarget",
+          "value": 9.405063291139241,
+          "rank": 4,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "wrteFirstDownRate",
+          "value": 0.4936708860759494,
+          "rank": 1,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [
+        {
+          "team": "SF",
+          "units": [
+            "qbIndex",
+            "receiverIndex",
+            "olIndex"
+          ],
+          "source": "https://www.49ers.com/team/stats/2026/reg",
+          "throughWeek": 4,
+          "facts": {
+            "passingYards": 1007,
+            "passAttempts": 113,
+            "passTds": 11,
+            "passInts": 1,
+            "sacksAllowed": 0,
+            "kittleReceivingYards": 244,
+            "evansReceivingYards": 213
+          },
+          "boundary": "Official current team-season outputs; receiver player totals do not identify isolated skill and zero sacks is not zero pressure"
+        }
+      ],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "BUF",
+      "unit": "rbIndex",
+      "reason": "Highest displayed offense-unit tail",
+      "raw": 0.13951399827669453,
+      "display": 85.43127288797906,
+      "rank": 1,
+      "checks": [
+        {
+          "key": "rbYpc",
+          "value": 5.851351351351352,
+          "rank": 1,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "rbFirstDownRate",
+          "value": 0.2972972972972973,
+          "rank": 2,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [
+        {
+          "team": "BUF",
+          "units": [
+            "rbIndex"
+          ],
+          "source": "https://www.buffalobills.com/team/stats/2026/reg",
+          "throughWeek": 4,
+          "facts": {
+            "cookCarries": 70,
+            "cookRushYards": 421,
+            "cookRushTds": 3,
+            "cookReceivingYards": 24
+          },
+          "boundary": "One RB plus team-room derived data; public yards output does not define full unit quality"
+        }
+      ],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "SF",
+      "unit": "olIndex",
+      "reason": "Highest displayed offense-unit tail",
+      "raw": 0.09821428571428571,
+      "display": 85.42103091561734,
+      "rank": 1,
+      "checks": [
+        {
+          "key": "sackAllowed",
+          "value": 0,
+          "rank": 1,
+          "boundary": "adjacent non-formula outcome"
+        }
+      ],
+      "officialFacts": [
+        {
+          "team": "SF",
+          "units": [
+            "qbIndex",
+            "receiverIndex",
+            "olIndex"
+          ],
+          "source": "https://www.49ers.com/team/stats/2026/reg",
+          "throughWeek": 4,
+          "facts": {
+            "passingYards": 1007,
+            "passAttempts": 113,
+            "passTds": 11,
+            "passInts": 1,
+            "sacksAllowed": 0,
+            "kittleReceivingYards": 244,
+            "evansReceivingYards": 213
+          },
+          "boundary": "Official current team-season outputs; receiver player totals do not identify isolated skill and zero sacks is not zero pressure"
+        }
+      ],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "KC",
+      "unit": "rbIndex",
+      "reason": "Owner-supplied case corrected to Walker currently on KC",
+      "raw": 0.10758251881517093,
+      "display": 76.0672022546311,
+      "rank": 3,
+      "checks": [
+        {
+          "key": "rbYpc",
+          "value": 5.757281553398058,
+          "rank": 2,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "rbFirstDownRate",
+          "value": 0.27184466019417475,
+          "rank": 4,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [
+        {
+          "team": "KC",
+          "units": [
+            "rbIndex"
+          ],
+          "source": "https://www.chiefs.com/team/players-roster/kenneth-walker-iii/splits/",
+          "throughWeek": 4,
+          "facts": {
+            "walkerCarries": 87,
+            "walkerRushYards": 537,
+            "walkerRushTds": 4,
+            "walkerReceivingYards": 84
+          },
+          "boundary": "Current official player output; neither Week-4 league lead nor a full-room rating target"
+        }
+      ],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "MIN",
+      "unit": "coverageIndex",
+      "reason": "Highest displayed defense-unit tail",
+      "raw": -0.0025989745898591,
+      "display": 93.54655145263992,
+      "rank": 1,
+      "checks": [
+        {
+          "key": "coverageSuccessAllowed",
+          "value": 0.36153846153846153,
+          "rank": 1,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "passYardsAllowedPerAttempt",
+          "value": 6.7251908396946565,
+          "rank": 11,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [
+        {
+          "team": "MIN",
+          "units": [
+            "coverageIndex"
+          ],
+          "source": "https://www.vikings.com/game-day/2026/dolphins-reg-week4/box-score",
+          "throughWeek": 4,
+          "facts": {
+            "week4OpponentPassingYards": 85,
+            "week4OpponentCompletions": 9,
+            "week4OpponentAttempts": 17,
+            "week4OpponentPassTds": 0
+          },
+          "boundary": "One game output; corroboration only, not season-wide isolated coverage certification"
+        }
+      ],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "MIN",
+      "unit": "passRushIndex",
+      "reason": "Highest displayed defense-unit tail",
+      "raw": 0.5006802721088435,
+      "display": 96.38540599950753,
+      "rank": 1,
+      "checks": [
+        {
+          "key": "frontSackRate",
+          "value": 0.10884353741496598,
+          "rank": 1,
+          "boundary": "ingredient/adjacent"
+        },
+        {
+          "key": "frontPressureRate",
+          "value": 0.38095238095238093,
+          "rank": 1,
+          "boundary": "provider-heterogeneous ingredient/proxy"
+        }
+      ],
+      "officialFacts": [
+        {
+          "team": "MIN",
+          "units": [
+            "passRushIndex"
+          ],
+          "source": "https://www.vikings.com/team/stats/2026/reg",
+          "throughWeek": 4,
+          "facts": {
+            "defensiveSacks": 16,
+            "opponentPassAttempts": 131
+          },
+          "boundary": "Official sack output corroborates disruption; it is an ingredient-related check, not independently charted true pressure"
+        }
+      ],
+      "classification": "QUESTIONABLE",
+      "interpretation": "Ingredient-only or provider-heterogeneous evidence is insufficient for independent unit-skill certification; direction is plausible, no clear pathology established."
+    },
+    {
+      "team": "TB",
+      "unit": "runDefenseIndex",
+      "reason": "Highest displayed defense-unit tail",
+      "raw": -0.1915890199574869,
+      "display": 90.53001934824908,
+      "rank": 1,
+      "checks": [
+        {
+          "key": "rushYpcAllowed",
+          "value": 3.204081632653061,
+          "rank": 2,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "rushExplosive20Allowed",
+          "value": 0.02040816326530612,
+          "rank": 18,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "MIN",
+      "unit": "pointsAllowedPerDriveIndex",
+      "reason": "Highest displayed defense-unit tail",
+      "raw": 1.108695652173913,
+      "display": 90,
+      "rank": 1,
+      "checks": [
+        {
+          "key": "defensivePointsPerDrive",
+          "value": 1.108695652173913,
+          "rank": 1,
+          "boundary": "ingredient"
+        },
+        {
+          "key": "pointsAgainstPerGame",
+          "value": 12.75,
+          "rank": 1,
+          "boundary": "related outcome, includes non-offensive scoring"
+        }
+      ],
+      "officialFacts": [
+        {
+          "team": "MIN",
+          "units": [
+            "pointsAllowedPerDriveIndex"
+          ],
+          "source": "https://www.vikings.com/schedule/",
+          "throughWeek": 4,
+          "facts": {
+            "pointsAllowedByWeek": [
+              22,
+              3,
+              16,
+              10
+            ],
+            "pointsAllowedPerGame": 12.75
+          },
+          "boundary": "Season total scoreboard points may include non-offensive scoring; not identical to qualifying offensive points per drive"
+        }
+      ],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "PHI",
+      "unit": "receiverIndex",
+      "reason": "Discordance receiverIndex__qbIndex: rank gap -16",
+      "raw": 0.22760322139257777,
+      "display": 58.377898844264436,
+      "rank": 10,
+      "checks": [
+        {
+          "key": "wrteYardsPerTarget",
+          "value": 7.53932584269663,
+          "rank": 22,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "wrteFirstDownRate",
+          "value": 0.3595505617977528,
+          "rank": 21,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "CHI",
+      "unit": "receiverIndex",
+      "reason": "Discordance receiverIndex__qbIndex: rank gap 10",
+      "raw": 0.1914168715950936,
+      "display": 40.83576049058819,
+      "rank": 19,
+      "checks": [
+        {
+          "key": "wrteYardsPerTarget",
+          "value": 8.134615384615385,
+          "rank": 14,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "wrteFirstDownRate",
+          "value": 0.3942307692307692,
+          "rank": 12,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "JAX",
+      "unit": "rbIndex",
+      "reason": "Discordance rbIndex__olIndex: rank gap -20",
+      "raw": -0.08154965808418328,
+      "display": 66.9837758195689,
+      "rank": 9,
+      "checks": [
+        {
+          "key": "rbYpc",
+          "value": 4.479166666666667,
+          "rank": 7,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "rbFirstDownRate",
+          "value": 0.2708333333333333,
+          "rank": 5,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "TEN",
+      "unit": "rbIndex",
+      "reason": "Discordance rbIndex__olIndex: rank gap 23",
+      "raw": -0.2554053889767578,
+      "display": 27.289165061694447,
+      "rank": 29,
+      "checks": [
+        {
+          "key": "rbYpc",
+          "value": 3.9210526315789473,
+          "rank": 18,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "rbFirstDownRate",
+          "value": 0.15789473684210525,
+          "rank": 31,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "KC",
+      "unit": "coverageIndex",
+      "reason": "Discordance coverageIndex__passRushIndex: rank gap -25",
+      "raw": 0.019707609674983792,
+      "display": 82.64480371177697,
+      "rank": 4,
+      "checks": [
+        {
+          "key": "coverageSuccessAllowed",
+          "value": 0.4722222222222222,
+          "rank": 12,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "passYardsAllowedPerAttempt",
+          "value": 6.2312925170068025,
+          "rank": 4,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    },
+    {
+      "team": "DET",
+      "unit": "coverageIndex",
+      "reason": "Discordance coverageIndex__passRushIndex: rank gap 25",
+      "raw": 0.4527804440714257,
+      "display": 14.582368546952774,
+      "rank": 30,
+      "checks": [
+        {
+          "key": "coverageSuccessAllowed",
+          "value": 0.5548780487804879,
+          "rank": 31,
+          "boundary": "non-formula same-source outcome"
+        },
+        {
+          "key": "passYardsAllowedPerAttempt",
+          "value": 7.927272727272728,
+          "rank": 27,
+          "boundary": "non-formula same-source outcome"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "PASS",
+      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+    }
+  ],
+  "extremes": {
+    "qbIndex": {
+      "top5": [
+        {
+          "team": "SF",
+          "rank": 1,
+          "display": 92.87650569436806,
+          "raw": 0.5154451239221336,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": 0.5154451239221336,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 10.460176991150442,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "BAL",
+          "rank": 2,
+          "display": 87.17443124546773,
+          "raw": 0.36088900677606195,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": 0.36088900677606195,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 9.294642857142858,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "JAX",
+          "rank": 3,
+          "display": 84.97731184325885,
+          "raw": 0.29678430920637844,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": 0.29678430920637844,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 7.741071428571429,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DET",
+          "rank": 4,
+          "display": 83.19759090625946,
+          "raw": 0.222378535292228,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": 0.222378535292228,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 7.863905325443787,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "KC",
+          "rank": 5,
+          "display": 81.56938094647701,
+          "raw": 0.21331832165320502,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": 0.21331832165320502,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 8.126865671641792,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "MIN",
+          "rank": 28,
+          "display": 21.928653679124178,
+          "raw": -0.07964155544494553,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": -0.07964155544494553,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 4.991869918699187,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ATL",
+          "rank": 29,
+          "display": 21.07765172994733,
+          "raw": -0.3762653016251367,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": -0.3762653016251367,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 3.1744186046511627,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "IND",
+          "rank": 30,
+          "display": 21.056513579116466,
+          "raw": -0.16081775523161398,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": -0.16081775523161398,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 4.135714285714286,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LAC",
+          "rank": 31,
+          "display": 17.826830262239756,
+          "raw": -0.16318702851625,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": -0.16318702851625,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 4.206106870229007,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "TB",
+          "rank": 32,
+          "display": 17.246115490562552,
+          "raw": -0.20515833092194444,
+          "benchmarks": [
+            {
+              "key": "qbEpaPerPlay",
+              "value": -0.20515833092194444,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "qbAnyA",
+              "value": 3.6901408450704225,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "receiverIndex": {
+      "top5": [
+        {
+          "team": "SF",
+          "rank": 1,
+          "display": 83.70345026952738,
+          "raw": 0.4369131868325436,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 9.405063291139241,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.4936708860759494,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DAL",
+          "rank": 2,
+          "display": 79.5873491633852,
+          "raw": 0.32096522026218205,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 7.991935483870968,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.4435483870967742,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "JAX",
+          "rank": 3,
+          "display": 77.94535641770915,
+          "raw": 0.3485573685014724,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 9.058823529411764,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.47058823529411764,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "BAL",
+          "rank": 4,
+          "display": 65.93529665572082,
+          "raw": 0.31008291625115,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 10.584269662921349,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.4606741573033708,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "NO",
+          "rank": 5,
+          "display": 64.92302433569529,
+          "raw": 0.31302513783254193,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 8.595959595959595,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.45454545454545453,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "NYG",
+          "rank": 28,
+          "display": 22.021243407896357,
+          "raw": 0.10220190828383235,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 6.797872340425532,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.3617021276595745,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "TB",
+          "rank": 29,
+          "display": 18.962535473576946,
+          "raw": 0.08949513412407042,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 7,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.32978723404255317,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ATL",
+          "rank": 30,
+          "display": 16.71802547956963,
+          "raw": 0.026813063144708466,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 7.454545454545454,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.32727272727272727,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "MIA",
+          "rank": 31,
+          "display": 16.124800550928953,
+          "raw": 0.046226652044777425,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 7.695121951219512,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.2804878048780488,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LAC",
+          "rank": 32,
+          "display": 13.653442401995331,
+          "raw": -0.02528977924217704,
+          "benchmarks": [
+            {
+              "key": "wrteYardsPerTarget",
+              "value": 7.615384615384615,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "wrteFirstDownRate",
+              "value": 0.32967032967032966,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "olIndex": {
+      "top5": [
+        {
+          "team": "SF",
+          "rank": 1,
+          "display": 85.42103091561734,
+          "raw": 0.09821428571428571,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.09821428571428571,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DEN",
+          "rank": 2,
+          "display": 83.69133681811027,
+          "raw": 0.10714285714285714,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0.03571428571428571,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.10714285714285714,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "BAL",
+          "rank": 3,
+          "display": 69.66859050999321,
+          "raw": 0.11818181818181818,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0.0625,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.11818181818181818,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "CHI",
+          "rank": 4,
+          "display": 69.64944667334112,
+          "raw": 0.13043478260869565,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0.050359712230215826,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.13043478260869565,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ATL",
+          "rank": 5,
+          "display": 63.96475220493838,
+          "raw": 0.13953488372093023,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0.08139534883720931,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.13953488372093023,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "CLE",
+          "rank": 28,
+          "display": 24.682404057344304,
+          "raw": 0.1889763779527559,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0.08661417322834646,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.1889763779527559,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "JAX",
+          "rank": 29,
+          "display": 24.078218633316858,
+          "raw": 0.1981981981981982,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0.07142857142857142,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.1981981981981982,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "GB",
+          "rank": 30,
+          "display": 23.303287407714187,
+          "raw": 0.2037037037037037,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0.04938271604938271,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.2037037037037037,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "NYG",
+          "rank": 31,
+          "display": 18.781012346797826,
+          "raw": 0.2032520325203252,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0.08943089430894309,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.2032520325203252,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LAC",
+          "rank": 32,
+          "display": 9.75510408718225,
+          "raw": 0.23484848484848486,
+          "benchmarks": [
+            {
+              "key": "sackAllowed",
+              "value": 0.09090909090909091,
+              "boundary": "adjacent non-formula outcome"
+            },
+            {
+              "key": "pbpPressureAllowedRate",
+              "value": 0.23484848484848486,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "rbIndex": {
+      "top5": [
+        {
+          "team": "BUF",
+          "rank": 1,
+          "display": 85.43127288797906,
+          "raw": 0.13951399827669453,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 5.851351351351352,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.2972972972972973,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DET",
+          "rank": 2,
+          "display": 76.2598445245371,
+          "raw": 0.05267895145898499,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 4.415730337078652,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.3146067415730337,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "KC",
+          "rank": 3,
+          "display": 76.0672022546311,
+          "raw": 0.10758251881517093,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 5.757281553398058,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.27184466019417475,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ATL",
+          "rank": 4,
+          "display": 74.40120316142847,
+          "raw": 0.015272207664876102,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 5.010416666666667,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.2916666666666667,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "CHI",
+          "rank": 5,
+          "display": 72.4527214891729,
+          "raw": 0.09817400526184726,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 4.894736842105263,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.21804511278195488,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "HOU",
+          "rank": 28,
+          "display": 27.556115332338997,
+          "raw": -0.15579240599590233,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 2.8533333333333335,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.17333333333333334,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "TEN",
+          "rank": 29,
+          "display": 27.289165061694447,
+          "raw": -0.2554053889767578,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 3.9210526315789473,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.15789473684210525,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "SEA",
+          "rank": 30,
+          "display": 24.783993950423273,
+          "raw": -0.1853221514807565,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 3.679611650485437,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.1650485436893204,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LV",
+          "rank": 31,
+          "display": 23.550957514408346,
+          "raw": -0.18315079856110578,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 3.6037735849056602,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.18867924528301888,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "GB",
+          "rank": 32,
+          "display": 12.717324785147435,
+          "raw": -0.23743986426584118,
+          "benchmarks": [
+            {
+              "key": "rbYpc",
+              "value": 3.5538461538461537,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rbFirstDownRate",
+              "value": 0.16923076923076924,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "coverageIndex": {
+      "top5": [
+        {
+          "team": "MIN",
+          "rank": 1,
+          "display": 93.54655145263992,
+          "raw": -0.0025989745898591,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.36153846153846153,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 6.7251908396946565,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LAR",
+          "rank": 2,
+          "display": 93.5075074153014,
+          "raw": -0.13792483712357922,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.4094488188976378,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 4.84251968503937,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "SEA",
+          "rank": 3,
+          "display": 86.0436854753909,
+          "raw": 0.01055406604260458,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.43548387096774194,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 5.201612903225806,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "KC",
+          "rank": 4,
+          "display": 82.64480371177697,
+          "raw": 0.019707609674983792,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.4722222222222222,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 6.2312925170068025,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "CHI",
+          "rank": 5,
+          "display": 80.50337940870051,
+          "raw": 0.020352975344622413,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.41414141414141414,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 7.838383838383838,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "ARI",
+          "rank": 28,
+          "display": 22.515492421419804,
+          "raw": 0.44971116530366073,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.5137614678899083,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 9.091743119266056,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "TEN",
+          "rank": 29,
+          "display": 17.226833181339195,
+          "raw": 0.31602658588084076,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.5,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 7.875,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DET",
+          "rank": 30,
+          "display": 14.582368546952774,
+          "raw": 0.4527804440714257,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.5548780487804879,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 7.927272727272728,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "MIA",
+          "rank": 31,
+          "display": 11.092601851856205,
+          "raw": 0.38997123354799895,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.5398230088495575,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 8.31858407079646,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DAL",
+          "rank": 32,
+          "display": 3.5417753458175096,
+          "raw": 0.48726516870071207,
+          "benchmarks": [
+            {
+              "key": "coverageSuccessAllowed",
+              "value": 0.6283185840707964,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "passYardsAllowedPerAttempt",
+              "value": 8.434782608695652,
+              "boundary": "non-formula same-source outcome"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "passRushIndex": {
+      "top5": [
+        {
+          "team": "MIN",
+          "rank": 1,
+          "display": 96.38540599950753,
+          "raw": 0.5006802721088435,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.10884353741496598,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.38095238095238093,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "SEA",
+          "rank": 2,
+          "display": 86.99257579697887,
+          "raw": 0.4059259259259259,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.08148148148148149,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.3111111111111111,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LAC",
+          "rank": 3,
+          "display": 86.65184705141658,
+          "raw": 0.43870967741935485,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.08064516129032258,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.3387096774193548,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LV",
+          "rank": 4,
+          "display": 85.17264130926989,
+          "raw": 0.45217391304347826,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.08695652173913043,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.34782608695652173,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DET",
+          "rank": 5,
+          "display": 81.53241906475932,
+          "raw": 0.36666666666666664,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.08333333333333333,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.2777777777777778,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "TB",
+          "rank": 28,
+          "display": 15.6862800166871,
+          "raw": 0.22153846153846155,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.046153846153846156,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.16923076923076924,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "KC",
+          "rank": 29,
+          "display": 14.935669554306296,
+          "raw": 0.19072847682119204,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.019867549668874173,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.152317880794702,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "CAR",
+          "rank": 30,
+          "display": 11.297668674329937,
+          "raw": 0.20789473684210527,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.046052631578947366,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.15789473684210525,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "NYG",
+          "rank": 31,
+          "display": 11.016763799219834,
+          "raw": 0.14676258992805757,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.02158273381294964,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.11510791366906475,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "PHI",
+          "rank": 32,
+          "display": 9.822436575295335,
+          "raw": 0.15384615384615385,
+          "benchmarks": [
+            {
+              "key": "frontSackRate",
+              "value": 0.027972027972027972,
+              "boundary": "ingredient/adjacent"
+            },
+            {
+              "key": "frontPressureRate",
+              "value": 0.11888111888111888,
+              "boundary": "provider-heterogeneous ingredient/proxy"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "runDefenseIndex": {
+      "top5": [
+        {
+          "team": "TB",
+          "rank": 1,
+          "display": 90.53001934824908,
+          "raw": -0.1915890199574869,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 3.204081632653061,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.21428571428571427,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "SEA",
+          "rank": 2,
+          "display": 86.69442681717781,
+          "raw": -0.15720979518872527,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 3.642857142857143,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.19642857142857142,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ARI",
+          "rank": 3,
+          "display": 86.64163738043632,
+          "raw": -0.20857015547064833,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 4.196428571428571,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.22321428571428573,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ATL",
+          "rank": 4,
+          "display": 86.017727504771,
+          "raw": -0.2646064634766213,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 2.75,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.17307692307692307,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "MIA",
+          "rank": 5,
+          "display": 80.02528909183783,
+          "raw": -0.17593596978387785,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 3.6333333333333333,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.21666666666666667,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "CAR",
+          "rank": 28,
+          "display": 17.257249893850442,
+          "raw": 0.03634319092789715,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 5.396551724137931,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.2413793103448276,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "BUF",
+          "rank": 29,
+          "display": 15.424484442370883,
+          "raw": 0.033925155649153826,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 4.034782608695652,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.24347826086956523,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DEN",
+          "rank": 30,
+          "display": 14.864835748372137,
+          "raw": 0.0969632805904742,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 4.758333333333334,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.30833333333333335,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "CHI",
+          "rank": 31,
+          "display": 10.458970733157763,
+          "raw": 0.03655282404843206,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 4.9397590361445785,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.2289156626506024,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "NE",
+          "rank": 32,
+          "display": 10.055243434885647,
+          "raw": 0.05865915127490685,
+          "benchmarks": [
+            {
+              "key": "rushYpcAllowed",
+              "value": 4.378947368421053,
+              "boundary": "non-formula same-source outcome"
+            },
+            {
+              "key": "rushFirstDownRateAllowed",
+              "value": 0.25263157894736843,
+              "boundary": "first-down proxy, not EPA success rate"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "pointsScoredPerDriveIndex": {
+      "top5": [
+        {
+          "team": "DAL",
+          "rank": 1,
+          "display": 95.02866861444843,
+          "raw": 3.388888888888889,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 3.388888888888889,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 30.5,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "SF",
+          "rank": 2,
+          "display": 93.11690431703406,
+          "raw": 3.388888888888889,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 3.388888888888889,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 30.5,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "BUF",
+          "rank": 3,
+          "display": 91.51655640232397,
+          "raw": 3.0238095238095237,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 3.0238095238095237,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 31.75,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "JAX",
+          "rank": 4,
+          "display": 85.10996333502605,
+          "raw": 2.9714285714285715,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 2.9714285714285715,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 26,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DET",
+          "rank": 5,
+          "display": 84.70872788692016,
+          "raw": 2.902439024390244,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 2.902439024390244,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 29.75,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "NE",
+          "rank": 28,
+          "display": 19.418938682557613,
+          "raw": 1.4390243902439024,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.4390243902439024,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 16.25,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ATL",
+          "rank": 29,
+          "display": 17.920224149313363,
+          "raw": 1.457142857142857,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.457142857142857,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 17,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "TEN",
+          "rank": 30,
+          "display": 11.591955639346175,
+          "raw": 1.4473684210526316,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.4473684210526316,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 13.75,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LAC",
+          "rank": 31,
+          "display": 8.527927646366278,
+          "raw": 1.425531914893617,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.425531914893617,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 16.75,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "MIA",
+          "rank": 32,
+          "display": 7.166624856562327,
+          "raw": 1.2432432432432432,
+          "benchmarks": [
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.2432432432432432,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsForPerGame",
+              "value": 11.5,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "pointsAllowedPerDriveIndex": {
+      "top5": [
+        {
+          "team": "MIN",
+          "rank": 1,
+          "display": 90,
+          "raw": 1.108695652173913,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.108695652173913,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 12.75,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "JAX",
+          "rank": 2,
+          "display": 87.4193548387097,
+          "raw": 1.4324324324324325,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.4324324324324325,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 13.25,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "SEA",
+          "rank": 3,
+          "display": 84.83870967741936,
+          "raw": 1.488888888888889,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.488888888888889,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 18.25,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "CHI",
+          "rank": 4,
+          "display": 82.25806451612904,
+          "raw": 1.6666666666666667,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.6666666666666667,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 16.25,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ATL",
+          "rank": 5,
+          "display": 77.82258064516128,
+          "raw": 1.696969696969697,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.696969696969697,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 22.666666666666668,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "ARI",
+          "rank": 28,
+          "display": 20.322580645161292,
+          "raw": 2.707317073170732,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 2.707317073170732,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 29.25,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "WAS",
+          "rank": 29,
+          "display": 17.74193548387096,
+          "raw": 2.7111111111111112,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 2.7111111111111112,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 30.5,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "MIA",
+          "rank": 30,
+          "display": 15.161290322580644,
+          "raw": 2.72972972972973,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 2.72972972972973,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 25.25,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DAL",
+          "rank": 31,
+          "display": 12.580645161290317,
+          "raw": 2.871794871794872,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 2.871794871794872,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 28,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DET",
+          "rank": 32,
+          "display": 9.999999999999998,
+          "raw": 3.097560975609756,
+          "benchmarks": [
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 3.097560975609756,
+              "boundary": "ingredient"
+            },
+            {
+              "key": "pointsAgainstPerGame",
+              "value": 31.75,
+              "boundary": "related outcome, includes non-offensive scoring"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "offenseComposite": {
+      "top5": [
+        {
+          "team": "SF",
+          "rank": 1,
+          "display": 92.40218044664323,
+          "raw": 84.53220480214286,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.2784525563413367,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 3.388888888888889,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "BUF",
+          "rank": 2,
+          "display": 82.70063416569965,
+          "raw": 73.34322539253023,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.1932527064900339,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 3.0238095238095237,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DET",
+          "rank": 3,
+          "display": 82.61221725683369,
+          "raw": 73.25977094948864,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.15662901285243847,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 2.902439024390244,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DAL",
+          "rank": 4,
+          "display": 82.00442680484454,
+          "raw": 72.69223904554826,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.18632502793923372,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 3.388888888888889,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "BAL",
+          "rank": 5,
+          "display": 81.49718883442824,
+          "raw": 72.22651675837962,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.1649791239511164,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 2.6363636363636362,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "PIT",
+          "rank": 28,
+          "display": 24.261745320415645,
+          "raw": 32.64521454225265,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.09949707098649178,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.5434782608695652,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "GB",
+          "rank": 29,
+          "display": 21.35890749472007,
+          "raw": 30.276149377820303,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.08888103532032783,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.6590909090909092,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "TB",
+          "rank": 30,
+          "display": 17.816539739232127,
+          "raw": 27.141683438494177,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.14241768424302573,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.627906976744186,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "MIA",
+          "rank": 31,
+          "display": 16.810303875321942,
+          "raw": 26.19090571560345,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.12275452467928225,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.2432432432432432,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LAC",
+          "rank": 32,
+          "display": 11.653572307826401,
+          "raw": 20.744259337376256,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.15916777641367233,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "offensivePointsPerDrive",
+              "value": 1.425531914893617,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "defenseIndex": {
+      "top5": [
+        {
+          "team": "MIN",
+          "rank": 1,
+          "display": 93.69365297797924,
+          "raw": 88.64462491462301,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": 0.18423103812010166,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.108695652173913,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "SEA",
+          "rank": 2,
+          "display": 91.91889465083386,
+          "raw": 86.13672034295101,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": 0.14196519470557958,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.488888888888889,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ATL",
+          "rank": 3,
+          "display": 83.59989273839824,
+          "raw": 76.47184758707459,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": 0.047064085218337645,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.696969696969697,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LV",
+          "rank": 4,
+          "display": 79.15636788499963,
+          "raw": 72.20718948014276,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": 0.07389257782095242,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.826086956521739,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LAR",
+          "rank": 5,
+          "display": 76.88761800609859,
+          "raw": 70.18525939159755,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": 0.12339104757581411,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 1.8333333333333333,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "MIA",
+          "rank": 28,
+          "display": 27.563652053808287,
+          "raw": 33.55130644702145,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": -0.06274582450742751,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 2.72972972972973,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "BUF",
+          "rank": 29,
+          "display": 25.46529222029339,
+          "raw": 31.823710372573927,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": -0.10526145544589086,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 2.5476190476190474,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DET",
+          "rank": 30,
+          "display": 22.328434721592615,
+          "raw": 29.126239491681467,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": -0.15780631060302697,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 3.097560975609756,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "WAS",
+          "rank": 31,
+          "display": 21.074363434067013,
+          "raw": 28.00267638014337,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": -0.031203265472369613,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 2.7111111111111112,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DAL",
+          "rank": 32,
+          "display": 13.02194282716826,
+          "raw": 19.931539299086282,
+          "benchmarks": [
+            {
+              "key": "defEpa",
+              "value": -0.20562908588734907,
+              "boundary": "related same-source outcome"
+            },
+            {
+              "key": "defensivePointsPerDrive",
+              "value": 2.871794871794872,
+              "boundary": "component input"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    },
+    "offenseIndex": {
+      "top5": [
+        {
+          "team": "SF",
+          "rank": 1,
+          "display": 94.4595024499472,
+          "raw": 0.2784525563413367,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.2784525563413367,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "BUF",
+          "rank": 2,
+          "display": 94.13483065251054,
+          "raw": 0.1932527064900339,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.1932527064900339,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DAL",
+          "rank": 3,
+          "display": 90.99535026856398,
+          "raw": 0.18632502793923372,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.18632502793923372,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "JAX",
+          "rank": 4,
+          "display": 85.10996333502605,
+          "raw": 0.17381960614195563,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.17381960614195563,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "DET",
+          "rank": 5,
+          "display": 82.05922915706034,
+          "raw": 0.15662901285243847,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": 0.15662901285243847,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ],
+      "bottom5": [
+        {
+          "team": "MIA",
+          "rank": 28,
+          "display": 15.103656906613974,
+          "raw": -0.12275452467928225,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.12275452467928225,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "MIN",
+          "rank": 29,
+          "display": 15.103226968562225,
+          "raw": -0.11960650797635156,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.11960650797635156,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "TB",
+          "rank": 30,
+          "display": 14.368251378641641,
+          "raw": -0.14241768424302573,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.14241768424302573,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "ATL",
+          "rank": 31,
+          "display": 10.410598979781476,
+          "raw": -0.14974945949761798,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.14974945949761798,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        },
+        {
+          "team": "LAC",
+          "rank": 32,
+          "display": 5.921947852389785,
+          "raw": -0.15916777641367233,
+          "benchmarks": [
+            {
+              "key": "offEpa",
+              "value": -0.15916777641367233,
+              "boundary": "ingredient"
+            }
+          ],
+          "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
+        }
+      ]
+    }
+  }
+}

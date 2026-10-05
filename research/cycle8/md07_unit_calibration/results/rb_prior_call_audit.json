@@ -1,0 +1,388 @@
+{
+  "source": "model/live_profiles.js: priorRbOrthogonalValues = Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite); priorRbByTeam calls priorRbOrthogonalComposite(prior) separately",
+  "boundary": "Unary callback is a research call-semantics control, not a selected production correction or redesign. No forecast/bridge ablation or historical predictive validation.",
+  "directBenchmark": {
+    "n": 32,
+    "missing": 0,
+    "min": -0.20292,
+    "max": 0.10350000000000001,
+    "mean": -0.03274031249999999,
+    "median": -0.038360000000000005,
+    "sd": 0.0814875560087388,
+    "p10": -0.13971899999999998,
+    "p25": -0.09681,
+    "p75": 0.041955,
+    "p90": 0.078319,
+    "iqr": 0.138765,
+    "range": 0.30642,
+    "middle80": 0.21803799999999998,
+    "tailCount": 5,
+    "top5Spread": 0.02582000000000001,
+    "bottom5Spread": 0.06347999999999998,
+    "top5Mean": 0.08960399999999999,
+    "bottom5Mean": -0.15375999999999998,
+    "top5MinusMedian": 0.127964,
+    "medianMinusBottom5": 0.11539999999999997,
+    "withinMedian": {
+      "2": 32,
+      "5": 32,
+      "10": 32
+    },
+    "adjacentSpacing": [
+      0.05840999999999999,
+      0.0023300000000000265,
+      0.0024299999999999877,
+      0.00030999999999997696,
+      0.010780000000000012,
+      0.011390000000000011,
+      0.01614,
+      0.005759999999999987,
+      0.02117999999999999,
+      0.009020000000000014,
+      0.00020999999999998797,
+      0.012020000000000003,
+      0.0031100000000000086,
+      0.006509999999999995,
+      0.00406999999999999,
+      0.0017800000000000107,
+      0.014169999999999995,
+      0.007240000000000003,
+      0.0032100000000000045,
+      0.007559999999999997,
+      0.0023099999999999996,
+      0.008570000000000008,
+      0.03548999999999999,
+      0.003500000000000003,
+      0.0014199999999999977,
+      0.019879999999999995,
+      0.011800000000000005,
+      0.0007100000000000023,
+      0.012609999999999996,
+      0.006449999999999997,
+      0.006050000000000014
+    ],
+    "distinct": 32
+  },
+  "unaryBenchmark": {
+    "n": 32,
+    "missing": 0,
+    "min": -0.18838,
+    "max": 0.0721,
+    "mean": -0.047646562499999996,
+    "median": -0.041319999999999996,
+    "sd": 0.06950335102574978,
+    "p10": -0.145377,
+    "p25": -0.0930675,
+    "p75": -0.0036175000000000027,
+    "p90": 0.05303500000000001,
+    "iqr": 0.08945,
+    "range": 0.26048,
+    "middle80": 0.19841200000000003,
+    "tailCount": 5,
+    "top5Spread": 0.025950000000000008,
+    "bottom5Spread": 0.04653999999999997,
+    "top5Mean": 0.05838599999999999,
+    "bottom5Mean": -0.15530999999999998,
+    "top5MinusMedian": 0.09970599999999999,
+    "medianMinusBottom5": 0.11398999999999998,
+    "withinMedian": {
+      "2": 32,
+      "5": 32,
+      "10": 32
+    },
+    "adjacentSpacing": [
+      0.034660000000000024,
+      0.0068799999999999695,
+      0.0010699999999999876,
+      0.003929999999999989,
+      0.011990000000000028,
+      0.002919999999999978,
+      0.016140000000000015,
+      0.023629999999999998,
+      0.003500000000000003,
+      0.01583000000000001,
+      0.001119999999999996,
+      0.002599999999999991,
+      0.0013400000000000079,
+      0.007619999999999988,
+      0.01123000000000001,
+      0.005199999999999989,
+      0.00035000000000001,
+      0.006380000000000004,
+      0.009369999999999993,
+      0.0031700000000000027,
+      0.007169999999999999,
+      0.004279999999999996,
+      0.0014299999999999972,
+      0.011810000000000001,
+      0.0010400000000000088,
+      0.019009999999999992,
+      0.02085999999999999,
+      0.007650000000000004,
+      0.0038000000000000048,
+      0.004680000000000004,
+      0.009819999999999995
+    ],
+    "distinct": 32
+  },
+  "rows": [
+    {
+      "team": "ARI",
+      "defaultOrthogonalPriorSignal": -0.043919999999999994,
+      "actualPrior": 46.51713709677419,
+      "unaryLikeForLikePrior": 48.90625,
+      "priorDelta": 2.389112903225808,
+      "frozenCurrentPriorOnlyDelta": 0.3939330399941498
+    },
+    {
+      "team": "ATL",
+      "defaultOrthogonalPriorSignal": -0.019449999999999995,
+      "actualPrior": 54.44449240331492,
+      "unaryLikeForLikePrior": 59.84375,
+      "priorDelta": 5.399257596685082,
+      "frozenCurrentPriorOnlyDelta": 1.2094628530503184
+    },
+    {
+      "team": "BAL",
+      "defaultOrthogonalPriorSignal": -0.14577,
+      "actualPrior": 18.23406201848999,
+      "unaryLikeForLikePrior": 22.65625,
+      "priorDelta": 4.42218798151001,
+      "frozenCurrentPriorOnlyDelta": 0.8321703352450776
+    },
+    {
+      "team": "BUF",
+      "defaultOrthogonalPriorSignal": 0.02529,
+      "actualPrior": 65.43300049309664,
+      "unaryLikeForLikePrior": 72.96875,
+      "priorDelta": 7.5357495069033575,
+      "frozenCurrentPriorOnlyDelta": 1.4192452510711764
+    },
+    {
+      "team": "CAR",
+      "defaultOrthogonalPriorSignal": 0.005239999999999998,
+      "actualPrior": 64.12941219369895,
+      "unaryLikeForLikePrior": 68.59375,
+      "priorDelta": 4.464337806301046,
+      "frozenCurrentPriorOnlyDelta": 0.6702917861090252
+    },
+    {
+      "team": "CHI",
+      "defaultOrthogonalPriorSignal": -0.11079,
+      "actualPrior": 30.09700278810409,
+      "unaryLikeForLikePrior": 31.40625,
+      "priorDelta": 1.3092472118959115,
+      "frozenCurrentPriorOnlyDelta": 0.21542421727567887
+    },
+    {
+      "team": "CIN",
+      "defaultOrthogonalPriorSignal": -0.006570000000000003,
+      "actualPrior": 59.473379629629626,
+      "unaryLikeForLikePrior": 66.40625,
+      "priorDelta": 6.932870370370374,
+      "frozenCurrentPriorOnlyDelta": 1.2515237751459856
+    },
+    {
+      "team": "CLE",
+      "defaultOrthogonalPriorSignal": -0.06411,
+      "actualPrior": 40.310940099833616,
+      "unaryLikeForLikePrior": 42.34375,
+      "priorDelta": 2.0328099001663844,
+      "frozenCurrentPriorOnlyDelta": 0.38275355033740527
+    },
+    {
+      "team": "DAL",
+      "defaultOrthogonalPriorSignal": 0.04614999999999999,
+      "actualPrior": 70.79775528169014,
+      "unaryLikeForLikePrior": 75.15625,
+      "priorDelta": 4.358494718309856,
+      "frozenCurrentPriorOnlyDelta": 0.7254607320312694
+    },
+    {
+      "team": "DEN",
+      "defaultOrthogonalPriorSignal": -0.12693000000000002,
+      "actualPrior": 27.36350417032484,
+      "unaryLikeForLikePrior": 29.21875,
+      "priorDelta": 1.8552458296751588,
+      "frozenCurrentPriorOnlyDelta": 0.3426515673187104
+    },
+    {
+      "team": "DET",
+      "defaultOrthogonalPriorSignal": -0.008,
+      "actualPrior": 59.05960648148148,
+      "unaryLikeForLikePrior": 64.21875,
+      "priorDelta": 5.159143518518519,
+      "frozenCurrentPriorOnlyDelta": 0.9217088166799143
+    },
+    {
+      "team": "GB",
+      "defaultOrthogonalPriorSignal": -0.14684,
+      "actualPrior": 18.19398968498545,
+      "unaryLikeForLikePrior": 20.468750000000004,
+      "priorDelta": 2.2747603150145537,
+      "frozenCurrentPriorOnlyDelta": 0.37331482579238623
+    },
+    {
+      "team": "HOU",
+      "defaultOrthogonalPriorSignal": -0.055150000000000005,
+      "actualPrior": 41.94155574043261,
+      "unaryLikeForLikePrior": 46.71875,
+      "priorDelta": 4.777194259567388,
+      "frozenCurrentPriorOnlyDelta": 0.7781116935912408
+    },
+    {
+      "team": "IND",
+      "defaultOrthogonalPriorSignal": 0.0576,
+      "actualPrior": 72.05765845070422,
+      "unaryLikeForLikePrior": 79.53125,
+      "priorDelta": 7.473591549295776,
+      "frozenCurrentPriorOnlyDelta": 1.1409510507140732
+    },
+    {
+      "team": "JAX",
+      "defaultOrthogonalPriorSignal": -0.03198999999999999,
+      "actualPrior": 51.93972741707833,
+      "unaryLikeForLikePrior": 55.46875,
+      "priorDelta": 3.5290225829216695,
+      "frozenCurrentPriorOnlyDelta": 0.5675402525019808
+    },
+    {
+      "team": "KC",
+      "defaultOrthogonalPriorSignal": -0.18838,
+      "actualPrior": 16.638284326313986,
+      "unaryLikeForLikePrior": 16.09375,
+      "priorDelta": -0.5445343263139861,
+      "frozenCurrentPriorOnlyDelta": -0.10348653477074764
+    },
+    {
+      "team": "LAC",
+      "defaultOrthogonalPriorSignal": -0.06782999999999999,
+      "actualPrior": 37.323655764966745,
+      "unaryLikeForLikePrior": 37.96875,
+      "priorDelta": 0.6450942350332554,
+      "frozenCurrentPriorOnlyDelta": 0.12395244710396554
+    },
+    {
+      "team": "LAR",
+      "defaultOrthogonalPriorSignal": 0.006280000000000007,
+      "actualPrior": 64.26127958579882,
+      "unaryLikeForLikePrior": 70.78125,
+      "priorDelta": 6.5199704142011825,
+      "frozenCurrentPriorOnlyDelta": 1.1991744919732397
+    },
+    {
+      "team": "LV",
+      "defaultOrthogonalPriorSignal": -0.15371999999999997,
+      "actualPrior": 17.936328325629177,
+      "unaryLikeForLikePrior": 18.281250000000004,
+      "priorDelta": 0.344921674370827,
+      "frozenCurrentPriorOnlyDelta": 0.05923470579762728
+    },
+    {
+      "team": "MIA",
+      "defaultOrthogonalPriorSignal": -0.12985,
+      "actualPrior": 26.789772727272727,
+      "unaryLikeForLikePrior": 27.03125,
+      "priorDelta": 0.24147727272727337,
+      "frozenCurrentPriorOnlyDelta": 0.04342727791774551
+    },
+    {
+      "team": "MIN",
+      "defaultOrthogonalPriorSignal": -0.038369999999999994,
+      "actualPrior": 49.98771067415731,
+      "unaryLikeForLikePrior": 53.28125,
+      "priorDelta": 3.293539325842687,
+      "frozenCurrentPriorOnlyDelta": 0.6512031446195993
+    },
+    {
+      "team": "NE",
+      "defaultOrthogonalPriorSignal": -0.038720000000000004,
+      "actualPrior": 49.557584269662925,
+      "unaryLikeForLikePrior": 51.09375,
+      "priorDelta": 1.5361657303370748,
+      "frozenCurrentPriorOnlyDelta": 0.2865423423675828
+    },
+    {
+      "team": "NO",
+      "defaultOrthogonalPriorSignal": -0.14184000000000002,
+      "actualPrior": 20.774819958847697,
+      "unaryLikeForLikePrior": 24.84375,
+      "priorDelta": 4.068930041152303,
+      "frozenCurrentPriorOnlyDelta": 1.0078574074682634
+    },
+    {
+      "team": "NYG",
+      "defaultOrthogonalPriorSignal": -0.06276999999999999,
+      "actualPrior": 40.55480449251248,
+      "unaryLikeForLikePrior": 44.53125,
+      "priorDelta": 3.9764455074875187,
+      "frozenCurrentPriorOnlyDelta": 0.7897701122967227
+    },
+    {
+      "team": "NYJ",
+      "defaultOrthogonalPriorSignal": 0.053799999999999994,
+      "actualPrior": 71.63952464788733,
+      "unaryLikeForLikePrior": 77.34375,
+      "priorDelta": 5.7042253521126725,
+      "frozenCurrentPriorOnlyDelta": 1.1408450704225346
+    },
+    {
+      "team": "PHI",
+      "defaultOrthogonalPriorSignal": 0.0721,
+      "actualPrior": 74.1218220338983,
+      "unaryLikeForLikePrior": 83.90625,
+      "priorDelta": 9.784427966101703,
+      "frozenCurrentPriorOnlyDelta": 1.562608865065864
+    },
+    {
+      "team": "PIT",
+      "defaultOrthogonalPriorSignal": 0.06228,
+      "actualPrior": 72.57262323943662,
+      "unaryLikeForLikePrior": 81.71875,
+      "priorDelta": 9.146126760563376,
+      "frozenCurrentPriorOnlyDelta": 1.630955871248337
+    },
+    {
+      "team": "SEA",
+      "defaultOrthogonalPriorSignal": -0.06670999999999999,
+      "actualPrior": 37.5952743902439,
+      "unaryLikeForLikePrior": 40.15625,
+      "priorDelta": 2.560975609756099,
+      "frozenCurrentPriorOnlyDelta": 0.4914224052856374
+    },
+    {
+      "team": "SF",
+      "defaultOrthogonalPriorSignal": -0.022619999999999998,
+      "actualPrior": 53.486705801104975,
+      "unaryLikeForLikePrior": 57.65625,
+      "priorDelta": 4.169544198895025,
+      "frozenCurrentPriorOnlyDelta": 0.6987703998431579
+    },
+    {
+      "team": "TB",
+      "defaultOrthogonalPriorSignal": -0.08716,
+      "actualPrior": 34.44169027384325,
+      "unaryLikeForLikePrior": 33.59375,
+      "priorDelta": -0.8479402738432498,
+      "frozenCurrentPriorOnlyDelta": -0.16703423754224098
+    },
+    {
+      "team": "TEN",
+      "defaultOrthogonalPriorSignal": -0.08366,
+      "actualPrior": 34.80317516525024,
+      "unaryLikeForLikePrior": 35.78125,
+      "priorDelta": 0.9780748347497621,
+      "frozenCurrentPriorOnlyDelta": 0.1896727742618981
+    },
+    {
+      "team": "WAS",
+      "defaultOrthogonalPriorSignal": -0.012279999999999996,
+      "actualPrior": 57.82118055555555,
+      "unaryLikeForLikePrior": 62.03125,
+      "priorDelta": 4.21006944444445,
+      "frozenCurrentPriorOnlyDelta": 0.7149781858250291
+    }
+  ],
+  "maxAbsPriorDelta": 9.784427966101703,
+  "maxAbsCurrentPriorOnlyDelta": 1.630955871248337
+}
