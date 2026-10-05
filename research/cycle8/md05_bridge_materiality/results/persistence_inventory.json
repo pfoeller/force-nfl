@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "inventoryDate": "2026-10-05",
-  "inventorySHA256": "37ef88b99cb4272f571a55a3fa9806193b11979f07dc8efd2fc1e3d0c8fe494f",
+  "inventorySHA256": "b67bb91b1109e4e14aa411e3a891ef910d1b372679a117f1fba8af980c82b628",
   "method": "rg content + snapshot/ledger/bridge/golden filename inventory across existing FORCE project, managed-worktree and scratch roots; .git/node_modules/public excluded. All-ref Git path history independently inspected.",
   "rootsScanned": 117,
   "fileCandidates": 325,
@@ -39,41 +39,41 @@
       "lfSHA256": "8b3e25757d7f141cb102c125d90faad339e239b3c9a7824d7e8ded571bab6c13",
       "bytes": 50121,
       "paths": [
-        "C:\\Projects\\force-nfl-claude-cycle2\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-claude-cycle3\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-claude-cycle4\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-claude-cycle5-review\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-claude-cycle5\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-claude-lane\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-cycle6-md03-retirement\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-cycle6-ux19-removal\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-cycle7-md04-accounting\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-cycle7-rereview\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-cycle7-review\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-rereview\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-review\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-precycle6-intake\\research\\v33_source_snapshot.json",
-        "C:\\Projects\\force-nfl-precycle8-intake\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle3-codex-analysis\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle3-integration\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle4-codex-analysis\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle4-integration\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle5-codex-md03-data\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle5-integration\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-correction-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-retirement-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-supporting-doc-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-implementation-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-plan-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-targeted-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-md04-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-multi-md-investigation\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle8-md05-bridge-materiality\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-correction-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-flag-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-intake-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle8-roadmap-review\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-lf-Hqvu7u\\research\\v33_source_snapshot.json"
+        "<project-copy:002>/research/v33_source_snapshot.json",
+        "<project-copy:003>/research/v33_source_snapshot.json",
+        "<project-copy:004>/research/v33_source_snapshot.json",
+        "<project-copy:006>/research/v33_source_snapshot.json",
+        "<project-copy:005>/research/v33_source_snapshot.json",
+        "<project-copy:007>/research/v33_source_snapshot.json",
+        "<project-copy:008>/research/v33_source_snapshot.json",
+        "<project-copy:009>/research/v33_source_snapshot.json",
+        "<project-copy:010>/research/v33_source_snapshot.json",
+        "<project-copy:011>/research/v33_source_snapshot.json",
+        "<project-copy:012>/research/v33_source_snapshot.json",
+        "<project-copy:013>/research/v33_source_snapshot.json",
+        "<project-copy:014>/research/v33_source_snapshot.json",
+        "<project-copy:015>/research/v33_source_snapshot.json",
+        "<project-copy:016>/research/v33_source_snapshot.json",
+        "<codex-worktree:017>/research/v33_source_snapshot.json",
+        "<codex-worktree:018>/research/v33_source_snapshot.json",
+        "<codex-worktree:019>/research/v33_source_snapshot.json",
+        "<codex-worktree:020>/research/v33_source_snapshot.json",
+        "<codex-worktree:021>/research/v33_source_snapshot.json",
+        "<codex-worktree:022>/research/v33_source_snapshot.json",
+        "<codex-worktree:023>/research/v33_source_snapshot.json",
+        "<codex-worktree:024>/research/v33_source_snapshot.json",
+        "<codex-worktree:025>/research/v33_source_snapshot.json",
+        "<codex-worktree:026>/research/v33_source_snapshot.json",
+        "<codex-worktree:027>/research/v33_source_snapshot.json",
+        "<codex-worktree:028>/research/v33_source_snapshot.json",
+        "<codex-worktree:029>/research/v33_source_snapshot.json",
+        "<codex-worktree:030>/research/v33_source_snapshot.json",
+        "<codex-worktree:031>/research/v33_source_snapshot.json",
+        "<codex-worktree:032>/research/v33_source_snapshot.json",
+        "<codex-worktree:033>/research/v33_source_snapshot.json",
+        "<codex-worktree:034>/research/v33_source_snapshot.json",
+        "<codex-worktree:035>/research/v33_source_snapshot.json",
+        "<local-temp:036>/research/v33_source_snapshot.json"
       ],
       "topKeys": [
         "source",
@@ -94,34 +94,34 @@
       "lfSHA256": "a69fc179243c3e6dac59175ff70fe27ece060cf60426fc394ed9c90763bdf3c0",
       "bytes": 517653,
       "paths": [
-        "C:\\Projects\\force-nfl-claude-cycle5-review\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl-cycle6-md03-retirement\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl-cycle6-ux19-removal\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl-cycle7-md04-accounting\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl-cycle7-rereview\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl-cycle7-review\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-rereview\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-review\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl-precycle6-intake\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl-precycle8-intake\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Projects\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle5-integration\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-correction-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-retirement-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-supporting-doc-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-implementation-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-plan-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-targeted-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-md04-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-multi-md-investigation\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle8-md05-bridge-materiality\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-correction-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-flag-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-intake-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle8-roadmap-review\\force-nfl\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-lf-Hqvu7u\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-7a2gyK\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-Lu0S19\\research\\md03\\data\\detector_like_ledger.json"
+        "<project-copy:006>/research/md03/data/detector_like_ledger.json",
+        "<project-copy:008>/research/md03/data/detector_like_ledger.json",
+        "<project-copy:009>/research/md03/data/detector_like_ledger.json",
+        "<project-copy:010>/research/md03/data/detector_like_ledger.json",
+        "<project-copy:011>/research/md03/data/detector_like_ledger.json",
+        "<project-copy:012>/research/md03/data/detector_like_ledger.json",
+        "<project-copy:013>/research/md03/data/detector_like_ledger.json",
+        "<project-copy:014>/research/md03/data/detector_like_ledger.json",
+        "<project-copy:015>/research/md03/data/detector_like_ledger.json",
+        "<project-copy:016>/research/md03/data/detector_like_ledger.json",
+        "<repo>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:022>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:023>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:024>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:025>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:026>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:027>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:028>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:029>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:030>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:031>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:032>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:033>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:034>/research/md03/data/detector_like_ledger.json",
+        "<codex-worktree:035>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:036>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:112>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:113>/research/md03/data/detector_like_ledger.json"
       ],
       "topKeys": [
         "episodes",
@@ -141,34 +141,34 @@
       "lfSHA256": "338cfc3872c4f6e91ac54628f4ab697be376900052b97d0d9c6efce1c92e98b3",
       "bytes": 743440,
       "paths": [
-        "C:\\Projects\\force-nfl-claude-cycle5-review\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl-cycle6-md03-retirement\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl-cycle6-ux19-removal\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl-cycle7-md04-accounting\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl-cycle7-rereview\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl-cycle7-review\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-rereview\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-review\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl-precycle6-intake\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl-precycle8-intake\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Projects\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle5-integration\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-correction-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-retirement-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-supporting-doc-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-implementation-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-plan-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-targeted-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-md04-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-multi-md-investigation\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle8-md05-bridge-materiality\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-correction-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-flag-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-intake-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle8-roadmap-review\\force-nfl\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-lf-Hqvu7u\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-7a2gyK\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-Lu0S19\\research\\md03\\data\\episode_ledger.json"
+        "<project-copy:006>/research/md03/data/episode_ledger.json",
+        "<project-copy:008>/research/md03/data/episode_ledger.json",
+        "<project-copy:009>/research/md03/data/episode_ledger.json",
+        "<project-copy:010>/research/md03/data/episode_ledger.json",
+        "<project-copy:011>/research/md03/data/episode_ledger.json",
+        "<project-copy:012>/research/md03/data/episode_ledger.json",
+        "<project-copy:013>/research/md03/data/episode_ledger.json",
+        "<project-copy:014>/research/md03/data/episode_ledger.json",
+        "<project-copy:015>/research/md03/data/episode_ledger.json",
+        "<project-copy:016>/research/md03/data/episode_ledger.json",
+        "<repo>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:022>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:023>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:024>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:025>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:026>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:027>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:028>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:029>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:030>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:031>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:032>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:033>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:034>/research/md03/data/episode_ledger.json",
+        "<codex-worktree:035>/research/md03/data/episode_ledger.json",
+        "<local-temp:036>/research/md03/data/episode_ledger.json",
+        "<local-temp:112>/research/md03/data/episode_ledger.json",
+        "<local-temp:113>/research/md03/data/episode_ledger.json"
       ],
       "topKeys": [
         "episodes",
@@ -190,34 +190,34 @@
       "lfSHA256": "cd06cb7bfc290f68a7a7884b4fe1dae3b1a2ce81fc0047f5e3848ac48ffb982d",
       "bytes": 1476654,
       "paths": [
-        "C:\\Projects\\force-nfl-claude-cycle5-review\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl-cycle6-md03-retirement\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl-cycle6-ux19-removal\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl-cycle7-md04-accounting\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl-cycle7-rereview\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl-cycle7-review\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-rereview\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-review\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl-precycle6-intake\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl-precycle8-intake\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Projects\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle5-integration\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-correction-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-retirement-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-supporting-doc-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-implementation-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-plan-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-targeted-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-md04-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-multi-md-investigation\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle8-md05-bridge-materiality\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-correction-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-flag-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle6-intake-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle8-roadmap-review\\force-nfl\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-lf-Hqvu7u\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-7a2gyK\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-Lu0S19\\research\\md03\\data\\placebo_ledger.json"
+        "<project-copy:006>/research/md03/data/placebo_ledger.json",
+        "<project-copy:008>/research/md03/data/placebo_ledger.json",
+        "<project-copy:009>/research/md03/data/placebo_ledger.json",
+        "<project-copy:010>/research/md03/data/placebo_ledger.json",
+        "<project-copy:011>/research/md03/data/placebo_ledger.json",
+        "<project-copy:012>/research/md03/data/placebo_ledger.json",
+        "<project-copy:013>/research/md03/data/placebo_ledger.json",
+        "<project-copy:014>/research/md03/data/placebo_ledger.json",
+        "<project-copy:015>/research/md03/data/placebo_ledger.json",
+        "<project-copy:016>/research/md03/data/placebo_ledger.json",
+        "<repo>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:022>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:023>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:024>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:025>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:026>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:027>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:028>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:029>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:030>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:031>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:032>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:033>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:034>/research/md03/data/placebo_ledger.json",
+        "<codex-worktree:035>/research/md03/data/placebo_ledger.json",
+        "<local-temp:036>/research/md03/data/placebo_ledger.json",
+        "<local-temp:112>/research/md03/data/placebo_ledger.json",
+        "<local-temp:113>/research/md03/data/placebo_ledger.json"
       ],
       "topKeys": [
         "meta",
@@ -237,35 +237,35 @@
       "lfSHA256": "a69fc179243c3e6dac59175ff70fe27ece060cf60426fc394ed9c90763bdf3c0",
       "bytes": 488600,
       "paths": [
-        "C:\\Projects\\force-nfl-claude-cycle5\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-lf-dPeBP0\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-repro-lf-gWS0Dz\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-integration-lf-4q3Y47\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-rereview-lf-oeRuZK\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-rereview-U2isIF\\parent\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-rereview-U2isIF\\tip\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-base-lf-ObH076\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-tip-lf-wfFRZ7\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-selected-fixes-TYTiTQ\\lf\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle6-closeout-udhGdN\\main-lf\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\correction-lf-1791163755751350700\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\lf\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\candidate\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\prior\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\base\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\candidate\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\prior\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\base\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\candidate\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\implementation\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-precycle6-rereview-lf-xVPsbE\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-precycle6-review-lf-4xhWpE\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\base\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\candidate\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\mutations\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\base\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\mutations\\research\\md03\\data\\detector_like_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\tip\\research\\md03\\data\\detector_like_ledger.json"
+        "<project-copy:005>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:037>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:039>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:042>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:050>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:058>/parent/research/md03/data/detector_like_ledger.json",
+        "<local-temp:058>/tip/research/md03/data/detector_like_ledger.json",
+        "<local-temp:059>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:061>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:062>/lf/research/md03/data/detector_like_ledger.json",
+        "<local-temp:087>/main-lf/research/md03/data/detector_like_ledger.json",
+        "<local-temp:088>/correction-lf-1791163755751350700/research/md03/data/detector_like_ledger.json",
+        "<local-temp:088>/lf/research/md03/data/detector_like_ledger.json",
+        "<local-temp:096>/candidate/research/md03/data/detector_like_ledger.json",
+        "<local-temp:096>/prior/research/md03/data/detector_like_ledger.json",
+        "<local-temp:097>/base/research/md03/data/detector_like_ledger.json",
+        "<local-temp:097>/candidate/research/md03/data/detector_like_ledger.json",
+        "<local-temp:097>/prior/research/md03/data/detector_like_ledger.json",
+        "<local-temp:098>/base/research/md03/data/detector_like_ledger.json",
+        "<local-temp:098>/candidate/research/md03/data/detector_like_ledger.json",
+        "<local-temp:098>/implementation/research/md03/data/detector_like_ledger.json",
+        "<local-temp:103>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:105>/research/md03/data/detector_like_ledger.json",
+        "<local-temp:116>/base/research/md03/data/detector_like_ledger.json",
+        "<local-temp:116>/candidate/research/md03/data/detector_like_ledger.json",
+        "<local-temp:116>/mutations/research/md03/data/detector_like_ledger.json",
+        "<local-temp:117>/base/research/md03/data/detector_like_ledger.json",
+        "<local-temp:117>/mutations/research/md03/data/detector_like_ledger.json",
+        "<local-temp:117>/tip/research/md03/data/detector_like_ledger.json"
       ],
       "topKeys": [
         "episodes",
@@ -285,35 +285,35 @@
       "lfSHA256": "338cfc3872c4f6e91ac54628f4ab697be376900052b97d0d9c6efce1c92e98b3",
       "bytes": 701227,
       "paths": [
-        "C:\\Projects\\force-nfl-claude-cycle5\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-lf-dPeBP0\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-repro-lf-gWS0Dz\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-integration-lf-4q3Y47\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-rereview-lf-oeRuZK\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-rereview-U2isIF\\parent\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-rereview-U2isIF\\tip\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-base-lf-ObH076\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-tip-lf-wfFRZ7\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-selected-fixes-TYTiTQ\\lf\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle6-closeout-udhGdN\\main-lf\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\correction-lf-1791163755751350700\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\lf\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\candidate\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\prior\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\base\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\candidate\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\prior\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\base\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\candidate\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\implementation\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-precycle6-rereview-lf-xVPsbE\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-precycle6-review-lf-4xhWpE\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\base\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\candidate\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\mutations\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\base\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\mutations\\research\\md03\\data\\episode_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\tip\\research\\md03\\data\\episode_ledger.json"
+        "<project-copy:005>/research/md03/data/episode_ledger.json",
+        "<local-temp:037>/research/md03/data/episode_ledger.json",
+        "<local-temp:039>/research/md03/data/episode_ledger.json",
+        "<local-temp:042>/research/md03/data/episode_ledger.json",
+        "<local-temp:050>/research/md03/data/episode_ledger.json",
+        "<local-temp:058>/parent/research/md03/data/episode_ledger.json",
+        "<local-temp:058>/tip/research/md03/data/episode_ledger.json",
+        "<local-temp:059>/research/md03/data/episode_ledger.json",
+        "<local-temp:061>/research/md03/data/episode_ledger.json",
+        "<local-temp:062>/lf/research/md03/data/episode_ledger.json",
+        "<local-temp:087>/main-lf/research/md03/data/episode_ledger.json",
+        "<local-temp:088>/correction-lf-1791163755751350700/research/md03/data/episode_ledger.json",
+        "<local-temp:088>/lf/research/md03/data/episode_ledger.json",
+        "<local-temp:096>/candidate/research/md03/data/episode_ledger.json",
+        "<local-temp:096>/prior/research/md03/data/episode_ledger.json",
+        "<local-temp:097>/base/research/md03/data/episode_ledger.json",
+        "<local-temp:097>/candidate/research/md03/data/episode_ledger.json",
+        "<local-temp:097>/prior/research/md03/data/episode_ledger.json",
+        "<local-temp:098>/base/research/md03/data/episode_ledger.json",
+        "<local-temp:098>/candidate/research/md03/data/episode_ledger.json",
+        "<local-temp:098>/implementation/research/md03/data/episode_ledger.json",
+        "<local-temp:103>/research/md03/data/episode_ledger.json",
+        "<local-temp:105>/research/md03/data/episode_ledger.json",
+        "<local-temp:116>/base/research/md03/data/episode_ledger.json",
+        "<local-temp:116>/candidate/research/md03/data/episode_ledger.json",
+        "<local-temp:116>/mutations/research/md03/data/episode_ledger.json",
+        "<local-temp:117>/base/research/md03/data/episode_ledger.json",
+        "<local-temp:117>/mutations/research/md03/data/episode_ledger.json",
+        "<local-temp:117>/tip/research/md03/data/episode_ledger.json"
       ],
       "topKeys": [
         "episodes",
@@ -335,35 +335,35 @@
       "lfSHA256": "cd06cb7bfc290f68a7a7884b4fe1dae3b1a2ce81fc0047f5e3848ac48ffb982d",
       "bytes": 1476653,
       "paths": [
-        "C:\\Projects\\force-nfl-claude-cycle5\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-lf-dPeBP0\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-repro-lf-gWS0Dz\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-integration-lf-4q3Y47\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-rereview-lf-oeRuZK\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-rereview-U2isIF\\parent\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-rereview-U2isIF\\tip\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-base-lf-ObH076\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-tip-lf-wfFRZ7\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-selected-fixes-TYTiTQ\\lf\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle6-closeout-udhGdN\\main-lf\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\correction-lf-1791163755751350700\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\lf\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\candidate\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\prior\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\base\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\candidate\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\prior\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\base\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\candidate\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\implementation\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-precycle6-rereview-lf-xVPsbE\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-precycle6-review-lf-4xhWpE\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\base\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\candidate\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\mutations\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\base\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\mutations\\research\\md03\\data\\placebo_ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\tip\\research\\md03\\data\\placebo_ledger.json"
+        "<project-copy:005>/research/md03/data/placebo_ledger.json",
+        "<local-temp:037>/research/md03/data/placebo_ledger.json",
+        "<local-temp:039>/research/md03/data/placebo_ledger.json",
+        "<local-temp:042>/research/md03/data/placebo_ledger.json",
+        "<local-temp:050>/research/md03/data/placebo_ledger.json",
+        "<local-temp:058>/parent/research/md03/data/placebo_ledger.json",
+        "<local-temp:058>/tip/research/md03/data/placebo_ledger.json",
+        "<local-temp:059>/research/md03/data/placebo_ledger.json",
+        "<local-temp:061>/research/md03/data/placebo_ledger.json",
+        "<local-temp:062>/lf/research/md03/data/placebo_ledger.json",
+        "<local-temp:087>/main-lf/research/md03/data/placebo_ledger.json",
+        "<local-temp:088>/correction-lf-1791163755751350700/research/md03/data/placebo_ledger.json",
+        "<local-temp:088>/lf/research/md03/data/placebo_ledger.json",
+        "<local-temp:096>/candidate/research/md03/data/placebo_ledger.json",
+        "<local-temp:096>/prior/research/md03/data/placebo_ledger.json",
+        "<local-temp:097>/base/research/md03/data/placebo_ledger.json",
+        "<local-temp:097>/candidate/research/md03/data/placebo_ledger.json",
+        "<local-temp:097>/prior/research/md03/data/placebo_ledger.json",
+        "<local-temp:098>/base/research/md03/data/placebo_ledger.json",
+        "<local-temp:098>/candidate/research/md03/data/placebo_ledger.json",
+        "<local-temp:098>/implementation/research/md03/data/placebo_ledger.json",
+        "<local-temp:103>/research/md03/data/placebo_ledger.json",
+        "<local-temp:105>/research/md03/data/placebo_ledger.json",
+        "<local-temp:116>/base/research/md03/data/placebo_ledger.json",
+        "<local-temp:116>/candidate/research/md03/data/placebo_ledger.json",
+        "<local-temp:116>/mutations/research/md03/data/placebo_ledger.json",
+        "<local-temp:117>/base/research/md03/data/placebo_ledger.json",
+        "<local-temp:117>/mutations/research/md03/data/placebo_ledger.json",
+        "<local-temp:117>/tip/research/md03/data/placebo_ledger.json"
       ],
       "topKeys": [
         "meta",
@@ -383,17 +383,17 @@
       "lfSHA256": "e67dfbb66f5fbaa3568d51b0587d2c986fd54eb1e6503298d867fee6c4ab4ad1",
       "bytes": 53985,
       "paths": [
-        "C:\\Projects\\force-nfl-cycle6-ux19-removal\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle6-closeout-udhGdN\\main-lf\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\correction-lf-1791163755751350700\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\lf\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\base\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\base\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\candidate\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\mutations\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\base\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\mutations\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\tip\\scripts\\fixtures\\ux19_golden.json"
+        "<project-copy:009>/scripts/fixtures/ux19_golden.json",
+        "<local-temp:087>/main-lf/scripts/fixtures/ux19_golden.json",
+        "<local-temp:088>/correction-lf-1791163755751350700/scripts/fixtures/ux19_golden.json",
+        "<local-temp:088>/lf/scripts/fixtures/ux19_golden.json",
+        "<local-temp:097>/base/scripts/fixtures/ux19_golden.json",
+        "<local-temp:098>/base/scripts/fixtures/ux19_golden.json",
+        "<local-temp:116>/candidate/scripts/fixtures/ux19_golden.json",
+        "<local-temp:116>/mutations/scripts/fixtures/ux19_golden.json",
+        "<local-temp:117>/base/scripts/fixtures/ux19_golden.json",
+        "<local-temp:117>/mutations/scripts/fixtures/ux19_golden.json",
+        "<local-temp:117>/tip/scripts/fixtures/ux19_golden.json"
       ],
       "topKeys": [
         "bundled",
@@ -413,15 +413,15 @@
       "lfSHA256": "f547cd2b0a409cfa3fd040c2938e2773ab1599c67936fde47fcf8da56e75726e",
       "bytes": 121393,
       "paths": [
-        "C:\\Projects\\force-nfl-cycle7-md04-accounting\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Projects\\force-nfl-cycle7-rereview\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-rereview\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-review\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Projects\\force-nfl-precycle8-intake\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Projects\\force-nfl\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-md04-review\\force-nfl\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle8-md05-bridge-materiality\\force-nfl\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle8-roadmap-review\\force-nfl\\research\\cycle7\\results\\roster_and_bridge.json"
+        "<project-copy:010>/research/cycle7/results/roster_and_bridge.json",
+        "<project-copy:011>/research/cycle7/results/roster_and_bridge.json",
+        "<project-copy:013>/research/cycle7/results/roster_and_bridge.json",
+        "<project-copy:014>/research/cycle7/results/roster_and_bridge.json",
+        "<project-copy:016>/research/cycle7/results/roster_and_bridge.json",
+        "<repo>/research/cycle7/results/roster_and_bridge.json",
+        "<codex-worktree:029>/research/cycle7/results/roster_and_bridge.json",
+        "<codex-worktree:031>/research/cycle7/results/roster_and_bridge.json",
+        "<codex-worktree:035>/research/cycle7/results/roster_and_bridge.json"
       ],
       "topKeys": [
         "base",
@@ -454,13 +454,13 @@
       "lfSHA256": "dccab41d90066edbcff92710ee3ec76af7c0f91d715e82a8c967719f4cf63379",
       "bytes": 53985,
       "paths": [
-        "C:\\Projects\\force-nfl-cycle7-md04-accounting\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\candidate\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\prior\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\candidate\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\prior\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\candidate\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\implementation\\scripts\\fixtures\\ux19_golden.json"
+        "<project-copy:010>/scripts/fixtures/ux19_golden.json",
+        "<local-temp:096>/candidate/scripts/fixtures/ux19_golden.json",
+        "<local-temp:096>/prior/scripts/fixtures/ux19_golden.json",
+        "<local-temp:097>/candidate/scripts/fixtures/ux19_golden.json",
+        "<local-temp:097>/prior/scripts/fixtures/ux19_golden.json",
+        "<local-temp:098>/candidate/scripts/fixtures/ux19_golden.json",
+        "<local-temp:098>/implementation/scripts/fixtures/ux19_golden.json"
       ],
       "topKeys": [
         "bundled",
@@ -480,13 +480,13 @@
       "lfSHA256": "e67dfbb66f5fbaa3568d51b0587d2c986fd54eb1e6503298d867fee6c4ab4ad1",
       "bytes": 57155,
       "paths": [
-        "C:\\Projects\\force-nfl-cycle7-rereview\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Projects\\force-nfl-cycle7-review\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-implementation-review\\force-nfl\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle6-ux19-targeted-review\\force-nfl\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-multi-md-investigation\\force-nfl\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-7a2gyK\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-Lu0S19\\scripts\\fixtures\\ux19_golden.json"
+        "<project-copy:011>/scripts/fixtures/ux19_golden.json",
+        "<project-copy:012>/scripts/fixtures/ux19_golden.json",
+        "<codex-worktree:026>/scripts/fixtures/ux19_golden.json",
+        "<codex-worktree:028>/scripts/fixtures/ux19_golden.json",
+        "<codex-worktree:030>/scripts/fixtures/ux19_golden.json",
+        "<local-temp:112>/scripts/fixtures/ux19_golden.json",
+        "<local-temp:113>/scripts/fixtures/ux19_golden.json"
       ],
       "topKeys": [
         "bundled",
@@ -506,7 +506,7 @@
       "lfSHA256": "014571fb3665742ea7cf04d043a7256c79a6c78a1e0da0a51f86721ca7b5e254",
       "bytes": 55572,
       "paths": [
-        "C:\\Projects\\force-nfl-cycle7-review\\research\\cycle7\\results\\roster_and_bridge.json"
+        "<project-copy:012>/research/cycle7/results/roster_and_bridge.json"
       ],
       "topKeys": [
         "base",
@@ -539,8 +539,8 @@
       "lfSHA256": "8a25682fc22ab08c85c8fdc5701d8ffdcef8d9d5dfe3e47b06b3954f43e20376",
       "bytes": 485718,
       "paths": [
-        "C:\\Projects\\force-nfl-cycle8-md05-rereview\\research\\cycle8\\md05_bridge_materiality\\inputs\\snapshot.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-review\\research\\cycle8\\md05_bridge_materiality\\inputs\\snapshot.json"
+        "<project-copy:013>/research/cycle8/md05_bridge_materiality/inputs/snapshot.json",
+        "<project-copy:014>/research/cycle8/md05_bridge_materiality/inputs/snapshot.json"
       ],
       "topKeys": [
         "schema",
@@ -573,8 +573,8 @@
       "lfSHA256": "ffdeec4705d6a360b86b36f45d82552c82d68e9e4696626bea621381a6809a87",
       "bytes": 677097,
       "paths": [
-        "C:\\Projects\\force-nfl-cycle8-md05-rereview\\research\\cycle8\\md05_bridge_materiality\\results\\bridge_materiality.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-review\\research\\cycle8\\md05_bridge_materiality\\results\\bridge_materiality.json"
+        "<project-copy:013>/research/cycle8/md05_bridge_materiality/results/bridge_materiality.json",
+        "<project-copy:014>/research/cycle8/md05_bridge_materiality/results/bridge_materiality.json"
       ],
       "topKeys": [
         "schema",
@@ -607,13 +607,13 @@
       "lfSHA256": "dccab41d90066edbcff92710ee3ec76af7c0f91d715e82a8c967719f4cf63379",
       "bytes": 57155,
       "paths": [
-        "C:\\Projects\\force-nfl-cycle8-md05-rereview\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Projects\\force-nfl-cycle8-md05-review\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Projects\\force-nfl-precycle8-intake\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Projects\\force-nfl\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-md04-review\\force-nfl\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle8-md05-bridge-materiality\\force-nfl\\scripts\\fixtures\\ux19_golden.json",
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\precycle8-roadmap-review\\force-nfl\\scripts\\fixtures\\ux19_golden.json"
+        "<project-copy:013>/scripts/fixtures/ux19_golden.json",
+        "<project-copy:014>/scripts/fixtures/ux19_golden.json",
+        "<project-copy:016>/scripts/fixtures/ux19_golden.json",
+        "<repo>/scripts/fixtures/ux19_golden.json",
+        "<codex-worktree:029>/scripts/fixtures/ux19_golden.json",
+        "<codex-worktree:031>/scripts/fixtures/ux19_golden.json",
+        "<codex-worktree:035>/scripts/fixtures/ux19_golden.json"
       ],
       "topKeys": [
         "bundled",
@@ -633,46 +633,46 @@
       "lfSHA256": "8b3e25757d7f141cb102c125d90faad339e239b3c9a7824d7e8ded571bab6c13",
       "bytes": 50120,
       "paths": [
-        "C:\\Projects\\force-nfl\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-lf-dPeBP0\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-repro-lf-gWS0Dz\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-integration-lf-4q3Y47\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-rereview-lf-oeRuZK\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-review-lf-Hd66Yn\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-rereview-U2isIF\\parent\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-rereview-U2isIF\\tip\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-base-lf-ObH076\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-tip-lf-wfFRZ7\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-selected-fixes-TYTiTQ\\lf\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle4-closeout-lf-GwzOaI\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle4-crossreview-lf-ePTvET\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle4-integration-lf-ncVELc\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle4-lf-8MeehJ\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle4-lf-ovoS7u\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle6-closeout-udhGdN\\main-lf\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\correction-lf-1791163755751350700\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\lf\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md03-correction-S8keRd\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md03-lf-NZYh10\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\candidate\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\prior\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\base\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\candidate\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\prior\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\base\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\candidate\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\implementation\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-precycle6-rereview-lf-xVPsbE\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-precycle6-review-lf-4xhWpE\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-review-cycle3-MUwYrX\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-7a2gyK\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-tests-Lu0S19\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\base\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\candidate\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\mutations\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\base\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\mutations\\research\\v33_source_snapshot.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\tip\\research\\v33_source_snapshot.json"
+        "<repo>/research/v33_source_snapshot.json",
+        "<local-temp:037>/research/v33_source_snapshot.json",
+        "<local-temp:039>/research/v33_source_snapshot.json",
+        "<local-temp:042>/research/v33_source_snapshot.json",
+        "<local-temp:050>/research/v33_source_snapshot.json",
+        "<local-temp:055>/research/v33_source_snapshot.json",
+        "<local-temp:058>/parent/research/v33_source_snapshot.json",
+        "<local-temp:058>/tip/research/v33_source_snapshot.json",
+        "<local-temp:059>/research/v33_source_snapshot.json",
+        "<local-temp:061>/research/v33_source_snapshot.json",
+        "<local-temp:062>/lf/research/v33_source_snapshot.json",
+        "<local-temp:076>/research/v33_source_snapshot.json",
+        "<local-temp:079>/research/v33_source_snapshot.json",
+        "<local-temp:081>/research/v33_source_snapshot.json",
+        "<local-temp:083>/research/v33_source_snapshot.json",
+        "<local-temp:084>/research/v33_source_snapshot.json",
+        "<local-temp:087>/main-lf/research/v33_source_snapshot.json",
+        "<local-temp:088>/correction-lf-1791163755751350700/research/v33_source_snapshot.json",
+        "<local-temp:088>/lf/research/v33_source_snapshot.json",
+        "<local-temp:089>/research/v33_source_snapshot.json",
+        "<local-temp:093>/research/v33_source_snapshot.json",
+        "<local-temp:096>/candidate/research/v33_source_snapshot.json",
+        "<local-temp:096>/prior/research/v33_source_snapshot.json",
+        "<local-temp:097>/base/research/v33_source_snapshot.json",
+        "<local-temp:097>/candidate/research/v33_source_snapshot.json",
+        "<local-temp:097>/prior/research/v33_source_snapshot.json",
+        "<local-temp:098>/base/research/v33_source_snapshot.json",
+        "<local-temp:098>/candidate/research/v33_source_snapshot.json",
+        "<local-temp:098>/implementation/research/v33_source_snapshot.json",
+        "<local-temp:103>/research/v33_source_snapshot.json",
+        "<local-temp:105>/research/v33_source_snapshot.json",
+        "<local-temp:109>/research/v33_source_snapshot.json",
+        "<local-temp:112>/research/v33_source_snapshot.json",
+        "<local-temp:113>/research/v33_source_snapshot.json",
+        "<local-temp:116>/base/research/v33_source_snapshot.json",
+        "<local-temp:116>/candidate/research/v33_source_snapshot.json",
+        "<local-temp:116>/mutations/research/v33_source_snapshot.json",
+        "<local-temp:117>/base/research/v33_source_snapshot.json",
+        "<local-temp:117>/mutations/research/v33_source_snapshot.json",
+        "<local-temp:117>/tip/research/v33_source_snapshot.json"
       ],
       "topKeys": [
         "source",
@@ -693,16 +693,16 @@
       "lfSHA256": "f547cd2b0a409cfa3fd040c2938e2773ab1599c67936fde47fcf8da56e75726e",
       "bytes": 116685,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle7-multi-md-investigation\\force-nfl\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\correction-lf-1791163755751350700\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\candidate\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-closeout-ocgssuxl\\prior\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\base\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\candidate\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-rereview-xzogctoc\\prior\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\base\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\candidate\\research\\cycle7\\results\\roster_and_bridge.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\implementation\\research\\cycle7\\results\\roster_and_bridge.json"
+        "<codex-worktree:030>/research/cycle7/results/roster_and_bridge.json",
+        "<local-temp:088>/correction-lf-1791163755751350700/research/cycle7/results/roster_and_bridge.json",
+        "<local-temp:096>/candidate/research/cycle7/results/roster_and_bridge.json",
+        "<local-temp:096>/prior/research/cycle7/results/roster_and_bridge.json",
+        "<local-temp:097>/base/research/cycle7/results/roster_and_bridge.json",
+        "<local-temp:097>/candidate/research/cycle7/results/roster_and_bridge.json",
+        "<local-temp:097>/prior/research/cycle7/results/roster_and_bridge.json",
+        "<local-temp:098>/base/research/cycle7/results/roster_and_bridge.json",
+        "<local-temp:098>/candidate/research/cycle7/results/roster_and_bridge.json",
+        "<local-temp:098>/implementation/research/cycle7/results/roster_and_bridge.json"
       ],
       "topKeys": [
         "base",
@@ -735,7 +735,7 @@
       "lfSHA256": "8a25682fc22ab08c85c8fdc5701d8ffdcef8d9d5dfe3e47b06b3954f43e20376",
       "bytes": 468722,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle8-md05-bridge-materiality\\force-nfl\\research\\cycle8\\md05_bridge_materiality\\inputs\\snapshot.json"
+        "<codex-worktree:031>/research/cycle8/md05_bridge_materiality/inputs/snapshot.json"
       ],
       "topKeys": [
         "schema",
@@ -768,7 +768,7 @@
       "lfSHA256": "ffdeec4705d6a360b86b36f45d82552c82d68e9e4696626bea621381a6809a87",
       "bytes": 654342,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\.codex\\worktrees\\cycle8-md05-bridge-materiality\\force-nfl\\research\\cycle8\\md05_bridge_materiality\\results\\bridge_materiality.json"
+        "<codex-worktree:031>/research/cycle8/md05_bridge_materiality/results/bridge_materiality.json"
       ],
       "topKeys": [
         "schema",
@@ -801,10 +801,10 @@
       "lfSHA256": "9609fee8cd6be890b60cd981315243c116b4df1f4275e114f8806b2b0d837cf0",
       "bytes": 648153,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-closeout-logs-DgghuH\\old-ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-integration-logs-UIO7zT\\old-ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-rereview-logs-sg0286\\old-ledger.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-review-lf-Hd66Yn\\research\\md03\\data\\episode_ledger.json"
+        "<local-temp:038>/old-ledger.json",
+        "<local-temp:043>/old-ledger.json",
+        "<local-temp:051>/old-ledger.json",
+        "<local-temp:055>/research/md03/data/episode_ledger.json"
       ],
       "topKeys": [
         "episodes",
@@ -825,7 +825,7 @@
       "lfSHA256": "d61b639f25bffa8e87ddcfe0604566a0ec764741c0e7e03be0e262fa3aa7834e",
       "bytes": 1476318,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c5-review-lf-Hd66Yn\\research\\md03\\data\\placebo_ledger.json"
+        "<local-temp:055>/research/md03/data/placebo_ledger.json"
       ],
       "topKeys": [
         "meta",
@@ -845,7 +845,7 @@
       "lfSHA256": "48ea403c9f999152e674e0f82cddfdc630fe57965d21b2849ca4fad09eea3026",
       "bytes": 14962854,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-logs-yPT1BN\\independent-probes.json"
+        "<local-temp:060>/independent-probes.json"
       ],
       "topKeys": [
         "checks",
@@ -871,7 +871,7 @@
       "lfSHA256": "ff20b663c4db12955d871496f3fe0e0fe476b742e1fe4a3827b6cf4c13676ffc",
       "bytes": 8811893,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-logs-yPT1BN\\independent-progress.json"
+        "<local-temp:060>/independent-progress.json"
       ],
       "topKeys": [
         "checks",
@@ -897,7 +897,7 @@
       "lfSHA256": "eeeb9677f9b389e624e133c277ecc0ab137785571e38cf24fb814f99e7939cc6",
       "bytes": 294405,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-c6-review-logs-yPT1BN\\render-numeric-extra.json"
+        "<local-temp:060>/render-numeric-extra.json"
       ],
       "topKeys": [
         "checks",
@@ -918,7 +918,7 @@
       "lfSHA256": "014571fb3665742ea7cf04d043a7256c79a6c78a1e0da0a51f86721ca7b5e254",
       "bytes": 53283,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-cycle7-research\\lf\\research\\cycle7\\results\\roster_and_bridge.json"
+        "<local-temp:088>/lf/research/cycle7/results/roster_and_bridge.json"
       ],
       "topKeys": [
         "base",
@@ -951,7 +951,7 @@
       "lfSHA256": "24c98beade7c975556e376d9ba19380e08d484a9c456184310afccf430c92246",
       "bytes": 415,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md04-review-b0gm2w6y\\golden-result.json"
+        "<local-temp:098>/golden-result.json"
       ],
       "topKeys": [
         "deterministic",
@@ -972,7 +972,7 @@
       "lfSHA256": "ed930093ba55f8d246893af5714055ac8aad9f3a3fd792d7c8f98ac799168527",
       "bytes": 8356378,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md05-cycle8-production\\bootstrap.json"
+        "<local-temp:099>/bootstrap.json"
       ],
       "topKeys": [
         "ok",
@@ -1000,7 +1000,7 @@
       "lfSHA256": "074316bf493de81530bf9129868e7f36a7001264ab2bc6bc10a286156df537e7",
       "bytes": 458366,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-md05-cycle8-production\\normalized_draft.json"
+        "<local-temp:099>/normalized_draft.json"
       ],
       "topKeys": [
         "schema",
@@ -1033,7 +1033,7 @@
       "lfSHA256": "1f90b2989c46051be16d16519656a50c354247e733c6898a1dfb9f6c4507777c",
       "bytes": 7221407,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-qb-correctness-20261001\\corrected_snapshot.json"
+        "<local-temp:107>/corrected_snapshot.json"
       ],
       "topKeys": [
         "ok",
@@ -1061,7 +1061,7 @@
       "lfSHA256": "2c86439ab228569b9d475c05eb361e0ca2644f01d85930e772dca3a2211a29ac",
       "bytes": 7221404,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-qb-correctness-20261001\\snapshot.json"
+        "<local-temp:107>/snapshot.json"
       ],
       "topKeys": [
         "ok",
@@ -1089,7 +1089,7 @@
       "lfSHA256": "bbd895463f56be6207584b8b9eaa7266a1f5a748fb5f5a4bb03fd9c5c10260f5",
       "bytes": 7198317,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-qb-migration-20261001\\final_snapshot.json"
+        "<local-temp:108>/final_snapshot.json"
       ],
       "topKeys": [
         "ok",
@@ -1117,7 +1117,7 @@
       "lfSHA256": "9d121ea1ffdeca7d7e5a93e7373f1f3a739d5904094707468e412e2133e78682",
       "bytes": 599,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-targeted-z0iVYd\\final-snapshots.json"
+        "<local-temp:116>/final-snapshots.json"
       ],
       "topKeys": [
         "repo",
@@ -1143,7 +1143,7 @@
       "lfSHA256": "b373cb3085a88e285141d236af49ff1d0af89b587adcaa9824af60619f44b70c",
       "bytes": 380873,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\functions-base.json"
+        "<local-temp:117>/functions-base.json"
       ],
       "topKeys": [
         "diag",
@@ -1176,7 +1176,7 @@
       "lfSHA256": "85f2bdf33a99c8c53696f6427911419d57d9bc0bfa24aae27401baf93236beff",
       "bytes": 369217,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\functions-tip.json"
+        "<local-temp:117>/functions-tip.json"
       ],
       "topKeys": [
         "diag",
@@ -1209,8 +1209,8 @@
       "lfSHA256": "d293292ab538ab5d09b5fd16ea7483fe6817beaea08e08f7925ae117b18c3605",
       "bytes": 8066095,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\parity-base.json",
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\parity-tip.json"
+        "<local-temp:117>/parity-base.json",
+        "<local-temp:117>/parity-tip.json"
       ],
       "topKeys": [
         "preseason",
@@ -1233,7 +1233,7 @@
       "lfSHA256": "b307cf8973082fe189ce9a941afcc2698b459c31bb3bd38cac494920258b362a",
       "bytes": 12533,
       "paths": [
-        "C:\\Users\\paul1.PAUL\\AppData\\Local\\Temp\\force-ux19-validation-eqNTeG\\production-browser-results.json"
+        "<local-temp:117>/production-browser-results.json"
       ],
       "topKeys": [
         "array"

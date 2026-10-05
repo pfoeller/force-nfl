@@ -1,6 +1,6 @@
 # MD-05 key/group attribution and persistence — Cycle 8 second tranche
 
-Research only. The owner accepted first-tranche evidence (`61561fc` + `d16c5d7`) on **2026-10-05**, following Claude's targeted verdict A. This second key/group, descriptive redundancy/attribution and persistence tranche alone is authorized. Independent review and owner acceptance of second findings are **PENDING**. Production implementation, formula/weight/share/cap/normalization changes, residualization adoption and historical causal replay remain **NOT AUTHORIZED**. MD-05 stays REVIEW, priority unset; MD-06/07/08 authority is unchanged.
+Research only. The owner accepted first-tranche evidence (`61561fc` + `d16c5d7`) on **2026-10-05**, following Claude's targeted verdict A. This second key/group, descriptive redundancy/attribution and persistence tranche alone is authorized. Claude's independent adversarial review returned **B. MINOR RESEARCH CORRECTIONS REQUIRED**; the bounded path-hygiene correction and recommended seed-noise disclosure are applied here. Targeted re-review and owner acceptance of second findings are **PENDING**. Production implementation, formula/weight/share/cap/normalization changes, residualization adoption and historical causal replay remain **NOT AUTHORIZED**. MD-05 stays REVIEW, priority unset; MD-06/07/08 authority is unchanged.
 
 ## Input and exact method
 
@@ -131,7 +131,9 @@ Uncapped columns are accounting identities only, not uncapped forecasts or cap p
 | Receivers | 8 | 6.293% | 9 | 8 | 8 | 9 |
 | RB | 9 | 6.063% | 8 | 9 | 9 | 8 |
 
-Scoring leads all marginal metrics. Run defense overtakes coverage for game/playoff effects. Pass rush overtakes OL for game/wins/playoffs; RB overtakes receivers for Elo/playoffs. League divergences are modest (one place); do not exaggerate. Team suppression can be complete. Schedule/opponent contrasts, curvature, cancellation and playoff position also matter; not all rank changes are exclusively cap effects or optimal-weight evidence.
+Scoring leads all marginal metrics. Run defense overtakes coverage for game/playoff effects. Pass rush overtakes OL for game/wins/playoffs; RB overtakes receivers for deterministic Elo. RB and receiver playoff sensitivities are close enough to overlap within Monte Carlo seed noise in the reviewer's 10-seed check. League divergences are modest (one place); do not exaggerate. Team suppression can be complete. Schedule/opponent contrasts, curvature, cancellation and playoff position also matter; not all rank changes are exclusively cap effects or optimal-weight evidence.
+
+Committed playoff/division/bye sensitivities use the production projection seed. Claude's independent 10-seed robustness check found the top-five playoff key ranking stable and mean-absolute playoff sensitivities varying by only a few percent; production-seed values were roughly 3% high on average for several leading variants. Lower-ranked keys overlap within simulation noise: RB exceeded receiver playoff sensitivity in only **7 of 10 seeds**. These are reviewer-reported robustness findings, not newly rerun experiments in this correction. Deterministic Elo, game-probability and analytic-win rankings are unaffected; all committed production-seed numbers remain unchanged.
 
 ## Descriptive correlation and bounded redundancy screening
 
@@ -195,6 +197,8 @@ PFR is four teams ATL/CLE/NO/PIT; source allocation is not randomized. Fallback 
 
 [Manifest](inputs/persistence_candidates.json) and [result](results/persistence_inventory.json) retain candidate paths/hashes/dates/schema and individual rejection reasons. Read-only search of 117 existing local FORCE project/managed-worktree/TEMP roots excluded .git/node_modules/public; all-ref Git path history also inspected. Content/filename searches found **325 candidate paths, 36 byte-distinct JSON variants**. This bounded inventory does not claim unknown external archives or every computer file.
 
+Inventory paths are stable logical-root labels plus forward-slash relative paths: `<repo>`, `<project-copy:NNN>`, `<codex-worktree:NNN>` and `<local-temp:NNN>`. NNN is the existing frozen root ordinal, which preserves distinct copy identities without exposing host/account names. Root order is an identity registry: retain it and append future roots rather than reorder. Hashes and candidate classifications remain unchanged.
+
 Three eligible normalized variants/four copies are the **same October 5 generation** (accepted input, CRLF review copies, private full normalization draft). Only **one independent eligible production snapshot**; no eligible prior observation. Backing raw capture and regenerated outputs are not independent.
 
 | Classification, byte-distinct variants | Count | Treatment |
@@ -208,6 +212,15 @@ Three eligible normalized variants/four copies are the **same October 5 generati
 | Same-capture backing/derived | 3 | No temporal independence |
 
 Older October 1 migration files share builtAt `2026-10-01T18:30:32.432Z`, generation `1790879432432-21d9bbbb-e27e-44a3-b1aa-ebfe48137742`, but lack demonstrated deployed-code pins and complete normalized current/prior/core reconstruction. Corrected/final files are transformations. Reject rather than restamp/reconstruct/mix versions. **Persistence unresolved**: no temporal correlations, ranking/sign stability or season conclusion; no `persistence_analysis.json`. No synthetic proxy replaces time evidence.
+
+For a transient private inventory manifest, use the normal tool to sanitize before serialization:
+
+```text
+node research/cycle8/md05_bridge_materiality/persistence_inventory.mjs --normalize-manifest <private-manifest.json> research/cycle8/md05_bridge_materiality/inputs/persistence_candidates.json
+node research/cycle8/md05_bridge_materiality/persistence_inventory.mjs
+```
+
+The one-time original producer was a local scan, not a committed generator. The committed normalization path now retains every candidate, uses longest matching registered root, verifies collision-free labels and is idempotent. Normal inventory generation rejects unsanitized paths in either input or output. Unknown absolute paths require a registered scan root; they are not silently serialized. Private root mappings stay transient. Negative controls cover Windows user/project/worktree/temp paths, POSIX user, home and temp paths and UNC paths, with separate distinct-root and repeated-copy controls.
 
 ## Manual prospective capture method
 
@@ -259,6 +272,6 @@ node research/cycle8/md05_bridge_materiality/persistence_inventory.mjs
 node research/cycle8/md05_bridge_materiality/check_key_group.mjs
 ```
 
-Check verifies four new syntaxes, all eight accepted artifacts against `d16c5d7`, two complete 14-variant runs/two inventories with byte-identical JSON/CSV equal to saved results, actual references, common RNG states, team/cap accounting, group membership and synthetic selected/retained-key controls, frozen market/schedule/state/config hashes. Also prospective frozen-input compatibility and accepted/existing-destination refusal. Optional argument: private **existing** first-capture directory, for positive normalization and bad published-source rejection without fetching. That local positive path passed; reviewers without raw private files retain deterministic normalized evidence and source/hash guards.
+Check verifies four research syntaxes, path hygiene and negative controls, all eight accepted artifacts against `d16c5d7`, two complete 14-variant runs/two inventories with byte-identical JSON/CSV equal to saved results, actual references, common RNG states, team/cap accounting, group membership and synthetic selected/retained-key controls, frozen market/schedule/state/config hashes. Also prospective frozen-input compatibility and accepted/existing-destination refusal. Optional argument: private **existing** first-capture directory, for positive normalization and bad published-source rejection without fetching. That local positive path passed; reviewers without raw private files retain deterministic normalized evidence and source/hash guards.
 
-Original `check.mjs` still passes including both original full replays. New result SHA-256 `ab3f26c4c8975bf3c84932858ee512daa857b0c53078580d57c44bdd621324d3`; inventory SHA-256 `05796a57652a00dd931679f0861879c81b121627502530b0cbeece8df6fe66cc`. CRLF normalized for comparisons only; numbers not rounded for output/hash. Roadmap IDs/links, catalog integrity, exact scope and whitespace checked at handoff. No production suite/build rerun claimed: production/test/generated diff is empty.
+Original `check.mjs` still passes including both original full replays. New result SHA-256 `ab3f26c4c8975bf3c84932858ee512daa857b0c53078580d57c44bdd621324d3`; inventory SHA-256 `c86cb2a2ecf9068989785bd4839defdf2b986823e797c11da074af04e318d173`. CRLF normalized for comparisons only; numbers not rounded for output/hash. Roadmap IDs/links, catalog integrity, exact scope and whitespace checked at handoff. No production suite/build rerun claimed: production/test/generated diff is empty.
