@@ -43,7 +43,7 @@ Documentation chronology matters. [README](README.md) still describes V105; [mod
 ## How to use this roadmap
 
 1. Read the baseline, execution doctrine, decision state, and dependencies before proposing substantial work.
-2. Locate the authorized item by its stable ID. `UX-01` through `UX-18` correspond to the original accepted Product / UX audit items; `UX-19` through `UX-31` come from the 2026-10-01 owner-direction intake; `UX-32` through `UX-40` and `MD-04` through `MD-06` come from the 2026-10-02 pre-Cycle 6 owner intake. Model items use `MD-` IDs; security items use `SEC-` IDs. Every ID has exactly one authoritative roadmap entry.
+2. Locate the authorized item by its stable ID. `UX-01` through `UX-18` correspond to the original accepted Product / UX audit items; `UX-19` through `UX-31` come from the 2026-10-01 owner-direction intake; `UX-32` through `UX-40` and `MD-04` through `MD-06` come from the 2026-10-02 pre-Cycle 6 owner intake; `UX-41` through `UX-43` and `MD-07` through `MD-12` come from the 2026-10-05 pre-Cycle 8 owner intake. Model items use `MD-` IDs; security items use `SEC-` IDs. Every ID has exactly one authoritative roadmap entry.
 3. Separate accepted outcomes from open implementation details. An investigation can establish a cause without deciding the desired product behavior.
 4. Agree a bounded deliverable, non-goals, acceptance criteria, and necessary owner decisions within the active prompt's scope. Do not assign yourself the next tranche.
 5. Use the linked technical documents rather than duplicating their mechanisms here. Report conflicting or stale documentation as intake evidence in the tranche handoff.
@@ -102,6 +102,8 @@ Phase 1 findings must be recorded before choosing changes that depend on their s
 Apply the remaining new accepted directions through separately authorized, independently reviewable tranches using the relevant foundations: `UX-19` public-surface changes; `UX-20`–`UX-22` copy/narratives/education; `UX-25`/`UX-26` odds/quarter presentation; and `UX-27`/`UX-28` loader/layout application. `UX-16` prototype removal is COMPLETE from the first parallel-roadmap cycle. This does not assign an unsupplied priority or bypass an item's gate. `UX-30` is the broader mobile initiative informing foundations and their later page applications, not a duplicate navigation/table implementation.
 
 The 2026-10-02 pre-Cycle 6 intake (`UX-32`–`UX-40`, `MD-04`–`MD-06`, and extensions to `UX-02`, `UX-20`, `UX-25`, `UX-28` and `UX-30`) records owner direction only. Those items are not assigned to Phase 1, 2 or 3 and carry no priority; their dependencies are stated per item. `UX-35`, `UX-39` and `UX-40` are shared-foundation concerns that a future Phase 2 authorization may choose to include; that choice belongs to the owner.
+
+The 2026-10-05 pre-Cycle 8 intake (`UX-41`–`UX-43`, `MD-07`–`MD-12`) likewise records owner direction only. Those items are not assigned to Phase 1, 2 or 3, carry no priority and set no implementation order; their dependencies and relationships are stated per item and in the [2026-10-05 intake table](#owner-direction-intake--2026-10-05-pre-cycle-8).
 
 **Security (`SEC-01`) is a separate CONFIRMED HIGH-priority workstream.** It need not wait for all UX work to finish and must not be buried in visual redesign. Bound each authorized security cycle independently around its threat model, safe test environment, and findings ledger. Neither its priority nor this sequence authorizes starting it automatically.
 
@@ -454,6 +456,45 @@ Entries in this group come from the owner's 2026-10-02 roadmap intake. Each reco
 - **Dependencies:** `UX-05`, `UX-07`, `UX-08`, `UX-13`, `UX-23`; Preserve list (rankings segmented view controls).
 - **Acceptance (proposed):** Control-role inventory, a state matrix per role, and representative before/after evidence on desktop and mobile with keyboard focus checks.
 
+### Pre-Cycle 8 owner intake (2026-10-05)
+
+Entries in this group come from the owner's 2026-10-05 roadmap intake, recorded after Cycle 7 closed at `main @ 882085d`. Each enters as **Execution status: PLANNED, NOT AUTHORIZED**; none is assigned to a phase or priority, none is in progress or complete, and recording it starts no work. Model items from this intake are `MD-07`–`MD-12` under Model design; relationships are summarized in the [2026-10-05 intake table](#owner-direction-intake--2026-10-05-pre-cycle-8).
+
+#### UX-41 — Semantic unit rating visualization
+
+- **Decision status: CONFIRMED (owner direction 2026-10-05); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Team-view unit bars should communicate score quality semantically rather than through decorative or non-semantic colors.
+- **Problem:** Unit bars on the Team view use colors that do not say how good the score is, so the same color can mean different strengths and different colors can mean the same strength.
+- **Desired future behavior:** Use the current overall-team rating presentation as the design precedent. Keep the numeric unit score. Use the SAME semantic score-to-color system as the overall team rating, so number and bar color agree. No fixed colors by unit or category: the label says WHAT, the color says HOW GOOD, and the same score communicates the same strength across units. Apply to the Team page, responsive/mobile layouts and PNG/export output. Preserve contrast and accessibility; color is never the only signal.
+- **Non-goals:** Do not create a second, unit-only threshold system. No unit score, formula, normalization or threshold change. Does not select the semantic palette.
+- **Dependencies/relationships:** `MD-08` → `UX-41`: if `MD-08` changes the canonical score scale, thresholds or score-to-color mapping, this item inherits them rather than defining its own. `UX-13` owns the semantic rating palette; `UX-23` themes and contrast; `UX-39` raw-stat interpretation is a separate family; Preserve: FORCE number + bar when FORCE is the primary metric; `UX-30` mobile; `UX-35` exports.
+- **Owner decisions eventually required:** Whether the current overall-team mapping is adopted unchanged for units or waits on `MD-08`; any palette change remains `UX-13`'s decision.
+- **Acceptance (proposed):** Every unit bar's color derives from the canonical overall-rating mapping; equal scores render identically across units; no per-unit color constants remain; desktop, mobile and export evidence with contrast checks in each supported theme.
+
+#### UX-42 — Team Luck breakdown and audit trail
+
+- **Decision status: CONFIRMED (owner direction 2026-10-05); design INVESTIGATE; Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Give Team pages a FLAG-style transparency and audit view for the Luck metric (`UX-37` is the FLAG precedent).
+- **Problem:** A team's Luck score is shown without a way to see which games and components produced it.
+- **Season level:** Overall score; rank; component contributions; game-by-game contribution summary.
+- **Game level:** Per-game score; component contributions; reconciliation to the game score.
+- **Event/play level:** Expose discrete plays/events only where a component genuinely has play or event provenance (for example a recovered fumble or an accepted penalty). Do not fake play-level precision for aggregate-only components.
+- **Reconciling components (current semantic basis recorded in `MD-11`):** EPA/play relative to scoring margin; Penalty Impact; fumble recovery luck; outcome/record surprise.
+- **Accounting identity:** A user can trace the season score from games, components, weights and the normalization/transformation. Event-level, game-level and season-level evidence are labeled distinctly. Missing is not zero.
+- **Non-goals:** No Luck formula, weight or normalization change. Public weight disclosure remains subject to the `UX-14` content direction (tranche B moved exact weights out of ordinary public copy); this item must resolve how the accounting identity is shown under that direction rather than assume it.
+- **Dependencies/relationships:** `MD-11` → `UX-42`: breakdown terminology inherits the final public metric name. `UX-37` reconciliation pattern; `UX-14`/`UX-20` copy rules; `UX-36` terminology; `UX-02`/`UX-30` mobile; `UX-35` exports; `UX-38` sharing.
+- **Owner decisions eventually required:** How much of the weighting/normalization is public versus expandable detail; placement on Team pages; event-level scope per component.
+- **Acceptance (proposed):** Reconciliation tests proving game contributions and components sum to the displayed season score through the documented transformation; aggregate-only components never show invented event rows; desktop/mobile/export evidence.
+
+#### UX-43 — Market influence disclosure cleanup
+
+- **Decision status: CONFIRMED (owner direction 2026-10-05); replacement wording depends on `MD-12`; Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Remove false, stale or misleading public claims that approximately "99% of FORCE comes from Vegas", or materially equivalent wording.
+- **Problem:** The owner reports that some current/public FORCE pages say or imply that roughly 99% of FORCE comes from Vegas. **Intake evidence note:** a source grep of [application](assets/app.js) and [index](index.html) at `882085d` found no literal "99%" market/Vegas string; the wording may be dynamic, debug-derived, export-only or phrased differently. The audit must confirm on rendered pages rather than assume either way.
+- **Future audit scope:** Team pages, Method, About, tooltips, explanatory copy, exports, debug-derived public labels, PNG/social copy and dynamic methodology text, on desktop and mobile.
+- **Requirements:** Remove unsupported "99% Vegas", "99% market", "mostly Vegas" or equivalent claims. Do not expose internal diagnostics as model provenance. Distinguish prior/input, correlation, incremental influence and final FORCE rating. Replace wording only with language `MD-12` supports. Add a regression/content contract preventing stale claims from returning. Deleting the wording alone is insufficient if `MD-12` shows actual market domination; then the model issue goes to the owner first.
+- **Non-goals:** No model, forecast weighting or market-input change. Does not decide `UX-18` market-disclosure placement or reduce market transparency without owner approval (Preserve: transparent presentation of model limitations and the market benchmark).
+- **Dependencies/relationships:** `MD-12` → `UX-43`: the technical audit establishes truth; this item's copy reflects it. `UX-18` placement; `UX-14` inventory/approval gate and its open C3 finding (market "never changes FORCE" versus "market effect on team rating"); `UX-20` rendered-copy audit; `UX-36`; `UX-35`/`UX-38` exports.
+- **Owner decisions eventually required:** Approval of the replacement wording and of any removals under the `UX-14` gate.
+- **Acceptance (proposed):** Rendered-surface inventory of every market-provenance claim, each mapped to an `MD-12` finding; a content regression rejecting unsupported percentage-from-market claims; desktop/mobile/export evidence.
+
 ### Preserve
 
 **Decision status: PRESERVE.** These are explicit constraints, not redesign tasks. Agents may refine them only when an authorized task explicitly calls for it:
@@ -561,6 +602,75 @@ Known reference material: [predictive feature policy](PREDICTIVE_FEATURE_POLICY_
 
 - **Cycle 7 investigation evidence (2026-10-04, `cycle7/codex-multi-md-investigation`, exact shared base `cf391daa`):** [MD-06 investigation](MD06_LIVE_WIN_PROBABILITY_FEASIBILITY.md) and [integrated synthesis](CYCLE7_MULTI_MD_SYNTHESIS.md), with pinned offline evidence and isolated prototypes under `research/cycle7/`. Research only; owner/model/source choices remain open. No canonical model, production UI, provider, test or generated change; no implementation authorization.
 
+`MD-07`–`MD-12` below come from the 2026-10-05 pre-Cycle 8 owner intake. Each enters as **Execution status: PLANNED, NOT AUTHORIZED** with priority unset; none is assigned to a phase or implementation order. The Model design boundary above applies in full: no formula, weight, normalization, metric name, market input or public copy changes under these entries without a separately authorized prompt.
+
+### MD-07 — Unit rating calibration, independence and discrimination
+
+- **Decision status: INVESTIGATE (owner concern CONFIRMED 2026-10-05); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Audit whether FORCE unit grades actually measure and distinguish the performance of the unit they claim to rate.
+- **Owner-reported concerns:** WR grades appear too clustered. WR grades appear too QB-dependent. RB grades can appear disconnected from obvious rushing dominance.
+- **Pathology / sanity-check example (not a tuning target):** Kenneth Walker can lead the NFL in rushing yards and yards per rush and rank near the top in touchdowns while a much less individually dominant RB room such as Kansas City can still sit in the 70s. Preserve this as a pathology-bank case for evaluating measurement, not as a number to force.
+- **Research questions:** League-wide spread by unit and elite/average/poor discrimination; dependence on adjacent units and overall team quality; WR independence from the QB/pass environment; RB handling of rushing production, efficiency, scoring, receiving, workload and OL/offense context; whether the public OL grade's meaning matches a pass-protection-only production policy; pass-rush/coverage independence while preserving legitimate interaction; pathology-bank sanity checks at the extremes; predictive validity for subsequent same-unit performance; stability when adjacent-unit performance changes; whether unit-specific formulas are needed rather than one generic philosophy.
+- **Relationship:** `MD-05` ↔ `MD-07`. `MD-05` asks about attribution, overlap and bridge materiality; `MD-07` asks whether each unit metric is itself a good measurement. `MD-07` → `MD-08`: measurement validity is established before or alongside interpreting the 0–100 normalization. Current mechanisms to trace include the receiver/RB residual-orthogonalization fields in [live model](model/live_profiles.js) and the V148 unit bridge ([V148 changelog](CHANGELOG_V148.md)).
+- **Non-goals:** No unit formula, input, weight or normalization change. Do not tune toward the pathology example or any single team. Stretching the display scale is not a measurement fix (`MD-08`).
+- **Validation expectation:** Any proposed replacement must pass the [predictive feature policy](PREDICTIVE_FEATURE_POLICY_V30.md), including incremental evaluation against the full production stack.
+- **Owner decisions eventually required:** Whether any unit needs a unit-specific redesign; the intended meaning of the public OL grade; acceptable dependence on adjacent units.
+- **Acceptance (proposed):** Per-unit distribution, discrimination, adjacent-unit dependence, stability and predictive-validity evidence on pinned data, a pathology bank with documented expectations, and options per unit for owner decision.
+
+### MD-08 — Unit rating scale and normalization
+
+- **Decision status: INVESTIGATE (owner concern CONFIRMED 2026-10-05); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Audit the transformation of underlying unit performance into FORCE's public 0–100 scores.
+- **Questions:** Distribution, midpoint, spread, tails and clustering; ceilings and floors; whether a 70/80/90 conveys comparable strength across units; unit-specific versus season-relative versus historically anchored normalization; cross-season comparability; separation of raw and displayed values.
+- **Guardrail:** Avoid hiding bad measurement by simply stretching the scale. Normalization expresses a valid measurement; it does not repair an invalid one.
+- **Relationship:** `MD-07` = validity of the underlying unit measurement; `MD-08` = whether the 0–100 transformation expresses it appropriately. `MD-08` → `UX-41`: Team-view unit visualization consumes the canonical score/threshold mapping. Raw model values and display semantics remain distinct (cross-item doctrine 5).
+- **Non-goals:** No normalization, threshold or display change. Does not select a palette (`UX-13`).
+- **Owner decisions eventually required:** Normalization anchor (unit-specific, season-relative, historical or other); whether equal displayed scores must mean equal strength across units; cross-season comparability policy.
+- **Acceptance (proposed):** Current transformation trace per unit, distribution evidence across seasons, comparison of normalization alternatives with consequences, and a proposed canonical mapping contract for owner decision.
+
+### MD-09 — Quarterback metric identity and naming
+
+- **Decision status: CONFIRMED direction (owner direction 2026-10-05: replace the public "QB Rating" identity with a distinctive FORCE metric identity); final name OWNER DECISION; Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** "QB rating" already has an established football meaning, and QBR does too.
+- **Scope:** Naming and semantics only. No formula change is authorized.
+- **Current composite concept to name:** EPA/play, ANY/A, Success Rate, CPOE, QB rushing, opponent adjustment, pressure adjustment and recency adjustment (owner description; verify against current source before relying on it).
+- **Requirements:** Avoid collision with passer rating, QB Rating, QBR and other established metrics; fit the current composite concept; remain sensible if weights evolve; work in tables, team pages, QB Rankings, PNG/social exports, Method copy and spoken usage; read naturally as "X leads the league in [metric]". A branded acronym/name is desirable but must not be forced. Define the semantic meaning first, then any acronym; do not reverse-engineer meaning from a preferred acronym.
+- **Candidate exploration (not preselected):** PRIME, QACE, QB CORE and other alternatives.
+- **Blacklisted as final names unless the owner later overrides:** QB Rating; Passer Rating; QBR.
+- **Dependencies/relationships:** `UX-36` terminology (its audit list includes "FORCE QB Rating" and Raw versus adjusted QB rating); `UX-31` expanded-name question is separate; `UX-08` Customize and Raw/Final labels must stay coherent with the chosen name; `UX-10` label semantics; `UX-20` voice; [brand guidance](BRAND_FORCE.md).
+- **Non-goals:** No formula, weight or context change; no rename implemented by this entry; existing internal identifiers need not change.
+- **Owner decisions eventually required:** The semantic definition; the final name; treatment of Raw versus adjusted variants.
+- **Acceptance (proposed):** Usage inventory of the current name across surfaces/exports, collision check against established metrics, a short semantic definition and candidate shortlist with rationale for owner choice.
+
+### MD-10 — Drive scoring and prevention efficiency
+
+- **Decision status: INVESTIGATE (owner concern CONFIRMED 2026-10-05); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Create a coherent, symmetric offensive/defensive drive-efficiency framework.
+- **Problem:** FORCE exposes defensive points-per-drive prevention/allowed context without an equally visible offensive points-per-drive scored counterpart. **Intake observation (source names only, not a verified trace):** [application](assets/app.js) carries an `offensiveOutcome.pointsPerDrive` field and a "Pts/drive prevention" unit row backed by `pointsAllowedPerDriveIndex`; [live model](model/live_profiles.js) carries `defensivePointsPerDrive`.
+- **Research:** Define Points/Drive Scored; pair it with Points/Drive Allowed/Prevented; use symmetric possession definitions where appropriate; audit defensive/special-teams touchdowns, kneeldowns, end-of-half/game drives, low-opportunity possessions, overtime and garbage time; determine public naming; decide raw contextual stats versus normalized FORCE scores; audit whether offensive points per drive already exists internally and whether a public or model addition would duplicate signals.
+- **Dependencies/relationships:** `MD-10` ↔ `MD-05`: check drive efficiency for signal duplication and double-weighting risk (the Method offense description already names scoring efficiency per drive). `UX-36`/`UX-39` presentation; `UX-22` feature-role map (part of rating versus context only).
+- **Non-goals:** No new model input, display or formula change. Exposing a raw stat must not silently add it to the rating.
+- **Owner decisions eventually required:** Public naming; raw context versus normalized score; whether any model change is pursued.
+- **Acceptance (proposed):** Possession-definition contract, trace of existing internal drive metrics and where they enter the model, duplication analysis against `MD-05`, and options for owner decision.
+
+### MD-11 — Luck metric identity and naming
+
+- **Decision status: CONFIRMED direction (owner direction 2026-10-05: replace generic public "Luck" terminology with a distinctive FORCE metric identity); final name OWNER DECISION; Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** No rename is authorized yet.
+- **Current semantic basis to record:** 60% EPA/play relative to scoring margin; 20% Penalty Impact; 15% fumble recovery luck; 5% outcome/record surprise. These are the internal weights (retained in `FORCE_LUCK_DEBUG`); recording them here does not reverse the `UX-14` tranche B direction that ordinary public copy explains the ingredients as concepts without the weights.
+- **Requirements:** Communicate favorable/unfavorable outcome variance and breaks more precisely than generic Luck; work at game and season levels; work in rankings, team pages, breakdowns, exports and Method copy; not imply penalties alone (distinct from FLAG); not imply pure randomness alone; remain sensible if weights evolve. A branded name is desirable without a forced acronym.
+- **Candidate exploration (not preselected):** FORTUNE, FATE, BOUNCE, BREAK, SWAY or others.
+- **Dependencies/relationships:** `MD-11` → `UX-42`: the Luck breakdown inherits the final public name. `UX-36` terminology; `UX-20` voice; `UX-22` feature roles; FLAG naming (`UX-37`) must stay distinguishable.
+- **Non-goals:** No formula or weight change; no rename implemented by this entry.
+- **Owner decisions eventually required:** The semantic definition and final name.
+- **Acceptance (proposed):** Usage inventory, semantic definition, collision/connotation check and a candidate shortlist with rationale for owner choice.
+
+### MD-12 — Market signal influence audit and constraint
+
+- **Decision status: INVESTIGATE (owner concern CONFIRMED 2026-10-05); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Quantify and constrain the actual betting-market/Vegas influence on FORCE.
+- **Core concern:** Some current/public FORCE pages reportedly say or imply that approximately "99% of FORCE comes from Vegas." Treat this as both (A) a potential model-provenance problem if market influence really dominates and (B) a public-copy accuracy problem if the statement is false or misinterpreted. See the `UX-43` intake evidence note on locating the wording.
+- **Research:** Trace every market-input path: priors, initialization, regression, calibration, game probability/line layers, downstream projections and hidden/debug paths. Ablate with and without the market signal where feasible. Measure effects on team ratings, game probabilities, lines, projected records and playoff/division outcomes, early versus mature season. Report league-wide and team/game distributions. Distinguish correlation, prior use, causal/marginal influence and percent of final output. Ensure no "percent from Vegas" claim uses a statistic that does not literally mean that.
+- **Design principle:** The market can be a bounded prior or contextual input if justified, but FORCE must not merely repackage the market. If the market materially dominates, surface it as a model issue for owner decision rather than changing the model.
+- **Dependencies/relationships:** `MD-12` → `UX-43`: this audit establishes the technical truth that public copy reflects. `UX-18` disclosure placement; `UX-14` C3 finding; `UX-10` quantity semantics; the existing distinction between independent ratings and market-aware forecasts (Research / validation); [forecast overview](model/README.md).
+- **Non-goals:** No model, market-weight, prior or forecast change is authorized. No new market source or paid provider.
+- **Owner decisions eventually required:** Acceptable bound on market influence; disposition if the market dominates.
+- **Acceptance (proposed):** Complete market-path inventory, reproducible ablation results with distributions by output and season phase, a glossary separating correlation / prior / marginal influence / share of output, and findings for owner decision.
+
 ## Data semantics / provenance
 
 **Future intake placeholder; priority unset.** Record source definitions, pinned input hashes, schema compatibility, cache identities, reproducibility evidence, and effects on historical/current comparisons. A semantic change must keep producers, consumers, reference provenance, and migration behavior coherent.
@@ -630,6 +740,8 @@ Use [predictive feature policy](PREDICTIVE_FEATURE_POLICY_V30.md), [research sou
 8. Model and product changes remain explainable and auditable (`MD-05`, `UX-37`).
 9. New expensive or live data dependencies require source, licensing and cost feasibility before adoption (`MD-06`).
 10. No paid provider or subscription is authorized by this intake.
+
+**Pre-Cycle 8 intake (owner direction 2026-10-05).** The doctrines above are preserved unchanged and apply to `MD-07`–`MD-12` and `UX-41`–`UX-43`: explicit authorization is required before implementation; no paid data or provider choice without owner approval; raw data, normalized display and model contribution stay distinct (`MD-08`, `MD-10`, `MD-12`, `UX-41`); shared signals are not blindly double-counted (`MD-05`, `MD-07`, `MD-10`); public terminology explains itself (`UX-36`); outputs are auditable (`UX-42`, `MD-12`); mobile is first-class; exports are designed outputs. One clarification is added: proprietary names should be understandable, not jargon for its own sake (`MD-09`, `MD-11`).
 
 The accepted shared principles also include intentional viewport/brand use (`UX-28`), metric-relative sorting (`UX-29`), and first-class mobile access (`UX-30`). Their authoritative contracts are the items above; theme modes and human-language voice are similarly defined once in `UX-23` and `UX-20`.
 
@@ -702,6 +814,7 @@ At handoff:
 | 2026-10-05 | Cycle 7 `cycle7/claude-md04-accounting` from exact `b066de7`: owner-authorized decision-free `MD-04` accounting/identity tranche | REVIEW — implemented on review branch; independent validation and owner acceptance pending; not merged, pushed or deployed | Roster Lab row identity by team, position and name, removals before the single addition, QB incumbent excludes removed rows; open policy cases unchanged; canonical outputs byte-identical to `b066de7`; new safe contract `test_md04_roster_lab_accounting.mjs`. See the MD-04 implementation note. | Independent validation; owner acceptance. Acquisition/replacement, benchmark, non-starter removal, depth/insurance, role/workload and valuation remain open; MD-05/MD-06 implementation not authorized. |
 | 2026-10-05 | Cycle 7 `cycle7/claude-md04-accounting` on `c4ed2aa`: `MD-04` validation corrections and owner acceptance closeout | REVIEW: decision-free tranche independently validated (Codex B with two findings; corrected in `c4ed2aa`; targeted re-review "A. CORRECTIONS VERIFIED — READY FOR OWNER ACCEPTANCE") and owner ACCEPTED 2026-10-05; ready for integration onto local main; local commits, not merged, pushed or deployed | Accepted `f984ed9` + `802bdd7` + `c4ed2aa`: fail-safe unique row resolution for additions and removals, removed players excluded from the incumbent, removals before the addition; canonical outputs unchanged; research reproduction pinned to `b066de7`. Documentation-only closeout. See the MD-04 owner acceptance. | Integration onto local main. MD-04 policy questions (acquisition/replacement, benchmark, non-starter removal, depth/insurance, role/workload, calibrated replacement, valuation, `UX-09`) remain open; MD-05/MD-06 implementation not authorized. |
 | 2026-10-05 | Cycle 7 local `main @ bd627c6`: fast-forward from exact `cf391daa`, preserving all six reviewed commits through owner acceptance | COMPLETE — accepted MD-04 decision-free accounting/identity tranche only; integrated locally, not pushed or deployed | Research/corrections `24b0e53` + `b066de7`; implementation `f984ed9`; reviewed golden recapture `802bdd7`; validation corrections `c4ed2aa`; owner acceptance `bd627c6`. Executable/test/research blobs match reviewed `c4ed2aa`; authoritative post-integration LF validation is reported in the closeout handoff. | `origin/main` remains `cf391daa`; push/deployment need separate authorization. Eight MD-04 policy questions remain open; MD-05 and MD-06 remain REVIEW / NOT AUTHORIZED. |
+| 2026-10-05 | Added MD-07 through MD-12 and UX-41 through UX-43 as owner-requested roadmap intake; all PLANNED / NOT AUTHORIZED. | Documentation only; `precycle8/claude-roadmap-intake` from exact `882085d`; local commit, not merged, pushed or deployed | Nine new IDs (`MD-07`–`MD-12`, `UX-41`–`UX-43`), relationships and preserved doctrines recorded; 56 unique authoritative IDs. See the [2026-10-05 intake table](#owner-direction-intake--2026-10-05-pre-cycle-8). | Independent roadmap review. No new item started; `MD-04` COMPLETE and `MD-05`/`MD-06` REVIEW / NOT AUTHORIZED unchanged. |
 
 Owner-confirmed production deployment for integration tip `0f41552f4126b67bd2887d791fdbebb57040c650`: Worker Version ID `20315d1d-62ca-4238-b76b-ee4443c37c06`; container digest `sha256:2531332f85fcf61c4942d1a50d0b14672d1086825fd81380e427f20e09826e00`.
 
@@ -755,6 +868,26 @@ Recorded after Cycle 5 closed at `main @ aa4e82c`. This records owner direction 
 Cross-item doctrines are recorded under [Shared product / UX principles](#shared-product--ux-principles).
 
 **Open after this intake:** `UX-32` pick model, unpicked games, ties, predicted scores and persistence; `UX-33` platform strategy; `UX-39` default/opt-out approach; `UX-25` floor versus `<1%` notation versus constrained apportionment; `MD-04` depth/insurance value policy; `MD-05` attribution policy per unit; `MD-06` source, licensing, cost and deployment scope.
+
+### Owner direction intake — 2026-10-05 (pre-Cycle 8)
+
+Recorded after Cycle 7 closed at `main @ 882085d`. This records owner direction and open questions only: all nine new items are `PLANNED` and NOT AUTHORIZED, none is complete, and none is assigned to a phase, priority or implementation order. No existing ID was renumbered or repurposed. `MD-04` (COMPLETE), `MD-05` and `MD-06` (REVIEW, implementation NOT AUTHORIZED) are unchanged.
+
+| Owner direction | Authoritative item | Recorded relationships |
+| --- | --- | --- |
+| Unit rating calibration, independence and discrimination | `MD-07` (new) | `MD-05` ↔ `MD-07` (attribution overlap versus quality of unit metrics); `MD-07` → `MD-08`. |
+| Unit rating scale and normalization | `MD-08` (new) | `MD-07` → `MD-08` (measurement validity before/alongside normalization); `MD-08` → `UX-41`. |
+| Quarterback metric identity and naming | `MD-09` (new) | Naming only; QB Rating, Passer Rating and QBR blacklisted as final names; `UX-36`. |
+| Drive scoring and prevention efficiency | `MD-10` (new) | `MD-10` ↔ `MD-05` (signal duplication / double-weighting check). |
+| Luck metric identity and naming | `MD-11` (new) | `MD-11` → `UX-42`; no rename authorized. |
+| Market signal influence audit and constraint | `MD-12` (new) | `MD-12` → `UX-43`; `UX-18`, `UX-14` C3. |
+| Semantic unit rating visualization | `UX-41` (new) | Consumes `MD-08`'s canonical mapping; palette stays `UX-13`. |
+| Team Luck breakdown and audit trail | `UX-42` (new) | Inherits `MD-11`'s final name; `UX-37` precedent. |
+| Market influence disclosure cleanup | `UX-43` (new) | Wording reflects `MD-12`; placement stays `UX-18`. |
+
+Arrows record information dependencies, not priority or implementation order. Cross-item doctrines are under [Shared product / UX principles](#shared-product--ux-principles).
+
+**Open after this intake:** `MD-07` per-unit redesign need and OL grade meaning; `MD-08` normalization anchor and cross-unit comparability; `MD-09` QB metric definition and name; `MD-10` naming and raw-versus-normalized treatment; `MD-11` Luck metric definition and name; `MD-12` acceptable market bound and disposition if the market dominates; `UX-41` adoption of the overall-rating mapping; `UX-42` public weighting/normalization depth and event-level scope; `UX-43` replacement wording approval.
 
 ## Candidate recommendations / intake
 
