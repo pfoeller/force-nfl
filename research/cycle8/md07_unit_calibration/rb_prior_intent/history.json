@@ -1,0 +1,1170 @@
+{
+  "documentationSearch": [
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V104.md",
+      "line": 24,
+      "text": "- Historical benchmark uses 70% RB rushing EPA + 30% (RB receiving efficiency − team/QB passing baseline), matching the intended orthogonal live construct as closely as the bundled 2025 snapshot permits.",
+      "fullLineSHA256": "99fdae069a5bd37082f4ab48831c55e9d41ea79259ee68adb8648295f4efdc19",
+      "role": "Imported release-era document; original authorship chronology unavailable"
+    },
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V109.md",
+      "line": 5,
+      "text": "- Rebuilds the RB preseason prior on the same orthogonal residual definition used live.",
+      "fullLineSHA256": "572142e71213f1b4bb94b4f5cf5de65a27db6600220f851bde851bbb2cbc9b49",
+      "role": "Imported release-era document; original authorship chronology unavailable"
+    },
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V114.md",
+      "line": 4,
+      "text": "- Fix the matching RB policy-dispatch bug: the active stabilized RB path now uses RB receiving EPA/target residual versus team sack-free passing EPA instead of silently falling back to raw receiving EPA.",
+      "fullLineSHA256": "1372d29b34f4a0fb7fc39574ebbe4622a49591584045e651b35cf0c891746e13",
+      "role": "Imported release-era document; original authorship chronology unavailable"
+    },
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V115.md",
+      "line": 1,
+      "text": "# FORCE V115 - Partial Orthogonalization for Receiver/RB",
+      "fullLineSHA256": "2f2b0bb4e0dd14147edf822aa73397fefd12493be1e5200189605b4a8f6e012d",
+      "role": "Imported release-era document; original authorship chronology unavailable"
+    },
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V130.md",
+      "line": 16,
+      "text": "Validation: V130 QB contract, V129 XML-safe PNG export, V128 rankings export, V115 unit orthogonalization, and JS syntax checks pass. The legacy scripts/validate_bundle.py assertion also fails unchanged on the supplied V129 baseline and is therefore not treated as a V130 regression.",
+      "fullLineSHA256": "a68e5e7612c485766a961fd4c4f9430a67f563b016d4fb77306ec31897d043aa",
+      "role": "Imported release-era document; original authorship chronology unavailable"
+    },
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V40.md",
+      "line": 85,
+      "text": "No unit formula was changed in this pass. The Dallas Week 1 `96` is reproducible from the existing V29/V37 contract: 6 non-sack QB hits + 2 sacks on 31 opponent dropbacks = 25.8% disruption; the live subgrade is 100 against the 2025 reference distribution, the 2025 Dallas prior is 90.3, and V37's early-regime confidence adjustment yields a 54.8% live / 45.2% prior blend, producing 95.63 before display rounding.",
+      "fullLineSHA256": "4c02cc8d714a9cc5068c0cb6c177f4b3321f5fbf7b4f7bdb1372c046f63d12d8",
+      "role": "Imported release-era document; original authorship chronology unavailable"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "CHANGELOG_V104.md",
+      "line": 24,
+      "text": "- Historical benchmark uses 70% RB rushing EPA + 30% (RB receiving efficiency − team/QB passing baseline), matching the intended orthogonal live construct as closely as the bundled 2025 snapshot permits.",
+      "fullLineSHA256": "99fdae069a5bd37082f4ab48831c55e9d41ea79259ee68adb8648295f4efdc19",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "CHANGELOG_V109.md",
+      "line": 5,
+      "text": "- Rebuilds the RB preseason prior on the same orthogonal residual definition used live.",
+      "fullLineSHA256": "572142e71213f1b4bb94b4f5cf5de65a27db6600220f851bde851bbb2cbc9b49",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "CHANGELOG_V114.md",
+      "line": 4,
+      "text": "- Fix the matching RB policy-dispatch bug: the active stabilized RB path now uses RB receiving EPA/target residual versus team sack-free passing EPA instead of silently falling back to raw receiving EPA.",
+      "fullLineSHA256": "1372d29b34f4a0fb7fc39574ebbe4622a49591584045e651b35cf0c891746e13",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "CHANGELOG_V115.md",
+      "line": 1,
+      "text": "# FORCE V115 - Partial Orthogonalization for Receiver/RB",
+      "fullLineSHA256": "2f2b0bb4e0dd14147edf822aa73397fefd12493be1e5200189605b4a8f6e012d",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "CHANGELOG_V130.md",
+      "line": 16,
+      "text": "Validation: V130 QB contract, V129 XML-safe PNG export, V128 rankings export, V115 unit orthogonalization, and JS syntax checks pass. The legacy scripts/validate_bundle.py assertion also fails unchanged on the supplied V129 baseline and is therefore not treated as a V130 regression.",
+      "fullLineSHA256": "a68e5e7612c485766a961fd4c4f9430a67f563b016d4fb77306ec31897d043aa",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "CHANGELOG_V40.md",
+      "line": 85,
+      "text": "No unit formula was changed in this pass. The Dallas Week 1 `96` is reproducible from the existing V29/V37 contract: 6 non-sack QB hits + 2 sacks on 31 opponent dropbacks = 25.8% disruption; the live subgrade is 100 against the 2025 reference distribution, the 2025 Dallas prior is 90.3, and V37's early-regime confidence adjustment yields a 54.8% live / 45.2% prior blend, producing 95.63 before display rounding.",
+      "fullLineSHA256": "4c02cc8d714a9cc5068c0cb6c177f4b3321f5fbf7b4f7bdb1372c046f63d12d8",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "FORCE_ROADMAP.md",
+      "line": 586,
+      "text": "- **Required overlap audits:** QB/OL sack attribution; QB/receiver passing value; OL/RB rushing value; pass rush/coverage; other shared signals the audit finds. Current mechanisms to trace include the V148 unit bridge and offense composite ([V148 changelog](CHANGELOG_V148.md)), pressure/protection context ([V137](CHANGELOG_V137.md)) and the receiver/RB residual-orthogonalization fields in [live model](model/live_profiles.js).",
+      "fullLineSHA256": "915ce50562c7c1defe6ec2568abf6bfe2f6581e7b79bfa57dfdeaf5d97f8d81a",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "FORCE_ROADMAP.md",
+      "line": 619,
+      "text": "- **Relationship:** `MD-05` ↔ `MD-07`. `MD-05` asks about attribution, overlap and bridge materiality; `MD-07` asks whether each unit metric is itself a good measurement. `MD-07` → `MD-08`: measurement validity is established before or alongside interpreting the 0–100 normalization. Current mechanisms to trace include the receiver/RB residual-orthogonalization fields in [live model](model/live_profiles.js) and the V148 unit bridge ([V148 changelog](CHANGELOG_V148.md)).",
+      "fullLineSHA256": "fe77cabf6a784db7ce989f565b21f9e44661d596fde0cabf07ca91547213a436",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "MD05_UNIT_ATTRIBUTION_INVESTIGATION.md",
+      "line": 60,
+      "text": "Bundled legacy prior grades: QB/OL r=.412; QB/receiver r=.835. Correlations with bundled current Elo: QB .611, OL .378, receiver .500. **In this offline bundle `currentRatings - coreCurrentRatings = 0` for all 32 teams: live profiles equal priors.** Thus every bundled-current-Elo correlation here is effectively a **core-Elo** correlation and cannot measure actual production bridge magnitude. These are descriptive legacy associations, **not current V115 residual correlations**. The bundled prior has no explicit passRushIndex/rbIndex/runDefenseIndex/PPD keys; those pairs remain null. Anonymous h",
+      "fullLineSHA256": "a3d85167621665f5da54fb1452a3cac96459a5d23fa13ab77719bca0fe2f87d0",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "MD05_UNIT_ATTRIBUTION_INVESTIGATION.md",
+      "line": 104,
+      "text": "The owner separately AUTHORIZED only key/group ablation, descriptive redundancy/attribution and persistence research. [Methods/evidence](research/cycle8/md05_bridge_materiality/KEY_GROUP_ATTRIBUTION.md) use immutable accepted capture: nine direct-key/five predefined groups, cap interactions and n=32 descriptive correlations. Current partial orthogonalization/legitimate shared-play interactions preserved; no literal full-value duplicate charging or predictive harm proven. Result-only movement since recorded Week-2 entry uses same-capture ledger excluding overlays. One independent eligible snaps",
+      "fullLineSHA256": "0ab47d5ab120180f59965a2e9073d5943b7aeab6be285915ce5dffe4915272ec",
+      "role": "Shared-base document; later retrospective evidence is secondary only"
+    }
+  ],
+  "base": "fd585891214db483112f52d4746106c606afeb43",
+  "original": "1ecd4db3005fbce72fa88222476bcfafd312ca4c",
+  "accepted": "98db3b323c928879d9ff7435d77a980744a66289",
+  "localRoot": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+  "originalV115IntroducingCommit": "UNAVAILABLE: non-shallow repository begins with V149 import; no older introducing diff or V115-named commit recovered",
+  "history": [
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "date": "2026-10-01T07:12:32-05:00",
+      "message": "Initial FORCE V149 web repository",
+      "parent": null,
+      "modelDiffSHA256": "3dc0efc6542470579d6009c436433a231a769671a81e33723b4599d0bf3f7b5e",
+      "helperOccurrenceDiff": [
+        {
+          "evidence": "root.priorQbPassEpa",
+          "addedLines": [
+            "+  function priorQbPassEpa(profile) {",
+            "+    const qb=profile?.qb||{};",
+            "+    const v=Number.isFinite(Number(qb.epaoe))?Number(qb.epaoe):Number(qb.epa_per_play);",
+            "+    return Number.isFinite(v)?v:null;",
+            "+  }"
+          ]
+        },
+        {
+          "evidence": "root.priorReceiverWrteEpa",
+          "addedLines": [
+            "+  function priorReceiverWrteEpa(profile) {",
+            "+    const rec=profile?.receivers||{}, rb=profile?.rb||{};",
+            "+    const recv=Number(rec.adj_epa), recTargets=Math.max(0,Number(rec.targets)||0);",
+            "+    const rbRecv=Number(rb.adj_recv), rbTargets=Math.max(0,Number(rb.targets)||0);",
+            "+    if (!Number.isFinite(recv)) return null;",
+            "+    if (recTargets>rbTargets && rbTargets>0 && Number.isFinite(rbRecv)) {",
+            "+      return (recv*recTargets-rbRecv*rbTargets)/(recTargets-rbTargets);",
+            "+    }",
+            "+    return recv;",
+            "+  }"
+          ]
+        },
+        {
+          "evidence": "root.ridgeOrthogonalSlope",
+          "addedLines": [
+            "+  function ridgeOrthogonalSlope(points, ridgeFraction=0.50) {",
+            "+    const rows=(points||[]).filter((p)=>Number.isFinite(Number(p?.x))&&Number.isFinite(Number(p?.y))).map((p)=>({x:Number(p.x),y:Number(p.y)}));",
+            "+    if (rows.length<8) return 0;",
+            "+    const mx=rows.reduce((a,p)=>a+p.x,0)/rows.length, my=rows.reduce((a,p)=>a+p.y,0)/rows.length;",
+            "+    let cov=0,varx=0;",
+            "+    for (const p of rows) { cov+=(p.x-mx)*(p.y-my); varx+=(p.x-mx)*(p.x-mx); }",
+            "+    if (!(varx>0)) return 0;",
+            "+    // Ridge shrinks a shared-outcome OLS slope toward zero; this deliberately",
+            "+    // avoids treating every unit of team/QB efficiency as value that must be",
+            "+    // subtracted from the receiving unit that helped create it.",
+            "+    return cov/(varx*(1+Math.max(0,Number(ridgeFraction)||0)));",
+            "+  }"
+          ]
+        },
+        {
+          "evidence": "root.partialResidual",
+          "addedLines": [
+            "+  function partialResidual(value, environment, beta, environmentCenter) {",
+            "+    const y=Number(value), x=Number(environment), b=Number(beta), c=Number(environmentCenter);",
+            "+    if (!Number.isFinite(y)) return null;",
+            "+    return Number.isFinite(x)&&Number.isFinite(b)&&Number.isFinite(c) ? y-b*(x-c) : y;",
+            "+  }"
+          ]
+        },
+        {
+          "evidence": "root.priorReceiverResidual",
+          "addedLines": [
+            "+  function priorReceiverResidual(profile, beta=1, qbCenter=0) {",
+            "+    return partialResidual(priorReceiverWrteEpa(profile),priorQbPassEpa(profile),beta,qbCenter);",
+            "+  }"
+          ]
+        },
+        {
+          "evidence": "root.priorRbOrthogonalComposite",
+          "addedLines": [
+            "+  function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {",
+            "+    const rb=profile?.rb||{};",
+            "+    const rush=Number.isFinite(Number(rb.rush_epa))?Number(rb.rush_epa):Number(rb.adj_rush);",
+            "+    const recv=Number(rb.adj_recv);",
+            "+    const residual=partialResidual(recv,priorQbPassEpa(profile),recvBeta,qbCenter);",
+            "+    if (!Number.isFinite(rush) && !Number.isFinite(residual)) return null;",
+            "+    if (Number.isFinite(rush)&&Number.isFinite(residual)) return .70*rush+.30*residual;",
+            "+    return Number.isFinite(rush)?rush:residual;",
+            "+  }"
+          ]
+        },
+        {
+          "evidence": "root.continuousPercentileValue",
+          "addedLines": [
+            "+  function continuousPercentileValue(values, value, higherBetter=true) {",
+            "+    const x=Number(value), arr=(values||[]).map(Number).filter(Number.isFinite).sort((a,b)=>a-b);",
+            "+    if (!Number.isFinite(x) || !arr.length) return null;",
+            "+    if (arr.length===1) return 50;",
+            "+    const n=arr.length;",
+            "+    let pct;",
+            "+    if (x<=arr[0]) pct=50/n;",
+            "+    else if (x>=arr[n-1]) pct=100-50/n;",
+            "+    else {",
+            "+      let hi=1;",
+            "+      while (hi<n && arr[hi]<x) hi++;",
+            "+      const lo=hi-1, span=arr[hi]-arr[lo];",
+            "+      const f=span>0?(x-arr[lo])/span:.5;",
+            "+      const loPct=100*(lo+.5)/n, hiPct=100*(hi+.5)/n;",
+            "+      pct=loPct+f*(hiPct-loPct);",
+            "+    }",
+            "+    return higherBetter ? pct : 100-pct;",
+            "+  }"
+          ]
+        },
+        {
+          "evidence": "root.priorPercentile",
+          "addedLines": [
+            "+  function priorPercentile(priorProfiles, getter, value, higherBetter=true) {",
+            "+    const vals = Object.values(priorProfiles || {}).map(getter).filter((v)=>Number.isFinite(Number(v)));",
+            "+    return percentileValue(vals, value, higherBetter);",
+            "+  }"
+          ]
+        },
+        {
+          "evidence": "root.v115-design-comment",
+          "addedLines": [
+            "+    // V115 learns how much of receiving efficiency historically moves with the QB",
+            "+    // environment, then subtracts only that fitted (ridge-shrunk) component. The",
+            "+    // historical receiver rate is reconstructed WR/TE-only where RB target data",
+            "+    // permit, avoiding the V114 historical/live room-definition mismatch."
+          ]
+        },
+        {
+          "evidence": "root.fit",
+          "addedLines": [
+            "+    const priorQbPassValues=Object.values(priorProfiles||{}).map(priorQbPassEpa).filter(Number.isFinite);",
+            "+    const orthogonalQbCenter=medianValue(priorQbPassValues);",
+            "+    const receiverPassBeta=receiverPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:priorReceiverWrteEpa(p)})),UNIT_V115.orthogonalRidgeFraction) : 1;",
+            "+    const rbRecvPassBeta=rbPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:Number(p?.rb?.adj_recv)})),UNIT_V115.orthogonalRidgeFraction) : 1;"
+          ]
+        },
+        {
+          "evidence": "root.live-rb",
+          "addedLines": [
+            "+      const rbRecvResidual=rbResidualPolicyActive(rbPolicy) ? partialResidual(r.rbRecvEpa,r.qbAttemptEpa,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0) : r.rbRecvEpa;"
+          ]
+        },
+        {
+          "evidence": "root.wr-reference",
+          "addedLines": [
+            "+    const priorReceiverResidualValues=Object.values(priorProfiles||{}).map((p)=>priorReceiverResidual(p,receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);",
+            "+    const priorReceiverResidualMedian=medianValue(priorReceiverResidualValues);",
+            "+    const priorReceiverByTeam=Object.fromEntries(ids.map((t)=>{ const v=priorReceiverResidual(priorProfiles[t]||{},receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0); return [t,Number.isFinite(v)&&priorReceiverResidualValues.length>=20?continuousPercentileValue(priorReceiverResidualValues,v,true):null]; }));"
+          ]
+        },
+        {
+          "evidence": "root.live-cdf-reference",
+          "addedLines": [
+            "+    const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);"
+          ]
+        },
+        {
+          "evidence": "root.effective-reference",
+          "addedLines": [
+            "+    const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);"
+          ]
+        },
+        {
+          "evidence": "root.effective-individual",
+          "addedLines": [
+            "+    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{",
+            "+      const prior=priorProfiles[t]||{};",
+            "+      if (rbPolicy==='v109-stabilized-residual'||rbPolicy==='v114-centered-stabilized-residual'||rbPolicy==='v115-partial-orthogonal') {",
+            "+        const value=priorRbOrthogonalComposite(prior);",
+            "+        return [t, Number.isFinite(value)&&priorRbOrthogonalValues.length>=20 ? continuousPercentileValue(priorRbOrthogonalValues,value,true) : null];",
+            "+      }",
+            "+      const value=prior?.rb?.composite;",
+            "+      return [t, priorPercentile(priorProfiles,(p)=>p?.rb?.composite,value,true)];",
+            "+    }));"
+          ]
+        },
+        {
+          "evidence": "root.run-prior-analogue",
+          "addedLines": [
+            "+    const priorRunDefenseByTeam = Object.fromEntries(ids.map((t)=>{",
+            "+      const prior=priorProfiles[t]||{};",
+            "+      const value=prior?.dl?.run_stop_rate;",
+            "+      return [t, priorPercentile(priorProfiles,(p)=>p?.dl?.run_stop_rate,value,true)];",
+            "+    }));",
+            "+    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{"
+          ]
+        },
+        {
+          "evidence": "root.legacy-rb-score",
+          "addedLines": [
+            "+    const scoreRbLegacy=percentileMap(Object.fromEntries(ids.map(t=>[t,raw[t]?.playerStatsUsable ? raw[t]?.rbComposite : null])),true);"
+          ]
+        },
+        {
+          "evidence": "root.build-policy-defaults",
+          "addedLines": [
+            "+  function buildProfiles({ teamRows=[], playerRows=[], ftnRows=[], pfrPassRows=[], priorPfrPassRows=[], currentPressure=null, penaltyContextByTeam={}, defensiveDriveContextByTeam={}, performanceLuckGames=[], penaltyPriorByTeam={}, penaltyCalibration=null, historicalReference=null, priorProfiles={}, schedule=[], gameHistory={}, teamIds=[], priorGames=1, priorGamesByTeam=null, useChartedPassRush=false, unitPriorReversion=0, passRushFallbackPolicy='v99', coveragePolicy='v100-historical', qbPolicy='v101-legacy', receiverPolicy='v101-legacy', olPolicy='v101-legacy', offenseOutcomePolicy='v101-legacy', rbPolicy='v101-legacy' }) {"
+          ]
+        },
+        {
+          "evidence": "root.legacy-live-use",
+          "addedLines": [
+            "+          : (rbPolicy==='v102-residual-receiving' && priorRbOrthogonalValues.length>=20",
+            "+            ? continuousPercentileValue(priorRbOrthogonalValues,rbLiveRaw,true)"
+          ]
+        }
+      ],
+      "relevantDiff": "Root added entire V149 source; exact relevant added lines retained in root evidence blocks. Not an original V115 introducing diff.",
+      "helperChanged": "Already present in initial import; original introduction unknown"
+    },
+    {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "date": "2026-10-01T11:17:00-05:00",
+      "message": "Harden FORCE V149 QB model and production snapshot",
+      "parent": "67875bd7d196e642d56bd1a149ffd38b8b1bd257",
+      "modelDiffSHA256": "20e1c947d428a1175d75966a3e67f8fe239d753fd256a393f3a6913bd58175f1",
+      "helperOccurrenceDiff": [
+        "-  window.FORCE_LIVE_PROFILE={buildProfiles,calibrateQbComposite,QB_COMPOSITE_EXPANSION,percentileMap,percentileValue,continuousPercentileValue,priorPercentile,medianValue,shiftedPriorPercentile,historicalWindowValues,qbPassAbsoluteFallback,priorReceiverWrteEpa,priorQbPassEpa,ridgeOrthogonalSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,environmentAlignToHistoricalCenter,reliabilityWeight,stabilizeToward,weightedLeagueMean,resolvedPriorGames,blend,regressUnitIndex,centeredContextScore,historicalPenaltyImpactScore,livePenaltyImpactScore,causalPenaltyScoreFromAverages,causalPenaltyScoreBreakdownFromAverages,penaltyCalibration,CONTEXT_SCALE,availableComposite,calibrateComposite,uncalibrateComposite,rawOffenseCompositeFrom,offenseCompositeFrom,rawDefenseCompositeFrom,defenseCompositeFrom,COMPOSITE_V108,applyQbCarryoverScenario,liveLuck,pctRate,passRushCompositeRate,ftnPressureField,ftnDefenseField,ftnDropbackField,ftnPressureContract,ftnDefensePressureGames,combineFtnPressureGames,dateOnlyMs,latestCompletedTeamDate,externalPressureMetric,pfrChartingReady,pfrTeamChartingReady,aggregatePfrRows,pfrDefenseGames,combinePassRushGames,rollingPassRushBenchmarks,PASS_RUSH_WEIGHTS,OFFENSE_WEIGHTS:OFFENSE_WEIGHTS_V102,OFFENSE_WEIGHTS_V101,OFFENSE_WEIGHTS_V102,DEFENSE_WEIGHTS};",
+        "+  window.FORCE_LIVE_PROFILE={qbReferenceValid,gameFlowQbStatus,buildProfiles,calibrateQbComposite,QB_COMPOSITE_EXPANSION,percentileMap,percentileValue,continuousPercentileValue,priorPercentile,medianValue,shiftedPriorPercentile,historicalWindowValues,qbPassAbsoluteFallback,priorReceiverWrteEpa,priorQbPassEpa,ridgeOrthogonalSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,environmentAlignToHistoricalCenter,reliabilityWeight,stabilizeToward,weightedLeagueMean,resolvedPriorGames,blend,regressUnitIndex,centeredContextScore,historicalPenaltyImpactScore,livePenaltyImpactScore,causalPenaltyScoreFromAverages,causalPenaltyScoreBreakdownFromAverages,penaltyCalibration,CONTEXT_SCALE,availableComposite,calibrateComposite,uncalibrateComposite,rawOffenseCompositeFrom,offenseCompositeFrom,rawDefenseCompositeFrom,defenseCompositeFrom,COMPOSITE_V108,applyQbCarryoverScenario,liveLuck,pctRate,passRushCompositeRate,ftnPressureField,ftnDefenseField,ftnDropbackField,ftnPressureContract,ftnDefensePressureGames,combineFtnPressureGames,dateOnlyMs,latestCompletedTeamDate,externalPressureMetric,pfrChartingReady,pfrTeamChartingReady,aggregatePfrRows,pfrDefenseGames,combinePassRushGames,rollingPassRushBenchmarks,PASS_RUSH_WEIGHTS,OFFENSE_WEIGHTS:OFFENSE_WEIGHTS_V102,OFFENSE_WEIGHTS_V101,OFFENSE_WEIGHTS_V102,DEFENSE_WEIGHTS};"
+      ],
+      "relevantDiff": "Only export-list occurrence changed for this helper; RB signatures, calls and fitted construction unchanged.",
+      "helperChanged": false
+    },
+    {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "date": "2026-10-01T14:26:35-05:00",
+      "message": "Fix FORCE QB correctness and migrate V5 reference",
+      "parent": "63a78eadf12dac7826e5426719bf86e9adda04cd",
+      "modelDiffSHA256": "fb0b06d7435e956d0c670843d692499b028d959e20005980ea3ee08395676cd0",
+      "helperOccurrenceDiff": [
+        "-  window.FORCE_LIVE_PROFILE={qbReferenceValid,gameFlowQbStatus,buildProfiles,calibrateQbComposite,QB_COMPOSITE_EXPANSION,percentileMap,percentileValue,continuousPercentileValue,priorPercentile,medianValue,shiftedPriorPercentile,historicalWindowValues,qbPassAbsoluteFallback,priorReceiverWrteEpa,priorQbPassEpa,ridgeOrthogonalSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,environmentAlignToHistoricalCenter,reliabilityWeight,stabilizeToward,weightedLeagueMean,resolvedPriorGames,blend,regressUnitIndex,centeredContextScore,historicalPenaltyImpactScore,livePenaltyImpactScore,causalPenaltyScoreFromAverages,causalPenaltyScoreBreakdownFromAverages,penaltyCalibration,CONTEXT_SCALE,availableComposite,calibrateComposite,uncalibrateComposite,rawOffenseCompositeFrom,offenseCompositeFrom,rawDefenseCompositeFrom,defenseCompositeFrom,COMPOSITE_V108,applyQbCarryoverScenario,liveLuck,pctRate,passRushCompositeRate,ftnPressureField,ftnDefenseField,ftnDropbackField,ftnPressureContract,ftnDefensePressureGames,combineFtnPressureGames,dateOnlyMs,latestCompletedTeamDate,externalPressureMetric,pfrChartingReady,pfrTeamChartingReady,aggregatePfrRows,pfrDefenseGames,combinePassRushGames,rollingPassRushBenchmarks,PASS_RUSH_WEIGHTS,OFFENSE_WEIGHTS:OFFENSE_WEIGHTS_V102,OFFENSE_WEIGHTS_V101,OFFENSE_WEIGHTS_V102,DEFENSE_WEIGHTS};",
+        "+  window.FORCE_LIVE_PROFILE={qbSackYardsLost,qbReferenceValid,gameFlowQbStatus,buildProfiles,calibrateQbComposite,QB_COMPOSITE_EXPANSION,percentileMap,percentileValue,continuousPercentileValue,priorPercentile,medianValue,shiftedPriorPercentile,historicalWindowValues,qbPassAbsoluteFallback,priorReceiverWrteEpa,priorQbPassEpa,ridgeOrthogonalSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,environmentAlignToHistoricalCenter,reliabilityWeight,stabilizeToward,weightedLeagueMean,resolvedPriorGames,blend,regressUnitIndex,centeredContextScore,historicalPenaltyImpactScore,livePenaltyImpactScore,causalPenaltyScoreFromAverages,causalPenaltyScoreBreakdownFromAverages,penaltyCalibration,CONTEXT_SCALE,availableComposite,calibrateComposite,uncalibrateComposite,rawOffenseCompositeFrom,offenseCompositeFrom,rawDefenseCompositeFrom,defenseCompositeFrom,COMPOSITE_V108,applyQbCarryoverScenario,liveLuck,pctRate,passRushCompositeRate,ftnPressureField,ftnDefenseField,ftnDropbackField,ftnPressureContract,ftnDefensePressureGames,combineFtnPressureGames,dateOnlyMs,latestCompletedTeamDate,externalPressureMetric,pfrChartingReady,pfrTeamChartingReady,aggregatePfrRows,pfrDefenseGames,combinePassRushGames,rollingPassRushBenchmarks,PASS_RUSH_WEIGHTS,OFFENSE_WEIGHTS:OFFENSE_WEIGHTS_V102,OFFENSE_WEIGHTS_V101,OFFENSE_WEIGHTS_V102,DEFENSE_WEIGHTS};"
+      ],
+      "relevantDiff": "Only export-list occurrence changed for this helper; RB signatures, calls and fitted construction unchanged.",
+      "helperChanged": false
+    }
+  ],
+  "sourceSnapshots": [
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "960c83b78ba69a59a145f7724098d565d229dae620a82fea9c4a010ef1edf06c",
+      "functionSHA256": {
+        "priorQbPassEpa": "edd918b4d6ce304ab9db8635d3539cf297e8dc0603c7d499b8d357bcd77137c4",
+        "priorReceiverWrteEpa": "b8a71fb0a3f042133b4a2a0d93e2e4e7aa71c5468816d37a0ef41a3f1e9b6a6f",
+        "ridgeOrthogonalSlope": "dca8fd2a521a07e99c08ff8a76d649b474950435289a1d21c05beb3cbba56c33",
+        "partialResidual": "55b2ac87a486e362e9d91a684f100313aba5aa53072b7adc80ec288b2e54c6f7",
+        "priorReceiverResidual": "30c2b6a9c9b8912d1d144e3e962b5c45c752929a3c3a32be739c2cc3a1a31ef1",
+        "priorRbOrthogonalComposite": "f43c7614d2dde5c6343d4c171d3d5fcd755f51b08135c1046fc4ec66feb64319",
+        "continuousPercentileValue": "c9934c83aaa63ca38cff18cc49663c67a8f07dce589256bcd7f5546f5b129288",
+        "priorPercentile": "414c25d59fec733d1db03b6847624cd6d405cb12b918e812cf50fa3fad877d8f"
+      }
+    },
+    {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "sourceSHA256": "b9aec8b5f9780a8b05ab07a9d999326febe3bfb612067442e7fc193190f3da3f",
+      "functionSHA256": {
+        "priorQbPassEpa": "edd918b4d6ce304ab9db8635d3539cf297e8dc0603c7d499b8d357bcd77137c4",
+        "priorReceiverWrteEpa": "b8a71fb0a3f042133b4a2a0d93e2e4e7aa71c5468816d37a0ef41a3f1e9b6a6f",
+        "ridgeOrthogonalSlope": "dca8fd2a521a07e99c08ff8a76d649b474950435289a1d21c05beb3cbba56c33",
+        "partialResidual": "55b2ac87a486e362e9d91a684f100313aba5aa53072b7adc80ec288b2e54c6f7",
+        "priorReceiverResidual": "30c2b6a9c9b8912d1d144e3e962b5c45c752929a3c3a32be739c2cc3a1a31ef1",
+        "priorRbOrthogonalComposite": "f43c7614d2dde5c6343d4c171d3d5fcd755f51b08135c1046fc4ec66feb64319",
+        "continuousPercentileValue": "c9934c83aaa63ca38cff18cc49663c67a8f07dce589256bcd7f5546f5b129288",
+        "priorPercentile": "414c25d59fec733d1db03b6847624cd6d405cb12b918e812cf50fa3fad877d8f"
+      }
+    },
+    {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "sourceSHA256": "544b9827f7b7a566e6cab40b074d578f7ed0e1eb09144cd04daf4a11cc22fd72",
+      "functionSHA256": {
+        "priorQbPassEpa": "edd918b4d6ce304ab9db8635d3539cf297e8dc0603c7d499b8d357bcd77137c4",
+        "priorReceiverWrteEpa": "b8a71fb0a3f042133b4a2a0d93e2e4e7aa71c5468816d37a0ef41a3f1e9b6a6f",
+        "ridgeOrthogonalSlope": "dca8fd2a521a07e99c08ff8a76d649b474950435289a1d21c05beb3cbba56c33",
+        "partialResidual": "55b2ac87a486e362e9d91a684f100313aba5aa53072b7adc80ec288b2e54c6f7",
+        "priorReceiverResidual": "30c2b6a9c9b8912d1d144e3e962b5c45c752929a3c3a32be739c2cc3a1a31ef1",
+        "priorRbOrthogonalComposite": "f43c7614d2dde5c6343d4c171d3d5fcd755f51b08135c1046fc4ec66feb64319",
+        "continuousPercentileValue": "c9934c83aaa63ca38cff18cc49663c67a8f07dce589256bcd7f5546f5b129288",
+        "priorPercentile": "414c25d59fec733d1db03b6847624cd6d405cb12b918e812cf50fa3fad877d8f"
+      }
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "sourceSHA256": "544b9827f7b7a566e6cab40b074d578f7ed0e1eb09144cd04daf4a11cc22fd72",
+      "functionSHA256": {
+        "priorQbPassEpa": "edd918b4d6ce304ab9db8635d3539cf297e8dc0603c7d499b8d357bcd77137c4",
+        "priorReceiverWrteEpa": "b8a71fb0a3f042133b4a2a0d93e2e4e7aa71c5468816d37a0ef41a3f1e9b6a6f",
+        "ridgeOrthogonalSlope": "dca8fd2a521a07e99c08ff8a76d649b474950435289a1d21c05beb3cbba56c33",
+        "partialResidual": "55b2ac87a486e362e9d91a684f100313aba5aa53072b7adc80ec288b2e54c6f7",
+        "priorReceiverResidual": "30c2b6a9c9b8912d1d144e3e962b5c45c752929a3c3a32be739c2cc3a1a31ef1",
+        "priorRbOrthogonalComposite": "f43c7614d2dde5c6343d4c171d3d5fcd755f51b08135c1046fc4ec66feb64319",
+        "continuousPercentileValue": "c9934c83aaa63ca38cff18cc49663c67a8f07dce589256bcd7f5546f5b129288",
+        "priorPercentile": "414c25d59fec733d1db03b6847624cd6d405cb12b918e812cf50fa3fad877d8f"
+      }
+    }
+  ],
+  "contracts": [
+    {
+      "path": "scripts/test_v57_unit_regression_rb.js",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "9d0a706ca8b8996dd623c11f72894a84ad8726ebab0b7b039c1fa6ad56fedd58",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "scripts/test_v102_offense_orthogonalization.js",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "00827c06cc8112aec1ab88eb62f61d9673bb88946431d8d33b5f5b220d121509",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "CHANGELOG_V57.md",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "df83175bd9f61f208b5590aa5eb85bad3db99d1113d08828121f19ad851bd91c",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "CHANGELOG_V102.md",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "d75869dba94a0ce387412cde62aeb719b07ac68b7a9d886a339d13e74ea0f1cb",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "CHANGELOG_V104.md",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "bf19c529ac4bb03195ef8b7f5d238c4fe24d13328ea9874750d2f702df2c544a",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "CHANGELOG_V109.md",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "188ff84c38438bc18742c7e748edef96116722c4cf862fc527dbf9bb8cbc2e1e",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "CHANGELOG_V114.md",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "bc0ab0b3fbb6d80beb4e84bd58aa77630612241d528ca5241d1ab41dde10818e",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "CHANGELOG_V115.md",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "ce047d4eb5211aee489debceeb166ab247aab7fc1a8a2b76b29731b1ff917dc1",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "scripts/test_v104_qb_calibration.js",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "0e433609ae80fb7d36d825b9b80d1d95cebb05f25ec4237f8209ac3ef6019ad7",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "scripts/test_v104_contract.js",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "a1eda51b80c67e662dafce9dccdf801d8f2f5fbc92868950c3e9b54d42f3fd71",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "scripts/test_v114_unit_centering.js",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "8b6add4a17fc72b050fdf5971cf712988c70abe7096096d5ddbac3da30541796",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "scripts/test_v114_contract.js",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "cf345b55f4d9abb27ee2f1c0f63478cd0def0d75a260f597eb8c17033151edc3",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    },
+    {
+      "path": "scripts/test_v115_unit_orthogonalization.js",
+      "earliestLocalCommit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "sourceSHA256": "1dc18770f66d45a3eca7a58c374fdb3ba03bc2fedf7685d56daf4d4c385d68d1",
+      "history": [
+        "43d2c7169534cb76cd13c72166b111d0d91d6c06"
+      ]
+    }
+  ],
+  "fittedProvenance": {
+    "season": 2025,
+    "profileCount": 32,
+    "finitePairs": 32,
+    "requiredFieldsComplete": true,
+    "beta": 0.32652935756243806,
+    "center": 0.0615,
+    "ridgeFraction": 0.5,
+    "inputSHA256": "88b100a3e10158990398b46740c7d01e2048cf05d1601a03ae3c6b0f1613357d",
+    "meaning": "Reference-season profile population plus model-version ridge rule; recomputed from supplied priors at build time, not fitted from current-season outputs. All32 historical profiles can use the fitted transformation."
+  },
+  "evidence": {
+    "root.priorQbPassEpa": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 237,
+      "endLine": 241,
+      "text": "  function priorQbPassEpa(profile) {\n    const qb=profile?.qb||{};\n    const v=Number.isFinite(Number(qb.epaoe))?Number(qb.epaoe):Number(qb.epa_per_play);\n    return Number.isFinite(v)?v:null;\n  }"
+    },
+    "root.priorReceiverWrteEpa": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 246,
+      "endLine": 255,
+      "text": "  function priorReceiverWrteEpa(profile) {\n    const rec=profile?.receivers||{}, rb=profile?.rb||{};\n    const recv=Number(rec.adj_epa), recTargets=Math.max(0,Number(rec.targets)||0);\n    const rbRecv=Number(rb.adj_recv), rbTargets=Math.max(0,Number(rb.targets)||0);\n    if (!Number.isFinite(recv)) return null;\n    if (recTargets>rbTargets && rbTargets>0 && Number.isFinite(rbRecv)) {\n      return (recv*recTargets-rbRecv*rbTargets)/(recTargets-rbTargets);\n    }\n    return recv;\n  }"
+    },
+    "root.ridgeOrthogonalSlope": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 257,
+      "endLine": 268,
+      "text": "  function ridgeOrthogonalSlope(points, ridgeFraction=0.50) {\n    const rows=(points||[]).filter((p)=>Number.isFinite(Number(p?.x))&&Number.isFinite(Number(p?.y))).map((p)=>({x:Number(p.x),y:Number(p.y)}));\n    if (rows.length<8) return 0;\n    const mx=rows.reduce((a,p)=>a+p.x,0)/rows.length, my=rows.reduce((a,p)=>a+p.y,0)/rows.length;\n    let cov=0,varx=0;\n    for (const p of rows) { cov+=(p.x-mx)*(p.y-my); varx+=(p.x-mx)*(p.x-mx); }\n    if (!(varx>0)) return 0;\n    // Ridge shrinks a shared-outcome OLS slope toward zero; this deliberately\n    // avoids treating every unit of team/QB efficiency as value that must be\n    // subtracted from the receiving unit that helped create it.\n    return cov/(varx*(1+Math.max(0,Number(ridgeFraction)||0)));\n  }"
+    },
+    "root.partialResidual": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 270,
+      "endLine": 274,
+      "text": "  function partialResidual(value, environment, beta, environmentCenter) {\n    const y=Number(value), x=Number(environment), b=Number(beta), c=Number(environmentCenter);\n    if (!Number.isFinite(y)) return null;\n    return Number.isFinite(x)&&Number.isFinite(b)&&Number.isFinite(c) ? y-b*(x-c) : y;\n  }"
+    },
+    "root.priorReceiverResidual": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 276,
+      "endLine": 278,
+      "text": "  function priorReceiverResidual(profile, beta=1, qbCenter=0) {\n    return partialResidual(priorReceiverWrteEpa(profile),priorQbPassEpa(profile),beta,qbCenter);\n  }"
+    },
+    "root.priorRbOrthogonalComposite": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 280,
+      "endLine": 288,
+      "text": "  function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {\n    const rb=profile?.rb||{};\n    const rush=Number.isFinite(Number(rb.rush_epa))?Number(rb.rush_epa):Number(rb.adj_rush);\n    const recv=Number(rb.adj_recv);\n    const residual=partialResidual(recv,priorQbPassEpa(profile),recvBeta,qbCenter);\n    if (!Number.isFinite(rush) && !Number.isFinite(residual)) return null;\n    if (Number.isFinite(rush)&&Number.isFinite(residual)) return .70*rush+.30*residual;\n    return Number.isFinite(rush)?rush:residual;\n  }"
+    },
+    "root.continuousPercentileValue": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 953,
+      "endLine": 970,
+      "text": "  function continuousPercentileValue(values, value, higherBetter=true) {\n    const x=Number(value), arr=(values||[]).map(Number).filter(Number.isFinite).sort((a,b)=>a-b);\n    if (!Number.isFinite(x) || !arr.length) return null;\n    if (arr.length===1) return 50;\n    const n=arr.length;\n    let pct;\n    if (x<=arr[0]) pct=50/n;\n    else if (x>=arr[n-1]) pct=100-50/n;\n    else {\n      let hi=1;\n      while (hi<n && arr[hi]<x) hi++;\n      const lo=hi-1, span=arr[hi]-arr[lo];\n      const f=span>0?(x-arr[lo])/span:.5;\n      const loPct=100*(lo+.5)/n, hiPct=100*(hi+.5)/n;\n      pct=loPct+f*(hiPct-loPct);\n    }\n    return higherBetter ? pct : 100-pct;\n  }"
+    },
+    "root.priorPercentile": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 88,
+      "endLine": 91,
+      "text": "  function priorPercentile(priorProfiles, getter, value, higherBetter=true) {\n    const vals = Object.values(priorProfiles || {}).map(getter).filter((v)=>Number.isFinite(Number(v)));\n    return percentileValue(vals, value, higherBetter);\n  }"
+    },
+    "root.v115-design-comment": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1186,
+      "endLine": 1189,
+      "text": "    // V115 learns how much of receiving efficiency historically moves with the QB\n    // environment, then subtracts only that fitted (ridge-shrunk) component. The\n    // historical receiver rate is reconstructed WR/TE-only where RB target data\n    // permit, avoiding the V114 historical/live room-definition mismatch."
+    },
+    "root.fit": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1190,
+      "endLine": 1193,
+      "text": "    const priorQbPassValues=Object.values(priorProfiles||{}).map(priorQbPassEpa).filter(Number.isFinite);\n    const orthogonalQbCenter=medianValue(priorQbPassValues);\n    const receiverPassBeta=receiverPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:priorReceiverWrteEpa(p)})),UNIT_V115.orthogonalRidgeFraction) : 1;\n    const rbRecvPassBeta=rbPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:Number(p?.rb?.adj_recv)})),UNIT_V115.orthogonalRidgeFraction) : 1;"
+    },
+    "root.live-rb": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1202,
+      "endLine": 1202,
+      "text": "      const rbRecvResidual=rbResidualPolicyActive(rbPolicy) ? partialResidual(r.rbRecvEpa,r.qbAttemptEpa,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0) : r.rbRecvEpa;"
+    },
+    "root.wr-reference": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1217,
+      "endLine": 1219,
+      "text": "    const priorReceiverResidualValues=Object.values(priorProfiles||{}).map((p)=>priorReceiverResidual(p,receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);\n    const priorReceiverResidualMedian=medianValue(priorReceiverResidualValues);\n    const priorReceiverByTeam=Object.fromEntries(ids.map((t)=>{ const v=priorReceiverResidual(priorProfiles[t]||{},receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0); return [t,Number.isFinite(v)&&priorReceiverResidualValues.length>=20?continuousPercentileValue(priorReceiverResidualValues,v,true):null]; }));"
+    },
+    "root.live-cdf-reference": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1220,
+      "endLine": 1220,
+      "text": "    const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);"
+    },
+    "root.effective-reference": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1369,
+      "endLine": 1369,
+      "text": "    const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);"
+    },
+    "root.effective-individual": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1391,
+      "endLine": 1399,
+      "text": "    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{\n      const prior=priorProfiles[t]||{};\n      if (rbPolicy==='v109-stabilized-residual'||rbPolicy==='v114-centered-stabilized-residual'||rbPolicy==='v115-partial-orthogonal') {\n        const value=priorRbOrthogonalComposite(prior);\n        return [t, Number.isFinite(value)&&priorRbOrthogonalValues.length>=20 ? continuousPercentileValue(priorRbOrthogonalValues,value,true) : null];\n      }\n      const value=prior?.rb?.composite;\n      return [t, priorPercentile(priorProfiles,(p)=>p?.rb?.composite,value,true)];\n    }));"
+    },
+    "root.run-prior-analogue": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1386,
+      "endLine": 1391,
+      "text": "    const priorRunDefenseByTeam = Object.fromEntries(ids.map((t)=>{\n      const prior=priorProfiles[t]||{};\n      const value=prior?.dl?.run_stop_rate;\n      return [t, priorPercentile(priorProfiles,(p)=>p?.dl?.run_stop_rate,value,true)];\n    }));\n    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{"
+    },
+    "root.legacy-rb-score": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1162,
+      "endLine": 1162,
+      "text": "    const scoreRbLegacy=percentileMap(Object.fromEntries(ids.map(t=>[t,raw[t]?.playerStatsUsable ? raw[t]?.rbComposite : null])),true);"
+    },
+    "root.build-policy-defaults": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 972,
+      "endLine": 972,
+      "text": "  function buildProfiles({ teamRows=[], playerRows=[], ftnRows=[], pfrPassRows=[], priorPfrPassRows=[], currentPressure=null, penaltyContextByTeam={}, defensiveDriveContextByTeam={}, performanceLuckGames=[], penaltyPriorByTeam={}, penaltyCalibration=null, historicalReference=null, priorProfiles={}, schedule=[], gameHistory={}, teamIds=[], priorGames=1, priorGamesByTeam=null, useChartedPassRush=false, unitPriorReversion=0, passRushFallbackPolicy='v99', coveragePolicy='v100-historical', qbPolicy='v101-legacy', receiverPolicy='v101-legacy', olPolicy='v101-legacy', offenseOutcomePolicy='v101-legacy', rbPolicy='v101-legacy' }) {"
+    },
+    "root.legacy-live-use": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "model/live_profiles.js",
+      "startLine": 1569,
+      "endLine": 1570,
+      "text": "          : (rbPolicy==='v102-residual-receiving' && priorRbOrthogonalValues.length>=20\n            ? continuousPercentileValue(priorRbOrthogonalValues,rbLiveRaw,true)"
+    },
+    "c44e59e.priorQbPassEpa": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 237,
+      "endLine": 241,
+      "text": "  function priorQbPassEpa(profile) {\n    const qb=profile?.qb||{};\n    const v=Number.isFinite(Number(qb.epaoe))?Number(qb.epaoe):Number(qb.epa_per_play);\n    return Number.isFinite(v)?v:null;\n  }"
+    },
+    "c44e59e.priorReceiverWrteEpa": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 246,
+      "endLine": 255,
+      "text": "  function priorReceiverWrteEpa(profile) {\n    const rec=profile?.receivers||{}, rb=profile?.rb||{};\n    const recv=Number(rec.adj_epa), recTargets=Math.max(0,Number(rec.targets)||0);\n    const rbRecv=Number(rb.adj_recv), rbTargets=Math.max(0,Number(rb.targets)||0);\n    if (!Number.isFinite(recv)) return null;\n    if (recTargets>rbTargets && rbTargets>0 && Number.isFinite(rbRecv)) {\n      return (recv*recTargets-rbRecv*rbTargets)/(recTargets-rbTargets);\n    }\n    return recv;\n  }"
+    },
+    "c44e59e.ridgeOrthogonalSlope": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 257,
+      "endLine": 268,
+      "text": "  function ridgeOrthogonalSlope(points, ridgeFraction=0.50) {\n    const rows=(points||[]).filter((p)=>Number.isFinite(Number(p?.x))&&Number.isFinite(Number(p?.y))).map((p)=>({x:Number(p.x),y:Number(p.y)}));\n    if (rows.length<8) return 0;\n    const mx=rows.reduce((a,p)=>a+p.x,0)/rows.length, my=rows.reduce((a,p)=>a+p.y,0)/rows.length;\n    let cov=0,varx=0;\n    for (const p of rows) { cov+=(p.x-mx)*(p.y-my); varx+=(p.x-mx)*(p.x-mx); }\n    if (!(varx>0)) return 0;\n    // Ridge shrinks a shared-outcome OLS slope toward zero; this deliberately\n    // avoids treating every unit of team/QB efficiency as value that must be\n    // subtracted from the receiving unit that helped create it.\n    return cov/(varx*(1+Math.max(0,Number(ridgeFraction)||0)));\n  }"
+    },
+    "c44e59e.partialResidual": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 270,
+      "endLine": 274,
+      "text": "  function partialResidual(value, environment, beta, environmentCenter) {\n    const y=Number(value), x=Number(environment), b=Number(beta), c=Number(environmentCenter);\n    if (!Number.isFinite(y)) return null;\n    return Number.isFinite(x)&&Number.isFinite(b)&&Number.isFinite(c) ? y-b*(x-c) : y;\n  }"
+    },
+    "c44e59e.priorReceiverResidual": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 276,
+      "endLine": 278,
+      "text": "  function priorReceiverResidual(profile, beta=1, qbCenter=0) {\n    return partialResidual(priorReceiverWrteEpa(profile),priorQbPassEpa(profile),beta,qbCenter);\n  }"
+    },
+    "c44e59e.priorRbOrthogonalComposite": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 280,
+      "endLine": 288,
+      "text": "  function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {\n    const rb=profile?.rb||{};\n    const rush=Number.isFinite(Number(rb.rush_epa))?Number(rb.rush_epa):Number(rb.adj_rush);\n    const recv=Number(rb.adj_recv);\n    const residual=partialResidual(recv,priorQbPassEpa(profile),recvBeta,qbCenter);\n    if (!Number.isFinite(rush) && !Number.isFinite(residual)) return null;\n    if (Number.isFinite(rush)&&Number.isFinite(residual)) return .70*rush+.30*residual;\n    return Number.isFinite(rush)?rush:residual;\n  }"
+    },
+    "c44e59e.continuousPercentileValue": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 953,
+      "endLine": 970,
+      "text": "  function continuousPercentileValue(values, value, higherBetter=true) {\n    const x=Number(value), arr=(values||[]).map(Number).filter(Number.isFinite).sort((a,b)=>a-b);\n    if (!Number.isFinite(x) || !arr.length) return null;\n    if (arr.length===1) return 50;\n    const n=arr.length;\n    let pct;\n    if (x<=arr[0]) pct=50/n;\n    else if (x>=arr[n-1]) pct=100-50/n;\n    else {\n      let hi=1;\n      while (hi<n && arr[hi]<x) hi++;\n      const lo=hi-1, span=arr[hi]-arr[lo];\n      const f=span>0?(x-arr[lo])/span:.5;\n      const loPct=100*(lo+.5)/n, hiPct=100*(hi+.5)/n;\n      pct=loPct+f*(hiPct-loPct);\n    }\n    return higherBetter ? pct : 100-pct;\n  }"
+    },
+    "c44e59e.priorPercentile": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 88,
+      "endLine": 91,
+      "text": "  function priorPercentile(priorProfiles, getter, value, higherBetter=true) {\n    const vals = Object.values(priorProfiles || {}).map(getter).filter((v)=>Number.isFinite(Number(v)));\n    return percentileValue(vals, value, higherBetter);\n  }"
+    },
+    "c44e59e.v115-design-comment": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1207,
+      "endLine": 1210,
+      "text": "    // V115 learns how much of receiving efficiency historically moves with the QB\n    // environment, then subtracts only that fitted (ridge-shrunk) component. The\n    // historical receiver rate is reconstructed WR/TE-only where RB target data\n    // permit, avoiding the V114 historical/live room-definition mismatch."
+    },
+    "c44e59e.fit": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1211,
+      "endLine": 1214,
+      "text": "    const priorQbPassValues=Object.values(priorProfiles||{}).map(priorQbPassEpa).filter(Number.isFinite);\n    const orthogonalQbCenter=medianValue(priorQbPassValues);\n    const receiverPassBeta=receiverPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:priorReceiverWrteEpa(p)})),UNIT_V115.orthogonalRidgeFraction) : 1;\n    const rbRecvPassBeta=rbPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:Number(p?.rb?.adj_recv)})),UNIT_V115.orthogonalRidgeFraction) : 1;"
+    },
+    "c44e59e.live-rb": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1223,
+      "endLine": 1223,
+      "text": "      const rbRecvResidual=rbResidualPolicyActive(rbPolicy) ? partialResidual(r.rbRecvEpa,r.qbAttemptEpa,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0) : r.rbRecvEpa;"
+    },
+    "c44e59e.wr-reference": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1238,
+      "endLine": 1240,
+      "text": "    const priorReceiverResidualValues=Object.values(priorProfiles||{}).map((p)=>priorReceiverResidual(p,receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);\n    const priorReceiverResidualMedian=medianValue(priorReceiverResidualValues);\n    const priorReceiverByTeam=Object.fromEntries(ids.map((t)=>{ const v=priorReceiverResidual(priorProfiles[t]||{},receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0); return [t,Number.isFinite(v)&&priorReceiverResidualValues.length>=20?continuousPercentileValue(priorReceiverResidualValues,v,true):null]; }));"
+    },
+    "c44e59e.live-cdf-reference": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1241,
+      "endLine": 1241,
+      "text": "    const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);"
+    },
+    "c44e59e.effective-reference": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1392,
+      "endLine": 1392,
+      "text": "    const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);"
+    },
+    "c44e59e.effective-individual": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1414,
+      "endLine": 1422,
+      "text": "    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{\n      const prior=priorProfiles[t]||{};\n      if (rbPolicy==='v109-stabilized-residual'||rbPolicy==='v114-centered-stabilized-residual'||rbPolicy==='v115-partial-orthogonal') {\n        const value=priorRbOrthogonalComposite(prior);\n        return [t, Number.isFinite(value)&&priorRbOrthogonalValues.length>=20 ? continuousPercentileValue(priorRbOrthogonalValues,value,true) : null];\n      }\n      const value=prior?.rb?.composite;\n      return [t, priorPercentile(priorProfiles,(p)=>p?.rb?.composite,value,true)];\n    }));"
+    },
+    "c44e59e.run-prior-analogue": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1409,
+      "endLine": 1414,
+      "text": "    const priorRunDefenseByTeam = Object.fromEntries(ids.map((t)=>{\n      const prior=priorProfiles[t]||{};\n      const value=prior?.dl?.run_stop_rate;\n      return [t, priorPercentile(priorProfiles,(p)=>p?.dl?.run_stop_rate,value,true)];\n    }));\n    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{"
+    },
+    "c44e59e.legacy-rb-score": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1183,
+      "endLine": 1183,
+      "text": "    const scoreRbLegacy=percentileMap(Object.fromEntries(ids.map(t=>[t,raw[t]?.playerStatsUsable ? raw[t]?.rbComposite : null])),true);"
+    },
+    "c44e59e.build-policy-defaults": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 990,
+      "endLine": 990,
+      "text": "  function buildProfiles({ teamRows=[], playerRows=[], ftnRows=[], pfrPassRows=[], priorPfrPassRows=[], currentPressure=null, penaltyContextByTeam={}, defensiveDriveContextByTeam={}, performanceLuckGames=[], penaltyPriorByTeam={}, penaltyCalibration=null, historicalReference=null, qbEpaDefinition=null, priorProfiles={}, schedule=[], gameHistory={}, teamIds=[], priorGames=1, priorGamesByTeam=null, useChartedPassRush=false, unitPriorReversion=0, passRushFallbackPolicy='v99', coveragePolicy='v100-historical', qbPolicy='v101-legacy', receiverPolicy='v101-legacy', olPolicy='v101-legacy', offenseOutcomePolicy='v101-legacy', rbPolicy='v101-legacy' }) {"
+    },
+    "c44e59e.legacy-live-use": {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "path": "model/live_profiles.js",
+      "startLine": 1594,
+      "endLine": 1595,
+      "text": "          : (rbPolicy==='v102-residual-receiving' && priorRbOrthogonalValues.length>=20\n            ? continuousPercentileValue(priorRbOrthogonalValues,rbLiveRaw,true)"
+    },
+    "8d72a03.priorQbPassEpa": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 249,
+      "endLine": 253,
+      "text": "  function priorQbPassEpa(profile) {\n    const qb=profile?.qb||{};\n    const v=Number.isFinite(Number(qb.epaoe))?Number(qb.epaoe):Number(qb.epa_per_play);\n    return Number.isFinite(v)?v:null;\n  }"
+    },
+    "8d72a03.priorReceiverWrteEpa": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 258,
+      "endLine": 267,
+      "text": "  function priorReceiverWrteEpa(profile) {\n    const rec=profile?.receivers||{}, rb=profile?.rb||{};\n    const recv=Number(rec.adj_epa), recTargets=Math.max(0,Number(rec.targets)||0);\n    const rbRecv=Number(rb.adj_recv), rbTargets=Math.max(0,Number(rb.targets)||0);\n    if (!Number.isFinite(recv)) return null;\n    if (recTargets>rbTargets && rbTargets>0 && Number.isFinite(rbRecv)) {\n      return (recv*recTargets-rbRecv*rbTargets)/(recTargets-rbTargets);\n    }\n    return recv;\n  }"
+    },
+    "8d72a03.ridgeOrthogonalSlope": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 269,
+      "endLine": 280,
+      "text": "  function ridgeOrthogonalSlope(points, ridgeFraction=0.50) {\n    const rows=(points||[]).filter((p)=>Number.isFinite(Number(p?.x))&&Number.isFinite(Number(p?.y))).map((p)=>({x:Number(p.x),y:Number(p.y)}));\n    if (rows.length<8) return 0;\n    const mx=rows.reduce((a,p)=>a+p.x,0)/rows.length, my=rows.reduce((a,p)=>a+p.y,0)/rows.length;\n    let cov=0,varx=0;\n    for (const p of rows) { cov+=(p.x-mx)*(p.y-my); varx+=(p.x-mx)*(p.x-mx); }\n    if (!(varx>0)) return 0;\n    // Ridge shrinks a shared-outcome OLS slope toward zero; this deliberately\n    // avoids treating every unit of team/QB efficiency as value that must be\n    // subtracted from the receiving unit that helped create it.\n    return cov/(varx*(1+Math.max(0,Number(ridgeFraction)||0)));\n  }"
+    },
+    "8d72a03.partialResidual": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 282,
+      "endLine": 286,
+      "text": "  function partialResidual(value, environment, beta, environmentCenter) {\n    const y=Number(value), x=Number(environment), b=Number(beta), c=Number(environmentCenter);\n    if (!Number.isFinite(y)) return null;\n    return Number.isFinite(x)&&Number.isFinite(b)&&Number.isFinite(c) ? y-b*(x-c) : y;\n  }"
+    },
+    "8d72a03.priorReceiverResidual": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 288,
+      "endLine": 290,
+      "text": "  function priorReceiverResidual(profile, beta=1, qbCenter=0) {\n    return partialResidual(priorReceiverWrteEpa(profile),priorQbPassEpa(profile),beta,qbCenter);\n  }"
+    },
+    "8d72a03.priorRbOrthogonalComposite": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 292,
+      "endLine": 300,
+      "text": "  function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {\n    const rb=profile?.rb||{};\n    const rush=Number.isFinite(Number(rb.rush_epa))?Number(rb.rush_epa):Number(rb.adj_rush);\n    const recv=Number(rb.adj_recv);\n    const residual=partialResidual(recv,priorQbPassEpa(profile),recvBeta,qbCenter);\n    if (!Number.isFinite(rush) && !Number.isFinite(residual)) return null;\n    if (Number.isFinite(rush)&&Number.isFinite(residual)) return .70*rush+.30*residual;\n    return Number.isFinite(rush)?rush:residual;\n  }"
+    },
+    "8d72a03.continuousPercentileValue": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 965,
+      "endLine": 982,
+      "text": "  function continuousPercentileValue(values, value, higherBetter=true) {\n    const x=Number(value), arr=(values||[]).map(Number).filter(Number.isFinite).sort((a,b)=>a-b);\n    if (!Number.isFinite(x) || !arr.length) return null;\n    if (arr.length===1) return 50;\n    const n=arr.length;\n    let pct;\n    if (x<=arr[0]) pct=50/n;\n    else if (x>=arr[n-1]) pct=100-50/n;\n    else {\n      let hi=1;\n      while (hi<n && arr[hi]<x) hi++;\n      const lo=hi-1, span=arr[hi]-arr[lo];\n      const f=span>0?(x-arr[lo])/span:.5;\n      const loPct=100*(lo+.5)/n, hiPct=100*(hi+.5)/n;\n      pct=loPct+f*(hiPct-loPct);\n    }\n    return higherBetter ? pct : 100-pct;\n  }"
+    },
+    "8d72a03.priorPercentile": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 100,
+      "endLine": 103,
+      "text": "  function priorPercentile(priorProfiles, getter, value, higherBetter=true) {\n    const vals = Object.values(priorProfiles || {}).map(getter).filter((v)=>Number.isFinite(Number(v)));\n    return percentileValue(vals, value, higherBetter);\n  }"
+    },
+    "8d72a03.v115-design-comment": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1219,
+      "endLine": 1222,
+      "text": "    // V115 learns how much of receiving efficiency historically moves with the QB\n    // environment, then subtracts only that fitted (ridge-shrunk) component. The\n    // historical receiver rate is reconstructed WR/TE-only where RB target data\n    // permit, avoiding the V114 historical/live room-definition mismatch."
+    },
+    "8d72a03.fit": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1223,
+      "endLine": 1226,
+      "text": "    const priorQbPassValues=Object.values(priorProfiles||{}).map(priorQbPassEpa).filter(Number.isFinite);\n    const orthogonalQbCenter=medianValue(priorQbPassValues);\n    const receiverPassBeta=receiverPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:priorReceiverWrteEpa(p)})),UNIT_V115.orthogonalRidgeFraction) : 1;\n    const rbRecvPassBeta=rbPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:Number(p?.rb?.adj_recv)})),UNIT_V115.orthogonalRidgeFraction) : 1;"
+    },
+    "8d72a03.live-rb": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1235,
+      "endLine": 1235,
+      "text": "      const rbRecvResidual=rbResidualPolicyActive(rbPolicy) ? partialResidual(r.rbRecvEpa,r.qbAttemptEpa,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0) : r.rbRecvEpa;"
+    },
+    "8d72a03.wr-reference": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1250,
+      "endLine": 1252,
+      "text": "    const priorReceiverResidualValues=Object.values(priorProfiles||{}).map((p)=>priorReceiverResidual(p,receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);\n    const priorReceiverResidualMedian=medianValue(priorReceiverResidualValues);\n    const priorReceiverByTeam=Object.fromEntries(ids.map((t)=>{ const v=priorReceiverResidual(priorProfiles[t]||{},receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0); return [t,Number.isFinite(v)&&priorReceiverResidualValues.length>=20?continuousPercentileValue(priorReceiverResidualValues,v,true):null]; }));"
+    },
+    "8d72a03.live-cdf-reference": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1253,
+      "endLine": 1253,
+      "text": "    const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);"
+    },
+    "8d72a03.effective-reference": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1404,
+      "endLine": 1404,
+      "text": "    const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);"
+    },
+    "8d72a03.effective-individual": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1426,
+      "endLine": 1434,
+      "text": "    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{\n      const prior=priorProfiles[t]||{};\n      if (rbPolicy==='v109-stabilized-residual'||rbPolicy==='v114-centered-stabilized-residual'||rbPolicy==='v115-partial-orthogonal') {\n        const value=priorRbOrthogonalComposite(prior);\n        return [t, Number.isFinite(value)&&priorRbOrthogonalValues.length>=20 ? continuousPercentileValue(priorRbOrthogonalValues,value,true) : null];\n      }\n      const value=prior?.rb?.composite;\n      return [t, priorPercentile(priorProfiles,(p)=>p?.rb?.composite,value,true)];\n    }));"
+    },
+    "8d72a03.run-prior-analogue": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1421,
+      "endLine": 1426,
+      "text": "    const priorRunDefenseByTeam = Object.fromEntries(ids.map((t)=>{\n      const prior=priorProfiles[t]||{};\n      const value=prior?.dl?.run_stop_rate;\n      return [t, priorPercentile(priorProfiles,(p)=>p?.dl?.run_stop_rate,value,true)];\n    }));\n    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{"
+    },
+    "8d72a03.legacy-rb-score": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1195,
+      "endLine": 1195,
+      "text": "    const scoreRbLegacy=percentileMap(Object.fromEntries(ids.map(t=>[t,raw[t]?.playerStatsUsable ? raw[t]?.rbComposite : null])),true);"
+    },
+    "8d72a03.build-policy-defaults": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1002,
+      "endLine": 1002,
+      "text": "  function buildProfiles({ teamRows=[], playerRows=[], ftnRows=[], pfrPassRows=[], priorPfrPassRows=[], currentPressure=null, penaltyContextByTeam={}, defensiveDriveContextByTeam={}, performanceLuckGames=[], penaltyPriorByTeam={}, penaltyCalibration=null, historicalReference=null, qbEpaDefinition=null, priorProfiles={}, schedule=[], gameHistory={}, teamIds=[], priorGames=1, priorGamesByTeam=null, useChartedPassRush=false, unitPriorReversion=0, passRushFallbackPolicy='v99', coveragePolicy='v100-historical', qbPolicy='v101-legacy', receiverPolicy='v101-legacy', olPolicy='v101-legacy', offenseOutcomePolicy='v101-legacy', rbPolicy='v101-legacy' }) {"
+    },
+    "8d72a03.legacy-live-use": {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "path": "model/live_profiles.js",
+      "startLine": 1608,
+      "endLine": 1609,
+      "text": "          : (rbPolicy==='v102-residual-receiving' && priorRbOrthogonalValues.length>=20\n            ? continuousPercentileValue(priorRbOrthogonalValues,rbLiveRaw,true)"
+    },
+    "base.priorQbPassEpa": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 249,
+      "endLine": 253,
+      "text": "  function priorQbPassEpa(profile) {\n    const qb=profile?.qb||{};\n    const v=Number.isFinite(Number(qb.epaoe))?Number(qb.epaoe):Number(qb.epa_per_play);\n    return Number.isFinite(v)?v:null;\n  }"
+    },
+    "base.priorReceiverWrteEpa": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 258,
+      "endLine": 267,
+      "text": "  function priorReceiverWrteEpa(profile) {\n    const rec=profile?.receivers||{}, rb=profile?.rb||{};\n    const recv=Number(rec.adj_epa), recTargets=Math.max(0,Number(rec.targets)||0);\n    const rbRecv=Number(rb.adj_recv), rbTargets=Math.max(0,Number(rb.targets)||0);\n    if (!Number.isFinite(recv)) return null;\n    if (recTargets>rbTargets && rbTargets>0 && Number.isFinite(rbRecv)) {\n      return (recv*recTargets-rbRecv*rbTargets)/(recTargets-rbTargets);\n    }\n    return recv;\n  }"
+    },
+    "base.ridgeOrthogonalSlope": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 269,
+      "endLine": 280,
+      "text": "  function ridgeOrthogonalSlope(points, ridgeFraction=0.50) {\n    const rows=(points||[]).filter((p)=>Number.isFinite(Number(p?.x))&&Number.isFinite(Number(p?.y))).map((p)=>({x:Number(p.x),y:Number(p.y)}));\n    if (rows.length<8) return 0;\n    const mx=rows.reduce((a,p)=>a+p.x,0)/rows.length, my=rows.reduce((a,p)=>a+p.y,0)/rows.length;\n    let cov=0,varx=0;\n    for (const p of rows) { cov+=(p.x-mx)*(p.y-my); varx+=(p.x-mx)*(p.x-mx); }\n    if (!(varx>0)) return 0;\n    // Ridge shrinks a shared-outcome OLS slope toward zero; this deliberately\n    // avoids treating every unit of team/QB efficiency as value that must be\n    // subtracted from the receiving unit that helped create it.\n    return cov/(varx*(1+Math.max(0,Number(ridgeFraction)||0)));\n  }"
+    },
+    "base.partialResidual": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 282,
+      "endLine": 286,
+      "text": "  function partialResidual(value, environment, beta, environmentCenter) {\n    const y=Number(value), x=Number(environment), b=Number(beta), c=Number(environmentCenter);\n    if (!Number.isFinite(y)) return null;\n    return Number.isFinite(x)&&Number.isFinite(b)&&Number.isFinite(c) ? y-b*(x-c) : y;\n  }"
+    },
+    "base.priorReceiverResidual": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 288,
+      "endLine": 290,
+      "text": "  function priorReceiverResidual(profile, beta=1, qbCenter=0) {\n    return partialResidual(priorReceiverWrteEpa(profile),priorQbPassEpa(profile),beta,qbCenter);\n  }"
+    },
+    "base.priorRbOrthogonalComposite": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 292,
+      "endLine": 300,
+      "text": "  function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {\n    const rb=profile?.rb||{};\n    const rush=Number.isFinite(Number(rb.rush_epa))?Number(rb.rush_epa):Number(rb.adj_rush);\n    const recv=Number(rb.adj_recv);\n    const residual=partialResidual(recv,priorQbPassEpa(profile),recvBeta,qbCenter);\n    if (!Number.isFinite(rush) && !Number.isFinite(residual)) return null;\n    if (Number.isFinite(rush)&&Number.isFinite(residual)) return .70*rush+.30*residual;\n    return Number.isFinite(rush)?rush:residual;\n  }"
+    },
+    "base.continuousPercentileValue": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 965,
+      "endLine": 982,
+      "text": "  function continuousPercentileValue(values, value, higherBetter=true) {\n    const x=Number(value), arr=(values||[]).map(Number).filter(Number.isFinite).sort((a,b)=>a-b);\n    if (!Number.isFinite(x) || !arr.length) return null;\n    if (arr.length===1) return 50;\n    const n=arr.length;\n    let pct;\n    if (x<=arr[0]) pct=50/n;\n    else if (x>=arr[n-1]) pct=100-50/n;\n    else {\n      let hi=1;\n      while (hi<n && arr[hi]<x) hi++;\n      const lo=hi-1, span=arr[hi]-arr[lo];\n      const f=span>0?(x-arr[lo])/span:.5;\n      const loPct=100*(lo+.5)/n, hiPct=100*(hi+.5)/n;\n      pct=loPct+f*(hiPct-loPct);\n    }\n    return higherBetter ? pct : 100-pct;\n  }"
+    },
+    "base.priorPercentile": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 100,
+      "endLine": 103,
+      "text": "  function priorPercentile(priorProfiles, getter, value, higherBetter=true) {\n    const vals = Object.values(priorProfiles || {}).map(getter).filter((v)=>Number.isFinite(Number(v)));\n    return percentileValue(vals, value, higherBetter);\n  }"
+    },
+    "base.v115-design-comment": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1219,
+      "endLine": 1222,
+      "text": "    // V115 learns how much of receiving efficiency historically moves with the QB\n    // environment, then subtracts only that fitted (ridge-shrunk) component. The\n    // historical receiver rate is reconstructed WR/TE-only where RB target data\n    // permit, avoiding the V114 historical/live room-definition mismatch."
+    },
+    "base.fit": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1223,
+      "endLine": 1226,
+      "text": "    const priorQbPassValues=Object.values(priorProfiles||{}).map(priorQbPassEpa).filter(Number.isFinite);\n    const orthogonalQbCenter=medianValue(priorQbPassValues);\n    const receiverPassBeta=receiverPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:priorReceiverWrteEpa(p)})),UNIT_V115.orthogonalRidgeFraction) : 1;\n    const rbRecvPassBeta=rbPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:Number(p?.rb?.adj_recv)})),UNIT_V115.orthogonalRidgeFraction) : 1;"
+    },
+    "base.live-rb": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1235,
+      "endLine": 1235,
+      "text": "      const rbRecvResidual=rbResidualPolicyActive(rbPolicy) ? partialResidual(r.rbRecvEpa,r.qbAttemptEpa,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0) : r.rbRecvEpa;"
+    },
+    "base.wr-reference": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1250,
+      "endLine": 1252,
+      "text": "    const priorReceiverResidualValues=Object.values(priorProfiles||{}).map((p)=>priorReceiverResidual(p,receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);\n    const priorReceiverResidualMedian=medianValue(priorReceiverResidualValues);\n    const priorReceiverByTeam=Object.fromEntries(ids.map((t)=>{ const v=priorReceiverResidual(priorProfiles[t]||{},receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0); return [t,Number.isFinite(v)&&priorReceiverResidualValues.length>=20?continuousPercentileValue(priorReceiverResidualValues,v,true):null]; }));"
+    },
+    "base.live-cdf-reference": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1253,
+      "endLine": 1253,
+      "text": "    const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);"
+    },
+    "base.effective-reference": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1404,
+      "endLine": 1404,
+      "text": "    const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);"
+    },
+    "base.effective-individual": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1426,
+      "endLine": 1434,
+      "text": "    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{\n      const prior=priorProfiles[t]||{};\n      if (rbPolicy==='v109-stabilized-residual'||rbPolicy==='v114-centered-stabilized-residual'||rbPolicy==='v115-partial-orthogonal') {\n        const value=priorRbOrthogonalComposite(prior);\n        return [t, Number.isFinite(value)&&priorRbOrthogonalValues.length>=20 ? continuousPercentileValue(priorRbOrthogonalValues,value,true) : null];\n      }\n      const value=prior?.rb?.composite;\n      return [t, priorPercentile(priorProfiles,(p)=>p?.rb?.composite,value,true)];\n    }));"
+    },
+    "base.run-prior-analogue": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1421,
+      "endLine": 1426,
+      "text": "    const priorRunDefenseByTeam = Object.fromEntries(ids.map((t)=>{\n      const prior=priorProfiles[t]||{};\n      const value=prior?.dl?.run_stop_rate;\n      return [t, priorPercentile(priorProfiles,(p)=>p?.dl?.run_stop_rate,value,true)];\n    }));\n    const priorRbByTeam = Object.fromEntries(ids.map((t)=>{"
+    },
+    "base.legacy-rb-score": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1195,
+      "endLine": 1195,
+      "text": "    const scoreRbLegacy=percentileMap(Object.fromEntries(ids.map(t=>[t,raw[t]?.playerStatsUsable ? raw[t]?.rbComposite : null])),true);"
+    },
+    "base.build-policy-defaults": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1002,
+      "endLine": 1002,
+      "text": "  function buildProfiles({ teamRows=[], playerRows=[], ftnRows=[], pfrPassRows=[], priorPfrPassRows=[], currentPressure=null, penaltyContextByTeam={}, defensiveDriveContextByTeam={}, performanceLuckGames=[], penaltyPriorByTeam={}, penaltyCalibration=null, historicalReference=null, qbEpaDefinition=null, priorProfiles={}, schedule=[], gameHistory={}, teamIds=[], priorGames=1, priorGamesByTeam=null, useChartedPassRush=false, unitPriorReversion=0, passRushFallbackPolicy='v99', coveragePolicy='v100-historical', qbPolicy='v101-legacy', receiverPolicy='v101-legacy', olPolicy='v101-legacy', offenseOutcomePolicy='v101-legacy', rbPolicy='v101-legacy' }) {"
+    },
+    "base.legacy-live-use": {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "path": "model/live_profiles.js",
+      "startLine": 1608,
+      "endLine": 1609,
+      "text": "          : (rbPolicy==='v102-residual-receiving' && priorRbOrthogonalValues.length>=20\n            ? continuousPercentileValue(priorRbOrthogonalValues,rbLiveRaw,true)"
+    },
+    "doc.scripts/test_v57_unit_regression_rb.js": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "scripts/test_v57_unit_regression_rb.js",
+      "startLine": 1,
+      "endLine": 36,
+      "text": "const fs=require('fs'),vm=require('vm'),path=require('path');\nconst root=path.resolve(__dirname,'..');\nconst ctx={window:{}}; vm.createContext(ctx);\nfor (const rel of ['model/live_profiles.js','model/unit_force_bridge.js']) vm.runInContext(fs.readFileSync(path.join(root,rel),'utf8'),ctx,{filename:rel});\nconst LP=ctx.window.FORCE_LIVE_PROFILE, U=ctx.window.FORCE_UNIT_FORCE_BRIDGE_MODEL;\nlet n=0; const ok=(x,m)=>{n++; if(!x) throw new Error(m)}; const near=(a,b,e,m)=>{n++; if(Math.abs(Number(a)-Number(b))>e) throw new Error(`${m}: ${a} != ${b}`)};\nnear(LP.regressUnitIndex(90,.30),78,1e-9,'90 unit regresses 30% toward 50');\nnear(LP.regressUnitIndex(20,.30),29,1e-9,'20 unit regresses 30% toward 50');\nok(U.WEIGHTS.rbIndex===.07 && !Object.prototype.hasOwnProperty.call(U.WEIGHTS,'rushIndex'),'bridge uses RB rather than team rushing');\n\nconst teams=['KC','DEN','BUF'];\nconst priors={\n KC:{offenseIndex:80,olIndex:20,frontIndex:70,coverageIndex:70,qbIndex:80,receiverIndex:70,rushIndex:60,rb:{composite:.10},dl:{pressure_rate:.25,run_stop_rate:.60},scoring:{}},\n DEN:{offenseIndex:20,olIndex:80,frontIndex:30,coverageIndex:30,qbIndex:20,receiverIndex:30,rushIndex:40,rb:{composite:-.10},dl:{pressure_rate:.15,run_stop_rate:.40},scoring:{}},\n BUF:{offenseIndex:50,olIndex:50,frontIndex:50,coverageIndex:50,qbIndex:50,receiverIndex:50,rushIndex:50,rb:{composite:0},dl:{pressure_rate:.20,run_stop_rate:.50},scoring:{}}\n};\n// No completed games: verify the displayed preseason unit state itself is regressed.\nlet out=LP.buildProfiles({priorProfiles:priors,teamIds:teams,unitPriorReversion:.30});\nnear(out.KC.offenseIndex,71,1e-9,'KC offense prior regressed');\nnear(out.DEN.olIndex,71,1e-9,'DEN OL prior regressed');\nnear(out.KC.rbIndex,85,1e-9,'top RB prior percentile 100 regresses to 85');\nnear(out.DEN.rbIndex,15,1e-9,'bottom RB prior percentile 0 regresses to 15');\nnear(out.BUF.rbIndex,50,1e-9,'median RB prior remains 50');\nok(out.KC._preseasonUnitPrior && out.KC._preseasonUnitPrior.offenseIndex===71,'preseason prior exposed for bridge');\n\nfunction teamRow(team,opp,rushEpa){return {season:'2026',week:'1',season_type:'REG',game_id:`1_${team}_${opp}`,team,opponent_team:opp,passing_epa:'0',rushing_epa:String(rushEpa),attempts:'20',sacks_suffered:'1',carries:'20',receiving_epa:'0',targets:'20',passing_cpoe:'0'};}\nfunction rb(team,opp,name,carries,rushEpa,targets,recEpa){return {season:'2026',week:'1',season_type:'REG',game_id:`1_${team}_${opp}`,team,opponent_team:opp,position:'RB',player_display_name:name,attempts:'0',sacks_suffered:'0',passing_epa:'0',passing_cpoe:'0',carries:String(carries),rushing_epa:String(rushEpa),targets:String(targets),receiving_epa:String(recEpa)};}\nconst teamRows=[teamRow('KC','DEN',4),teamRow('DEN','KC',-3),teamRow('BUF','KC',0)];\nconst playerRows=[rb('KC','DEN','KC RB1',15,4.5,5,1),rb('KC','DEN','KC RB2',5,.5,2,.2),rb('DEN','KC','DEN RB',20,-3,4,-.5),rb('BUF','KC','BUF RB',20,0,4,0)];\nconst schedule=[{week:1,date:'2026-09-01',away:'DEN',home:'KC',awayScore:17,homeScore:31},{week:1,date:'2026-09-01',away:'BUF',home:'DEN',awayScore:20,homeScore:17}];\nout=LP.buildProfiles({teamRows,playerRows,priorProfiles:priors,schedule,teamIds:teams,priorGames:1,unitPriorReversion:.30});\nok(Number.isFinite(out.KC.rbIndex),'live RB index exists');\nok(out.KC.rbIndex>out.DEN.rbIndex,'better RB room grades higher');\nok(out.KC.rb && Number.isFinite(out.KC.rb.room_composite),'RB room composite exposed');\nconsole.log(`PASS: V57 offseason-unit regression + RB unit (${n} checks)`);\n"
+    },
+    "doc.scripts/test_v102_offense_orthogonalization.js": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "scripts/test_v102_offense_orthogonalization.js",
+      "startLine": 1,
+      "endLine": 53,
+      "text": "const fs=require('fs'),vm=require('vm'),path=require('path');\nconst root=path.resolve(__dirname,'..');\nconst ctx={window:{}};ctx.globalThis=ctx.window;vm.createContext(ctx);\nfor(const rel of ['data/matchup-data.js','model/live_profiles.js','model/unit_force_bridge.js']) vm.runInContext(fs.readFileSync(path.join(root,rel),'utf8'),ctx,{filename:rel});\nconst M=ctx.window.MATCHUP_DATA,LP=ctx.window.FORCE_LIVE_PROFILE,U=ctx.window.FORCE_UNIT_FORCE_BRIDGE_MODEL;\nlet n=0;const ok=(x,m)=>{n++;if(!x)throw new Error(m)};const near=(a,b,e=1e-9)=>Math.abs(Number(a)-Number(b))<=e;\nconst teams=['KC','DEN','BUF','WAS'];\nconst schedule=[\n {season:2026,week:1,game_id:'2026_01_KC_DEN',away:'KC',home:'DEN',awayScore:31,homeScore:10},\n {season:2026,week:1,game_id:'2026_01_BUF_WAS',away:'BUF',home:'WAS',awayScore:24,homeScore:20}\n];\nfunction teamRow(team,opp,rushEpa=0,sacks=2){return {season:'2026',week:'1',season_type:'REG',game_id:`2026_01_${team}_${opp}`,team,opponent_team:opp,attempts:'30',sacks_suffered:String(sacks),carries:'20',passing_epa:'2',rushing_epa:String(rushEpa),targets:'24',receiving_epa:'2',def_qb_hits:'2',def_sacks:'1',passing_cpoe:'3',penalties:'5',penalty_yards:'40'};}\nconst teamRows=[teamRow('KC','DEN',-20,8),teamRow('DEN','KC',0,2),teamRow('BUF','WAS',20,0),teamRow('WAS','BUF',0,2)];\nfunction players(rbBoost=0){return [\n {season:'2026',week:'1',season_type:'REG',game_id:'g1',team:'KC',opponent_team:'DEN',position:'QB',position_group:'QB',player_display_name:'Patrick Mahomes',attempts:'30',sacks_suffered:'8',passing_epa:'-20',passing_cpoe:'4',carries:'4',rushing_epa:'1',targets:'0',receiving_epa:'0'},\n {season:'2026',week:'1',season_type:'REG',game_id:'g1',team:'KC',opponent_team:'DEN',position:'WR',position_group:'WR',player_display_name:'KC WR',attempts:'0',sacks_suffered:'0',passing_epa:'0',passing_cpoe:'0',carries:'0',rushing_epa:'0',targets:'16',receiving_epa:'5'},\n {season:'2026',week:'1',season_type:'REG',game_id:'g1',team:'KC',opponent_team:'DEN',position:'RB',position_group:'RB',player_display_name:'KC RB',attempts:'0',sacks_suffered:'0',passing_epa:'0',passing_cpoe:'0',carries:'18',rushing_epa:'2',targets:'8',receiving_epa:String(rbBoost)},\n {season:'2026',week:'1',season_type:'REG',game_id:'g2',team:'BUF',opponent_team:'WAS',position:'QB',position_group:'QB',player_display_name:'BUF QB',attempts:'30',sacks_suffered:'0',passing_epa:'20',passing_cpoe:'4',carries:'4',rushing_epa:'1',targets:'0',receiving_epa:'0'},\n {season:'2026',week:'1',season_type:'REG',game_id:'g2',team:'BUF',opponent_team:'WAS',position:'WR',position_group:'WR',player_display_name:'BUF WR',attempts:'0',sacks_suffered:'0',passing_epa:'0',passing_cpoe:'0',carries:'0',rushing_epa:'0',targets:'16',receiving_epa:'5'},\n {season:'2026',week:'1',season_type:'REG',game_id:'g2',team:'BUF',opponent_team:'WAS',position:'RB',position_group:'RB',player_display_name:'BUF RB',attempts:'0',sacks_suffered:'0',passing_epa:'0',passing_cpoe:'0',carries:'18',rushing_epa:'2',targets:'8',receiving_epa:'0'},\n {season:'2026',week:'1',season_type:'REG',game_id:'g1',team:'DEN',opponent_team:'KC',position:'QB',position_group:'QB',player_display_name:'DEN QB',attempts:'30',sacks_suffered:'2',passing_epa:'0',passing_cpoe:'0',carries:'2',rushing_epa:'0',targets:'0',receiving_epa:'0'},\n {season:'2026',week:'1',season_type:'REG',game_id:'g2',team:'WAS',opponent_team:'BUF',position:'QB',position_group:'QB',player_display_name:'WAS QB',attempts:'30',sacks_suffered:'2',passing_epa:'0',passing_cpoe:'0',carries:'2',rushing_epa:'0',targets:'0',receiving_epa:'0'}\n];}\nconst ctxMap={\n KC:{games:1,pointsAllowed:10,opponentDrives:10,coveragePassEpa:0,coveragePassAttempts:30,offensivePoints:31,offensiveDrives:10,offensePassEpa:6,offensePassAttempts:30,passProtectionDropbacks:38,passProtectionDisruptions:5},\n BUF:{games:1,pointsAllowed:20,opponentDrives:10,coveragePassEpa:0,coveragePassAttempts:30,offensivePoints:24,offensiveDrives:10,offensePassEpa:6,offensePassAttempts:30,passProtectionDropbacks:30,passProtectionDisruptions:5},\n DEN:{games:1,pointsAllowed:31,opponentDrives:10,coveragePassEpa:0,coveragePassAttempts:30,offensivePoints:10,offensiveDrives:10,offensePassEpa:0,offensePassAttempts:30,passProtectionDropbacks:32,passProtectionDisruptions:5},\n WAS:{games:1,pointsAllowed:24,opponentDrives:10,coveragePassEpa:0,coveragePassAttempts:30,offensivePoints:20,offensiveDrives:10,offensePassEpa:0,offensePassAttempts:30,passProtectionDropbacks:32,passProtectionDisruptions:5}\n};\nconst common={teamRows,priorProfiles:M.profiles,schedule,teamIds:teams,priorGames:1,unitPriorReversion:.30,defensiveDriveContextByTeam:ctxMap,qbPolicy:'v102-attempts-opponent-adjusted',receiverPolicy:'v102-residual',olPolicy:'v102-pass-protection',offenseOutcomePolicy:'v102-ppd',rbPolicy:'v102-residual-receiving',coveragePolicy:'v101-attempts'};\nconst a=LP.buildProfiles({...common,playerRows:players(0)});\nok(Number(a.KC.qb.opponent_coverage_index)>Number(a.BUF.qb.opponent_coverage_index),'KC must receive tougher opponent Coverage context than BUF in fixture');\nok(Number(a.KC.qb.opponent_epa_adjustment)>Number(a.BUF.qb.opponent_epa_adjustment),'tougher pass defense must create more positive QB EPA adjustment');\nok(Number(a.KC.qb.opponent_adjusted_epa_per_attempt)>Number(a.KC.qb.actual_pass_epa_per_attempt),'strong-opponent context must lift identical raw QB pass EPA');\nok(a.KC.qb.source.includes('sack-free actual-pass'),'QB provenance must state sack-free actual-pass EPA');\n// Change only aggregate sacks/rushing: V102 QB and OL are owned by PBP context, not those duplicate weekly fields.\nconst alteredRows=teamRows.map(r=>r.team==='KC'?{...r,sacks_suffered:'20',rushing_epa:'200'}:r);\nconst b=LP.buildProfiles({...common,teamRows:alteredRows,playerRows:players(0)});\nok(near(a.KC.qbIndex,b.KC.qbIndex),'aggregate sacks/rushing must not alter V102 QB when actual-pass PBP is unchanged');\nok(near(a.KC.olIndex,b.KC.olIndex),'team rushing EPA and aggregate sack arithmetic must not alter V102 OL when PBP disruptions are unchanged');\n// RB receiving must not leak into WR/TE receiver grade.\nconst c=LP.buildProfiles({...common,playerRows:players(100)});\nok(near(a.KC.receiverIndex,c.KC.receiverIndex),'RB receiving EPA must not alter WR/TE receiver index');\nok(!near(a.KC.rbIndex,c.KC.rbIndex),'RB receiving EPA must remain owned by RB unit');\nok(a.KC.receivers.source.includes('WR')===false || a.KC.receivers.source.includes('V102'),'receiver provenance must be V102 residual');\nok(a.KC.ol.source.includes('pass-protection only'),'OL provenance must exclude team rushing EPA');\nconst W=U.WEIGHTS;\nok(!Object.prototype.hasOwnProperty.call(W,'offenseIndex'),'team EPA must not be a direct canonical bridge input in V102');\nok(Math.abs(W.pointsScoredPerDriveIndex-.20)<1e-12,'20% offensive outcome bridge slot must be points scored per drive');\nok(Math.abs(Object.values(W).reduce((x,y)=>x+y,0)-1)<1e-12,'V102 bridge weights must remain normalized');\nok(a.KC._offenseCompositePolicy==='v102-orthogonal','V102 live offense composite policy must be explicit');\nconsole.log(`PASS: V102 orthogonal offense + opponent-adjusted QB (${n} checks)`);\n"
+    },
+    "doc.CHANGELOG_V57.md": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V57.md",
+      "startLine": 1,
+      "endLine": 15,
+      "text": "# FORCE V57\n\n## 2026 unit priors\n- Apply the same current-era 30% offseason regression-to-mean used by team Elo to 0–100 unit priors, toward neutral 50, before blending 2026 evidence.\n- Derived Pass Rush, Run Defense, and RB priors are regressed after their 2025 percentile construction.\n- Unit-to-FORCE compares live units against the regressed preseason unit prior, so offseason regression itself is not mistaken for in-season improvement/decline.\n\n## First-class RB unit\n- Add `rbIndex`, based on the RB/FB room's 70% rushing EPA/attempt + 30% receiving EPA/target composite, benchmarked against the 2025 RB composite distribution.\n- Replace team `rushIndex` with `rbIndex` in the first-class Unit-to-FORCE bridge while retaining team rushing EPA as a diagnostic.\n- Replace Run Offense/Run Game UI columns with RB and expose Team Efficiency separately in postgame unit-change diagnostics.\n\n## Forecast cleanup\n- Remove the redundant team logo and trailing orphan dot after “QB correction active” in the Predicted Line explanation.\n"
+    },
+    "doc.CHANGELOG_V102.md": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V102.md",
+      "startLine": 1,
+      "endLine": 53,
+      "text": "# FORCE V102 - Orthogonal offense + opponent-adjusted QB\n\n## Why this release exists\n\nV101 fixed defensive double-counting by removing sacks from Coverage. A follow-up unit audit found analogous offensive overlap: team EPA, QB EPA, receiving EPA, OL rushing EPA and RB receiving EPA could all reward or punish the same underlying plays multiple times. Patrick Mahomes/Kansas City was used as a diagnostic case, but V102 is league-wide and contains no team-specific rating target.\n\n## Canonical offense is now outcome + distinct units\n\nThe canonical 20% broad offensive bridge input is **points scored per qualifying offensive drive**, not team EPA. Team EPA remains visible as a diagnostic but no longer directly duplicates QB/receiver/RB play value in the bridge. The remaining offensive bridge weights are unchanged: QB 12%, receivers 8%, OL 8%, RB 7%.\n\nDisplayed Overall Offense is now 20% scoring/drive + 30% QB + 15% WR/TE receiving + 15% OL + 20% RB/FB.\n\n## QB owns QB performance, not sacks\n\nLive QB is now:\n\n- 65% opponent-adjusted EPA on **actual pass attempts only**; sacks/spikes excluded,\n- 20% CPOE,\n- 15% QB rushing EPA/attempt.\n\nOpponent adjustment is data-calibrated rather than hard-coded: V102 fits the 2025 relationship between Coverage index and raw pass EPA allowed, then adjusts each 2026 QB's sack-free pass EPA by the attempt-weighted current Coverage quality of the defenses faced. Because current Coverage incorporates later games, this is a retrospective opponent-quality update consistent with FORCE's team look-behind philosophy.\n\nThe QB index still begins from the 30%-regressed 2025 preseason prior. Good live play therefore moves the unit upward from that anchor; it is not rebuilt from a separate baseline.\n\n## Receivers and RBs no longer claim the same targets\n\n- Receivers = **WR/TE only**. RB/FB targets are excluded.\n- WR/TE receiving EPA is graded as a residual versus the team's sack-free actual-pass EPA baseline.\n- RB = RB/FB only: 70% rushing EPA/attempt + 30% receiving EPA residual versus the same sack-free pass baseline.\n- QB rushing remains in QB and never enters RB.\n\n## OL owns pass protection only\n\nThe old 30% team-rushing-EPA contribution is removed from OL. V102 derives OL disruption from play-by-play dropbacks and counts a dropback as disrupted when **QB hit OR sack** occurs. A sack/hit on the same play therefore counts once, eliminating provider-definition ambiguity.\n\n## Defense preserved\n\nV101 Coverage remains sack-free. V100 Defense remains 36% Coverage + 16% Pass Rush + 28% Run Defense + 20% defensive points allowed per opponent drive.\n\n## Continuity\n\nThe frozen Week-2 entry baseline retains V101 offensive semantics. V102's new unit definitions apply to current/new evidence and do not retroactively rewrite the baseline.\n\n## Diagnostics\n\n- `FORCE_QB_DEBUG(team)`\n- `FORCE_UNIT_OVERLAP_AUDIT(team?)`\n- existing `FORCE_UNIT_AUDIT`, `FORCE_DEFENSE_DEBUG`, `FORCE_PASS_RUSH_DEBUG`, and `FORCE_RATING_LEDGER` remain available.\n\n## Validation\n\nV102 adds regression coverage for sack-free/opponent-adjusted QB, receiver/RB separation, de-duplicated OL disruption, the scoring-per-drive offensive bridge, and Week-2 baseline compatibility.\n"
+    },
+    "doc.CHANGELOG_V104.md": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V104.md",
+      "startLine": 1,
+      "endLine": 39,
+      "text": "# FORCE V104 - historical QB calibration + like-for-like offense benchmarks\n\n## Why\n\nV103 fixed the conceptual QB-rushing overlap but exposed a scale problem: pass EPA was still mapped through a 32-team full-season percentile, causing six teams to hit 100 after two games. The early-regime controller could also reduce the QB prior below one game, allowing two-game samples to dominate the final grade. Separate audits found that V102's RB residual and OL disruption metrics were being scored against 2025 benchmarks defined differently from the live metrics.\n\n## Changes\n\n### QB\n- Replaces the V103 shifted 32-team full-season pass-EPA percentile with same-sized rolling **2025 regular-season PBP windows**.\n- Historical QB benchmark uses the same sack-free actual-pass EPA/attempt ownership as the live PBP path. Current opponent adjustment remains applied before scoring.\n- Uses continuous empirical percentile interpolation across hundreds of historical windows, preventing the V103 second-highest-value saturation bug.\n- CPOE is shrunk toward zero by pass-attempt volume: `attempts / (attempts + 60)` before the existing tanh transform.\n- The QB preseason prior is floored at **1.0 equivalent game through the first four current games**, even when V37 accelerates other units below one game.\n- Positive-only, kneel-free QB rushing bonus remains unchanged and capped at +12.\n- `FORCE_QB_DEBUG(team)` now reports measured QB, displayed/scenario QB, scenario adjustment, benchmark sample size, raw/effective CPOE, and the QB prior actually used.\n\n### Offensive line\n- Live PBP pass-protection disruption rate is now calibrated against same-sized rolling 2025 PBP windows using the identical definition: **QB hit OR sack counts once per dropback**.\n- Removes the V103 mismatch between live de-duplicated disruption and the older 2025 `pressure_rate_allowed` benchmark when the historical PBP reference is available.\n\n### Running backs\n- V102's receiving-residual RB composite is now scored against a like-for-like 2025 residual benchmark rather than the old raw receiving composite.\n- Historical benchmark uses 70% RB rushing EPA + 30% (RB receiving efficiency − team/QB passing baseline), matching the intended orthogonal live construct as closely as the bundled 2025 snapshot permits.\n\n### Returning-QB scenario visibility\n- Scenario overlays remain intact for forecast continuity, but QB diagnostics now expose both the measured V104 QB index and the displayed scenario-adjusted value.\n- QB unit cells with an active scenario carry an explanatory tooltip.\n\n## Intentionally unchanged\n- Offense/Defense top-level display scaling is not rescaled in V104.\n- The V46 Unit → FORCE bridge cap remains ±7.5 pending a dedicated historical forecast backtest.\n- The V100 defensive points-per-drive weight remains 20% in this release. The observed overlap with Coverage is real, but no clean historical residual/outcome calibration is bundled yet; changing the weight without a replay would mix measurement repair with an unvalidated forecast change.\n\n## Validation\n- Adds `test_v104_contract.js`.\n- Adds `test_v104_qb_calibration.js` covering historical-window scoring, CPOE shrinkage, QB prior floor, rushing bonus retention, OL benchmark use, and RB residual reference construction.\n- Adds `test_v104_reference.py` covering rolling historical PBP window construction.\n"
+    },
+    "doc.CHANGELOG_V109.md": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V109.md",
+      "startLine": 1,
+      "endLine": 10,
+      "text": "# FORCE V109\n\n- Stabilizes WR/TE residual receiving EPA toward the live 2026 league environment by WR/TE target volume before converting it to a full-season 0–100 receiver scale.\n- Stabilizes RB/FB rushing EPA by carries and receiving-residual EPA by targets separately before the existing 70/30 RB room blend, eliminating tiny-target receiving explosions and the repeated 98.44 live-score pileup.\n- Rebuilds the RB preseason prior on the same orthogonal residual definition used live.\n- Rebuilds Receiver preseason calibration on the same residual definition used live.\n- Replaces Luck expected wins based on pregame FORCE probabilities with postgame Pythagorean expected wins from points scored/allowed. Pregame expected wins remain visible only for audit.\n- Overall Luck is 70% expected-win-surplus luck and 30% Penalty Impact, so net penalty benefit contributes directly and directionally to the Luck score.\n- Adds `FORCE_LUCK_DEBUG(team)` and expands Receiver/RB diagnostics with stabilized values, sample sizes, reliability weights, and live scores.\n"
+    },
+    "doc.CHANGELOG_V114.md": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V114.md",
+      "startLine": 1,
+      "endLine": 9,
+      "text": "# FORCE V114 - Centered Receiver / RB Quality Scales\n\n- Fix a V109 policy-dispatch bug: the active stabilized Receiver path now actually uses the intended WR/TE-only receiving EPA/target residual versus team sack-free passing EPA. RB/FB targets are no longer allowed to leak into the Receiver room.\n- Fix the matching RB policy-dispatch bug: the active stabilized RB path now uses RB receiving EPA/target residual versus team sack-free passing EPA instead of silently falling back to raw receiving EPA.\n- Keep V109 sample-size stabilization, but environment-align stabilized 2026 Receiver and RB signals before full-season historical quality mapping. The current league center is translated to the historical median (quality 50), preserving current-season relative differences while removing league-environment drift.\n- Receiver and RB are calibrated independently; no forced 16/16 split and no shared stretch is used.\n- Add calibrated/raw centers to unit diagnostics: Receiver exposes current league residual, stabilized residual, calibrated residual, and historical residual median. RB exposes current league component center, stabilized composite, calibrated composite, and historical composite median.\n- Predictive bridge weights are unchanged. This is a measurement/calibration correction to the existing first-class Receiver/RB units, not a new additive forecast feature.\n"
+    },
+    "doc.CHANGELOG_V115.md": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "CHANGELOG_V115.md",
+      "startLine": 1,
+      "endLine": 10,
+      "text": "# FORCE V115 - Partial Orthogonalization for Receiver/RB\n\n- Replaces one-for-one Receiver subtraction of team/QB pass EPA with a league-wide 2025 fitted coefficient, ridge-shrunk toward zero so the Receiver room is not charged for all of the passing efficiency it helped create.\n- Reconstructs the 2025 Receiver benchmark closer to WR/TE-only by removing RB receiving EPA weighted by RB targets when the historical snapshot provides both.\n- Applies the same partial QB-environment residual concept to RB receiving.\n- Keeps RB rushing directly credited to the RB/FB room rather than inventing an OL subtraction from a pass-protection metric.\n- Moderately relaxes opportunity stabilizers (Receiver targets 120→80; RB carries 80→50; RB receiving targets 60→40) so exceptional current evidence can reach the upper tail while remaining sample-stabilized.\n- Retains V114 environment centering and matching historical quality mapping.\n- Leaves QB, OL, Offense/Defense composite calibration, Luck, Unit→FORCE bridge weights, Elo/forecast logic, and predictive-feature gates unchanged.\n"
+    },
+    "doc.scripts/test_v104_qb_calibration.js": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "scripts/test_v104_qb_calibration.js",
+      "startLine": 1,
+      "endLine": 38,
+      "text": "const fs=require('fs'),vm=require('vm'),path=require('path');\nconst root=path.resolve(__dirname,'..');\nconst ctx={window:{}};ctx.globalThis=ctx.window;vm.createContext(ctx);\nfor(const rel of ['data/matchup-data.js','model/live_profiles.js']) vm.runInContext(fs.readFileSync(path.join(root,rel),'utf8'),ctx,{filename:rel});\nconst M=ctx.window.MATCHUP_DATA,LP=ctx.window.FORCE_LIVE_PROFILE;\nlet n=0;const ok=(x,m)=>{n++;if(!x)throw new Error(m)};\n// Synthetic 2025 two-game-window reference with a wide historical distribution.\nconst qbBench=[];const olBench=[];\nfor(let i=0;i<400;i++){\n  const z=(i-199.5)/100;\n  qbBench.push(0.10+0.18*Math.tanh(z));\n  olBench.push(0.18+0.07*Math.tanh(z));\n}\nconst hist={sample_windows:{'1':{qb_pass_epa:qbBench,ol_disruption_rate:olBench},'2':{qb_pass_epa:qbBench,ol_disruption_rate:olBench},'3':{qb_pass_epa:qbBench,ol_disruption_rate:olBench},'4':{qb_pass_epa:qbBench,ol_disruption_rate:olBench}}};\nconst teams=Object.keys(M.profiles),playerRows=[],teamRows=[],schedule=[],drive={};\nfor(const t of teams){\n  const livePass=t==='SF'?0.27:t==='BUF'?0.24:t==='KC'?0.20:0.10;\n  const cpoe=t==='SF'?10:t==='BUF'?7:t==='KC'?-2:0;\n  for(let w=1;w<=2;w++){\n    playerRows.push({season:'2026',week:String(w),season_type:'REG',game_id:`${t}-${w}`,team:t,opponent_team:'CLE',position:'QB',position_group:'QB',player_display_name:M.profiles[t].qb?.qb||`${t} QB`,attempts:'30',sacks_suffered:'0',passing_epa:String(livePass*30),passing_cpoe:String(cpoe),carries:'2',rushing_epa:t==='BUF'?'1':'0',targets:'0',receiving_epa:'0'});\n    teamRows.push({season:'2026',week:String(w),season_type:'REG',game_id:`${t}-${w}`,team:t,opponent_team:'CLE',attempts:'30',sacks_suffered:'0',carries:'20',passing_epa:String(livePass*30),rushing_epa:'0',targets:'20',receiving_epa:'0',def_qb_hits:'0',def_sacks:'0',passing_cpoe:String(cpoe),penalties:'0',penalty_yards:'0'});\n  }\n  drive[t]={games:2,offensePassEpa:livePass*60,offensePassAttempts:60,passProtectionDropbacks:60,passProtectionDisruptions:10,qbRushEpa:t==='BUF'?2:0,qbRushAttempts:4};\n  schedule.push({season:2026,week:1,game_id:`s-${t}-1`,home:t,away:'ZZZ',homeScore:24,awayScore:17},{season:2026,week:2,game_id:`s-${t}-2`,home:t,away:'ZZZ',homeScore:27,awayScore:20});\n}\nconst accelerated=Object.fromEntries(teams.map(t=>[t,.25]));\nconst out=LP.buildProfiles({playerRows,teamRows,schedule,priorProfiles:M.profiles,historicalReference:hist,teamIds:teams,priorGames:1,priorGamesByTeam:accelerated,unitPriorReversion:.30,defensiveDriveContextByTeam:drive,qbPolicy:'v104-historical-calibrated',receiverPolicy:'v102-residual',olPolicy:'v102-pass-protection',offenseOutcomePolicy:'v102-ppd',rbPolicy:'v102-residual-receiving',coveragePolicy:'v101-attempts'});\nok(out.SF.qb.pass_epa_score<100,'same-sized empirical QB benchmark must not trivially saturate to 100');\nok(out.SF.qb.cpoe_score < LP.qbCpoeScore(10),'60-attempt CPOE must be shrunk below raw transform');\nok(out.SF.qb.prior_games_used===1,'QB prior floor must override 0.25-game early acceleration in first four games');\nok(out.SF._live.qbPriorGames===1,'QB prior floor must be visible in diagnostics');\nok(out.BUF.qb.rush_bonus>0,'positive QB rushing bonus retained');\nok(out.KC.qb.rush_bonus===0,'zero rushing should not alter QB grade');\nok(out.SF.olIndex!=null,'OL same-sized historical benchmark must produce a live rating');\nconst rbPriorVals=Object.values(M.profiles).map(LP.priorRbOrthogonalComposite).filter(Number.isFinite);\nok(rbPriorVals.length>=20,'like-for-like 2025 RB residual benchmark should be constructible');\nconsole.log(`PASS: V104 QB/OL/RB calibration (${n} checks)`);\n"
+    },
+    "doc.scripts/test_v104_contract.js": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "scripts/test_v104_contract.js",
+      "startLine": 1,
+      "endLine": 17,
+      "text": "const fs=require('fs'),path=require('path');const root=path.resolve(__dirname,'..');\nconst app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8'),server=fs.readFileSync(path.join(root,'force_server.py'),'utf8'),live=fs.readFileSync(path.join(root,'model/live_profiles.js'),'utf8');\nlet n=0;const ok=(x,m)=>{n++;if(!x)throw new Error(m)};\nok(server.includes(\"APP_VERSION = 'V121'\"),'server V104 identity');\nok(server.includes('v104_reference_2025_payload'),'V104 historical reference payload missing');\nok(server.includes('_v104_reference_from_drive_games'),'V104 same-sized PBP reference builder missing');\nok(app.includes(\"qbPolicy: 'v106-current-season-stabilized'\"),'V104 live QB policy missing');\nok(app.includes('historicalReference: S.liveGameFlow2026?.v104_reference || null'),'V104 historical reference not passed into live profiles');\nok(live.includes('cpoeShrinkAttempts:60.0'),'V104 CPOE attempt shrink missing');\nok(live.includes('priorFloorGames:1.0')&&live.includes('priorFloorThroughGames:4'),'V104 QB prior floor missing');\nok(live.includes(\"historicalWindowValues(historicalReference,'qb_pass_epa'\"),'V104 QB same-sized benchmark missing');\nok(live.includes(\"historicalWindowValues(historicalReference,'ol_disruption_rate'\"),'V104 OL same-definition benchmark missing');\nok(live.includes('priorRbOrthogonalComposite'),'V104 like-for-like RB residual benchmark missing');\nok(app.includes('measuredQbIndex')&&app.includes('displayedQbIndex')&&app.includes('scenarioAdjustment'),'V104 QB scenario diagnostics missing');\nok(fs.existsSync(path.join(root,'CHANGELOG_V104.md')),'V104 changelog missing');\nconsole.log(`PASS: V104 contract (${n} checks)`);\n"
+    },
+    "doc.scripts/test_v114_unit_centering.js": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "scripts/test_v114_unit_centering.js",
+      "startLine": 1,
+      "endLine": 22,
+      "text": "const fs=require('fs'),vm=require('vm');\nconst code=fs.readFileSync('model/live_profiles.js','utf8');\nconst ctx={window:{},console};vm.createContext(ctx);vm.runInContext(code,ctx);\nconst L=ctx.window.FORCE_LIVE_PROFILE;let n=0;const ok=(x,m)=>{if(!x)throw new Error(m);n++;};\nok(L.receiverResidualPolicyActive('v114-centered-stabilized-residual'),'V114 receiver residual policy active');\nok(L.rbResidualPolicyActive('v114-centered-stabilized-residual'),'V114 RB residual policy active');\nok(L.UNIT_V114.environmentAlign===true,'V114 environment alignment enabled');\nconst aligned=L.environmentAlignToHistoricalCenter(.20,.15,.05);\nok(Math.abs(aligned-.10)<1e-12,'environment alignment preserves distance from current center around historical center');\nok(Math.abs(L.environmentAlignToHistoricalCenter(.15,.15,.05)-.05)<1e-12,'current environment center maps exactly to historical center');\nconst hist=[-0.30,-0.20,-0.10,0.00,0.10,0.20,0.30,0.40];\nconst med=L.medianValue(hist);\nconst score=L.continuousPercentileValue(hist,med,true);\nok(Math.abs(score-50)<1e-9,'historical median maps to quality 50');\nconst src=code;\nok(src.includes(\"recPositions=receiverResidualPolicyActive(receiverPolicy) ? ['WR','TE']\"),'V114 receiver excludes RB/FB');\nok(src.includes('r.receiverResidualEpa=receiverResidualPolicyActive(receiverPolicy)'),'V114 receiver uses residual rather than raw receiving EPA');\nok(src.includes('const rbRecvResidual=rbResidualPolicyActive(rbPolicy) ? partialResidual'),'V114/V115 RB receiving residual path retained');\nok(src.includes('r.receiverCalibratedResidual'),'receiver calibrated signal exposed');\nok(src.includes('r.rbCalibratedComposite'),'RB calibrated signal exposed');\nconsole.log(`PASS: V114 Receiver/RB centering + residual policy (${n} checks)`);\n"
+    },
+    "doc.scripts/test_v114_contract.js": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "scripts/test_v114_contract.js",
+      "startLine": 1,
+      "endLine": 14,
+      "text": "const fs=require('fs'); let n=0; const ok=(x,m)=>{if(!x)throw new Error(m);n++;};\nconst app=fs.readFileSync('assets/app.js','utf8'), live=fs.readFileSync('model/live_profiles.js','utf8'), server=fs.readFileSync('force_server.py','utf8'), bridge=fs.readFileSync('model/unit_force_bridge.js','utf8');\nok(server.includes(\"APP_VERSION = 'V121'\"),'server V114');\nok(server.includes(\"SERVER_DIAG_VERSION = 'V121-DIAG-1'\"),'server diagnostics V114');\nok(app.includes('expected FORCE V121'),'client V114 identity');\nok(app.includes(\"receiverPolicy: 'v115-partial-orthogonal'\"),'V114 receiver active');\nok(app.includes(\"rbPolicy: 'v115-partial-orthogonal'\"),'V114 RB active');\nok(live.includes('environmentAlignToHistoricalCenter'),'environment alignment helper');\nok(live.includes('receiverCalibratedResidual'),'receiver calibrated residual');\nok(live.includes('rbCalibratedComposite'),'RB calibrated composite');\nok(bridge.includes('receiverIndex:0.08')&&bridge.includes('rbIndex:0.07'),'predictive bridge weights unchanged');\nok(fs.existsSync('CHANGELOG_V114.md'),'V114 changelog');\nconsole.log(`PASS: V114 contract (${n} checks)`);\n"
+    },
+    "doc.scripts/test_v115_unit_orthogonalization.js": {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "scripts/test_v115_unit_orthogonalization.js",
+      "startLine": 1,
+      "endLine": 26,
+      "text": "const fs=require('fs'),vm=require('vm');\nconst code=fs.readFileSync('model/live_profiles.js','utf8');\nconst ctx={window:{},console};vm.createContext(ctx);vm.runInContext(code,ctx);\nconst L=ctx.window.FORCE_LIVE_PROFILE;let n=0;const ok=(x,m)=>{if(!x)throw new Error(m);n++;};\nok(L.receiverResidualPolicyActive('v115-partial-orthogonal'),'V115 receiver policy active');\nok(L.rbResidualPolicyActive('v115-partial-orthogonal'),'V115 RB policy active');\nok(L.UNIT_V115.receiverResidualStabilizerTargets===80,'receiver stabilization relaxed');\nok(L.UNIT_V115.rbRushStabilizerCarries===50,'RB rushing stabilization relaxed');\nok(L.UNIT_V115.rbRecvResidualStabilizerTargets===40,'RB receiving stabilization relaxed');\nconst pts=[{x:-1,y:-.5},{x:0,y:0},{x:1,y:.5},{x:2,y:1},{x:3,y:1.5},{x:4,y:2},{x:5,y:2.5},{x:6,y:3}];\nconst beta=L.ridgeOrthogonalSlope(pts,.5);\nok(beta>0 && beta<.5,'ridge slope is positive but shrunk below OLS');\nconst partial=L.partialResidual(.5,.4,.5,.1);\nok(Math.abs(partial-.35)<1e-12,'partial residual subtracts only fitted environment excess');\nconst sample={receivers:{adj_epa:.30,targets:100},rb:{adj_recv:.10,targets:20},qb:{epaoe:.20}};\nok(Math.abs(L.priorReceiverWrteEpa(sample)-.35)<1e-12,'historical WR/TE rate removes RB receiving by targets');\nconst src=code;\nconst bridge=fs.readFileSync('model/unit_force_bridge.js','utf8');\nok(src.includes('receiverOrthogonalBeta=receiverPassBeta'),'receiver fitted coefficient exposed');\nok(src.includes('rbRecvOrthogonalBeta=rbRecvPassBeta'),'RB receiving fitted coefficient exposed');\nok(src.includes('r.rbStabilizedRushEpa=stabilizeToward'),'RB rushing remains direct and stabilized rather than OL-subtracted');\nok(src.includes('V115 WR/TE-only receiving EPA/target'),'V115 receiver provenance');\nok(src.includes('V115 RB/FB room: rushing EPA/carry stays directly credited'),'V115 RB provenance');\nok(bridge.includes('receiverIndex:0.08')&&bridge.includes('rbIndex:0.07'),'predictive bridge weights unchanged');\nconsole.log(`PASS: V115 partial orthogonalization + upper-tail room (${n} checks)`);\n"
+    }
+  }
+}

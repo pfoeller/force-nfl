@@ -1,0 +1,647 @@
+{
+  "otherFileVersions": [
+    {
+      "commit": "1ecd4db3005fbce72fa88222476bcfafd312ca4c",
+      "path": "research/cycle8/md07_unit_calibration/check.mjs",
+      "sourceSHA256": "cb9336d9987f4af7b6e94001e75e629c2ec73057d40002dc037925ad0cc9d95c",
+      "occurrences": [
+        {
+          "commit": "1ecd4db3005fbce72fa88222476bcfafd312ca4c",
+          "path": "research/cycle8/md07_unit_calibration/check.mjs",
+          "line": 45,
+          "kind": "EXPLICIT CALL",
+          "arguments": "p,r.rbRecvOrthogonalBeta,c",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "Research explicit/default frame, not production authority",
+          "lineSHA256": "8218978429ee008ed178b96b641078876ee3a433b9a23f7d5b12b9fae4ec33a2",
+          "excerpt": "const priorRb=ps.map(p=>L.priorRbOrthogonalComposite(p,r.rbRecvOrthogonalBeta,c));",
+          "generatedMirror": false
+        }
+      ]
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "research/cycle8/md07_unit_calibration/check.mjs",
+      "sourceSHA256": "3635359110d19df4aa05058b84b23c77d22ecd452a9a6e80a20711b9191c088b",
+      "occurrences": [
+        {
+          "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+          "path": "research/cycle8/md07_unit_calibration/check.mjs",
+          "line": 51,
+          "kind": "EXPLICIT CALL",
+          "arguments": "p,r.rbRecvOrthogonalBeta,c",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "Research explicit/default frame, not production authority",
+          "lineSHA256": "8218978429ee008ed178b96b641078876ee3a433b9a23f7d5b12b9fae4ec33a2",
+          "excerpt": "const priorRb=ps.map(p=>L.priorRbOrthogonalComposite(p,r.rbRecvOrthogonalBeta,c));",
+          "generatedMirror": false
+        }
+      ]
+    },
+    {
+      "commit": "1ecd4db3005fbce72fa88222476bcfafd312ca4c",
+      "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+      "sourceSHA256": "181faf20ebd07a4463fc866e72d798d9cb03ca7130d59a9250a3ed83447ea3a8",
+      "occurrences": [
+        {
+          "commit": "1ecd4db3005fbce72fa88222476bcfafd312ca4c",
+          "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+          "line": 6,
+          "kind": "DIRECT ARRAY CALLBACK",
+          "arguments": "Array.map implicitly supplies profile,index,array",
+          "usesDefaults": "No: extra callback arguments override defaults",
+          "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+          "lineSHA256": "b3a6f4e37f892c1bb949f08201819b700be1a7e2f9da6b29286997b73c0c5dd7",
+          "excerpt": "const direct=values.map(L.priorRbOrthogonalComposite),unary=values.map(p=>L.priorRbOrthogonalComposite(p));",
+          "generatedMirror": false
+        },
+        {
+          "commit": "1ecd4db3005fbce72fa88222476bcfafd312ca4c",
+          "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+          "line": 10,
+          "kind": "EXPLICIT CALL",
+          "arguments": "profiles[t]",
+          "usesDefaults": "Yes: beta1/center0",
+          "expectedFrame": "Default beta1/center0 for effective individual prior",
+          "lineSHA256": "fd69ba9ae004dd8108f5c08e49f4c7dcc511ae5575aa6a25558deebe1862c31b",
+          "excerpt": ".keys(profiles).sort().map(t=>{const value=L.priorRbOrthogonalComposite(profiles[t]),actual=L.regressUnitIndex(L.continuousPercentileValue(direct,value,true),api.D.config.reversion),matched=L.regressUnitIn",
+          "generatedMirror": false
+        },
+        {
+          "commit": "1ecd4db3005fbce72fa88222476bcfafd312ca4c",
+          "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+          "line": 11,
+          "kind": "DIRECT ARRAY CALLBACK",
+          "arguments": "Array.map implicitly supplies profile,index,array",
+          "usesDefaults": "No: extra callback arguments override defaults",
+          "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+          "lineSHA256": "45b7b6aff500d2da16241775f023f9f61f0f0ada4091d76b2f4a96acd1af6c0a",
+          "excerpt": "alues = Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite); priorRbByTeam calls priorRbOrthogonalComposite(prior) separately',boundary:'Unary callback is a research call-semantics control, no",
+          "generatedMirror": false
+        }
+      ]
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+      "sourceSHA256": "8f0fa060debb3b89778a462518855c602b4f00947681cffcc1f9a4553c2cdf43",
+      "occurrences": [
+        {
+          "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+          "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+          "line": 7,
+          "kind": "DIRECT ARRAY CALLBACK",
+          "arguments": "Array.map implicitly supplies profile,index,array",
+          "usesDefaults": "No: extra callback arguments override defaults",
+          "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+          "lineSHA256": "030c9e13ccb1627f1f69ce067317b8b34cefcd753feca439d0de0c6ff15b51d5",
+          "excerpt": "const direct=values.map(L.priorRbOrthogonalComposite);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+          "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+          "line": 9,
+          "kind": "EXPLICIT CALL",
+          "arguments": "profiles[t]",
+          "usesDefaults": "Yes: beta1/center0",
+          "expectedFrame": "Default beta1/center0 for effective individual prior",
+          "lineSHA256": "df65996bac1f3c1c7bd2fbba6bead4f7b58fe12d58f81b67347354cce69d9f3f",
+          "excerpt": "const actual=ids.map(t=>L.regressUnitIndex(L.continuousPercentileValue(direct,L.priorRbOrthogonalComposite(profiles[t]),true),api.D.config.reversion));",
+          "generatedMirror": false
+        },
+        {
+          "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+          "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+          "line": 14,
+          "kind": "EXPLICIT CALL",
+          "arguments": "p,beta,center",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "Research explicit/default frame, not production authority",
+          "lineSHA256": "22b095c41a82e7610a59d19f5e470e8afa1ace2326e682a1f541bde57b495b2b",
+          "excerpt": "const reference=values.map(p=>L.priorRbOrthogonalComposite(p,beta,center));",
+          "generatedMirror": false
+        },
+        {
+          "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+          "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+          "line": 15,
+          "kind": "EXPLICIT CALL",
+          "arguments": "profiles[team],beta,center",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "Research explicit/default frame, not production authority",
+          "lineSHA256": "5656837af74d31db6efa01664735ee20296410aa82c614727ece9ee573d1ab66",
+          "excerpt": "const rows=ids.map((team,i)=>{const r=input.teams[team],signal=L.priorRbOrthogonalComposite(profiles[team],beta,center),prior=L.regressUnitIndex(L.continuousPercentileValue(reference,signal,true),api.D.config.reversion),priorDelta=prior-actual[i],current=L.blend(prior,r.liveGrade.rbIndex,r.metadata.playerStatGames,r.metadata.priorGames),currentDelta=current-r.display.rbIndex;",
+          "generatedMirror": false
+        }
+      ]
+    },
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "scripts/test_v104_contract.js",
+      "sourceSHA256": "a1eda51b80c67e662dafce9dccdf801d8f2f5fbc92868950c3e9b54d42f3fd71",
+      "occurrences": [
+        {
+          "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+          "path": "scripts/test_v104_contract.js",
+          "line": 13,
+          "kind": "CONTRACT STRING",
+          "arguments": null,
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "not invoked",
+          "lineSHA256": "3a5498878404584c80de3cb12713dd3afa322f739fcdf7087fed07bf056eb125",
+          "excerpt": "ok(live.includes('priorRbOrthogonalComposite'),'V104 like-for-like RB residual benchmark missing');",
+          "generatedMirror": false
+        }
+      ]
+    },
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "path": "scripts/test_v104_qb_calibration.js",
+      "sourceSHA256": "0e433609ae80fb7d36d825b9b80d1d95cebb05f25ec4237f8209ac3ef6019ad7",
+      "occurrences": [
+        {
+          "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+          "path": "scripts/test_v104_qb_calibration.js",
+          "line": 35,
+          "kind": "DIRECT ARRAY CALLBACK",
+          "arguments": "Array.map implicitly supplies profile,index,array",
+          "usesDefaults": "No: extra callback arguments override defaults",
+          "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+          "lineSHA256": "da003f3d1f9505ba3fa97fe8f4b43f4d1fdd6f2136d0c269321f59710934551f",
+          "excerpt": "const rbPriorVals=Object.values(M.profiles).map(LP.priorRbOrthogonalComposite).filter(Number.isFinite);",
+          "generatedMirror": false
+        }
+      ]
+    }
+  ],
+  "scope": "Every tracked JS/MJS/Python helper occurrence at accepted tip; source snapshots cover every model-changing commit on shared-base ancestry. Public mirror, declaration/export and contract strings separated; research callers are retrospective controls.",
+  "sourceSnapshots": [
+    {
+      "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+      "occurrences": [
+        {
+          "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+          "path": "model/live_profiles.js",
+          "line": 280,
+          "kind": "DECLARATION",
+          "arguments": "profile, recvBeta=1, qbCenter=0",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "not invoked",
+          "lineSHA256": "ee9be03d19eed9d515f414e754f95ca205c5144ebefb6265195396a3e44637c2",
+          "excerpt": "function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {",
+          "generatedMirror": false
+        },
+        {
+          "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+          "path": "model/live_profiles.js",
+          "line": 1220,
+          "kind": "EXPLICIT CALL",
+          "arguments": "p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "V115 fitted beta/center; non-V115 beta1/center0",
+          "lineSHA256": "154ad241ca49f7e179fd3694f9915b88727a2761be377e26381cc7ed946a720c",
+          "excerpt": "const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+          "path": "model/live_profiles.js",
+          "line": 1369,
+          "kind": "DIRECT ARRAY CALLBACK",
+          "arguments": "Array.map implicitly supplies profile,index,array",
+          "usesDefaults": "No: extra callback arguments override defaults",
+          "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+          "lineSHA256": "c0a1c3807be75f9a350eb7fb5c2e24d87f453501875316fafef3c789219eca95",
+          "excerpt": "const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+          "path": "model/live_profiles.js",
+          "line": 1394,
+          "kind": "EXPLICIT CALL",
+          "arguments": "prior",
+          "usesDefaults": "Yes: beta1/center0",
+          "expectedFrame": "Default beta1/center0 for effective individual prior",
+          "lineSHA256": "98d6e71e546c9fc3ec53ca3a75b06e2af07df6ee4834b952d86038d64938b92b",
+          "excerpt": "const value=priorRbOrthogonalComposite(prior);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "43d2c7169534cb76cd13c72166b111d0d91d6c06",
+          "path": "model/live_profiles.js",
+          "line": 1696,
+          "kind": "EXPORT",
+          "arguments": null,
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "not invoked",
+          "lineSHA256": "31e0ab7d59fee2faa569771c7267a04856185ff28d7fa6b48ddeeaa74387ddad",
+          "excerpt": "lSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,",
+          "generatedMirror": false
+        }
+      ]
+    },
+    {
+      "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+      "occurrences": [
+        {
+          "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+          "path": "model/live_profiles.js",
+          "line": 280,
+          "kind": "DECLARATION",
+          "arguments": "profile, recvBeta=1, qbCenter=0",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "not invoked",
+          "lineSHA256": "ee9be03d19eed9d515f414e754f95ca205c5144ebefb6265195396a3e44637c2",
+          "excerpt": "function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {",
+          "generatedMirror": false
+        },
+        {
+          "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+          "path": "model/live_profiles.js",
+          "line": 1241,
+          "kind": "EXPLICIT CALL",
+          "arguments": "p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "V115 fitted beta/center; non-V115 beta1/center0",
+          "lineSHA256": "154ad241ca49f7e179fd3694f9915b88727a2761be377e26381cc7ed946a720c",
+          "excerpt": "const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+          "path": "model/live_profiles.js",
+          "line": 1392,
+          "kind": "DIRECT ARRAY CALLBACK",
+          "arguments": "Array.map implicitly supplies profile,index,array",
+          "usesDefaults": "No: extra callback arguments override defaults",
+          "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+          "lineSHA256": "c0a1c3807be75f9a350eb7fb5c2e24d87f453501875316fafef3c789219eca95",
+          "excerpt": "const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+          "path": "model/live_profiles.js",
+          "line": 1417,
+          "kind": "EXPLICIT CALL",
+          "arguments": "prior",
+          "usesDefaults": "Yes: beta1/center0",
+          "expectedFrame": "Default beta1/center0 for effective individual prior",
+          "lineSHA256": "98d6e71e546c9fc3ec53ca3a75b06e2af07df6ee4834b952d86038d64938b92b",
+          "excerpt": "const value=priorRbOrthogonalComposite(prior);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "c44e59ef67e501d09ac9ec83d7b2c48b421089a1",
+          "path": "model/live_profiles.js",
+          "line": 1734,
+          "kind": "EXPORT",
+          "arguments": null,
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "not invoked",
+          "lineSHA256": "42c203ab3bf8c3e8ee94049ab86f592e666e60cbc05da4d71f550577337be7ba",
+          "excerpt": "lSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,",
+          "generatedMirror": false
+        }
+      ]
+    },
+    {
+      "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+      "occurrences": [
+        {
+          "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+          "path": "model/live_profiles.js",
+          "line": 292,
+          "kind": "DECLARATION",
+          "arguments": "profile, recvBeta=1, qbCenter=0",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "not invoked",
+          "lineSHA256": "ee9be03d19eed9d515f414e754f95ca205c5144ebefb6265195396a3e44637c2",
+          "excerpt": "function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {",
+          "generatedMirror": false
+        },
+        {
+          "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+          "path": "model/live_profiles.js",
+          "line": 1253,
+          "kind": "EXPLICIT CALL",
+          "arguments": "p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "V115 fitted beta/center; non-V115 beta1/center0",
+          "lineSHA256": "154ad241ca49f7e179fd3694f9915b88727a2761be377e26381cc7ed946a720c",
+          "excerpt": "const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+          "path": "model/live_profiles.js",
+          "line": 1404,
+          "kind": "DIRECT ARRAY CALLBACK",
+          "arguments": "Array.map implicitly supplies profile,index,array",
+          "usesDefaults": "No: extra callback arguments override defaults",
+          "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+          "lineSHA256": "c0a1c3807be75f9a350eb7fb5c2e24d87f453501875316fafef3c789219eca95",
+          "excerpt": "const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+          "path": "model/live_profiles.js",
+          "line": 1429,
+          "kind": "EXPLICIT CALL",
+          "arguments": "prior",
+          "usesDefaults": "Yes: beta1/center0",
+          "expectedFrame": "Default beta1/center0 for effective individual prior",
+          "lineSHA256": "98d6e71e546c9fc3ec53ca3a75b06e2af07df6ee4834b952d86038d64938b92b",
+          "excerpt": "const value=priorRbOrthogonalComposite(prior);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "8d72a03f857f07549c33bbe8ce0835da95159201",
+          "path": "model/live_profiles.js",
+          "line": 1749,
+          "kind": "EXPORT",
+          "arguments": null,
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "not invoked",
+          "lineSHA256": "3178378fa6e9ac373d076cadf064df9ce384164f44c611e4958983047a2582a3",
+          "excerpt": "lSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,",
+          "generatedMirror": false
+        }
+      ]
+    },
+    {
+      "commit": "fd585891214db483112f52d4746106c606afeb43",
+      "occurrences": [
+        {
+          "commit": "fd585891214db483112f52d4746106c606afeb43",
+          "path": "model/live_profiles.js",
+          "line": 292,
+          "kind": "DECLARATION",
+          "arguments": "profile, recvBeta=1, qbCenter=0",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "not invoked",
+          "lineSHA256": "ee9be03d19eed9d515f414e754f95ca205c5144ebefb6265195396a3e44637c2",
+          "excerpt": "function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {",
+          "generatedMirror": false
+        },
+        {
+          "commit": "fd585891214db483112f52d4746106c606afeb43",
+          "path": "model/live_profiles.js",
+          "line": 1253,
+          "kind": "EXPLICIT CALL",
+          "arguments": "p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0",
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "V115 fitted beta/center; non-V115 beta1/center0",
+          "lineSHA256": "154ad241ca49f7e179fd3694f9915b88727a2761be377e26381cc7ed946a720c",
+          "excerpt": "const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "fd585891214db483112f52d4746106c606afeb43",
+          "path": "model/live_profiles.js",
+          "line": 1404,
+          "kind": "DIRECT ARRAY CALLBACK",
+          "arguments": "Array.map implicitly supplies profile,index,array",
+          "usesDefaults": "No: extra callback arguments override defaults",
+          "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+          "lineSHA256": "c0a1c3807be75f9a350eb7fb5c2e24d87f453501875316fafef3c789219eca95",
+          "excerpt": "const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "fd585891214db483112f52d4746106c606afeb43",
+          "path": "model/live_profiles.js",
+          "line": 1429,
+          "kind": "EXPLICIT CALL",
+          "arguments": "prior",
+          "usesDefaults": "Yes: beta1/center0",
+          "expectedFrame": "Default beta1/center0 for effective individual prior",
+          "lineSHA256": "98d6e71e546c9fc3ec53ca3a75b06e2af07df6ee4834b952d86038d64938b92b",
+          "excerpt": "const value=priorRbOrthogonalComposite(prior);",
+          "generatedMirror": false
+        },
+        {
+          "commit": "fd585891214db483112f52d4746106c606afeb43",
+          "path": "model/live_profiles.js",
+          "line": 1749,
+          "kind": "EXPORT",
+          "arguments": null,
+          "usesDefaults": "See explicit arguments",
+          "expectedFrame": "not invoked",
+          "lineSHA256": "3178378fa6e9ac373d076cadf064df9ce384164f44c611e4958983047a2582a3",
+          "excerpt": "lSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,",
+          "generatedMirror": false
+        }
+      ]
+    }
+  ],
+  "acceptedTree": [
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "model/live_profiles.js",
+      "line": 292,
+      "kind": "DECLARATION",
+      "arguments": "profile, recvBeta=1, qbCenter=0",
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "not invoked",
+      "lineSHA256": "ee9be03d19eed9d515f414e754f95ca205c5144ebefb6265195396a3e44637c2",
+      "excerpt": "function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "model/live_profiles.js",
+      "line": 1253,
+      "kind": "EXPLICIT CALL",
+      "arguments": "p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0",
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "V115 fitted beta/center; non-V115 beta1/center0",
+      "lineSHA256": "154ad241ca49f7e179fd3694f9915b88727a2761be377e26381cc7ed946a720c",
+      "excerpt": "const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "model/live_profiles.js",
+      "line": 1404,
+      "kind": "DIRECT ARRAY CALLBACK",
+      "arguments": "Array.map implicitly supplies profile,index,array",
+      "usesDefaults": "No: extra callback arguments override defaults",
+      "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+      "lineSHA256": "c0a1c3807be75f9a350eb7fb5c2e24d87f453501875316fafef3c789219eca95",
+      "excerpt": "const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "model/live_profiles.js",
+      "line": 1429,
+      "kind": "EXPLICIT CALL",
+      "arguments": "prior",
+      "usesDefaults": "Yes: beta1/center0",
+      "expectedFrame": "Default beta1/center0 for effective individual prior",
+      "lineSHA256": "98d6e71e546c9fc3ec53ca3a75b06e2af07df6ee4834b952d86038d64938b92b",
+      "excerpt": "const value=priorRbOrthogonalComposite(prior);",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "model/live_profiles.js",
+      "line": 1749,
+      "kind": "EXPORT",
+      "arguments": null,
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "not invoked",
+      "lineSHA256": "3178378fa6e9ac373d076cadf064df9ce384164f44c611e4958983047a2582a3",
+      "excerpt": "lSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "public/model/live_profiles.js",
+      "line": 292,
+      "kind": "DECLARATION",
+      "arguments": "profile, recvBeta=1, qbCenter=0",
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "not invoked",
+      "lineSHA256": "ee9be03d19eed9d515f414e754f95ca205c5144ebefb6265195396a3e44637c2",
+      "excerpt": "function priorRbOrthogonalComposite(profile, recvBeta=1, qbCenter=0) {",
+      "generatedMirror": true
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "public/model/live_profiles.js",
+      "line": 1253,
+      "kind": "EXPLICIT CALL",
+      "arguments": "p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0",
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "V115 fitted beta/center; non-V115 beta1/center0",
+      "lineSHA256": "154ad241ca49f7e179fd3694f9915b88727a2761be377e26381cc7ed946a720c",
+      "excerpt": "const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);",
+      "generatedMirror": true
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "public/model/live_profiles.js",
+      "line": 1404,
+      "kind": "DIRECT ARRAY CALLBACK",
+      "arguments": "Array.map implicitly supplies profile,index,array",
+      "usesDefaults": "No: extra callback arguments override defaults",
+      "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+      "lineSHA256": "c0a1c3807be75f9a350eb7fb5c2e24d87f453501875316fafef3c789219eca95",
+      "excerpt": "const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);",
+      "generatedMirror": true
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "public/model/live_profiles.js",
+      "line": 1429,
+      "kind": "EXPLICIT CALL",
+      "arguments": "prior",
+      "usesDefaults": "Yes: beta1/center0",
+      "expectedFrame": "Default beta1/center0 for effective individual prior",
+      "lineSHA256": "98d6e71e546c9fc3ec53ca3a75b06e2af07df6ee4834b952d86038d64938b92b",
+      "excerpt": "const value=priorRbOrthogonalComposite(prior);",
+      "generatedMirror": true
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "public/model/live_profiles.js",
+      "line": 1749,
+      "kind": "EXPORT",
+      "arguments": null,
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "not invoked",
+      "lineSHA256": "3178378fa6e9ac373d076cadf064df9ce384164f44c611e4958983047a2582a3",
+      "excerpt": "lSlope,partialResidual,priorReceiverResidual,priorRbOrthogonalComposite,qbCpoeScore,qbRushingBonus,QB_V103,QB_V104,QB_V106,UNIT_V109,UNIT_V114,UNIT_V115,receiverResidualPolicyActive,rbResidualPolicyActive,",
+      "generatedMirror": true
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "research/cycle8/md07_unit_calibration/check.mjs",
+      "line": 51,
+      "kind": "EXPLICIT CALL",
+      "arguments": "p,r.rbRecvOrthogonalBeta,c",
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "Research explicit/default frame, not production authority",
+      "lineSHA256": "8218978429ee008ed178b96b641078876ee3a433b9a23f7d5b12b9fae4ec33a2",
+      "excerpt": "const priorRb=ps.map(p=>L.priorRbOrthogonalComposite(p,r.rbRecvOrthogonalBeta,c));",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+      "line": 7,
+      "kind": "DIRECT ARRAY CALLBACK",
+      "arguments": "Array.map implicitly supplies profile,index,array",
+      "usesDefaults": "No: extra callback arguments override defaults",
+      "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+      "lineSHA256": "030c9e13ccb1627f1f69ce067317b8b34cefcd753feca439d0de0c6ff15b51d5",
+      "excerpt": "const direct=values.map(L.priorRbOrthogonalComposite);",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+      "line": 9,
+      "kind": "EXPLICIT CALL",
+      "arguments": "profiles[t]",
+      "usesDefaults": "Yes: beta1/center0",
+      "expectedFrame": "Default beta1/center0 for effective individual prior",
+      "lineSHA256": "df65996bac1f3c1c7bd2fbba6bead4f7b58fe12d58f81b67347354cce69d9f3f",
+      "excerpt": "const actual=ids.map(t=>L.regressUnitIndex(L.continuousPercentileValue(direct,L.priorRbOrthogonalComposite(profiles[t]),true),api.D.config.reversion));",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+      "line": 14,
+      "kind": "EXPLICIT CALL",
+      "arguments": "p,beta,center",
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "Research explicit/default frame, not production authority",
+      "lineSHA256": "22b095c41a82e7610a59d19f5e470e8afa1ace2326e682a1f541bde57b495b2b",
+      "excerpt": "const reference=values.map(p=>L.priorRbOrthogonalComposite(p,beta,center));",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "research/cycle8/md07_unit_calibration/prior_audit.mjs",
+      "line": 15,
+      "kind": "EXPLICIT CALL",
+      "arguments": "profiles[team],beta,center",
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "Research explicit/default frame, not production authority",
+      "lineSHA256": "5656837af74d31db6efa01664735ee20296410aa82c614727ece9ee573d1ab66",
+      "excerpt": "const rows=ids.map((team,i)=>{const r=input.teams[team],signal=L.priorRbOrthogonalComposite(profiles[team],beta,center),prior=L.regressUnitIndex(L.continuousPercentileValue(reference,signal,true),api.D.config.reversion),priorDelta=prior-actual[i],current=L.blend(prior,r.liveGrade.rbIndex,r.metadata.playerStatGames,r.metadata.priorGames),currentDelta=current-r.display.rbIndex;",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "scripts/test_v104_contract.js",
+      "line": 13,
+      "kind": "CONTRACT STRING",
+      "arguments": null,
+      "usesDefaults": "See explicit arguments",
+      "expectedFrame": "not invoked",
+      "lineSHA256": "3a5498878404584c80de3cb12713dd3afa322f739fcdf7087fed07bf056eb125",
+      "excerpt": "ok(live.includes('priorRbOrthogonalComposite'),'V104 like-for-like RB residual benchmark missing');",
+      "generatedMirror": false
+    },
+    {
+      "commit": "98db3b323c928879d9ff7435d77a980744a66289",
+      "path": "scripts/test_v104_qb_calibration.js",
+      "line": 35,
+      "kind": "DIRECT ARRAY CALLBACK",
+      "arguments": "Array.map implicitly supplies profile,index,array",
+      "usesDefaults": "No: extra callback arguments override defaults",
+      "expectedFrame": "Implicit (profile,index,array): invalid center -> unadjusted receiving; accidental callback behavior, not intended frame",
+      "lineSHA256": "da003f3d1f9505ba3fa97fe8f4b43f4d1fdd6f2136d0c269321f59710934551f",
+      "excerpt": "const rbPriorVals=Object.values(M.profiles).map(LP.priorRbOrthogonalComposite).filter(Number.isFinite);",
+      "generatedMirror": false
+    }
+  ]
+}

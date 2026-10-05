@@ -1,0 +1,578 @@
+{
+  "assessmentMethod": "ANALYST EVIDENCE ASSESSMENT; no current ranking, correlation, score movement or forecast effect used as intent evidence",
+  "frames": {
+    "DEFAULT": {
+      "beta": 1,
+      "center": 0,
+      "meaning": "Full receiving subtraction"
+    },
+    "LIVE_FITTED": {
+      "beta": "reference-population ridge fit",
+      "center": "reference QB median",
+      "meaning": "Partial fitted receiving subtraction"
+    },
+    "UNADJUSTED": {
+      "beta": 0,
+      "center": 0,
+      "meaning": "No receiving subtraction"
+    },
+    "SAME_FRAME": {
+      "meaning": "Reference and individually mapped value use one transformation"
+    },
+    "AMBIGUOUS": {
+      "meaning": "Evidence does not uniquely establish effective-prior frame"
+    }
+  },
+  "rows": [
+    {
+      "id": "local-introduction",
+      "evidence": [
+        "root.priorRbOrthogonalComposite",
+        "root.fit",
+        "root.effective-reference",
+        "root.effective-individual"
+      ],
+      "description": "V149 root imports helper, fitted design and mismatch together.",
+      "support": {
+        "DEFAULT": {
+          "strength": "NONE",
+          "references": [
+            "root.priorRbOrthogonalComposite",
+            "root.fit",
+            "root.effective-reference",
+            "root.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "LIVE_FITTED": {
+          "strength": "NONE",
+          "references": [
+            "root.priorRbOrthogonalComposite",
+            "root.fit",
+            "root.effective-reference",
+            "root.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "UNADJUSTED": {
+          "strength": "NONE",
+          "references": [
+            "root.priorRbOrthogonalComposite",
+            "root.fit",
+            "root.effective-reference",
+            "root.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "SAME_FRAME": {
+          "strength": "NONE",
+          "references": [
+            "root.priorRbOrthogonalComposite",
+            "root.fit",
+            "root.effective-reference",
+            "root.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "AMBIGUOUS": {
+          "strength": "STRONG",
+          "references": [
+            "root.priorRbOrthogonalComposite",
+            "root.fit",
+            "root.effective-reference",
+            "root.effective-individual"
+          ],
+          "explanation": "No actual V115 introducing commit or pre-change diff exists in recovered local ancestry; cannot infer edit sequence from import."
+        }
+      }
+    },
+    {
+      "id": "signature-defaults",
+      "evidence": [
+        "root.priorRbOrthogonalComposite"
+      ],
+      "description": "Defaults beta1 and center0 from first local appearance, unchanged later.",
+      "support": {
+        "DEFAULT": {
+          "strength": "MODERATE",
+          "references": [
+            "root.priorRbOrthogonalComposite"
+          ],
+          "explanation": "Real executable full-subtraction defaults; no comment identifies them as the intended V115 effective-prior policy."
+        },
+        "LIVE_FITTED": {
+          "strength": "NONE",
+          "references": [
+            "root.priorRbOrthogonalComposite"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "UNADJUSTED": {
+          "strength": "NONE",
+          "references": [
+            "root.priorRbOrthogonalComposite"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "SAME_FRAME": {
+          "strength": "NONE",
+          "references": [
+            "root.priorRbOrthogonalComposite"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "AMBIGUOUS": {
+          "strength": "MODERATE",
+          "references": [
+            "root.priorRbOrthogonalComposite"
+          ],
+          "explanation": "Defaults also serve older residual policies; their existence is not author-intent proof."
+        }
+      }
+    },
+    {
+      "id": "live-rb-signal",
+      "evidence": [
+        "root.fit",
+        "root.live-rb"
+      ],
+      "description": "V115 explicit fitted residual for current receiving.",
+      "support": {
+        "DEFAULT": {
+          "strength": "NONE",
+          "references": [
+            "root.fit",
+            "root.live-rb"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "LIVE_FITTED": {
+          "strength": "STRONG",
+          "references": [
+            "root.fit",
+            "root.live-rb"
+          ],
+          "explanation": "Live path explicitly supplies reference-fitted beta/center. This is direct live intent, not by itself effective-prior intent."
+        },
+        "UNADJUSTED": {
+          "strength": "NONE",
+          "references": [
+            "root.fit",
+            "root.live-rb"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "SAME_FRAME": {
+          "strength": "MODERATE",
+          "references": [
+            "root.fit",
+            "root.live-rb"
+          ],
+          "explanation": "Live calibration reference is transformed consistently with this signal."
+        },
+        "AMBIGUOUS": {
+          "strength": "NONE",
+          "references": [
+            "root.fit",
+            "root.live-rb"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        }
+      }
+    },
+    {
+      "id": "live-historical-cdf",
+      "evidence": [
+        "root.live-cdf-reference",
+        "root.fit"
+      ],
+      "description": "Historical profile values consumed by the live mapping use explicit fitted parameters.",
+      "support": {
+        "DEFAULT": {
+          "strength": "NONE",
+          "references": [
+            "root.live-cdf-reference",
+            "root.fit"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "LIVE_FITTED": {
+          "strength": "STRONG",
+          "references": [
+            "root.live-cdf-reference",
+            "root.fit"
+          ],
+          "explanation": "Unary wrapper explicitly transforms historical profiles with the V115 beta/center; do not confuse this with the separate effective-prior reference."
+        },
+        "UNADJUSTED": {
+          "strength": "NONE",
+          "references": [
+            "root.live-cdf-reference",
+            "root.fit"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "SAME_FRAME": {
+          "strength": "STRONG",
+          "references": [
+            "root.live-cdf-reference",
+            "root.fit"
+          ],
+          "explanation": "Same fitted construct on both live-CDF sides, with stabilization/environment alignment."
+        },
+        "AMBIGUOUS": {
+          "strength": "NONE",
+          "references": [
+            "root.live-cdf-reference",
+            "root.fit"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        }
+      }
+    },
+    {
+      "id": "effective-individual",
+      "evidence": [
+        "root.effective-individual"
+      ],
+      "description": "Effective preseason team prior calls helper with profile only.",
+      "support": {
+        "DEFAULT": {
+          "strength": "MODERATE",
+          "references": [
+            "root.effective-individual"
+          ],
+          "explanation": "Omitted arguments explicitly execute defaults. Could be deliberate compatibility or incomplete V115 adaptation; no recovered change rationale distinguishes them."
+        },
+        "LIVE_FITTED": {
+          "strength": "NONE",
+          "references": [
+            "root.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "UNADJUSTED": {
+          "strength": "NONE",
+          "references": [
+            "root.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "SAME_FRAME": {
+          "strength": "NONE",
+          "references": [
+            "root.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "AMBIGUOUS": {
+          "strength": "STRONG",
+          "references": [
+            "root.effective-individual"
+          ],
+          "explanation": "Conflicts with fitted live historical-CDF path and broad same-definition documentation."
+        }
+      }
+    },
+    {
+      "id": "effective-reference",
+      "evidence": [
+        "root.effective-reference",
+        "root.partialResidual"
+      ],
+      "description": "Bare map callback supplies index/array.",
+      "support": {
+        "DEFAULT": {
+          "strength": "NONE",
+          "references": [
+            "root.effective-reference",
+            "root.partialResidual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "LIVE_FITTED": {
+          "strength": "NONE",
+          "references": [
+            "root.effective-reference",
+            "root.partialResidual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "UNADJUSTED": {
+          "strength": "WEAK",
+          "references": [
+            "root.effective-reference",
+            "root.partialResidual"
+          ],
+          "explanation": "Unadjusted receiving is accidental NaN-center fallback, not an intentional no-residualization policy."
+        },
+        "SAME_FRAME": {
+          "strength": "STRONG",
+          "references": [
+            "root.effective-reference",
+            "root.partialResidual"
+          ],
+          "explanation": "Callback-arity bug contrasts with scalar team value and prevents like-for-like comparison; established defect preserved."
+        },
+        "AMBIGUOUS": {
+          "strength": "MODERATE",
+          "references": [
+            "root.effective-reference",
+            "root.partialResidual"
+          ],
+          "explanation": "Correcting callback arity alone restores defaults, but does not prove the intended policy frame."
+        }
+      }
+    },
+    {
+      "id": "wr-analogue",
+      "evidence": [
+        "root.priorReceiverResidual",
+        "root.wr-reference"
+      ],
+      "description": "WR reference and individual prior explicitly share policy-selected fitted beta/center.",
+      "support": {
+        "DEFAULT": {
+          "strength": "NONE",
+          "references": [
+            "root.priorReceiverResidual",
+            "root.wr-reference"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "LIVE_FITTED": {
+          "strength": "MODERATE",
+          "references": [
+            "root.priorReceiverResidual",
+            "root.wr-reference"
+          ],
+          "explanation": "Strong analogue for incomplete RB parameter propagation; cannot assume RB must have the same policy."
+        },
+        "UNADJUSTED": {
+          "strength": "NONE",
+          "references": [
+            "root.priorReceiverResidual",
+            "root.wr-reference"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "SAME_FRAME": {
+          "strength": "STRONG",
+          "references": [
+            "root.priorReceiverResidual",
+            "root.wr-reference"
+          ],
+          "explanation": "Both WR mapping operands use the same transformation explicitly."
+        },
+        "AMBIGUOUS": {
+          "strength": "NONE",
+          "references": [
+            "root.priorReceiverResidual",
+            "root.wr-reference"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        }
+      }
+    },
+    {
+      "id": "version-labelled-docs",
+      "evidence": [
+        "doc.CHANGELOG_V104.md",
+        "doc.CHANGELOG_V109.md",
+        "doc.CHANGELOG_V114.md",
+        "doc.CHANGELOG_V115.md"
+      ],
+      "description": "Preserved release-version notes, imported together at V149 root; original authorship chronology unavailable.",
+      "support": {
+        "DEFAULT": {
+          "strength": "WEAK",
+          "references": [
+            "doc.CHANGELOG_V104.md",
+            "doc.CHANGELOG_V109.md",
+            "doc.CHANGELOG_V114.md",
+            "doc.CHANGELOG_V115.md"
+          ],
+          "explanation": "V104 describes full residual subtraction before the V115 partial design; not a V115 effective-prior decision."
+        },
+        "LIVE_FITTED": {
+          "strength": "MODERATE",
+          "references": [
+            "doc.CHANGELOG_V104.md",
+            "doc.CHANGELOG_V109.md",
+            "doc.CHANGELOG_V114.md",
+            "doc.CHANGELOG_V115.md"
+          ],
+          "explanation": "V109 says preseason prior uses same residual definition as live; V115 applies partial concept and retains matching historical mapping. Supports fitted extension inferentially, without explicit effective-prior instruction."
+        },
+        "UNADJUSTED": {
+          "strength": "NONE",
+          "references": [
+            "doc.CHANGELOG_V104.md",
+            "doc.CHANGELOG_V109.md",
+            "doc.CHANGELOG_V114.md",
+            "doc.CHANGELOG_V115.md"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "SAME_FRAME": {
+          "strength": "STRONG",
+          "references": [
+            "doc.CHANGELOG_V104.md",
+            "doc.CHANGELOG_V109.md",
+            "doc.CHANGELOG_V114.md",
+            "doc.CHANGELOG_V115.md"
+          ],
+          "explanation": "V104 like-for-like benchmark and V109 same-definition prior doctrine directly establish comparison consistency."
+        },
+        "AMBIGUOUS": {
+          "strength": "MODERATE",
+          "references": [
+            "doc.CHANGELOG_V104.md",
+            "doc.CHANGELOG_V109.md",
+            "doc.CHANGELOG_V114.md",
+            "doc.CHANGELOG_V115.md"
+          ],
+          "explanation": "No explicit V115 effective-prior frame or original change diff reconciles the surviving default call."
+        }
+      }
+    },
+    {
+      "id": "historical-tests",
+      "evidence": [
+        "doc.scripts/test_v104_qb_calibration.js",
+        "doc.scripts/test_v104_contract.js",
+        "doc.scripts/test_v114_unit_centering.js",
+        "doc.scripts/test_v115_unit_orthogonalization.js",
+        "doc.scripts/test_v57_unit_regression_rb.js",
+        "doc.scripts/test_v102_offense_orthogonalization.js"
+      ],
+      "description": "No frame-specific effective-prior expected values, rank anchors or mutation/invariant tests found. V57 raw-composite rank anchors cover only the legacy default policy; V102 mutation covers receiving ownership.",
+      "support": {
+        "DEFAULT": {
+          "strength": "NONE",
+          "references": [
+            "doc.scripts/test_v104_qb_calibration.js",
+            "doc.scripts/test_v104_contract.js",
+            "doc.scripts/test_v114_unit_centering.js",
+            "doc.scripts/test_v115_unit_orthogonalization.js",
+            "doc.scripts/test_v57_unit_regression_rb.js",
+            "doc.scripts/test_v102_offense_orthogonalization.js"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "LIVE_FITTED": {
+          "strength": "WEAK",
+          "references": [
+            "doc.scripts/test_v104_qb_calibration.js",
+            "doc.scripts/test_v104_contract.js",
+            "doc.scripts/test_v114_unit_centering.js",
+            "doc.scripts/test_v115_unit_orthogonalization.js",
+            "doc.scripts/test_v57_unit_regression_rb.js",
+            "doc.scripts/test_v102_offense_orthogonalization.js"
+          ],
+          "explanation": "V115 generic ridge/partial helper assertions and exposed beta support the live design only."
+        },
+        "UNADJUSTED": {
+          "strength": "WEAK",
+          "references": [
+            "doc.scripts/test_v57_unit_regression_rb.js",
+            "doc.scripts/test_v102_offense_orthogonalization.js",
+            "base.build-policy-defaults",
+            "base.effective-individual"
+          ],
+          "explanation": "V57 anchors85/15/50 invoke default legacy rbPolicy and stored rb.composite, not V115; they establish an older unadjusted contract only."
+        },
+        "SAME_FRAME": {
+          "strength": "WEAK",
+          "references": [
+            "doc.scripts/test_v104_qb_calibration.js",
+            "doc.scripts/test_v104_contract.js",
+            "doc.scripts/test_v114_unit_centering.js",
+            "doc.scripts/test_v115_unit_orthogonalization.js",
+            "doc.scripts/test_v57_unit_regression_rb.js",
+            "doc.scripts/test_v102_offense_orthogonalization.js"
+          ],
+          "explanation": "Reference existence and center mapping asserted; V104 direct callback checks only count>=20 and would admit all three frames."
+        },
+        "AMBIGUOUS": {
+          "strength": "STRONG",
+          "references": [
+            "doc.scripts/test_v104_qb_calibration.js",
+            "doc.scripts/test_v104_contract.js",
+            "doc.scripts/test_v114_unit_centering.js",
+            "doc.scripts/test_v115_unit_orthogonalization.js",
+            "doc.scripts/test_v57_unit_regression_rb.js",
+            "doc.scripts/test_v102_offense_orthogonalization.js"
+          ],
+          "explanation": "Tests do not discriminate the effective-prior choices; test presence is not frame acceptance."
+        }
+      }
+    },
+    {
+      "id": "later-source-history",
+      "evidence": [
+        "base.priorRbOrthogonalComposite",
+        "base.fit",
+        "base.effective-reference",
+        "base.effective-individual"
+      ],
+      "description": "Two later QB-focused source commits retain helper/calls unchanged.",
+      "support": {
+        "DEFAULT": {
+          "strength": "NONE",
+          "references": [
+            "base.priorRbOrthogonalComposite",
+            "base.fit",
+            "base.effective-reference",
+            "base.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "LIVE_FITTED": {
+          "strength": "NONE",
+          "references": [
+            "base.priorRbOrthogonalComposite",
+            "base.fit",
+            "base.effective-reference",
+            "base.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "UNADJUSTED": {
+          "strength": "NONE",
+          "references": [
+            "base.priorRbOrthogonalComposite",
+            "base.fit",
+            "base.effective-reference",
+            "base.effective-individual"
+          ],
+          "explanation": "No support for this interpretation in the cited evidence."
+        },
+        "SAME_FRAME": {
+          "strength": "WEAK",
+          "references": [
+            "base.priorRbOrthogonalComposite",
+            "base.fit",
+            "base.effective-reference",
+            "base.effective-individual"
+          ],
+          "explanation": "No later fix or contract resolves the mismatch."
+        },
+        "AMBIGUOUS": {
+          "strength": "STRONG",
+          "references": [
+            "base.priorRbOrthogonalComposite",
+            "base.fit",
+            "base.effective-reference",
+            "base.effective-individual"
+          ],
+          "explanation": "Unchanged behavior is survival, not evidence of reviewed acceptance or intended frame."
+        }
+      }
+    }
+  ],
+  "classification": "D. SAME-FRAME INVARIANT UNAMBIGUOUS, FRAME CHOICE AMBIGUOUS",
+  "fixEligibility": "B. OWNER MODEL DECISION REQUIRED BEFORE FIX",
+  "interpretation": "Fitted effective-prior semantics have meaningful design/WR-analogue support, but surviving default production calls and unavailable introducing history prevent a decision-free unique restoration. No frame selected.",
+  "ownerDecision": "PENDING; production correction NOT AUTHORIZED"
+}
