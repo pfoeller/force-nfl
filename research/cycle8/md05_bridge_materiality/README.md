@@ -1,6 +1,6 @@
 # MD-05 current production bridge materiality — Cycle 8
 
-Research only, from exact shared base `f2ce02c9f4ac7e54f22b372b6583cc878b030c45`. The owner accepted the corrected first tranche (`61561fc` + `d16c5d7`) on 2026-10-05 following Claude's targeted verdict A, and separately authorized only second-tranche key/group, descriptive redundancy/attribution and persistence research. MD-05 remains REVIEW; second-tranche independent review and owner acceptance are pending. Formula implementation, unit redesign and historical causal replay remain NOT AUTHORIZED. MD-06 remains REVIEW / NOT AUTHORIZED; MD-07 and MD-08 remain PLANNED / NOT AUTHORIZED. No new priority or implementation order is assigned.
+Research only, from exact shared base `f2ce02c9f4ac7e54f22b372b6583cc878b030c45`. The owner accepted the corrected first tranche (`61561fc` + `d16c5d7`) and the corrected second key/group/redundancy/persistence tranche (`3d98f0e` + `9efc6b2`) on 2026-10-05, confirming the earlier first acceptance. MD-05 remains REVIEW (BANKED pending future evidence), Priority unset, NOT COMPLETE; no further research tranche or historical/predictive ablation design is authorized. See the [acceptance record](KEY_GROUP_ATTRIBUTION.md#owner-acceptance-and-research-branch-closeout--2026-10-05). Formula implementation, unit redesign and historical causal replay remain NOT AUTHORIZED. MD-06 remains REVIEW / NOT AUTHORIZED; MD-07 and MD-08 remain PLANNED / NOT AUTHORIZED. No new priority or implementation order is assigned.
 
 ## Capture and scope
 
@@ -181,7 +181,7 @@ Q8: **No double counting is proven.** Large net/gross bridge effects do not isol
 
 Q9: MD-07/MD-08's calibration and normalization can materially affect aggregate FORCE because this bridge is active. The present grades/weights/cap must be accounted for when evaluating those future options, but this snapshot does not select a normalization anchor, redesign, unit priority or cross-unit comparability contract. Their statuses and authorization remain unchanged.
 
-One snapshot does not prove season-long behavior. Freshness is captured-time evidence, and the public endpoint advances. Research acceptance, future evidence collection, attribution policy, replay design and any model adoption remain owner decisions subject to existing governance.
+One snapshot does not prove season-long behavior. Freshness is captured-time evidence, and the public endpoint advances. Both corrected research tranches are owner accepted; future comparison/research scope, attribution policy, replay design and any model adoption remain separate owner decisions. The manual capture method is preserved for future independent evidence collection; capture does not automatically authorize analysis or model changes.
 
 ## Reproduction
 
@@ -206,8 +206,12 @@ Research assertions cover 32 unique teams, all nine keys and weights, ledger/bri
 
 ## Validation record
 
-PASS: four script syntax checks; all accounting, missingness, source/current-reference and ablation assertions; two independent full frozen-input replays with byte-identical JSON/CSV equal to the saved evidence. Input SHA-256 `8a25682fc22ab08c85c8fdc5701d8ffdcef8d9d5dfe3e47b06b3954f43e20376`; result SHA-256 `ffdeec4705d6a360b86b36f45d82552c82d68e9e4696626bea621381a6809a87`. Roadmap IDs/links, catalog inventory, exact scope and `git diff --check` are checked in the final handoff. First findings are owner ACCEPTED on 2026-10-05; second-tranche independent review and owner acceptance pending. No merge, push or deployment is authorized.
+PASS: four script syntax checks; all accounting, missingness, source/current-reference and ablation assertions; two independent full frozen-input replays with byte-identical JSON/CSV equal to the saved evidence. Input SHA-256 `8a25682fc22ab08c85c8fdc5701d8ffdcef8d9d5dfe3e47b06b3954f43e20376`; result SHA-256 `ffdeec4705d6a360b86b36f45d82552c82d68e9e4696626bea621381a6809a87`. Roadmap IDs/links, catalog inventory, exact scope and `git diff --check` are checked in the final handoff. Both corrected tranches are owner ACCEPTED on 2026-10-05 after Claude's targeted re-review A; MD-05 remains REVIEW (BANKED pending future evidence), not COMPLETE. No merge, push or deployment is authorized.
 
 ## Second research tranche — key/group attribution and persistence
 
 [Methods, findings, structural overlap and manual prospective capture instructions](KEY_GROUP_ATTRIBUTION.md) extend this package using the immutable accepted snapshot. Nine key/five predefined group ablations, cap transitions, signed interaction accounting, n=32 descriptive correlations and a frozen local inventory are research only. One independent eligible snapshot; persistence unresolved. [New offline check](check_key_group.mjs) verifies two-run parity; no production formula/test/generated changes or causal replay.
+
+## Research-branch governance closeout — 2026-10-05
+
+[Full acceptance basis, commit sets and accepted interpretation](KEY_GROUP_ATTRIBUTION.md#owner-acceptance-and-research-branch-closeout--2026-10-05) records the owner decision. Persistence remains UNRESOLVED: copies of the one eligible production generation are not independent snapshots. The manual prospective method is PRESERVED; meaningful independence generally requires another completed week or substantial profile update. No further MD-05 research, historical/predictive full-stack ablation/design, historical causal replay, formula changes or production implementation is authorized. No scheduler, background monitoring, new production endpoint or recurring automatic capture is authorized. Future capture grants no automatic analysis authority. MD-06/07/08 statuses and priorities are unchanged.

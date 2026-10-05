@@ -1,6 +1,6 @@
 # MD-05 key/group attribution and persistence — Cycle 8 second tranche
 
-Research only. The owner accepted first-tranche evidence (`61561fc` + `d16c5d7`) on **2026-10-05**, following Claude's targeted verdict A. This second key/group, descriptive redundancy/attribution and persistence tranche alone is authorized. Claude's independent adversarial review returned **B. MINOR RESEARCH CORRECTIONS REQUIRED**; the bounded path-hygiene correction and recommended seed-noise disclosure are applied here. Targeted re-review and owner acceptance of second findings are **PENDING**. Production implementation, formula/weight/share/cap/normalization changes, residualization adoption and historical causal replay remain **NOT AUTHORIZED**. MD-05 stays REVIEW, priority unset; MD-06/07/08 authority is unchanged.
+Research only. The owner ACCEPTED both corrected Cycle 8 MD-05 tranches on **2026-10-05**, confirming the earlier first-tranche acceptance. Second-tranche research and its bounded corrections are complete and owner accepted; MD-05 remains **REVIEW**, effectively **BANKED** pending future evidence, with Priority unset and broader unit design unresolved. MD-05 is **NOT COMPLETE**. No further research tranche, historical/predictive full-stack ablation design, historical causal replay, production implementation, formula/weight/share/cap/normalization changes, residualization adoption or unit formula changes are authorized. MD-06/07/08 status and authority are unchanged.
 
 ## Input and exact method
 
@@ -234,7 +234,7 @@ node research/cycle8/md05_bridge_materiality/prospective_capture.mjs <private-bo
 
 Rejects source/base/hash mismatch, stale/degraded/incomplete/zero bridge, missing current/prior keys, unscored started-game windows, accepted generation and existing directories. Writes only minimal FORCE-derived input/provenance in **new** `inputs/persistence/<generation>/`; cannot overwrite accepted input/results. No network calls/background service/scheduler/endpoint changes. Live/integrity/freshness, base/time/generation/raw/normalized/source hashes and runtime are recorded. Existing frozen runtime must reproduce `referenceLite` ratings, forecasts and analytic wins exactly. Future season comparison is reviewed analysis, not hidden work during capture.
 
-A distinct generation is necessary but insufficient for meaningful independence. Prefer after another completed NFL week or meaningful profile update, once games finish and integrity/freshness pass. Same-day or identical input updates are not season persistence. Source changes require fresh explicit version/provenance review before comparison; exact base remains pinned to avoid silent mixed models. This tranche establishes the accepted snapshot as baseline and manual method; **no new capture or future job is run**. Synthetic TEMP write controls are not evidence.
+A distinct generation is necessary but insufficient for meaningful independence. Future persistence work requires another genuinely independent production snapshot, generally after another completed NFL week or substantial profile update, once games finish and integrity/freshness pass. Same-day or identical input updates are not season persistence. Source changes require fresh explicit version/provenance review before comparison; exact base remains pinned to avoid silent mixed models. This tranche establishes the accepted snapshot as baseline and manual method; **no new capture or future job is run**. Synthetic TEMP write controls are not evidence.
 
 ## Acceptance questions and decisions
 
@@ -260,7 +260,19 @@ Q10–Q11: No eligible independent prior snapshot; persistence unresolved with m
 
 Q12: MD-07 provider dispersion/coverage/source comparability and MD-08 normalization anchors/dispersion/prior comparability are consequential because deltas flow into active caps/bridge. Discussed as future research only. MD-07/08 PLANNED / NOT AUTHORIZED; MD-06 REVIEW / NOT AUTHORIZED. No priorities assigned.
 
-Owner decisions remain: second-tranche acceptance, future persistence collection/comparison scope, historical/predictive design, attribution policy, sources/normalization and any production adoption. This commit chooses none.
+Owner acceptance of both research tranches is recorded below. Future persistence comparison/research scope, historical/predictive design, attribution policy, sources/normalization and any production adoption remain separate owner decisions; none is authorized by research acceptance.
+
+## Owner acceptance and research-branch closeout — 2026-10-05
+
+- **First tranche OWNER ACCEPTED, reconfirmed:** `61561fc423b78bb66b0016da5e584b115e483ece` + `d16c5d79f77585935af8ebfc4a82e4d1188e1683`.
+- **Second tranche OWNER ACCEPTED:** `3d98f0e2d0d59c4c602a4e76c94ad2c268f5e4c3` + `9efc6b2452fe7176f536ad544cf1785e41256e0f`.
+- **Acceptance basis:** The owner authorized the bounded key/group/redundancy/persistence research; Codex completed it; Claude independently reviewed it and returned **B. MINOR RESEARCH CORRECTIONS REQUIRED**, with one required local-path hygiene correction and one recommended seed-noise disclosure; Codex applied both in `9efc6b2`; Claude's targeted re-review returned **A. CORRECTIONS VERIFIED — SECOND TRANCHE READY FOR OWNER DECISION**; the owner then accepted the corrected tranche on 2026-10-05.
+
+Accepted interpretation: the production bridge materially affects current FORCE. Scoring/drive, coverage and run defense are the largest gross contributors; scoring/drive is also the largest marginal current-output key. Gross and marginal measures are related but differ because of team-level caps and downstream nonlinearities. The offensive group has the largest grouped effect, followed by the defensive group; team-level group non-additivity is mostly cap-mediated. Strong descriptive correlations, including scoring/QB, do not establish causal redundancy or literal double counting; no literal full-value duplicate charging is proven. Current sensitivity establishes neither historical predictive harm nor benefit. Cap suppression does not prove the cap wrong, and pass-rush source differences do not prove source bias. One independent eligible production generation exists; same-generation copies are not independent evidence, so persistence remains **UNRESOLVED**.
+
+MD-05 remains **REVIEW** (BANKED pending future evidence), Priority unset, **NOT COMPLETE**, because broader model design remains unresolved and no production design is selected. The owner authorizes no further MD-05 research tranche, deeper follow-on research, historical/predictive full-stack ablation or its design, historical causal replay, bridge reweighting/share/cap/normalization/formula changes, residualization adoption, unit formula changes or production implementation. The existing manual prospective-capture method is **PRESERVED** for future independent evidence collection; no scheduler, background monitoring, new production endpoint or automatic recurring capture is authorized. A future capture does not automatically authorize analysis or model changes; any future comparison is separately reviewable research requiring owner authorization. No new capture or analysis is undertaken during this closeout.
+
+MD-06 remains **REVIEW / NOT AUTHORIZED** with no feed/vendor/license/purchase/pilot authority. MD-07 and MD-08 remain **PLANNED / NOT AUTHORIZED**, without reprioritization. This is research-branch governance closeout only; no merge, push or deployment is authorized.
 
 ## Reproduction and validation
 
