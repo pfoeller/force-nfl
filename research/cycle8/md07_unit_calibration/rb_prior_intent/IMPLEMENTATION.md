@@ -21,12 +21,45 @@ profile-only calls; UNADJUSTED mainly reflects callback leakage. Ranking
 aesthetics, smaller movement, Walker/KC appearance and benchmark fit did not
 select this frame.
 
-Implementation COMPLETED; acceptance PENDING independent review.
-**Normal safe gate is NOT GREEN**: the existing UX-19 frozen golden contract
-pins pre-correction unit grades. No fixture recapture, weakened test, exclusion
-or new model authority is introduced. This validation blocker must be resolved
-under the existing separately reviewed fixture-transition policy before a
-clean normal gate can be claimed.
+**Owner acceptance / integration readiness — 2026-10-05:** Owner ACCEPTED implementation/source `cdcfa8de4eed10f26be0c28b05583c4240586537` and UX-19 fixture transition `e35145aac5a66bb141d6dc8593b2902d0fc52503` after independent implementation and fixture reviews PASSED. Claude's targeted fixture verdict was **A. FIXTURE TRANSITION VERIFIED — READY FOR OWNER ACCEPTANCE**; required corrections NONE. Current execution: **REVIEW / INVESTIGATE; ACCEPTED — READY FOR INTEGRATION** onto local main; Priority unset; MD-07 NOT COMPLETE. Merged/integrated NO; pushed NO; deployed NO. Acceptance introduces no follow-on research, implementation, integration or deployment authority.
+
+At implementation/source `cdcfa8de4eed10f26be0c28b05583c4240586537`,
+acceptance was pending independent review and the normal safe gate was **146/147**:
+the existing UX-19 golden pinned pre-correction grades. No fixture recapture,
+weakened test or exclusion occurred in that implementation commit. This was
+a historical validation blocker, subsequently resolved by the separately
+authorized and independently verified fixture-only transition below.
+
+## Accepted UX-19 fixture transition — 2026-10-05
+
+Transition `e35145aac5a66bb141d6dc8593b2902d0fc52503` has exact parent/source
+`cdcfa8de4eed10f26be0c28b05583c4240586537`. Independent implementation/fixture
+reviews PASSED; owner acceptance ACCEPTED; required corrections NONE.
+The repository-hygiene blocker was cleared before capture; all seven supplied
+attachments present at that step were preserved. Two clean LF exports produced
+byte-identical captures. Only four of 2,248 leaves changed; 2,244 are unchanged:
+
+| Bundled field | Previous | Accepted |
+| --- | ---: | ---: |
+| DEN rbIndex | 27.36350417032484 | 31.40625 |
+| KC rbIndex | 16.638284326313986 | 18.281250000000004 |
+| DEN offenseComposite | 51.227465379671074 | 52.521792294828295 |
+| KC offenseComposite | 47.03958027579622 | 47.56498243187875 |
+
+The offense changes are purely derived from RB under unchanged weights/calibration.
+Played state and every other golden field are unchanged; fixture-commit
+production/model/test-logic diff is zero. [Full provenance](../../../../scripts/TESTING.md#golden-fixture-scriptsfixturesux19_goldenjson)
+records the old SHA-256
+`dccab41d90066edbcff92710ee3ec76af7c0f91d715e82a8c967719f4cf63379`,
+accepted SHA-256
+`c8b1390dcd1033ad40d40b464ed60a5d097e0da578abc5768d556d4fd41eb24a`
+and Git blob `d8de578f498cf33c249346b33695ae593eb50ad7`.
+
+Verified post-transition LF validation: catalog 259; safe 147/147; model 50/50;
+release 17/17; QB 28/28; snapshot 6/6; server 30/30; default exclusions 112;
+focused V115 RB 1,060 checks PASS; golden-fixture governance PASS.
+No pending implementation/fixture review or owner acceptance remains.
+No fixture recapture occurs in this documentation closeout.
 
 ## Production construction
 
@@ -88,22 +121,23 @@ the defect was not the main explanation. No player-specific tuning.
 
 ## Authoritative validation
 
+Historical implementation/source `cdcfa8de4eed10f26be0c28b05583c4240586537` validation, before the fixture transition above:
 LF-clean export, normal isolated runner, no external network:
 catalog/inventory **259**, safe **146/147**, model **50/50**, release **17/17**,
 QB **28/28**, snapshot **6/6**, server **30/30**, default exclusions **112**.
 All runner invocations preserved source status/hashes. Three changed JS/MJS
 syntax checks passed. Canonical public build/parity and diff checks passed.
 
-Safe's sole failure is `test_ux19_qb_return_removal.mjs`,
+At that source, safe's sole failure was `test_ux19_qb_return_removal.mjs`,
 **A5/A13: bundled teams unchanged**. It passes on exact parent `207f4b5`:
 this is newly exposed by the authorized model change, not a pre-existing failure.
-Its committed test and `scripts/fixtures/ux19_golden.json` remain unchanged.
+Its committed test and `scripts/fixtures/ux19_golden.json` were unchanged at that source.
 A scratch-only bounded comparison inspects the remaining golden contracts
 without modifying the committed gate: **992 checks PASS**. Exactly four bundled
 values differ (RB and derived offense grades for two teams); played state has
 zero differences. Canonical/active ratings, forecasts/simulations, projections,
 historical states, Roster Lab, QB Rankings and all remaining golden fields
-match exactly. This supplemental probe does not turn the committed safe gate
+match exactly. At that point, this supplemental probe did not turn the committed safe gate
 green or authorize fixture recapture.
 
 Existing focused tests: V104 QB/OL/RB calibration, V109 units/reliability,
@@ -116,12 +150,13 @@ those three default-excluded failures are pre-existing, not repaired.
 
 MD-07 REVIEW / INVESTIGATE, Priority unset, NOT COMPLETE; both research
 tranches OWNER ACCEPTED; owner frame LIVE_FITTED; correction completed,
-acceptance PENDING independent review. MD-05 REVIEW/BANKED, MD-06 REVIEW /
+independent implementation/fixture reviews PASSED; owner ACCEPTED 2026-10-05;
+required corrections NONE; ACCEPTED — READY FOR INTEGRATION. MD-05 REVIEW/BANKED, MD-06 REVIEW /
 NOT AUTHORIZED, MD-08 and UX-41 PLANNED / NOT AUTHORIZED preserved.
 Historical research matrix, inputs and all measurement results are retained.
 No merge, push, deployment, new capture or unrelated work.
 
-Governance validation: 56 unique authoritative IDs; roadmap outside MD-07 unchanged;
+Historical implementation validation: 56 unique authoritative IDs; roadmap outside MD-07 unchanged;
 228 local links/nine anchors across touched docs resolve; all 33 generated files
 match authoritative sources. Accepted research parity checker passes 22 immutable
 files, four negative controls and 31 checksum pins. All nine numeric result

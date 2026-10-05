@@ -44,17 +44,23 @@ repeat capture was byte-identical.
   its own with the source SHA in the commit message and in this section.
 - Replacing the committed fixture requires that review before it is accepted.
 
-Fixture provenance log: Cycle 8 MD-07, `cdcfa8de4eed10f26be0c28b05583c4240586537` (current authorized transition, independent fixture review pending); Cycle 7 MD-04, `f984ed9`; Cycle 6, `fe09e67`.
+Fixture provenance log: Cycle 8 MD-07, `cdcfa8de4eed10f26be0c28b05583c4240586537` (transition `e35145aac5a66bb141d6dc8593b2902d0fc52503` independently verified and owner ACCEPTED 2026-10-05); Cycle 7 MD-04, `f984ed9`; Cycle 6, `fe09e67`.
 
 Cycle 8 MD-07 fixture-only transition (2026-10-05): captured with
 `node scripts/test_ux19_qb_return_removal.mjs --capture` from a clean LF export
-of accepted implementation `cdcfa8de4eed10f26be0c28b05583c4240586537`.
+of independently reviewed implementation `cdcfa8de4eed10f26be0c28b05583c4240586537`.
+Combined owner acceptance of the implementation and fixture followed capture
+and independent fixture review on 2026-10-05.
 A second clean export produced byte-identical capture. The owner separately
 authorized this fixture transition after Claude independently verified the
 V115 LIVE_FITTED implementation with no correction required and found no
 unrelated movement. The named Codex validation scratch was moved out of main;
-supplied attachments were preserved. Fixture acceptance remains PENDING
-independent review; this note grants no merge, push or deployment authority.
+supplied attachments were preserved. Independent fixture review PASSED:
+**A. FIXTURE TRANSITION VERIFIED — READY FOR OWNER ACCEPTANCE**. The owner
+then ACCEPTED implementation/source `cdcfa8de4eed10f26be0c28b05583c4240586537`
+and fixture transition `e35145aac5a66bb141d6dc8593b2902d0fc52503` on 2026-10-05;
+required corrections NONE. Current state: ACCEPTED — READY FOR INTEGRATION;
+not merged, pushed or deployed. This note grants no follow-on or release authority.
 
 Whole-tree comparison covers 2,248 leaf fields with exactly four changes:
 
@@ -78,6 +84,7 @@ Fixture SHA-256: previous
 `dccab41d90066edbcff92710ee3ec76af7c0f91d715e82a8c967719f4cf63379`;
 captured
 `c8b1390dcd1033ad40d40b464ed60a5d097e0da578abc5768d556d4fd41eb24a`.
+Accepted fixture Git blob: `d8de578f498cf33c249346b33695ae593eb50ad7`.
 The complete parent/candidate fixture comparison is reproducible with
 `git diff cdcfa8de4eed10f26be0c28b05583c4240586537 -- scripts/fixtures/ux19_golden.json`;
 normal UX-19 runs read the recaptured fixture without changing test logic.
@@ -558,14 +565,17 @@ Frozen checks use the corrected production prior path plus accepted live
 grades/games; no private-feed replay or total FORCE/forecast claim.
 Catalog 259; safe 147; model 50; default exclusions 112.
 Canonical `scripts/build_public.py` regenerates the tracked model mirror.
-Implementation review/owner acceptance pending; no merge/push/deploy.
+Independent implementation/fixture reviews PASSED; owner ACCEPTED 2026-10-05;
+required corrections NONE; ACCEPTED — READY FOR INTEGRATION.
+MD-07 REVIEW / INVESTIGATE, Priority unset, NOT COMPLETE; no merge/push/deploy.
 
-LF authoritative result at implementation source `cdcfa8d`: inventory 259;
+Historical LF authoritative result at implementation source `cdcfa8d`,
+before the subsequently accepted fixture transition: inventory 259;
 safe 146/147; model 50/50; release
 17/17; QB 28/28; snapshot 6/6; server 30/30. The sole safe failure is
 `test_ux19_qb_return_removal.mjs` A5/A13 bundled teams unchanged, because the
 golden pins pre-correction RB/derived offense unit grades. It passes on parent
-`207f4b5`; this is not pre-existing. The fixture/test is unchanged.
+`207f4b5`; this is not pre-existing. At that source the fixture/test was unchanged.
 At implementation source `cdcfa8d` no recapture or exclusion was performed;
 normal safe was blocked. The subsequent separately authorized fixture-only
 transition is recorded in the Golden fixture section above.
