@@ -1,6 +1,6 @@
 # MD-05 current production bridge materiality — Cycle 8
 
-Research only, from exact shared base `f2ce02c9f4ac7e54f22b372b6583cc878b030c45`. The owner authorized this measurement and scratch current-state ablation only. MD-05 remains REVIEW; independent adversarial review and owner acceptance of these findings are pending. Formula implementation, unit redesign and historical causal replay remain NOT AUTHORIZED. MD-06 remains REVIEW / NOT AUTHORIZED; MD-07 and MD-08 remain PLANNED / NOT AUTHORIZED. No new priority or implementation order is assigned.
+Research only, from exact shared base `f2ce02c9f4ac7e54f22b372b6583cc878b030c45`. The owner accepted the corrected first tranche (`61561fc` + `d16c5d7`) on 2026-10-05 following Claude's targeted verdict A, and separately authorized only second-tranche key/group, descriptive redundancy/attribution and persistence research. MD-05 remains REVIEW; second-tranche independent review and owner acceptance are pending. Formula implementation, unit redesign and historical causal replay remain NOT AUTHORIZED. MD-06 remains REVIEW / NOT AUTHORIZED; MD-07 and MD-08 remain PLANNED / NOT AUTHORIZED. No new priority or implementation order is assigned.
 
 ## Capture and scope
 
@@ -175,7 +175,7 @@ Q5: Nine caps bind, sometimes substantially, so the cap is practically active to
 
 Q6: Team ranks, smart game probabilities, lines and marginal season outcomes respond materially. Analytic score totals do not change; representative scores can. None of these differences proves removal would improve predictions.
 
-Q7: The observed exposure justifies recommending a **separately authorized** deeper MD-05 attribution/ablation design, including which archived inputs would make a full-stack historical replay feasible. A multi-snapshot measurement could establish persistence. Neither follow-up is started or authorized here.
+Q7: The observed exposure justifies recommending a **separately authorized** deeper MD-05 attribution/ablation design, including which archived inputs would make a full-stack historical replay feasible. A multi-snapshot measurement could establish persistence. Historical/predictive replay remains unstarted and unauthorized. The separately authorized second research tranche below measures direct-channel attribution and inventories persistence without replay.
 
 Q8: **No double counting is proven.** Large net/gross bridge effects do not isolate causal duplication; small effects would not validate unit metrics either. Shared-event credit, predictive increment and attribution need separate evidence. Current-state sensitivity does not establish historical predictive value.
 
@@ -206,4 +206,8 @@ Research assertions cover 32 unique teams, all nine keys and weights, ledger/bri
 
 ## Validation record
 
-PASS: four script syntax checks; all accounting, missingness, source/current-reference and ablation assertions; two independent full frozen-input replays with byte-identical JSON/CSV equal to the saved evidence. Input SHA-256 `8a25682fc22ab08c85c8fdc5701d8ffdcef8d9d5dfe3e47b06b3954f43e20376`; result SHA-256 `ffdeec4705d6a360b86b36f45d82552c82d68e9e4696626bea621381a6809a87`. Roadmap IDs/links, catalog inventory, exact scope and `git diff --check` are checked in the final handoff. Independent adversarial review and owner acceptance remain pending. No merge, push or deployment is authorized.
+PASS: four script syntax checks; all accounting, missingness, source/current-reference and ablation assertions; two independent full frozen-input replays with byte-identical JSON/CSV equal to the saved evidence. Input SHA-256 `8a25682fc22ab08c85c8fdc5701d8ffdcef8d9d5dfe3e47b06b3954f43e20376`; result SHA-256 `ffdeec4705d6a360b86b36f45d82552c82d68e9e4696626bea621381a6809a87`. Roadmap IDs/links, catalog inventory, exact scope and `git diff --check` are checked in the final handoff. First findings are owner ACCEPTED on 2026-10-05; second-tranche independent review and owner acceptance pending. No merge, push or deployment is authorized.
+
+## Second research tranche — key/group attribution and persistence
+
+[Methods, findings, structural overlap and manual prospective capture instructions](KEY_GROUP_ATTRIBUTION.md) extend this package using the immutable accepted snapshot. Nine key/five predefined group ablations, cap transitions, signed interaction accounting, n=32 descriptive correlations and a frozen local inventory are research only. One independent eligible snapshot; persistence unresolved. [New offline check](check_key_group.mjs) verifies two-run parity; no production formula/test/generated changes or causal replay.

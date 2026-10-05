@@ -1,0 +1,269 @@
+{
+  "schema": 1,
+  "base": "f2ce02c9f4ac7e54f22b372b6583cc878b030c45",
+  "generation": "1791208907361-fe47c67c-ab19-4a93-bb97-633c32160c6d",
+  "capturedAt": "2026-10-05T14:22:58.3409852Z",
+  "snapshotSHA256": "8a25682fc22ab08c85c8fdc5701d8ffdcef8d9d5dfe3e47b06b3954f43e20376",
+  "source": "existing first-capture FORCE_RATING_LEDGER output in private normalized_draft.json; no new capture",
+  "sourceSHA256": "074316bf493de81530bf9129868e7f36a7001264ab2bc6bc10a286156df537e7",
+  "sourceBootstrapSHA256": "ed930093ba55f8d246893af5714055ac8aad9f3a3fd792d7c8f98ac799168527",
+  "definition": "current causal/result-only Elo minus recorded Week-2-entry causal/result-only Elo; excludes unit bridge, early-regime, retrospective and retired-QB terms",
+  "rows": [
+    {
+      "team": "ARI",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|ARI|LAC",
+      "entryCausalElo": 1437.9989267362685,
+      "currentCausalElo": 1398.7169366019823,
+      "resultOnlyMovement": -39.28199013428616
+    },
+    {
+      "team": "ATL",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|ATL|PIT",
+      "entryCausalElo": 1485.451408150629,
+      "currentCausalElo": 1480.8799778045166,
+      "resultOnlyMovement": -4.571430346112493
+    },
+    {
+      "team": "BAL",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|BAL|IND",
+      "entryCausalElo": 1562.1982845034686,
+      "currentCausalElo": 1550.862883725827,
+      "resultOnlyMovement": -11.335400777641553
+    },
+    {
+      "team": "BUF",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|BUF|HOU",
+      "entryCausalElo": 1628.7728608304071,
+      "currentCausalElo": 1634.7997747166999,
+      "resultOnlyMovement": 6.026913886292732
+    },
+    {
+      "team": "CAR",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|CHI|CAR",
+      "entryCausalElo": 1410.594062095596,
+      "currentCausalElo": 1463.840167399192,
+      "resultOnlyMovement": 53.246105303596096
+    },
+    {
+      "team": "CHI",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|CHI|CAR",
+      "entryCausalElo": 1553.4159379044038,
+      "currentCausalElo": 1577.1324235618104,
+      "resultOnlyMovement": 23.716485657406565
+    },
+    {
+      "team": "CIN",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|TB|CIN",
+      "entryCausalElo": 1494.9359951559134,
+      "currentCausalElo": 1502.3945766787463,
+      "resultOnlyMovement": 7.458581522832901
+    },
+    {
+      "team": "CLE",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|CLE|JAX",
+      "entryCausalElo": 1421.20176403522,
+      "currentCausalElo": 1469.759026327898,
+      "resultOnlyMovement": 48.55726229267793
+    },
+    {
+      "team": "DAL",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|DAL|NYG",
+      "entryCausalElo": 1424.0852049078749,
+      "currentCausalElo": 1465.0201977196643,
+      "resultOnlyMovement": 40.93499281178947
+    },
+    {
+      "team": "DEN",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-14|DEN|KC",
+      "entryCausalElo": 1560.844305771653,
+      "currentCausalElo": 1575.71547749873,
+      "resultOnlyMovement": 14.871171727077126
+    },
+    {
+      "team": "DET",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|NO|DET",
+      "entryCausalElo": 1544.0195839029254,
+      "currentCausalElo": 1514.8186800883332,
+      "resultOnlyMovement": -29.200903814592266
+    },
+    {
+      "team": "GB",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|GB|MIN",
+      "entryCausalElo": 1509.208195268598,
+      "currentCausalElo": 1491.941444784459,
+      "resultOnlyMovement": -17.26675048413904
+    },
+    {
+      "team": "HOU",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|BUF|HOU",
+      "entryCausalElo": 1580.5871391695928,
+      "currentCausalElo": 1511.8892060111825,
+      "resultOnlyMovement": -68.69793315841025
+    },
+    {
+      "team": "IND",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|BAL|IND",
+      "entryCausalElo": 1446.5417154965314,
+      "currentCausalElo": 1481.1933025823132,
+      "resultOnlyMovement": 34.651587085781784
+    },
+    {
+      "team": "JAX",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|CLE|JAX",
+      "entryCausalElo": 1589.4282359647798,
+      "currentCausalElo": 1617.1477660905,
+      "resultOnlyMovement": 27.719530125720212
+    },
+    {
+      "team": "KC",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-14|DEN|KC",
+      "entryCausalElo": 1525.875694228347,
+      "currentCausalElo": 1561.940034143594,
+      "resultOnlyMovement": 36.06433991524705
+    },
+    {
+      "team": "LAC",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|ARI|LAC",
+      "entryCausalElo": 1488.9110732637314,
+      "currentCausalElo": 1441.544958715595,
+      "resultOnlyMovement": -47.366114548136466
+    },
+    {
+      "team": "LAR",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-10|SF|LAR",
+      "entryCausalElo": 1557.3025518329518,
+      "currentCausalElo": 1576.8243509070458,
+      "resultOnlyMovement": 19.521799074093906
+    },
+    {
+      "team": "LV",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|MIA|LV",
+      "entryCausalElo": 1388.119856240211,
+      "currentCausalElo": 1437.9496171646224,
+      "resultOnlyMovement": 49.8297609244114
+    },
+    {
+      "team": "MIA",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|MIA|LV",
+      "entryCausalElo": 1434.910143759789,
+      "currentCausalElo": 1397.4973510848627,
+      "resultOnlyMovement": -37.41279267492632
+    },
+    {
+      "team": "MIN",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|GB|MIN",
+      "entryCausalElo": 1587.591804731402,
+      "currentCausalElo": 1621.746321856952,
+      "resultOnlyMovement": 34.15451712555
+    },
+    {
+      "team": "NE",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-09|NE|SEA",
+      "entryCausalElo": 1582.8659819647755,
+      "currentCausalElo": 1586.6192687938567,
+      "resultOnlyMovement": 3.753286829081162
+    },
+    {
+      "team": "NO",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|NO|DET",
+      "entryCausalElo": 1439.5904160970745,
+      "currentCausalElo": 1441.9333237420917,
+      "resultOnlyMovement": 2.342907645017249
+    },
+    {
+      "team": "NYG",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|DAL|NYG",
+      "entryCausalElo": 1454.384795092125,
+      "currentCausalElo": 1468.5770416037606,
+      "resultOnlyMovement": 14.19224651163563
+    },
+    {
+      "team": "NYJ",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|NYJ|TEN",
+      "entryCausalElo": 1400.0188200279304,
+      "currentCausalElo": 1371.4053081928014,
+      "resultOnlyMovement": -28.613511835128975
+    },
+    {
+      "team": "PHI",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|WAS|PHI",
+      "entryCausalElo": 1568.249166523435,
+      "currentCausalElo": 1525.7362841750387,
+      "resultOnlyMovement": -42.51288234839626
+    },
+    {
+      "team": "PIT",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|ATL|PIT",
+      "entryCausalElo": 1537.428591849371,
+      "currentCausalElo": 1512.5954010984535,
+      "resultOnlyMovement": -24.833190750917538
+    },
+    {
+      "team": "SEA",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-09|NE|SEA",
+      "entryCausalElo": 1688.6540180352242,
+      "currentCausalElo": 1687.6108847365426,
+      "resultOnlyMovement": -1.043133298681596
+    },
+    {
+      "team": "SF",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-10|SF|LAR",
+      "entryCausalElo": 1587.3774481670482,
+      "currentCausalElo": 1630.9012281693633,
+      "resultOnlyMovement": 43.52378000231511
+    },
+    {
+      "team": "TB",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|TB|CIN",
+      "entryCausalElo": 1459.9740048440867,
+      "currentCausalElo": 1418.9421233134924,
+      "resultOnlyMovement": -41.03188153059432
+    },
+    {
+      "team": "TEN",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|NYJ|TEN",
+      "entryCausalElo": 1347.1311799720695,
+      "currentCausalElo": 1324.1310292388787,
+      "resultOnlyMovement": -23.00015073319082
+    },
+    {
+      "team": "WAS",
+      "entryWeek": 2,
+      "entryGame": "1|2026-09-13|WAS|PHI",
+      "entryCausalElo": 1464.2208334765648,
+      "currentCausalElo": 1419.8236314711926,
+      "resultOnlyMovement": -44.397202005372264
+    }
+  ]
+}
