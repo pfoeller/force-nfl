@@ -4108,21 +4108,36 @@
       }).join('') : '<div class="loading">Refresh to load the full schedule.</div>'}</section>`, 'teams');
   }
 
+  // MD-04 (Cycle 7): Roster Lab rows are addressed by team, position and name,
+  // never by bare name. Bare names collide (same-team RB/WR rows, cross-team
+  // abbreviations), so a key that still matches more than one row resolves to
+  // nothing rather than to the first match.
+  function labPlayerKey(p) {
+    return `${p.team}|${p.pos}|${p.name}`;
+  }
+
+  function labPlayer(key) {
+    const rows = D.players.filter((p) => labPlayerKey(p) === key);
+    return rows.length === 1 ? rows[0] : null;
+  }
+
   function lab() {
     const t = S.team || 'BUF';
     const ratings = currentRatings();
     const teamPlayers = D.players.filter((p) => p.team === t).sort((a, b) => a.pos.localeCompare(b.pos) || b.impact - a.impact);
     const others = D.players.filter((p) => p.team !== t).sort((a, b) => b.impact - a.impact).slice(0, 100);
+    // One transaction: apply removals first, then evaluate the single addition
+    // against the remaining room. Impacts and the forced-replacement rule for
+    // QB additions are unchanged; only the incumbent now excludes removed rows.
+    const removed = teamPlayers.filter((p) => S.scenario.removed.has(labPlayerKey(p)));
+    const remaining = teamPlayers.filter((p) => !removed.includes(p));
     let delta = 0;
-    S.scenario.removed.forEach((n) => {
-      const p = D.players.find((x) => x.name === n && x.team === t);
-      if (p) delta -= p.impact;
-    });
+    removed.forEach((p) => { delta -= p.impact; });
     if (S.scenario.add) {
-      const p = D.players.find((x) => x.name === S.scenario.add);
-      if (p) {
+      const p = labPlayer(S.scenario.add);
+      if (p && p.team !== t) {
         if (p.pos === 'QB') {
-          const cur = teamPlayers.filter((x) => x.pos === 'QB').sort((a, b) => b.impact - a.impact)[0];
+          const cur = remaining.filter((x) => x.pos === 'QB').sort((a, b) => b.impact - a.impact)[0];
           delta += p.impact - (cur?.impact || 0);
         } else delta += p.impact;
       }
@@ -4134,9 +4149,9 @@
       <div class="warning">QB effects use the validated QB signal. Other positions are experimental.</div>
       <div class="lab" style="margin-top:16px"><aside class="card">
         <div class="control"><label>Team</label><select id="labTeam">${Object.keys(D.teams).sort().map((x) => `<option ${x === t ? 'selected' : ''}>${x}</option>`).join('')}</select></div>
-        <div class="control"><label>Add / trade for a player</label><select id="addPlayer"><option value="">No addition</option>${others.map((p) => `<option value="${p.name}" ${S.scenario.add === p.name ? 'selected' : ''}>${p.name} · ${p.pos} · ${p.team} (${p.impact >= 0 ? '+' : ''}${p.impact})</option>`).join('')}</select></div>
+        <div class="control"><label>Add / trade for a player</label><select id="addPlayer"><option value="">No addition</option>${others.map((p) => `<option value="${labPlayerKey(p)}" ${S.scenario.add === labPlayerKey(p) ? 'selected' : ''}>${p.name} · ${p.pos} · ${p.team} (${p.impact >= 0 ? '+' : ''}${p.impact})</option>`).join('')}</select></div>
         <div class="card-head"><h3>Remove / injury</h3><span class="chip">toggle players</span></div>
-        <div class="roster-list">${teamPlayers.map((p) => `<label class="player"><input type="checkbox" data-remove="${p.name}" ${S.scenario.removed.has(p.name) ? 'checked' : ''}><span>${p.name}<small>${p.pos} · ${p.confidence === 'experimental' ? 'experimental' : 'validated QB signal'}</small></span><span class="impact">${p.impact >= 0 ? '+' : ''}${p.impact}</span></label>`).join('') || '<div class="loading">No player rows in base snapshot</div>'}</div>
+        <div class="roster-list">${teamPlayers.map((p) => `<label class="player"><input type="checkbox" data-remove="${labPlayerKey(p)}" ${S.scenario.removed.has(labPlayerKey(p)) ? 'checked' : ''}><span>${p.name}<small>${p.pos} · ${p.confidence === 'experimental' ? 'experimental' : 'validated QB signal'}</small></span><span class="impact">${p.impact >= 0 ? '+' : ''}${p.impact}</span></label>`).join('') || '<div class="loading">No player rows in base snapshot</div>'}</div>
       </aside><section>
         <div class="card scenario-hero">
           <div class="scenario-stat"><span>FORCE Score</span><strong>${fmt(score(r + delta))}</strong>${ratingBar(r + delta)}<div class="change ${delta >= 0 ? 'positive' : 'negative'}">${delta >= 0 ? '+' : ''}${fmt(score(r + delta) - score(r))}</div></div>

@@ -105,6 +105,15 @@
       "timeoutMs": 120000
     },
     {
+      "file": "test_md04_roster_lab_accounting.mjs",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression",
+      "reason": "MD-04 Cycle 7: real-bundle proof that Roster Lab rows are addressed by team/position/name, removals apply before the single addition and the QB incumbent excludes removed rows, with canonical isolation, reset and mutation controls; open policy cases are pinned unchanged",
+      "timeoutMs": 120000
+    },
+    {
       "file": "test_postseason_state_audit.mjs",
       "suites": [
         "safe",

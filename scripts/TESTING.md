@@ -18,7 +18,7 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 145 tests: 112 JavaScript and 33 Python |
+| `npm test` / `npm run test:safe` | 146 tests: 113 JavaScript and 33 Python |
 | `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 28 QB/pressure/research regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
@@ -45,6 +45,17 @@ repeat capture was byte-identical.
 - Replacing the committed fixture requires that review before it is accepted.
 
 Fixture provenance log: Cycle 6, `fe09e67` (current).
+
+Cycle 7 MD-04 decision-free Roster Lab accounting/identity tranche (2026-10-05,
+`cycle7/claude-md04-accounting` from exact `b066de7`; not merged, pushed or
+deployed): new `test_md04_roster_lab_accounting.mjs` (safe; `timeoutMs` 120000)
+checks every offered row on every team, the known DET/SF/BUF collisions,
+removal-before-incumbent accounting, open-policy cases pinned unchanged,
+canonical/unit/forecast isolation, Lab propagation, reset, accessible controls
+and real bind() handlers, plus three source mutations (name-only lookup,
+removed-incumbent inclusion, removals not applied before the addition). It
+fails on `b066de7`. Catalog 258 entries, 146 safe (113 JavaScript / 33 Python)
+and 112 unchanged default exclusions.
 
 Cycle 6 UX-19 public QB-return tool removal (2026-10-03,
 `cycle6/claude-ux19-removal` from exact `fe09e67`, implementation `f562928`,
