@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "base": "f2ce02c9f4ac7e54f22b372b6583cc878b030c45",
+  "capturedAt": "2026-10-05T14:22:58.3409852Z",
+  "url": "https://forceratings.com/api/bootstrap",
+  "builtAt": "2026-10-05T14:01:47.361Z",
+  "generation": "1791208907361-fe47c67c-ab19-4a93-bb97-633c32160c6d",
+  "rawBootstrapSHA256": "ed930093ba55f8d246893af5714055ac8aad9f3a3fd792d7c8f98ac799168527",
+  "rawBootstrapBytes": 8356378,
+  "normalizedInputSHA256": "8a25682fc22ab08c85c8fdc5701d8ffdcef8d9d5dfe3e47b06b3954f43e20376",
+  "resultSHA256": "ffdeec4705d6a360b86b36f45d82552c82d68e9e4696626bea621381a6809a87",
+  "runtime": "v26.7.0",
+  "publicIdentity": "FORCE V149 (existing bootstrap integrity check)",
+  "publishedScriptParity": "all 18 ordered app/model/data scripts match exact base after LF normalization",
+  "publicIndexDifference": "Cloudflare analytics beacon only; ordered application scripts unchanged",
+  "workerVersionId": "not queried; deployed source parity verified directly",
+  "feedPayloadsCommitted": false,
+  "normalization": "FORCE-derived core/current ratings, nine stabilized live/prior unit grades, freshness metadata, ledger current decomposition, public fixture results and dates, FORCE-derived market probability/source, and exact current forecast/score/season outputs; no raw weekly, player, FTN, PFR, pressure or PBP feeds",
+  "privateRecaptureSchema": "existing bootstrap ok/builtAt/generation/warnings/feeds; captured raw payload stays outside Git",
+  "boundary": "Frozen current production-derived core/profile/market inputs; not a historical causal replay or predictor validation"
+}
