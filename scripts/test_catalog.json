@@ -510,6 +510,14 @@
       "classification": "regression"
     },
     {
+      "file": "test_v115_rb_prior_frame.mjs",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression"
+    },
+    {
       "file": "test_v115_unit_orthogonalization.js",
       "suites": [
         "safe",

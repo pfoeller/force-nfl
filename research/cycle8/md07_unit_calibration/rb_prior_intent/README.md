@@ -1,20 +1,24 @@
 # MD-07 bounded RB prior-reference intent investigation
 
-**First MD-07 tranche OWNER ACCEPTED on 2026-10-05. This follow-up is AUTHORIZED RESEARCH ONLY, completed for independent review; its findings are not yet owner accepted. MD-07 remains REVIEW / INVESTIGATE, Priority unset, NOT COMPLETE. Any RB correction remains owner-decision PENDING and production implementation NOT AUTHORIZED.** No WR/run-defense/OL/rush/MD-08/UX-41 follow-up or bridge/normalization change is authorized.
+**Intent investigation OWNER ACCEPTED; owner-selected LIVE_FITTED correction AUTHORIZED and COMPLETED, acceptance PENDING independent review. MD-07 REVIEW / INVESTIGATE, Priority unset, NOT COMPLETE.** Other unit/model work remains unauthorized.
 
 Owner accepted `1ecd4db3005fbce72fa88222476bcfafd312ca4c` + `98db3b323c928879d9ff7435d77a980744a66289` after Claude's first adversarial verdict C, bounded revision and targeted verdict **A. REVISIONS VERIFIED — MD-07 READY FOR OWNER DECISION**. [Accepted measurement evidence and governance](../README.md) remain separate from this intent investigation.
 
 ## Finding and fix eligibility
 
+Historical research finding before the subsequent owner decision; retained without reinterpretation.
+
 **D. SAME-FRAME INVARIANT UNAMBIGUOUS, FRAME CHOICE AMBIGUOUS**
 
 **B. OWNER MODEL DECISION REQUIRED BEFORE FIX**
 
-The inconsistency is a real production-live comparison/reference defect; this investigation does not reopen that diagnosis. Like-for-like reference/value transformation is required. However, the recovered local history begins with a V149 import that already includes V115 and conflicting effective-prior calls. No original V115 introducing diff, explicit effective-prior frame instruction or distinguishing effective-prior test was recovered. The fitted frame has meaningful design/WR-analogue support, while actual default individual calls support another reading. Neither is established strongly enough for decision-free restoration. No frame is selected.
+The inconsistency is a real production-live comparison/reference defect; this investigation does not reopen that diagnosis. Like-for-like reference/value transformation is required. However, the recovered local history begins with a V149 import that already includes V115 and conflicting effective-prior calls. No original V115 introducing diff, explicit effective-prior frame instruction or distinguishing effective-prior test was recovered. The fitted frame has meaningful design/WR-analogue support, while actual default individual calls support another reading. Neither is established strongly enough for decision-free restoration. No frame was selected by this investigation; the separate owner decision below now selects LIVE_FITTED.
 
 [Historical extraction and excerpts](history.md), [source/diff pins](history.json), [call inventory](callsite_inventory.json) and [analyst intent matrix](intent_matrix.json) separate facts, inference and absence of evidence. Matrix strengths are analyst evidence judgments, not mechanically derived intent or model adoption.
 
 ## Separate the two historical-reference consumers
+
+These call descriptions are pinned pre-fix history, not the current implementation. Current owner-selected construction is recorded separately in [implementation evidence](IMPLEMENTATION.md).
 
 | Component | Explicit construction in recovered V115 source | Intent certainty |
 |---|---|---|
@@ -79,4 +83,6 @@ PASS: ten research-script syntax checks; two separate-process LF-clean extractio
 
 ## Owner boundary and next decision
 
-Investigation finished for independent review; owner acceptance of this follow-up is PENDING. If accepted, the owner still must resolve the effective-prior model frame before separately authorizing a production correction. This report supplies evidence, not that authorization. MD-07 stays REVIEW, NOT COMPLETE; MD-08/UX-41 PLANNED / NOT AUTHORIZED; MD-05 REVIEW / BANKED; MD-06 REVIEW / NOT AUTHORIZED. No automatic follow-on work. Nothing merged, pushed or deployed.
+Owner ACCEPTED intent research `207f4b58b57b96cd41657deb0f6eec42de3aacc2` on 2026-10-05 after Claude's **A. RB PRIOR-INTENT RESEARCH VERIFIED — READY FOR OWNER DECISION**. Historical classification remains **D. SAME-FRAME INVARIANT UNAMBIGUOUS, FRAME CHOICE AMBIGUOUS**. Owner then selected **LIVE_FITTED** as the canonical V115 effective-prior frame and separately AUTHORIZED ONLY its bounded correctness implementation. This is an explicit owner model decision based on design consistency and the same-frame invariant, not proven original author intent or nicer rankings, lower impact or Walker/KC aesthetics. Implementation COMPLETED; acceptance PENDING independent review.
+
+[Implementation evidence](IMPLEMENTATION.md) records the same fitted live/reference/effective-prior frame without altering the historical matrix, extraction or classification. MD-07 stays REVIEW / INVESTIGATE, NOT COMPLETE; MD-08/UX-41 PLANNED / NOT AUTHORIZED, MD-05 REVIEW/BANKED, MD-06 REVIEW / NOT AUTHORIZED. No automatic follow-on work. Nothing merged, pushed or deployed.

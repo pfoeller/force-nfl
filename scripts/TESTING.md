@@ -18,12 +18,12 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 146 tests: 113 JavaScript and 33 Python |
+| `npm test` / `npm run test:safe` | 147 tests: 114 JavaScript and 33 Python |
 | `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 28 QB/pressure/research regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
-| `npm run test:model` | 49 model/unit/research regressions |
+| `npm run test:model` | 50 model/unit/research regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
 
@@ -505,3 +505,24 @@ preserving both complete lane histories. `origin/main` remains at `bd15a2c`;
 no push or deployment occurred. Closeout changes only merge/review status
 and history; retirement and UX-19 implementation remain separately
 unauthorized. The existing automatic correction remains active.
+
+## MD-07 V115 RB effective-prior frame correction — 2026-10-05
+
+Owner-selected LIVE_FITTED, not proven original V115 intent.
+`test_v115_rb_prior_frame.mjs` (safe/model) exercises synthetic distinct frames,
+fitted argument observations, QB/rushing fallbacks, independent composite/prior
+arithmetic, five semantic mutations, full-profile parity for six non-V115
+policies in preseason/live states and frozen MD-07 LIVE_FITTED parity.
+Frozen checks use the corrected production prior path plus accepted live
+grades/games; no private-feed replay or total FORCE/forecast claim.
+Catalog 259; safe 147; model 50; default exclusions 112.
+Canonical `scripts/build_public.py` regenerates the tracked model mirror.
+Implementation review/owner acceptance pending; no merge/push/deploy.
+
+LF authoritative result: inventory 259; safe 146/147; model 50/50; release
+17/17; QB 28/28; snapshot 6/6; server 30/30. The sole safe failure is
+`test_ux19_qb_return_removal.mjs` A5/A13 bundled teams unchanged, because the
+golden pins pre-correction RB/derived offense unit grades. It passes on parent
+`207f4b5`; this is not pre-existing. The fixture/test is unchanged.
+No recapture or exclusion performed; normal gate remains blocked pending
+the existing separately reviewed fixture transition.

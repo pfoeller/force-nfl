@@ -16,8 +16,8 @@
   "rb_prior_intent/history.json": "1df92cce292c6b33f47eacbbd0a6813b588b5af000d539b3fc6486da18765502",
   "rb_prior_intent/history.md": "5905462ccdc7ef8337c84031c6df4af4b607c1ecd9d226ecd5a1576e7d9c3e87",
   "rb_prior_intent/intent_matrix.json": "d927eb3b61eb03a2dac6b68c56563d60aeba7a5a9eb1ee23e2b6051b97199fbc",
-  "rb_prior_intent/README.md": "5af61a978b5de4a7810cd8cdaf6398925c0fcfefb3e2b7f10a519459e9b87402",
-  "README.md": "41bf5ddef6809a93f6258638bba3f59d8b90189740437095978d17c2d3af5f52",
+  "rb_prior_intent/README.md": "207bd4d427f58ff16ec582d2eb2b3bce11a5306861bb7dd4149261ef8aaffa9f",
+  "README.md": "5467b2ba9c49581537581f3c466f7e26fe1326cb43fd550416eda68455f28df8",
   "results/benchmark_alignment.json": "1b7858f95c56ab56e1d503dffd818a38da66d1338c623144a2b6940f600a5130",
   "results/compression_robustness.json": "6b41bbd324fa337cd59281ca8518c387af00bfe9df87dab05935cfd070ce3c07",
   "results/historical_availability.json": "6ec44fbbc84bd11f512367ff08be622609948345bc4c5ba8917b9c27ed95edce",
@@ -28,5 +28,6 @@
   "results/unit_distributions.json": "b16eef024b3c37e20d51e93df27a9a69bb318196366ea29a8ff214099a7aaae7",
   "results/unit_summary.json": "e950168c67653b609917e893ba2cf4ce36ced2d9b2e222de54f4527ffb07d875",
   "semantic_contract.mjs": "d13a0688a43cf4ad4780fae416df98b60524de19e970601c4d181b16e7d517a3",
-  "stats.mjs": "45feebea12b9f9396419725b9cefd0ce0611e45e2a7aa10cf7098ebebb8a6058"
+  "stats.mjs": "45feebea12b9f9396419725b9cefd0ce0611e45e2a7aa10cf7098ebebb8a6058",
+  "rb_prior_intent/IMPLEMENTATION.md": "6c00ec4bf505d1841b182cff79cef85ef1ec68cc479fc715a7e42a82ac0bdf58"
 }

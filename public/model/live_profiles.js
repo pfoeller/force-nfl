@@ -1224,6 +1224,8 @@
     const orthogonalQbCenter=medianValue(priorQbPassValues);
     const receiverPassBeta=receiverPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:priorReceiverWrteEpa(p)})),UNIT_V115.orthogonalRidgeFraction) : 1;
     const rbRecvPassBeta=rbPolicy==='v115-partial-orthogonal' ? ridgeOrthogonalSlope(Object.values(priorProfiles||{}).map((p)=>({x:priorQbPassEpa(p),y:Number(p?.rb?.adj_recv)})),UNIT_V115.orthogonalRidgeFraction) : 1;
+    // Owner-selected V115 effective priors share the fitted live/reference frame.
+    const v115RbPriorComposite=(p)=>priorRbOrthogonalComposite(p,rbRecvPassBeta,orthogonalQbCenter);
     for (const t of ids) {
       const r=raw[t]||{};
       r.receiverOrthogonalBeta=receiverPassBeta;
@@ -1250,7 +1252,7 @@
     const priorReceiverResidualValues=Object.values(priorProfiles||{}).map((p)=>priorReceiverResidual(p,receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);
     const priorReceiverResidualMedian=medianValue(priorReceiverResidualValues);
     const priorReceiverByTeam=Object.fromEntries(ids.map((t)=>{ const v=priorReceiverResidual(priorProfiles[t]||{},receiverPolicy==='v115-partial-orthogonal'?receiverPassBeta:1,receiverPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0); return [t,Number.isFinite(v)&&priorReceiverResidualValues.length>=20?continuousPercentileValue(priorReceiverResidualValues,v,true):null]; }));
-    const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>priorRbOrthogonalComposite(p,rbPolicy==='v115-partial-orthogonal'?rbRecvPassBeta:1,rbPolicy==='v115-partial-orthogonal'?orthogonalQbCenter:0)).filter(Number.isFinite);
+    const priorRbOrthogonalValuesV109=Object.values(priorProfiles||{}).map((p)=>rbPolicy==='v115-partial-orthogonal'?v115RbPriorComposite(p):priorRbOrthogonalComposite(p,1,0)).filter(Number.isFinite);
     const priorRbOrthogonalMedian=medianValue(priorRbOrthogonalValuesV109);
     const currentRbCompositeCenter=(Number.isFinite(Number(currentRbRush))&&Number.isFinite(Number(currentRbRecvResidual))) ? .70*Number(currentRbRush)+.30*Number(currentRbRecvResidual) : null;
     const scoreRecvV109={}, scoreRbV109={};
@@ -1401,7 +1403,7 @@
       scoreQbSuccessV106[t]=r.playerStatsUsable && Number.isFinite(Number(r.qbStabilizedSuccess))
         ? (fullSeasonQbSuccessBench.length>=20?continuousPercentileValue(fullSeasonQbSuccessBench,r.qbStabilizedSuccess,true):clamp(50+50*Math.tanh((Number(r.qbStabilizedSuccess)-(Number.isFinite(Number(currentLeagueQbSuccess))?Number(currentLeagueQbSuccess):0.5))/0.08))) : null;
     }
-    const priorRbOrthogonalValues=Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);
+    const priorRbOrthogonalValues=rbPolicy==='v115-partial-orthogonal' ? priorRbOrthogonalValuesV109 : Object.values(priorProfiles||{}).map(priorRbOrthogonalComposite).filter(Number.isFinite);
     const scoreRb=rbPolicy==='v102-residual-receiving' ? percentileMap(Object.fromEntries(ids.map(t=>[t,raw[t]?.playerStatsUsable ? raw[t]?.rbCompositeOrthogonal : null])),true) : scoreRbLegacy;
     const scorePen=percentileMap(Object.fromEntries(ids.map(t=>[t,raw[t]?.teamStatsUsable ? raw[t]?.netPenYdsPerGame : null])),true);
 
@@ -1426,7 +1428,7 @@
     const priorRbByTeam = Object.fromEntries(ids.map((t)=>{
       const prior=priorProfiles[t]||{};
       if (rbPolicy==='v109-stabilized-residual'||rbPolicy==='v114-centered-stabilized-residual'||rbPolicy==='v115-partial-orthogonal') {
-        const value=priorRbOrthogonalComposite(prior);
+        const value=rbPolicy==='v115-partial-orthogonal' ? v115RbPriorComposite(prior) : priorRbOrthogonalComposite(prior);
         return [t, Number.isFinite(value)&&priorRbOrthogonalValues.length>=20 ? continuousPercentileValue(priorRbOrthogonalValues,value,true) : null];
       }
       const value=prior?.rb?.composite;
