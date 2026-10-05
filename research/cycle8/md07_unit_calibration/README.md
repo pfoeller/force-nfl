@@ -2,7 +2,7 @@
 
 **Execution REVIEW; Decision INVESTIGATE; owner acceptance PENDING; Priority unset.** Owner authorized current architecture/calibration/independence/discrimination/sanity research only on 2026-10-05, from exact synchronized/deployed base `fd585891214db483112f52d4746106c606afeb43`. This branch is not merged, pushed or deployed. Production implementation, formula/prior redesign, MD-08 normalization changes and UX-41 changes are NOT AUTHORIZED. MD-05 remains REVIEW/BANKED; no additional MD-05 research is performed. MD-06 remains REVIEW / NOT AUTHORIZED.
 
-WR does **not** meet the declared compression convention in this snapshot. Partial QB residualization reduces its association but leaves a strong descriptive relationship. KC's RB score reflects live efficiency, stabilization and an old prior, not overlooking Walker's current team. The clearest reproducible code-level lead is an RB prior callback/reference mismatch, with at most 1.63 current-grade points in a frozen prior-only control. Pass-rush measurement quality cannot be established uniformly across charted/proxy providers. No replacement or calibration change is selected.
+WR full-range SD is broad, but the good-WR band is compressed: ranks 6–15 span 5.51 points, only three rooms score >=70, and the calibrated upper-band width is 41% of its actual historical reference. This remains an **OPEN MD-07 / MD-08 lead**. Accepted QB residual-association and Walker/KC findings remain intact. The RB comparison/reference mismatch is real; three matched correction frames bracket maximum current-grade changes from 1.63 to 5.11 points without selecting a canonical frame. No production correction or normalization is authorized.
 
 [Exact architecture](ARCHITECTURE.md) maps every formula, physical signal, prior, context/fallback path, public label and bridge weight. [Distributions](results/unit_distributions.json), [dependencies](results/unit_dependencies.json), [benchmark alignment](results/benchmark_alignment.json), [sanity cases and all tails](results/pathology_bank.json), [summary matrix](results/unit_summary.json), [CSV](results/unit_audit.csv) and [RB prior call audit](results/rb_prior_call_audit.json) are frozen evidence, not model adoption.
 
@@ -18,15 +18,17 @@ WR does **not** meet the declared compression convention in this snapshot. Parti
 - Derived numeric stages and team aggregates only: no bootstrap/FTN/PFR/player/PBP rows or restricted raw pages committed. [Provenance](inputs/provenance.json) and [official fact summaries](inputs/independent_facts.json) retain URLs/times/hashes. Benchmark aliases LA/STL→LAR, SD→LAC, OAK→LV, JAC→JAX normalized; all 33 comparisons n=32.
 - One independent current generation; repeated calculations of it do not establish temporal persistence.
 
-## Predeclared diagnostic conventions
+## Diagnostic conventions and evidence limits
 
-Population SD; quantiles interpolate at `(n-1)*p`; Spearman uses midrank ties. Inputs require finite numbers, missing values stay null, pairwise n is reported, and non-finite output is rejected before serialization. No p-values, tuned coefficients or causal inference from 32 teams.
+Population SD; quantiles interpolate at `(n-1)*p`; Spearman uses midrank ties. Finite values required; missing values stay null; outputs reject non-finite numbers. No p-values, tuned coefficients or causal inference from 32 teams.
 
-Display clustering by middle-80% span: <15 VERY COMPRESSED; 15..<30 COMPRESSED; 30..60 REASONABLY DISCRIMINATIVE; >60 VERY WIDE. These research thresholds are not validated football/UI thresholds. A wide scale does not prove valid measurement.
+Three transparent conventions inspect different facets: **C1** middle-80 span <30 (original convention); **C2** ranks 6–15 span <10 (good-room packing); **C3** at least 8/32 teams in an inclusive rolling six-point band (central packing). JSON also retains sensitivity at good-band thresholds 8/10/12 and packing counts 8/10. These are analyst descriptive thresholds introduced for robustness after review, not predeclared original or validated football/UI thresholds. No convention alone clears or proves a normalization defect.
 
-Raw compression is marked when stabilized/current IQR <.50 or like-for-like current/historical raw IQR <.50. Display compression is <30 displayed middle80 despite raw/historical IQR >=.50. Both yield BOTH. Diagnosis is conditional on available scalar stages; missing comparable historical scalars are explicit. QB/coverage are multivariate, rush is provider-heterogeneous and composites are weighted existing grades, not a common physical quality scale.
+Mapped-stage comparisons use the stabilized/calibrated input actually consumed by each historical CDF. Unstabilized current raw/historical ratios remain descriptive only and are not normalization tests. QB is multicomponent; its EPA-only comparison does not represent the whole grade. Provider/opportunity strata remain separate; two-team strata cannot support scale conclusions.
 
-Sanity PASS means available non-formula outcomes agree directionally, or scope/prior/components explain discordance. QUESTIONABLE means opposite score/benchmark quartiles or important construct/evidence limits. CLEAR PATHOLOGY needs two genuinely independent same-construct facts and unexplained opposite tails; same-feed comparisons alone cannot certify it. Cases are top tails plus systematic rank-gap >=10 discordances, never tuning targets. Ingredient correlations are labeled, not independent validation.
+**NO OPPOSITE-QUARTILE CONTRADICTION** replaces PASS: it means only no opposite-quartile disagreement on the selected checks. QUESTIONABLE also includes two >=10-rank disagreements and material scope/evidence limitations. **CLEAR PATHOLOGY cannot be certified without sufficiently independent external evidence.** Case-specific values, ranks, priors and scope are preserved; none is a tuning target.
+
+Benchmarks explicitly separate A genuinely independent external; B same-feed different transformation; C direct ingredient/near-tautological; D official factual corroboration. The 33 statistical comparisons contain **0 A, 17 B, 16 C**. Official facts are D, outside those33. A B label does not mean no arithmetic overlap: weekly sacks partly enter disruption, and full-team outcomes overlap drive/component inputs.
 
 ## Display distribution and discrimination
 
@@ -64,30 +66,48 @@ Raw summaries, 31 intermediate-signal summaries, raw/display rank orders and adj
 
 ## Raw signal versus mapping
 
-The architecture identifies exact raw keys; input retains unadjusted/residual/stabilized/calibrated WR/RB, QB components/stabilized signals/contexts/recency, pressure source, EPA/CPOE allowed, drive opportunities, live mapped scores and effective priors. Raw composite values are already-weighted normalized grades, not football production. Physical units across rows are not comparable.
+QB raw selection is only the EPA component; coverage raw selection is only EPA allowed, excluding its CPOE component. The composites' so-called raw values are already weighted normalized grades. Pass rush now uses the **actual ranked source** per team: `frontPressureRate` weekly disruption for 28, `selectedPassRushComposite` for four charted PFR teams. It is a heterogeneous diagnostic, not one common physical pressure construct. Existing formulas/maps remain intact.
 
-| Unit | Raw SD | Raw IQR | Stabilized/raw IQR | Current/historical raw IQR | Compression-source classification | MD-08 concern |
-|---|---:|---:|---:|---:|---|---|
-| QB play | 0.184734 | 0.289146 | 0.489 | — | A. RAW-SIGNAL COMPRESSION | NONE |
-| Receivers | 0.098022 | 0.132353 | 0.586 | 1.447 | D. NEITHER | NONE |
-| Offensive line | 0.029216 | 0.033847 | — | — | D. NEITHER | NONE |
-| RB | 0.102860 | 0.144417 | 0.549 | 1.326 | D. NEITHER | NONE |
-| Coverage | 0.142104 | 0.142945 | — | — | D. NEITHER | NONE |
-| Pass rush | 0.083118 | 0.118428 | — | — | D. NEITHER | NONE |
-| Run defense | 0.084131 | 0.110870 | — | — | D. NEITHER | NONE |
-| Scoring/drive | 0.587740 | 0.907556 | — | — | D. NEITHER | NONE |
-| Pts/drive prevention | 0.440183 | 0.631783 | — | — | D. NEITHER | NONE |
-| Overall offense | 16.863511 | 28.324692 | — | — | D. NEITHER | NONE |
-| Overall defense | 16.533963 | 22.734907 | — | — | D. NEITHER | NONE |
-| Team efficiency (diagnostic) | 0.113982 | 0.172849 | — | — | D. NEITHER | NONE |
+[Compression robustness](results/compression_robustness.json) retains every required metric for all 12 grades and actual consumed reference summaries.
 
-QB A describes deliberate reliability attenuation of its EPA component, not complete-grade clustering: its middle80 span is 61.87. Other D flags mean no compression demonstrated under the available convention, not that every unmeasured dimension is clear. Every NONE is conditional current compression evidence, not MD-08 authorization or cross-unit comparability certification. Environment translation alone preserves IQR; opportunity-dependent stabilization and prior blending can change ranks. All mappings remain intact.
+| Unit | P75−median | P90−median | median−P10 | Upper-half spread | Ranks6–15 | Ranks4–15 | >=70 | 40–60 | Rolling5/6 max | Within median±10 | C1/C2/C3 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---:|---|
+| QB play | 19.453 | 29.640 | 32.232 | 38.512 | 23.382 | 26.356 | 10 | 7 | 6/6 | 8 | no/no/no |
+| Receivers | 6.838 | 13.914 | 32.652 | 31.530 | 5.507 | 9.202 | 3 | 12 | 9/10 | 12 | no/yes/yes |
+| Offensive line | 12.316 | 31.241 | 13.702 | 46.871 | 19.702 | 29.355 | 2 | 10 | 7/8 | 16 | no/no/yes |
+| RB | 17.449 | 24.596 | 22.294 | 34.535 | 16.787 | 21.364 | 5 | 9 | 6/6 | 9 | no/no/no |
+| Coverage | 11.328 | 28.111 | 36.564 | 38.910 | 18.110 | 27.079 | 7 | 11 | 6/7 | 9 | no/no/no |
+| Pass rush | 22.911 | 36.739 | 33.059 | 46.690 | 27.940 | 33.305 | 9 | 7 | 4/5 | 8 | no/no/no |
+| Run defense | 25.242 | 38.371 | 31.439 | 40.777 | 18.641 | 27.708 | 9 | 6 | 5/5 | 6 | no/no/no |
+| Scoring/drive | 17.878 | 35.953 | 31.047 | 45.725 | 27.300 | 32.621 | 8 | 5 | 5/5 | 5 | no/no/no |
+| Pts/drive prevention | 20.645 | 31.815 | 32.000 | 38.710 | 23.226 | 28.387 | 9 | 7 | 3/3 | 7 | no/no/no |
+| Overall offense | 25.429 | 37.803 | 22.501 | 48.168 | 34.027 | 35.605 | 8 | 8 | 6/7 | 8 | no/no/no |
+| Overall defense | 17.278 | 32.452 | 20.803 | 46.888 | 29.156 | 32.051 | 6 | 10 | 7/8 | 12 | no/no/yes |
+| Team efficiency (diagnostic) | 23.214 | 37.112 | 32.590 | 46.176 | 31.648 | 34.732 | 9 | 9 | 4/5 | 10 | no/no/no |
+
+WR middle80 remains 46.57, range70.05 and SD19.82: broad tails coexist with ranks6–15 span 5.51, ranks4–15 span9.20, P75−median6.84 and ten teams in a rolling 6-point band. C1 does not flag WR; C2 and C3 do. This makes the original broad-range-only clearance untenable. The upper-half range31.53 includes top outliers and does not erase good-room packing.
+
+| Mapped input / actual reference | IQR ratio | P10–P90 ratio | Upper P90−P75 ratio | Above reference P75 | Below reference P25 |
+|---|---:|---:|---:|---:|---:|
+| receiverCalibratedResidual / 32-team historical reference | 0.848 | 0.538 | 0.414 | 3 | 11 |
+| rbCalibratedComposite / 32-team historical reference | 0.727 | 0.657 | 0.730 | 5 | 6 |
+| qbStabilizedEpa / 32-team historical reference | 1.311 | 0.616 | 0.321 | 12 | 7 |
+| Offensive line opportunity-aligned reference n=448, current n=30 | 0.430 | 0.542 | 1.358 | 3 | 6 |
+| Offensive line opportunity-aligned reference n=480, current n=2 | 0.067 | 0.055 | 0.056 | 0 | 0 |
+| Pass rush opportunity-aligned reference n=444, current n=2 | 0.035 | 0.031 | 0.021 | 0 | 0 |
+| Pass rush opportunity-aligned reference n=476, current n=2 | 0.123 | 0.099 | 0.063 | 0 | 0 |
+
+WR calibrated IQR .077612 versus reference .091499, middle80 .121378 versus .225755, upper band .029765 versus .071956. Stabilized/raw IQR .586 precedes environment translation and historical mapping; current upper-band narrowing is present **before final prior blending**. It is not evidence that the CDF alone caused all compression.
+
+OL main 30-team reference stratum has IQR ratio .430 but upper-band ratio1.358: middle packing can coexist with broad upper tails. Its two-team stratum and both two-team PFR strata are too sparse for compression inference. Weekly rush uses current-league ranks; its exported reference is not historical. Coverage/run/drive/legacy also rank current outcomes; composites use analytic soft-tail mapping, so historical-CDF comparisons are NOT APPLICABLE there.
+
+**MD-08 leads:** WR LIKELY/open (good-band packing plus calibrated upper compression); OL POSSIBLE/open (8 in rolling 6 despite wide tails); QB POSSIBLE/open (EPA stabilization IQR .489 and EPA reference upper ratio .321, whole grade wide). Defense composite POSSIBLE on the same rolling 6 convention (8 teams), an arithmetic-display lead only. Other NONE labels are conditional on measured facets, never clearance of unmeasured dimensions. No scale or formula selected.
 
 ## Descriptive cross-unit matrix
 
-Raw columns orient lower-is-better metrics as higher quality. QB uses all-play EPA, WR residual EPA, coverage attempt EPA allowed and rush a mixed-provider composite; proxies are not complete isolated skill. Partials control core Elo, current offensive/defensive EPA, or core plus corresponding points/drive. Controls share arithmetic with grades; they are not identified causal confounders. All pairs n=32, <=2 controls.
+Raw columns orient lower-is-better metrics as higher quality. QB uses all-play EPA, WR residual EPA, coverage attempt EPA allowed and rush its provider-dependent actual ranked signal; proxies are not complete isolated skill. Partials control core Elo, current offensive/defensive EPA, or core plus corresponding points/drive. Controls share arithmetic with grades; they are not identified causal confounders. All pairs n=32, <=2 controls.
 
-| Pair | Display Pearson | Display Spearman | Raw Pearson | Raw Spearman | Partial core | Partial outcome | Partial core + drive |
+| Pair | Display Pearson | Display Spearman | Selected raw Pearson | Selected raw Spearman | Partial core | Partial outcome | Partial core + drive |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | QB play / Receivers | 0.756 | 0.773 | 0.782 | 0.746 | 0.686 | 0.239 | 0.305 |
 | QB play / Offensive line | 0.252 | 0.234 | 0.297 | 0.197 | 0.142 | -0.245 | 0.019 |
@@ -99,26 +119,26 @@ Raw columns orient lower-is-better metrics as higher quality. QB uses all-play E
 | Scoring/drive / Receivers | 0.716 | 0.745 | 0.784 | 0.758 | 0.631 | 0.085 | -0.359 |
 | Scoring/drive / Offensive line | 0.256 | 0.215 | 0.293 | 0.251 | 0.143 | -0.239 | -0.090 |
 | Scoring/drive / RB | 0.449 | 0.404 | 0.406 | 0.319 | 0.298 | -0.023 | 0.114 |
-| Coverage / Pass rush | 0.102 | 0.093 | 0.012 | 0.004 | -0.087 | -0.112 | -0.135 |
+| Coverage / Pass rush | 0.102 | 0.093 | 0.029 | -0.003 | -0.087 | -0.112 | -0.135 |
 | Coverage / Run defense | 0.108 | 0.104 | 0.018 | 0.149 | 0.324 | -0.598 | -0.075 |
-| Pass rush / Run defense | 0.041 | 0.050 | 0.096 | 0.036 | 0.108 | -0.079 | 0.121 |
+| Pass rush / Run defense | 0.041 | 0.050 | 0.120 | 0.062 | 0.108 | -0.079 | 0.121 |
 | Pts/drive prevention / Coverage | 0.822 | 0.831 | 0.804 | 0.846 | 0.722 | 0.503 | 0.064 |
-| Pts/drive prevention / Pass rush | 0.144 | 0.162 | 0.217 | 0.162 | -0.016 | -0.037 | -0.090 |
+| Pts/drive prevention / Pass rush | 0.144 | 0.162 | 0.230 | 0.153 | -0.016 | -0.037 | -0.090 |
 | Pts/drive prevention / Run defense | 0.238 | 0.230 | 0.239 | 0.223 | 0.465 | -0.334 | -0.096 |
 
 ## QB → receiver findings
 
-Residualization lowers current raw Pearson with actual-pass QB EPA from **.950 to .790** (Spearman .930→.750); stabilization gives .776. Final displayed WR/QB Pearson **.756** (Spearman .773). WR score versus team passing EPA .752, pass success .655, scoring/drive .716. WR/QB top-five overlap3/5. Partial core .686; offensive EPA .239; core plus drive outcome .305. These are descriptive sensitivities, not causal contamination, acceptable independence or double-counting proof.
+Residualization lowers current raw Pearson with actual-pass QB EPA from **.950 to .790** (Spearman .930→.750); stabilization gives .776. Final displayed WR/QB Pearson **.756** (Spearman .773). WR score versus team passing EPA .752, pass success .655, scoring/drive .716. WR/QB top-five overlap 3/5. Partial core .686; offensive EPA .239; core plus drive outcome .305. These are descriptive sensitivities, not causal contamination, acceptable independence or double-counting proof.
 
 The historical ridge beta .588 intentionally subtracts partial context. Fitting is 2025, live 2026; residual covariance need not be zero. QB/WR grades share plays and legitimately good performances can co-occur. Replacement needs separate intended construct/acceptable dependence and incremental causal evaluation.
 
-PHI WR 10/QB 26 is the largest stronger-WR/weaker-QB rank gap16; CHI WR 19/QB 9 goes the other way. MIN WR 15/QB 28 and NO WR 5/QB 16 also differ. **No WR top-quartile/QB bottom-quartile opposite-tail case exists.** The bank uses observed strongest discordance rather than manufacturing an elite-WR/bottom-QB archetype. Neither distribution nor outcome agreement proves isolated receiver talent.
+PHI WR 10/QB 26 is the largest stronger-WR/weaker-QB rank gap 16; CHI WR 19/QB 9 goes the other way. MIN WR 15/QB 28 and NO WR 5/QB 16 also differ. **No WR top-quartile/QB bottom-quartile opposite-tail case exists.** The bank uses observed strongest discordance rather than manufacturing an elite-WR/bottom-QB archetype. Neither distribution nor outcome agreement proves isolated receiver talent.
 
 ## RB and verified Walker/KC case
 
-RB/FB room:70% rushing EPA/carry,30% partially QB-residualized receiving EPA/target. Rush/display r=.857; receiving residual/display .369; RB/OL .393; RB/QB .273; RB/scoring .449. OL is pass protection, not run blocking. Receiving stabilization IQR ratio .365 is marked, rushing .620, combined .549; full room still separates. Workload improves reliability, not an explicit yardage reward. EPA captures situational success/scoring indirectly. YPC/first downs/20+ are comparison outcomes, not tuning targets.
+RB/FB room: 70% rushing EPA/carry, 30% partially QB-residualized receiving EPA/target. Rush/display r=.857; receiving residual/display .369; RB/OL .393; RB/QB .273; RB/scoring .449. OL is pass protection, not run blocking. Receiving stabilization IQR ratio .365 is marked, rushing .620, combined .549; full room still separates. Workload improves reliability, not an explicit yardage reward. EPA captures situational success/scoring indirectly. YPC/first downs/20+ are comparison outcomes, not tuning targets.
 
-**Walker is with Kansas City in 2026, not Seattle.** [Chiefs official splits](https://www.chiefs.com/team/players-roster/kenneth-walker-iii/splits/) show four games,87 carries,537 yards(6.17/carry),four rushing TDs and84 receiving yards. The [October1 September award article](https://www.chiefs.com/news/ken-walker-earns-afc-offensive-player-of-the-month-honors-for-september) establishes a360-yard league lead through three weeks, not a verified Week4 league/YPC lead. One player’s production does not define full-room quality.
+**Walker is with Kansas City in 2026, not Seattle.** [Chiefs official splits](https://www.chiefs.com/team/players-roster/kenneth-walker-iii/splits/) show four games, 87 carries, 537 yards (6.17/carry), four rushing TDs and 84 receiving yards. The [October 1 September award article](https://www.chiefs.com/news/ken-walker-earns-afc-offensive-player-of-the-month-honors-for-september) establishes a 360-yard league lead through three weeks, not a verified Week 4 league/YPC lead. One player’s production does not define full-room quality.
 
 | Field | KC | Seattle |
 |---|---:|---:|
@@ -138,119 +158,121 @@ RB/FB room:70% rushing EPA/carry,30% partially QB-residualized receiving EPA/tar
 | Effective RB prior | 16.638284 | 37.595274 |
 | Effective prior games | 0.938552 | 0.949814 |
 
-KC **76.07/rank 3**; Seattle **24.78/rank 30**. KC whole room 103 carries/5.757 YPC; Walker primary, Seattle primary Emanuel Wilson. KC rush .09217 plus receiving residual .14355 gives .10758; shrinkage gives .03263; environment translation adds .04296→.07559; live percentile90.01. Four live games with prior 16.64 at .93855 prior games gives 76.07. Prior is the older2025 Pacheco room, not a current Walker ranking. Seattle negative room EPA explains the ordering; no Seattle>KC tuning is warranted.
+KC **76.07/rank 3**; Seattle **24.78/rank 30**. KC whole room 103 carries/5.757 YPC; Walker primary, Seattle primary Emanuel Wilson. KC rush .09217 plus receiving residual .14355 gives .10758; shrinkage gives .03263; environment translation adds .04296→.07559; live percentile 90.01. Four live games with prior 16.64 at .93855 prior games gives 76.07. Prior is the older2025 Pacheco room, not a current Walker ranking. Seattle negative room EPA explains the ordering; no Seattle>KC tuning is warranted.
 
-The **RB prior callback mismatch** is separate. All32 effective priors reproduced; an explicitly unary default-helper reference changes KC by -.1035 current points, so it does not explain90→76. Max prior difference9.7844; max frozen current prior-only1.6310. No beta/prior/frame is selected, no production correction and no MD-05 bridge ablation performed. [Exact source mechanics/control](ARCHITECTURE.md#receivers-and-rb-raw-stages-and-prior-mismatch).
+The **RB prior callback mismatch** is a live comparison/reference correctness defect: callback arguments leave the reference unadjusted while individual priors use default residualization. Correct comparison consistency is decision-free; choosing its canonical frame remains an owner/model decision. All 32 production priors reproduce. These controls hold live grade and effective prior games fixed.
+
+| Matched frame | Max prior change | Max current change | Teams >0.5 | Rank changes | Max movement | KC current change | Max bridge-delta change | Max weighted .07 channel | Max pre-cap .50-share effect |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| A default beta=1.000, centre=0.000 | 9.784 | 1.631 | 19 | 2 | 1 | -0.103 | 8.222 | 0.576 | 0.288 |
+| B live fitted beta=0.327, centre=0.061 | 17.587 | 3.143 | 26 | 15 | 3 | 0.312 | 14.701 | 1.029 | 0.515 |
+| C unadjusted beta=0.000, centre=0.000 | 26.623 | 5.109 | 29 | 17 | 3 | 0.728 | 21.515 | 1.506 | 0.753 |
+
+The plausible matched-frame bracket is **1.63–5.11 maximum current points**, not at most 1.63. KC remains rank 3; changes −.1035/+.3122/+.7280 do not explain live 90.01→display 76.07. Bridge delta is current grade minus effective prior: changing prior by Δp changes current by `k/(g+k)*Δp`, and bridge delta by `−g/(g+k)*Δp`. Maxima in different columns can occur on different teams. The shared cap means pre-cap channel effects are **not total FORCE/forecast effects**. No frame chosen, production fix or MD-05 ablation performed. [Exact mechanics](ARCHITECTURE.md#receivers-and-rb-raw-stages-and-prior-mismatch).
 
 ## OL, defensive units and drive outcomes
 
-OL **100% pass-protection input**, coherent with inverse disruption r=.975 and less with sacks .483; run YPC .396 is a scope contrast. Broad `Offensive line`/`OL` can imply run blocking, but no user study measures confusion. Label/scope is owner-gated. [SF official2026 stats](https://www.49ers.com/team/stats/2026/reg) report zero sacks/113 attempts: corroborates protection tail, not zero pressure/all-line excellence.
+OL **100% pass-protection input**, internally coherent with inverse disruption r=.975. Sacks r=.483 are a part-whole ingredient check, not independent adjacent evidence; run YPC .391 is a scope contrast. The public label is materially broader than the construct (D scope judgment). Broad `Offensive line`/`OL` can imply run blocking, but no user study measures confusion. Label/scope is owner-gated. [SF official2026 stats](https://www.49ers.com/team/stats/2026/reg) report zero sacks/113 attempts: corroborates protection tail, not zero pressure/all-line excellence.
 
-Coverage/rush display r=.102, mixed raw r=.012. Weak correlation is not causal independence. KC coverage4/rush29, DET coverage30/rush5 distinguish archetypes. Sack exclusion is accounting separation; pressure still affects actual-throw EPA. No explicit pressure residualization. Coverage inverse attempt EPA r=.933, success .808, yards/attempt .632, prevention/drive .822. Isolated defender skill remains unproved.
+Coverage/rush display r=.102; selected actual provider-dependent raw correlation is 0.029. Weak correlation is not causal independence. KC coverage 4/rush 29, DET coverage 30/rush 5 distinguish archetypes. Sack exclusion is accounting separation; pressure still affects actual-throw EPA. No explicit pressure residualization. Coverage inverse attempt EPA r=.933, success .808, yards/attempt .680, prevention/drive .822. Isolated defender skill remains unproved.
 
-Rush sack r=.798 and weekly disruption .953 are ingredient/adjacent checks. Four charted teams are nonrandom; provider-stratified results cannot establish bias direction. [Vikings official2026 stats](https://www.vikings.com/team/stats/2026/reg) show16 defensive sacks, corroborating MIN disruption tail without certifying uniform true pressure.
+Rush sack r=.798 is a same-feed transformation with partial ingredient overlap for weekly teams. Weekly disruption r=.953 is the exact grading input for 28; near-identity is not external validity. Four charted teams are nonrandom; provider-stratified results cannot establish bias direction. [Vikings official2026 stats](https://www.vikings.com/team/stats/2026/reg) show 16 defensive sacks, corroborating MIN disruption tail without certifying uniform true pressure.
 
-Run defense inverse EPA r=.963 is ingredient alignment; inverse YPC .602, first-down rate .577 and20+ rate .359 are separate outcome diagnostics. First downs are not EPA-positive success. Prevention/drive r=.237; team rushing includes QB runs and opponent/OL context. TB strong inverse-rush-EPA/low YPC is coherent. Prior run-stop/current EPA construct difference remains a lead, not a replacement.
+Run defense inverse EPA r=.963 is ingredient alignment; inverse YPC .604, first-down rate .579 and 20+ rate .363 are separate outcome diagnostics. First downs are not EPA-positive success. Prevention/drive r=.238; team rushing includes QB runs and opponent/OL context. TB strong inverse-rush-EPA/low YPC is coherent. Effective prior/live run-grade r=.081 and six >=10-rank disagreements with both YPC and first-down checks keep this a B construct/prior lead, not A clearance or a replacement.
 
-Drive scores each r=.979 with raw qualifying PPD; total scored/allowed PPG .937/.915. Strong component associations are broad outcome relationships. Offensive prior legacy EPA; defensive prior 50/one game; no opponent/field-position adjustment. [Vikings schedule](https://www.vikings.com/schedule/) shows51 points allowed/four games(12.75/game). Scoreboard and qualifying offensive points differ. Current drive-outcome coherence is not independent position-group measurement. No MD-10 work.
+Drive scores each r=.979 with raw qualifying PPD; total scored/allowed PPG .937/.915. Strong component associations are broad outcome relationships. Offensive prior legacy EPA; defensive prior 50/one game; no opponent/field-position adjustment. [Vikings schedule](https://www.vikings.com/schedule/) shows51 points allowed / four games (12.75/game). Scoreboard and qualifying offensive points differ. Current drive-outcome coherence is not independent position-group measurement. No MD-10 work.
 
 ## Sanity bank
 
-Five offensive examples(four systematic tails plus KC),four defensive tails,six systematic discordances: **15 cases;14 PASS,1 QUESTIONABLE,no certified CLEAR PATHOLOGY**. MIN rush is QUESTIONABLE because proxy/sack evidence cannot establish uniform true pressure. Official SF/BUF/KC/MIN corroborate selected cases; [Bills current stats](https://www.buffalobills.com/team/stats/2026/reg) show Cook 421 yards/70 carries. Other checks are non-formula same-feed outcomes, not independent providers. QB/WR strong opposite-quartile availability limit is explicit.
+22 cases: 12 NO OPPOSITE-QUARTILE CONTRADICTION, 10 QUESTIONABLE. No PASS or certified CLEAR PATHOLOGY. Added PHI qualification, six run-defense discordances and JAX coverage. Official corroboration is category D; box scores do not validate a room formula. Every row below retains case-specific interpretation; JSON includes exact values and facts.
 
-| Case | Reason | Raw | Display | Rank | Observable checks(values/ranks) | Result |
-|---|---|---:|---:|---:|---|---|
-| SF QB play | Highest displayed offense-unit tail | 0.515445 | 92.88 | 1 | qbEpaPerPlay=0.5154 (#1); qbAnyA=10.4602 (#1) | PASS |
-| SF Receivers | Highest displayed offense-unit tail | 0.436913 | 83.70 | 1 | wrteYardsPerTarget=9.4051 (#4); wrteFirstDownRate=0.4937 (#1) | PASS |
-| BUF RB | Highest displayed offense-unit tail | 0.139514 | 85.43 | 1 | rbYpc=5.8514 (#1); rbFirstDownRate=0.2973 (#2) | PASS |
-| SF Offensive line | Highest displayed offense-unit tail | 0.098214 | 85.42 | 1 | sackAllowed=0.0000 (#1) | PASS |
-| KC RB | Owner-supplied case corrected to Walker currently on KC | 0.107583 | 76.07 | 3 | rbYpc=5.7573 (#2); rbFirstDownRate=0.2718 (#4) | PASS |
-| MIN Coverage | Highest displayed defense-unit tail | -0.002599 | 93.55 | 1 | coverageSuccessAllowed=0.3615 (#1); passYardsAllowedPerAttempt=6.7252 (#11) | PASS |
-| MIN Pass rush | Highest displayed defense-unit tail | 0.500680 | 96.39 | 1 | frontSackRate=0.1088 (#1); frontPressureRate=0.3810 (#1) | QUESTIONABLE |
-| TB Run defense | Highest displayed defense-unit tail | -0.191589 | 90.53 | 1 | rushYpcAllowed=3.2041 (#2); rushExplosive20Allowed=0.0204 (#18) | PASS |
-| MIN Pts/drive prevention | Highest displayed defense-unit tail | 1.108696 | 90.00 | 1 | defensivePointsPerDrive=1.1087 (#1); pointsAgainstPerGame=12.7500 (#1) | PASS |
-| PHI Receivers | Discordance receiverIndex__qbIndex: rank gap -16 | 0.227603 | 58.38 | 10 | wrteYardsPerTarget=7.5393 (#22); wrteFirstDownRate=0.3596 (#21) | PASS |
-| CHI Receivers | Discordance receiverIndex__qbIndex: rank gap 10 | 0.191417 | 40.84 | 19 | wrteYardsPerTarget=8.1346 (#14); wrteFirstDownRate=0.3942 (#12) | PASS |
-| JAX RB | Discordance rbIndex__olIndex: rank gap -20 | -0.081550 | 66.98 | 9 | rbYpc=4.4792 (#7); rbFirstDownRate=0.2708 (#5) | PASS |
-| TEN RB | Discordance rbIndex__olIndex: rank gap 23 | -0.255405 | 27.29 | 29 | rbYpc=3.9211 (#18); rbFirstDownRate=0.1579 (#31) | PASS |
-| KC Coverage | Discordance coverageIndex__passRushIndex: rank gap -25 | 0.019708 | 82.64 | 4 | coverageSuccessAllowed=0.4722 (#12); passYardsAllowedPerAttempt=6.2313 (#4) | PASS |
-| DET Coverage | Discordance coverageIndex__passRushIndex: rank gap 25 | 0.452780 | 14.58 | 30 | coverageSuccessAllowed=0.5549 (#31); passYardsAllowedPerAttempt=7.9273 (#27) | PASS |
-
-JSON retains ingredient/non-formula labels and official facts/URLs. Official pages can ultimately share NFL data with nflverse; official corroboration is not proof of an independent pipeline. No licensed separation/YPRR/YAC/contact/block responsibility/time-to-pressure data acquired. PASS is current directional coherence, not historical certification.
+| Case | Display/rank | Two checks (rank) | Result | Case-specific interpretation |
+|---|---|---|---|---|
+| SF QB play | 92.88 / 1 | qbEpaPerPlay #1; qbAnyA #1 | NO OPPOSITE-QUARTILE CONTRADICTION | SF qbIndex displayed rank 1: qbEpaPerPlay rank 1 (value 0.5154451239221336); qbAnyA rank 1 (value 10.460176991150442). multicomponent QB outcome; checks are ingredients, not isolated skill. EPA and ANY/A both rank1 support own-component arithmetic; they cannot independently validate QB skill. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| SF Receivers | 83.70 / 1 | wrteYardsPerTarget #4; wrteFirstDownRate #1 | NO OPPOSITE-QUARTILE CONTRADICTION | SF receiverIndex displayed rank 1: wrteYardsPerTarget rank 4 (value 9.405063291139241); wrteFirstDownRate rank 1 (value 0.4936708860759494). partially residualized receiving EPA with stabilization/prior; check yards and first downs are same-feed outcomes. First-down rank1 and yards/target rank4 corroborate a receiving outcome tail that also coexists with top QB play; residual skill separation remains unresolved. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| BUF RB | 85.43 / 1 | rbYpc #1; rbFirstDownRate #2 | NO OPPOSITE-QUARTILE CONTRADICTION | BUF rbIndex displayed rank 1: rbYpc rank 1 (value 5.851351351351352); rbFirstDownRate rank 2 (value 0.2972972972972973). 70/30 rushing/receiving EPA room with separate stabilizers and prior. Room efficiency and first downs support this top tail; Cook official facts corroborate rushing production without certifying the 70/30 room construct. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| SF Offensive line | 85.42 / 1 | teamRushYpc #7; sackAllowed #1 | QUESTIONABLE | SF olIndex displayed rank 1: teamRushYpc rank 7 (value 4.773913043478261); sackAllowed rank 1 (value 0). pass protection only; public Offensive line label exceeds scope, and rushing check is a scope contrast. Zero sacks corroborate protection, but are a subset of disrupted dropbacks; run YPC cannot certify an all-line rating. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| KC RB | 76.07 / 3 | rbYpc #2; rbFirstDownRate #4 | NO OPPOSITE-QUARTILE CONTRADICTION | KC rbIndex displayed rank 3: rbYpc rank 2 (value 5.757281553398058); rbFirstDownRate rank 4 (value 0.27184466019417475). 70/30 rushing/receiving EPA room with separate stabilizers and prior. Frozen live/prior decomposition is retained below; no external certification. No opposite-quartile contradiction is only a weak screen, not a validity pass. Live 90.01147972183563, effective prior 16.638284326313986, 4 live games and 0.938551664967149 prior games explain display drag; Walker facts corroborate production, not formula failure. |
+| MIN Coverage | 93.55 / 1 | coverageSuccessAllowed #1; passYardsAllowedPerAttempt #11 | NO OPPOSITE-QUARTILE CONTRADICTION | MIN coverageIndex displayed rank 1: coverageSuccessAllowed rank 1 (value 0.36153846153846153); passYardsAllowedPerAttempt rank 11 (value 6.7251908396946565). sack-free EPA plus CPOE allowed; passing outcomes also reflect pressure/opponents. Best success-allowed rank but only rank11 yards/attempt: the favorable tail is not uniform across passing outcomes. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| MIN Pass rush | 96.39 / 1 | frontSackRate #1; frontPressureRate #1 | QUESTIONABLE | MIN passRushIndex displayed rank 1: frontSackRate rank 1 (value 0.10884353741496598); frontPressureRate rank 1 (value 0.38095238095238093). provider nflverse-weekly-disruption; true charted pressure and hit/sack disruption are not interchangeable. Official sacks corroborate disruption, but do not turn the weekly hit/sack proxy into charted true pressure. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| TB Run defense | 90.53 / 1 | rushYpcAllowed #2; rushFirstDownRateAllowed #6 | NO OPPOSITE-QUARTILE CONTRADICTION | TB runDefenseIndex displayed rank 1: rushYpcAllowed rank 2 (value 3.204081632653061); rushFirstDownRateAllowed rank 6 (value 0.21428571428571427). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. EPA tail and low yards allowed broadly align; first-down rank6 is less extreme and no isolated run-stopping attribution is identified. No opposite-quartile contradiction is only a weak screen, not a validity pass. Live grade 93.54838709677419 versus effective prior 78.2258064516129. |
+| MIN Pts/drive prevention | 90.00 / 1 | pointsAgainstPerGame #1; defensivePointsPerDrive #1 | NO OPPOSITE-QUARTILE CONTRADICTION | MIN pointsAllowedPerDriveIndex displayed rank 1: pointsAgainstPerGame rank 1 (value 12.75); defensivePointsPerDrive rank 1 (value 1.108695652173913). drive prevention outcome with neutral50 one-game prior, not a defender rating. Total points-against tail corroborates broad scoreboard prevention; qualifying offensive points and all scoreboard points differ. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| PHI Receivers | 58.38 / 10 | wrteYardsPerTarget #22; wrteFirstDownRate #21 | QUESTIONABLE | PHI receiverIndex displayed rank 10: wrteYardsPerTarget rank 22 (value 7.53932584269663); wrteFirstDownRate rank 21 (value 0.3595505617977528). partially residualized receiving EPA with stabilization/prior; check yards and first downs are same-feed outcomes. Displayed rank10 versus receiving ranks22/21 is a two-check mismatch even without opposite quartiles; strong WR relative to QB does not clear it. Observed rank discordance warrants construct/prior investigation; no certified causal defect. |
+| CHI Receivers | 40.84 / 19 | wrteYardsPerTarget #14; wrteFirstDownRate #12 | NO OPPOSITE-QUARTILE CONTRADICTION | CHI receiverIndex displayed rank 19: wrteYardsPerTarget rank 14 (value 8.134615384615385); wrteFirstDownRate rank 12 (value 0.3942307692307692). partially residualized receiving EPA with stabilization/prior; check yards and first downs are same-feed outcomes. WR rank19 versus QB rank9 is cross-unit discordance; receiving outcomes rank14/12 are less weak than the displayed room grade. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| JAX RB | 66.98 / 9 | rbYpc #7; rbFirstDownRate #5 | NO OPPOSITE-QUARTILE CONTRADICTION | JAX rbIndex displayed rank 9: rbYpc rank 7 (value 4.479166666666667); rbFirstDownRate rank 5 (value 0.2708333333333333). 70/30 rushing/receiving EPA room with separate stabilizers and prior. Room rank9 versus efficiency ranks7/5 is not opposite-tail disagreement; this does not imply pass-protection OL must match rushing. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| TEN RB | 27.29 / 29 | rbYpc #18; rbFirstDownRate #31 | NO OPPOSITE-QUARTILE CONTRADICTION | TEN rbIndex displayed rank 29: rbYpc rank 18 (value 3.9210526315789473); rbFirstDownRate rank 31 (value 0.15789473684210525). 70/30 rushing/receiving EPA room with separate stabilizers and prior. Low room grade and first-down rank31 coexist with midtable YPC rank18; strong pass-protection OL is not run-blocking proof. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| KC Coverage | 82.64 / 4 | coverageSuccessAllowed #12; passYardsAllowedPerAttempt #4 | NO OPPOSITE-QUARTILE CONTRADICTION | KC coverageIndex displayed rank 4: coverageSuccessAllowed rank 12 (value 0.4722222222222222); passYardsAllowedPerAttempt rank 4 (value 6.2312925170068025). sack-free EPA plus CPOE allowed; passing outcomes also reflect pressure/opponents. Coverage rank4 versus rush rank29 illustrates distinct displayed archetypes; success rank12 is weaker than the yards/attempt tail. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| DET Coverage | 14.58 / 30 | coverageSuccessAllowed #31; passYardsAllowedPerAttempt #27 | NO OPPOSITE-QUARTILE CONTRADICTION | DET coverageIndex displayed rank 30: coverageSuccessAllowed rank 31 (value 0.5548780487804879); passYardsAllowedPerAttempt rank 27 (value 7.927272727272728). sack-free EPA plus CPOE allowed; passing outcomes also reflect pressure/opponents. Coverage rank30 and pass-outcome ranks31/27 agree directionally despite rush rank5; pressure effectiveness cannot certify coverage skill. No opposite-quartile contradiction is only a weak screen, not a validity pass. |
+| NE Run defense | 10.06 / 32 | rushYpcAllowed #21; rushFirstDownRateAllowed #22 | QUESTIONABLE | NE runDefenseIndex displayed rank 32: rushYpcAllowed rank 21 (value 4.378947368421053); rushFirstDownRateAllowed rank 22 (value 0.25263157894736843). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Worst displayed run grade is markedly weaker than both efficiency checks; an EPA-based tail is not validated by broad rushing outcomes. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 3.225806451612897 versus effective prior 39.83870967741936. |
+| WAS Run defense | 30.48 / 25 | rushYpcAllowed #13; rushFirstDownRateAllowed #5 | QUESTIONABLE | WAS runDefenseIndex displayed rank 25: rushYpcAllowed rank 13 (value 3.978723404255319); rushFirstDownRateAllowed rank 5 (value 0.2127659574468085). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed lower quartile conflicts with first-down rank5 and middling yards/attempt; EPA context and prior cannot be assumed interchangeable with first downs. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 32.25806451612904 versus effective prior 21.7741935483871. |
+| BUF Run defense | 15.42 / 29 | rushYpcAllowed #15; rushFirstDownRateAllowed #19 | QUESTIONABLE | BUF runDefenseIndex displayed rank 29: rushYpcAllowed rank 15 (value 4.034782608695652); rushFirstDownRateAllowed rank 19 (value 0.24347826086956523). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed rank29 is substantially weaker than yards rank15 and first-down rank19; prior/live blend is a construct lead, not proven formula failure. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 12.903225806451616 versus effective prior 26.29032258064516. |
+| NYJ Run defense | 73.84 / 8 | rushYpcAllowed #19; rushFirstDownRateAllowed #21 | QUESTIONABLE | NYJ runDefenseIndex displayed rank 8: rushYpcAllowed rank 19 (value 4.258620689655173); rushFirstDownRateAllowed rank 21 (value 0.25). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed upper quartile conflicts with both weaker efficiency checks; the optimistic EPA grade does not establish isolated defender talent. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 80.64516129032258 versus effective prior 46.612903225806456. |
+| SF Run defense | 40.49 / 20 | rushYpcAllowed #9; rushFirstDownRateAllowed #7 | QUESTIONABLE | SF runDefenseIndex displayed rank 20: rushYpcAllowed rank 9 (value 3.7289719626168223); rushFirstDownRateAllowed rank 7 (value 0.21495327102803738). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed rank20 understates both favorable yards and first-down ranks9/7; prior/live drift must remain open. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 45.16129032258065 versus effective prior 17.258064516129032. |
+| LV Run defense | 64.89 / 11 | rushYpcAllowed #31; rushFirstDownRateAllowed #23.5 | QUESTIONABLE | LV runDefenseIndex displayed rank 11: rushYpcAllowed rank 31 (value 5.173076923076923); rushFirstDownRateAllowed rank 23.5 (value 0.25961538461538464). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed rank11 is substantially stronger than yards rank31 and tied first-down rank23.5; this is not a clean validity pass. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 67.74193548387098 versus effective prior 51.12903225806451. |
+| JAX Coverage | 64.07 / 10 | coverageSuccessAllowed #25; passYardsAllowedPerAttempt #31 | QUESTIONABLE | JAX coverageIndex displayed rank 10: coverageSuccessAllowed rank 25 (value 0.5144927536231884); passYardsAllowedPerAttempt rank 31 (value 8.44927536231884). sack-free EPA plus CPOE allowed; passing outcomes also reflect pressure/opponents. Coverage rank10 versus success rank25 and yards/attempt rank31 is a two-check contradiction; EPA/CPOE, prior and context require separate tracing. Observed rank discordance warrants construct/prior investigation; no certified causal defect. |
 
 ## Benchmark alignment
 
 33 descriptive pairs, n=32 each. Quality-oriented Pearson/Spearman, top/bottom 5 overlap, >=10-rank outliers and leave-one-team-out extrema retained. Benchmark choice source-defined, not optimized. True isolated talent/full-league charted pressure/EPA rushing success remain unavailable. Ingredient/related correlations are not independent validation.
 
-| Unit | Benchmark / boundary | Pearson | Spearman | Top5 | Bottom5 | Leave-one-team-out Pearson |
+| Unit | Benchmark / category / boundary | Pearson | Spearman | Top5 | Bottom5 | Leave-one-team-out Pearson |
 |---|---|---:|---:|---:|---:|---|
-| QB play | qbEpaPerPlay — ingredient | 0.938 | 0.962 | 3/5 | 4/5 | 0.933..0.953 |
-| QB play | qbAnyA — ingredient | 0.916 | 0.948 | 4/5 | 4/5 | 0.909..0.932 |
-| QB play | qbPassSuccessRate — ingredient | 0.854 | 0.837 | 4/5 | 2/5 | 0.837..0.883 |
-| QB play | qbCpoe — ingredient | 0.716 | 0.732 | 2/5 | 2/5 | 0.694..0.745 |
-| Receivers | wrteYardsPerTarget — non-formula same-source outcome | 0.673 | 0.703 | 2/5 | 1/5 | 0.647..0.705 |
-| Receivers | wrteFirstDownRate — non-formula same-source outcome | 0.851 | 0.857 | 4/5 | 2/5 | 0.830..0.871 |
-| Receivers | recvEpa — pre-residual ingredient | 0.897 | 0.884 | 4/5 | 4/5 | 0.884..0.915 |
-| Offensive line | sackAllowed — adjacent non-formula outcome | 0.483 | 0.367 | 2/5 | 0/5 | 0.354..0.534 |
-| Offensive line | pbpPressureAllowedRate — ingredient | 0.975 | 0.951 | 4/5 | 4/5 | 0.969..0.977 |
-| Offensive line | teamRushYpc — scope contrast, not pass-protection ground truth | 0.391 | 0.398 | 3/5 | 1/5 | 0.343..0.513 |
-| RB | rbYpc — non-formula same-source outcome | 0.758 | 0.714 | 4/5 | 1/5 | 0.719..0.784 |
-| RB | rbFirstDownRate — non-formula same-source outcome | 0.847 | 0.858 | 4/5 | 2/5 | 0.829..0.872 |
-| RB | rbExplosive20Rate — non-formula same-source outcome | 0.491 | 0.436 | 3/5 | 0/5 | 0.402..0.596 |
-| RB | rbRushEpa — ingredient | 0.857 | 0.837 | 3/5 | 3/5 | 0.835..0.879 |
-| RB | rbReceivingYardsPerTarget — non-formula same-source outcome | 0.449 | 0.458 | 3/5 | 1/5 | 0.414..0.506 |
-| Coverage | coverageSuccessAllowed — non-formula same-source outcome | 0.808 | 0.776 | 3/5 | 3/5 | 0.782..0.848 |
-| Coverage | passYardsAllowedPerAttempt — non-formula same-source outcome | 0.680 | 0.642 | 3/5 | 3/5 | 0.632..0.736 |
-| Coverage | oppPassEpa — ingredient | 0.933 | 0.963 | 5/5 | 4/5 | 0.923..0.944 |
-| Pass rush | frontSackRate — ingredient/adjacent | 0.798 | 0.800 | 2/5 | 3/5 | 0.771..0.840 |
-| Pass rush | frontPressureRate — provider-heterogeneous ingredient/proxy | 0.953 | 0.974 | 4/5 | 5/5 | 0.950..0.960 |
-| Run defense | rushYpcAllowed — non-formula same-source outcome | 0.604 | 0.583 | 2/5 | 2/5 | 0.564..0.674 |
-| Run defense | rushFirstDownRateAllowed — first-down proxy, not EPA success rate | 0.579 | 0.603 | 2/5 | 1/5 | 0.540..0.626 |
-| Run defense | rushExplosive20Allowed — non-formula same-source outcome | 0.363 | 0.324 | 1/5 | 2/5 | 0.320..0.465 |
-| Run defense | oppRushEpa — ingredient | 0.963 | 0.985 | 5/5 | 5/5 | 0.959..0.977 |
-| Scoring/drive | offensivePointsPerDrive — ingredient | 0.979 | 0.989 | 5/5 | 5/5 | 0.977..0.983 |
-| Scoring/drive | pointsForPerGame — related outcome, includes non-offensive scoring | 0.937 | 0.931 | 4/5 | 5/5 | 0.931..0.945 |
-| Pts/drive prevention | defensivePointsPerDrive — ingredient | 0.979 | 1.000 | 5/5 | 5/5 | 0.977..0.986 |
-| Pts/drive prevention | pointsAgainstPerGame — related outcome, includes non-offensive scoring | 0.915 | 0.922 | 4/5 | 4/5 | 0.906..0.934 |
-| Overall offense | offEpa — related same-source outcome | 0.963 | 0.949 | 4/5 | 3/5 | 0.960..0.968 |
-| Overall offense | offensivePointsPerDrive — component input | 0.927 | 0.912 | 4/5 | 2/5 | 0.917..0.934 |
-| Overall defense | defEpa — related same-source outcome | 0.909 | 0.882 | 4/5 | 4/5 | 0.893..0.926 |
-| Overall defense | defensivePointsPerDrive — component input | 0.863 | 0.861 | 3/5 | 4/5 | 0.838..0.880 |
-| Team efficiency (diagnostic) | offEpa — ingredient | 0.975 | 0.992 | 4/5 | 5/5 | 0.972..0.980 |
+| QB play | qbEpaPerPlay — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.938 | 0.962 | 3/5 | 4/5 | 0.933..0.953 |
+| QB play | qbAnyA — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.916 | 0.948 | 4/5 | 4/5 | 0.909..0.932 |
+| QB play | qbPassSuccessRate — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.854 | 0.837 | 4/5 | 2/5 | 0.837..0.883 |
+| QB play | qbCpoe — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.716 | 0.732 | 2/5 | 2/5 | 0.694..0.745 |
+| Receivers | wrteYardsPerTarget — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.673 | 0.703 | 2/5 | 1/5 | 0.647..0.705 |
+| Receivers | wrteFirstDownRate — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.851 | 0.857 | 4/5 | 2/5 | 0.830..0.871 |
+| Receivers | recvEpa — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; pre-residual ingredient | 0.897 | 0.884 | 4/5 | 4/5 | 0.884..0.915 |
+| Offensive line | sackAllowed — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; part-whole disruption ingredient | 0.483 | 0.367 | 2/5 | 0/5 | 0.354..0.534 |
+| Offensive line | pbpPressureAllowedRate — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.975 | 0.951 | 4/5 | 4/5 | 0.969..0.977 |
+| Offensive line | teamRushYpc — B. SAME-FEED, DIFFERENT TRANSFORMATION; scope contrast, not pass-protection ground truth | 0.391 | 0.398 | 3/5 | 1/5 | 0.343..0.513 |
+| RB | rbYpc — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.758 | 0.714 | 4/5 | 1/5 | 0.719..0.784 |
+| RB | rbFirstDownRate — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.847 | 0.858 | 4/5 | 2/5 | 0.829..0.872 |
+| RB | rbExplosive20Rate — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.491 | 0.436 | 3/5 | 0/5 | 0.402..0.596 |
+| RB | rbRushEpa — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.857 | 0.837 | 3/5 | 3/5 | 0.835..0.879 |
+| RB | rbReceivingYardsPerTarget — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.449 | 0.458 | 3/5 | 1/5 | 0.414..0.506 |
+| Coverage | coverageSuccessAllowed — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.808 | 0.776 | 3/5 | 3/5 | 0.782..0.848 |
+| Coverage | passYardsAllowedPerAttempt — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.680 | 0.642 | 3/5 | 3/5 | 0.632..0.736 |
+| Coverage | oppPassEpa — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.933 | 0.963 | 5/5 | 4/5 | 0.923..0.944 |
+| Pass rush | frontSackRate — B. SAME-FEED, DIFFERENT TRANSFORMATION; same-feed sack transformation; partial ingredient overlap for weekly teams | 0.798 | 0.800 | 2/5 | 3/5 | 0.771..0.840 |
+| Pass rush | frontPressureRate — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; direct weekly grading ingredient for 28; same-feed proxy for 4 | 0.953 | 0.974 | 4/5 | 5/5 | 0.950..0.960 |
+| Run defense | rushYpcAllowed — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.604 | 0.583 | 2/5 | 2/5 | 0.564..0.674 |
+| Run defense | rushFirstDownRateAllowed — B. SAME-FEED, DIFFERENT TRANSFORMATION; first-down proxy, not EPA success rate | 0.579 | 0.603 | 2/5 | 1/5 | 0.540..0.626 |
+| Run defense | rushExplosive20Allowed — B. SAME-FEED, DIFFERENT TRANSFORMATION; non-formula same-source outcome | 0.363 | 0.324 | 1/5 | 2/5 | 0.320..0.465 |
+| Run defense | oppRushEpa — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.963 | 0.985 | 5/5 | 5/5 | 0.959..0.977 |
+| Scoring/drive | offensivePointsPerDrive — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.979 | 0.989 | 5/5 | 5/5 | 0.977..0.983 |
+| Scoring/drive | pointsForPerGame — B. SAME-FEED, DIFFERENT TRANSFORMATION; related outcome, includes non-offensive scoring | 0.937 | 0.931 | 4/5 | 5/5 | 0.931..0.945 |
+| Pts/drive prevention | defensivePointsPerDrive — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.979 | 1.000 | 5/5 | 5/5 | 0.977..0.986 |
+| Pts/drive prevention | pointsAgainstPerGame — B. SAME-FEED, DIFFERENT TRANSFORMATION; related outcome, includes non-offensive scoring | 0.915 | 0.922 | 4/5 | 4/5 | 0.906..0.934 |
+| Overall offense | offEpa — B. SAME-FEED, DIFFERENT TRANSFORMATION; related same-source outcome | 0.963 | 0.949 | 4/5 | 3/5 | 0.960..0.968 |
+| Overall offense | offensivePointsPerDrive — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; component input | 0.927 | 0.912 | 4/5 | 2/5 | 0.917..0.934 |
+| Overall defense | defEpa — B. SAME-FEED, DIFFERENT TRANSFORMATION; related same-source outcome | 0.909 | 0.882 | 4/5 | 4/5 | 0.893..0.926 |
+| Overall defense | defensivePointsPerDrive — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; component input | 0.863 | 0.861 | 3/5 | 4/5 | 0.838..0.880 |
+| Team efficiency (diagnostic) | offEpa — C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL; ingredient | 0.975 | 0.992 | 4/5 | 5/5 | 0.972..0.980 |
 
-Outliers are not dropped: JSON includes every >=10-rank discrepancy and its values. LOO is correlation sensitivity, not fitted predictive cross-validation. [EXTREMES.md](EXTREMES.md) lists all 120 top/bottom-five entries, scores, raw proxies and two available benchmark facts(one for legacy diagnostic); boundaries explicit. Tails are broadly plausible on available outcomes. KC old-prior drag, TEN weak RB/strong pass-protection OL and KC/DET opposite coverage/rush are explainable, not tuned. No certified false-positive/negative isolated-skill claim follows.
+Outliers are not dropped: JSON includes every >=10-rank discrepancy and its values. LOO is correlation sensitivity, not fitted predictive cross-validation. [EXTREMES.md](EXTREMES.md) lists all 120 top/bottom-five entries, scores, raw proxies and two available benchmark facts (one for legacy diagnostic); boundaries explicit. Tails are observable same-feed diagnostics; PHI, run-defense and JAX discordances remain open. KC old-prior drag, TEN weak RB/strong pass-protection OL and KC/DET opposite coverage/rush are explainable, not tuned. No certified false-positive/negative isolated-skill claim follows.
 
 ## Unit judgments / cross-unit summary
 
-A current formula appears sound/no material defect; B directional measurement/context independence weak; C raw signal compressed; D material construct misalignment; E insufficient evidence. **A is narrow current-state coherence on the documented construct**, not predictive validity or permanent policy approval. B is not causal contamination. No C/D warranted from this snapshot; concrete RB prior mismatch is recorded separately despite limited current magnitude.
+**ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE**, not mechanically derived class certification. Internal construct coherence and external validation strength are distinct. A means only narrow coherent arithmetic/outcome construction; B identifies context/construct/prior uncertainty; D denotes material public scope mismatch; E insufficient evidence. Every unit has external strength **E** for genuine independent certification: zero independent statistical benchmarks exist. Same-feed alignment supports internal checks only.
 
-| Unit | Display SD/middle80 | Raw SD/IQR | Strongest listed adjacent r | Core r/outcome r | Bank | Predictive | MD07 | MD08 |
-|---|---|---|---|---|---|---|---|---|
-| QB play | 23.67/61.87 | 0.18473/0.28915 | Scoring/drive/QB play 0.850 | 0.551/0.910 | SF:PASS | UNAVAILABLE | A | NONE |
-| Receivers | 19.82/46.57 | 0.09802/0.13235 | QB play/Receivers 0.756 | 0.438/0.760 | SF:PASS, PHI:PASS, CHI:PASS | UNAVAILABLE | B | NONE |
-| Offensive line | 17.75/44.94 | 0.02922/0.03385 | RB/Offensive line 0.393 | 0.248/0.380 | SF:PASS | UNAVAILABLE | A | NONE |
-| RB | 18.61/46.89 | 0.10286/0.14442 | Scoring/drive/RB 0.449 | 0.390/0.501 | BUF:PASS, KC:PASS, JAX:PASS, TEN:PASS | UNAVAILABLE | B | NONE |
-| Coverage | 23.95/64.67 | 0.14210/0.14295 | Pts/drive prevention/Coverage 0.822 | 0.621/0.804 | MIN:PASS, KC:PASS, DET:PASS | UNAVAILABLE | A | NONE |
-| Pass rush | 25.74/69.80 | 0.08312/0.11843 | Pts/drive prevention/Pass rush 0.144 | 0.270/0.208 | MIN:QUESTIONABLE | UNAVAILABLE | E | NONE |
-| Run defense | 24.90/69.81 | 0.08413/0.11087 | Pts/drive prevention/Run defense 0.238 | -0.225/0.514 | TB:PASS | UNAVAILABLE | A | NONE |
-| Scoring/drive | 25.88/67.00 | 0.58774/0.90756 | Scoring/drive/QB play 0.850 | 0.577/0.912 | tails only | UNAVAILABLE | A | NONE |
-| Pts/drive prevention | 23.69/63.81 | 0.44018/0.63178 | Pts/drive prevention/Coverage 0.822 | 0.582/0.798 | MIN:PASS | UNAVAILABLE | A | NONE |
-| Overall offense | 23.75/60.30 | 16.86351/28.32469 | — | 0.608/0.963 | tails only | UNAVAILABLE | A | NONE |
-| Overall defense | 21.00/53.25 | 16.53396/22.73491 | — | 0.461/0.909 | tails only | UNAVAILABLE | A | NONE |
-| Team efficiency (diagnostic) | 26.03/69.70 | 0.11398/0.17285 | — | 0.559/0.975 | tails only | UNAVAILABLE | A | NONE |
+| Unit | Internal class | Public scope / rationale | External strength | MD-08 lead |
+|---|---|---|---|---|
+| QB play | A | A only for own multicomponent outcome arithmetic; four checks are ingredients, EPA attenuation remains open | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | POSSIBLE |
+| Receivers | B | B: residualization helps but descriptive context association and calibrated upper-band compression remain | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | LIKELY |
+| Offensive line | A | A internally as pass protection; D public label scope; sacks are part-whole evidence, rushing not validation | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | POSSIBLE |
+| RB | B | B: directionally coherent room outcomes, weak context independence and confirmed prior-reference defect | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | NONE |
+| Coverage | A | Narrow A only for sack-free pass outcomes; same-feed checks do not independently certify coverage talent | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | NONE |
+| Pass rush | E | E: mixed true-pressure and weekly proxy paths, no uniform independent charting benchmark | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | NONE |
+| Run defense | B | B: old run-stop prior/current EPA drift r=.081 and six two-benchmark rank discordances | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | NONE |
+| Scoring/drive | A | A only as broad drive outcome, not position-group skill | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | NONE |
+| Pts/drive prevention | A | A only as broad drive outcome, not position-group skill | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | NONE |
+| Overall offense | A | A arithmetic composite only, not independently validated new construct | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | NONE |
+| Overall defense | A | A arithmetic composite only, not independently validated new construct | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | POSSIBLE |
+| Team efficiency (diagnostic) | A | A diagnostic arithmetic only; sole benchmark is tautological | E. INSUFFICIENT — zero genuinely independent statistical benchmarks | NONE |
 
-Strongest adjacent searches the 16 required pairs, not every possible pair. Core is pre-bridge Elo; outcome is current offensive/defensive EPA quality. The preceding alignment table supplies each unit’s benchmark evidence. No further MD-05 ablation is performed.
-
-- **QB A:** broad mapped components/contexts/recency, ingredient agreement and official SF output. Reliability attenuation is not whole-grade clustering; individual skill/incremental prediction unproved.
-- **WR B:** broad distribution, receiving outcomes coherent, residualization helps; strong QB association remains. Acceptable dependence/causal skill target unresolved.
-- **OL A:** coherent pass protection; public label/run-block scope remains an owner question.
-- **RB B:** full room directionally aligns with efficiency; no global material miscalibration established. Context, receiving shrinkage, prior drag and concrete prior callback mismatch require separate consideration. Do not claim all priors correct.
-- **Coverage A:** coherent sack-free passing outcomes; no isolated defender-skill certification.
-- **Pass rush E:** charting/proxy heterogeneity and missing independent uniform true-pressure benchmark prevent full validity judgment.
-- **Run defense A:** coherent current rushing outcomes; prior run-stop/live EPA construct and opponent/run-block context are research leads.
-- **Scoring/prevention A:** coherent documented drive outcomes, not independent position groups; prior asymmetry/possession policy unresolved.
-- **Offense/defense composites A:** arithmetic/calibration coherent, no new independent information or predictive validation.
-- **Legacy efficiency A:** coherent EPA diagnostic, not another bridge/public unit.
+QB's four checks are ingredients/near-ingredients, not external validation. Coverage A is narrowly sack-free passing outcomes, not isolated coverage talent. OL A applies only to pass protection; its public label is D materially misaligned in scope. Run defense is B given prior/live drift and six two-check discordances. Drive scores are outcomes, composites only arithmetic, legacy only diagnostic arithmetic. None implies model adoption or a selected formula.
 
 ## Historical availability and predictive validity
 
@@ -267,6 +289,18 @@ Available: free/pinned 2024/2025 weekly/PBP research inputs, bundled 2025 compon
 | Composites | Inherit component feasibility | Any missing component/control state defeats exact full history. |
 | 2024/2025 replay | Present priors/references cannot be applied causally to earlier years | Using full 2025 priors/calibration before their availability would leak future data; prior-year equivalents and earlier control states not established by current proxy fixtures. |
 
+### Existing dated live-cache inventory
+
+[Read-only inventory](results/historical_availability.json) includes **22 existing metadata/payload pairs**, with saved-at dates **2026-09-22, 2026-09-23, 2026-09-28 and 2026-10-01**. LF-normalized payload checksums are portability pins; checkout times and CRLF byte counts are not fetch provenance. No rows or new data acquired/replayed.
+
+| Source/category | Existing keys / versions | Limitation / possible bounded future use |
+|---|---|---|
+| 10 game-flow aggregates | v97, v101, v102, v103, v104, v106, v111, v113, v121, v137 | Sparse dates and changing definitions; not one consistent causal Week-N series or current v149 production archive. Future schema/version compatibility audit possible. |
+| 6 feed caches | schedule, team-stats, player-stats, FTN charting, PFR pass, PFR pass-prior, all Oct1 | Single feed checkpoint; cannot substitute for earlier as-of charting/availability or revision state. Could support separately authorized prefix feasibility with complete causal inputs. |
+| 6 derived references | 2025 EP surface v97; QB season reference v3; QB all-play references v4/v5; penalty v97; luck v121 | Multiple definitions and historical reference versions, not frozen complete current grades/control state. Applying full-year references before availability leaks future information. Reference-definition checks are plausible bounded follow-ups. |
+
+Overall predictive validation remains **UNAVAILABLE**. Caches alone do not reconstruct exact provider-selection, priors, complete component/control/freshness state or future-row invariance. Their dates add availability evidence, not predictive scores or permission to replay.
+
 A 2026 subset replay is not proven impossible. It is **unvalidated**, with few early-season transitions and no historical as-of archive. No subset is falsely promoted as certified predictive validation. A separately authorized prefix study could first prove future-row invariance and dated input provenance. The manual design below establishes subsequent evidence. No historical future-leaking experiment or winner-Brier-only proxy is reported.
 
 ## Manual prospective format — design only
@@ -275,7 +309,7 @@ No scheduler, background task, automatic capture, endpoint change or deployment.
 
 1. Pregame record `capturedAtUTC`, season/week/lastCompletedGame, builtAt/generation, deployed exact SHA/all ordered-source hashes, response checksum, schema and normalizer revision. Preserve original timestamp if later corrections arrive.
 2. Validate live/integrity/freshness; explicitly exclude offline/prior-held units. Keep source availability/timestamps, charted/proxy labels, opportunity/game counts and provider selection. New generation alone is not independent football evidence.
-3. Store raw/multistage values, full grades, effective prior grades/games, opportunity counts and legally permitted benchmark aggregates with source/date/definition/missingness/direction. No manual state, restricted payload redistribution or hidden pressure substitution.
+3. Store raw, residual, stabilized and calibrated/mapped-stage distributions; the exact historical CDF/reference identifier, sample/window, direction, quartiles and checksum; stage IQR/middle80/upper-band ratios, P75−median/P90−median, ranks6–15/ranks4–15 spreads, >=70/40–60 counts and rolling 5/6 central packing. Track whether WR upper compression persists before and after mapping/prior blend. Also store full grades, effective prior grades/games, opportunity counts and legally permitted benchmark aggregates with source/date/definition/missingness/direction. No manual state, restricted payload redistribution or hidden pressure substitution.
 4. Seal append-only records with SHA-256, 32-team completeness and explicit missingness. Private payloads outside Git. No overwrite with later data. Meaningful independence normally requires another completed week/substantial profile change.
 5. After the next game, attach immutable team/game targets: QB EPA/ANYA/success; receiving per-target outcomes; RB rushing/receiving EPA/efficiency; protection disruption; coverage attempt EPA/success; true pressure or separate proxy strata; rush EPA/explosives allowed; qualifying PPD. Outcomes cannot revise the rating at T.
 6. Predeclare targets, baselines(current raw metric, prior grade, cumulative benchmark), exclusions and scoring/association measures. Hold out later weeks; cluster uncertainty by team and account for shared game/opponent outcomes. Small early-season samples exploratory. No case-tuned replacement. Any promotion also needs [predictive policy](../../../PREDICTIVE_FEATURE_POLICY_V30.md) full-stack incremental validation and separate owner adoption.
@@ -284,18 +318,18 @@ No scheduler, background task, automatic capture, endpoint change or deployment.
 
 | Question | Bounded answer |
 |---|---|
-| Q1 WR genuinely clustered? | No under current convention: middle80 46.57, range70.05, SD19.82. Not historical/user-perception proof. |
-| Q2 Raw or normalization? | No overall WR compression demonstrated; stabilization IQR ratio .586, raw/historical1.447. No scale fix justified by this capture. |
-| Q3 Still too QB-dependent? | Strong descriptive association .756; residualization .950→.790. “Too” requires owner construct/acceptance target; no causal/double-counting conclusion. |
-| Q4 RB materially miscalibrated? | No global material room-outcome defect established; specific prior callback mismatch, weak context independence and prior drag found. |
-| Q5 Walker/KC? | Walker on KC. Live 90.01/prior 16.64 gives 76.07 rank 3; SEA 24.78 rank 30 with negative room EPA. Unary prior control changes KC only -.1035. |
-| Q6 OL coherent/mislabeled? | Pass-protection construct coherent; broad label can overstate scope. Owner label/run-block choice open, no comprehension survey. |
-| Q7 Coverage/rush separable? | Archetypes differ, r=.102; no causal independence proof, mixed providers prevent uniform pressure validity. |
-| Q8 Clearest defects/leads? | Concrete RB prior call/reference mismatch; WR independence; pressure comparability. Run prior/live constructs and drive asymmetry additional source-traced leads. |
-| Q9 Mainly MD-08 scale issue? | None triggered under current compression convention. NONE is conditional, not blanket normalization clearance. |
-| Q10 Historical predictive possible? | Exact causal current-policy validation not certified; event data exist and 2026 prefix subset plausible. UNAVAILABLE, no invented results. |
-| Q11 Prospective evidence? | Manual source-hashed pregame stages/grades/priors/provider/integrity records, sealed before later next-game targets, chronological/team-clustered evaluation. |
-| Q12 Next redesign? | Owner could consider bounded RB prior-call correctness investigation, define WR independence and authorize provider-stratified pressure evidence. No redesign/MD-08 adoption selected. |
+| Q1 WR too clustered? | Full-range SD19.82/range70.05 is broad, but good-WR ranks6–15 span 5.51, only 3 score >=70 and calibrated upper-band ratio .414. Open measurement/mapping lead, not simply NO. |
+| Q2 Raw or display? | Compression exists in stabilized/calibrated input before final prior blend. Early-season stabilization and historical-CDF mapping interact; MD-07/MD-08 boundary. No scale chosen. |
+| Q3 QB dependence? | Residualization helps: .950→.790; display association .756 remains high descriptively. No causal/double-counting or owner threshold inferred. |
+| Q4 RB miscalibrated? | No broad formula failure established. Live comparison/reference correctness defect is real; frame choice remains open. Max current deltas 1.63/3.14/5.11, not a single upper bound. |
+| Q5 Walker/KC? | Walker is on KC. Live90.01, old prior 16.64 and stabilization/blend yield display 76.07 rank 3. Callback-frame effects −.1035/+.3122/+.7280 are not the explanation. |
+| Q6 OL? | Internally coherent pass protection; public Offensive line label materially broader (D scope). Owner label/scope choice remains open. |
+| Q7 Coverage/pass rush? | Descriptively distinguishable, display r=.102. Provider heterogeneity, shared football outcomes and same-feed checks prevent causal independence certification. |
+| Q8 Clearest defects/leads? | WR upper-band compression/context dependence; confirmed RB prior-reference mismatch; OL label/scope mismatch; run-defense prior/live drift and discordances; pass-rush evidence insufficiency. |
+| Q9 MD-08 leads? | WR LIKELY/open; OL POSSIBLE/open; QB POSSIBLE/open. Defense-composite packing also POSSIBLE by the same convention. No implementation or normalization selection. |
+| Q10 Predictive validation? | UNAVAILABLE for exact causal current-production validation. Existing dated caches add bounded feasibility evidence, not a certified Week-N→N+1 series. |
+| Q11 Prospective evidence? | Adequate design after explicit stabilized/calibrated/mapped distributions, actual CDF references, upper-band and central-packing capture; separate manual authorization required. |
+| Q12 Bounded follow-up? | Candidates only: WR stabilization/mapping audit; RB prior-reference correctness decision; OL scope/label decision; run-defense construct/prior audit; pass-rush evidence-quality audit. None authorized here. |
 
 ## Reproducibility and review surface
 
@@ -309,17 +343,21 @@ node --check research/cycle8/md07_unit_calibration/stats.mjs
 node --check research/cycle8/md07_unit_calibration/analyze_current.mjs
 node --check research/cycle8/md07_unit_calibration/prior_audit.mjs
 node --check research/cycle8/md07_unit_calibration/check.mjs
+node --check research/cycle8/md07_unit_calibration/semantic_contract.mjs
+node --check research/cycle8/md07_unit_calibration/cache_inventory.mjs
 ```
 
-Offline checker validates source/input/result pins, 32 teams, 12 grades, 16 pairs, 33 benchmark comparisons, 15 cases; physical identities, WR/RB residual/stabilizer/alignment/historical maps, QB stabilizers/component/context sums, current rank maps, all blends/composites and all 32 production RB priors. Two complete analysis runs must be byte-identical to each other and six recorded artifacts; the seventh prior-audit artifact is independently reproduced. Twelve negative controls reject omitted residualization, raw/display confusion, swapped keys, offline/stale/prior-held/missing data, NaN, wrong base/public hash. Statistical controls cover ties/sign/missing n/constants/quantiles/singular partials.
+Offline checker validates all source/input/result pins, 32 teams, 12 grades, 16 pairs, 33 comparisons, 22 cases, new packing/stage metrics, three RB frames/bridge channels and 22 dated caches. Two complete analysis runs match each other and seven analysis artifacts; prior and cache artifacts independently reproduce. Twelve existing mutation controls plus four independent semantic controls cover weekly→PFR, PFR→weekly and analysis benchmark/raw key swaps. `check.mjs --semantics-only` does not open hashes or recorded results. Independent source/schema/lineage assertions prevent circular output validation. Statistical controls include wide-tailed central packing and inclusive ties.
+
+Run `prior_audit.mjs` and `cache_inventory.mjs` to regenerate their respective results; `analyze_current.mjs` regenerates the seven analysis outputs. Syntax-check all eight `.mjs` scripts (including `semantic_contract.mjs` and `cache_inventory.mjs`). Do not rerun capture or acquire another input.
 
 `capture.mjs` is an offline one-shot normalizer, not a network collector. Private bootstrap/provenance/published-hash arguments must match raw checksum and all 18 base sources. Observation injection in an isolated VM must leave entire profiles/current ratings equal to unmodified production VM. It refuses existing normalized destination. Frozen results reproduce without private files/network. Raw acquisition cannot be re-audited from redistributed payload because it is intentionally private; provenance/source-input normalization and recorded trace parity are available. New authorized capture would be a separate record.
 
 [Hash manifest](hashes.json) covers scripts, inputs, results and docs. Research files are LF; authoritative offline checks can run in an LF-clean scratch copy of unchanged base plus package. Production tests/build/catalog are unchanged and not required for this research-only scope. Roadmap changes stay within MD-07; 56 unique authoritative IDs/local links/anchors/unrelated governance preserved.
 
-## Validation record — 2026-10-05
+## Revision validation — 2026-10-05
 
-PASS in this worktree and in an LF-clean export of the exact base plus package: all six syntax checks; offline source/formula/statistical checks; 12 negative mutations; 32 teams/12 grades/16 pairs/33 complete benchmark comparisons/15 cases; 19 checksum pins; two analysis runs match all six recorded artifacts and separate export processes produce identical validation output; all 32 prior values and the seventh prior-audit result reproduce. All 20 package files use LF. Roadmap/docs validation: 56 unique authoritative IDs, 213 local links and 9 anchors, unchanged roadmap text outside MD-07. Catalog inventory remains 258 entries (146 safe catalog entries, 112 exclusions); production suites not run or modified because the diff is research/documentation only. Staged diff whitespace check passed; production/runtime/model/provider/tests/generated changes zero.
+PASS in the managed research worktree and an LF-clean export of the original research tree plus revised package: eight script syntax checks; 23 checksum pins; 32-team/full-formula reconstruction; 12 original negative controls and four independent semantic controls; 33 comparisons (A0/B17/C16), 22 case-specific bank rows and 22 existing cache pairs. All nine result artifacts reproduced byte-identically across two fresh-process regeneration passes; checker output was also identical. Semantic mode passed with the recorded-result directory physically unavailable. Frozen input/provenance/facts match the original commit, and all cache inputs match the shared base after LF normalization. All 56 authoritative IDs are unique; 215 local links and nine anchors resolve; roadmap text outside MD-07 is unchanged. Inventory remains 258 entries, 146 safe and 112 excluded. No runtime/model/provider/test/catalog/generated production changes; production suites/build not rerun for this research-only revision.
 
 ## Remaining decisions and integration risks
 

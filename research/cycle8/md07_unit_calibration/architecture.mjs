@@ -12,7 +12,7 @@ export const units=[
  ['Offensive line','olIndex','pbpPressureAllowedRate',false,'PBP de-duplicated hit-or-sack disruption allowed/dropback; pass protection only'],
  ['RB','rbIndex','rbCompositeOrthogonal',true,'RB/FB 70% rushing EPA/carry + 30% partially residualized receiving EPA/target'],
  ['Coverage','coverageIndex','oppPassEpa',false,'Sack-free pass-attempt EPA allowed proxy; complete grade also uses CPOE allowed'],
- ['Pass rush','passRushIndex','selectedPassRushComposite',true,'Selected provider pressure + .20 hit-rate + .60 sack-rate'],
+ ['Pass rush','passRushIndex','selectedPassRushComposite',true,'Provider-dependent ranked signal: weekly disruption for 28; selected charted composite for 4'],
  ['Run defense','runDefenseIndex','oppRushEpa',false,'Opponent rushing EPA/carry; includes QB runs in team outcomes'],
  ['Scoring/drive','pointsScoredPerDriveIndex','offensivePointsPerDrive',true,'Qualifying offensive points/drive'],
  ['Pts/drive prevention','pointsAllowedPerDriveIndex','defensivePointsPerDrive',false,'Opponent offensive points/drive allowed'],
@@ -24,10 +24,10 @@ export const pairs=[['qbIndex','receiverIndex'],['qbIndex','olIndex'],['qbIndex'
 export const benchmarkSpecs={
  qbIndex:[['qbEpaPerPlay',true,'ingredient'],['qbAnyA',true,'ingredient'],['qbPassSuccessRate',true,'ingredient'],['qbCpoe',true,'ingredient']],
  receiverIndex:[['wrteYardsPerTarget',true,'non-formula same-source outcome'],['wrteFirstDownRate',true,'non-formula same-source outcome'],['recvEpa',true,'pre-residual ingredient']],
- olIndex:[['sackAllowed',false,'adjacent non-formula outcome'],['pbpPressureAllowedRate',false,'ingredient'],['teamRushYpc',true,'scope contrast, not pass-protection ground truth']],
+ olIndex:[['sackAllowed',false,'part-whole disruption ingredient'],['pbpPressureAllowedRate',false,'ingredient'],['teamRushYpc',true,'scope contrast, not pass-protection ground truth']],
  rbIndex:[['rbYpc',true,'non-formula same-source outcome'],['rbFirstDownRate',true,'non-formula same-source outcome'],['rbExplosive20Rate',true,'non-formula same-source outcome'],['rbRushEpa',true,'ingredient'],['rbReceivingYardsPerTarget',true,'non-formula same-source outcome']],
  coverageIndex:[['coverageSuccessAllowed',false,'non-formula same-source outcome'],['passYardsAllowedPerAttempt',false,'non-formula same-source outcome'],['oppPassEpa',false,'ingredient']],
- passRushIndex:[['frontSackRate',true,'ingredient/adjacent'],['frontPressureRate',true,'provider-heterogeneous ingredient/proxy']],
+ passRushIndex:[['frontSackRate',true,'same-feed sack transformation; partial ingredient overlap for weekly teams'],['frontPressureRate',true,'direct weekly grading ingredient for 28; same-feed proxy for 4']],
  runDefenseIndex:[['rushYpcAllowed',false,'non-formula same-source outcome'],['rushFirstDownRateAllowed',false,'first-down proxy, not EPA success rate'],['rushExplosive20Allowed',false,'non-formula same-source outcome'],['oppRushEpa',false,'ingredient']],
  pointsScoredPerDriveIndex:[['offensivePointsPerDrive',true,'ingredient'],['pointsForPerGame',true,'related outcome, includes non-offensive scoring']],
  pointsAllowedPerDriveIndex:[['defensivePointsPerDrive',false,'ingredient'],['pointsAgainstPerGame',false,'related outcome, includes non-offensive scoring']],
@@ -56,3 +56,7 @@ export function validateInput(x){
  }
  return true;
 }
+
+export const category=(unit,key)=>({qbIndex:['qbEpaPerPlay','qbAnyA','qbPassSuccessRate','qbCpoe'],receiverIndex:['recvEpa'],olIndex:['sackAllowed','pbpPressureAllowedRate'],rbIndex:['rbRushEpa'],coverageIndex:['oppPassEpa'],passRushIndex:['frontPressureRate'],runDefenseIndex:['oppRushEpa'],pointsScoredPerDriveIndex:['offensivePointsPerDrive'],pointsAllowedPerDriveIndex:['defensivePointsPerDrive'],offenseComposite:['offensivePointsPerDrive'],defenseIndex:['defensivePointsPerDrive'],offenseIndex:['offEpa']}[unit].includes(key)?'C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL':'B. SAME-FEED, DIFFERENT TRANSFORMATION');
+export function rawKey(row,u){return u.key==='passRushIndex'&&row.metadata.passRushProvider==='nflverse-weekly-disruption'?'frontPressureRate':u.raw;}
+export const rawValue=(row,u)=>row.raw[rawKey(row,u)];

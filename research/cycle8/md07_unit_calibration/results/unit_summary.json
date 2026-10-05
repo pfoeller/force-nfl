@@ -1,88 +1,148 @@
 {
   "diagnosis": {
     "qbIndex": {
-      "classification": "A. RAW-SIGNAL COMPRESSION",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": 0.48913054791641275,
-      "currentVsHistoricalRawIqrRatio": null,
-      "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "normalizationConcern": "POSSIBLE",
+      "classification": "EPA-component attenuation; full grade wide",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "receiverIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": 0.5863988505937808,
-      "currentVsHistoricalRawIqrRatio": 1.4465002681284933,
-      "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "conventions": {
+        "middle80": false,
+        "goodBand": true,
+        "centralPacking": true
+      },
+      "normalizationConcern": "LIKELY",
+      "classification": "Stabilization plus calibrated historical-CDF upper-band compression",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "olIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": null,
-      "currentVsHistoricalRawIqrRatio": null,
-      "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": true
+      },
+      "normalizationConcern": "POSSIBLE",
+      "classification": "Middle packing despite wide tails",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "rbIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": 0.5485120735616749,
-      "currentVsHistoricalRawIqrRatio": 1.3258896918067367,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
       "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "classification": "No lead under these measured facets",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "coverageIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": null,
-      "currentVsHistoricalRawIqrRatio": null,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
       "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "classification": "No lead under these measured facets",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "passRushIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": null,
-      "currentVsHistoricalRawIqrRatio": null,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
       "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "classification": "No lead under these measured facets",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "runDefenseIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": null,
-      "currentVsHistoricalRawIqrRatio": null,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
       "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "classification": "No lead under these measured facets",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "pointsScoredPerDriveIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": null,
-      "currentVsHistoricalRawIqrRatio": null,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
       "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "classification": "No lead under these measured facets",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "pointsAllowedPerDriveIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": null,
-      "currentVsHistoricalRawIqrRatio": null,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
       "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "classification": "No lead under these measured facets",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "offenseComposite": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": null,
-      "currentVsHistoricalRawIqrRatio": null,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
       "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "classification": "No lead under these measured facets",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "defenseIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": null,
-      "currentVsHistoricalRawIqrRatio": null,
-      "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": true
+      },
+      "normalizationConcern": "POSSIBLE",
+      "classification": "Middle packing despite wide tails",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     },
     "offenseIndex": {
-      "classification": "D. NEITHER",
+      "method": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
       "stabilizationIqrRatio": null,
-      "currentVsHistoricalRawIqrRatio": null,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
       "normalizationConcern": "NONE",
-      "boundary": "A-D conditional descriptive convention; missing ratios remain null. Multivariate QB/coverage and mixed-provider rush not reduced to a validated scalar skill scale."
+      "classification": "No lead under these measured facets",
+      "boundary": "Open MD-07/MD-08 boundary evidence, not a normalization selection. NONE is conditional; provider/component limits remain."
     }
   },
   "matrix": [
@@ -136,13 +196,18 @@
       "bankResult": [
         {
           "team": "SF",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         }
       ],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
-      "normalization": "NONE",
-      "rawDiagnosis": "A. RAW-SIGNAL COMPRESSION"
+      "assessmentRationale": "A only for own multicomponent outcome arithmetic; four checks are ingredients, EPA attenuation remains open",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "A",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "QB all-play EPA proxy; complete vector also includes ANY/A, success, rushing and CPOE",
+      "md07": "A",
+      "normalization": "POSSIBLE",
+      "rawDiagnosis": "EPA-component attenuation; full grade wide"
     },
     {
       "key": "receiverIndex",
@@ -189,21 +254,26 @@
       "bankResult": [
         {
           "team": "SF",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         },
         {
           "team": "PHI",
-          "result": "PASS"
+          "result": "QUESTIONABLE"
         },
         {
           "team": "CHI",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         }
       ],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "B. MEASUREMENT APPEARS DIRECTIONALLY SOUND BUT CONTEXT-INDEPENDENCE IS WEAK",
-      "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "assessmentRationale": "B: residualization helps but descriptive context association and calibrated upper-band compression remain",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "B",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "WR/TE EPA/target after partial QB-environment subtraction",
+      "md07": "B",
+      "normalization": "LIKELY",
+      "rawDiagnosis": "Stabilization plus calibrated historical-CDF upper-band compression"
     },
     {
       "key": "olIndex",
@@ -234,7 +304,7 @@
         {
           "key": "sackAllowed",
           "r": 0.48302351925616194,
-          "boundary": "adjacent non-formula outcome"
+          "boundary": "part-whole disruption ingredient"
         },
         {
           "key": "pbpPressureAllowedRate",
@@ -250,13 +320,18 @@
       "bankResult": [
         {
           "team": "SF",
-          "result": "PASS"
+          "result": "QUESTIONABLE"
         }
       ],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
-      "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "assessmentRationale": "A internally as pass protection; D public label scope; sacks are part-whole evidence, rushing not validation",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "A",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "D. Offensive line materially broader than pass protection",
+      "md07": "A",
+      "normalization": "POSSIBLE",
+      "rawDiagnosis": "Middle packing despite wide tails"
     },
     {
       "key": "rbIndex",
@@ -313,25 +388,30 @@
       "bankResult": [
         {
           "team": "BUF",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         },
         {
           "team": "KC",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         },
         {
           "team": "JAX",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         },
         {
           "team": "TEN",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         }
       ],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "B. MEASUREMENT APPEARS DIRECTIONALLY SOUND BUT CONTEXT-INDEPENDENCE IS WEAK",
+      "assessmentRationale": "B: directionally coherent room outcomes, weak context independence and confirmed prior-reference defect",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "B",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "RB/FB 70% rushing EPA/carry + 30% partially residualized receiving EPA/target",
+      "md07": "B",
       "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "rawDiagnosis": "No lead under these measured facets"
     },
     {
       "key": "coverageIndex",
@@ -378,29 +458,38 @@
       "bankResult": [
         {
           "team": "MIN",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         },
         {
           "team": "KC",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         },
         {
           "team": "DET",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
+        },
+        {
+          "team": "JAX",
+          "result": "QUESTIONABLE"
         }
       ],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "assessmentRationale": "Narrow A only for sack-free pass outcomes; same-feed checks do not independently certify coverage talent",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "A",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "Sack-free pass-attempt EPA allowed proxy; complete grade also uses CPOE allowed",
+      "md07": "A",
       "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "rawDiagnosis": "No lead under these measured facets"
     },
     {
       "key": "passRushIndex",
       "label": "Pass rush",
       "displaySd": 25.74172113939674,
       "displayMiddle80": 69.79788848427447,
-      "rawSd": 0.08311824284408205,
-      "rawIqr": 0.11842767618656255,
+      "rawSd": 0.06368388504609504,
+      "rawIqr": 0.09069409513172594,
       "clustering": "VERY WIDE",
       "strongestAdjacent": {
         "pair": [
@@ -423,12 +512,12 @@
         {
           "key": "frontSackRate",
           "r": 0.7983815488914423,
-          "boundary": "ingredient/adjacent"
+          "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
         },
         {
           "key": "frontPressureRate",
           "r": 0.9528379349357098,
-          "boundary": "provider-heterogeneous ingredient/proxy"
+          "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
         }
       ],
       "bankResult": [
@@ -438,9 +527,14 @@
         }
       ],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "E. INSUFFICIENT EVIDENCE",
+      "assessmentRationale": "E: mixed true-pressure and weekly proxy paths, no uniform independent charting benchmark",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "E",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "Provider-dependent ranked signal: weekly disruption for 28; selected charted composite for 4",
+      "md07": "E",
       "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "rawDiagnosis": "No lead under these measured facets"
     },
     {
       "key": "runDefenseIndex",
@@ -492,13 +586,42 @@
       "bankResult": [
         {
           "team": "TB",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
+        },
+        {
+          "team": "NE",
+          "result": "QUESTIONABLE"
+        },
+        {
+          "team": "WAS",
+          "result": "QUESTIONABLE"
+        },
+        {
+          "team": "BUF",
+          "result": "QUESTIONABLE"
+        },
+        {
+          "team": "NYJ",
+          "result": "QUESTIONABLE"
+        },
+        {
+          "team": "SF",
+          "result": "QUESTIONABLE"
+        },
+        {
+          "team": "LV",
+          "result": "QUESTIONABLE"
         }
       ],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "assessmentRationale": "B: old run-stop prior/current EPA drift r=.081 and six two-benchmark rank discordances",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "B",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "Opponent rushing EPA/carry; includes QB runs in team outcomes",
+      "md07": "B",
       "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "rawDiagnosis": "No lead under these measured facets"
     },
     {
       "key": "pointsScoredPerDriveIndex",
@@ -539,9 +662,14 @@
       ],
       "bankResult": [],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "assessmentRationale": "A only as broad drive outcome, not position-group skill",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "A",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "Qualifying offensive points/drive",
+      "md07": "A",
       "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "rawDiagnosis": "No lead under these measured facets"
     },
     {
       "key": "pointsAllowedPerDriveIndex",
@@ -583,13 +711,18 @@
       "bankResult": [
         {
           "team": "MIN",
-          "result": "PASS"
+          "result": "NO OPPOSITE-QUARTILE CONTRADICTION"
         }
       ],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "assessmentRationale": "A only as broad drive outcome, not position-group skill",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "A",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "Opponent offensive points/drive allowed",
+      "md07": "A",
       "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "rawDiagnosis": "No lead under these measured facets"
     },
     {
       "key": "offenseComposite",
@@ -624,9 +757,14 @@
       ],
       "bankResult": [],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "assessmentRationale": "A arithmetic composite only, not independently validated new construct",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "A",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "Weighted already-normalized unit grades, not a physical raw signal",
+      "md07": "A",
       "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "rawDiagnosis": "No lead under these measured facets"
     },
     {
       "key": "defenseIndex",
@@ -661,9 +799,14 @@
       ],
       "bankResult": [],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
-      "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "assessmentRationale": "A arithmetic composite only, not independently validated new construct",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "A",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "Weighted already-normalized unit grades, not a physical raw signal",
+      "md07": "A",
+      "normalization": "POSSIBLE",
+      "rawDiagnosis": "Middle packing despite wide tails"
     },
     {
       "key": "offenseIndex",
@@ -693,9 +836,14 @@
       ],
       "bankResult": [],
       "predictiveEvidence": "UNAVAILABLE",
-      "md07": "A. CURRENT FORMULA APPEARS SOUND; NO MATERIAL MD-07 DEFECT FOUND",
+      "assessmentRationale": "A diagnostic arithmetic only; sole benchmark is tautological",
+      "assessmentMethod": "ANALYST-ASSESSMENT BASED ON AUDIT EVIDENCE",
+      "internalConstructCoherence": "A",
+      "externalValidationStrength": "E. INSUFFICIENT — zero genuinely independent statistical benchmarks",
+      "publicLabelScope": "Team EPA/play; compatibility/debug grade, not current offense-composite outcome key",
+      "md07": "A",
       "normalization": "NONE",
-      "rawDiagnosis": "D. NEITHER"
+      "rawDiagnosis": "No lead under these measured facets"
     }
   ]
 }

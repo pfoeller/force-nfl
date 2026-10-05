@@ -1,0 +1,12 @@
+// Read-only inventory of existing dated caches; no replay or provider acquisition.
+import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';import {DIR,hash} from './architecture.mjs';
+export function inventory(){
+ const entries=fs.readdirSync('data/live-cache').filter(p=>p.endsWith('.json')).sort().map(p=>{
+  const meta=JSON.parse(fs.readFileSync('data/live-cache/'+p,'utf8')),payload=fs.readFileSync('data/live-cache/'+p.replace(/\.json$/,'.bin'),'utf8').replace(/\r\n/g,'\n');
+  const category=meta.key.includes('game-flow')?'versioned game-flow aggregates':meta.key.startsWith('/derived/')?'derived historical calibration/reference':meta.key.includes('pfr')?'PFR/Sportradar cached feed':meta.key.includes('ftn')?'FTN charting cached feed':'nflverse schedule/team/player feed';
+  let structure;try{const x=JSON.parse(payload);structure={format:'JSON',topLevelKeys:Object.keys(x).sort()};}catch{structure={format:'CSV',columnCount:payload.split('\n')[0].split(',').length};}
+  return {key:meta.key,savedAtUTC:meta.saved_at,declaredBytes:meta.bytes,lfNormalizedPayloadBytes:Buffer.byteLength(payload),lfNormalizedSHA256:hash(payload),category,structure};
+ });
+ return {source:'Existing tracked data/live-cache at shared base; saved_at records, never checkout modification time. LF-normalized checksums are text portability pins, not evidence of original fetch bytes.',entries,dates:[...new Set(entries.map(r=>r.savedAtUTC.slice(0,10)))].sort(),counts:Object.fromEntries([...new Set(entries.map(r=>r.category))].sort().map(c=>[c,entries.filter(r=>r.category===c).length])),predictiveValidation:'UNAVAILABLE',limitations:'Sparse dated caches mix game-flow definitions v97..v137, single Oct1 feed snapshots and 2025 calibration/reference versions. No complete Week-N input/control/provider/as-of revision archive; historical priors/references can leak future information. Not exact current v149 causal unit reconstruction.',futureSubset:'Separately authorized schema/version compatibility or reference-definition audit and prefix feasibility study may use these caches. Need dated provenance, complete checkpoint input/control state and future-row invariance before predictive claims. No replay started; no restricted raw rows redistributed.'};
+}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){fs.writeFileSync(DIR+'/results/historical_availability.json',JSON.stringify(inventory(),null,2)+'\n');console.log('Existing-cache inventory written; no replay/capture');}

@@ -1,0 +1,991 @@
+{
+  "conventions": {
+    "quantiles": "linear (n-1)*p; population SD; midrank ties",
+    "displayClustering": "C1 middle80 <30; C2 good-band ranks6-15 span <10; C3 >=8/32 teams in an inclusive rolling6-point band. Separate descriptive facets, not validated football thresholds. Sensitivity at band spans8/10/12 and packing counts8/10 is retained.",
+    "rawCompression": "Stabilized/current IQR <.50 denotes marked component attenuation, not whole-grade failure.",
+    "normalizationCompression": "Like-for-like calibrated values versus the actual consumed mapping reference; component and provider limitations explicit. No unstabilized/raw ratio used as a normalization clearance.",
+    "pathology": "NO OPPOSITE-QUARTILE CONTRADICTION means only that the available checks do not occupy opposite quartiles. QUESTIONABLE includes two >=10-rank same-feed discordances or important scope/evidence limits. CLEAR PATHOLOGY cannot be certified without sufficiently independent external evidence.",
+    "discordance": "Absolute rank gap >=10; no tuning targets.",
+    "alignment": "A independent external; B same-feed different transformation; C direct ingredient/near-tautological; D official factual corroboration outside the 33 statistical comparisons.",
+    "historical": "Exact causal predictive validation UNAVAILABLE"
+  },
+  "display": {
+    "qbIndex": {
+      "p75MinusMedian": 19.453200863691805,
+      "p90MinusMedian": 29.639691452651846,
+      "medianMinusP10": 32.23232653276436,
+      "upperHalfSpread": 38.51231805641386,
+      "rank6To15Spread": 23.381639494937126,
+      "rank4To15Spread": 26.356227296964,
+      "atLeast70": 10,
+      "in40To60": 7,
+      "rolling5": {
+        "count": 6,
+        "lower": 17.246115490562552,
+        "upper": 22.246115490562552
+      },
+      "rolling6": {
+        "count": 6,
+        "lower": 17.826830262239756,
+        "upper": 23.826830262239756
+      },
+      "within10OfMedian": 8,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "receiverIndex": {
+      "p75MinusMedian": 6.837954817558668,
+      "p90MinusMedian": 13.913899807564462,
+      "medianMinusP10": 32.651763349144915,
+      "upperHalfSpread": 31.529791204588847,
+      "rank6To15Spread": 5.506522330258406,
+      "rank4To15Spread": 9.20220446245169,
+      "atLeast70": 3,
+      "in40To60": 12,
+      "rolling5": {
+        "count": 9,
+        "lower": 57.36676246146626,
+        "upper": 62.36676246146626
+      },
+      "rolling6": {
+        "count": 10,
+        "lower": 56.73309219326913,
+        "upper": 62.73309219326913
+      },
+      "within10OfMedian": 12,
+      "conventions": {
+        "middle80": false,
+        "goodBand": true,
+        "centralPacking": true
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": true,
+          "10": true,
+          "12": true
+        },
+        "packingThresholds": {
+          "8": true,
+          "10": true
+        }
+      }
+    },
+    "olIndex": {
+      "p75MinusMedian": 12.316219727353833,
+      "p90MinusMedian": 31.240720036144296,
+      "medianMinusP10": 13.701620014636951,
+      "upperHalfSpread": 46.8712572905382,
+      "rank6To15Spread": 19.702441729880533,
+      "rank4To15Spread": 29.35504145529864,
+      "atLeast70": 2,
+      "in40To60": 10,
+      "rolling5": {
+        "count": 7,
+        "lower": 32.79477402074545,
+        "upper": 37.79477402074545
+      },
+      "rolling6": {
+        "count": 8,
+        "lower": 32.79477402074545,
+        "upper": 38.79477402074545
+      },
+      "within10OfMedian": 16,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": true
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": true,
+          "10": false
+        }
+      }
+    },
+    "rbIndex": {
+      "p75MinusMedian": 17.449485648733614,
+      "p90MinusMedian": 24.596046150744755,
+      "medianMinusP10": 22.294448754699253,
+      "upperHalfSpread": 34.53455910770688,
+      "rank6To15Spread": 16.787006406329382,
+      "rank4To15Spread": 21.36363471113468,
+      "atLeast70": 5,
+      "in40To60": 9,
+      "rolling5": {
+        "count": 6,
+        "lower": 33.38747810277485,
+        "upper": 38.38747810277485
+      },
+      "rolling6": {
+        "count": 6,
+        "lower": 33.38747810277485,
+        "upper": 39.38747810277485
+      },
+      "within10OfMedian": 9,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "coverageIndex": {
+      "p75MinusMedian": 11.328123646965416,
+      "p90MinusMedian": 28.111018606033646,
+      "medianMinusP10": 36.563943570088426,
+      "upperHalfSpread": 38.909655329089176,
+      "rank6To15Spread": 18.10964119006333,
+      "rank4To15Spread": 27.079488783442002,
+      "atLeast70": 7,
+      "in40To60": 11,
+      "rolling5": {
+        "count": 6,
+        "lower": 54.00238922732062,
+        "upper": 59.00238922732062
+      },
+      "rolling6": {
+        "count": 7,
+        "lower": 54.00238922732062,
+        "upper": 60.00238922732062
+      },
+      "within10OfMedian": 9,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "passRushIndex": {
+      "p75MinusMedian": 22.910536988779647,
+      "p90MinusMedian": 36.73898783686766,
+      "medianMinusP10": 33.05890064740681,
+      "upperHalfSpread": 46.68989690714552,
+      "rank6To15Spread": 27.9397798218955,
+      "rank4To15Spread": 33.305040995401285,
+      "atLeast70": 9,
+      "in40To60": 7,
+      "rolling5": {
+        "count": 4,
+        "lower": 36.42336983913563,
+        "upper": 41.42336983913563
+      },
+      "rolling6": {
+        "count": 5,
+        "lower": 34.02060424525559,
+        "upper": 40.02060424525559
+      },
+      "within10OfMedian": 8,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "runDefenseIndex": {
+      "p75MinusMedian": 25.24153056446326,
+      "p90MinusMedian": 38.37145233837906,
+      "medianMinusP10": 31.439270337579806,
+      "upperHalfSpread": 40.77709506810788,
+      "rank6To15Spread": 18.641199009777836,
+      "rank4To15Spread": 27.708207115436565,
+      "atLeast70": 9,
+      "in40To60": 6,
+      "rolling5": {
+        "count": 5,
+        "lower": 60.245012876129344,
+        "upper": 65.24501287612935
+      },
+      "rolling6": {
+        "count": 5,
+        "lower": 60.245012876129344,
+        "upper": 66.24501287612935
+      },
+      "within10OfMedian": 6,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "pointsScoredPerDriveIndex": {
+      "p75MinusMedian": 17.878071787972814,
+      "p90MinusMedian": 35.952892530740655,
+      "medianMinusP10": 31.046851656837024,
+      "upperHalfSpread": 45.72465846315419,
+      "rank6To15Spread": 27.300039777946083,
+      "rank4To15Spread": 32.621405953958,
+      "atLeast70": 8,
+      "in40To60": 5,
+      "rolling5": {
+        "count": 5,
+        "lower": 60.10342249083515,
+        "upper": 65.10342249083516
+      },
+      "rolling6": {
+        "count": 5,
+        "lower": 60.10342249083515,
+        "upper": 66.10342249083516
+      },
+      "within10OfMedian": 5,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "pointsAllowedPerDriveIndex": {
+      "p75MinusMedian": 20.64516129032259,
+      "p90MinusMedian": 31.81451612903227,
+      "medianMinusP10": 32.00000000000001,
+      "upperHalfSpread": 38.70967741935484,
+      "rank6To15Spread": 23.22580645161291,
+      "rank4To15Spread": 28.38709677419355,
+      "atLeast70": 9,
+      "in40To60": 7,
+      "rolling5": {
+        "count": 3,
+        "lower": 74.51612903225806,
+        "upper": 79.51612903225806
+      },
+      "rolling6": {
+        "count": 3,
+        "lower": 84.83870967741936,
+        "upper": 90.83870967741936
+      },
+      "within10OfMedian": 7,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "offenseComposite": {
+      "p75MinusMedian": 25.42866629031505,
+      "p90MinusMedian": 37.803218987757944,
+      "medianMinusP10": 22.501292742755343,
+      "upperHalfSpread": 48.16770666360842,
+      "rank6To15Spread": 34.026663495950714,
+      "rank4To15Spread": 35.604647070623,
+      "atLeast70": 8,
+      "in40To60": 8,
+      "rolling5": {
+        "count": 6,
+        "lower": 80.3697566826173,
+        "upper": 85.3697566826173
+      },
+      "rolling6": {
+        "count": 7,
+        "lower": 77.28780968622969,
+        "upper": 83.28780968622969
+      },
+      "within10OfMedian": 8,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "defenseIndex": {
+      "p75MinusMedian": 17.278474748710337,
+      "p90MinusMedian": 32.451745449183804,
+      "medianMinusP10": 20.802619244280844,
+      "upperHalfSpread": 46.88792779462787,
+      "rank6To15Spread": 29.155780295297305,
+      "rank4To15Spread": 32.05098308723757,
+      "atLeast70": 6,
+      "in40To60": 10,
+      "rolling5": {
+        "count": 7,
+        "lower": 46.09587225876935,
+        "upper": 51.09587225876935
+      },
+      "rolling6": {
+        "count": 8,
+        "lower": 46.09587225876935,
+        "upper": 52.09587225876935
+      },
+      "within10OfMedian": 12,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": true
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": true,
+          "10": false
+        }
+      }
+    },
+    "offenseIndex": {
+      "p75MinusMedian": 23.213906964473523,
+      "p90MinusMedian": 37.11181433611263,
+      "medianMinusP10": 32.58980561874946,
+      "upperHalfSpread": 46.17553040458158,
+      "rank6To15Spread": 31.648159087508454,
+      "rank4To15Spread": 34.73221048273444,
+      "atLeast70": 9,
+      "in40To60": 9,
+      "rolling5": {
+        "count": 4,
+        "lower": 45.8906118960834,
+        "upper": 50.8906118960834
+      },
+      "rolling6": {
+        "count": 5,
+        "lower": 45.32523065511724,
+        "upper": 51.32523065511724
+      },
+      "within10OfMedian": 10,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    }
+  },
+  "mappedStages": {
+    "receiverIndex": {
+      "field": "receiverCalibratedResidual",
+      "scope": "scalar mapping input",
+      "current": {
+        "n": 32,
+        "missing": 0,
+        "min": 0.13564729311545332,
+        "max": 0.3731932198759396,
+        "mean": 0.25460740421710293,
+        "median": 0.2594803494854685,
+        "sd": 0.051561181646785054,
+        "p10": 0.196247117038242,
+        "p25": 0.21024811735567644,
+        "p75": 0.2878600055649145,
+        "p90": 0.3176249443301954,
+        "iqr": 0.07761188820923803,
+        "range": 0.2375459267604863,
+        "middle80": 0.1213778272919534,
+        "tailCount": 5,
+        "top5Spread": 0.05969110681132356,
+        "bottom5Spread": 0.0641444540033867,
+        "top5Mean": 0.33320134355209047,
+        "bottom5Mean": 0.178746670396894,
+        "top5MinusMedian": 0.07372099406662197,
+        "medianMinusBottom5": 0.08073367908857451,
+        "withinMedian": {
+          "2": 32,
+          "5": 32,
+          "10": 32
+        },
+        "adjacentSpacing": [
+          0.042013415998710224,
+          0.007119624270340685,
+          0.01107293586700464,
+          0.003938477867331147,
+          0.000616406808095632,
+          0.0023096944683526355,
+          0.0014326528809560646,
+          0.008130154772576115,
+          0.01072416687952743,
+          0.004452368531280615,
+          0.006206714513662753,
+          0.011629870044569751,
+          0.005023706037410924,
+          0.00042261712436919563,
+          0.0053485902607572355,
+          0.006783320090140321,
+          0.006279077268981914,
+          0.0008763260073285095,
+          0.0000386479357969427,
+          0.009511888242589361,
+          0.003888582527600104,
+          0.0013768645317677186,
+          0.0025197768853541525,
+          0.001987330539828358,
+          0.00006819400691865374,
+          0.006018220725262591,
+          0.01806519486264907,
+          0.004580923628421496,
+          0.011104736041292973,
+          0.0028528026581979282,
+          0.04115264448341116
+        ],
+        "distinct": 32
+      },
+      "reference": {
+        "n": 32,
+        "p10": 0.16643973893675162,
+        "p25": 0.22874033173215685,
+        "p75": 0.3202393892382142,
+        "p90": 0.3921952068141574
+      },
+      "iqrRatio": 0.8482260946141442,
+      "middle80Ratio": 0.5376517717739904,
+      "upperBandRatio": 0.41365576499588186,
+      "aboveReferenceP75": 3,
+      "belowReferenceP25": 11
+    },
+    "rbIndex": {
+      "field": "rbCalibratedComposite",
+      "scope": "scalar mapping input",
+      "current": {
+        "n": 32,
+        "missing": 0,
+        "min": -0.12825147913881724,
+        "max": 0.07589368636437506,
+        "mean": -0.03074821843474765,
+        "median": -0.03050114747506031,
+        "sd": 0.05215283061058901,
+        "p10": -0.09310040008832478,
+        "p25": -0.07559761623780853,
+        "p75": 0.003616884091883772,
+        "p90": 0.038206287043932655,
+        "iqr": 0.0792145003296923,
+        "range": 0.20414516550319228,
+        "middle80": 0.13130668713225743,
+        "tailCount": 5,
+        "top5Spread": 0.038892254589511996,
+        "bottom5Spread": 0.04003543447902859,
+        "top5Mean": 0.054084610129104635,
+        "bottom5Mean": -0.10199843265811467,
+        "top5MinusMedian": 0.08458575760416495,
+        "medianMinusBottom5": 0.07149728518305437,
+        "withinMedian": {
+          "2": 32,
+          "5": 32,
+          "10": 32
+        },
+        "adjacentSpacing": [
+          0.02232774065457356,
+          0.011965943723570821,
+          0.0003146885136218469,
+          0.005427061587262361,
+          0.001230265856181717,
+          0.002646815671524444,
+          0.005179698442609265,
+          0.004748864602219599,
+          0.005227756090142074,
+          0.0012117777851272243,
+          0.00685214239824164,
+          0.015592767866283719,
+          0.0014976212090899998,
+          0.007468033766500903,
+          0.000930446332624929,
+          0.010257414328365643,
+          0.004516600241506366,
+          0.0025191986493810076,
+          0.004657953530313903,
+          0.00878129784739301,
+          0.0031179531418779466,
+          0.0034498323794757146,
+          0.0012682685813995911,
+          0.00271288012565489,
+          0.001122794251351547,
+          0.0016483657973039578,
+          0.02857872754008262,
+          0.0013387280767439835,
+          0.005261530796130509,
+          0.03198439135920293,
+          0.00030760435743457104
+        ],
+        "distinct": 32
+      },
+      "reference": {
+        "n": 32,
+        "p10": -0.12949876544614464,
+        "p25": -0.08596987857433966,
+        "p75": 0.0229509913898661,
+        "p90": 0.07036364063986814
+      },
+      "iqrRatio": 0.7272665041669631,
+      "middle80Ratio": 0.6569854216392667,
+      "upperBandRatio": 0.7295395532458545,
+      "aboveReferenceP75": 5,
+      "belowReferenceP25": 6
+    },
+    "qbIndex": {
+      "field": "qbStabilizedEpa",
+      "scope": "EPA component only; not whole multicomponent QB grade",
+      "current": {
+        "n": 32,
+        "missing": 0,
+        "min": -0.09982455227333414,
+        "max": 0.27382941070472167,
+        "mean": 0.06564625521690554,
+        "median": 0.05961533610679745,
+        "sd": 0.08696752667884113,
+        "p10": -0.04680132278750794,
+        "p25": -0.003948312285850693,
+        "p75": 0.137481839757518,
+        "p90": 0.16782667213418082,
+        "iqr": 0.14143015204336867,
+        "range": 0.3736539629780558,
+        "middle80": 0.21462799492168877,
+        "tailCount": 5,
+        "top5Spread": 0.10638565806174202,
+        "bottom5Spread": 0.05489743931342325,
+        "top5Mean": 0.19590662240952575,
+        "bottom5Mean": -0.06293802521691486,
+        "top5MinusMedian": 0.1362912863027283,
+        "medianMinusBottom5": 0.1225533613237123,
+        "withinMedian": {
+          "2": 32,
+          "5": 32,
+          "10": 32
+        },
+        "adjacentSpacing": [
+          0.02546922533516388,
+          0.025781761348918963,
+          0.001563997265343689,
+          0.0020824553639967186,
+          0.022082935350831764,
+          0.005012842846118359,
+          0.010939405455405754,
+          0.003924822695605762,
+          0.02875299315929232,
+          0.00409262383564437,
+          0.0003864305554425601,
+          0.0005971356786433832,
+          0.017850007031034745,
+          0.0028434913683553983,
+          0.0019604170362115397,
+          0.012198688108244767,
+          0.004773150858878555,
+          0.0038571173413628757,
+          0.009467228948389,
+          0.019170691841425724,
+          0.010767333926373898,
+          0.010625535496481722,
+          0.013046182158318848,
+          0.00023967610147015983,
+          0.012781982344582554,
+          0.004357540490621481,
+          0.012642632974154994,
+          0.0004254661013346206,
+          0.0007237505350469187,
+          0.033204791396890754,
+          0.07203165002846973
+        ],
+        "distinct": 32
+      },
+      "reference": {
+        "n": 32,
+        "p10": -0.15582921900000002,
+        "p25": -0.010072425,
+        "p75": 0.0977889725,
+        "p90": 0.192429856
+      },
+      "iqrRatio": 1.3112212090833393,
+      "middle80Ratio": 0.6162883046814753,
+      "upperBandRatio": 0.3206313302925033,
+      "aboveReferenceP75": 12,
+      "belowReferenceP25": 7
+    },
+    "olIndex": {
+      "scope": "pass-protection disruption allowed; quality oriented; reference groups kept separate",
+      "strata": {
+        "448": {
+          "teams": [
+            "ARI",
+            "BAL",
+            "BUF",
+            "CAR",
+            "CHI",
+            "CIN",
+            "CLE",
+            "DAL",
+            "DEN",
+            "DET",
+            "GB",
+            "HOU",
+            "IND",
+            "JAX",
+            "KC",
+            "LAC",
+            "LAR",
+            "LV",
+            "MIA",
+            "MIN",
+            "NE",
+            "NYG",
+            "NYJ",
+            "PHI",
+            "PIT",
+            "SEA",
+            "SF",
+            "TB",
+            "TEN",
+            "WAS"
+          ],
+          "sampleLimit": "Single-snapshot descriptive comparison",
+          "current": {
+            "n": 30,
+            "missing": 0,
+            "min": -0.23484848484848486,
+            "max": -0.09821428571428571,
+            "mean": -0.17044155497414828,
+            "median": -0.1757518796992481,
+            "sd": 0.0294288464277908,
+            "p10": -0.1987035816304109,
+            "p25": -0.18813946909330945,
+            "p75": -0.15855293843283583,
+            "p90": -0.1292094861660079,
+            "iqr": 0.02958653066047362,
+            "range": 0.13663419913419916,
+            "middle80": 0.06949409546440302,
+            "tailCount": 5,
+            "top5Spread": 0.0377857142857143,
+            "bottom5Spread": 0.03766538625693558,
+            "top5Mean": -0.11799474872953135,
+            "bottom5Mean": -0.20743710357245226,
+            "top5MinusMedian": 0.057757130969716755,
+            "medianMinusBottom5": 0.03168522387320416,
+            "withinMedian": {
+              "2": 30,
+              "5": 30,
+              "10": 30
+            },
+            "adjacentSpacing": [
+              0.03114478114478117,
+              0.00045167118337849366,
+              0.005053834322126999,
+              0.001015099606648917,
+              0.004412014254199875,
+              0.002630239266926876,
+              0.0011644671176666288,
+              0.003347635437785851,
+              0.0001448715472281148,
+              0.000552364118426879,
+              0.0038291446445906374,
+              0.00086980406518955,
+              0.0005450581395348708,
+              0.0011160714285714246,
+              0.005639097744360916,
+              0.00031328320802004317,
+              0.0018873403019744328,
+              0.0019817073170731725,
+              0.0020833333333333537,
+              0,
+              0.0026041666666666574,
+              0.0073460820895522305,
+              0.002870264064293915,
+              0.0082765335929893,
+              0.009569620253164546,
+              0.005565217391304361,
+              0.012252964426877469,
+              0.011038961038961043,
+              0.008928571428571425
+            ],
+            "distinct": 29
+          },
+          "reference": {
+            "n": 448,
+            "p10": -0.227993664,
+            "p25": -0.190224685,
+            "p75": -0.1213744575,
+            "p90": -0.099770992
+          },
+          "iqrRatio": 0.42972306315870373,
+          "middle80Ratio": 0.5419797792421844,
+          "upperBandRatio": 1.358275239073469,
+          "aboveReferenceP75": 3,
+          "belowReferenceP25": 6
+        },
+        "480": {
+          "teams": [
+            "ATL",
+            "NO"
+          ],
+          "sampleLimit": "Too sparse for scale conclusions",
+          "current": {
+            "n": 2,
+            "missing": 0,
+            "min": -0.14893617021276595,
+            "max": -0.13953488372093023,
+            "mean": -0.1442355269668481,
+            "median": -0.1442355269668481,
+            "sd": 0.00470064324591786,
+            "p10": -0.14799604156358237,
+            "p25": -0.14658584858980703,
+            "p75": -0.14188520534388915,
+            "p90": -0.1404750123701138,
+            "iqr": 0.004700643245917874,
+            "range": 0.00940128649183572,
+            "middle80": 0.007521029193468559,
+            "tailCount": 2,
+            "top5Spread": null,
+            "bottom5Spread": null,
+            "top5Mean": null,
+            "bottom5Mean": null,
+            "top5MinusMedian": null,
+            "medianMinusBottom5": null,
+            "withinMedian": {
+              "2": 2,
+              "5": 2,
+              "10": 2
+            },
+            "adjacentSpacing": [
+              0.00940128649183572
+            ],
+            "distinct": 2
+          },
+          "reference": {
+            "n": 480,
+            "p10": -0.232032323,
+            "p25": -0.19002066,
+            "p75": -0.119816515,
+            "p90": -0.09467492100000001
+          },
+          "iqrRatio": 0.06695677649685604,
+          "middle80Ratio": 0.054755179436697256,
+          "upperBandRatio": 0.056090038434927526,
+          "aboveReferenceP75": 0,
+          "belowReferenceP25": 0
+        }
+      }
+    },
+    "passRushIndex": {
+      "scope": "Weekly grading uses current league disruption ranks, not historical CDF; selected composite is not ranked for those28. PFR uses opportunity-aligned charted composite reference.",
+      "strata": {
+        "444": {
+          "nCurrent": 2,
+          "sampleLimit": "Two-team strata cannot support compression conclusions",
+          "current": {
+            "n": 2,
+            "missing": 0,
+            "min": 0.2548370773595032,
+            "max": 0.26132592168723945,
+            "mean": 0.25808149952337134,
+            "median": 0.25808149952337134,
+            "sd": 0.003244422163868138,
+            "p10": 0.2554859617922768,
+            "p25": 0.2564592884414372,
+            "p75": 0.2597037106053054,
+            "p90": 0.26067703725446584,
+            "iqr": 0.003244422163868166,
+            "range": 0.006488844327736276,
+            "middle80": 0.005191075462189054,
+            "tailCount": 2,
+            "top5Spread": null,
+            "bottom5Spread": null,
+            "top5Mean": null,
+            "bottom5Mean": null,
+            "top5MinusMedian": null,
+            "medianMinusBottom5": null,
+            "withinMedian": {
+              "2": 2,
+              "5": 2,
+              "10": 2
+            },
+            "adjacentSpacing": [
+              0.006488844327736276
+            ],
+            "distinct": 2
+          },
+          "reference": {
+            "n": 444,
+            "p10": 0.19577872645643862,
+            "p25": 0.2249358411049589,
+            "p75": 0.31647039264837995,
+            "p90": 0.3637689827725192
+          },
+          "iqrRatio": 0.03544478133297148,
+          "middle80Ratio": 0.03090105090632062,
+          "upperBandRatio": 0.020578343806990113,
+          "aboveReferenceP75": 0,
+          "belowReferenceP25": 0
+        },
+        "476": {
+          "nCurrent": 2,
+          "sampleLimit": "Two-team strata cannot support compression conclusions",
+          "current": {
+            "n": 2,
+            "missing": 0,
+            "min": 0.27274103558221374,
+            "max": 0.2968189680154004,
+            "mean": 0.2847800017988071,
+            "median": 0.2847800017988071,
+            "sd": 0.012038966216593339,
+            "p10": 0.27514882882553243,
+            "p25": 0.27876051869051044,
+            "p75": 0.2907994849071037,
+            "p90": 0.29441117477208173,
+            "iqr": 0.012038966216593283,
+            "range": 0.024077932433186677,
+            "middle80": 0.019262345946549297,
+            "tailCount": 2,
+            "top5Spread": null,
+            "bottom5Spread": null,
+            "top5Mean": null,
+            "bottom5Mean": null,
+            "top5MinusMedian": null,
+            "medianMinusBottom5": null,
+            "withinMedian": {
+              "2": 2,
+              "5": 2,
+              "10": 2
+            },
+            "adjacentSpacing": [
+              0.024077932433186677
+            ],
+            "distinct": 2
+          },
+          "reference": {
+            "n": 476,
+            "p10": 0.18117771775668481,
+            "p25": 0.22066729552909248,
+            "p75": 0.31850093252888784,
+            "p90": 0.3754744278698252
+          },
+          "iqrRatio": 0.12305549078808616,
+          "middle80Ratio": 0.09913881678867693,
+          "upperBandRatio": 0.06339245720075887,
+          "aboveReferenceP75": 0,
+          "belowReferenceP25": 0
+        }
+      }
+    },
+    "coverageIndex": {
+      "status": "NOT APPLICABLE",
+      "scope": "Current-league rank map (coverage includes CPOE); no comparable historical CDF"
+    },
+    "runDefenseIndex": {
+      "status": "NOT APPLICABLE",
+      "scope": "Current-league rank map (coverage includes CPOE); no comparable historical CDF"
+    },
+    "pointsScoredPerDriveIndex": {
+      "status": "NOT APPLICABLE",
+      "scope": "Current-league rank map (coverage includes CPOE); no comparable historical CDF"
+    },
+    "pointsAllowedPerDriveIndex": {
+      "status": "NOT APPLICABLE",
+      "scope": "Current-league rank map (coverage includes CPOE); no comparable historical CDF"
+    },
+    "offenseComposite": {
+      "status": "NOT APPLICABLE",
+      "scope": "Already-normalized composite grades and analytic soft-tail transformation, not empirical historical CDF"
+    },
+    "defenseIndex": {
+      "status": "NOT APPLICABLE",
+      "scope": "Already-normalized composite grades and analytic soft-tail transformation, not empirical historical CDF"
+    },
+    "offenseIndex": {
+      "status": "NOT APPLICABLE",
+      "scope": "Current-league rank map (coverage includes CPOE); no comparable historical CDF"
+    }
+  },
+  "runPriorLive": {
+    "n": 32,
+    "pearson": 0.08064516129032247,
+    "spearman": 0.08064516129032258
+  }
+}

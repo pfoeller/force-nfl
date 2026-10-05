@@ -1,13 +1,13 @@
 {
   "conventions": {
-    "quantiles": "linear interpolation at (n-1)*p; population SD; midrank ties",
-    "displayClustering": "middle-80% span <15 VERY COMPRESSED; 15..<30 COMPRESSED; 30..60 REASONABLY DISCRIMINATIVE; >60 VERY WIDE. Descriptive display convention, not validated football thresholds.",
-    "rawCompression": "IQR after reliability stabilization / IQR before <0.50 means marked stabilization compression. With available like-for-like historical benchmark, current physical IQR / historical IQR <0.50 means raw signal compression relative to that benchmark. QB/coverage scalar proxies do not cover full multivariate formula. Cross-unit physical units are not directly comparable.",
-    "normalizationCompression": "Middle-80 displayed span <30 with raw current/historical IQR >=0.50 suggests display compression (with marked stabilization compression, classify BOTH). A-D classification is conditional on available scalar evidence, not a scale redesign.",
-    "pathology": "PASS: direction of score broadly aligns with non-formula observable facts, or discordance is explained by scope/prior/components. QUESTIONABLE: opposite score/benchmark quartiles or important construct ambiguity. CLEAR PATHOLOGY requires two genuinely independent facts on the same intended construct and unexplained opposite tails; this package cannot certify that with same-feed benchmarks alone.",
-    "discordance": "Absolute displayed rank gap >=10 defines notable discordance; upper/lower quartile pair defines strong opposite-tail discordance. Cases selected systematically, not tuning targets.",
-    "alignment": "Ingredient alignment separated from non-formula outcomes; same-feed non-formula benchmarks are not independent providers or ground truth.",
-    "historical": "UNAVAILABLE for exact causal current-production unit predictive validation; no proxy replay represented as canonical validation"
+    "quantiles": "linear (n-1)*p; population SD; midrank ties",
+    "displayClustering": "C1 middle80 <30; C2 good-band ranks6-15 span <10; C3 >=8/32 teams in an inclusive rolling6-point band. Separate descriptive facets, not validated football thresholds. Sensitivity at band spans8/10/12 and packing counts8/10 is retained.",
+    "rawCompression": "Stabilized/current IQR <.50 denotes marked component attenuation, not whole-grade failure.",
+    "normalizationCompression": "Like-for-like calibrated values versus the actual consumed mapping reference; component and provider limitations explicit. No unstabilized/raw ratio used as a normalization clearance.",
+    "pathology": "NO OPPOSITE-QUARTILE CONTRADICTION means only that the available checks do not occupy opposite quartiles. QUESTIONABLE includes two >=10-rank same-feed discordances or important scope/evidence limits. CLEAR PATHOLOGY cannot be certified without sufficiently independent external evidence.",
+    "discordance": "Absolute rank gap >=10; no tuning targets.",
+    "alignment": "A independent external; B same-feed different transformation; C direct ingredient/near-tautological; D official factual corroboration outside the 33 statistical comparisons.",
+    "historical": "Exact causal predictive validation UNAVAILABLE"
   },
   "units": {
     "qbIndex": {
@@ -75,6 +75,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 19.453200863691805,
+        "p90MinusMedian": 29.639691452651846,
+        "medianMinusP10": 32.23232653276436,
+        "upperHalfSpread": 38.51231805641386,
+        "rank6To15Spread": 23.381639494937126,
+        "rank4To15Spread": 26.356227296964,
+        "atLeast70": 10,
+        "in40To60": 7,
+        "rolling5": {
+          "count": 6,
+          "lower": 17.246115490562552,
+          "upper": 22.246115490562552
+        },
+        "rolling6": {
+          "count": 6,
+          "lower": 17.826830262239756,
+          "upper": 23.826830262239756
+        },
+        "within10OfMedian": 8,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -136,6 +173,40 @@
           0.15455611714607165
         ],
         "distinct": 32
+      },
+      "rawKeyByTeam": {
+        "ARI": "qbEpaPerPlay",
+        "ATL": "qbEpaPerPlay",
+        "BAL": "qbEpaPerPlay",
+        "BUF": "qbEpaPerPlay",
+        "CAR": "qbEpaPerPlay",
+        "CHI": "qbEpaPerPlay",
+        "CIN": "qbEpaPerPlay",
+        "CLE": "qbEpaPerPlay",
+        "DAL": "qbEpaPerPlay",
+        "DEN": "qbEpaPerPlay",
+        "DET": "qbEpaPerPlay",
+        "GB": "qbEpaPerPlay",
+        "HOU": "qbEpaPerPlay",
+        "IND": "qbEpaPerPlay",
+        "JAX": "qbEpaPerPlay",
+        "KC": "qbEpaPerPlay",
+        "LAC": "qbEpaPerPlay",
+        "LAR": "qbEpaPerPlay",
+        "LV": "qbEpaPerPlay",
+        "MIA": "qbEpaPerPlay",
+        "MIN": "qbEpaPerPlay",
+        "NE": "qbEpaPerPlay",
+        "NO": "qbEpaPerPlay",
+        "NYG": "qbEpaPerPlay",
+        "NYJ": "qbEpaPerPlay",
+        "PHI": "qbEpaPerPlay",
+        "PIT": "qbEpaPerPlay",
+        "SEA": "qbEpaPerPlay",
+        "SF": "qbEpaPerPlay",
+        "TB": "qbEpaPerPlay",
+        "TEN": "qbEpaPerPlay",
+        "WAS": "qbEpaPerPlay"
       },
       "liveGrade": {
         "n": 32,
@@ -603,6 +674,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 6.837954817558668,
+        "p90MinusMedian": 13.913899807564462,
+        "medianMinusP10": 32.651763349144915,
+        "upperHalfSpread": 31.529791204588847,
+        "rank6To15Spread": 5.506522330258406,
+        "rank4To15Spread": 9.20220446245169,
+        "atLeast70": 3,
+        "in40To60": 12,
+        "rolling5": {
+          "count": 9,
+          "lower": 57.36676246146626,
+          "upper": 62.36676246146626
+        },
+        "rolling6": {
+          "count": 10,
+          "lower": 56.73309219326913,
+          "upper": 62.73309219326913
+        },
+        "within10OfMedian": 12,
+        "conventions": {
+          "middle80": false,
+          "goodBand": true,
+          "centralPacking": true
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": true,
+            "10": true,
+            "12": true
+          },
+          "packingThresholds": {
+            "8": true,
+            "10": true
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -664,6 +772,40 @@
           0.0883558183310712
         ],
         "distinct": 32
+      },
+      "rawKeyByTeam": {
+        "ARI": "receiverResidualEpa",
+        "ATL": "receiverResidualEpa",
+        "BAL": "receiverResidualEpa",
+        "BUF": "receiverResidualEpa",
+        "CAR": "receiverResidualEpa",
+        "CHI": "receiverResidualEpa",
+        "CIN": "receiverResidualEpa",
+        "CLE": "receiverResidualEpa",
+        "DAL": "receiverResidualEpa",
+        "DEN": "receiverResidualEpa",
+        "DET": "receiverResidualEpa",
+        "GB": "receiverResidualEpa",
+        "HOU": "receiverResidualEpa",
+        "IND": "receiverResidualEpa",
+        "JAX": "receiverResidualEpa",
+        "KC": "receiverResidualEpa",
+        "LAC": "receiverResidualEpa",
+        "LAR": "receiverResidualEpa",
+        "LV": "receiverResidualEpa",
+        "MIA": "receiverResidualEpa",
+        "MIN": "receiverResidualEpa",
+        "NE": "receiverResidualEpa",
+        "NO": "receiverResidualEpa",
+        "NYG": "receiverResidualEpa",
+        "NYJ": "receiverResidualEpa",
+        "PHI": "receiverResidualEpa",
+        "PIT": "receiverResidualEpa",
+        "SEA": "receiverResidualEpa",
+        "SF": "receiverResidualEpa",
+        "TB": "receiverResidualEpa",
+        "TEN": "receiverResidualEpa",
+        "WAS": "receiverResidualEpa"
       },
       "liveGrade": {
         "n": 32,
@@ -1131,6 +1273,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 12.316219727353833,
+        "p90MinusMedian": 31.240720036144296,
+        "medianMinusP10": 13.701620014636951,
+        "upperHalfSpread": 46.8712572905382,
+        "rank6To15Spread": 19.702441729880533,
+        "rank4To15Spread": 29.35504145529864,
+        "atLeast70": 2,
+        "in40To60": 10,
+        "rolling5": {
+          "count": 7,
+          "lower": 32.79477402074545,
+          "upper": 37.79477402074545
+        },
+        "rolling6": {
+          "count": 8,
+          "lower": 32.79477402074545,
+          "upper": 38.79477402074545
+        },
+        "within10OfMedian": 16,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": true
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": true,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -1192,6 +1371,40 @@
           0.03114478114478117
         ],
         "distinct": 31
+      },
+      "rawKeyByTeam": {
+        "ARI": "pbpPressureAllowedRate",
+        "ATL": "pbpPressureAllowedRate",
+        "BAL": "pbpPressureAllowedRate",
+        "BUF": "pbpPressureAllowedRate",
+        "CAR": "pbpPressureAllowedRate",
+        "CHI": "pbpPressureAllowedRate",
+        "CIN": "pbpPressureAllowedRate",
+        "CLE": "pbpPressureAllowedRate",
+        "DAL": "pbpPressureAllowedRate",
+        "DEN": "pbpPressureAllowedRate",
+        "DET": "pbpPressureAllowedRate",
+        "GB": "pbpPressureAllowedRate",
+        "HOU": "pbpPressureAllowedRate",
+        "IND": "pbpPressureAllowedRate",
+        "JAX": "pbpPressureAllowedRate",
+        "KC": "pbpPressureAllowedRate",
+        "LAC": "pbpPressureAllowedRate",
+        "LAR": "pbpPressureAllowedRate",
+        "LV": "pbpPressureAllowedRate",
+        "MIA": "pbpPressureAllowedRate",
+        "MIN": "pbpPressureAllowedRate",
+        "NE": "pbpPressureAllowedRate",
+        "NO": "pbpPressureAllowedRate",
+        "NYG": "pbpPressureAllowedRate",
+        "NYJ": "pbpPressureAllowedRate",
+        "PHI": "pbpPressureAllowedRate",
+        "PIT": "pbpPressureAllowedRate",
+        "SEA": "pbpPressureAllowedRate",
+        "SF": "pbpPressureAllowedRate",
+        "TB": "pbpPressureAllowedRate",
+        "TEN": "pbpPressureAllowedRate",
+        "WAS": "pbpPressureAllowedRate"
       },
       "liveGrade": {
         "n": 32,
@@ -1659,6 +1872,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 17.449485648733614,
+        "p90MinusMedian": 24.596046150744755,
+        "medianMinusP10": 22.294448754699253,
+        "upperHalfSpread": 34.53455910770688,
+        "rank6To15Spread": 16.787006406329382,
+        "rank4To15Spread": 21.36363471113468,
+        "atLeast70": 5,
+        "in40To60": 9,
+        "rolling5": {
+          "count": 6,
+          "lower": 33.38747810277485,
+          "upper": 38.38747810277485
+        },
+        "rolling6": {
+          "count": 6,
+          "lower": 33.38747810277485,
+          "upper": 39.38747810277485
+        },
+        "within10OfMedian": 9,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -1720,6 +1970,40 @@
           0.031931479461523596
         ],
         "distinct": 32
+      },
+      "rawKeyByTeam": {
+        "ARI": "rbCompositeOrthogonal",
+        "ATL": "rbCompositeOrthogonal",
+        "BAL": "rbCompositeOrthogonal",
+        "BUF": "rbCompositeOrthogonal",
+        "CAR": "rbCompositeOrthogonal",
+        "CHI": "rbCompositeOrthogonal",
+        "CIN": "rbCompositeOrthogonal",
+        "CLE": "rbCompositeOrthogonal",
+        "DAL": "rbCompositeOrthogonal",
+        "DEN": "rbCompositeOrthogonal",
+        "DET": "rbCompositeOrthogonal",
+        "GB": "rbCompositeOrthogonal",
+        "HOU": "rbCompositeOrthogonal",
+        "IND": "rbCompositeOrthogonal",
+        "JAX": "rbCompositeOrthogonal",
+        "KC": "rbCompositeOrthogonal",
+        "LAC": "rbCompositeOrthogonal",
+        "LAR": "rbCompositeOrthogonal",
+        "LV": "rbCompositeOrthogonal",
+        "MIA": "rbCompositeOrthogonal",
+        "MIN": "rbCompositeOrthogonal",
+        "NE": "rbCompositeOrthogonal",
+        "NO": "rbCompositeOrthogonal",
+        "NYG": "rbCompositeOrthogonal",
+        "NYJ": "rbCompositeOrthogonal",
+        "PHI": "rbCompositeOrthogonal",
+        "PIT": "rbCompositeOrthogonal",
+        "SEA": "rbCompositeOrthogonal",
+        "SF": "rbCompositeOrthogonal",
+        "TB": "rbCompositeOrthogonal",
+        "TEN": "rbCompositeOrthogonal",
+        "WAS": "rbCompositeOrthogonal"
       },
       "liveGrade": {
         "n": 32,
@@ -2187,6 +2471,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 11.328123646965416,
+        "p90MinusMedian": 28.111018606033646,
+        "medianMinusP10": 36.563943570088426,
+        "upperHalfSpread": 38.909655329089176,
+        "rank6To15Spread": 18.10964119006333,
+        "rank4To15Spread": 27.079488783442002,
+        "atLeast70": 7,
+        "in40To60": 11,
+        "rolling5": {
+          "count": 6,
+          "lower": 54.00238922732062,
+          "upper": 59.00238922732062
+        },
+        "rolling6": {
+          "count": 7,
+          "lower": 54.00238922732062,
+          "upper": 60.00238922732062
+        },
+        "within10OfMedian": 9,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -2248,6 +2569,40 @@
           0.03448472462928637
         ],
         "distinct": 32
+      },
+      "rawKeyByTeam": {
+        "ARI": "oppPassEpa",
+        "ATL": "oppPassEpa",
+        "BAL": "oppPassEpa",
+        "BUF": "oppPassEpa",
+        "CAR": "oppPassEpa",
+        "CHI": "oppPassEpa",
+        "CIN": "oppPassEpa",
+        "CLE": "oppPassEpa",
+        "DAL": "oppPassEpa",
+        "DEN": "oppPassEpa",
+        "DET": "oppPassEpa",
+        "GB": "oppPassEpa",
+        "HOU": "oppPassEpa",
+        "IND": "oppPassEpa",
+        "JAX": "oppPassEpa",
+        "KC": "oppPassEpa",
+        "LAC": "oppPassEpa",
+        "LAR": "oppPassEpa",
+        "LV": "oppPassEpa",
+        "MIA": "oppPassEpa",
+        "MIN": "oppPassEpa",
+        "NE": "oppPassEpa",
+        "NO": "oppPassEpa",
+        "NYG": "oppPassEpa",
+        "NYJ": "oppPassEpa",
+        "PHI": "oppPassEpa",
+        "PIT": "oppPassEpa",
+        "SEA": "oppPassEpa",
+        "SF": "oppPassEpa",
+        "TB": "oppPassEpa",
+        "TEN": "oppPassEpa",
+        "WAS": "oppPassEpa"
       },
       "liveGrade": {
         "n": 32,
@@ -2652,7 +3007,7 @@
     },
     "passRushIndex": {
       "label": "Pass rush",
-      "rawScope": "Selected provider pressure + .20 hit-rate + .60 sack-rate",
+      "rawScope": "Provider-dependent ranked signal: weekly disruption for 28; selected charted composite for 4",
       "display": {
         "n": 32,
         "missing": 0,
@@ -2715,67 +3070,138 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 22.910536988779647,
+        "p90MinusMedian": 36.73898783686766,
+        "medianMinusP10": 33.05890064740681,
+        "upperHalfSpread": 46.68989690714552,
+        "rank6To15Spread": 27.9397798218955,
+        "rank4To15Spread": 33.305040995401285,
+        "atLeast70": 9,
+        "in40To60": 7,
+        "rolling5": {
+          "count": 4,
+          "lower": 36.42336983913563,
+          "upper": 41.42336983913563
+        },
+        "rolling6": {
+          "count": 5,
+          "lower": 34.02060424525559,
+          "upper": 40.02060424525559
+        },
+        "within10OfMedian": 8,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
-        "min": 0.14676258992805757,
-        "max": 0.5006802721088435,
-        "mean": 0.29974454039998966,
-        "median": 0.2952602952602953,
-        "sd": 0.08311824284408205,
-        "p10": 0.2092591093117409,
-        "p25": 0.23750000000000002,
-        "p75": 0.35592767618656257,
-        "p90": 0.4053333333333333,
-        "iqr": 0.11842767618656255,
-        "range": 0.3539176821807859,
-        "middle80": 0.1960742240215924,
+        "min": 0.11510791366906475,
+        "max": 0.38095238095238093,
+        "mean": 0.2375994163633599,
+        "median": 0.2423112767940354,
+        "sd": 0.06368388504609504,
+        "p10": 0.15902834008097166,
+        "p25": 0.18352725705666884,
+        "p75": 0.2742213521883948,
+        "p90": 0.31032258064516133,
+        "iqr": 0.09069409513172594,
+        "range": 0.2658444672833162,
+        "middle80": 0.15129424056418966,
         "tailCount": 5,
-        "top5Spread": 0.10068027210884345,
-        "bottom5Spread": 0.07477587161040397,
-        "top5Mean": 0.4394979576995205,
-        "bottom5Mean": 0.18415408379519407,
-        "top5MinusMedian": 0.1442376624392252,
-        "medianMinusBottom5": 0.11110621146510122,
+        "top5Spread": 0.07772657450076803,
+        "bottom5Spread": 0.054122855561704486,
+        "top5Mean": 0.3363650125781963,
+        "bottom5Mean": 0.14268648388355204,
+        "top5MinusMedian": 0.09405373578416087,
+        "medianMinusBottom5": 0.09962479291048337,
         "withinMedian": {
           "2": 32,
           "5": 32,
           "10": 32
         },
         "adjacentSpacing": [
-          0.007083563918096281,
-          0.036882322975038184,
-          0.017166260020913232,
-          0.013643724696356274,
-          0.0009780947529291761,
-          0.006543272768438357,
-          0.0062342885872297416,
-          0.0029411764705882526,
-          0.0166017832418561,
-          0.006488844327736276,
-          0.001360645476939648,
-          0.008642104164492237,
-          0.0014123642535424086,
-          0.00392563108445293,
-          0.017350427350427355,
-          0.0024864024864024725,
-          0.00031547151190391975,
-          0.004673569298032421,
-          0.0129902213072568,
-          0.0017334575955266218,
-          0.011300562307273665,
-          0.025239126988321092,
-          0.00138422187672399,
-          0.007150195192110187,
-          0.005376344086021445,
-          0.0003058103975535631,
-          0.03302752293577982,
-          0.00592592592592589,
-          0.032783751493428936,
-          0.01346423562412341,
-          0.04850635906536521
+          0.003773205212054126,
+          0.03343676191358311,
+          0.005576856047403267,
+          0.011336032388663986,
+          0.00295466123280691,
+          0.004285157771717979,
+          0.003016591251885359,
+          0.005386770092652454,
+          0.016618587733600892,
+          0.006840796019900508,
+          0.0014568764568764492,
+          0.012432012432012418,
+          0.008547008547008572,
+          0.0005740528128587719,
+          0.010036026762738043,
+          0.00186393289841566,
+          0.011593834116259916,
+          0.00019647968747671385,
+          0.006292364640259562,
+          0.006390613745831442,
+          0.0032512065024130066,
+          0.0017732936467298455,
+          0.00114431473625759,
+          0.0013440074796938206,
+          0.0025484199796126372,
+          0.01904119023762263,
+          0.006406838436212481,
+          0.007885304659498216,
+          0.0275985663082437,
+          0.009116409537166914,
+          0.0331262939958592
         ],
         "distinct": 32
+      },
+      "rawKeyByTeam": {
+        "ARI": "frontPressureRate",
+        "ATL": "selectedPassRushComposite",
+        "BAL": "frontPressureRate",
+        "BUF": "frontPressureRate",
+        "CAR": "frontPressureRate",
+        "CHI": "frontPressureRate",
+        "CIN": "frontPressureRate",
+        "CLE": "selectedPassRushComposite",
+        "DAL": "frontPressureRate",
+        "DEN": "frontPressureRate",
+        "DET": "frontPressureRate",
+        "GB": "frontPressureRate",
+        "HOU": "frontPressureRate",
+        "IND": "frontPressureRate",
+        "JAX": "frontPressureRate",
+        "KC": "frontPressureRate",
+        "LAC": "frontPressureRate",
+        "LAR": "frontPressureRate",
+        "LV": "frontPressureRate",
+        "MIA": "frontPressureRate",
+        "MIN": "frontPressureRate",
+        "NE": "frontPressureRate",
+        "NO": "selectedPassRushComposite",
+        "NYG": "frontPressureRate",
+        "NYJ": "frontPressureRate",
+        "PHI": "frontPressureRate",
+        "PIT": "selectedPassRushComposite",
+        "SEA": "frontPressureRate",
+        "SF": "frontPressureRate",
+        "TB": "frontPressureRate",
+        "TEN": "frontPressureRate",
+        "WAS": "frontPressureRate"
       },
       "liveGrade": {
         "n": 32,
@@ -3018,162 +3444,162 @@
       "rawRanks": [
         {
           "team": "MIN",
-          "value": 0.5006802721088435,
+          "value": 0.38095238095238093,
           "rank": 1
         },
         {
           "team": "LV",
-          "value": 0.45217391304347826,
+          "value": 0.34782608695652173,
           "rank": 2
         },
         {
           "team": "LAC",
-          "value": 0.43870967741935485,
+          "value": 0.3387096774193548,
           "rank": 3
         },
         {
           "team": "SEA",
-          "value": 0.4059259259259259,
+          "value": 0.3111111111111111,
           "rank": 4
         },
         {
           "team": "HOU",
-          "value": 0.4,
+          "value": 0.3032258064516129,
           "rank": 5
-        },
-        {
-          "team": "CHI",
-          "value": 0.3669724770642202,
-          "rank": 6
-        },
-        {
-          "team": "DET",
-          "value": 0.36666666666666664,
-          "rank": 7
-        },
-        {
-          "team": "CIN",
-          "value": 0.3612903225806452,
-          "rank": 8
-        },
-        {
-          "team": "BUF",
-          "value": 0.354140127388535,
-          "rank": 9
-        },
-        {
-          "team": "GB",
-          "value": 0.352755905511811,
-          "rank": 10
-        },
-        {
-          "team": "DEN",
-          "value": 0.3275167785234899,
-          "rank": 11
-        },
-        {
-          "team": "JAX",
-          "value": 0.31621621621621626,
-          "rank": 12
-        },
-        {
-          "team": "IND",
-          "value": 0.31448275862068964,
-          "rank": 13
-        },
-        {
-          "team": "NE",
-          "value": 0.30149253731343284,
-          "rank": 14
         },
         {
           "team": "ATL",
           "value": 0.2968189680154004,
-          "rank": 15
+          "rank": 6
         },
         {
-          "team": "BAL",
-          "value": 0.2965034965034965,
-          "rank": 16
+          "team": "DET",
+          "value": 0.2777777777777778,
+          "rank": 7
         },
         {
-          "team": "ARI",
-          "value": 0.294017094017094,
-          "rank": 17
+          "team": "CHI",
+          "value": 0.27522935779816515,
+          "rank": 8
         },
         {
-          "team": "TEN",
-          "value": 0.27666666666666667,
-          "rank": 18
+          "team": "BUF",
+          "value": 0.27388535031847133,
+          "rank": 9
         },
         {
           "team": "NO",
           "value": 0.27274103558221374,
-          "rank": 19
+          "rank": 10
         },
         {
-          "team": "WAS",
-          "value": 0.27132867132867133,
-          "rank": 20
+          "team": "CIN",
+          "value": 0.2709677419354839,
+          "rank": 11
         },
         {
-          "team": "LAR",
-          "value": 0.2626865671641791,
-          "rank": 21
+          "team": "GB",
+          "value": 0.2677165354330709,
+          "rank": 12
         },
         {
           "team": "PIT",
           "value": 0.26132592168723945,
-          "rank": 22
+          "rank": 13
+        },
+        {
+          "team": "DEN",
+          "value": 0.2550335570469799,
+          "rank": 14
         },
         {
           "team": "CLE",
           "value": 0.2548370773595032,
+          "rank": 15
+        },
+        {
+          "team": "JAX",
+          "value": 0.24324324324324326,
+          "rank": 16
+        },
+        {
+          "team": "IND",
+          "value": 0.2413793103448276,
+          "rank": 17
+        },
+        {
+          "team": "NE",
+          "value": 0.23134328358208955,
+          "rank": 18
+        },
+        {
+          "team": "BAL",
+          "value": 0.23076923076923078,
+          "rank": 19
+        },
+        {
+          "team": "ARI",
+          "value": 0.2222222222222222,
+          "rank": 20
+        },
+        {
+          "team": "WAS",
+          "value": 0.2097902097902098,
+          "rank": 21
+        },
+        {
+          "team": "TEN",
+          "value": 0.20833333333333334,
+          "rank": 22
+        },
+        {
+          "team": "LAR",
+          "value": 0.20149253731343283,
           "rank": 23
         },
         {
-          "team": "NYJ",
-          "value": 0.23823529411764707,
+          "team": "DAL",
+          "value": 0.18487394957983194,
           "rank": 24
         },
         {
-          "team": "DAL",
-          "value": 0.23529411764705882,
+          "team": "MIA",
+          "value": 0.1794871794871795,
           "rank": 25
         },
         {
-          "team": "MIA",
-          "value": 0.22905982905982908,
+          "team": "NYJ",
+          "value": 0.17647058823529413,
           "rank": 26
         },
         {
           "team": "SF",
-          "value": 0.22251655629139072,
+          "value": 0.17218543046357615,
           "rank": 27
         },
         {
           "team": "TB",
-          "value": 0.22153846153846155,
+          "value": 0.16923076923076924,
           "rank": 28
         },
         {
           "team": "CAR",
-          "value": 0.20789473684210527,
+          "value": 0.15789473684210525,
           "rank": 29
         },
         {
           "team": "KC",
-          "value": 0.19072847682119204,
+          "value": 0.152317880794702,
           "rank": 30
         },
         {
           "team": "PHI",
-          "value": 0.15384615384615385,
+          "value": 0.11888111888111888,
           "rank": 31
         },
         {
           "team": "NYG",
-          "value": 0.14676258992805757,
+          "value": 0.11510791366906475,
           "rank": 32
         }
       ]
@@ -3243,6 +3669,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 25.24153056446326,
+        "p90MinusMedian": 38.37145233837906,
+        "medianMinusP10": 31.439270337579806,
+        "upperHalfSpread": 40.77709506810788,
+        "rank6To15Spread": 18.641199009777836,
+        "rank4To15Spread": 27.708207115436565,
+        "atLeast70": 9,
+        "in40To60": 6,
+        "rolling5": {
+          "count": 5,
+          "lower": 60.245012876129344,
+          "upper": 65.24501287612935
+        },
+        "rolling6": {
+          "count": 5,
+          "lower": 60.245012876129344,
+          "upper": 66.24501287612935
+        },
+        "within10OfMedian": 6,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -3304,6 +3767,40 @@
           0.03830412931556735
         ],
         "distinct": 32
+      },
+      "rawKeyByTeam": {
+        "ARI": "oppRushEpa",
+        "ATL": "oppRushEpa",
+        "BAL": "oppRushEpa",
+        "BUF": "oppRushEpa",
+        "CAR": "oppRushEpa",
+        "CHI": "oppRushEpa",
+        "CIN": "oppRushEpa",
+        "CLE": "oppRushEpa",
+        "DAL": "oppRushEpa",
+        "DEN": "oppRushEpa",
+        "DET": "oppRushEpa",
+        "GB": "oppRushEpa",
+        "HOU": "oppRushEpa",
+        "IND": "oppRushEpa",
+        "JAX": "oppRushEpa",
+        "KC": "oppRushEpa",
+        "LAC": "oppRushEpa",
+        "LAR": "oppRushEpa",
+        "LV": "oppRushEpa",
+        "MIA": "oppRushEpa",
+        "MIN": "oppRushEpa",
+        "NE": "oppRushEpa",
+        "NO": "oppRushEpa",
+        "NYG": "oppRushEpa",
+        "NYJ": "oppRushEpa",
+        "PHI": "oppRushEpa",
+        "PIT": "oppRushEpa",
+        "SEA": "oppRushEpa",
+        "SF": "oppRushEpa",
+        "TB": "oppRushEpa",
+        "TEN": "oppRushEpa",
+        "WAS": "oppRushEpa"
       },
       "liveGrade": {
         "n": 32,
@@ -3771,6 +4268,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 17.878071787972814,
+        "p90MinusMedian": 35.952892530740655,
+        "medianMinusP10": 31.046851656837024,
+        "upperHalfSpread": 45.72465846315419,
+        "rank6To15Spread": 27.300039777946083,
+        "rank4To15Spread": 32.621405953958,
+        "atLeast70": 8,
+        "in40To60": 5,
+        "rolling5": {
+          "count": 5,
+          "lower": 60.10342249083515,
+          "upper": 65.10342249083516
+        },
+        "rolling6": {
+          "count": 5,
+          "lower": 60.10342249083515,
+          "upper": 66.10342249083516
+        },
+        "within10OfMedian": 5,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -3832,6 +4366,40 @@
           0
         ],
         "distinct": 31
+      },
+      "rawKeyByTeam": {
+        "ARI": "offensivePointsPerDrive",
+        "ATL": "offensivePointsPerDrive",
+        "BAL": "offensivePointsPerDrive",
+        "BUF": "offensivePointsPerDrive",
+        "CAR": "offensivePointsPerDrive",
+        "CHI": "offensivePointsPerDrive",
+        "CIN": "offensivePointsPerDrive",
+        "CLE": "offensivePointsPerDrive",
+        "DAL": "offensivePointsPerDrive",
+        "DEN": "offensivePointsPerDrive",
+        "DET": "offensivePointsPerDrive",
+        "GB": "offensivePointsPerDrive",
+        "HOU": "offensivePointsPerDrive",
+        "IND": "offensivePointsPerDrive",
+        "JAX": "offensivePointsPerDrive",
+        "KC": "offensivePointsPerDrive",
+        "LAC": "offensivePointsPerDrive",
+        "LAR": "offensivePointsPerDrive",
+        "LV": "offensivePointsPerDrive",
+        "MIA": "offensivePointsPerDrive",
+        "MIN": "offensivePointsPerDrive",
+        "NE": "offensivePointsPerDrive",
+        "NO": "offensivePointsPerDrive",
+        "NYG": "offensivePointsPerDrive",
+        "NYJ": "offensivePointsPerDrive",
+        "PHI": "offensivePointsPerDrive",
+        "PIT": "offensivePointsPerDrive",
+        "SEA": "offensivePointsPerDrive",
+        "SF": "offensivePointsPerDrive",
+        "TB": "offensivePointsPerDrive",
+        "TEN": "offensivePointsPerDrive",
+        "WAS": "offensivePointsPerDrive"
       },
       "liveGrade": {
         "n": 32,
@@ -4299,6 +4867,43 @@
         ],
         "distinct": 30
       },
+      "packing": {
+        "p75MinusMedian": 20.64516129032259,
+        "p90MinusMedian": 31.81451612903227,
+        "medianMinusP10": 32.00000000000001,
+        "upperHalfSpread": 38.70967741935484,
+        "rank6To15Spread": 23.22580645161291,
+        "rank4To15Spread": 28.38709677419355,
+        "atLeast70": 9,
+        "in40To60": 7,
+        "rolling5": {
+          "count": 3,
+          "lower": 74.51612903225806,
+          "upper": 79.51612903225806
+        },
+        "rolling6": {
+          "count": 3,
+          "lower": 84.83870967741936,
+          "upper": 90.83870967741936
+        },
+        "within10OfMedian": 7,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -4360,6 +4965,40 @@
           0.22576610381488438
         ],
         "distinct": 30
+      },
+      "rawKeyByTeam": {
+        "ARI": "defensivePointsPerDrive",
+        "ATL": "defensivePointsPerDrive",
+        "BAL": "defensivePointsPerDrive",
+        "BUF": "defensivePointsPerDrive",
+        "CAR": "defensivePointsPerDrive",
+        "CHI": "defensivePointsPerDrive",
+        "CIN": "defensivePointsPerDrive",
+        "CLE": "defensivePointsPerDrive",
+        "DAL": "defensivePointsPerDrive",
+        "DEN": "defensivePointsPerDrive",
+        "DET": "defensivePointsPerDrive",
+        "GB": "defensivePointsPerDrive",
+        "HOU": "defensivePointsPerDrive",
+        "IND": "defensivePointsPerDrive",
+        "JAX": "defensivePointsPerDrive",
+        "KC": "defensivePointsPerDrive",
+        "LAC": "defensivePointsPerDrive",
+        "LAR": "defensivePointsPerDrive",
+        "LV": "defensivePointsPerDrive",
+        "MIA": "defensivePointsPerDrive",
+        "MIN": "defensivePointsPerDrive",
+        "NE": "defensivePointsPerDrive",
+        "NO": "defensivePointsPerDrive",
+        "NYG": "defensivePointsPerDrive",
+        "NYJ": "defensivePointsPerDrive",
+        "PHI": "defensivePointsPerDrive",
+        "PIT": "defensivePointsPerDrive",
+        "SEA": "defensivePointsPerDrive",
+        "SF": "defensivePointsPerDrive",
+        "TB": "defensivePointsPerDrive",
+        "TEN": "defensivePointsPerDrive",
+        "WAS": "defensivePointsPerDrive"
       },
       "liveGrade": {
         "n": 32,
@@ -4827,6 +5466,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 25.42866629031505,
+        "p90MinusMedian": 37.803218987757944,
+        "medianMinusP10": 22.501292742755343,
+        "upperHalfSpread": 48.16770666360842,
+        "rank6To15Spread": 34.026663495950714,
+        "rank4To15Spread": 35.604647070623,
+        "atLeast70": 8,
+        "in40To60": 8,
+        "rolling5": {
+          "count": 6,
+          "lower": 80.3697566826173,
+          "upper": 85.3697566826173
+        },
+        "rolling6": {
+          "count": 7,
+          "lower": 77.28780968622969,
+          "upper": 83.28780968622969
+        },
+        "within10OfMedian": 8,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -4888,6 +5564,40 @@
           11.188979409612628
         ],
         "distinct": 32
+      },
+      "rawKeyByTeam": {
+        "ARI": "offenseCompositeRaw",
+        "ATL": "offenseCompositeRaw",
+        "BAL": "offenseCompositeRaw",
+        "BUF": "offenseCompositeRaw",
+        "CAR": "offenseCompositeRaw",
+        "CHI": "offenseCompositeRaw",
+        "CIN": "offenseCompositeRaw",
+        "CLE": "offenseCompositeRaw",
+        "DAL": "offenseCompositeRaw",
+        "DEN": "offenseCompositeRaw",
+        "DET": "offenseCompositeRaw",
+        "GB": "offenseCompositeRaw",
+        "HOU": "offenseCompositeRaw",
+        "IND": "offenseCompositeRaw",
+        "JAX": "offenseCompositeRaw",
+        "KC": "offenseCompositeRaw",
+        "LAC": "offenseCompositeRaw",
+        "LAR": "offenseCompositeRaw",
+        "LV": "offenseCompositeRaw",
+        "MIA": "offenseCompositeRaw",
+        "MIN": "offenseCompositeRaw",
+        "NE": "offenseCompositeRaw",
+        "NO": "offenseCompositeRaw",
+        "NYG": "offenseCompositeRaw",
+        "NYJ": "offenseCompositeRaw",
+        "PHI": "offenseCompositeRaw",
+        "PIT": "offenseCompositeRaw",
+        "SEA": "offenseCompositeRaw",
+        "SF": "offenseCompositeRaw",
+        "TB": "offenseCompositeRaw",
+        "TEN": "offenseCompositeRaw",
+        "WAS": "offenseCompositeRaw"
       },
       "liveGrade": {
         "n": 0,
@@ -5297,6 +6007,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 17.278474748710337,
+        "p90MinusMedian": 32.451745449183804,
+        "medianMinusP10": 20.802619244280844,
+        "upperHalfSpread": 46.88792779462787,
+        "rank6To15Spread": 29.155780295297305,
+        "rank4To15Spread": 32.05098308723757,
+        "atLeast70": 6,
+        "in40To60": 10,
+        "rolling5": {
+          "count": 7,
+          "lower": 46.09587225876935,
+          "upper": 51.09587225876935
+        },
+        "rolling6": {
+          "count": 8,
+          "lower": 46.09587225876935,
+          "upper": 52.09587225876935
+        },
+        "within10OfMedian": 12,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": true
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": true,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -5358,6 +6105,40 @@
           2.5079045716720003
         ],
         "distinct": 32
+      },
+      "rawKeyByTeam": {
+        "ARI": "defenseCompositeRaw",
+        "ATL": "defenseCompositeRaw",
+        "BAL": "defenseCompositeRaw",
+        "BUF": "defenseCompositeRaw",
+        "CAR": "defenseCompositeRaw",
+        "CHI": "defenseCompositeRaw",
+        "CIN": "defenseCompositeRaw",
+        "CLE": "defenseCompositeRaw",
+        "DAL": "defenseCompositeRaw",
+        "DEN": "defenseCompositeRaw",
+        "DET": "defenseCompositeRaw",
+        "GB": "defenseCompositeRaw",
+        "HOU": "defenseCompositeRaw",
+        "IND": "defenseCompositeRaw",
+        "JAX": "defenseCompositeRaw",
+        "KC": "defenseCompositeRaw",
+        "LAC": "defenseCompositeRaw",
+        "LAR": "defenseCompositeRaw",
+        "LV": "defenseCompositeRaw",
+        "MIA": "defenseCompositeRaw",
+        "MIN": "defenseCompositeRaw",
+        "NE": "defenseCompositeRaw",
+        "NO": "defenseCompositeRaw",
+        "NYG": "defenseCompositeRaw",
+        "NYJ": "defenseCompositeRaw",
+        "PHI": "defenseCompositeRaw",
+        "PIT": "defenseCompositeRaw",
+        "SEA": "defenseCompositeRaw",
+        "SF": "defenseCompositeRaw",
+        "TB": "defenseCompositeRaw",
+        "TEN": "defenseCompositeRaw",
+        "WAS": "defenseCompositeRaw"
       },
       "liveGrade": {
         "n": 0,
@@ -5767,6 +6548,43 @@
         ],
         "distinct": 32
       },
+      "packing": {
+        "p75MinusMedian": 23.213906964473523,
+        "p90MinusMedian": 37.11181433611263,
+        "medianMinusP10": 32.58980561874946,
+        "upperHalfSpread": 46.17553040458158,
+        "rank6To15Spread": 31.648159087508454,
+        "rank4To15Spread": 34.73221048273444,
+        "atLeast70": 9,
+        "in40To60": 9,
+        "rolling5": {
+          "count": 4,
+          "lower": 45.8906118960834,
+          "upper": 50.8906118960834
+        },
+        "rolling6": {
+          "count": 5,
+          "lower": 45.32523065511724,
+          "upper": 51.32523065511724
+        },
+        "within10OfMedian": 10,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
       "raw": {
         "n": 32,
         "missing": 0,
@@ -5828,6 +6646,40 @@
           0.0851998498513028
         ],
         "distinct": 32
+      },
+      "rawKeyByTeam": {
+        "ARI": "offEpa",
+        "ATL": "offEpa",
+        "BAL": "offEpa",
+        "BUF": "offEpa",
+        "CAR": "offEpa",
+        "CHI": "offEpa",
+        "CIN": "offEpa",
+        "CLE": "offEpa",
+        "DAL": "offEpa",
+        "DEN": "offEpa",
+        "DET": "offEpa",
+        "GB": "offEpa",
+        "HOU": "offEpa",
+        "IND": "offEpa",
+        "JAX": "offEpa",
+        "KC": "offEpa",
+        "LAC": "offEpa",
+        "LAR": "offEpa",
+        "LV": "offEpa",
+        "MIA": "offEpa",
+        "MIN": "offEpa",
+        "NE": "offEpa",
+        "NO": "offEpa",
+        "NYG": "offEpa",
+        "NYJ": "offEpa",
+        "PHI": "offEpa",
+        "PIT": "offEpa",
+        "SEA": "offEpa",
+        "SF": "offEpa",
+        "TB": "offEpa",
+        "TEN": "offEpa",
+        "WAS": "offEpa"
       },
       "liveGrade": {
         "n": 32,

@@ -1,11 +1,12 @@
 {
-  "criteria": "PASS: direction of score broadly aligns with non-formula observable facts, or discordance is explained by scope/prior/components. QUESTIONABLE: opposite score/benchmark quartiles or important construct ambiguity. CLEAR PATHOLOGY requires two genuinely independent facts on the same intended construct and unexplained opposite tails; this package cannot certify that with same-feed benchmarks alone.",
+  "criteria": "NO OPPOSITE-QUARTILE CONTRADICTION means only that the available checks do not occupy opposite quartiles. QUESTIONABLE includes two >=10-rank same-feed discordances or important scope/evidence limits. CLEAR PATHOLOGY cannot be certified without sufficiently independent external evidence.",
   "cases": [
     {
       "team": "SF",
       "unit": "qbIndex",
       "reason": "Highest displayed offense-unit tail",
       "raw": 0.5154451239221336,
+      "rawKey": "qbEpaPerPlay",
       "display": 92.87650569436806,
       "rank": 1,
       "checks": [
@@ -13,13 +14,15 @@
           "key": "qbEpaPerPlay",
           "value": 0.5154451239221336,
           "rank": 1,
-          "boundary": "ingredient"
+          "boundary": "ingredient",
+          "category": "C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL"
         },
         {
           "key": "qbAnyA",
           "value": 10.460176991150442,
           "rank": 1,
-          "boundary": "ingredient"
+          "boundary": "ingredient",
+          "category": "C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL"
         }
       ],
       "officialFacts": [
@@ -44,14 +47,15 @@
           "boundary": "Official current team-season outputs; receiver player totals do not identify isolated skill and zero sacks is not zero pressure"
         }
       ],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "SF qbIndex displayed rank 1: qbEpaPerPlay rank 1 (value 0.5154451239221336); qbAnyA rank 1 (value 10.460176991150442). multicomponent QB outcome; checks are ingredients, not isolated skill. EPA and ANY/A both rank1 support own-component arithmetic; they cannot independently validate QB skill. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "SF",
       "unit": "receiverIndex",
       "reason": "Highest displayed offense-unit tail",
       "raw": 0.4369131868325436,
+      "rawKey": "receiverResidualEpa",
       "display": 83.70345026952738,
       "rank": 1,
       "checks": [
@@ -59,13 +63,15 @@
           "key": "wrteYardsPerTarget",
           "value": 9.405063291139241,
           "rank": 4,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "wrteFirstDownRate",
           "value": 0.4936708860759494,
           "rank": 1,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [
@@ -90,14 +96,15 @@
           "boundary": "Official current team-season outputs; receiver player totals do not identify isolated skill and zero sacks is not zero pressure"
         }
       ],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "SF receiverIndex displayed rank 1: wrteYardsPerTarget rank 4 (value 9.405063291139241); wrteFirstDownRate rank 1 (value 0.4936708860759494). partially residualized receiving EPA with stabilization/prior; check yards and first downs are same-feed outcomes. First-down rank1 and yards/target rank4 corroborate a receiving outcome tail that also coexists with top QB play; residual skill separation remains unresolved. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "BUF",
       "unit": "rbIndex",
       "reason": "Highest displayed offense-unit tail",
       "raw": 0.13951399827669453,
+      "rawKey": "rbCompositeOrthogonal",
       "display": 85.43127288797906,
       "rank": 1,
       "checks": [
@@ -105,13 +112,15 @@
           "key": "rbYpc",
           "value": 5.851351351351352,
           "rank": 1,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "rbFirstDownRate",
           "value": 0.2972972972972973,
           "rank": 2,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [
@@ -131,22 +140,31 @@
           "boundary": "One RB plus team-room derived data; public yards output does not define full unit quality"
         }
       ],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "BUF rbIndex displayed rank 1: rbYpc rank 1 (value 5.851351351351352); rbFirstDownRate rank 2 (value 0.2972972972972973). 70/30 rushing/receiving EPA room with separate stabilizers and prior. Room efficiency and first downs support this top tail; Cook official facts corroborate rushing production without certifying the 70/30 room construct. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "SF",
       "unit": "olIndex",
       "reason": "Highest displayed offense-unit tail",
       "raw": 0.09821428571428571,
+      "rawKey": "pbpPressureAllowedRate",
       "display": 85.42103091561734,
       "rank": 1,
       "checks": [
         {
+          "key": "teamRushYpc",
+          "value": 4.773913043478261,
+          "rank": 7,
+          "boundary": "scope contrast, not pass-protection ground truth",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        },
+        {
           "key": "sackAllowed",
           "value": 0,
           "rank": 1,
-          "boundary": "adjacent non-formula outcome"
+          "boundary": "part-whole disruption ingredient",
+          "category": "C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL"
         }
       ],
       "officialFacts": [
@@ -171,14 +189,15 @@
           "boundary": "Official current team-season outputs; receiver player totals do not identify isolated skill and zero sacks is not zero pressure"
         }
       ],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "QUESTIONABLE",
+      "interpretation": "SF olIndex displayed rank 1: teamRushYpc rank 7 (value 4.773913043478261); sackAllowed rank 1 (value 0). pass protection only; public Offensive line label exceeds scope, and rushing check is a scope contrast. Zero sacks corroborate protection, but are a subset of disrupted dropbacks; run YPC cannot certify an all-line rating. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "KC",
       "unit": "rbIndex",
       "reason": "Owner-supplied case corrected to Walker currently on KC",
       "raw": 0.10758251881517093,
+      "rawKey": "rbCompositeOrthogonal",
       "display": 76.0672022546311,
       "rank": 3,
       "checks": [
@@ -186,13 +205,15 @@
           "key": "rbYpc",
           "value": 5.757281553398058,
           "rank": 2,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "rbFirstDownRate",
           "value": 0.27184466019417475,
           "rank": 4,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [
@@ -212,14 +233,15 @@
           "boundary": "Current official player output; neither Week-4 league lead nor a full-room rating target"
         }
       ],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "KC rbIndex displayed rank 3: rbYpc rank 2 (value 5.757281553398058); rbFirstDownRate rank 4 (value 0.27184466019417475). 70/30 rushing/receiving EPA room with separate stabilizers and prior. Frozen live/prior decomposition is retained below; no external certification. No opposite-quartile contradiction is only a weak screen, not a validity pass. Live 90.01147972183563, effective prior 16.638284326313986, 4 live games and 0.938551664967149 prior games explain display drag; Walker facts corroborate production, not formula failure."
     },
     {
       "team": "MIN",
       "unit": "coverageIndex",
       "reason": "Highest displayed defense-unit tail",
       "raw": -0.0025989745898591,
+      "rawKey": "oppPassEpa",
       "display": 93.54655145263992,
       "rank": 1,
       "checks": [
@@ -227,13 +249,15 @@
           "key": "coverageSuccessAllowed",
           "value": 0.36153846153846153,
           "rank": 1,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "passYardsAllowedPerAttempt",
           "value": 6.7251908396946565,
           "rank": 11,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [
@@ -253,14 +277,15 @@
           "boundary": "One game output; corroboration only, not season-wide isolated coverage certification"
         }
       ],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "MIN coverageIndex displayed rank 1: coverageSuccessAllowed rank 1 (value 0.36153846153846153); passYardsAllowedPerAttempt rank 11 (value 6.7251908396946565). sack-free EPA plus CPOE allowed; passing outcomes also reflect pressure/opponents. Best success-allowed rank but only rank11 yards/attempt: the favorable tail is not uniform across passing outcomes. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "MIN",
       "unit": "passRushIndex",
       "reason": "Highest displayed defense-unit tail",
-      "raw": 0.5006802721088435,
+      "raw": 0.38095238095238093,
+      "rawKey": "frontPressureRate",
       "display": 96.38540599950753,
       "rank": 1,
       "checks": [
@@ -268,13 +293,15 @@
           "key": "frontSackRate",
           "value": 0.10884353741496598,
           "rank": 1,
-          "boundary": "ingredient/adjacent"
+          "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "frontPressureRate",
           "value": 0.38095238095238093,
           "rank": 1,
-          "boundary": "provider-heterogeneous ingredient/proxy"
+          "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4",
+          "category": "C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL"
         }
       ],
       "officialFacts": [
@@ -293,13 +320,14 @@
         }
       ],
       "classification": "QUESTIONABLE",
-      "interpretation": "Ingredient-only or provider-heterogeneous evidence is insufficient for independent unit-skill certification; direction is plausible, no clear pathology established."
+      "interpretation": "MIN passRushIndex displayed rank 1: frontSackRate rank 1 (value 0.10884353741496598); frontPressureRate rank 1 (value 0.38095238095238093). provider nflverse-weekly-disruption; true charted pressure and hit/sack disruption are not interchangeable. Official sacks corroborate disruption, but do not turn the weekly hit/sack proxy into charted true pressure. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "TB",
       "unit": "runDefenseIndex",
       "reason": "Highest displayed defense-unit tail",
       "raw": -0.1915890199574869,
+      "rawKey": "oppRushEpa",
       "display": 90.53001934824908,
       "rank": 1,
       "checks": [
@@ -307,38 +335,43 @@
           "key": "rushYpcAllowed",
           "value": 3.204081632653061,
           "rank": 2,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
-          "key": "rushExplosive20Allowed",
-          "value": 0.02040816326530612,
-          "rank": 18,
-          "boundary": "non-formula same-source outcome"
+          "key": "rushFirstDownRateAllowed",
+          "value": 0.21428571428571427,
+          "rank": 6,
+          "boundary": "first-down proxy, not EPA success rate",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "TB runDefenseIndex displayed rank 1: rushYpcAllowed rank 2 (value 3.204081632653061); rushFirstDownRateAllowed rank 6 (value 0.21428571428571427). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. EPA tail and low yards allowed broadly align; first-down rank6 is less extreme and no isolated run-stopping attribution is identified. No opposite-quartile contradiction is only a weak screen, not a validity pass. Live grade 93.54838709677419 versus effective prior 78.2258064516129."
     },
     {
       "team": "MIN",
       "unit": "pointsAllowedPerDriveIndex",
       "reason": "Highest displayed defense-unit tail",
       "raw": 1.108695652173913,
+      "rawKey": "defensivePointsPerDrive",
       "display": 90,
       "rank": 1,
       "checks": [
         {
-          "key": "defensivePointsPerDrive",
-          "value": 1.108695652173913,
-          "rank": 1,
-          "boundary": "ingredient"
-        },
-        {
           "key": "pointsAgainstPerGame",
           "value": 12.75,
           "rank": 1,
-          "boundary": "related outcome, includes non-offensive scoring"
+          "boundary": "related outcome, includes non-offensive scoring",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        },
+        {
+          "key": "defensivePointsPerDrive",
+          "value": 1.108695652173913,
+          "rank": 1,
+          "boundary": "ingredient",
+          "category": "C. DIRECT INGREDIENT / NEAR-TAUTOLOGICAL"
         }
       ],
       "officialFacts": [
@@ -361,14 +394,15 @@
           "boundary": "Season total scoreboard points may include non-offensive scoring; not identical to qualifying offensive points per drive"
         }
       ],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "MIN pointsAllowedPerDriveIndex displayed rank 1: pointsAgainstPerGame rank 1 (value 12.75); defensivePointsPerDrive rank 1 (value 1.108695652173913). drive prevention outcome with neutral50 one-game prior, not a defender rating. Total points-against tail corroborates broad scoreboard prevention; qualifying offensive points and all scoreboard points differ. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "PHI",
       "unit": "receiverIndex",
       "reason": "Discordance receiverIndex__qbIndex: rank gap -16",
       "raw": 0.22760322139257777,
+      "rawKey": "receiverResidualEpa",
       "display": 58.377898844264436,
       "rank": 10,
       "checks": [
@@ -376,24 +410,27 @@
           "key": "wrteYardsPerTarget",
           "value": 7.53932584269663,
           "rank": 22,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "wrteFirstDownRate",
           "value": 0.3595505617977528,
           "rank": 21,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "QUESTIONABLE",
+      "interpretation": "PHI receiverIndex displayed rank 10: wrteYardsPerTarget rank 22 (value 7.53932584269663); wrteFirstDownRate rank 21 (value 0.3595505617977528). partially residualized receiving EPA with stabilization/prior; check yards and first downs are same-feed outcomes. Displayed rank10 versus receiving ranks22/21 is a two-check mismatch even without opposite quartiles; strong WR relative to QB does not clear it. Observed rank discordance warrants construct/prior investigation; no certified causal defect."
     },
     {
       "team": "CHI",
       "unit": "receiverIndex",
       "reason": "Discordance receiverIndex__qbIndex: rank gap 10",
       "raw": 0.1914168715950936,
+      "rawKey": "receiverResidualEpa",
       "display": 40.83576049058819,
       "rank": 19,
       "checks": [
@@ -401,24 +438,27 @@
           "key": "wrteYardsPerTarget",
           "value": 8.134615384615385,
           "rank": 14,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "wrteFirstDownRate",
           "value": 0.3942307692307692,
           "rank": 12,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "CHI receiverIndex displayed rank 19: wrteYardsPerTarget rank 14 (value 8.134615384615385); wrteFirstDownRate rank 12 (value 0.3942307692307692). partially residualized receiving EPA with stabilization/prior; check yards and first downs are same-feed outcomes. WR rank19 versus QB rank9 is cross-unit discordance; receiving outcomes rank14/12 are less weak than the displayed room grade. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "JAX",
       "unit": "rbIndex",
       "reason": "Discordance rbIndex__olIndex: rank gap -20",
       "raw": -0.08154965808418328,
+      "rawKey": "rbCompositeOrthogonal",
       "display": 66.9837758195689,
       "rank": 9,
       "checks": [
@@ -426,24 +466,27 @@
           "key": "rbYpc",
           "value": 4.479166666666667,
           "rank": 7,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "rbFirstDownRate",
           "value": 0.2708333333333333,
           "rank": 5,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "JAX rbIndex displayed rank 9: rbYpc rank 7 (value 4.479166666666667); rbFirstDownRate rank 5 (value 0.2708333333333333). 70/30 rushing/receiving EPA room with separate stabilizers and prior. Room rank9 versus efficiency ranks7/5 is not opposite-tail disagreement; this does not imply pass-protection OL must match rushing. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "TEN",
       "unit": "rbIndex",
       "reason": "Discordance rbIndex__olIndex: rank gap 23",
       "raw": -0.2554053889767578,
+      "rawKey": "rbCompositeOrthogonal",
       "display": 27.289165061694447,
       "rank": 29,
       "checks": [
@@ -451,24 +494,27 @@
           "key": "rbYpc",
           "value": 3.9210526315789473,
           "rank": 18,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "rbFirstDownRate",
           "value": 0.15789473684210525,
           "rank": 31,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "TEN rbIndex displayed rank 29: rbYpc rank 18 (value 3.9210526315789473); rbFirstDownRate rank 31 (value 0.15789473684210525). 70/30 rushing/receiving EPA room with separate stabilizers and prior. Low room grade and first-down rank31 coexist with midtable YPC rank18; strong pass-protection OL is not run-blocking proof. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "KC",
       "unit": "coverageIndex",
       "reason": "Discordance coverageIndex__passRushIndex: rank gap -25",
       "raw": 0.019707609674983792,
+      "rawKey": "oppPassEpa",
       "display": 82.64480371177697,
       "rank": 4,
       "checks": [
@@ -476,24 +522,27 @@
           "key": "coverageSuccessAllowed",
           "value": 0.4722222222222222,
           "rank": 12,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "passYardsAllowedPerAttempt",
           "value": 6.2312925170068025,
           "rank": 4,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "KC coverageIndex displayed rank 4: coverageSuccessAllowed rank 12 (value 0.4722222222222222); passYardsAllowedPerAttempt rank 4 (value 6.2312925170068025). sack-free EPA plus CPOE allowed; passing outcomes also reflect pressure/opponents. Coverage rank4 versus rush rank29 illustrates distinct displayed archetypes; success rank12 is weaker than the yards/attempt tail. No opposite-quartile contradiction is only a weak screen, not a validity pass."
     },
     {
       "team": "DET",
       "unit": "coverageIndex",
       "reason": "Discordance coverageIndex__passRushIndex: rank gap 25",
       "raw": 0.4527804440714257,
+      "rawKey": "oppPassEpa",
       "display": 14.582368546952774,
       "rank": 30,
       "checks": [
@@ -501,18 +550,216 @@
           "key": "coverageSuccessAllowed",
           "value": 0.5548780487804879,
           "rank": 31,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         },
         {
           "key": "passYardsAllowedPerAttempt",
           "value": 7.927272727272728,
           "rank": 27,
-          "boundary": "non-formula same-source outcome"
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
         }
       ],
       "officialFacts": [],
-      "classification": "PASS",
-      "interpretation": "Broadly coherent on available non-formula outcome or official facts, or construct explains discordance; not predictive certification."
+      "classification": "NO OPPOSITE-QUARTILE CONTRADICTION",
+      "interpretation": "DET coverageIndex displayed rank 30: coverageSuccessAllowed rank 31 (value 0.5548780487804879); passYardsAllowedPerAttempt rank 27 (value 7.927272727272728). sack-free EPA plus CPOE allowed; passing outcomes also reflect pressure/opponents. Coverage rank30 and pass-outcome ranks31/27 agree directionally despite rush rank5; pressure effectiveness cannot certify coverage skill. No opposite-quartile contradiction is only a weak screen, not a validity pass."
+    },
+    {
+      "team": "NE",
+      "unit": "runDefenseIndex",
+      "reason": "Both non-formula rank gaps >=10",
+      "raw": 0.05865915127490685,
+      "rawKey": "oppRushEpa",
+      "display": 10.055243434885647,
+      "rank": 32,
+      "checks": [
+        {
+          "key": "rushYpcAllowed",
+          "value": 4.378947368421053,
+          "rank": 21,
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        },
+        {
+          "key": "rushFirstDownRateAllowed",
+          "value": 0.25263157894736843,
+          "rank": 22,
+          "boundary": "first-down proxy, not EPA success rate",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "QUESTIONABLE",
+      "interpretation": "NE runDefenseIndex displayed rank 32: rushYpcAllowed rank 21 (value 4.378947368421053); rushFirstDownRateAllowed rank 22 (value 0.25263157894736843). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Worst displayed run grade is markedly weaker than both efficiency checks; an EPA-based tail is not validated by broad rushing outcomes. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 3.225806451612897 versus effective prior 39.83870967741936."
+    },
+    {
+      "team": "WAS",
+      "unit": "runDefenseIndex",
+      "reason": "Both non-formula rank gaps >=10",
+      "raw": -0.006723814713587021,
+      "rawKey": "oppRushEpa",
+      "display": 30.47763330380519,
+      "rank": 25,
+      "checks": [
+        {
+          "key": "rushYpcAllowed",
+          "value": 3.978723404255319,
+          "rank": 13,
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        },
+        {
+          "key": "rushFirstDownRateAllowed",
+          "value": 0.2127659574468085,
+          "rank": 5,
+          "boundary": "first-down proxy, not EPA success rate",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "QUESTIONABLE",
+      "interpretation": "WAS runDefenseIndex displayed rank 25: rushYpcAllowed rank 13 (value 3.978723404255319); rushFirstDownRateAllowed rank 5 (value 0.2127659574468085). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed lower quartile conflicts with first-down rank5 and middling yards/attempt; EPA context and prior cannot be assumed interchangeable with first downs. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 32.25806451612904 versus effective prior 21.7741935483871."
+    },
+    {
+      "team": "BUF",
+      "unit": "runDefenseIndex",
+      "reason": "Both non-formula rank gaps >=10",
+      "raw": 0.033925155649153826,
+      "rawKey": "oppRushEpa",
+      "display": 15.424484442370883,
+      "rank": 29,
+      "checks": [
+        {
+          "key": "rushYpcAllowed",
+          "value": 4.034782608695652,
+          "rank": 15,
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        },
+        {
+          "key": "rushFirstDownRateAllowed",
+          "value": 0.24347826086956523,
+          "rank": 19,
+          "boundary": "first-down proxy, not EPA success rate",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "QUESTIONABLE",
+      "interpretation": "BUF runDefenseIndex displayed rank 29: rushYpcAllowed rank 15 (value 4.034782608695652); rushFirstDownRateAllowed rank 19 (value 0.24347826086956523). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed rank29 is substantially weaker than yards rank15 and first-down rank19; prior/live blend is a construct lead, not proven formula failure. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 12.903225806451616 versus effective prior 26.29032258064516."
+    },
+    {
+      "team": "NYJ",
+      "unit": "runDefenseIndex",
+      "reason": "Both non-formula rank gaps >=10",
+      "raw": -0.1279754790161838,
+      "rawKey": "oppRushEpa",
+      "display": 73.83870967741936,
+      "rank": 8,
+      "checks": [
+        {
+          "key": "rushYpcAllowed",
+          "value": 4.258620689655173,
+          "rank": 19,
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        },
+        {
+          "key": "rushFirstDownRateAllowed",
+          "value": 0.25,
+          "rank": 21,
+          "boundary": "first-down proxy, not EPA success rate",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "QUESTIONABLE",
+      "interpretation": "NYJ runDefenseIndex displayed rank 8: rushYpcAllowed rank 19 (value 4.258620689655173); rushFirstDownRateAllowed rank 21 (value 0.25). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed upper quartile conflicts with both weaker efficiency checks; the optimistic EPA grade does not establish isolated defender talent. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 80.64516129032258 versus effective prior 46.612903225806456."
+    },
+    {
+      "team": "SF",
+      "unit": "runDefenseIndex",
+      "reason": "Both non-formula rank gaps >=10",
+      "raw": -0.04597273375690692,
+      "rawKey": "oppRushEpa",
+      "display": 40.48501221552633,
+      "rank": 20,
+      "checks": [
+        {
+          "key": "rushYpcAllowed",
+          "value": 3.7289719626168223,
+          "rank": 9,
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        },
+        {
+          "key": "rushFirstDownRateAllowed",
+          "value": 0.21495327102803738,
+          "rank": 7,
+          "boundary": "first-down proxy, not EPA success rate",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "QUESTIONABLE",
+      "interpretation": "SF runDefenseIndex displayed rank 20: rushYpcAllowed rank 9 (value 3.7289719626168223); rushFirstDownRateAllowed rank 7 (value 0.21495327102803738). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed rank20 understates both favorable yards and first-down ranks9/7; prior/live drift must remain open. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 45.16129032258065 versus effective prior 17.258064516129032."
+    },
+    {
+      "team": "LV",
+      "unit": "runDefenseIndex",
+      "reason": "Both non-formula rank gaps >=10",
+      "raw": -0.09558367279674075,
+      "rawKey": "oppRushEpa",
+      "display": 64.88893867866838,
+      "rank": 11,
+      "checks": [
+        {
+          "key": "rushYpcAllowed",
+          "value": 5.173076923076923,
+          "rank": 31,
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        },
+        {
+          "key": "rushFirstDownRateAllowed",
+          "value": 0.25961538461538464,
+          "rank": 23.5,
+          "boundary": "first-down proxy, not EPA success rate",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "QUESTIONABLE",
+      "interpretation": "LV runDefenseIndex displayed rank 11: rushYpcAllowed rank 31 (value 5.173076923076923); rushFirstDownRateAllowed rank 23.5 (value 0.25961538461538464). current rush EPA allowed versus old run-stop prior; same-feed efficiency and first downs can disagree. Displayed rank11 is substantially stronger than yards rank31 and tied first-down rank23.5; this is not a clean validity pass. Observed rank discordance warrants construct/prior investigation; no certified causal defect. Live grade 67.74193548387098 versus effective prior 51.12903225806451."
+    },
+    {
+      "team": "JAX",
+      "unit": "coverageIndex",
+      "reason": "Coverage same-feed discordance",
+      "raw": 0.09091453878348513,
+      "rawKey": "oppPassEpa",
+      "display": 64.06633597006778,
+      "rank": 10,
+      "checks": [
+        {
+          "key": "coverageSuccessAllowed",
+          "value": 0.5144927536231884,
+          "rank": 25,
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        },
+        {
+          "key": "passYardsAllowedPerAttempt",
+          "value": 8.44927536231884,
+          "rank": 31,
+          "boundary": "non-formula same-source outcome",
+          "category": "B. SAME-FEED, DIFFERENT TRANSFORMATION"
+        }
+      ],
+      "officialFacts": [],
+      "classification": "QUESTIONABLE",
+      "interpretation": "JAX coverageIndex displayed rank 10: coverageSuccessAllowed rank 25 (value 0.5144927536231884); passYardsAllowedPerAttempt rank 31 (value 8.44927536231884). sack-free EPA plus CPOE allowed; passing outcomes also reflect pressure/opponents. Coverage rank10 versus success rank25 and yards/attempt rank31 is a two-check contradiction; EPA/CPOE, prior and context require separate tracing. Observed rank discordance warrants construct/prior investigation; no certified causal defect."
     }
   ],
   "extremes": {
@@ -523,6 +770,7 @@
           "rank": 1,
           "display": 92.87650569436806,
           "raw": 0.5154451239221336,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -542,6 +790,7 @@
           "rank": 2,
           "display": 87.17443124546773,
           "raw": 0.36088900677606195,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -561,6 +810,7 @@
           "rank": 3,
           "display": 84.97731184325885,
           "raw": 0.29678430920637844,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -580,6 +830,7 @@
           "rank": 4,
           "display": 83.19759090625946,
           "raw": 0.222378535292228,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -599,6 +850,7 @@
           "rank": 5,
           "display": 81.56938094647701,
           "raw": 0.21331832165320502,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -620,6 +872,7 @@
           "rank": 28,
           "display": 21.928653679124178,
           "raw": -0.07964155544494553,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -639,6 +892,7 @@
           "rank": 29,
           "display": 21.07765172994733,
           "raw": -0.3762653016251367,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -658,6 +912,7 @@
           "rank": 30,
           "display": 21.056513579116466,
           "raw": -0.16081775523161398,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -677,6 +932,7 @@
           "rank": 31,
           "display": 17.826830262239756,
           "raw": -0.16318702851625,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -696,6 +952,7 @@
           "rank": 32,
           "display": 17.246115490562552,
           "raw": -0.20515833092194444,
+          "rawKey": "qbEpaPerPlay",
           "benchmarks": [
             {
               "key": "qbEpaPerPlay",
@@ -719,6 +976,7 @@
           "rank": 1,
           "display": 83.70345026952738,
           "raw": 0.4369131868325436,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -738,6 +996,7 @@
           "rank": 2,
           "display": 79.5873491633852,
           "raw": 0.32096522026218205,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -757,6 +1016,7 @@
           "rank": 3,
           "display": 77.94535641770915,
           "raw": 0.3485573685014724,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -776,6 +1036,7 @@
           "rank": 4,
           "display": 65.93529665572082,
           "raw": 0.31008291625115,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -795,6 +1056,7 @@
           "rank": 5,
           "display": 64.92302433569529,
           "raw": 0.31302513783254193,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -816,6 +1078,7 @@
           "rank": 28,
           "display": 22.021243407896357,
           "raw": 0.10220190828383235,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -835,6 +1098,7 @@
           "rank": 29,
           "display": 18.962535473576946,
           "raw": 0.08949513412407042,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -854,6 +1118,7 @@
           "rank": 30,
           "display": 16.71802547956963,
           "raw": 0.026813063144708466,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -873,6 +1138,7 @@
           "rank": 31,
           "display": 16.124800550928953,
           "raw": 0.046226652044777425,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -892,6 +1158,7 @@
           "rank": 32,
           "display": 13.653442401995331,
           "raw": -0.02528977924217704,
+          "rawKey": "receiverResidualEpa",
           "benchmarks": [
             {
               "key": "wrteYardsPerTarget",
@@ -915,11 +1182,12 @@
           "rank": 1,
           "display": 85.42103091561734,
           "raw": 0.09821428571428571,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -934,11 +1202,12 @@
           "rank": 2,
           "display": 83.69133681811027,
           "raw": 0.10714285714285714,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0.03571428571428571,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -953,11 +1222,12 @@
           "rank": 3,
           "display": 69.66859050999321,
           "raw": 0.11818181818181818,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0.0625,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -972,11 +1242,12 @@
           "rank": 4,
           "display": 69.64944667334112,
           "raw": 0.13043478260869565,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0.050359712230215826,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -991,11 +1262,12 @@
           "rank": 5,
           "display": 63.96475220493838,
           "raw": 0.13953488372093023,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0.08139534883720931,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -1012,11 +1284,12 @@
           "rank": 28,
           "display": 24.682404057344304,
           "raw": 0.1889763779527559,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0.08661417322834646,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -1031,11 +1304,12 @@
           "rank": 29,
           "display": 24.078218633316858,
           "raw": 0.1981981981981982,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0.07142857142857142,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -1050,11 +1324,12 @@
           "rank": 30,
           "display": 23.303287407714187,
           "raw": 0.2037037037037037,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0.04938271604938271,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -1069,11 +1344,12 @@
           "rank": 31,
           "display": 18.781012346797826,
           "raw": 0.2032520325203252,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0.08943089430894309,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -1088,11 +1364,12 @@
           "rank": 32,
           "display": 9.75510408718225,
           "raw": 0.23484848484848486,
+          "rawKey": "pbpPressureAllowedRate",
           "benchmarks": [
             {
               "key": "sackAllowed",
               "value": 0.09090909090909091,
-              "boundary": "adjacent non-formula outcome"
+              "boundary": "part-whole disruption ingredient"
             },
             {
               "key": "pbpPressureAllowedRate",
@@ -1111,6 +1388,7 @@
           "rank": 1,
           "display": 85.43127288797906,
           "raw": 0.13951399827669453,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1130,6 +1408,7 @@
           "rank": 2,
           "display": 76.2598445245371,
           "raw": 0.05267895145898499,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1149,6 +1428,7 @@
           "rank": 3,
           "display": 76.0672022546311,
           "raw": 0.10758251881517093,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1168,6 +1448,7 @@
           "rank": 4,
           "display": 74.40120316142847,
           "raw": 0.015272207664876102,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1187,6 +1468,7 @@
           "rank": 5,
           "display": 72.4527214891729,
           "raw": 0.09817400526184726,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1208,6 +1490,7 @@
           "rank": 28,
           "display": 27.556115332338997,
           "raw": -0.15579240599590233,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1227,6 +1510,7 @@
           "rank": 29,
           "display": 27.289165061694447,
           "raw": -0.2554053889767578,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1246,6 +1530,7 @@
           "rank": 30,
           "display": 24.783993950423273,
           "raw": -0.1853221514807565,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1265,6 +1550,7 @@
           "rank": 31,
           "display": 23.550957514408346,
           "raw": -0.18315079856110578,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1284,6 +1570,7 @@
           "rank": 32,
           "display": 12.717324785147435,
           "raw": -0.23743986426584118,
+          "rawKey": "rbCompositeOrthogonal",
           "benchmarks": [
             {
               "key": "rbYpc",
@@ -1307,6 +1594,7 @@
           "rank": 1,
           "display": 93.54655145263992,
           "raw": -0.0025989745898591,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1326,6 +1614,7 @@
           "rank": 2,
           "display": 93.5075074153014,
           "raw": -0.13792483712357922,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1345,6 +1634,7 @@
           "rank": 3,
           "display": 86.0436854753909,
           "raw": 0.01055406604260458,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1364,6 +1654,7 @@
           "rank": 4,
           "display": 82.64480371177697,
           "raw": 0.019707609674983792,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1383,6 +1674,7 @@
           "rank": 5,
           "display": 80.50337940870051,
           "raw": 0.020352975344622413,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1404,6 +1696,7 @@
           "rank": 28,
           "display": 22.515492421419804,
           "raw": 0.44971116530366073,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1423,6 +1716,7 @@
           "rank": 29,
           "display": 17.226833181339195,
           "raw": 0.31602658588084076,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1442,6 +1736,7 @@
           "rank": 30,
           "display": 14.582368546952774,
           "raw": 0.4527804440714257,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1461,6 +1756,7 @@
           "rank": 31,
           "display": 11.092601851856205,
           "raw": 0.38997123354799895,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1480,6 +1776,7 @@
           "rank": 32,
           "display": 3.5417753458175096,
           "raw": 0.48726516870071207,
+          "rawKey": "oppPassEpa",
           "benchmarks": [
             {
               "key": "coverageSuccessAllowed",
@@ -1502,17 +1799,18 @@
           "team": "MIN",
           "rank": 1,
           "display": 96.38540599950753,
-          "raw": 0.5006802721088435,
+          "raw": 0.38095238095238093,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.10884353741496598,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.38095238095238093,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1521,17 +1819,18 @@
           "team": "SEA",
           "rank": 2,
           "display": 86.99257579697887,
-          "raw": 0.4059259259259259,
+          "raw": 0.3111111111111111,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.08148148148148149,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.3111111111111111,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1540,17 +1839,18 @@
           "team": "LAC",
           "rank": 3,
           "display": 86.65184705141658,
-          "raw": 0.43870967741935485,
+          "raw": 0.3387096774193548,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.08064516129032258,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.3387096774193548,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1559,17 +1859,18 @@
           "team": "LV",
           "rank": 4,
           "display": 85.17264130926989,
-          "raw": 0.45217391304347826,
+          "raw": 0.34782608695652173,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.08695652173913043,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.34782608695652173,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1578,17 +1879,18 @@
           "team": "DET",
           "rank": 5,
           "display": 81.53241906475932,
-          "raw": 0.36666666666666664,
+          "raw": 0.2777777777777778,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.08333333333333333,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.2777777777777778,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1599,17 +1901,18 @@
           "team": "TB",
           "rank": 28,
           "display": 15.6862800166871,
-          "raw": 0.22153846153846155,
+          "raw": 0.16923076923076924,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.046153846153846156,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.16923076923076924,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1618,17 +1921,18 @@
           "team": "KC",
           "rank": 29,
           "display": 14.935669554306296,
-          "raw": 0.19072847682119204,
+          "raw": 0.152317880794702,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.019867549668874173,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.152317880794702,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1637,17 +1941,18 @@
           "team": "CAR",
           "rank": 30,
           "display": 11.297668674329937,
-          "raw": 0.20789473684210527,
+          "raw": 0.15789473684210525,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.046052631578947366,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.15789473684210525,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1656,17 +1961,18 @@
           "team": "NYG",
           "rank": 31,
           "display": 11.016763799219834,
-          "raw": 0.14676258992805757,
+          "raw": 0.11510791366906475,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.02158273381294964,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.11510791366906475,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1675,17 +1981,18 @@
           "team": "PHI",
           "rank": 32,
           "display": 9.822436575295335,
-          "raw": 0.15384615384615385,
+          "raw": 0.11888111888111888,
+          "rawKey": "frontPressureRate",
           "benchmarks": [
             {
               "key": "frontSackRate",
               "value": 0.027972027972027972,
-              "boundary": "ingredient/adjacent"
+              "boundary": "same-feed sack transformation; partial ingredient overlap for weekly teams"
             },
             {
               "key": "frontPressureRate",
               "value": 0.11888111888111888,
-              "boundary": "provider-heterogeneous ingredient/proxy"
+              "boundary": "direct weekly grading ingredient for 28; same-feed proxy for 4"
             }
           ],
           "interpretation": "Same-snapshot diagnostic; benchmark ranks/outliers retained separately, no independent predictive certification"
@@ -1699,6 +2006,7 @@
           "rank": 1,
           "display": 90.53001934824908,
           "raw": -0.1915890199574869,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1718,6 +2026,7 @@
           "rank": 2,
           "display": 86.69442681717781,
           "raw": -0.15720979518872527,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1737,6 +2046,7 @@
           "rank": 3,
           "display": 86.64163738043632,
           "raw": -0.20857015547064833,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1756,6 +2066,7 @@
           "rank": 4,
           "display": 86.017727504771,
           "raw": -0.2646064634766213,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1775,6 +2086,7 @@
           "rank": 5,
           "display": 80.02528909183783,
           "raw": -0.17593596978387785,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1796,6 +2108,7 @@
           "rank": 28,
           "display": 17.257249893850442,
           "raw": 0.03634319092789715,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1815,6 +2128,7 @@
           "rank": 29,
           "display": 15.424484442370883,
           "raw": 0.033925155649153826,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1834,6 +2148,7 @@
           "rank": 30,
           "display": 14.864835748372137,
           "raw": 0.0969632805904742,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1853,6 +2168,7 @@
           "rank": 31,
           "display": 10.458970733157763,
           "raw": 0.03655282404843206,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1872,6 +2188,7 @@
           "rank": 32,
           "display": 10.055243434885647,
           "raw": 0.05865915127490685,
+          "rawKey": "oppRushEpa",
           "benchmarks": [
             {
               "key": "rushYpcAllowed",
@@ -1895,6 +2212,7 @@
           "rank": 1,
           "display": 95.02866861444843,
           "raw": 3.388888888888889,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -1914,6 +2232,7 @@
           "rank": 2,
           "display": 93.11690431703406,
           "raw": 3.388888888888889,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -1933,6 +2252,7 @@
           "rank": 3,
           "display": 91.51655640232397,
           "raw": 3.0238095238095237,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -1952,6 +2272,7 @@
           "rank": 4,
           "display": 85.10996333502605,
           "raw": 2.9714285714285715,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -1971,6 +2292,7 @@
           "rank": 5,
           "display": 84.70872788692016,
           "raw": 2.902439024390244,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -1992,6 +2314,7 @@
           "rank": 28,
           "display": 19.418938682557613,
           "raw": 1.4390243902439024,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -2011,6 +2334,7 @@
           "rank": 29,
           "display": 17.920224149313363,
           "raw": 1.457142857142857,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -2030,6 +2354,7 @@
           "rank": 30,
           "display": 11.591955639346175,
           "raw": 1.4473684210526316,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -2049,6 +2374,7 @@
           "rank": 31,
           "display": 8.527927646366278,
           "raw": 1.425531914893617,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -2068,6 +2394,7 @@
           "rank": 32,
           "display": 7.166624856562327,
           "raw": 1.2432432432432432,
+          "rawKey": "offensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "offensivePointsPerDrive",
@@ -2091,6 +2418,7 @@
           "rank": 1,
           "display": 90,
           "raw": 1.108695652173913,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2110,6 +2438,7 @@
           "rank": 2,
           "display": 87.4193548387097,
           "raw": 1.4324324324324325,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2129,6 +2458,7 @@
           "rank": 3,
           "display": 84.83870967741936,
           "raw": 1.488888888888889,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2148,6 +2478,7 @@
           "rank": 4,
           "display": 82.25806451612904,
           "raw": 1.6666666666666667,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2167,6 +2498,7 @@
           "rank": 5,
           "display": 77.82258064516128,
           "raw": 1.696969696969697,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2188,6 +2520,7 @@
           "rank": 28,
           "display": 20.322580645161292,
           "raw": 2.707317073170732,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2207,6 +2540,7 @@
           "rank": 29,
           "display": 17.74193548387096,
           "raw": 2.7111111111111112,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2226,6 +2560,7 @@
           "rank": 30,
           "display": 15.161290322580644,
           "raw": 2.72972972972973,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2245,6 +2580,7 @@
           "rank": 31,
           "display": 12.580645161290317,
           "raw": 2.871794871794872,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2264,6 +2600,7 @@
           "rank": 32,
           "display": 9.999999999999998,
           "raw": 3.097560975609756,
+          "rawKey": "defensivePointsPerDrive",
           "benchmarks": [
             {
               "key": "defensivePointsPerDrive",
@@ -2287,6 +2624,7 @@
           "rank": 1,
           "display": 92.40218044664323,
           "raw": 84.53220480214286,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2306,6 +2644,7 @@
           "rank": 2,
           "display": 82.70063416569965,
           "raw": 73.34322539253023,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2325,6 +2664,7 @@
           "rank": 3,
           "display": 82.61221725683369,
           "raw": 73.25977094948864,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2344,6 +2684,7 @@
           "rank": 4,
           "display": 82.00442680484454,
           "raw": 72.69223904554826,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2363,6 +2704,7 @@
           "rank": 5,
           "display": 81.49718883442824,
           "raw": 72.22651675837962,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2384,6 +2726,7 @@
           "rank": 28,
           "display": 24.261745320415645,
           "raw": 32.64521454225265,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2403,6 +2746,7 @@
           "rank": 29,
           "display": 21.35890749472007,
           "raw": 30.276149377820303,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2422,6 +2766,7 @@
           "rank": 30,
           "display": 17.816539739232127,
           "raw": 27.141683438494177,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2441,6 +2786,7 @@
           "rank": 31,
           "display": 16.810303875321942,
           "raw": 26.19090571560345,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2460,6 +2806,7 @@
           "rank": 32,
           "display": 11.653572307826401,
           "raw": 20.744259337376256,
+          "rawKey": "offenseCompositeRaw",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2483,6 +2830,7 @@
           "rank": 1,
           "display": 93.69365297797924,
           "raw": 88.64462491462301,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2502,6 +2850,7 @@
           "rank": 2,
           "display": 91.91889465083386,
           "raw": 86.13672034295101,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2521,6 +2870,7 @@
           "rank": 3,
           "display": 83.59989273839824,
           "raw": 76.47184758707459,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2540,6 +2890,7 @@
           "rank": 4,
           "display": 79.15636788499963,
           "raw": 72.20718948014276,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2559,6 +2910,7 @@
           "rank": 5,
           "display": 76.88761800609859,
           "raw": 70.18525939159755,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2580,6 +2932,7 @@
           "rank": 28,
           "display": 27.563652053808287,
           "raw": 33.55130644702145,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2599,6 +2952,7 @@
           "rank": 29,
           "display": 25.46529222029339,
           "raw": 31.823710372573927,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2618,6 +2972,7 @@
           "rank": 30,
           "display": 22.328434721592615,
           "raw": 29.126239491681467,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2637,6 +2992,7 @@
           "rank": 31,
           "display": 21.074363434067013,
           "raw": 28.00267638014337,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2656,6 +3012,7 @@
           "rank": 32,
           "display": 13.02194282716826,
           "raw": 19.931539299086282,
+          "rawKey": "defenseCompositeRaw",
           "benchmarks": [
             {
               "key": "defEpa",
@@ -2679,6 +3036,7 @@
           "rank": 1,
           "display": 94.4595024499472,
           "raw": 0.2784525563413367,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2693,6 +3051,7 @@
           "rank": 2,
           "display": 94.13483065251054,
           "raw": 0.1932527064900339,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2707,6 +3066,7 @@
           "rank": 3,
           "display": 90.99535026856398,
           "raw": 0.18632502793923372,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2721,6 +3081,7 @@
           "rank": 4,
           "display": 85.10996333502605,
           "raw": 0.17381960614195563,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2735,6 +3096,7 @@
           "rank": 5,
           "display": 82.05922915706034,
           "raw": 0.15662901285243847,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2751,6 +3113,7 @@
           "rank": 28,
           "display": 15.103656906613974,
           "raw": -0.12275452467928225,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2765,6 +3128,7 @@
           "rank": 29,
           "display": 15.103226968562225,
           "raw": -0.11960650797635156,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2779,6 +3143,7 @@
           "rank": 30,
           "display": 14.368251378641641,
           "raw": -0.14241768424302573,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2793,6 +3158,7 @@
           "rank": 31,
           "display": 10.410598979781476,
           "raw": -0.14974945949761798,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",
@@ -2807,6 +3173,7 @@
           "rank": 32,
           "display": 5.921947852389785,
           "raw": -0.15916777641367233,
+          "rawKey": "offEpa",
           "benchmarks": [
             {
               "key": "offEpa",

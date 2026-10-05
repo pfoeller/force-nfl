@@ -3,9 +3,15 @@ import fs from 'node:fs';import assert from 'node:assert/strict';
 import {DIR,BASE,units,hash,validateInput,sourceContract,finite} from './architecture.mjs';
 import {appHarness} from '../../../scripts/lib/force_app_harness.js';
 import {analyze,serialize} from './analyze_current.mjs';import {auditPrior} from './prior_audit.mjs';
-import {correlation,rank,distribution,partial} from './stats.mjs';
+import {correlation,rank,distribution,partial,packing} from './stats.mjs';
+import {negativeSemanticControls,semanticContract} from './semantic_contract.mjs';
+import {inventory} from './cache_inventory.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-const x=read(DIR+'/inputs/current_snapshot.json'),pins=read(DIR+'/hashes.json');
+const x=read(DIR+'/inputs/current_snapshot.json');
+// This mode never opens hashes or results; semantic failures cannot use frozen outputs as an oracle.
+if(process.argv.includes('--semantics-only')){console.log(JSON.stringify({semanticControls:negativeSemanticControls(x),recordedResultsRead:false}));process.exit(0);}
+const pins=read(DIR+'/hashes.json');
+assert.equal(hash(fs.readFileSync(DIR+'/inputs/current_snapshot.json','utf8').replace(/\r\n/g,'\n')),'b84d5d17e49f5114053bcc2c69ca31024a0a088136b6047b75460fef34e8b247');
 for(const [p,pin] of Object.entries(pins)){assert.equal(hash(fs.readFileSync(DIR+'/'+p,'utf8').replace(/\r\n/g,'\n')),pin,p+' checksum');}
 assert.equal(read(DIR+'/inputs/provenance.json').normalizedSHA256,hash(fs.readFileSync(DIR+'/inputs/current_snapshot.json','utf8').replace(/\r\n/g,'\n')));
 validateInput(x);sourceContract();assert.equal(Object.keys(x.sourceHashes).length,18);
@@ -13,7 +19,7 @@ const {L,api}=appHarness({hooks:'M,D'});
 const close=(a,b,label)=>{assert(finite(a)&&finite(b),label+' finite');assert(Math.abs(a-b)<1e-10,label+': '+a+' vs '+b);};
 const clamp=x=>Math.max(0,Math.min(100,x));
 const physical={qbIndex:['qbEpaPerPlay','qb','epa_per_qb_play'],receiverIndex:['receiverResidualEpa','receivers','residual_epa'],olIndex:['pbpPressureAllowedRate','ol','pressure_rate_allowed'],rbIndex:['rbCompositeOrthogonal','rb','room_composite'],coverageIndex:['oppPassEpa','cov','epa_allowed'],passRushIndex:['selectedPassRushComposite','dl','pass_rush_composite_rate'],runDefenseIndex:['oppRushEpa','dl','run_epa_allowed']};
-export function reconstruct(input){validateInput(input);
+export function reconstruct(input){semanticContract(input);validateInput(input);
  const map=(k,higher=true)=>L.percentileMap(Object.fromEntries(Object.entries(input.teams).map(([t,z])=>[t,z.raw[k]])),higher);
  const pct={pass:map('oppPassEpa',false),cpoe:map('oppCpoe',false),run:map('oppRushEpa',false),offDrive:map('offensivePointsPerDrive'),defDrive:map('defensivePointsPerDrive',false),efficiency:map('offEpa'),weeklyRush:map('frontPressureRate'),anya:map('qbAnyA')};
  for(const [t,z] of Object.entries(input.teams)){
@@ -71,9 +77,20 @@ for(const mutate of [
 assert.deepEqual(rank([1,1,3]),[1.5,1.5,3]);close(correlation([1,2,3],[3,2,1]).pearson,-1,'negative Pearson');assert.equal(correlation([null,2,3],[0,3,4]).n,2);assert.equal(correlation([0,0,0],[1,2,3]).pearson,null);close(distribution([0,10,20]).median,10,'quantile');
 const xx=Array.from({length:32},(_,i)=>i),yy=xx.map(i=>2*i+Math.sin(i)),control=xx.map(i=>i);assert.equal(partial(xx,yy,[control,control]).r,null,'singular controls rejected');
 const facts=read(DIR+'/inputs/independent_facts.json');assert.equal(facts.walker.team,'KC');assert.equal(facts.walker.carries,x.teams.KC.components.rb.rush_att);assert.equal(facts.walker.games,x.teams.KC.metadata.games);assert.equal(facts.teamFacts.length,6);
-const bank=read(DIR+'/results/pathology_bank.json').cases;assert.equal(bank.length,15);assert(bank.every(b=>b.checks.length));assert.equal(bank.find(b=>b.unit==='passRushIndex').classification,'QUESTIONABLE');
+const bank=read(DIR+'/results/pathology_bank.json').cases;assert.equal(bank.length,22);assert(bank.every(b=>b.checks.length));assert.equal(bank.find(b=>b.unit==='passRushIndex').classification,'QUESTIONABLE');
 for(const [k,arr] of Object.entries(read(DIR+'/results/benchmark_alignment.json')))for(const b of arr)assert.equal(b.n,32,k+' complete benchmark '+b.benchmark);
 const pairs=read(DIR+'/results/unit_dependencies.json').pairs;assert.equal(pairs.length,16);for(const p of pairs)assert.equal(p.display.n,32);
+assert.equal(bank.find(b=>b.team==='PHI'&&b.unit==='receiverIndex').classification,'QUESTIONABLE');
+for(const t of ['NE','WAS','BUF','NYJ','SF','LV']){const b=bank.find(b=>b.team===t&&b.unit==='runDefenseIndex');assert.equal(b.classification,'QUESTIONABLE');assert(b.checks.every(c=>Math.abs(c.rank-b.rank)>=10));}
+assert.equal(bank.find(b=>b.team==='JAX'&&b.unit==='coverageIndex').classification,'QUESTIONABLE');assert(bank.every(b=>b.classification!=='PASS'&&b.interpretation.includes(b.team)));
+const semanticNegatives=negativeSemanticControls(x);
+const bm=read(DIR+'/results/benchmark_alignment.json'),flat=Object.values(bm).flat();assert.equal(flat.filter(b=>b.category.startsWith('B.')).length,17);assert.equal(flat.filter(b=>b.category.startsWith('C.')).length,16);
+const comp=read(DIR+'/results/compression_robustness.json');close(comp.display.receiverIndex.rank6To15Spread,5.506522330258406,'WR good band');assert.equal(comp.display.receiverIndex.atLeast70,3);assert(comp.mappedStages.receiverIndex.upperBandRatio<.5);assert.equal(comp.display.receiverIndex.rolling6.count,10);
+// Broad tails must not hide a dense central band; bands are inclusive and ties counted.
+assert.equal(packing([0,...Array(10).fill(50),100]).rolling6.count,10);assert.equal(packing(Array.from({length:32},(_,i)=>3*i)).rolling6.count,3);
+assert.equal(JSON.stringify(inventory(),null,2)+'\n',fs.readFileSync(DIR+'/results/historical_availability.json','utf8').replace(/\r\n/g,'\n'));
+const inv=inventory();assert.equal(inv.entries.length,22);assert.deepEqual(inv.dates,['2026-09-22','2026-09-23','2026-09-28','2026-10-01']);
+const pa=auditPrior(x);assert.equal(pa.frames.length,3);assert.equal(pa.frames[1].rankChangeCount,15);assert(pa.frames.every(f=>f.KC.matchedRank===3));
 const list=fs.readdirSync(DIR,{recursive:true}).filter(p=>fs.statSync(DIR+'/'+p).isFile());
 for(const p of list){const t=fs.readFileSync(DIR+'/'+p,'utf8');assert(!t.includes('App'+'Data')&&!/\b[A-Za-z]:[\\/]|\/Users\/|\/home\/|\/tmp\/|paul1\.PAUL/i.test(t),p+' local path hygiene');}
-console.log(JSON.stringify({result:'PASS',teams:32,units:12,pairs:16,sourceFiles:18,formulaReconstructions:'physical identities; WR/RB residual/stabilizer/historical maps; QB stabilizers/component/context sums; current ranks; all blends/composites',twoRunByteIdentity:true,hashPins:Object.keys(pins).length,negativeMutationControls:negative,benchmarkCompleteness:true,rbPriorAudit:true,missingNotZero:true}));
+console.log(JSON.stringify({result:'PASS',teams:32,units:12,pairs:16,sourceFiles:18,formulaReconstructions:'physical identities; WR/RB residual/stabilizer/historical maps; QB stabilizers/component/context sums; current ranks; all blends/composites',twoRunByteIdentity:true,hashPins:Object.keys(pins).length,negativeMutationControls:negative,independentSemanticControls:semanticNegatives,compressionFacets:true,benchmarkCategories:{A:0,B:17,C:16,D:"official facts outside33"},pathologyCases:22,cacheEntries:22,benchmarkCompleteness:true,rbPriorAudit:true,missingNotZero:true}));
