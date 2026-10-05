@@ -1,4 +1,4 @@
-# MD-05 current production bridge materiality â€” Cycle 8
+# MD-05 current production bridge materiality — Cycle 8
 
 Research only, from exact shared base `f2ce02c9f4ac7e54f22b372b6583cc878b030c45`. The owner authorized this measurement and scratch current-state ablation only. MD-05 remains REVIEW; independent adversarial review and owner acceptance of these findings are pending. Formula implementation, unit redesign and historical causal replay remain NOT AUTHORIZED. MD-06 remains REVIEW / NOT AUTHORIZED; MD-07 and MD-08 remain PLANNED / NOT AUTHORIZED. No new priority or implementation order is assigned.
 
@@ -18,13 +18,13 @@ Line numbers refer to the pinned base, not a future layout. These are current-so
 
 | Boundary | Exact source |
 | --- | --- |
-| Bootstrap applies current canonical feeds and enforces integrity | [app](../../../assets/app.js), `applyBootstrapSnapshot`, lines 516â€“595 |
-| Core current state | [app](../../../assets/app.js), `seasonEngine`, lines 1017â€“1183; `coreCurrentRatings`, line 1185 |
-| Current stabilized profile | [app](../../../assets/app.js), `liveProfiles`, line 1688; V148 QB recency applied once, lines 1744â€“1763; `profile`, line 1785 |
-| Actual prior used | [app](../../../assets/app.js), `unitForceBridgeForProfile`, line 1189, prefers live `_preseasonUnitPrior`; [live profile model](../../../model/live_profiles.js), preseason prior derivation around lines 1430â€“1465 and output at 1498/1697 |
-| Canonical current bridge and rating | [app](../../../assets/app.js), `unitForceBridge`, line 1214; `currentRatings`, lines 1218â€“1223 |
-| Keys, missingness, cap, conversion and soft-tail score | [bridge module](../../../model/unit_force_bridge.js), constants lines 19â€“39 and `compute`, lines 106â€“143 |
-| Debug/ledger reconciliation | [app](../../../assets/app.js), `ratingLedger`, line 2032; `unitAudit`, line 2065; window exports at 2343â€“2344 |
+| Bootstrap applies current canonical feeds and enforces integrity | [app](../../../assets/app.js), `applyBootstrapSnapshot`, lines 516–590 |
+| Core current state | [app](../../../assets/app.js), `seasonEngine`, lines 1017–1183; `coreCurrentRatings`, line 1185 |
+| Current stabilized profile | [app](../../../assets/app.js), `liveProfiles`, line 1688; V148 QB recency applied once, lines 1744–1763; `profile`, line 1785 |
+| Actual prior used | [app](../../../assets/app.js), `unitForceBridgeForProfile`, line 1189, prefers live `_preseasonUnitPrior`; [live profile model](../../../model/live_profiles.js), preseason prior derivation around lines 1430–1465 and output at 1498/1697 |
+| Canonical current bridge and rating | [app](../../../assets/app.js), `unitForceBridge`, line 1214; `currentRatings`, lines 1218–1223 |
+| Keys, missingness, cap, conversion and soft-tail score | [bridge module](../../../model/unit_force_bridge.js), constants lines 19–39 and `compute`, lines 98–135 |
+| Debug/ledger reconciliation | [app](../../../assets/app.js), `ratingLedger`, line 2032; `unitAudit`, line 2065; window exports at 2343–2344 |
 | Smart probability and implied line | [app](../../../assets/app.js), `forecastFor`, line 1296; [forecast module](../../../model/forecast_v2.js), `marketProbability`/`forecastProbability` and `probabilityToSpread` |
 | Score and season outputs | [app](../../../assets/app.js), `exactScoreProjection`, line 2680; `projected`, line 3340; `seasonProjection`, line 3655 |
 
@@ -55,42 +55,42 @@ The research asserts, for all 32 teams, `final-core = appliedElo`, component sum
 
 ## Team and league measurement
 
-The [32-team CSV](results/bridge_materiality.csv) includes full-precision core/final Elo and FORCE, pre/post-cap points, applied Elo, absolute magnitude/sign, cap use, cap binding and core/final ranks. The [full result](results/bridge_materiality.json) adds every team Ã— key prior/current/raw delta/weight/contribution/share, core-SD/range ratios, cap excess and missing keys. Positive rank movement means a rise from the no-bridge core rank to the actual current rank.
+The [32-team CSV](results/bridge_materiality.csv) includes full-precision core/final Elo and FORCE, pre/post-cap points, applied Elo, absolute magnitude/sign, cap use, cap binding and core/final ranks. The [full result](results/bridge_materiality.json) adds every team × key prior/current/raw delta/weight/contribution/share, core-SD/range ratios, cap excess and missing keys. Positive rank movement means a rise from the no-bridge core rank to the actual current rank.
 
-| Team | Pre-cap midpoint | Applied midpoint | Applied Elo | Core â†’ current rank |
+| Team | Pre-cap midpoint | Applied midpoint | Applied Elo | Core → current rank |
 | --- | ---: | ---: | ---: | --- |
-| SF | 10.773 | 7.500 | 41.550 | 2 â†’ 1 |
-| JAX | 4.853 | 4.853 | 26.884 | 3 â†’ 2 |
-| SEA | 0.989 | 0.989 | 5.482 | 1 â†’ 3 |
-| CHI | 6.103 | 6.103 | 33.813 | 4 â†’ 4 |
-| MIN | 6.109 | 6.109 | 33.847 | 5 â†’ 5 |
-| KC | 7.942 | 7.500 | 41.550 | 8 â†’ 6 |
-| BUF | -2.974 | -2.974 | -17.299 | 6 â†’ 7 |
-| BAL | 7.546 | 7.500 | 41.550 | 12 â†’ 8 |
-| LAR | -6.739 | -6.739 | -39.196 | 7 â†’ 9 |
-| CIN | 6.113 | 6.113 | 33.867 | 14 â†’ 10 |
-| CAR | 4.726 | 4.726 | 26.183 | 13 â†’ 11 |
-| NE | -10.318 | -7.500 | -43.620 | 9 â†’ 12 |
-| ATL | 2.640 | 2.640 | 14.626 | 15 â†’ 13 |
-| DEN | -7.213 | -7.213 | -41.953 | 10 â†’ 14 |
-| LV | 14.682 | 7.500 | 41.550 | 21 â†’ 15 |
-| IND | -8.271 | -7.500 | -43.620 | 11 â†’ 16 |
-| DAL | -2.596 | -2.596 | -15.101 | 16 â†’ 17 |
-| CLE | -0.281 | -0.281 | -1.637 | 18 â†’ 18 |
-| NYG | 1.823 | 1.823 | 10.102 | 22 â†’ 19 |
-| DET | -4.478 | -4.478 | -26.042 | 17 â†’ 20 |
-| PIT | -6.233 | -6.233 | -36.250 | 19 â†’ 21 |
-| NO | 0.055 | 0.055 | 0.306 | 25 â†’ 22 |
-| HOU | -4.463 | -4.463 | -25.955 | 23 â†’ 23 |
-| PHI | -9.754 | -7.500 | -43.620 | 20 â†’ 24 |
-| NYJ | 8.728 | 7.500 | 41.550 | 30 â†’ 25 |
-| GB | -11.236 | -7.500 | -43.620 | 24 â†’ 26 |
-| LAC | -5.166 | -5.166 | -30.046 | 26 â†’ 27 |
-| TB | -3.322 | -3.322 | -19.320 | 27 â†’ 28 |
-| ARI | 2.194 | 2.194 | 12.156 | 31 â†’ 29 |
-| WAS | -3.460 | -3.460 | -20.126 | 28 â†’ 30 |
-| MIA | -5.189 | -5.189 | -30.179 | 29 â†’ 31 |
-| TEN | -1.251 | -1.251 | -7.276 | 32 â†’ 32 |
+| SF | 10.773 | 7.500 | 41.550 | 2 → 1 |
+| JAX | 4.853 | 4.853 | 26.884 | 3 → 2 |
+| SEA | 0.989 | 0.989 | 5.482 | 1 → 3 |
+| CHI | 6.103 | 6.103 | 33.813 | 4 → 4 |
+| MIN | 6.109 | 6.109 | 33.847 | 5 → 5 |
+| KC | 7.942 | 7.500 | 41.550 | 8 → 6 |
+| BUF | -2.974 | -2.974 | -17.299 | 6 → 7 |
+| BAL | 7.546 | 7.500 | 41.550 | 12 → 8 |
+| LAR | -6.739 | -6.739 | -39.196 | 7 → 9 |
+| CIN | 6.113 | 6.113 | 33.867 | 14 → 10 |
+| CAR | 4.726 | 4.726 | 26.183 | 13 → 11 |
+| NE | -10.318 | -7.500 | -43.620 | 9 → 12 |
+| ATL | 2.640 | 2.640 | 14.626 | 15 → 13 |
+| DEN | -7.213 | -7.213 | -41.953 | 10 → 14 |
+| LV | 14.682 | 7.500 | 41.550 | 21 → 15 |
+| IND | -8.271 | -7.500 | -43.620 | 11 → 16 |
+| DAL | -2.596 | -2.596 | -15.101 | 16 → 17 |
+| CLE | -0.281 | -0.281 | -1.637 | 18 → 18 |
+| NYG | 1.823 | 1.823 | 10.102 | 22 → 19 |
+| DET | -4.478 | -4.478 | -26.042 | 17 → 20 |
+| PIT | -6.233 | -6.233 | -36.250 | 19 → 21 |
+| NO | 0.055 | 0.055 | 0.306 | 25 → 22 |
+| HOU | -4.463 | -4.463 | -25.955 | 23 → 23 |
+| PHI | -9.754 | -7.500 | -43.620 | 20 → 24 |
+| NYJ | 8.728 | 7.500 | 41.550 | 30 → 25 |
+| GB | -11.236 | -7.500 | -43.620 | 24 → 26 |
+| LAC | -5.166 | -5.166 | -30.046 | 26 → 27 |
+| TB | -3.322 | -3.322 | -19.320 | 27 → 28 |
+| ARI | 2.194 | 2.194 | 12.156 | 31 → 29 |
+| WAS | -3.460 | -3.460 | -20.126 | 28 → 30 |
+| MIA | -5.189 | -5.189 | -30.179 | 29 → 31 |
+| TEN | -1.251 | -1.251 | -7.276 | 32 → 32 |
 
 | Applied bridge space | Min | Max | Signed mean | Median | Mean absolute | Median absolute | Population SD |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -100,11 +100,11 @@ The [32-team CSV](results/bridge_materiality.csv) includes full-precision core/f
 
 There are 15 positive, 17 negative and zero approximately-zero bridges (1e-9 Elo tolerance). Core Elo population SD is **93.291**, range **345.444**. Mean absolute bridge is **29.81% of core SD** and **8.05% of core range**; those are scale comparisons, not percentages of FORCE. The JSON also reports interpolated P10/P25/P75/P90.
 
-Fixed round-number Elo thresholds, chosen to show sub-point noise through roughly half a core SD: 31 teams â‰¥1, 28 â‰¥10, 21 â‰¥25, and zero â‰¥50 absolute Elo. For descriptive labels only, mean absolute bridge/core SD <5% is negligible, 5â€“20% modest, 20â€“50% material, â‰¥50% dominant. The observed 29.81% is **material, not dominant** by that convention. These bins are not model adoption thresholds or an optimality claim.
+Fixed round-number Elo thresholds, chosen to show sub-point noise through roughly half a core SD: 31 teams ≥1, 28 ≥10, 21 ≥25, and zero ≥50 absolute Elo. For descriptive labels only, mean absolute bridge/core SD <5% is negligible, 5–20% modest, 20–50% material, ≥50% dominant. The observed 29.81% is **material, not dominant** by that convention. These bins are not model adoption thresholds or an optimality claim.
 
 ## Per-key movement and cap
 
-The values below are **pre-cap midpoint contributions after the share**. Gross absolute mass is the sum of absolute team Ã— key contributions. Net absolute pre-cap mass is the sum of absolute team totals after cancellation. The JSON reports both denominators; key/net ratios need not sum to 100% because opposing keys cancel. The percentage column below uses gross mass and therefore sums to 100%.
+The values below are **pre-cap midpoint contributions after the share**. Gross absolute mass is the sum of absolute team × key contributions. Net absolute pre-cap mass is the sum of absolute team totals after cancellation. The JSON reports both denominators; key/net ratios need not sum to 100% because opposing keys cancel. The percentage column below uses gross mass and therefore sums to 100%.
 
 | Key | Exact weight | Mean absolute contribution | Gross absolute mass share |
 | --- | ---: | ---: | ---: |
@@ -163,13 +163,13 @@ All deltas below are actual-current minus no-bridge. Absolute summaries describe
 | Playoff probability, percentage points | 6.355 | 3.090 | 22.220 |
 | Bye probability, percentage points | 1.570 | 0.230 | 8.340 |
 
-27 of 32 ranks change. LV rises 21â†’15 (+6); IND falls 11â†’16 (-5), NYJ rises 30â†’25 (+5). Largest future probability movement is DEN at LV (Week 15, December 20): home probability +13.244 pp. Largest analytic expected-win change is LV +0.907; largest simulated mean-win change is NYJ +0.917. Largest playoff change is LV +22.220 pp; DEN is -16.520 pp. Largest division change is DEN -14.000 pp; largest bye change is BUF -8.340 pp. The JSON preserves every game/team pair and all individual score outputs for further audit.
+27 of 32 ranks change. LV rises 21→15 (+6); IND falls 11→16 (-5), NYJ rises 30→25 (+5). Largest future probability movement is DEN at LV (Week 15, December 20): home probability +13.244 pp. Largest analytic expected-win change is LV +0.907; largest simulated mean-win change is NYJ +0.917. Largest playoff change is LV +22.220 pp; DEN is -16.520 pp. Largest division change is DEN -14.000 pp; largest bye change is BUF -8.340 pp. The JSON preserves every game/team pair and all individual score outputs for further audit.
 
 ## Conclusions and decision boundaries
 
-Q1â€“Q2: Mean absolute live bridge is 4.890 midpoint points / 27.809 Elo / 4.912 displayed FORCE points; it is material relative to core dispersion by the explicit descriptive convention above.
+Q1–Q2: Mean absolute live bridge is 4.890 midpoint points / 27.809 Elo / 4.912 displayed FORCE points; it is material relative to core dispersion by the explicit descriptive convention above.
 
-Q3â€“Q4: Scoring/drive, coverage and run defense contribute most gross pre-cap movement. No one/two-key majority dominates it. Different teams have different drivers.
+Q3–Q4: Scoring/drive, coverage and run defense contribute most gross pre-cap movement. No one/two-key majority dominates it. Different teams have different drivers.
 
 Q5: Nine caps bind, sometimes substantially, so the cap is practically active today. This does not prove an optimal cap.
 
