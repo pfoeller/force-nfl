@@ -1,0 +1,26 @@
+{
+  "purpose": "MD-08 research inputs manifest. No new capture, provider fetch or private payload. All inputs are already committed in the repository at researchBase.",
+  "researchBase": "65170f7dd9e17ac6ece1ab97790e944624d3f66f",
+  "snapshotBase": "fd585891214db483112f52d4746106c606afeb43",
+  "inputs": [
+    {"path": "research/cycle8/md07_unit_calibration/inputs/current_snapshot.json", "role": "Frozen 2026 Week-4 public bootstrap derived numeric stages (MD-07, captured 2026-10-05T18:03:19Z); 32 teams, live/prior/display grades, raw signals, core and current Elo"},
+    {"path": "data/live-cache/c6cb7af1f41f107e7e3f.bin", "role": "V149 QB all-play historical reference v5 (2025): 17-game QB EPA/success references and same-length OL disruption windows actually consumed by the live mapping"},
+    {"path": "data/matchup-data.js", "role": "Bundled 2025 team profiles: unit priors and the WR/RB 2025 reference teams"},
+    {"path": "data/model-data.js", "role": "Elo anchors (mean 1505, 1214.2, 1782), reversion 0.30, logistic scale 340"},
+    {"path": "model/live_profiles.js", "role": "BASE unit formulas, including the owner-accepted V115 LIVE_FITTED RB prior frame"},
+    {"path": "model/unit_force_bridge.js", "role": "Bridge weights, share 0.50, cap 7.50 and score/Elo translation"},
+    {"path": "assets/app.js", "role": "Production wiring: policies, QB recency, bridge consumers and display paths (loaded through scripts/lib/force_app_harness.js)"},
+    {"path": "research/cycle8/md07_unit_calibration/results/rb_prior_call_audit.json", "role": "MD-07 matched frame B rows, used only as an independent cross-check of the post-correction RB priors"}
+  ],
+  "pins": {
+    "research/cycle8/md07_unit_calibration/inputs/current_snapshot.json": "b84d5d17e49f5114053bcc2c69ca31024a0a088136b6047b75460fef34e8b247",
+    "data/live-cache/c6cb7af1f41f107e7e3f.bin": "ec8023a04119be8f71857c6b732dc1b0aa510ad50d200ce63e4d1fbc45395961",
+    "data/matchup-data.js": "88b100a3e10158990398b46740c7d01e2048cf05d1601a03ae3c6b0f1613357d",
+    "data/model-data.js": "fa852ce51b25bebd57fa49dca4e2d8e73575ced372e37ea5c6e30fb76217e8ac",
+    "model/unit_force_bridge.js": "1882dd71c1efcd479b604e924e3ed547bb60af9c16122a3bc453b1a815a3ac51",
+    "model/live_profiles.js": "9b2485b3ba89be8fbdbdbe421e2c8923f09479484dbc598667686206262c16de",
+    "assets/app.js": "edf63f78105a6d539bda2c3605b02ef3df66283cbd6a9cc95ab14802b32e0ce0"
+  },
+  "checksumConvention": "SHA-256 of UTF-8 text after CRLF->LF normalization",
+  "boundary": "The research baseline is the frozen Week-4 snapshot evaluated with BASE formulas (only the RB effective prior differs from the frozen display). It is not a new live capture and not a historical reconstruction."
+}

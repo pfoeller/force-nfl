@@ -1,0 +1,816 @@
+{
+  "verdict": "Exact cross-season comparability of the CURRENT formulas is UNMEASURABLE from repository inputs. No archived like-for-like 2025 (or earlier) set of current-formula live grades, priors, provider selections and control states exists. The bundled 2025 grades below come from the legacy pipeline with different definitions and are shown descriptively only.",
+  "anchorClassification": [
+    {
+      "key": "pointsScoredPerDriveIndex",
+      "classification": "Season-relative (current rank)",
+      "anchor": "Recomputed each season from the current league",
+      "priorDependence": "Prior from bundled 2025 legacy grade",
+      "meaningOf90": "90 means about top 10% of this season, not a fixed points/drive level",
+      "providerSampleDependence": "Current-season sample only"
+    },
+    {
+      "key": "qbIndex",
+      "classification": "Mixed",
+      "anchor": "EPA/success fixed to 2025 full-season QB distribution, but stabilized toward the current league mean; ANY/A current rank; CPOE relative to current league mean; opponent/pressure/recency relative to current season",
+      "priorDependence": "Bundled 2025 qbIndex prior",
+      "meaningOf90": "Neither purely absolute nor purely relative",
+      "providerSampleDependence": "Current-season sample only"
+    },
+    {
+      "key": "receiverIndex",
+      "classification": "Season-relative centre, 2025 spread",
+      "anchor": "Current league centre is aligned to the 2025 median, so 50 is always this season's average; spread uses the fixed 2025 shape",
+      "priorDependence": "Bundled 2025 profiles; ridge beta and centre refitted from them",
+      "meaningOf90": "90 means a residual as far above this season's centre as the 2025 90th percentile was above 2025's",
+      "providerSampleDependence": "Current-season sample only"
+    },
+    {
+      "key": "olIndex",
+      "classification": "Fixed historical anchor",
+      "anchor": "Raw disruption rate versus 2025 same-length windows; no centre alignment, so a league-wide change in disruption shifts every team",
+      "priorDependence": "Bundled 2025 olIndex prior",
+      "meaningOf90": "Closest to \"same absolute performance\" but only against 2025 and only for pass protection",
+      "providerSampleDependence": "Current-season sample only"
+    },
+    {
+      "key": "rbIndex",
+      "classification": "Season-relative centre, 2025 spread",
+      "anchor": "Same design as receivers (LIVE_FITTED frame)",
+      "priorDependence": "Bundled 2025 profiles",
+      "meaningOf90": "As receivers",
+      "providerSampleDependence": "Current-season sample only"
+    },
+    {
+      "key": "coverageIndex",
+      "classification": "Season-relative (current rank)",
+      "anchor": "Current ranks only",
+      "priorDependence": "Bundled 2025 coverageIndex prior",
+      "meaningOf90": "Top ~10% of this season",
+      "providerSampleDependence": "Current-season sample only"
+    },
+    {
+      "key": "passRushIndex",
+      "classification": "Mixed by provider",
+      "anchor": "Weekly fallback current rank (28); PFR teams fixed 2025 charted windows (4)",
+      "priorDependence": "2025 PFR or dl.pressure_rate percentile",
+      "meaningOf90": "Depends on provider; also depends on which provider the team gets",
+      "providerSampleDependence": "Yes: provider selection changes the mapping family"
+    },
+    {
+      "key": "runDefenseIndex",
+      "classification": "Season-relative (current rank)",
+      "anchor": "Current ranks only",
+      "priorDependence": "2025 run_stop_rate percentile (different construct)",
+      "meaningOf90": "Top ~10% of this season",
+      "providerSampleDependence": "Current-season sample only"
+    },
+    {
+      "key": "pointsAllowedPerDriveIndex",
+      "classification": "Season-relative (current rank)",
+      "anchor": "Current ranks only",
+      "priorDependence": "Neutral 50",
+      "meaningOf90": "Top ~10% of this season, capped at display 90 at Week 4",
+      "providerSampleDependence": "Current-season sample only"
+    }
+  ],
+  "bundled2025LegacyGrades": {
+    "qbIndex": {
+      "n": 32,
+      "mean": 49.99999999999999,
+      "median": 50,
+      "sd": 29.778767603781052,
+      "min": 0,
+      "max": 100,
+      "p05": 5.015000000000001,
+      "p10": 10.02,
+      "p25": 25,
+      "p50": 50,
+      "p75": 75,
+      "p90": 89.98,
+      "p95": 94.985,
+      "atOrAbove": {
+        "60": 13,
+        "70": 10,
+        "80": 7,
+        "90": 4
+      },
+      "below": {
+        "30": 10,
+        "40": 13
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 1,
+        "within2Of100": 1
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        }
+      }
+    },
+    "olIndex": {
+      "n": 32,
+      "mean": 49.99999999999999,
+      "median": 50,
+      "sd": 29.778767603781052,
+      "min": 0,
+      "max": 100,
+      "p05": 5.015000000000001,
+      "p10": 10.02,
+      "p25": 25,
+      "p50": 50,
+      "p75": 75,
+      "p90": 89.98,
+      "p95": 94.985,
+      "atOrAbove": {
+        "60": 13,
+        "70": 10,
+        "80": 7,
+        "90": 4
+      },
+      "below": {
+        "30": 10,
+        "40": 13
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 1,
+        "within2Of100": 1
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        }
+      }
+    },
+    "coverageIndex": {
+      "n": 32,
+      "mean": 49.99999999999999,
+      "median": 50,
+      "sd": 29.778767603781052,
+      "min": 0,
+      "max": 100,
+      "p05": 5.015000000000001,
+      "p10": 10.02,
+      "p25": 25,
+      "p50": 50,
+      "p75": 75,
+      "p90": 89.98,
+      "p95": 94.985,
+      "atOrAbove": {
+        "60": 13,
+        "70": 10,
+        "80": 7,
+        "90": 4
+      },
+      "below": {
+        "30": 10,
+        "40": 13
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 1,
+        "within2Of100": 1
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        }
+      }
+    },
+    "offenseIndex": {
+      "n": 32,
+      "mean": 49.99999999999999,
+      "median": 50,
+      "sd": 29.778767603781052,
+      "min": 0,
+      "max": 100,
+      "p05": 5.015000000000001,
+      "p10": 10.02,
+      "p25": 25,
+      "p50": 50,
+      "p75": 75,
+      "p90": 89.98,
+      "p95": 94.985,
+      "atOrAbove": {
+        "60": 13,
+        "70": 10,
+        "80": 7,
+        "90": 4
+      },
+      "below": {
+        "30": 10,
+        "40": 13
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 1,
+        "within2Of100": 1
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        }
+      }
+    },
+    "receiverIndex": {
+      "n": 32,
+      "mean": 49.99999999999999,
+      "median": 50,
+      "sd": 29.778767603781052,
+      "min": 0,
+      "max": 100,
+      "p05": 5.015000000000001,
+      "p10": 10.02,
+      "p25": 25,
+      "p50": 50,
+      "p75": 75,
+      "p90": 89.98,
+      "p95": 94.985,
+      "atOrAbove": {
+        "60": 13,
+        "70": 10,
+        "80": 7,
+        "90": 4
+      },
+      "below": {
+        "30": 10,
+        "40": 13
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 1,
+        "within2Of100": 1
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        }
+      }
+    },
+    "frontIndex": {
+      "n": 32,
+      "mean": 49.99999999999999,
+      "median": 50,
+      "sd": 29.778767603781052,
+      "min": 0,
+      "max": 100,
+      "p05": 5.015000000000001,
+      "p10": 10.02,
+      "p25": 25,
+      "p50": 50,
+      "p75": 75,
+      "p90": 89.98,
+      "p95": 94.985,
+      "atOrAbove": {
+        "60": 13,
+        "70": 10,
+        "80": 7,
+        "90": 4
+      },
+      "below": {
+        "30": 10,
+        "40": 13
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 1,
+        "within2Of100": 1
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        }
+      }
+    },
+    "rushIndex": {
+      "n": 32,
+      "mean": 49.99999999999999,
+      "median": 50,
+      "sd": 29.778767603781052,
+      "min": 0,
+      "max": 100,
+      "p05": 5.015000000000001,
+      "p10": 10.02,
+      "p25": 25,
+      "p50": 50,
+      "p75": 75,
+      "p90": 89.98,
+      "p95": 94.985,
+      "atOrAbove": {
+        "60": 13,
+        "70": 10,
+        "80": 7,
+        "90": 4
+      },
+      "below": {
+        "30": 10,
+        "40": 13
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 1,
+        "within2Of100": 1
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        }
+      }
+    },
+    "defenseIndex": {
+      "n": 32,
+      "mean": 50,
+      "median": 46.099999999999994,
+      "sd": 26.49036381403623,
+      "min": 4.4,
+      "max": 93.2,
+      "p05": 11.455,
+      "p10": 15.88,
+      "p25": 33.075,
+      "p50": 46.099999999999994,
+      "p75": 73.75,
+      "p90": 86.31,
+      "p95": 89.62499999999999,
+      "atOrAbove": {
+        "60": 13,
+        "70": 9,
+        "80": 6,
+        "90": 2
+      },
+      "below": {
+        "30": 7,
+        "40": 14
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 0,
+        "within2Of100": 0
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 25,
+          "largestTieGroup": 3,
+          "valuesInTies": 13
+        }
+      }
+    },
+    "offenseComposite": {
+      "n": 32,
+      "mean": 49.990624999999994,
+      "median": 45.099999999999994,
+      "sd": 26.370110439840314,
+      "min": 2.2,
+      "max": 97.1,
+      "p05": 6.625,
+      "p10": 12.46,
+      "p25": 33.05,
+      "p50": 45.099999999999994,
+      "p75": 74.75,
+      "p90": 82.6,
+      "p95": 87.315,
+      "atOrAbove": {
+        "60": 12,
+        "70": 10,
+        "80": 6,
+        "90": 1
+      },
+      "below": {
+        "30": 7,
+        "40": 12
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 0,
+        "within2Of100": 0
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 27,
+          "largestTieGroup": 2,
+          "valuesInTies": 10
+        }
+      }
+    }
+  },
+  "withinSeasonSampleSizeDrift": {
+    "qbEpaComponent": {
+      "playsPerGameAssumed": 37.75,
+      "stabilizerPlays": 150,
+      "windows": [
+        {
+          "games": 1,
+          "windows": 544,
+          "reliability": 0.2010652463382157,
+          "currentDesignStabilizedToFullSeason": {
+            "sd": 21.053216706430373,
+            "p10": 20.40414013582186,
+            "p90": 78.15913089191466,
+            "shareAtOrAbove90": 0.007352941176470588,
+            "shareAtOrAbove80": 0.04963235294117647,
+            "shareAtOrBelow10": 0.001838235294117647
+          },
+          "unstabilizedToFullSeason": {
+            "sd": 40.129221246248235,
+            "p10": 1.5625,
+            "p90": 98.4375,
+            "shareAtOrAbove90": 0.3235294117647059,
+            "shareAtOrAbove80": 0.3786764705882353,
+            "shareAtOrBelow10": 0.24816176470588236
+          },
+          "windowMatched": {
+            "sd": 28.867464686202876,
+            "p10": 10.073529411764707,
+            "p90": 89.92647058823529,
+            "shareAtOrAbove90": 0.09926470588235294,
+            "shareAtOrAbove80": 0.20036764705882354,
+            "shareAtOrBelow10": 0.09926470588235294
+          }
+        },
+        {
+          "games": 2,
+          "windows": 512,
+          "reliability": 0.3348115299334812,
+          "currentDesignStabilizedToFullSeason": {
+            "sd": 23.37280675143906,
+            "p10": 16.78824045572525,
+            "p90": 79.15476489475726,
+            "shareAtOrAbove90": 0.01953125,
+            "shareAtOrAbove80": 0.078125,
+            "shareAtOrBelow10": 0.00390625
+          },
+          "unstabilizedToFullSeason": {
+            "sd": 37.535549407669784,
+            "p10": 1.5625,
+            "p90": 98.4375,
+            "shareAtOrAbove90": 0.251953125,
+            "shareAtOrAbove80": 0.326171875,
+            "shareAtOrBelow10": 0.197265625
+          },
+          "windowMatched": {
+            "sd": 28.86745839901645,
+            "p10": 10.078125,
+            "p90": 89.921875,
+            "shareAtOrAbove90": 0.099609375,
+            "shareAtOrAbove80": 0.19921875,
+            "shareAtOrBelow10": 0.099609375
+          }
+        },
+        {
+          "games": 3,
+          "windows": 480,
+          "reliability": 0.4301994301994302,
+          "currentDesignStabilizedToFullSeason": {
+            "sd": 24.671844736255082,
+            "p10": 16.284627994398516,
+            "p90": 82.62299514059578,
+            "shareAtOrAbove90": 0.020833333333333332,
+            "shareAtOrAbove80": 0.10416666666666667,
+            "shareAtOrBelow10": 0.008333333333333333
+          },
+          "unstabilizedToFullSeason": {
+            "sd": 36.017299981174816,
+            "p10": 2.494028134723394,
+            "p90": 98.4375,
+            "shareAtOrAbove90": 0.22708333333333333,
+            "shareAtOrAbove80": 0.325,
+            "shareAtOrBelow10": 0.16458333333333333
+          },
+          "windowMatched": {
+            "sd": 28.867450812899705,
+            "p10": 10.083333333333334,
+            "p90": 89.91666666666667,
+            "shareAtOrAbove90": 0.1,
+            "shareAtOrAbove80": 0.2,
+            "shareAtOrBelow10": 0.1
+          }
+        },
+        {
+          "games": 4,
+          "windows": 448,
+          "reliability": 0.5016611295681063,
+          "currentDesignStabilizedToFullSeason": {
+            "sd": 25.186703228065088,
+            "p10": 16.085366730548305,
+            "p90": 83.78800728463628,
+            "shareAtOrAbove90": 0.024553571428571428,
+            "shareAtOrAbove80": 0.12053571428571429,
+            "shareAtOrBelow10": 0.008928571428571428
+          },
+          "unstabilizedToFullSeason": {
+            "sd": 34.690512587089096,
+            "p10": 3.996822135171678,
+            "p90": 97.5271638293738,
+            "shareAtOrAbove90": 0.18973214285714285,
+            "shareAtOrAbove80": 0.28794642857142855,
+            "shareAtOrBelow10": 0.14508928571428573
+          },
+          "windowMatched": {
+            "sd": 28.867441543751124,
+            "p10": 10.089285714285715,
+            "p90": 89.91071428571429,
+            "shareAtOrAbove90": 0.10044642857142858,
+            "shareAtOrAbove80": 0.20089285714285715,
+            "shareAtOrBelow10": 0.10044642857142858
+          }
+        },
+        {
+          "games": 6,
+          "windows": 384,
+          "reliability": 0.601593625498008,
+          "currentDesignStabilizedToFullSeason": {
+            "sd": 25.595868104297832,
+            "p10": 15.003851555604252,
+            "p90": 84.1853190324646,
+            "shareAtOrAbove90": 0.03125,
+            "shareAtOrAbove80": 0.1328125,
+            "shareAtOrBelow10": 0.0078125
+          },
+          "unstabilizedToFullSeason": {
+            "sd": 33.23107092004475,
+            "p10": 4.092968387851951,
+            "p90": 94.79533185102966,
+            "shareAtOrAbove90": 0.16666666666666666,
+            "shareAtOrAbove80": 0.2526041666666667,
+            "shareAtOrBelow10": 0.11979166666666667
+          },
+          "windowMatched": {
+            "sd": 28.86741557413785,
+            "p10": 10.104166666666668,
+            "p90": 89.89583333333333,
+            "shareAtOrAbove90": 0.09895833333333333,
+            "shareAtOrAbove80": 0.20052083333333334,
+            "shareAtOrBelow10": 0.09895833333333333
+          }
+        },
+        {
+          "games": 8,
+          "windows": 320,
+          "reliability": 0.668141592920354,
+          "currentDesignStabilizedToFullSeason": {
+            "sd": 25.96498646386511,
+            "p10": 15.551367387823904,
+            "p90": 84.48552616447672,
+            "shareAtOrAbove90": 0.028125,
+            "shareAtOrAbove80": 0.14375,
+            "shareAtOrBelow10": 0.021875
+          },
+          "unstabilizedToFullSeason": {
+            "sd": 32.246284917119155,
+            "p10": 10.980375898228763,
+            "p90": 93.10697675059939,
+            "shareAtOrAbove90": 0.15,
+            "shareAtOrAbove80": 0.21875,
+            "shareAtOrBelow10": 0.096875
+          },
+          "windowMatched": {
+            "sd": 28.867372504481594,
+            "p10": 10.125,
+            "p90": 89.875,
+            "shareAtOrAbove90": 0.1,
+            "shareAtOrAbove80": 0.2,
+            "shareAtOrBelow10": 0.1
+          }
+        },
+        {
+          "games": 12,
+          "windows": 192,
+          "reliability": 0.7512437810945274,
+          "currentDesignStabilizedToFullSeason": {
+            "sd": 26.719483763106577,
+            "p10": 14.349364996638407,
+            "p90": 84.40271346094212,
+            "shareAtOrAbove90": 0.046875,
+            "shareAtOrAbove80": 0.140625,
+            "shareAtOrBelow10": 0.026041666666666668
+          },
+          "unstabilizedToFullSeason": {
+            "sd": 31.383474865051635,
+            "p10": 8.425446019942427,
+            "p90": 90.45850010279877,
+            "shareAtOrAbove90": 0.109375,
+            "shareAtOrAbove80": 0.20833333333333334,
+            "shareAtOrBelow10": 0.109375
+          },
+          "windowMatched": {
+            "sd": 28.867121916116048,
+            "p10": 10.208333333333334,
+            "p90": 89.79166666666667,
+            "shareAtOrAbove90": 0.09895833333333333,
+            "shareAtOrAbove80": 0.19791666666666666,
+            "shareAtOrBelow10": 0.09895833333333333
+          }
+        },
+        {
+          "games": 17,
+          "windows": 32,
+          "reliability": 0.8105462582886012,
+          "currentDesignStabilizedToFullSeason": {
+            "sd": 25.12918091549754,
+            "p10": 14.515304293086892,
+            "p90": 84.34091975440299,
+            "shareAtOrAbove90": 0.0625,
+            "shareAtOrAbove80": 0.15625,
+            "shareAtOrBelow10": 0.03125
+          },
+          "unstabilizedToFullSeason": {
+            "sd": 28.853414550967795,
+            "p10": 11.25,
+            "p90": 88.75,
+            "shareAtOrAbove90": 0.09375,
+            "shareAtOrAbove80": 0.1875,
+            "shareAtOrBelow10": 0.09375
+          },
+          "windowMatched": {
+            "sd": 28.853414550967795,
+            "p10": 11.25,
+            "p90": 88.75,
+            "shareAtOrAbove90": 0.09375,
+            "shareAtOrAbove80": 0.1875,
+            "shareAtOrBelow10": 0.09375
+          }
+        }
+      ],
+      "boundary": "Replays only the QB EPA component mapping on 2025 rolling windows (reference v5), with an assumed plays/game from the current snapshot and the window-pool mean as stabilization centre. It is not a reconstruction of past whole QB grades."
+    },
+    "olReferenceWindows": [
+      {
+        "games": 1,
+        "n": 544,
+        "p10": 0.06451613,
+        "p50": 0.15384615,
+        "p90": 0.26470588
+      },
+      {
+        "games": 2,
+        "n": 512,
+        "p10": 0.08695652,
+        "p50": 0.15517241,
+        "p90": 0.24131545300000004
+      },
+      {
+        "games": 4,
+        "n": 448,
+        "p10": 0.099770992,
+        "p50": 0.154508495,
+        "p90": 0.227993664
+      },
+      {
+        "games": 8,
+        "n": 320,
+        "p10": 0.105602817,
+        "p50": 0.15625,
+        "p90": 0.21867894000000002
+      },
+      {
+        "games": 17,
+        "n": 32,
+        "p10": 0.114571356,
+        "p50": 0.15343436,
+        "p90": 0.21298480000000003
+      }
+    ],
+    "finding": "OL is window-matched, so a percentile keeps its meaning as games accumulate. QB EPA, WR and RB map early-season stabilized values onto a full-season reference, so the share of teams able to reach 80/90 changes with sample size: the meaning of a displayed QB/WR/RB number drifts within a season even with no change in football quality."
+  },
+  "requiredArchives": [
+    "Dated per-week team/player/PBP inputs (or derived aggregates) for each season to be compared",
+    "The historical calibration references in force at each date (QB/OL windows, WR/RB 2025-style team references per season)",
+    "Effective priors, prior-games/continuity controller state and QB opponent/pressure/recency context at each date",
+    "Pass-rush provider selection per team and date",
+    "The bridge weights/share/cap and normalization constants in force at each date",
+    "A frozen season-end archive of every unit grade under one formula version"
+  ]
+}

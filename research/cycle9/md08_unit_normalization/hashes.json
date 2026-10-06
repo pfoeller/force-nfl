@@ -1,0 +1,18 @@
+{
+  "README.md": "4c30bf86be698e1add7e451b7e36450777be58d70dfcae27ade48f6145ec806f",
+  "ARCHITECTURE.md": "a63803e917fb6d58b425e648b2fdbbbc5e07640eef1d12e0eefe1c0e62e4ea66",
+  "inputs.json": "bcaf149a10874e8a8fed40bbdbb99b6faac5f22372561f8c677b55d50802094e",
+  "lib.mjs": "40f9ad0e513b00e819ebd2618abf9679f6f5a8b791b02841e41d7404be83f083",
+  "analyze.mjs": "21a84eb12e639901409b73dc2cd24cf1654de37f7217c2ea7a55e3734445174c",
+  "check.mjs": "f9398ebe02572f20dc60fc0bbb65190e1e78473ca4926eab71d3ebe8d61e4446",
+  "results/reconstruction.json": "e9cc4ed4c05cc7540709a0e2b4ee3487ca8ff854155e200ae5d0ec5096b49298",
+  "results/architecture_inventory.json": "69b11ca596e4a06d8318bff03ad4525bf4d9421234514c4b872950184ba6565a",
+  "results/current_distributions.json": "79fea645b7f13bd00e7defefe28eb93c2d589278fae37af67bbdffd33865d63c",
+  "results/current_unit_values.csv": "f4ea94a81dc95e853e08003681828ebe3d71ab49dc9fe575ecd5f55d33a6fc92",
+  "results/midpoint_thresholds.json": "61258d1c453af753705ff1443815f0279bbdf67888660f9b0ea6d237f575684c",
+  "results/cross_unit_thresholds.json": "d84405e3c6bc29620da30f0d29e77f280e0d97639d10896b37e904c1b035c2ee",
+  "results/cross_season.json": "735f52af9b9374c71b004c196fdba5f5d33b0d4a1f0308fc88fb022797a8294d",
+  "results/bridge_effective_sensitivity.json": "883ce70ee80309a77892c9553c547ed4d56f7eddbf31b93f3ef9ef8b35e0006a",
+  "results/candidate_display_mappings.json": "1ac5e78692bfb4cd32b9474a2fc54793014ac13b5b03a0245a4fb348b0104e93",
+  "results/md07_interaction.json": "f591c4778cfc45a9d5ef2de78c2271aeb2d8966d9b678e33f9cf3f18451813ea"
+}

@@ -1,0 +1,390 @@
+{
+  "note": "Empirical percentile = 100*(count below + half ties)/32 within the current Week-4 distribution. p99 is not supported with n=32.",
+  "rows": [
+    {
+      "key": "pointsScoredPerDriveIndex",
+      "label": "Scoring/drive",
+      "nominalMeaning": "X = X-th percentile of the current 32 teams (before prior blend)",
+      "display": {
+        "percentileAt": {
+          "50": 53.125,
+          "60": 59.375,
+          "70": 75,
+          "80": 84.375,
+          "90": 90.625
+        },
+        "ratingAt": {
+          "p50": 49.11694725947481,
+          "p75": 66.99501904744763,
+          "p90": 85.06983979021547,
+          "p95": 92.2367129639435,
+          "p99": "not supported (n=32)"
+        }
+      },
+      "live": {
+        "percentileAt": {
+          "50": 50,
+          "60": 59.375,
+          "70": 68.75,
+          "80": 78.125,
+          "90": 87.5
+        },
+        "ratingAt": {
+          "p50": 50,
+          "p75": 75,
+          "p90": 90.00000000000001,
+          "p95": 95.7258064516129,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "qbIndex",
+      "label": "QB play",
+      "nominalMeaning": "Expanded mixture of 2025 full-season and current-season component percentiles plus context",
+      "display": {
+        "percentileAt": {
+          "50": 43.75,
+          "60": 59.375,
+          "70": 68.75,
+          "80": 81.25,
+          "90": 96.875
+        },
+        "ratingAt": {
+          "p50": 53.39507845762938,
+          "p75": 72.84827932132119,
+          "p90": 83.03476991028123,
+          "p95": 85.96601557425284,
+          "p99": "not supported (n=32)"
+        }
+      },
+      "live": {
+        "percentileAt": {
+          "50": 46.875,
+          "60": 53.125,
+          "70": 62.5,
+          "80": 81.25,
+          "90": 93.75
+        },
+        "ratingAt": {
+          "p50": 54.54386064892503,
+          "p75": 76.50241687438535,
+          "p90": 85.01172917213057,
+          "p95": 91.81192577126306,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "receiverIndex",
+      "label": "Receivers",
+      "nominalMeaning": "X = X-th percentile of 32 2025 full-season team values after early-season stabilization and centre alignment",
+      "display": {
+        "percentileAt": {
+          "50": 46.875,
+          "60": 78.125,
+          "70": 90.625,
+          "80": 96.875,
+          "90": 100
+        },
+        "ratingAt": {
+          "p50": 51.9201696161538,
+          "p75": 58.75812443371247,
+          "p90": 65.83406942371826,
+          "p95": 78.68425315326337,
+          "p99": "not supported (n=32)"
+        }
+      },
+      "live": {
+        "percentileAt": {
+          "50": 46.875,
+          "60": 68.75,
+          "70": 84.375,
+          "80": 93.75,
+          "90": 100
+        },
+        "ratingAt": {
+          "p50": 53.052744557722505,
+          "p75": 60.94669251906569,
+          "p90": 72.85940879144805,
+          "p95": 80.22701861296768,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "olIndex",
+      "label": "Offensive line",
+      "nominalMeaning": "X = X-th percentile of 2025 same-length team windows",
+      "display": {
+        "percentileAt": {
+          "50": 75,
+          "60": 84.375,
+          "70": 93.75,
+          "80": 93.75,
+          "90": 100
+        },
+        "ratingAt": {
+          "p50": 37.84025719035655,
+          "p75": 50.156476917710386,
+          "p90": 69.08097722650085,
+          "p95": 75.97882634864588,
+          "p99": "not supported (n=32)"
+        }
+      },
+      "live": {
+        "percentileAt": {
+          "50": 71.875,
+          "60": 81.25,
+          "70": 90.625,
+          "80": 93.75,
+          "90": 96.875
+        },
+        "ratingAt": {
+          "p50": 35.280292859944105,
+          "p75": 51.48623406681418,
+          "p90": 67.25446244150723,
+          "p95": 80.62476200708527,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "rbIndex",
+      "label": "RB",
+      "nominalMeaning": "X = X-th percentile of 32 2025 full-season team values after early-season stabilization and centre alignment",
+      "display": {
+        "percentileAt": {
+          "50": 50,
+          "60": 65.625,
+          "70": 78.125,
+          "80": 96.875,
+          "90": 100
+        },
+        "ratingAt": {
+          "p50": 50.865615443754166,
+          "p75": 66.95906718956238,
+          "p90": 74.47038596331612,
+          "p95": 77.26798337375344,
+          "p99": "not supported (n=32)"
+        }
+      },
+      "live": {
+        "percentileAt": {
+          "50": 50,
+          "60": 62.5,
+          "70": 81.25,
+          "80": 84.375,
+          "90": 93.75
+        },
+        "ratingAt": {
+          "p50": 49.79131375334265,
+          "p75": 68.61658881248766,
+          "p90": 80.14599062983059,
+          "p95": 84.94215012534944,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "coverageIndex",
+      "label": "Coverage",
+      "nominalMeaning": "Weighted mix of two current-season percentiles",
+      "display": {
+        "percentileAt": {
+          "50": 46.875,
+          "60": 68.75,
+          "70": 78.125,
+          "80": 84.375,
+          "90": 93.75
+        },
+        "ratingAt": {
+          "p50": 54.31964267543568,
+          "p75": 65.6477663224011,
+          "p90": 82.43066128146933,
+          "p95": 89.40240534835063,
+          "p99": "not supported (n=32)"
+        }
+      },
+      "live": {
+        "percentileAt": {
+          "50": 50,
+          "60": 62.5,
+          "70": 78.125,
+          "80": 84.375,
+          "90": 93.75
+        },
+        "ratingAt": {
+          "p50": 51.61290322580645,
+          "p75": 68.54838709677419,
+          "p90": 89.19354838709678,
+          "p95": 92.78225806451613,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "passRushIndex",
+      "label": "Pass rush",
+      "nominalMeaning": "28 teams: current-season percentile; 4 teams: percentile of 2025 charted windows",
+      "display": {
+        "percentileAt": {
+          "50": 53.125,
+          "60": 62.5,
+          "70": 71.875,
+          "80": 84.375,
+          "90": 96.875
+        },
+        "ratingAt": {
+          "p50": 48.069631247951186,
+          "p75": 70.98016823673083,
+          "p90": 84.80861908481884,
+          "p95": 86.80517498691961,
+          "p99": "not supported (n=32)"
+        }
+      },
+      "live": {
+        "percentileAt": {
+          "50": 53.125,
+          "60": 62.5,
+          "70": 68.75,
+          "80": 78.125,
+          "90": 87.5
+        },
+        "ratingAt": {
+          "p50": 46.7741935483871,
+          "p75": 75,
+          "p90": 90.00000000000001,
+          "p95": 95,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "runDefenseIndex",
+      "label": "Run defense",
+      "nominalMeaning": "X = X-th percentile of the current 32 teams (before prior blend)",
+      "display": {
+        "percentileAt": {
+          "50": 53.125,
+          "60": 56.25,
+          "70": 71.875,
+          "80": 84.375,
+          "90": 96.875
+        },
+        "ratingAt": {
+          "p50": 47.047031325098644,
+          "p75": 72.2885618895619,
+          "p90": 85.4184836634777,
+          "p95": 86.66539262696999,
+          "p99": "not supported (n=32)"
+        }
+      },
+      "live": {
+        "percentileAt": {
+          "50": 50,
+          "60": 59.375,
+          "70": 68.75,
+          "80": 78.125,
+          "90": 87.5
+        },
+        "ratingAt": {
+          "p50": 50,
+          "p75": 75,
+          "p90": 90.00000000000001,
+          "p95": 95,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "pointsAllowedPerDriveIndex",
+      "label": "Pts/drive prevention",
+      "nominalMeaning": "X = X-th percentile of the current 32 teams (before prior blend)",
+      "display": {
+        "percentileAt": {
+          "50": 50,
+          "60": 62.5,
+          "70": 71.875,
+          "80": 87.5,
+          "90": 98.4375
+        },
+        "ratingAt": {
+          "p50": 50,
+          "p75": 70.64516129032259,
+          "p90": 81.81451612903227,
+          "p95": 86.00000000000001,
+          "p99": "not supported (n=32)"
+        }
+      },
+      "live": {
+        "percentileAt": {
+          "50": 50,
+          "60": 59.375,
+          "70": 68.75,
+          "80": 78.125,
+          "90": 87.5
+        },
+        "ratingAt": {
+          "p50": 50,
+          "p75": 75.80645161290323,
+          "p90": 90.00000000000001,
+          "p95": 95,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "offenseComposite",
+      "label": "Overall offense",
+      "nominalMeaning": "Soft-tail expansion of a weighted average of component grades",
+      "display": {
+        "percentileAt": {
+          "50": 56.25,
+          "60": 71.875,
+          "70": 75,
+          "80": 78.125,
+          "90": 96.875
+        },
+        "ratingAt": {
+          "p50": 44.3923067547984,
+          "p75": 69.47366746499006,
+          "p90": 82.2623899553868,
+          "p95": 83.06800083053312,
+          "p99": "not supported (n=32)"
+        }
+      }
+    },
+    {
+      "key": "defenseIndex",
+      "label": "Overall defense",
+      "nominalMeaning": "Soft-tail expansion of a weighted average of component grades",
+      "display": {
+        "percentileAt": {
+          "50": 59.375,
+          "60": 68.75,
+          "70": 81.25,
+          "80": 90.625,
+          "90": 93.75
+        },
+        "ratingAt": {
+          "p50": 46.47774744792572,
+          "p75": 63.75622219663606,
+          "p90": 78.92949289710953,
+          "p95": 87.34344359899427,
+          "p99": "not supported (n=32)"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "display70PercentileRange": [
+      68.75,
+      93.75
+    ],
+    "display90PercentileRange": [
+      90.625,
+      100
+    ]
+  }
+}

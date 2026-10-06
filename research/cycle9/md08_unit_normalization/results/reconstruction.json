@@ -1,0 +1,29 @@
+{
+  "snapshot": "research/cycle8/md07_unit_calibration/inputs/current_snapshot.json",
+  "snapshotSha256": "b84d5d17e49f5114053bcc2c69ca31024a0a088136b6047b75460fef34e8b247",
+  "snapshotBase": "fd585891214db483112f52d4746106c606afeb43",
+  "researchBase": "65170f7dd9e17ac6ece1ab97790e944624d3f66f",
+  "exactness": "Every frozen display grade, composite, QB/OL/WR/RB/rank live mapping and bridge Elo reproduces to <=1e-10 (Elo <=1e-9); max absolute residual by key below.",
+  "maxAbsBlendResidualByKey": {
+    "pointsScoredPerDriveIndex": 0,
+    "qbIndex": 0,
+    "receiverIndex": 0,
+    "olIndex": 0,
+    "rbIndex": 0,
+    "coverageIndex": 0,
+    "passRushIndex": 0,
+    "runDefenseIndex": 0,
+    "pointsAllowedPerDriveIndex": 0
+  },
+  "sourceDrift": "Only model/live_profiles.js differs from the snapshot base; the difference is the owner-accepted V115 LIVE_FITTED RB effective-prior frame. All other 17 published scripts are byte-identical after LF normalization.",
+  "postFixRb": {
+    "method": "Effective RB prior recomputed with BASE helpers in the LIVE_FITTED frame; live grade and prior games held at frozen values; matches MD-07 matched frame B for all 32 teams.",
+    "rbRecvBeta": 0.32652935756243806,
+    "qbCentre": 0.0615,
+    "maxAbsDisplay": 3.1427964110876587,
+    "maxAbsPrior": 17.58726031501455,
+    "maxAbsElo": 2.457878993874374,
+    "rbRankChanges": 15
+  },
+  "boundary": "Research baseline = frozen Week-4 2026 inputs evaluated with BASE formulas. It is an offline recomputation, not a new live capture; no other unit is affected by the MD-07 correction."
+}

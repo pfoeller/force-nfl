@@ -1,0 +1,4569 @@
+{
+  "conventions": "Population SD; quantiles linear at (n-1)p; counts are at-or-above 60/70/80/90 and strictly below 40/30; ties counted on exact, one-decimal (Units board) and whole-point (tables/matchups) values. Theoretical bounds: current-rank live 0/100; 32-team historical CDF 1.5625/98.4375; 448-window CDF 0.1116/99.8884 (two teams use 3-game windows); priors 15/85 from regressing 0..100 sources.",
+  "units": {
+    "pointsScoredPerDriveIndex": {
+      "label": "Scoring/drive",
+      "family": "current-rank",
+      "display": {
+        "n": 32,
+        "mean": 50.008686401897215,
+        "median": 49.11694725947481,
+        "sd": 25.878367000445703,
+        "min": 7.166624856562327,
+        "max": 95.02866861444843,
+        "p05": 10.213143042505221,
+        "p10": 18.07009560263779,
+        "p25": 31.149337863900346,
+        "p50": 49.11694725947481,
+        "p75": 66.99501904744763,
+        "p90": 85.06983979021547,
+        "p95": 92.2367129639435,
+        "atOrAbove": {
+          "60": 13,
+          "70": 8,
+          "80": 5,
+          "90": 3
+        },
+        "below": {
+          "30": 7,
+          "40": 14
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 25,
+            "largestTieGroup": 3,
+            "valuesInTies": 13
+          }
+        }
+      },
+      "live": {
+        "n": 32,
+        "mean": 49.99999999999999,
+        "median": 50,
+        "sd": 29.781440246276873,
+        "min": 0,
+        "max": 98.38709677419355,
+        "p05": 5,
+        "p10": 10,
+        "p25": 25,
+        "p50": 50,
+        "p75": 75,
+        "p90": 90.00000000000001,
+        "p95": 95.7258064516129,
+        "atOrAbove": {
+          "60": 13,
+          "70": 10,
+          "80": 7,
+          "90": 4
+        },
+        "below": {
+          "30": 10,
+          "40": 13
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 0,
+          "theoreticalCeiling": 100,
+          "atFloor": 1,
+          "atCeiling": 0,
+          "within2Of0": 1,
+          "within2Of100": 2
+        },
+        "ties": {
+          "exact": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "oneDecimal": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "integer": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          }
+        }
+      },
+      "prior": {
+        "n": 32,
+        "mean": 50.00000000000001,
+        "median": 50,
+        "sd": 20.84513732264674,
+        "min": 15,
+        "max": 85,
+        "p05": 18.5105,
+        "p10": 22.014000000000003,
+        "p25": 32.5,
+        "p50": 50,
+        "p75": 67.5,
+        "p90": 77.986,
+        "p95": 81.48949999999999,
+        "atOrAbove": {
+          "60": 12,
+          "70": 7,
+          "80": 3,
+          "90": 0
+        },
+        "below": {
+          "30": 7,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 15,
+          "theoreticalCeiling": 85,
+          "atFloor": 1,
+          "atCeiling": 1,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          }
+        }
+      },
+      "bridgeDelta": {
+        "n": 32,
+        "mean": 0.008686401897211038,
+        "median": 5.665327742596665,
+        "sd": 24.79632390467946,
+        "min": -56.55106131744239,
+        "max": 49.02801608118074,
+        "p05": -39.74339831922164,
+        "p10": -31.695093316358836,
+        "p25": -18.51240843353642,
+        "p50": 5.665327742596665,
+        "p75": 16.963650750589863,
+        "p90": 30.18739044604197,
+        "p95": 33.3703002777721,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 28,
+          "40": 31
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 15,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 28,
+            "largestTieGroup": 2,
+            "valuesInTies": 8
+          }
+        }
+      },
+      "liveAtTheoreticalBound": [
+        {
+          "team": "MIA",
+          "live": 0,
+          "display": 7.166624856562327
+        }
+      ],
+      "displayHardBounds": [
+        2.5760068241149625,
+        97.24115045975981
+      ],
+      "packing": {
+        "p75MinusMedian": 17.878071787972814,
+        "p90MinusMedian": 35.952892530740655,
+        "medianMinusP10": 31.046851656837024,
+        "upperHalfSpread": 45.72465846315419,
+        "rank6To15Spread": 27.300039777946083,
+        "rank4To15Spread": 32.621405953958,
+        "atLeast70": 8,
+        "in40To60": 5,
+        "rolling5": {
+          "count": 5,
+          "lower": 60.10342249083515,
+          "upper": 65.10342249083516
+        },
+        "rolling6": {
+          "count": 5,
+          "lower": 60.10342249083515,
+          "upper": 66.10342249083516
+        },
+        "within10OfMedian": 5,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
+      "liveWeight": {
+        "n": 32,
+        "mean": 0.8179479527436105,
+        "median": 0.8177782032725056,
+        "sd": 0.019802286960615097,
+        "min": 0.7523040707815063,
+        "max": 0.8498563918790007,
+        "p05": 0.7891975703832329,
+        "p10": 0.8014769900931233,
+        "p25": 0.8080468724852418,
+        "p50": 0.8177782032725056,
+        "p75": 0.8339426584143894,
+        "p90": 0.8389732275470391,
+        "p95": 0.8434640313865055,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 32,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      }
+    },
+    "qbIndex": {
+      "label": "QB play",
+      "family": "multicomponent",
+      "display": {
+        "n": 32,
+        "mean": 52.26715669996494,
+        "median": 53.39507845762938,
+        "sd": 23.674186497030618,
+        "min": 17.246115490562552,
+        "max": 92.87650569436806,
+        "p05": 19.603156086521945,
+        "p10": 21.162751924865017,
+        "p25": 27.62489332779187,
+        "p50": 53.39507845762938,
+        "p75": 72.84827932132119,
+        "p90": 83.03476991028123,
+        "p95": 85.96601557425284,
+        "atOrAbove": {
+          "60": 13,
+          "70": 10,
+          "80": 6,
+          "90": 1
+        },
+        "below": {
+          "30": 9,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "integer": {
+            "distinct": 27,
+            "largestTieGroup": 2,
+            "valuesInTies": 10
+          }
+        }
+      },
+      "live": {
+        "n": 32,
+        "mean": 52.809529147942726,
+        "median": 54.54386064892503,
+        "sd": 27.393644093772668,
+        "min": 9.494775185558943,
+        "max": 96.59701303105035,
+        "p05": 11.997376820416473,
+        "p10": 13.660662243358015,
+        "p25": 28.075616650008534,
+        "p50": 54.54386064892503,
+        "p75": 76.50241687438535,
+        "p90": 85.01172917213057,
+        "p95": 91.81192577126306,
+        "atOrAbove": {
+          "60": 15,
+          "70": 12,
+          "80": 6,
+          "90": 2
+        },
+        "below": {
+          "30": 9,
+          "40": 13
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 0,
+          "theoreticalCeiling": 100,
+          "atFloor": 0,
+          "atCeiling": 0,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 29,
+            "largestTieGroup": 2,
+            "valuesInTies": 6
+          }
+        }
+      },
+      "prior": {
+        "n": 32,
+        "mean": 50.00000000000001,
+        "median": 50,
+        "sd": 20.84513732264674,
+        "min": 15,
+        "max": 85,
+        "p05": 18.5105,
+        "p10": 22.014000000000003,
+        "p25": 32.5,
+        "p50": 50,
+        "p75": 67.5,
+        "p90": 77.986,
+        "p95": 81.48949999999999,
+        "atOrAbove": {
+          "60": 12,
+          "70": 7,
+          "80": 3,
+          "90": 0
+        },
+        "below": {
+          "30": 7,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 15,
+          "theoreticalCeiling": 85,
+          "atFloor": 1,
+          "atCeiling": 1,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          }
+        }
+      },
+      "bridgeDelta": {
+        "n": 32,
+        "mean": 2.2671566999649464,
+        "median": 5.16577562288475,
+        "sd": 25.234686210642696,
+        "min": -45.88348642088353,
+        "max": 44.04639281505996,
+        "p05": -36.197182763983264,
+        "p10": -30.99872994259798,
+        "p25": -20.911033082135326,
+        "p50": 5.16577562288475,
+        "p75": 17.43866213344977,
+        "p90": 38.29249604173595,
+        "p95": 41.78474919332533,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 26,
+          "40": 29
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 14,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 26,
+            "largestTieGroup": 3,
+            "valuesInTies": 10
+          }
+        }
+      },
+      "liveAtTheoreticalBound": [],
+      "displayHardBounds": [
+        2.999999999999999,
+        97.53832421379747
+      ],
+      "packing": {
+        "p75MinusMedian": 19.453200863691805,
+        "p90MinusMedian": 29.639691452651846,
+        "medianMinusP10": 32.23232653276436,
+        "upperHalfSpread": 38.51231805641386,
+        "rank6To15Spread": 23.381639494937126,
+        "rank4To15Spread": 26.356227296964,
+        "atLeast70": 10,
+        "in40To60": 7,
+        "rolling5": {
+          "count": 6,
+          "lower": 17.246115490562552,
+          "upper": 22.246115490562552
+        },
+        "rolling6": {
+          "count": 6,
+          "lower": 17.826830262239756,
+          "upper": 23.826830262239756
+        },
+        "within10OfMedian": 8,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
+      "liveWeight": {
+        "n": 32,
+        "mean": 0.8179479527436105,
+        "median": 0.8177782032725056,
+        "sd": 0.019802286960615097,
+        "min": 0.7523040707815063,
+        "max": 0.8498563918790007,
+        "p05": 0.7891975703832329,
+        "p10": 0.8014769900931233,
+        "p25": 0.8080468724852418,
+        "p50": 0.8177782032725056,
+        "p75": 0.8339426584143894,
+        "p90": 0.8389732275470391,
+        "p95": 0.8434640313865055,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 32,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      }
+    },
+    "receiverIndex": {
+      "label": "Receivers",
+      "family": "historical-cdf",
+      "display": {
+        "n": 32,
+        "mean": 45.92306695722357,
+        "median": 51.9201696161538,
+        "sd": 19.815452760252366,
+        "min": 13.653442401995331,
+        "max": 83.70345026952738,
+        "p05": 16.451074261681324,
+        "p10": 19.26840626700889,
+        "p25": 27.515383521840302,
+        "p50": 51.9201696161538,
+        "p75": 58.75812443371247,
+        "p90": 65.83406942371826,
+        "p95": 78.68425315326337,
+        "atOrAbove": {
+          "60": 7,
+          "70": 3,
+          "80": 1,
+          "90": 0
+        },
+        "below": {
+          "30": 10,
+          "40": 13
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 26,
+            "largestTieGroup": 4,
+            "valuesInTies": 10
+          }
+        }
+      },
+      "live": {
+        "n": 32,
+        "mean": 45.199331905022035,
+        "median": 53.052744557722505,
+        "sd": 22.20133199667068,
+        "min": 8.910683367838132,
+        "max": 86.74548409545179,
+        "p05": 13.305792862612702,
+        "p10": 19.81113127075586,
+        "p25": 23.43788766191497,
+        "p50": 53.052744557722505,
+        "p75": 60.94669251906569,
+        "p90": 72.85940879144805,
+        "p95": 80.22701861296768,
+        "atOrAbove": {
+          "60": 10,
+          "70": 5,
+          "80": 2,
+          "90": 0
+        },
+        "below": {
+          "30": 12,
+          "40": 15
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 1.5625,
+          "theoreticalCeiling": 98.4375,
+          "atFloor": 0,
+          "atCeiling": 0,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 23,
+            "largestTieGroup": 3,
+            "valuesInTies": 16
+          }
+        }
+      },
+      "prior": {
+        "n": 32,
+        "mean": 50,
+        "median": 50,
+        "sd": 20.197390185677456,
+        "min": 16.09375,
+        "max": 83.90625,
+        "p05": 19.484375000000004,
+        "p10": 22.875,
+        "p25": 33.046875,
+        "p50": 50,
+        "p75": 66.953125,
+        "p90": 77.125,
+        "p95": 80.515625,
+        "atOrAbove": {
+          "60": 11,
+          "70": 7,
+          "80": 2,
+          "90": 0
+        },
+        "below": {
+          "30": 7,
+          "40": 11
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 15,
+          "theoreticalCeiling": 85,
+          "atFloor": 0,
+          "atCeiling": 0,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          }
+        }
+      },
+      "bridgeDelta": {
+        "n": 32,
+        "mean": -4.076933042776436,
+        "median": -2.6371132057669655,
+        "sd": 19.380054212140063,
+        "min": -50.611184832945334,
+        "max": 26.822930167369073,
+        "p05": -39.52629704702799,
+        "p10": -27.719794125945217,
+        "p25": -16.209360786361636,
+        "p50": -2.6371132057669655,
+        "p75": 15.044684413481539,
+        "p90": 21.140076209475655,
+        "p95": 23.285429873069287,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 21,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 27,
+            "largestTieGroup": 3,
+            "valuesInTies": 9
+          }
+        }
+      },
+      "liveAtTheoreticalBound": [],
+      "displayHardBounds": [
+        4.424984940459832,
+        95.72697317968401
+      ],
+      "packing": {
+        "p75MinusMedian": 6.837954817558668,
+        "p90MinusMedian": 13.913899807564462,
+        "medianMinusP10": 32.651763349144915,
+        "upperHalfSpread": 31.529791204588847,
+        "rank6To15Spread": 5.506522330258406,
+        "rank4To15Spread": 9.20220446245169,
+        "atLeast70": 3,
+        "in40To60": 12,
+        "rolling5": {
+          "count": 9,
+          "lower": 57.36676246146626,
+          "upper": 62.36676246146626
+        },
+        "rolling6": {
+          "count": 10,
+          "lower": 56.73309219326913,
+          "upper": 62.73309219326913
+        },
+        "within10OfMedian": 12,
+        "conventions": {
+          "middle80": false,
+          "goodBand": true,
+          "centralPacking": true
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": true,
+            "10": true,
+            "12": true
+          },
+          "packingThresholds": {
+            "8": true,
+            "10": true
+          }
+        }
+      },
+      "liveWeight": {
+        "n": 32,
+        "mean": 0.8179479527436105,
+        "median": 0.8177782032725056,
+        "sd": 0.019802286960615097,
+        "min": 0.7523040707815063,
+        "max": 0.8498563918790007,
+        "p05": 0.7891975703832329,
+        "p10": 0.8014769900931233,
+        "p25": 0.8080468724852418,
+        "p50": 0.8177782032725056,
+        "p75": 0.8339426584143894,
+        "p90": 0.8389732275470391,
+        "p95": 0.8434640313865055,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 32,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      }
+    },
+    "olIndex": {
+      "label": "Offensive line",
+      "family": "historical-window-cdf",
+      "display": {
+        "n": 32,
+        "mean": 42.30814400259189,
+        "median": 37.84025719035655,
+        "sd": 17.752207871004455,
+        "min": 9.75510408718225,
+        "max": 85.42103091561734,
+        "p05": 21.268263630301824,
+        "p10": 24.1386371757196,
+        "p25": 29.774765103502386,
+        "p50": 37.84025719035655,
+        "p75": 50.156476917710386,
+        "p90": 69.08097722650085,
+        "p95": 75.97882634864588,
+        "atOrAbove": {
+          "60": 5,
+          "70": 2,
+          "80": 2,
+          "90": 0
+        },
+        "below": {
+          "30": 8,
+          "40": 17
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "integer": {
+            "distinct": 27,
+            "largestTieGroup": 2,
+            "valuesInTies": 10
+          }
+        }
+      },
+      "live": {
+        "n": 32,
+        "mean": 40.69614980126733,
+        "median": 35.280292859944105,
+        "sd": 19.993374388126856,
+        "min": 7.974837783075941,
+        "max": 90.95982289285737,
+        "p05": 17.445056017742715,
+        "p10": 19.828471671703085,
+        "p25": 28.448486357243002,
+        "p50": 35.280292859944105,
+        "p75": 51.48623406681418,
+        "p90": 67.25446244150723,
+        "p95": 80.62476200708527,
+        "atOrAbove": {
+          "60": 6,
+          "70": 3,
+          "80": 2,
+          "90": 1
+        },
+        "below": {
+          "30": 11,
+          "40": 19
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 0.11160714285714286,
+          "theoreticalCeiling": 99.88839285714286,
+          "atFloor": 0,
+          "atCeiling": 0,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 25,
+            "largestTieGroup": 3,
+            "valuesInTies": 13
+          }
+        }
+      },
+      "prior": {
+        "n": 32,
+        "mean": 50.00000000000001,
+        "median": 50,
+        "sd": 20.84513732264674,
+        "min": 15,
+        "max": 85,
+        "p05": 18.5105,
+        "p10": 22.014000000000003,
+        "p25": 32.5,
+        "p50": 50,
+        "p75": 67.5,
+        "p90": 77.986,
+        "p95": 81.48949999999999,
+        "atOrAbove": {
+          "60": 12,
+          "70": 7,
+          "80": 3,
+          "90": 0
+        },
+        "below": {
+          "30": 7,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 15,
+          "theoreticalCeiling": 85,
+          "atFloor": 1,
+          "atCeiling": 1,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          }
+        }
+      },
+      "bridgeDelta": {
+        "n": 32,
+        "mean": -7.691855997408119,
+        "median": -8.035245347387635,
+        "sd": 20.522568081770743,
+        "min": -44.21022637492086,
+        "max": 32.05859050999321,
+        "p05": -41.710386187454645,
+        "p10": -38.61443237217343,
+        "p25": -21.69949476045707,
+        "p50": -8.035245347387635,
+        "p75": 7.0400500499619945,
+        "p90": 18.77120985314874,
+        "p95": 23.460729733385453,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 31,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 19,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 28,
+            "largestTieGroup": 2,
+            "valuesInTies": 8
+          }
+        }
+      },
+      "liveAtTheoreticalBound": [],
+      "displayHardBounds": [
+        2.9149116842326404,
+        97.15007047121992
+      ],
+      "packing": {
+        "p75MinusMedian": 12.316219727353833,
+        "p90MinusMedian": 31.240720036144296,
+        "medianMinusP10": 13.701620014636951,
+        "upperHalfSpread": 46.8712572905382,
+        "rank6To15Spread": 19.702441729880533,
+        "rank4To15Spread": 29.35504145529864,
+        "atLeast70": 2,
+        "in40To60": 10,
+        "rolling5": {
+          "count": 7,
+          "lower": 32.79477402074545,
+          "upper": 37.79477402074545
+        },
+        "rolling6": {
+          "count": 8,
+          "lower": 32.79477402074545,
+          "upper": 38.79477402074545
+        },
+        "within10OfMedian": 16,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": true
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": true,
+            "10": false
+          }
+        }
+      },
+      "liveWeight": {
+        "n": 32,
+        "mean": 0.8179479527436105,
+        "median": 0.8177782032725056,
+        "sd": 0.019802286960615097,
+        "min": 0.7523040707815063,
+        "max": 0.8498563918790007,
+        "p05": 0.7891975703832329,
+        "p10": 0.8014769900931233,
+        "p25": 0.8080468724852418,
+        "p50": 0.8177782032725056,
+        "p75": 0.8339426584143894,
+        "p90": 0.8389732275470391,
+        "p95": 0.8434640313865055,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 32,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      }
+    },
+    "rbIndex": {
+      "label": "RB",
+      "family": "historical-cdf",
+      "display": {
+        "n": 32,
+        "mean": 50.21936421350165,
+        "median": 50.865615443754166,
+        "sd": 18.889744442831162,
+        "min": 15.603600309354913,
+        "max": 87.26250091314247,
+        "p05": 24.868950246238818,
+        "p10": 27.847983267111044,
+        "p25": 33.06953034850112,
+        "p50": 50.865615443754166,
+        "p75": 66.95906718956238,
+        "p90": 74.47038596331612,
+        "p95": 77.26798337375344,
+        "atOrAbove": {
+          "60": 11,
+          "70": 7,
+          "80": 1,
+          "90": 0
+        },
+        "below": {
+          "30": 6,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          }
+        }
+      },
+      "live": {
+        "n": 32,
+        "mean": 50.44909762370328,
+        "median": 49.79131375334265,
+        "sd": 21.741939283969444,
+        "min": 11.642079549564759,
+        "max": 90.071579170608,
+        "p05": 23.377166541787194,
+        "p10": 24.82953855280098,
+        "p25": 30.28509617599773,
+        "p50": 49.79131375334265,
+        "p75": 68.61658881248766,
+        "p90": 80.14599062983059,
+        "p95": 84.94215012534944,
+        "atOrAbove": {
+          "60": 12,
+          "70": 6,
+          "80": 5,
+          "90": 2
+        },
+        "below": {
+          "30": 8,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 1.5625,
+          "theoreticalCeiling": 98.4375,
+          "atFloor": 0,
+          "atCeiling": 0,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 24,
+            "largestTieGroup": 3,
+            "valuesInTies": 15
+          }
+        }
+      },
+      "prior": {
+        "n": 32,
+        "mean": 50,
+        "median": 50,
+        "sd": 20.197390185677456,
+        "min": 16.09375,
+        "max": 83.90625,
+        "p05": 19.484375000000004,
+        "p10": 22.875,
+        "p25": 33.046875,
+        "p50": 50,
+        "p75": 66.953125,
+        "p90": 77.125,
+        "p95": 80.515625,
+        "atOrAbove": {
+          "60": 11,
+          "70": 7,
+          "80": 2,
+          "90": 0
+        },
+        "below": {
+          "30": 7,
+          "40": 11
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 15,
+          "theoreticalCeiling": 85,
+          "atFloor": 0,
+          "atCeiling": 0,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          }
+        }
+      },
+      "bridgeDelta": {
+        "n": 32,
+        "mean": 0.2193642135016476,
+        "median": -2.3711320182997753,
+        "sd": 21.752436550106346,
+        "min": -47.11801476781251,
+        "max": 58.098191201012995,
+        "p05": -25.92540623335399,
+        "p10": -23.357186262769343,
+        "p25": -18.572817598818016,
+        "p50": -2.3711320182997753,
+        "p75": 10.711708915473725,
+        "p90": 29.236262455528284,
+        "p95": 34.73961779851803,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 28,
+          "40": 31
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 17,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 28,
+            "largestTieGroup": 2,
+            "valuesInTies": 8
+          }
+        }
+      },
+      "liveAtTheoreticalBound": [],
+      "displayHardBounds": [
+        4.058006610861369,
+        96.21909605775471
+      ],
+      "packing": {
+        "p75MinusMedian": 16.09345174580821,
+        "p90MinusMedian": 23.604770519561953,
+        "medianMinusP10": 23.017632176643122,
+        "upperHalfSpread": 34.98087482913726,
+        "rank6To15Spread": 18.16200911102362,
+        "rank4To15Spread": 21.1592190336344,
+        "atLeast70": 7,
+        "in40To60": 9,
+        "rolling5": {
+          "count": 5,
+          "lower": 52.28162608400522,
+          "upper": 57.28162608400522
+        },
+        "rolling6": {
+          "count": 6,
+          "lower": 27.7939561827978,
+          "upper": 33.7939561827978
+        },
+        "within10OfMedian": 9,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
+      "liveWeight": {
+        "n": 32,
+        "mean": 0.8179479527436105,
+        "median": 0.8177782032725056,
+        "sd": 0.019802286960615097,
+        "min": 0.7523040707815063,
+        "max": 0.8498563918790007,
+        "p05": 0.7891975703832329,
+        "p10": 0.8014769900931233,
+        "p25": 0.8080468724852418,
+        "p50": 0.8177782032725056,
+        "p75": 0.8339426584143894,
+        "p90": 0.8389732275470391,
+        "p95": 0.8434640313865055,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 32,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      }
+    },
+    "coverageIndex": {
+      "label": "Coverage",
+      "family": "current-rank-composite",
+      "display": {
+        "n": 32,
+        "mean": 50.006557859275276,
+        "median": 54.31964267543568,
+        "sd": 23.948176422862392,
+        "min": 3.5417753458175096,
+        "max": 93.54655145263992,
+        "p05": 13.011973534159317,
+        "p10": 17.755699105347258,
+        "p25": 31.39513313455629,
+        "p50": 54.31964267543568,
+        "p75": 65.6477663224011,
+        "p90": 82.43066128146933,
+        "p95": 89.40240534835063,
+        "atOrAbove": {
+          "60": 10,
+          "70": 7,
+          "80": 5,
+          "90": 2
+        },
+        "below": {
+          "30": 7,
+          "40": 11
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 27,
+            "largestTieGroup": 2,
+            "valuesInTies": 10
+          }
+        }
+      },
+      "live": {
+        "n": 32,
+        "mean": 49.99999999999999,
+        "median": 51.61290322580645,
+        "sd": 27.408975739575016,
+        "min": 0.8064516129032242,
+        "max": 100,
+        "p05": 6.5322580645161255,
+        "p10": 16.370967741935488,
+        "p25": 29.233870967741936,
+        "p50": 51.61290322580645,
+        "p75": 68.54838709677419,
+        "p90": 89.19354838709678,
+        "p95": 92.78225806451613,
+        "atOrAbove": {
+          "60": 12,
+          "70": 7,
+          "80": 5,
+          "90": 2
+        },
+        "below": {
+          "30": 8,
+          "40": 13
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 0,
+          "theoreticalCeiling": 100,
+          "atFloor": 0,
+          "atCeiling": 1,
+          "within2Of0": 1,
+          "within2Of100": 1
+        },
+        "ties": {
+          "exact": {
+            "distinct": 28,
+            "largestTieGroup": 2,
+            "valuesInTies": 8
+          },
+          "oneDecimal": {
+            "distinct": 23,
+            "largestTieGroup": 2,
+            "valuesInTies": 18
+          },
+          "integer": {
+            "distinct": 23,
+            "largestTieGroup": 2,
+            "valuesInTies": 18
+          }
+        }
+      },
+      "prior": {
+        "n": 32,
+        "mean": 50.00000000000001,
+        "median": 50,
+        "sd": 20.84513732264674,
+        "min": 15,
+        "max": 85,
+        "p05": 18.5105,
+        "p10": 22.014000000000003,
+        "p25": 32.5,
+        "p50": 50,
+        "p75": 67.5,
+        "p90": 77.986,
+        "p95": 81.48949999999999,
+        "atOrAbove": {
+          "60": 12,
+          "70": 7,
+          "80": 3,
+          "90": 0
+        },
+        "below": {
+          "30": 7,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 15,
+          "theoreticalCeiling": 85,
+          "atFloor": 1,
+          "atCeiling": 1,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          }
+        }
+      },
+      "bridgeDelta": {
+        "n": 32,
+        "mean": 0.00655785927526642,
+        "median": -1.5725614416168305,
+        "sd": 22.97260422791917,
+        "min": -50.227171205781715,
+        "max": 35.553995094946714,
+        "p05": -42.75324046186094,
+        "p10": -28.40400894903236,
+        "p25": -17.55468514023464,
+        "p50": -1.5725614416168305,
+        "p75": 15.762744902060323,
+        "p90": 28.731658989128075,
+        "p95": 29.329162775392565,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 31,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 17,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 24,
+            "largestTieGroup": 3,
+            "valuesInTies": 14
+          }
+        }
+      },
+      "liveAtTheoreticalBound": [
+        {
+          "team": "LAR",
+          "live": 100,
+          "display": 93.5075074153014
+        }
+      ],
+      "displayHardBounds": [
+        2.8695556215034363,
+        97.55679280144543
+      ],
+      "packing": {
+        "p75MinusMedian": 11.328123646965416,
+        "p90MinusMedian": 28.111018606033646,
+        "medianMinusP10": 36.563943570088426,
+        "upperHalfSpread": 38.909655329089176,
+        "rank6To15Spread": 18.10964119006333,
+        "rank4To15Spread": 27.079488783442002,
+        "atLeast70": 7,
+        "in40To60": 11,
+        "rolling5": {
+          "count": 6,
+          "lower": 54.00238922732062,
+          "upper": 59.00238922732062
+        },
+        "rolling6": {
+          "count": 7,
+          "lower": 54.00238922732062,
+          "upper": 60.00238922732062
+        },
+        "within10OfMedian": 9,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
+      "liveWeight": {
+        "n": 32,
+        "mean": 0.8179479527436105,
+        "median": 0.8177782032725056,
+        "sd": 0.019802286960615097,
+        "min": 0.7523040707815063,
+        "max": 0.8498563918790007,
+        "p05": 0.7891975703832329,
+        "p10": 0.8014769900931233,
+        "p25": 0.8080468724852418,
+        "p50": 0.8177782032725056,
+        "p75": 0.8339426584143894,
+        "p90": 0.8389732275470391,
+        "p95": 0.8434640313865055,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 32,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      }
+    },
+    "passRushIndex": {
+      "label": "Pass rush",
+      "family": "mixed-provider",
+      "display": {
+        "n": 32,
+        "mean": 49.557301246653545,
+        "median": 48.069631247951186,
+        "sd": 25.74172113939674,
+        "min": 9.822436575295335,
+        "max": 96.38540599950753,
+        "p05": 11.171261480530392,
+        "p10": 15.010730600544376,
+        "p25": 31.950813762258086,
+        "p50": 48.069631247951186,
+        "p75": 70.98016823673083,
+        "p90": 84.80861908481884,
+        "p95": 86.80517498691961,
+        "atOrAbove": {
+          "60": 12,
+          "70": 9,
+          "80": 5,
+          "90": 1
+        },
+        "below": {
+          "30": 8,
+          "40": 13
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 28,
+            "largestTieGroup": 2,
+            "valuesInTies": 8
+          }
+        }
+      },
+      "live": {
+        "n": 32,
+        "mean": 49.3631507451658,
+        "median": 46.7741935483871,
+        "sd": 29.671700392049125,
+        "min": 0,
+        "max": 100,
+        "p05": 5,
+        "p10": 10,
+        "p25": 25,
+        "p50": 46.7741935483871,
+        "p75": 75,
+        "p90": 90.00000000000001,
+        "p95": 95,
+        "atOrAbove": {
+          "60": 12,
+          "70": 10,
+          "80": 7,
+          "90": 4
+        },
+        "below": {
+          "30": 10,
+          "40": 13
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 0,
+          "theoreticalCeiling": 100,
+          "atFloor": 1,
+          "atCeiling": 1,
+          "within2Of0": 1,
+          "within2Of100": 1
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          }
+        }
+      },
+      "prior": {
+        "n": 32,
+        "mean": 50,
+        "median": 50,
+        "sd": 20.197390185677456,
+        "min": 16.09375,
+        "max": 83.90625,
+        "p05": 19.484375000000004,
+        "p10": 22.875,
+        "p25": 33.046875,
+        "p50": 50,
+        "p75": 66.953125,
+        "p90": 77.125,
+        "p95": 80.515625,
+        "atOrAbove": {
+          "60": 11,
+          "70": 7,
+          "80": 2,
+          "90": 0
+        },
+        "below": {
+          "30": 7,
+          "40": 11
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 15,
+          "theoreticalCeiling": 85,
+          "atFloor": 0,
+          "atCeiling": 0,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          }
+        }
+      },
+      "bridgeDelta": {
+        "n": 32,
+        "mean": -0.44269875334645903,
+        "median": 2.1220034555376106,
+        "sd": 24.636114725168664,
+        "min": -44.45198620078017,
+        "max": 55.95389130926989,
+        "p05": -40.195276119285104,
+        "p10": -36.0131537435948,
+        "p25": -14.763329407474973,
+        "p50": 2.1220034555376106,
+        "p75": 12.19067132859644,
+        "p90": 32.84319958440651,
+        "p95": 37.47188757007102,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 28,
+          "40": 31
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 16,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "integer": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          }
+        }
+      },
+      "liveAtTheoreticalBound": [
+        {
+          "team": "MIN",
+          "live": 100,
+          "display": 96.38540599950753
+        },
+        {
+          "team": "NYG",
+          "live": 0,
+          "display": 11.016763799219834
+        }
+      ],
+      "displayHardBounds": [
+        2.6971380050260887,
+        97.02759139876302
+      ],
+      "packing": {
+        "p75MinusMedian": 22.910536988779647,
+        "p90MinusMedian": 36.73898783686766,
+        "medianMinusP10": 33.05890064740681,
+        "upperHalfSpread": 46.68989690714552,
+        "rank6To15Spread": 27.9397798218955,
+        "rank4To15Spread": 33.305040995401285,
+        "atLeast70": 9,
+        "in40To60": 7,
+        "rolling5": {
+          "count": 4,
+          "lower": 36.42336983913563,
+          "upper": 41.42336983913563
+        },
+        "rolling6": {
+          "count": 5,
+          "lower": 34.02060424525559,
+          "upper": 40.02060424525559
+        },
+        "within10OfMedian": 8,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
+      "liveWeight": {
+        "n": 32,
+        "mean": 0.8179479527436105,
+        "median": 0.8177782032725056,
+        "sd": 0.019802286960615097,
+        "min": 0.7523040707815063,
+        "max": 0.8498563918790007,
+        "p05": 0.7891975703832329,
+        "p10": 0.8014769900931233,
+        "p25": 0.8080468724852418,
+        "p50": 0.8177782032725056,
+        "p75": 0.8339426584143894,
+        "p90": 0.8389732275470391,
+        "p95": 0.8434640313865055,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 32,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      }
+    },
+    "runDefenseIndex": {
+      "label": "Run defense",
+      "family": "current-rank",
+      "display": {
+        "n": 32,
+        "mean": 49.90057025942694,
+        "median": 47.047031325098644,
+        "sd": 24.899593751912757,
+        "min": 10.055243434885647,
+        "max": 90.53001934824908,
+        "p05": 12.882196491525669,
+        "p10": 15.607760987518839,
+        "p25": 30.95844006353164,
+        "p50": 47.047031325098644,
+        "p75": 72.2885618895619,
+        "p90": 85.4184836634777,
+        "p95": 86.66539262696999,
+        "atOrAbove": {
+          "60": 14,
+          "70": 9,
+          "80": 5,
+          "90": 1
+        },
+        "below": {
+          "30": 7,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "integer": {
+            "distinct": 25,
+            "largestTieGroup": 2,
+            "valuesInTies": 14
+          }
+        }
+      },
+      "live": {
+        "n": 32,
+        "mean": 50,
+        "median": 50,
+        "sd": 29.784169859063528,
+        "min": 0,
+        "max": 100,
+        "p05": 4.999999999999998,
+        "p10": 9.999999999999996,
+        "p25": 25.000000000000004,
+        "p50": 50,
+        "p75": 75,
+        "p90": 90.00000000000001,
+        "p95": 95,
+        "atOrAbove": {
+          "60": 13,
+          "70": 10,
+          "80": 7,
+          "90": 4
+        },
+        "below": {
+          "30": 10,
+          "40": 13
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 0,
+          "theoreticalCeiling": 100,
+          "atFloor": 1,
+          "atCeiling": 1,
+          "within2Of0": 1,
+          "within2Of100": 1
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          }
+        }
+      },
+      "prior": {
+        "n": 32,
+        "mean": 50,
+        "median": 50,
+        "sd": 20.84891890134447,
+        "min": 15,
+        "max": 85,
+        "p05": 18.5,
+        "p10": 22.000000000000004,
+        "p25": 32.5,
+        "p50": 50,
+        "p75": 67.5,
+        "p90": 78,
+        "p95": 81.5,
+        "atOrAbove": {
+          "60": 12,
+          "70": 7,
+          "80": 3,
+          "90": 0
+        },
+        "below": {
+          "30": 7,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 15,
+          "theoreticalCeiling": 85,
+          "atFloor": 1,
+          "atCeiling": 1,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          }
+        }
+      },
+      "bridgeDelta": {
+        "n": 32,
+        "mean": -0.09942974057306242,
+        "median": -4.373160801056635,
+        "sd": 28.48296742217271,
+        "min": -65.6190352193698,
+        "max": 51.31905673527503,
+        "p05": -46.750654676491,
+        "p10": -29.441370854490867,
+        "p25": -20.594891043289508,
+        "p50": -4.373160801056635,
+        "p75": 19.822518176797786,
+        "p90": 39.929657484236394,
+        "p95": 47.625112184109376,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 28,
+          "40": 28
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 18,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "integer": {
+            "distinct": 27,
+            "largestTieGroup": 3,
+            "valuesInTies": 9
+          }
+        }
+      },
+      "liveAtTheoreticalBound": [
+        {
+          "team": "ATL",
+          "live": 100,
+          "display": 86.017727504771
+        },
+        {
+          "team": "DEN",
+          "live": 0,
+          "display": 14.864835748372137
+        }
+      ],
+      "displayHardBounds": [
+        2.892264493958449,
+        97.12166876904126
+      ],
+      "packing": {
+        "p75MinusMedian": 25.24153056446326,
+        "p90MinusMedian": 38.37145233837906,
+        "medianMinusP10": 31.439270337579806,
+        "upperHalfSpread": 40.77709506810788,
+        "rank6To15Spread": 18.641199009777836,
+        "rank4To15Spread": 27.708207115436565,
+        "atLeast70": 9,
+        "in40To60": 6,
+        "rolling5": {
+          "count": 5,
+          "lower": 60.245012876129344,
+          "upper": 65.24501287612935
+        },
+        "rolling6": {
+          "count": 5,
+          "lower": 60.245012876129344,
+          "upper": 66.24501287612935
+        },
+        "within10OfMedian": 6,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
+      "liveWeight": {
+        "n": 32,
+        "mean": 0.8179479527436105,
+        "median": 0.8177782032725056,
+        "sd": 0.019802286960615097,
+        "min": 0.7523040707815063,
+        "max": 0.8498563918790007,
+        "p05": 0.7891975703832329,
+        "p10": 0.8014769900931233,
+        "p25": 0.8080468724852418,
+        "p50": 0.8177782032725056,
+        "p75": 0.8339426584143894,
+        "p90": 0.8389732275470391,
+        "p95": 0.8434640313865055,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 32,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      }
+    },
+    "pointsAllowedPerDriveIndex": {
+      "label": "Pts/drive prevention",
+      "family": "current-rank",
+      "display": {
+        "n": 32,
+        "mean": 49.99495967741935,
+        "median": 50,
+        "sd": 23.694353808549447,
+        "min": 9.999999999999998,
+        "max": 90,
+        "p05": 13.999999999999996,
+        "p10": 17.999999999999993,
+        "p25": 30,
+        "p50": 50,
+        "p75": 70.64516129032259,
+        "p90": 81.81451612903227,
+        "p95": 86.00000000000001,
+        "atOrAbove": {
+          "60": 12,
+          "70": 9,
+          "80": 4,
+          "90": 1
+        },
+        "below": {
+          "30": 8,
+          "40": 13
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 29,
+            "largestTieGroup": 2,
+            "valuesInTies": 6
+          }
+        }
+      },
+      "live": {
+        "n": 32,
+        "mean": 50,
+        "median": 50,
+        "sd": 29.77871038328509,
+        "min": 0,
+        "max": 100,
+        "p05": 4.999999999999998,
+        "p10": 9.999999999999996,
+        "p25": 25.000000000000004,
+        "p50": 50,
+        "p75": 75.80645161290323,
+        "p90": 90.00000000000001,
+        "p95": 95,
+        "atOrAbove": {
+          "60": 13,
+          "70": 10,
+          "80": 7,
+          "90": 4
+        },
+        "below": {
+          "30": 10,
+          "40": 13
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 0,
+          "theoreticalCeiling": 100,
+          "atFloor": 1,
+          "atCeiling": 1,
+          "within2Of0": 1,
+          "within2Of100": 1
+        },
+        "ties": {
+          "exact": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          }
+        }
+      },
+      "prior": {
+        "n": 32,
+        "mean": 50,
+        "median": 50,
+        "sd": 0,
+        "min": 50,
+        "max": 50,
+        "p05": 50,
+        "p10": 50,
+        "p25": 50,
+        "p50": 50,
+        "p75": 50,
+        "p90": 50,
+        "p95": 50,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 0,
+          "40": 0
+        },
+        "floorCeiling": {
+          "theoreticalFloor": 15,
+          "theoreticalCeiling": 85,
+          "atFloor": 0,
+          "atCeiling": 0,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      },
+      "bridgeDelta": {
+        "n": 32,
+        "mean": -0.005040322580642798,
+        "median": 3.552713678800501e-15,
+        "sd": 23.694353808549447,
+        "min": -40,
+        "max": 40,
+        "p05": -36,
+        "p10": -32.00000000000001,
+        "p25": -20,
+        "p50": 3.552713678800501e-15,
+        "p75": 20.64516129032259,
+        "p90": 31.814516129032274,
+        "p95": 36.00000000000001,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 28,
+          "40": 31
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 17,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 29,
+            "largestTieGroup": 2,
+            "valuesInTies": 6
+          }
+        }
+      },
+      "liveAtTheoreticalBound": [
+        {
+          "team": "DET",
+          "live": 0,
+          "display": 9.999999999999998
+        },
+        {
+          "team": "MIN",
+          "live": 100,
+          "display": 90
+        }
+      ],
+      "displayHardBounds": [
+        9.999999999999998,
+        90
+      ],
+      "packing": {
+        "p75MinusMedian": 20.64516129032259,
+        "p90MinusMedian": 31.81451612903227,
+        "medianMinusP10": 32.00000000000001,
+        "upperHalfSpread": 38.70967741935484,
+        "rank6To15Spread": 23.22580645161291,
+        "rank4To15Spread": 28.38709677419355,
+        "atLeast70": 9,
+        "in40To60": 7,
+        "rolling5": {
+          "count": 3,
+          "lower": 74.51612903225806,
+          "upper": 79.51612903225806
+        },
+        "rolling6": {
+          "count": 3,
+          "lower": 84.83870967741936,
+          "upper": 90.83870967741936
+        },
+        "within10OfMedian": 7,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      },
+      "liveWeight": {
+        "n": 32,
+        "mean": 0.7968750000000004,
+        "median": 0.8,
+        "sd": 0.012103072956898176,
+        "min": 0.75,
+        "max": 0.8,
+        "p05": 0.7775000000000001,
+        "p10": 0.8,
+        "p25": 0.8,
+        "p50": 0.8,
+        "p75": 0.8,
+        "p90": 0.8,
+        "p95": 0.8,
+        "atOrAbove": {
+          "60": 0,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 32,
+          "40": 32
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 32,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 2,
+            "largestTieGroup": 30,
+            "valuesInTies": 32
+          },
+          "oneDecimal": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          },
+          "integer": {
+            "distinct": 1,
+            "largestTieGroup": 32,
+            "valuesInTies": 32
+          }
+        }
+      }
+    },
+    "offenseComposite": {
+      "label": "Overall offense",
+      "family": "display-only",
+      "display": {
+        "n": 32,
+        "mean": 48.030969500053025,
+        "median": 44.3923067547984,
+        "sd": 23.807188893876642,
+        "min": 11.891308165567686,
+        "max": 92.74619388805645,
+        "p05": 17.42783930727731,
+        "p10": 22.26210570251499,
+        "p25": 26.84242701474525,
+        "p50": 44.3923067547984,
+        "p75": 69.47366746499006,
+        "p90": 82.2623899553868,
+        "p95": 83.06800083053312,
+        "atOrAbove": {
+          "60": 9,
+          "70": 8,
+          "80": 7,
+          "90": 1
+        },
+        "below": {
+          "30": 11,
+          "40": 15
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "integer": {
+            "distinct": 27,
+            "largestTieGroup": 2,
+            "valuesInTies": 10
+          }
+        }
+      },
+      "packing": {
+        "p75MinusMedian": 25.08136071019166,
+        "p90MinusMedian": 37.8700832005884,
+        "medianMinusP10": 22.130201052283407,
+        "upperHalfSpread": 48.26483365439943,
+        "rank6To15Spread": 34.65117364082959,
+        "rank4To15Spread": 36.39091396440684,
+        "atLeast70": 8,
+        "in40To60": 8,
+        "rolling5": {
+          "count": 6,
+          "lower": 80.49701062868846,
+          "upper": 85.49701062868846
+        },
+        "rolling6": {
+          "count": 7,
+          "lower": 77.42836079360403,
+          "upper": 83.42836079360403
+        },
+        "within10OfMedian": 8,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      }
+    },
+    "defenseIndex": {
+      "label": "Overall defense",
+      "family": "display-only",
+      "display": {
+        "n": 32,
+        "mean": 49.34135376585738,
+        "median": 46.47774744792572,
+        "sd": 20.995004139624324,
+        "min": 13.02194282716826,
+        "max": 93.69365297797924,
+        "p05": 21.764102642206094,
+        "p10": 25.675128203644878,
+        "p25": 31.99233231694316,
+        "p50": 46.47774744792572,
+        "p75": 63.75622219663606,
+        "p90": 78.92949289710953,
+        "p95": 87.34344359899427,
+        "atOrAbove": {
+          "60": 10,
+          "70": 6,
+          "80": 3,
+          "90": 2
+        },
+        "below": {
+          "30": 7,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "integer": {
+            "distinct": 27,
+            "largestTieGroup": 2,
+            "valuesInTies": 10
+          }
+        }
+      },
+      "packing": {
+        "p75MinusMedian": 17.278474748710337,
+        "p90MinusMedian": 32.451745449183804,
+        "medianMinusP10": 20.802619244280844,
+        "upperHalfSpread": 46.88792779462787,
+        "rank6To15Spread": 29.155780295297305,
+        "rank4To15Spread": 32.05098308723757,
+        "atLeast70": 6,
+        "in40To60": 10,
+        "rolling5": {
+          "count": 7,
+          "lower": 46.09587225876935,
+          "upper": 51.09587225876935
+        },
+        "rolling6": {
+          "count": 8,
+          "lower": 46.09587225876935,
+          "upper": 52.09587225876935
+        },
+        "within10OfMedian": 12,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": true
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": true,
+            "10": false
+          }
+        }
+      }
+    },
+    "offenseIndex": {
+      "label": "Team efficiency (diagnostic)",
+      "family": "display-only",
+      "display": {
+        "n": 32,
+        "mean": 49.983551516191646,
+        "median": 47.69307558111686,
+        "sd": 26.028728317701717,
+        "min": 5.921947852389785,
+        "max": 94.4595024499472,
+        "p05": 12.587307799154567,
+        "p10": 15.103269962367401,
+        "p25": 30.254660126061193,
+        "p50": 47.69307558111686,
+        "p75": 70.90698254559038,
+        "p90": 84.80488991722949,
+        "p95": 92.40811644133993,
+        "atOrAbove": {
+          "60": 11,
+          "70": 9,
+          "80": 6,
+          "90": 3
+        },
+        "below": {
+          "30": 8,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "integer": {
+            "distinct": 27,
+            "largestTieGroup": 2,
+            "valuesInTies": 10
+          }
+        }
+      },
+      "packing": {
+        "p75MinusMedian": 23.213906964473523,
+        "p90MinusMedian": 37.11181433611263,
+        "medianMinusP10": 32.58980561874946,
+        "upperHalfSpread": 46.17553040458158,
+        "rank6To15Spread": 31.648159087508454,
+        "rank4To15Spread": 34.73221048273444,
+        "atLeast70": 9,
+        "in40To60": 9,
+        "rolling5": {
+          "count": 4,
+          "lower": 45.8906118960834,
+          "upper": 50.8906118960834
+        },
+        "rolling6": {
+          "count": 5,
+          "lower": 45.32523065511724,
+          "upper": 51.32523065511724
+        },
+        "within10OfMedian": 10,
+        "conventions": {
+          "middle80": false,
+          "goodBand": false,
+          "centralPacking": false
+        },
+        "sensitivity": {
+          "goodBandThresholds": {
+            "8": false,
+            "10": false,
+            "12": false
+          },
+          "packingThresholds": {
+            "8": false,
+            "10": false
+          }
+        }
+      }
+    },
+    "offenseCompositeRaw": {
+      "label": "Overall offense raw weighted grade",
+      "family": "display-only input",
+      "display": {
+        "n": 32,
+        "mean": 48.960438777041574,
+        "median": 46.48927980634906,
+        "sd": 16.931818295058154,
+        "min": 21.021241798122865,
+        "max": 85.03856016434804,
+        "p05": 26.770757008396906,
+        "p10": 31.02640620757161,
+        "p25": 34.63275106446415,
+        "p50": 46.48927980634906,
+        "p75": 62.80064674382423,
+        "p90": 72.93220349919787,
+        "p95": 73.69249080331541,
+        "atOrAbove": {
+          "60": 9,
+          "70": 7,
+          "80": 1,
+          "90": 0
+        },
+        "below": {
+          "30": 3,
+          "40": 12
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 30,
+            "largestTieGroup": 2,
+            "valuesInTies": 4
+          },
+          "integer": {
+            "distinct": 25,
+            "largestTieGroup": 3,
+            "valuesInTies": 13
+          }
+        }
+      }
+    },
+    "defenseCompositeRaw": {
+      "label": "Overall defense raw weighted grade",
+      "family": "display-only input",
+      "display": {
+        "n": 32,
+        "mean": 49.90268063692707,
+        "median": 47.53925099715653,
+        "sd": 16.53396250872707,
+        "min": 19.931539299086282,
+        "max": 88.64462491462301,
+        "p05": 28.620636091489324,
+        "p10": 31.99646998001868,
+        "p25": 37.037088881587245,
+        "p50": 47.53925099715653,
+        "p75": 59.771995928964344,
+        "p90": 72.00499647128824,
+        "p95": 80.82104032721897,
+        "atOrAbove": {
+          "60": 8,
+          "70": 5,
+          "80": 2,
+          "90": 0
+        },
+        "below": {
+          "30": 3,
+          "40": 10
+        },
+        "floorCeiling": {
+          "theoreticalFloor": null,
+          "theoreticalCeiling": null,
+          "atFloor": null,
+          "atCeiling": null,
+          "within2Of0": 0,
+          "within2Of100": 0
+        },
+        "ties": {
+          "exact": {
+            "distinct": 32,
+            "largestTieGroup": 1,
+            "valuesInTies": 0
+          },
+          "oneDecimal": {
+            "distinct": 31,
+            "largestTieGroup": 2,
+            "valuesInTies": 2
+          },
+          "integer": {
+            "distinct": 24,
+            "largestTieGroup": 2,
+            "valuesInTies": 16
+          }
+        }
+      }
+    }
+  },
+  "teams": [
+    {
+      "team": "ARI",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 49.30401015129424,
+      "pointsScoredPerDriveIndex_live": 51.61290322580645,
+      "pointsScoredPerDriveIndex_prior": 37.61,
+      "pointsScoredPerDriveIndex_delta": 11.694010151294243,
+      "qbIndex": 36.78793963696406,
+      "qbIndex_live": 39.2909418694685,
+      "qbIndex_prior": 30.820000000000004,
+      "qbIndex_delta": 5.967939636964058,
+      "receiverIndex": 31.107565167054666,
+      "receiverIndex_live": 21.114772904880034,
+      "receiverIndex_prior": 81.71875,
+      "receiverIndex_delta": -50.611184832945334,
+      "olIndex": 54.33969387592856,
+      "olIndex_live": 58.098936151436476,
+      "olIndex_prior": 35.3,
+      "olIndex_delta": 19.039693875928563,
+      "rbIndex": 44.60526377863022,
+      "rbIndex_live": 43.75606686742401,
+      "rbIndex_prior": 48.90625,
+      "rbIndex_delta": -4.300986221369783,
+      "coverageIndex": 22.515492421419804,
+      "coverageIndex_live": 21.7741935483871,
+      "coverageIndex_prior": 26.270000000000003,
+      "coverageIndex_delta": -3.754507578580199,
+      "passRushIndex": 36.42336983913563,
+      "passRushIndex_live": 38.70967741935484,
+      "passRushIndex_prior": 24.84375,
+      "passRushIndex_delta": 11.579619839135631,
+      "runDefenseIndex": 86.64163738043632,
+      "runDefenseIndex_live": 96.7741935483871,
+      "runDefenseIndex_prior": 35.32258064516129,
+      "runDefenseIndex_delta": 51.31905673527503,
+      "pointsAllowedPerDriveIndex": 20.322580645161292,
+      "pointsAllowedPerDriveIndex_live": 12.903225806451616,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -29.677419354838708,
+      "offenseComposite": 38.36807559590788,
+      "defenseIndex": 39.02856510763352,
+      "offenseIndex": 35.83444145437167,
+      "bridgePoints": 2.124451141017127,
+      "eloDelta": 11.769459321234883,
+      "force": 25.885170498108362
+    },
+    {
+      "team": "ATL",
+      "passRushProvider": "pfr-advanced",
+      "pointsScoredPerDriveIndex": 17.920224149313363,
+      "pointsScoredPerDriveIndex_live": 12.903225806451612,
+      "pointsScoredPerDriveIndex_prior": 35.3,
+      "pointsScoredPerDriveIndex_delta": -17.379775850686634,
+      "qbIndex": 21.07765172994733,
+      "qbIndex_live": 12.928318239574237,
+      "qbIndex_prior": 42.09,
+      "qbIndex_delta": -21.012348270052673,
+      "receiverIndex": 16.71802547956963,
+      "receiverIndex_live": 13.740919746268922,
+      "receiverIndex_prior": 27.03125,
+      "receiverIndex_delta": -10.31322452043037,
+      "olIndex": 63.96475220493838,
+      "olIndex_live": 61.14583023342612,
+      "olIndex_prior": 73.73,
+      "olIndex_delta": -9.765247795061626,
+      "rbIndex": 74.63064239320467,
+      "rbIndex_live": 80.16208210846457,
+      "rbIndex_prior": 55.46875,
+      "rbIndex_delta": 19.161892393204667,
+      "coverageIndex": 73.6749561183983,
+      "coverageIndex_live": 78.22580645161291,
+      "coverageIndex_prior": 57.91,
+      "coverageIndex_delta": 15.764956118398302,
+      "passRushIndex": 64.3711472130192,
+      "passRushIndex_live": 65.67806535225958,
+      "passRushIndex_prior": 59.84375,
+      "passRushIndex_delta": 4.527397213019199,
+      "runDefenseIndex": 86.017727504771,
+      "runDefenseIndex_live": 100,
+      "runDefenseIndex_prior": 37.58064516129032,
+      "runDefenseIndex_delta": 48.43708234348068,
+      "pointsAllowedPerDriveIndex": 77.82258064516128,
+      "pointsAllowedPerDriveIndex_live": 87.09677419354838,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 27.82258064516128,
+      "offenseComposite": 29.983683638304957,
+      "defenseIndex": 83.59989273839824,
+      "offenseIndex": 10.410598979781476,
+      "bridgePoints": 2.6123089218011537,
+      "eloDelta": 14.47219142677839,
+      "force": 53.30168478931125
+    },
+    {
+      "team": "BAL",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 74.1695959262249,
+      "pointsScoredPerDriveIndex_live": 77.41935483870968,
+      "pointsScoredPerDriveIndex_prior": 60.15,
+      "pointsScoredPerDriveIndex_delta": 14.019595926224902,
+      "qbIndex": 87.17443124546773,
+      "qbIndex_live": 94.15168100170054,
+      "qbIndex_prior": 55.67,
+      "qbIndex_delta": 31.504431245467728,
+      "receiverIndex": 65.93529665572082,
+      "receiverIndex_live": 70.89677997868553,
+      "receiverIndex_prior": 44.53125,
+      "receiverIndex_delta": 21.40404665572082,
+      "olIndex": 69.66859050999321,
+      "olIndex_live": 77.09980969632278,
+      "olIndex_prior": 37.61,
+      "olIndex_delta": 32.05859050999321,
+      "rbIndex": 55.742241192862615,
+      "rbIndex_live": 62.90454798577859,
+      "rbIndex_prior": 24.84375,
+      "rbIndex_delta": 30.898491192862615,
+      "coverageIndex": 54.63689612355074,
+      "coverageIndex_live": 58.06451612903226,
+      "coverageIndex_prior": 39.85,
+      "coverageIndex_delta": 14.78689612355074,
+      "passRushIndex": 40.926276562819346,
+      "passRushIndex_live": 45.16129032258065,
+      "passRushIndex_prior": 22.65625,
+      "passRushIndex_delta": 18.270026562819346,
+      "runDefenseIndex": 49.7529242801412,
+      "runDefenseIndex_live": 48.38709677419355,
+      "runDefenseIndex_prior": 55.64516129032258,
+      "runDefenseIndex_delta": -5.8922370101813755,
+      "pointsAllowedPerDriveIndex": 35.80645161290323,
+      "pointsAllowedPerDriveIndex_live": 32.25806451612904,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -14.193548387096769,
+      "offenseComposite": 81.76907801679941,
+      "defenseIndex": 46.149769712500074,
+      "offenseIndex": 82.02591193980007,
+      "bridgePoints": 7.357717078937631,
+      "eloDelta": 40.76175261731447,
+      "force": 63.0664700066266
+    },
+    {
+      "team": "BUF",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 91.51655640232397,
+      "pointsScoredPerDriveIndex_live": 93.54838709677419,
+      "pointsScoredPerDriveIndex_prior": 82.75999999999999,
+      "pointsScoredPerDriveIndex_delta": 8.75655640232398,
+      "qbIndex": 73.54361160880545,
+      "qbIndex_live": 76.08067603118414,
+      "qbIndex_prior": 69.18,
+      "qbIndex_delta": 4.363611608805442,
+      "receiverIndex": 57.85467076728438,
+      "receiverIndex_live": 62.97648484417199,
+      "receiverIndex_prior": 35.78125,
+      "receiverIndex_delta": 22.073420767284382,
+      "olIndex": 48.08250291156893,
+      "olIndex_live": 44.22665603547841,
+      "olIndex_prior": 64.7,
+      "olIndex_delta": -16.617497088431072,
+      "rbIndex": 87.26250091314247,
+      "rbIndex_live": 90.071579170608,
+      "rbIndex_prior": 75.15625,
+      "rbIndex_delta": 12.106250913142475,
+      "coverageIndex": 28.94101519403342,
+      "coverageIndex_live": 18.548387096774196,
+      "coverageIndex_prior": 73.73,
+      "coverageIndex_delta": -44.788984805966585,
+      "passRushIndex": 74.93321915818538,
+      "passRushIndex_live": 77.41935483870968,
+      "passRushIndex_prior": 64.21875,
+      "passRushIndex_delta": 10.71446915818538,
+      "runDefenseIndex": 15.424484442370883,
+      "runDefenseIndex_live": 12.903225806451616,
+      "runDefenseIndex_prior": 26.29032258064516,
+      "runDefenseIndex_delta": -10.865838138274277,
+      "pointsAllowedPerDriveIndex": 25.483870967741936,
+      "pointsAllowedPerDriveIndex_live": 19.354838709677423,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -24.516129032258064,
+      "offenseComposite": 83.08575585326435,
+      "defenseIndex": 25.46529222029339,
+      "offenseIndex": 94.13483065251054,
+      "bridgePoints": -3.2505324228766694,
+      "eloDelta": -18.905096571450706,
+      "force": 66.86193882044935
+    },
+    {
+      "team": "CAR",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 64.60349342118853,
+      "pointsScoredPerDriveIndex_live": 70.96774193548387,
+      "pointsScoredPerDriveIndex_prior": 28.580000000000002,
+      "pointsScoredPerDriveIndex_delta": 36.02349342118853,
+      "qbIndex": 70.18453919095955,
+      "qbIndex_live": 77.767639403989,
+      "qbIndex_prior": 28.580000000000002,
+      "qbIndex_delta": 41.60453919095956,
+      "receiverIndex": 57.36676246146626,
+      "receiverIndex_live": 60.020868869755084,
+      "receiverIndex_prior": 42.34375,
+      "receiverIndex_delta": 15.023012461466259,
+      "olIndex": 32.79477402074545,
+      "olIndex_live": 30.75685271360895,
+      "olIndex_prior": 44.33,
+      "olIndex_delta": -11.535225979254548,
+      "rbIndex": 66.64438572511068,
+      "rbIndex_live": 67.8458498725146,
+      "rbIndex_prior": 59.84375,
+      "rbIndex_delta": 6.800635725110681,
+      "coverageIndex": 59.79319232183512,
+      "coverageIndex_live": 64.51612903225806,
+      "coverageIndex_prior": 33.06,
+      "coverageIndex_delta": 26.73319232183512,
+      "passRushIndex": 11.297668674329937,
+      "passRushIndex_live": 9.67741935483871,
+      "passRushIndex_prior": 20.468750000000004,
+      "passRushIndex_delta": -9.171081325670066,
+      "runDefenseIndex": 17.257249893850442,
+      "runDefenseIndex_live": 9.677419354838705,
+      "runDefenseIndex_prior": 60.16129032258064,
+      "runDefenseIndex_delta": -42.9040404287302,
+      "pointsAllowedPerDriveIndex": 33.225806451612904,
+      "pointsAllowedPerDriveIndex_live": 29.032258064516128,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -16.774193548387096,
+      "offenseComposite": 66.82210302211874,
+      "defenseIndex": 29.134315686732936,
+      "offenseIndex": 70.08643788492402,
+      "bridgePoints": 4.853591796900869,
+      "eloDelta": 26.888898554830813,
+      "force": 58.920063120272
+    },
+    {
+      "team": "CHI",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 78.75867768778693,
+      "pointsScoredPerDriveIndex_live": 80.64516129032258,
+      "pointsScoredPerDriveIndex_prior": 69.18,
+      "pointsScoredPerDriveIndex_delta": 9.578677687786922,
+      "qbIndex": 72.61650189215976,
+      "qbIndex_live": 74.85448827908938,
+      "qbIndex_prior": 62.39,
+      "qbIndex_delta": 10.22650189215976,
+      "receiverIndex": 40.83576049058819,
+      "receiverIndex_live": 38.81548904652846,
+      "receiverIndex_prior": 51.09375,
+      "receiverIndex_delta": -10.257989509411807,
+      "olIndex": 69.64944667334112,
+      "olIndex_live": 67.52231937945247,
+      "olIndex_prior": 80.45,
+      "olIndex_delta": -10.800553326658886,
+      "rbIndex": 73.02807809431911,
+      "rbIndex_live": 80.79451681913349,
+      "rbIndex_prior": 33.59375,
+      "rbIndex_delta": 39.43432809431911,
+      "coverageIndex": 80.50337940870051,
+      "coverageIndex_live": 86.29032258064515,
+      "coverageIndex_prior": 51.120000000000005,
+      "coverageIndex_delta": 29.383379408700506,
+      "passRushIndex": 73.26322998977946,
+      "passRushIndex_live": 80.64516129032258,
+      "passRushIndex_prior": 35.78125,
+      "passRushIndex_delta": 37.48197998977946,
+      "runDefenseIndex": 10.458970733157763,
+      "runDefenseIndex_live": 6.451612903225808,
+      "runDefenseIndex_prior": 30.806451612903228,
+      "runDefenseIndex_delta": -20.347480879745465,
+      "pointsAllowedPerDriveIndex": 82.25806451612904,
+      "pointsAllowedPerDriveIndex_live": 90.3225806451613,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 32.25806451612904,
+      "offenseComposite": 77.42836079360403,
+      "defenseIndex": 64.17876513877326,
+      "offenseIndex": 73.36861652758945,
+      "bridgePoints": 6.008444271705263,
+      "eloDelta": 33.28678126524716,
+      "force": 77.52324802681024
+    },
+    {
+      "team": "CIN",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 60.46775769845752,
+      "pointsScoredPerDriveIndex_live": 64.51612903225806,
+      "pointsScoredPerDriveIndex_prior": 42.09,
+      "pointsScoredPerDriveIndex_delta": 18.377757698457515,
+      "qbIndex": 64.90766568222833,
+      "qbIndex_live": 72.70153591481363,
+      "qbIndex_prior": 26.270000000000003,
+      "qbIndex_delta": 38.637665682228324,
+      "receiverIndex": 60.635356489585334,
+      "receiverIndex_live": 60.80973668724986,
+      "receiverIndex_prior": 59.84375,
+      "receiverIndex_delta": 0.7916064895853339,
+      "olIndex": 32.82922081877564,
+      "olIndex_live": 23.325890944655754,
+      "olIndex_prior": 75.97,
+      "olIndex_delta": -43.14077918122436,
+      "rbIndex": 31.956048526937217,
+      "rbIndex_live": 27.74027186312351,
+      "rbIndex_prior": 51.09375,
+      "rbIndex_delta": -19.137701473062783,
+      "coverageIndex": 31.433602650432245,
+      "coverageIndex_live": 33.06451612903226,
+      "coverageIndex_prior": 24.03,
+      "coverageIndex_delta": 7.403602650432244,
+      "passRushIndex": 66.86446097696094,
+      "passRushIndex_live": 74.19354838709677,
+      "passRushIndex_prior": 33.59375,
+      "passRushIndex_delta": 33.27071097696094,
+      "runDefenseIndex": 65.1384176725503,
+      "runDefenseIndex_live": 74.19354838709677,
+      "runDefenseIndex_prior": 24.03225806451613,
+      "runDefenseIndex_delta": 41.106159608034176,
+      "pointsAllowedPerDriveIndex": 53.87096774193549,
+      "pointsAllowedPerDriveIndex_live": 54.83870967741935,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 3.8709677419354875,
+      "offenseComposite": 53.16469626787489,
+      "defenseIndex": 51.471970845536624,
+      "offenseIndex": 65.75472356444263,
+      "bridgePoints": 6.353568265105548,
+      "eloDelta": 35.19876818868474,
+      "force": 60.05494376056578
+    },
+    {
+      "team": "CLE",
+      "passRushProvider": "pfr-advanced",
+      "pointsScoredPerDriveIndex": 47.7593267917104,
+      "pointsScoredPerDriveIndex_live": 54.83870967741935,
+      "pointsScoredPerDriveIndex_prior": 17.240000000000002,
+      "pointsScoredPerDriveIndex_delta": 30.519326791710398,
+      "qbIndex": 52.42596927730455,
+      "qbIndex_live": 60.64539180570715,
+      "qbIndex_prior": 17.240000000000002,
+      "qbIndex_delta": 35.18596927730455,
+      "receiverIndex": 34.812336530103366,
+      "receiverIndex_live": 38.646952275794554,
+      "receiverIndex_prior": 18.281250000000004,
+      "receiverIndex_delta": 16.531086530103362,
+      "olIndex": 24.682404057344304,
+      "olIndex_live": 26.928372523290292,
+      "olIndex_prior": 15,
+      "olIndex_delta": 9.682404057344304,
+      "rbIndex": 33.264416619831486,
+      "rbIndex_live": 34.71028642532775,
+      "rbIndex_prior": 27.03125,
+      "rbIndex_delta": 6.233166619831486,
+      "coverageIndex": 54.00238922732062,
+      "coverageIndex_live": 48.38709677419355,
+      "coverageIndex_prior": 78.21,
+      "coverageIndex_delta": -24.207610772679374,
+      "passRushIndex": 49.69550909236201,
+      "passRushIndex_live": 42.77469347262332,
+      "passRushIndex_prior": 79.53125,
+      "passRushIndex_delta": -29.83574090763799,
+      "runDefenseIndex": 31.28986339345011,
+      "runDefenseIndex_live": 19.354838709677423,
+      "runDefenseIndex_prior": 82.74193548387098,
+      "runDefenseIndex_delta": -51.45207209042087,
+      "pointsAllowedPerDriveIndex": 48.70967741935485,
+      "pointsAllowedPerDriveIndex_live": 48.38709677419355,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -1.290322580645153,
+      "offenseComposite": 35.67093543089328,
+      "defenseIndex": 44.13631162754376,
+      "offenseIndex": 50.377752852291614,
+      "bridgePoints": 0.09534308791377863,
+      "eloDelta": 0.5282007070423336,
+      "force": 46.76376815261522
+    },
+    {
+      "team": "DAL",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 95.02866861444843,
+      "pointsScoredPerDriveIndex_live": 98.38709677419355,
+      "pointsScoredPerDriveIndex_prior": 78.21,
+      "pointsScoredPerDriveIndex_delta": 16.81866861444844,
+      "qbIndex": 78.98465861681615,
+      "qbIndex_live": 79.80229037290925,
+      "qbIndex_prior": 75.97,
+      "qbIndex_delta": 3.014658616816149,
+      "receiverIndex": 79.5873491633852,
+      "receiverIndex_live": 79.59855129920047,
+      "receiverIndex_prior": 79.53125,
+      "receiverIndex_delta": 0.05609916338519838,
+      "olIndex": 46.214462955611644,
+      "olIndex_live": 42.075893558036455,
+      "olIndex_prior": 66.94,
+      "olIndex_delta": -20.725537044388354,
+      "rbIndex": 57.057848326448465,
+      "rbIndex_live": 52.57025737879877,
+      "rbIndex_prior": 79.53125,
+      "rbIndex_delta": -22.473401673551535,
+      "coverageIndex": 3.5417753458175096,
+      "coverageIndex_live": 0.8064516129032242,
+      "coverageIndex_prior": 17.240000000000002,
+      "coverageIndex_delta": -13.698224654182493,
+      "passRushIndex": 34.02060424525559,
+      "passRushIndex_live": 25.806451612903224,
+      "passRushIndex_prior": 75.15625,
+      "passRushIndex_delta": -41.13564575474441,
+      "runDefenseIndex": 38.20383736818935,
+      "runDefenseIndex_live": 41.935483870967744,
+      "runDefenseIndex_prior": 19.516129032258068,
+      "runDefenseIndex_delta": 18.68770833593128,
+      "pointsAllowedPerDriveIndex": 12.580645161290317,
+      "pointsAllowedPerDriveIndex_live": 3.225806451612897,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -37.41935483870968,
+      "offenseComposite": 82.31720239300762,
+      "defenseIndex": 13.02194282716826,
+      "offenseIndex": 90.99535026856398,
+      "bridgePoints": -2.8475849820984624,
+      "eloDelta": -16.561554255884655,
+      "force": 47.61508502671997
+    },
+    {
+      "team": "DEN",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 31.322050406799207,
+      "pointsScoredPerDriveIndex_live": 25.806451612903224,
+      "pointsScoredPerDriveIndex_prior": 55.67,
+      "pointsScoredPerDriveIndex_delta": -24.347949593200795,
+      "qbIndex": 39.272738647170456,
+      "qbIndex_live": 34.30746774168666,
+      "qbIndex_prior": 60.15,
+      "qbIndex_delta": -20.877261352829542,
+      "receiverIndex": 23.521290352990267,
+      "receiverIndex_live": 22.230631300283285,
+      "receiverIndex_prior": 29.21875,
+      "receiverIndex_delta": -5.697459647009733,
+      "olIndex": 83.69133681811027,
+      "olIndex_live": 84.93303705357278,
+      "olIndex_prior": 78.21,
+      "olIndex_delta": 5.481336818110279,
+      "rbIndex": 61.525135633818905,
+      "rbIndex_live": 68.34803826220995,
+      "rbIndex_prior": 31.40625,
+      "rbIndex_delta": 30.118885633818905,
+      "coverageIndex": 68.66504179976143,
+      "coverageIndex_live": 68.54838709677419,
+      "coverageIndex_prior": 69.18,
+      "coverageIndex_delta": -0.5149582002385813,
+      "passRushIndex": 68.09735543030338,
+      "passRushIndex_live": 64.51612903225806,
+      "passRushIndex_prior": 83.90625,
+      "passRushIndex_delta": -15.80889456969662,
+      "runDefenseIndex": 14.864835748372137,
+      "runDefenseIndex_live": 0,
+      "runDefenseIndex_prior": 80.48387096774194,
+      "runDefenseIndex_delta": -65.6190352193698,
+      "pointsAllowedPerDriveIndex": 51.29032258064516,
+      "pointsAllowedPerDriveIndex_live": 51.61290322580645,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 1.2903225806451601,
+      "offenseComposite": 44.303253275939774,
+      "defenseIndex": 50.05045846472383,
+      "offenseIndex": 47.1021791168681,
+      "bridgePoints": -7.328681077881838,
+      "eloDelta": -42.62360914896077,
+      "force": 51.821066719778486
+    },
+    {
+      "team": "DET",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 84.70872788692016,
+      "pointsScoredPerDriveIndex_live": 87.09677419354838,
+      "pointsScoredPerDriveIndex_prior": 73.73,
+      "pointsScoredPerDriveIndex_delta": 10.978727886920154,
+      "qbIndex": 83.19759090625946,
+      "qbIndex_live": 85.01300186419911,
+      "qbIndex_prior": 71.41999999999999,
+      "qbIndex_delta": 11.777590906259476,
+      "receiverIndex": 58.333353636796346,
+      "receiverIndex_live": 54.19829288200953,
+      "receiverIndex_prior": 77.34375,
+      "receiverIndex_delta": -19.010396363203654,
+      "olIndex": 49.04517433199932,
+      "olIndex_live": 50.55803434151594,
+      "olIndex_prior": 42.09,
+      "olIndex_delta": 6.9551743319993165,
+      "rbIndex": 78.35397936265844,
+      "rbIndex_live": 80.00116732212472,
+      "rbIndex_prior": 70.78125,
+      "rbIndex_delta": 7.5727293626584355,
+      "coverageIndex": 14.582368546952774,
+      "coverageIndex_live": 5.6451612903225765,
+      "coverageIndex_prior": 55.67,
+      "coverageIndex_delta": -41.08763145304723,
+      "passRushIndex": 81.53241906475932,
+      "passRushIndex_live": 83.87096774193549,
+      "passRushIndex_prior": 70.78125,
+      "passRushIndex_delta": 10.751169064759324,
+      "runDefenseIndex": 31.540713444346352,
+      "runDefenseIndex_live": 25.80645161290323,
+      "runDefenseIndex_prior": 57.90322580645161,
+      "runDefenseIndex_delta": -26.362512362105257,
+      "pointsAllowedPerDriveIndex": 9.999999999999998,
+      "pointsAllowedPerDriveIndex_live": 0,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -40,
+      "offenseComposite": 83.05347399375304,
+      "defenseIndex": 22.328434721592615,
+      "offenseIndex": 82.05922915706034,
+      "bridgePoints": -4.814529450665665,
+      "eloDelta": -28.001303285071504,
+      "force": 42.05596203596928
+    },
+    {
+      "team": "GB",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 32.077684465931284,
+      "pointsScoredPerDriveIndex_live": 22.580645161290324,
+      "pointsScoredPerDriveIndex_prior": 80.45,
+      "pointsScoredPerDriveIndex_delta": -48.37231553406872,
+      "qbIndex": 45.96323048046074,
+      "qbIndex_live": 37.58381383635375,
+      "qbIndex_prior": 85,
+      "qbIndex_delta": -39.03676951953926,
+      "receiverIndex": 26.884568482061386,
+      "receiverIndex_live": 21.27257549868515,
+      "receiverIndex_prior": 55.46875,
+      "receiverIndex_delta": -28.584181517938614,
+      "olIndex": 23.303287407714187,
+      "olIndex_live": 17.402189275329093,
+      "olIndex_prior": 53.36,
+      "olIndex_delta": -30.056712592285812,
+      "rbIndex": 15.603600309354913,
+      "rbIndex_live": 11.642079549564759,
+      "rbIndex_prior": 35.78125,
+      "rbIndex_delta": -20.177649690645087,
+      "coverageIndex": 31.788172944083854,
+      "coverageIndex_live": 30.645161290322587,
+      "coverageIndex_prior": 37.61,
+      "coverageIndex_delta": -5.821827055916145,
+      "passRushIndex": 70.21914765238128,
+      "passRushIndex_live": 70.96774193548387,
+      "passRushIndex_prior": 66.40625,
+      "passRushIndex_delta": 3.812897652381281,
+      "runDefenseIndex": 23.560021549349397,
+      "runDefenseIndex_live": 22.58064516129032,
+      "runDefenseIndex_prior": 28.548387096774196,
+      "runDefenseIndex_delta": -4.988365547424799,
+      "pointsAllowedPerDriveIndex": 30.645161290322584,
+      "pointsAllowedPerDriveIndex_live": 25.80645161290323,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -19.354838709677416,
+      "offenseComposite": 22.04860342640724,
+      "defenseIndex": 29.88723833371791,
+      "offenseIndex": 32.077684465931284,
+      "bridgePoints": -7.5,
+      "eloDelta": -43.61999999999999,
+      "force": 32.58079343729068
+    },
+    {
+      "team": "HOU",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 37.78945524998957,
+      "pointsScoredPerDriveIndex_live": 38.70967741935484,
+      "pointsScoredPerDriveIndex_prior": 33.06,
+      "pointsScoredPerDriveIndex_delta": 4.72945524998957,
+      "qbIndex": 61.62000659601258,
+      "qbIndex_live": 63.50788477636817,
+      "qbIndex_prior": 46.64,
+      "qbIndex_delta": 14.98000659601258,
+      "receiverIndex": 58.60338345376119,
+      "receiverIndex_live": 55.8082774493358,
+      "receiverIndex_prior": 72.96875,
+      "receiverIndex_delta": -14.36536654623881,
+      "olIndex": 40.29440521804248,
+      "olIndex_live": 38.62388414575588,
+      "olIndex_prior": 48.879999999999995,
+      "olIndex_delta": -8.585594781957518,
+      "rbIndex": 28.33422702593024,
+      "rbIndex_live": 24.7571035054188,
+      "rbIndex_prior": 46.71875,
+      "rbIndex_delta": -18.38452297406976,
+      "coverageIndex": 34.772828794218285,
+      "coverageIndex_live": 24.999999999999996,
+      "coverageIndex_prior": 85,
+      "coverageIndex_delta": -50.227171205781715,
+      "passRushIndex": 79.8073801357641,
+      "passRushIndex_live": 87.09677419354838,
+      "passRushIndex_prior": 42.34375,
+      "passRushIndex_delta": 37.463630135764106,
+      "runDefenseIndex": 60.245012876129344,
+      "runDefenseIndex_live": 58.064516129032256,
+      "runDefenseIndex_prior": 71.4516129032258,
+      "runDefenseIndex_delta": -11.20660002709645,
+      "pointsAllowedPerDriveIndex": 28.064516129032256,
+      "pointsAllowedPerDriveIndex_live": 22.58064516129032,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -21.935483870967744,
+      "offenseComposite": 44.48136023365702,
+      "defenseIndex": 46.80572518335137,
+      "offenseIndex": 45.8906118960834,
+      "bridgePoints": -4.602573595142019,
+      "eloDelta": -26.76856802934598,
+      "force": 38.42981873582411
+    },
+    {
+      "team": "IND",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 60.10342249083515,
+      "pointsScoredPerDriveIndex_live": 58.064516129032256,
+      "pointsScoredPerDriveIndex_prior": 71.41999999999999,
+      "pointsScoredPerDriveIndex_delta": -11.316577509164837,
+      "qbIndex": 21.056513579116466,
+      "qbIndex_live": 12.994610298142083,
+      "qbIndex_prior": 66.94,
+      "qbIndex_delta": -45.88348642088353,
+      "receiverIndex": 29.80357077568167,
+      "receiverIndex_live": 26.36184343661651,
+      "receiverIndex_prior": 48.90625,
+      "receiverIndex_delta": -19.10267922431833,
+      "olIndex": 36.573631586535555,
+      "olIndex_live": 31.922299701587903,
+      "olIndex_prior": 62.39,
+      "olIndex_delta": -25.816368413464446,
+      "rbIndex": 71.63343247059389,
+      "rbIndex_live": 69.42224046332076,
+      "rbIndex_prior": 83.90625,
+      "rbIndex_delta": -12.272817529406112,
+      "coverageIndex": 40.603690215149115,
+      "coverageIndex_live": 39.516129032258064,
+      "coverageIndex_prior": 46.64,
+      "coverageIndex_delta": -6.036309784850886,
+      "passRushIndex": 51.86760031386861,
+      "passRushIndex_live": 51.61290322580645,
+      "passRushIndex_prior": 53.28125,
+      "passRushIndex_delta": -1.413649686131393,
+      "runDefenseIndex": 20.438106859720307,
+      "runDefenseIndex_live": 16.129032258064512,
+      "runDefenseIndex_prior": 44.35483870967742,
+      "runDefenseIndex_delta": -23.916731849957117,
+      "pointsAllowedPerDriveIndex": 39.677419354838705,
+      "pointsAllowedPerDriveIndex_live": 37.096774193548384,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -10.322580645161295,
+      "offenseComposite": 38.34596068962425,
+      "defenseIndex": 31.389839718471723,
+      "offenseIndex": 38.23669622801722,
+      "bridgePoints": -7.5,
+      "eloDelta": -43.61999999999999,
+      "force": 48.526291156442866
+    },
+    {
+      "team": "JAX",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 85.10996333502605,
+      "pointsScoredPerDriveIndex_live": 90.3225806451613,
+      "pointsScoredPerDriveIndex_prior": 57.91,
+      "pointsScoredPerDriveIndex_delta": 27.199963335026055,
+      "qbIndex": 84.97731184325885,
+      "qbIndex_live": 89.89758058272332,
+      "qbIndex_prior": 57.91,
+      "qbIndex_delta": 27.06731184325885,
+      "receiverIndex": 77.94535641770915,
+      "receiverIndex_live": 80.99514532979428,
+      "receiverIndex_prior": 62.03125,
+      "receiverIndex_delta": 15.91410641770915,
+      "olIndex": 24.078218633316858,
+      "olIndex_live": 19.754465301340304,
+      "olIndex_prior": 46.64,
+      "olIndex_delta": -22.561781366683142,
+      "rbIndex": 67.90311158291748,
+      "rbIndex_live": 69.86682629105071,
+      "rbIndex_prior": 57.65625,
+      "rbIndex_delta": 10.246861582917475,
+      "coverageIndex": 64.06633597006778,
+      "coverageIndex_live": 60.483870967741936,
+      "coverageIndex_prior": 82.75999999999999,
+      "coverageIndex_delta": -18.693664029932208,
+      "passRushIndex": 56.239880887291065,
+      "passRushIndex_live": 58.064516129032256,
+      "passRushIndex_prior": 46.71875,
+      "passRushIndex_delta": 9.521130887291065,
+      "runDefenseIndex": 71.77184596027608,
+      "runDefenseIndex_live": 70.96774193548387,
+      "runDefenseIndex_prior": 75.96774193548387,
+      "runDefenseIndex_delta": -4.19589597520779,
+      "pointsAllowedPerDriveIndex": 87.4193548387097,
+      "pointsAllowedPerDriveIndex_live": 96.7741935483871,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 37.419354838709694,
+      "offenseComposite": 80.57746206943037,
+      "defenseIndex": 76.26116509305936,
+      "offenseIndex": 85.10996333502605,
+      "bridgePoints": 4.684871648363104,
+      "eloDelta": 25.954188931931597,
+      "force": 84.16210020285982
+    },
+    {
+      "team": "KC",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 79.78859715901413,
+      "pointsScoredPerDriveIndex_live": 83.87096774193549,
+      "pointsScoredPerDriveIndex_prior": 62.39,
+      "pointsScoredPerDriveIndex_delta": 17.39859715901413,
+      "qbIndex": 81.56938094647701,
+      "qbIndex_live": 85.0002749435137,
+      "qbIndex_prior": 64.7,
+      "qbIndex_delta": 16.86938094647701,
+      "receiverIndex": 59.222347373566286,
+      "receiverIndex_live": 59.58981319793162,
+      "receiverIndex_prior": 57.65625,
+      "receiverIndex_delta": 1.5660973735662864,
+      "olIndex": 44.93485364813027,
+      "olIndex_live": 48.772322428566945,
+      "olIndex_prior": 28.580000000000002,
+      "olIndex_delta": 16.35485364813027,
+      "rbIndex": 76.379441201013,
+      "rbIndex_live": 90.01147972183563,
+      "rbIndex_prior": 18.281250000000004,
+      "rbIndex_delta": 58.098191201012995,
+      "coverageIndex": 82.64480371177697,
+      "coverageIndex_live": 89.51612903225808,
+      "coverageIndex_prior": 53.36,
+      "coverageIndex_delta": 29.284803711776974,
+      "passRushIndex": 14.935669554306296,
+      "passRushIndex_live": 6.451612903225806,
+      "passRushIndex_prior": 51.09375,
+      "passRushIndex_delta": -36.158080445693706,
+      "runDefenseIndex": 62.40110169957366,
+      "runDefenseIndex_live": 64.51612903225806,
+      "runDefenseIndex_prior": 53.387096774193544,
+      "runDefenseIndex_delta": 9.014004925380114,
+      "pointsAllowedPerDriveIndex": 66.7741935483871,
+      "pointsAllowedPerDriveIndex_live": 70.96774193548387,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 16.774193548387103,
+      "offenseComposite": 80.49701062868846,
+      "defenseIndex": 68.0162580910178,
+      "offenseIndex": 77.1758421081793,
+      "bridgePoints": 7.5,
+      "eloDelta": 41.55,
+      "force": 70.26295709541765
+    },
+    {
+      "team": "LAC",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 8.527927646366278,
+      "pointsScoredPerDriveIndex_live": 3.225806451612903,
+      "pointsScoredPerDriveIndex_prior": 30.820000000000004,
+      "pointsScoredPerDriveIndex_delta": -22.292072353633728,
+      "qbIndex": 17.826830262239756,
+      "qbIndex_live": 10.859559530334762,
+      "qbIndex_prior": 48.879999999999995,
+      "qbIndex_delta": -31.05316973776024,
+      "receiverIndex": 13.653442401995331,
+      "receiverIndex_live": 8.910683367838132,
+      "receiverIndex_prior": 33.59375,
+      "receiverIndex_delta": -19.94030759800467,
+      "olIndex": 9.75510408718225,
+      "olIndex_live": 7.974837783075941,
+      "olIndex_prior": 17.240000000000002,
+      "olIndex_delta": -7.484895912817752,
+      "rbIndex": 52.28162608400522,
+      "rbIndex_live": 54.12503627263289,
+      "rbIndex_prior": 44.53125,
+      "rbIndex_delta": 7.750376084005218,
+      "coverageIndex": 44.78552337948824,
+      "coverageIndex_live": 39.516129032258064,
+      "coverageIndex_prior": 66.94,
+      "coverageIndex_delta": -22.15447662051176,
+      "passRushIndex": 86.65184705141658,
+      "passRushIndex_live": 93.54838709677419,
+      "passRushIndex_prior": 57.65625,
+      "passRushIndex_delta": 28.99559705141658,
+      "runDefenseIndex": 74.53716088070038,
+      "runDefenseIndex_live": 77.41935483870968,
+      "runDefenseIndex_prior": 62.41935483870967,
+      "runDefenseIndex_delta": 12.117806041990711,
+      "pointsAllowedPerDriveIndex": 39.677419354838705,
+      "pointsAllowedPerDriveIndex_live": 37.096774193548384,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -10.322580645161295,
+      "offenseComposite": 11.891308165567686,
+      "defenseIndex": 62.41988068401951,
+      "offenseIndex": 5.921947852389785,
+      "bridgePoints": -5.369907857919001,
+      "eloDelta": -31.231384101656904,
+      "force": 31.81341998580031
+    },
+    {
+      "team": "LAR",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 52.48855738106805,
+      "pointsScoredPerDriveIndex_live": 45.16129032258065,
+      "pointsScoredPerDriveIndex_prior": 85,
+      "pointsScoredPerDriveIndex_delta": -32.51144261893195,
+      "qbIndex": 56.84136360929546,
+      "qbIndex_live": 51.61208003585855,
+      "qbIndex_prior": 78.21,
+      "qbIndex_delta": -21.36863639070453,
+      "receiverIndex": 34.31051965184841,
+      "receiverIndex_live": 25.104912322520306,
+      "receiverIndex_prior": 75.15625,
+      "receiverIndex_delta": -40.84573034815159,
+      "olIndex": 44.45993535290239,
+      "olIndex_live": 35.32321743732605,
+      "olIndex_prior": 85,
+      "olIndex_delta": -40.54006464709761,
+      "rbIndex": 70.90245888910496,
+      "rbIndex_live": 70.43676848688055,
+      "rbIndex_prior": 72.96875,
+      "rbIndex_delta": -2.066291110895037,
+      "coverageIndex": 93.5075074153014,
+      "coverageIndex_live": 100,
+      "coverageIndex_prior": 64.7,
+      "coverageIndex_delta": 28.8075074153014,
+      "passRushIndex": 37.91786721881797,
+      "passRushIndex_live": 29.032258064516128,
+      "passRushIndex_prior": 77.34375,
+      "passRushIndex_delta": -39.42588278118203,
+      "runDefenseIndex": 58.30952038933444,
+      "runDefenseIndex_live": 54.83870967741935,
+      "runDefenseIndex_prior": 73.70967741935485,
+      "runDefenseIndex_delta": -15.40015703002041,
+      "pointsAllowedPerDriveIndex": 70.64516129032259,
+      "pointsAllowedPerDriveIndex_live": 75.80645161290323,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 20.64516129032259,
+      "offenseComposite": 55.66396488814363,
+      "defenseIndex": 76.88761800609859,
+      "offenseIndex": 68.28359023237101,
+      "bridgePoints": -6.98811574833667,
+      "eloDelta": -40.642881192326065,
+      "force": 59.73898199002766
+    },
+    {
+      "team": "LV",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 64.02801608118074,
+      "pointsScoredPerDriveIndex_live": 74.19354838709677,
+      "pointsScoredPerDriveIndex_prior": 15,
+      "pointsScoredPerDriveIndex_delta": 49.02801608118074,
+      "qbIndex": 65.83639281505997,
+      "qbIndex_live": 73.95703662123616,
+      "qbIndex_prior": 21.790000000000003,
+      "qbIndex_delta": 44.04639281505996,
+      "receiverIndex": 62.239614523527536,
+      "receiverIndex_live": 61.375698931411314,
+      "receiverIndex_prior": 66.40625,
+      "receiverIndex_delta": -4.1666354764724645,
+      "olIndex": 27.858023246973243,
+      "olIndex_live": 29.11617504018507,
+      "olIndex_prior": 21.790000000000003,
+      "olIndex_delta": 6.06802324697324,
+      "rbIndex": 23.234524558355872,
+      "rbIndex_live": 24.71510199681546,
+      "rbIndex_prior": 16.09375,
+      "rbIndex_delta": 7.140774558355872,
+      "coverageIndex": 70.85399509494671,
+      "coverageIndex_live": 78.2258064516129,
+      "coverageIndex_prior": 35.3,
+      "coverageIndex_delta": 35.553995094946714,
+      "passRushIndex": 85.17264130926989,
+      "passRushIndex_live": 96.7741935483871,
+      "passRushIndex_prior": 29.21875,
+      "passRushIndex_delta": 55.95389130926989,
+      "runDefenseIndex": 64.88893867866838,
+      "runDefenseIndex_live": 67.74193548387098,
+      "runDefenseIndex_prior": 51.12903225806451,
+      "runDefenseIndex_delta": 13.759906420603869,
+      "pointsAllowedPerDriveIndex": 74.51612903225806,
+      "pointsAllowedPerDriveIndex_live": 80.64516129032258,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 24.516129032258064,
+      "offenseComposite": 51.150665527069414,
+      "defenseIndex": 79.15636788499963,
+      "offenseIndex": 45.32523065511724,
+      "bridgePoints": 7.5,
+      "eloDelta": 41.55,
+      "force": 51.68763684301069
+    },
+    {
+      "team": "MIA",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 7.166624856562327,
+      "pointsScoredPerDriveIndex_live": 0,
+      "pointsScoredPerDriveIndex_prior": 39.85,
+      "pointsScoredPerDriveIndex_delta": -32.68337514343767,
+      "qbIndex": 22.004847136288184,
+      "qbIndex_live": 19.699601609359878,
+      "qbIndex_prior": 35.3,
+      "qbIndex_delta": -13.295152863711813,
+      "receiverIndex": 16.124800550928953,
+      "receiverIndex_live": 12.773971115921764,
+      "receiverIndex_prior": 31.40625,
+      "receiverIndex_delta": -15.281449449071047,
+      "olIndex": 45.326341249056014,
+      "olIndex_live": 42.075893558036455,
+      "olIndex_prior": 60.15,
+      "olIndex_delta": -14.823658750943984,
+      "rbIndex": 43.9489038509125,
+      "rbIndex_live": 48.61783604290388,
+      "rbIndex_prior": 22.65625,
+      "rbIndex_delta": 21.2926538509125,
+      "coverageIndex": 11.092601851856205,
+      "coverageIndex_live": 7.2580645161290285,
+      "coverageIndex_prior": 28.580000000000002,
+      "coverageIndex_delta": -17.487398148143797,
+      "passRushIndex": 25.741442313265576,
+      "passRushIndex_live": 22.580645161290324,
+      "passRushIndex_prior": 40.15625,
+      "passRushIndex_delta": -14.414807686734424,
+      "runDefenseIndex": 80.02528909183783,
+      "runDefenseIndex_live": 90.3225806451613,
+      "runDefenseIndex_prior": 33.064516129032256,
+      "runDefenseIndex_delta": 46.96077296280558,
+      "pointsAllowedPerDriveIndex": 15.161290322580644,
+      "pointsAllowedPerDriveIndex_live": 6.451612903225808,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -34.83870967741936,
+      "offenseComposite": 16.655836775515,
+      "defenseIndex": 27.563652053808287,
+      "offenseIndex": 15.103656906613974,
+      "bridgePoints": -5.069633694934346,
+      "eloDelta": -29.48498956973815,
+      "force": 22.290615319092677
+    },
+    {
+      "team": "MIN",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 30.63120023520376,
+      "pointsScoredPerDriveIndex_live": 32.25806451612903,
+      "pointsScoredPerDriveIndex_prior": 24.03,
+      "pointsScoredPerDriveIndex_delta": 6.601200235203759,
+      "qbIndex": 21.928653679124178,
+      "qbIndex_live": 21.574099750399263,
+      "qbIndex_prior": 24.03,
+      "qbIndex_delta": -2.101346320875823,
+      "receiverIndex": 56.73309219326913,
+      "receiverIndex_live": 61.35756001451319,
+      "receiverIndex_prior": 37.96875,
+      "receiverIndex_delta": 18.76434219326913,
+      "olIndex": 35.73152238099992,
+      "olIndex_live": 36.94196594306635,
+      "olIndex_prior": 30.820000000000004,
+      "olIndex_delta": 4.911522380999916,
+      "rbIndex": 32.48487153451002,
+      "rbIndex_live": 31.133370946955804,
+      "rbIndex_prior": 37.96875,
+      "rbIndex_delta": -5.48387846548998,
+      "coverageIndex": 93.54655145263992,
+      "coverageIndex_live": 96.7741935483871,
+      "coverageIndex_prior": 80.45,
+      "coverageIndex_delta": 13.096551452639915,
+      "passRushIndex": 96.38540599950753,
+      "passRushIndex_live": 100,
+      "passRushIndex_prior": 81.71875,
+      "passRushIndex_delta": 14.666655999507526,
+      "runDefenseIndex": 76.95071939911227,
+      "runDefenseIndex_live": 83.87096774193549,
+      "runDefenseIndex_prior": 48.87096774193549,
+      "runDefenseIndex_delta": 28.079751657176786,
+      "pointsAllowedPerDriveIndex": 90,
+      "pointsAllowedPerDriveIndex_live": 100,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 40,
+      "offenseComposite": 24.804104659722707,
+      "defenseIndex": 93.69365297797924,
+      "offenseIndex": 15.103226968562225,
+      "bridgePoints": 6.446982718994681,
+      "eloDelta": 35.716284263230534,
+      "force": 76.96894872559292
+    },
+    {
+      "team": "NE",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 19.418938682557613,
+      "pointsScoredPerDriveIndex_live": 6.451612903225806,
+      "pointsScoredPerDriveIndex_prior": 75.97,
+      "pointsScoredPerDriveIndex_delta": -56.55106131744239,
+      "qbIndex": 52.25122821386236,
+      "qbIndex_live": 44.522063449343705,
+      "qbIndex_prior": 82.75999999999999,
+      "qbIndex_delta": -30.50877178613763,
+      "receiverIndex": 45.45948929025496,
+      "receiverIndex_live": 36.643533237994156,
+      "receiverIndex_prior": 83.90625,
+      "receiverIndex_delta": -38.44676070974504,
+      "olIndex": 33.56467720385003,
+      "olIndex_live": 35.23736828256216,
+      "olIndex_prior": 26.270000000000003,
+      "olIndex_delta": 7.2946772038500285,
+      "rbIndex": 39.94537303579382,
+      "rbIndex_live": 33.877815610556866,
+      "rbIndex_prior": 66.40625,
+      "rbIndex_delta": -26.46087696420618,
+      "coverageIndex": 56.24725849100025,
+      "coverageIndex_live": 54.83870967741935,
+      "coverageIndex_prior": 62.39,
+      "coverageIndex_delta": -6.142741508999748,
+      "passRushIndex": 46.44375340354036,
+      "passRushIndex_live": 48.38709677419355,
+      "passRushIndex_prior": 37.96875,
+      "passRushIndex_delta": 8.475003403540363,
+      "runDefenseIndex": 10.055243434885647,
+      "runDefenseIndex_live": 3.225806451612897,
+      "runDefenseIndex_prior": 39.83870967741936,
+      "runDefenseIndex_delta": -29.783466242533713,
+      "pointsAllowedPerDriveIndex": 70.64516129032259,
+      "pointsAllowedPerDriveIndex_live": 75.80645161290323,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 20.64516129032259,
+      "offenseComposite": 33.515514193233855,
+      "defenseIndex": 42.3384254079255,
+      "offenseIndex": 48.283972045365616,
+      "bridgePoints": -7.5,
+      "eloDelta": -43.61999999999999,
+      "force": 53.686470492065645
+    },
+    {
+      "team": "NO",
+      "passRushProvider": "pfr-advanced",
+      "pointsScoredPerDriveIndex": 57.46950588770412,
+      "pointsScoredPerDriveIndex_live": 67.74193548387096,
+      "pointsScoredPerDriveIndex_prior": 26.270000000000003,
+      "pointsScoredPerDriveIndex_delta": 31.19950588770412,
+      "qbIndex": 54.3641876379542,
+      "qbIndex_live": 57.47564126199153,
+      "qbIndex_prior": 44.33,
+      "qbIndex_delta": 10.034187637954204,
+      "receiverIndex": 64.92302433569529,
+      "receiverIndex_live": 73.07747865953276,
+      "receiverIndex_prior": 40.15625,
+      "receiverIndex_delta": 24.76677433569529,
+      "olIndex": 53.490384674843575,
+      "olIndex_live": 54.27083324270887,
+      "olIndex_prior": 51.120000000000005,
+      "olIndex_delta": 2.370384674843571,
+      "rbIndex": 37.67536682305413,
+      "rbIndex_live": 43.3406411558987,
+      "rbIndex_prior": 20.468750000000004,
+      "rbIndex_delta": 17.206616823054123,
+      "coverageIndex": 31.279724586928417,
+      "coverageIndex_live": 21.774193548387096,
+      "coverageIndex_prior": 60.15,
+      "coverageIndex_delta": -28.87027541307158,
+      "passRushIndex": 54.61176798240838,
+      "passRushIndex_live": 52.168905363363734,
+      "passRushIndex_prior": 62.03125,
+      "passRushIndex_delta": -7.419482017591619,
+      "runDefenseIndex": 43.8336208397847,
+      "runDefenseIndex_live": 35.483870967741936,
+      "runDefenseIndex_prior": 69.19354838709677,
+      "runDefenseIndex_delta": -25.35992754731207,
+      "pointsAllowedPerDriveIndex": 24.596774193548384,
+      "pointsAllowedPerDriveIndex_live": 16.129032258064512,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -25.403225806451616,
+      "offenseComposite": 54.955689761499904,
+      "defenseIndex": 32.1931631831003,
+      "offenseIndex": 57.46950588770412,
+      "bridgePoints": 0.06330553841303388,
+      "eloDelta": 0.3507126828082077,
+      "force": 39.61056798020154
+    },
+    {
+      "team": "NYG",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 48.929884367655376,
+      "pointsScoredPerDriveIndex_live": 48.38709677419355,
+      "pointsScoredPerDriveIndex_prior": 51.120000000000005,
+      "pointsScoredPerDriveIndex_delta": -2.1901156323446287,
+      "qbIndex": 43.527918195317085,
+      "qbIndex_live": 47.265438543366415,
+      "qbIndex_prior": 33.06,
+      "qbIndex_delta": 10.467918195317083,
+      "receiverIndex": 22.021243407896357,
+      "receiverIndex_live": 21.8638664663002,
+      "receiverIndex_prior": 22.65625,
+      "receiverIndex_delta": -0.6350065921036432,
+      "olIndex": 18.781012346797826,
+      "olIndex_live": 17.480128806990223,
+      "olIndex_prior": 24.03,
+      "olIndex_delta": -5.248987653202175,
+      "rbIndex": 29.245207454165623,
+      "rbIndex_live": 25.998928453499587,
+      "rbIndex_prior": 42.34375,
+      "rbIndex_delta": -13.098542545834377,
+      "coverageIndex": 64.64200782994766,
+      "coverageIndex_live": 68.54838709677419,
+      "coverageIndex_prior": 48.879999999999995,
+      "coverageIndex_delta": 15.762007829947663,
+      "passRushIndex": 11.016763799219834,
+      "passRushIndex_live": 0,
+      "passRushIndex_prior": 55.46875,
+      "passRushIndex_delta": -44.45198620078017,
+      "runDefenseIndex": 44.34113837005608,
+      "runDefenseIndex_live": 51.61290322580645,
+      "runDefenseIndex_prior": 15,
+      "runDefenseIndex_delta": 29.34113837005608,
+      "pointsAllowedPerDriveIndex": 61.612903225806456,
+      "pointsAllowedPerDriveIndex_live": 64.51612903225806,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 11.612903225806456,
+      "offenseComposite": 27.08200189884588,
+      "defenseIndex": 49.67312985136595,
+      "offenseIndex": 33.41915042753762,
+      "bridgePoints": 1.7627782630406243,
+      "eloDelta": 9.765791577245059,
+      "force": 45.86934768533342
+    },
+    {
+      "team": "NYJ",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 37.906387096774196,
+      "pointsScoredPerDriveIndex_live": 41.935483870967744,
+      "pointsScoredPerDriveIndex_prior": 21.790000000000003,
+      "pointsScoredPerDriveIndex_delta": 16.116387096774194,
+      "qbIndex": 57.0050058628835,
+      "qbIndex_live": 68.78219908578863,
+      "qbIndex_prior": 15,
+      "qbIndex_delta": 42.0050058628835,
+      "receiverIndex": 51.66668016736907,
+      "receiverIndex_live": 58.37241270921134,
+      "receiverIndex_prior": 24.84375,
+      "receiverIndex_delta": 26.822930167369073,
+      "olIndex": 28.844081906465636,
+      "olIndex_live": 31.16760238308204,
+      "olIndex_prior": 19.55,
+      "olIndex_delta": 9.294081906465635,
+      "rbIndex": 53.47142335957027,
+      "rbIndex_live": 50.78459169946284,
+      "rbIndex_prior": 64.21875,
+      "rbIndex_delta": -10.747326640429733,
+      "coverageIndex": 41.70967741935485,
+      "coverageIndex_live": 48.38709677419355,
+      "coverageIndex_prior": 15,
+      "coverageIndex_delta": 26.709677419354847,
+      "passRushIndex": 19.140120967741936,
+      "passRushIndex_live": 19.35483870967742,
+      "passRushIndex_prior": 18.281250000000004,
+      "passRushIndex_delta": 0.8588709677419324,
+      "runDefenseIndex": 73.83870967741936,
+      "runDefenseIndex_live": 80.64516129032258,
+      "runDefenseIndex_prior": 46.612903225806456,
+      "runDefenseIndex_delta": 27.225806451612904,
+      "pointsAllowedPerDriveIndex": 46.12903225806452,
+      "pointsAllowedPerDriveIndex_live": 45.16129032258065,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -3.8709677419354804,
+      "offenseComposite": 45.92628842860078,
+      "defenseIndex": 47.105384797762056,
+      "offenseIndex": 53.390258064516125,
+      "bridgePoints": 7.5,
+      "eloDelta": 41.55,
+      "force": 33.92581024770193
+    },
+    {
+      "team": "PHI",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 38.338754032510096,
+      "pointsScoredPerDriveIndex_live": 35.483870967741936,
+      "pointsScoredPerDriveIndex_prior": 53.36,
+      "pointsScoredPerDriveIndex_delta": -15.021245967489904,
+      "qbIndex": 23.3011824471744,
+      "qbIndex_live": 19.655129750301388,
+      "qbIndex_prior": 53.36,
+      "qbIndex_delta": -30.058817552825598,
+      "receiverIndex": 58.377898844264436,
+      "receiverIndex_live": 56.02056329183961,
+      "receiverIndex_prior": 70.78125,
+      "receiverIndex_delta": -12.403351155735564,
+      "olIndex": 34.25793410828496,
+      "olIndex_live": 30.18843518467655,
+      "olIndex_prior": 55.67,
+      "olIndex_delta": -21.412065891715045,
+      "rbIndex": 34.60073523218749,
+      "rbIndex_live": 25.64565769086672,
+      "rbIndex_prior": 81.71875,
+      "rbIndex_delta": -47.11801476781251,
+      "coverageIndex": 58.213453883492825,
+      "coverageIndex_live": 54.838709677419345,
+      "coverageIndex_prior": 75.97,
+      "coverageIndex_delta": -17.756546116507174,
+      "passRushIndex": 9.822436575295335,
+      "passRushIndex_live": 3.225806451612903,
+      "passRushIndex_prior": 44.53125,
+      "passRushIndex_delta": -34.708813424704665,
+      "runDefenseIndex": 31.118708983440456,
+      "runDefenseIndex_live": 29.032258064516128,
+      "runDefenseIndex_prior": 42.09677419354839,
+      "runDefenseIndex_delta": -10.978065210107935,
+      "pointsAllowedPerDriveIndex": 43.5483870967742,
+      "pointsAllowedPerDriveIndex_live": 41.935483870967744,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -6.451612903225801,
+      "offenseComposite": 27.969782630578415,
+      "defenseIndex": 35.868356646495755,
+      "offenseIndex": 24.785587106450922,
+      "bridgePoints": -7.5,
+      "eloDelta": -43.61999999999999,
+      "force": 37.195684755240976
+    },
+    {
+      "team": "PIT",
+      "passRushProvider": "pfr-advanced",
+      "pointsScoredPerDriveIndex": 21.1578860141611,
+      "pointsScoredPerDriveIndex_live": 16.129032258064516,
+      "pointsScoredPerDriveIndex_prior": 44.33,
+      "pointsScoredPerDriveIndex_delta": -23.172113985838898,
+      "qbIndex": 27.72406535203951,
+      "qbIndex_live": 24.33700959044131,
+      "qbIndex_prior": 37.61,
+      "qbIndex_delta": -9.88593464796049,
+      "receiverIndex": 24.709586666586357,
+      "receiverIndex_live": 25.629940649515497,
+      "receiverIndex_prior": 20.468750000000004,
+      "receiverIndex_delta": 4.240836666586354,
+      "olIndex": 38.54977362507913,
+      "olIndex_live": 28.955190968560572,
+      "olIndex_prior": 82.75999999999999,
+      "olIndex_delta": -44.21022637492086,
+      "rbIndex": 53.88836544953979,
+      "rbIndex_live": 48.79803580722246,
+      "rbIndex_prior": 77.34375,
+      "rbIndex_delta": -23.45538455046021,
+      "coverageIndex": 41.69983531700492,
+      "coverageIndex_live": 41.12903225806452,
+      "coverageIndex_prior": 44.33,
+      "coverageIndex_delta": -2.6301646829950798,
+      "passRushIndex": 45.53684548393161,
+      "passRushIndex_live": 44.80561126996242,
+      "passRushIndex_prior": 48.90625,
+      "passRushIndex_delta": -3.3694045160683928,
+      "runDefenseIndex": 43.34029782091707,
+      "runDefenseIndex_live": 38.70967741935484,
+      "runDefenseIndex_prior": 64.6774193548387,
+      "runDefenseIndex_delta": -21.337121533921632,
+      "pointsAllowedPerDriveIndex": 64.19354838709678,
+      "pointsAllowedPerDriveIndex_live": 67.74193548387098,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 14.193548387096783,
+      "offenseComposite": 24.477516785107415,
+      "defenseIndex": 46.09587225876935,
+      "offenseIndex": 21.1578860141611,
+      "bridgePoints": -6.369952406179779,
+      "eloDelta": -37.04764319434159,
+      "force": 39.95827989504698
+    },
+    {
+      "team": "SEA",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 61.94460131422008,
+      "pointsScoredPerDriveIndex_live": 61.29032258064516,
+      "pointsScoredPerDriveIndex_prior": 64.7,
+      "pointsScoredPerDriveIndex_delta": -2.755398685779923,
+      "qbIndex": 80.22300310423259,
+      "qbIndex_live": 81.25611246113968,
+      "qbIndex_prior": 80.45,
+      "qbIndex_delta": -0.22699689576741378,
+      "receiverIndex": 57.58645689038468,
+      "receiverIndex_live": 56.011596468605646,
+      "receiverIndex_prior": 64.21875,
+      "receiverIndex_delta": -6.632293109615318,
+      "olIndex": 37.13074075563397,
+      "olIndex_live": 28.988640220634352,
+      "olIndex_prior": 71.41999999999999,
+      "olIndex_delta": -34.289259244366015,
+      "rbIndex": 27.7939561827978,
+      "rbIndex_live": 21.741912096752646,
+      "rbIndex_prior": 53.28125,
+      "rbIndex_delta": -25.4872938172022,
+      "coverageIndex": 86.0436854753909,
+      "coverageIndex_live": 89.51612903225806,
+      "coverageIndex_prior": 71.41999999999999,
+      "coverageIndex_delta": 14.623685475390914,
+      "passRushIndex": 86.99257579697887,
+      "passRushIndex_live": 90.3225806451613,
+      "passRushIndex_prior": 72.96875,
+      "passRushIndex_delta": 14.023825796978869,
+      "runDefenseIndex": 86.69442681717781,
+      "runDefenseIndex_live": 87.09677419354838,
+      "runDefenseIndex_prior": 85,
+      "runDefenseIndex_delta": 1.6944268171778134,
+      "pointsAllowedPerDriveIndex": 84.83870967741936,
+      "pointsAllowedPerDriveIndex_live": 93.54838709677419,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 34.83870967741936,
+      "offenseComposite": 59.86833477819682,
+      "defenseIndex": 91.91889465083386,
+      "offenseIndex": 56.73098033828835,
+      "bridgePoints": 0.5457900170786092,
+      "eloDelta": 3.023676694615495,
+      "force": 81.46491447062397
+    },
+    {
+      "team": "SF",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 93.11690431703406,
+      "pointsScoredPerDriveIndex_live": 98.38709677419355,
+      "pointsScoredPerDriveIndex_prior": 66.94,
+      "pointsScoredPerDriveIndex_delta": 26.176904317034058,
+      "qbIndex": 92.87650569436806,
+      "qbIndex_live": 96.59701303105035,
+      "qbIndex_prior": 73.73,
+      "qbIndex_delta": 19.14650569436806,
+      "receiverIndex": 83.70345026952738,
+      "receiverIndex_live": 86.74548409545179,
+      "receiverIndex_prior": 68.59375,
+      "receiverIndex_delta": 15.10970026952738,
+      "olIndex": 85.42103091561734,
+      "olIndex_live": 90.95982289285737,
+      "olIndex_prior": 57.91,
+      "olIndex_delta": 27.51103091561734,
+      "rbIndex": 65.91777707429549,
+      "rbIndex_live": 65.37902382227577,
+      "rbIndex_prior": 68.59375,
+      "rbIndex_delta": -2.6759729257045137,
+      "coverageIndex": 58.86902315356812,
+      "coverageIndex_live": 64.51612903225806,
+      "coverageIndex_prior": 30.820000000000004,
+      "coverageIndex_delta": 28.04902315356812,
+      "passRushIndex": 16.123119334157472,
+      "passRushIndex_live": 16.129032258064516,
+      "passRushIndex_prior": 16.09375,
+      "passRushIndex_delta": 0.029369334157472338,
+      "runDefenseIndex": 40.48501221552633,
+      "runDefenseIndex_live": 45.16129032258065,
+      "runDefenseIndex_prior": 17.258064516129032,
+      "runDefenseIndex_delta": 23.2269476993973,
+      "pointsAllowedPerDriveIndex": 77.0967741935484,
+      "pointsAllowedPerDriveIndex_live": 83.87096774193549,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 27.0967741935484,
+      "offenseComposite": 92.74619388805645,
+      "defenseIndex": 50.75619112260984,
+      "offenseIndex": 94.4595024499472,
+      "bridgePoints": 7.5,
+      "eloDelta": 41.55,
+      "force": 87.62234929661703
+    },
+    {
+      "team": "TB",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 24.729693817914217,
+      "pointsScoredPerDriveIndex_live": 19.35483870967742,
+      "pointsScoredPerDriveIndex_prior": 46.64,
+      "pointsScoredPerDriveIndex_delta": -21.910306182085783,
+      "qbIndex": 17.246115490562552,
+      "qbIndex_live": 9.494775185558943,
+      "qbIndex_prior": 51.120000000000005,
+      "qbIndex_delta": -33.87388450943745,
+      "receiverIndex": 18.962535473576946,
+      "receiverIndex_live": 19.666282200297616,
+      "receiverIndex_prior": 16.09375,
+      "receiverIndex_delta": 2.8687854735769456,
+      "olIndex": 30.08499283584797,
+      "olIndex_live": 20.49452900496813,
+      "olIndex_prior": 69.18,
+      "olIndex_delta": -39.09500716415204,
+      "rbIndex": 49.449604803503114,
+      "rbIndex_live": 51.7293737452583,
+      "rbIndex_prior": 40.15625,
+      "rbIndex_delta": 9.293354803503114,
+      "coverageIndex": 55.56531492833497,
+      "coverageIndex_live": 58.87096774193549,
+      "coverageIndex_prior": 42.09,
+      "coverageIndex_delta": 13.475314928334967,
+      "passRushIndex": 15.6862800166871,
+      "passRushIndex_live": 12.903225806451612,
+      "passRushIndex_prior": 27.03125,
+      "passRushIndex_delta": -11.3449699833129,
+      "runDefenseIndex": 90.53001934824908,
+      "runDefenseIndex_live": 93.54838709677419,
+      "runDefenseIndex_prior": 78.2258064516129,
+      "runDefenseIndex_delta": 12.304212896636187,
+      "pointsAllowedPerDriveIndex": 59.03225806451613,
+      "pointsAllowedPerDriveIndex_live": 61.29032258064516,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 9.032258064516128,
+      "offenseComposite": 18.059477742355565,
+      "defenseIndex": 63.61537454925699,
+      "offenseIndex": 14.368251378641641,
+      "bridgePoints": -3.4825465230880486,
+      "eloDelta": -20.254490578280087,
+      "force": 31.120891860883862
+    },
+    {
+      "team": "TEN",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 11.591955639346175,
+      "pointsScoredPerDriveIndex_live": 9.67741935483871,
+      "pointsScoredPerDriveIndex_prior": 19.55,
+      "pointsScoredPerDriveIndex_delta": -7.958044360653826,
+      "qbIndex": 27.327377255048955,
+      "qbIndex_live": 29.32181900319761,
+      "qbIndex_prior": 19.55,
+      "qbIndex_delta": 7.777377255048954,
+      "receiverIndex": 52.17365906493853,
+      "receiverIndex_live": 51.90719623343548,
+      "receiverIndex_prior": 53.28125,
+      "receiverIndex_delta": -1.1075909350614666,
+      "olIndex": 59.99684694792301,
+      "olIndex_live": 64.84375,
+      "olIndex_prior": 39.85,
+      "olIndex_delta": 20.14684694792301,
+      "rbIndex": 26.206207627233955,
+      "rbIndex_live": 25.4814539792406,
+      "rbIndex_prior": 29.21875,
+      "rbIndex_delta": -3.0125423727660454,
+      "coverageIndex": 17.226833181339195,
+      "coverageIndex_live": 16.12903225806452,
+      "coverageIndex_prior": 21.790000000000003,
+      "coverageIndex_delta": -4.563166818660807,
+      "passRushIndex": 39.30444790682005,
+      "passRushIndex_live": 32.25806451612903,
+      "passRushIndex_prior": 68.59375,
+      "passRushIndex_delta": -29.28930209317995,
+      "runDefenseIndex": 62.385058244062265,
+      "runDefenseIndex_live": 61.29032258064516,
+      "runDefenseIndex_prior": 66.93548387096774,
+      "runDefenseIndex_delta": -4.550425626905479,
+      "pointsAllowedPerDriveIndex": 56.45161290322581,
+      "pointsAllowedPerDriveIndex_live": 58.064516129032256,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": 6.451612903225808,
+      "offenseComposite": 24.183626187484737,
+      "defenseIndex": 37.63704748782938,
+      "offenseIndex": 24.593171716218947,
+      "bridgePoints": -1.0934161648106824,
+      "eloDelta": -6.359308414538927,
+      "force": 18.963044285748104
+    },
+    {
+      "team": "WAS",
+      "passRushProvider": "nflverse-weekly-disruption",
+      "pointsScoredPerDriveIndex": 32.40291565318879,
+      "pointsScoredPerDriveIndex_live": 29.032258064516128,
+      "pointsScoredPerDriveIndex_prior": 48.879999999999995,
+      "pointsScoredPerDriveIndex_delta": -16.477084346811203,
+      "qbIndex": 36.90459576401899,
+      "qbIndex_live": 36.967756863376096,
+      "qbIndex_prior": 39.85,
+      "qbIndex_delta": -2.945404235981009,
+      "receiverIndex": 27.725655201766607,
+      "receiverIndex_live": 23.84030644912553,
+      "receiverIndex_prior": 46.71875,
+      "receiverIndex_delta": -18.993094798233393,
+      "olIndex": 26.461450773386836,
+      "olIndex_live": 25.11160940844789,
+      "olIndex_prior": 33.06,
+      "olIndex_delta": -6.598549226613166,
+      "rbIndex": 42.04889971624893,
+      "rbIndex_live": 37.96118254458343,
+      "rbIndex_prior": 62.03125,
+      "rbIndex_delta": -19.982350283751067,
+      "coverageIndex": 28.760917242695545,
+      "coverageIndex_live": 30.64516129032258,
+      "coverageIndex_prior": 19.55,
+      "coverageIndex_delta": 9.210917242695544,
+      "passRushIndex": 34.79138594333329,
+      "passRushIndex_live": 35.483870967741936,
+      "passRushIndex_prior": 31.40625,
+      "passRushIndex_delta": 3.385135943333289,
+      "runDefenseIndex": 30.47763330380519,
+      "runDefenseIndex_live": 32.25806451612904,
+      "runDefenseIndex_prior": 21.7741935483871,
+      "runDefenseIndex_delta": 8.703439755418092,
+      "pointsAllowedPerDriveIndex": 17.74193548387096,
+      "pointsAllowedPerDriveIndex_live": 9.677419354838705,
+      "pointsAllowedPerDriveIndex_prior": 50,
+      "pointsAllowedPerDriveIndex_delta": -32.25806451612904,
+      "offenseComposite": 26.12370236244336,
+      "defenseIndex": 21.074363434067013,
+      "offenseIndex": 40.43686004280549,
+      "bridgePoints": -3.58282771778126,
+      "eloDelta": -20.837726006615807,
+      "force": 25.06422435343996
+    }
+  ]
+}

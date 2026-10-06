@@ -1,0 +1,323 @@
+{
+  "base": "65170f7dd9e17ac6ece1ab97790e944624d3f66f",
+  "canonicalBridgeKeys": [
+    {
+      "key": "pointsScoredPerDriveIndex",
+      "weight": 0.2
+    },
+    {
+      "key": "qbIndex",
+      "weight": 0.12
+    },
+    {
+      "key": "receiverIndex",
+      "weight": 0.08
+    },
+    {
+      "key": "olIndex",
+      "weight": 0.08
+    },
+    {
+      "key": "rbIndex",
+      "weight": 0.07
+    },
+    {
+      "key": "coverageIndex",
+      "weight": 0.162
+    },
+    {
+      "key": "passRushIndex",
+      "weight": 0.072
+    },
+    {
+      "key": "runDefenseIndex",
+      "weight": 0.126
+    },
+    {
+      "key": "pointsAllowedPerDriveIndex",
+      "weight": 0.09
+    }
+  ],
+  "weightSum": 1,
+  "share": 0.5,
+  "capMidpointPoints": 7.5,
+  "eloPerMidpointPointUp": 5.54,
+  "eloPerMidpointPointDown": 5.815999999999999,
+  "units": [
+    {
+      "key": "pointsScoredPerDriveIndex",
+      "label": "Scoring/drive",
+      "family": "current-rank",
+      "raw": "offensivePointsPerDrive",
+      "higher": true,
+      "publicRow": false,
+      "measurement": "Qualifying offensive points per drive (offensive TDs/FGs; return TDs and safeties excluded; kneel-only drives excluded)",
+      "adjustment": "None (no opponent, field-position or pace adjustment)",
+      "stabilization": "None inside the live grade; blended with prior by drive games",
+      "liveMap": "percentileMap: 100*midrank/(n-1) among current teams",
+      "prior": "Regressed bundled 2025 offenseIndex (legacy team-EPA grade; construct differs from points/drive)",
+      "bridgeWeight": 0.2,
+      "offenseCompositeWeight": 0.2,
+      "defenseCompositeWeight": null,
+      "blend": "display = (k*prior + g*live)/(g+k); prior = 50 + 0.70*(source-50)",
+      "displayedRating": "Same numeric field as the model value (no separate display field); one decimal on Units board/team cards, whole points in tables and matchup duels",
+      "modelUse": "Bridge input: weight*(current - effective prior), share 0.50, shared cap +/-7.50 midpoint points before Elo translation",
+      "missingData": "Freshness gates suppress stale live values; prior held pre-season; bridge skips null keys (weight not redistributed)",
+      "bundledPriorField": "offenseIndex"
+    },
+    {
+      "key": "qbIndex",
+      "label": "QB play",
+      "family": "multicomponent",
+      "raw": "qbEpaPerPlay",
+      "higher": true,
+      "publicRow": true,
+      "measurement": "Five components: 30% all-play EPA/play, 30% ANY/A, 20% actual-pass success, 10% additional QB rushing value, 10% CPOE",
+      "adjustment": "V139 leave-one-matchup-out opponent adjustment 4*(50-allowed)/50; V137 pressure-context adjustment; V148 recency +/-4 after prior blend",
+      "stabilization": "EPA 150 plays, success 100 attempts, CPOE 60 attempts toward current league means",
+      "liveMap": "EPA and success: 2025 full-season (17-game, n=32) continuous CDF; ANY/A: current rank; CPOE: 50+50*tanh(dev/7.5); rushing: 50+50*bonus/12 (floor 50); weighted, then 50+1.20*(x-50) clamped",
+      "prior": "Regressed bundled 2025 qbIndex",
+      "bridgeWeight": 0.12,
+      "offenseCompositeWeight": 0.3,
+      "defenseCompositeWeight": null,
+      "blend": "display = (k*prior + g*live)/(g+k); prior = 50 + 0.70*(source-50); then +recency (+/-4) and clamp 0..100",
+      "displayedRating": "Same numeric field as the model value (no separate display field); one decimal on Units board/team cards, whole points in tables and matchup duels",
+      "modelUse": "Bridge input: weight*(current - effective prior), share 0.50, shared cap +/-7.50 midpoint points before Elo translation",
+      "missingData": "Canonical QB is NaN/unavailable when all-play input or reference is invalid; bridge skips it (weight not redistributed)",
+      "bundledPriorField": "qbIndex"
+    },
+    {
+      "key": "receiverIndex",
+      "label": "Receivers",
+      "family": "historical-cdf",
+      "raw": "receiverCalibratedResidual",
+      "higher": true,
+      "publicRow": true,
+      "measurement": "WR/TE receiving EPA/target",
+      "adjustment": "Partial QB-environment subtraction: residual = EPA - beta*(QB pass EPA - centre), ridge-fitted beta on 2025 bundled teams",
+      "stabilization": "80 targets toward current league residual mean, then aligned so current centre maps to the 2025 median",
+      "liveMap": "continuousPercentileValue against 32 bundled 2025 team residuals",
+      "prior": "2025 residual percentile, regressed",
+      "bridgeWeight": 0.08,
+      "offenseCompositeWeight": 0.15,
+      "defenseCompositeWeight": null,
+      "blend": "display = (k*prior + g*live)/(g+k); prior = 50 + 0.70*(source-50)",
+      "displayedRating": "Same numeric field as the model value (no separate display field); one decimal on Units board/team cards, whole points in tables and matchup duels",
+      "modelUse": "Bridge input: weight*(current - effective prior), share 0.50, shared cap +/-7.50 midpoint points before Elo translation",
+      "missingData": "Freshness gates suppress stale live values; prior held pre-season; bridge skips null keys (weight not redistributed)",
+      "bundledPriorField": null
+    },
+    {
+      "key": "olIndex",
+      "label": "Offensive line",
+      "family": "historical-window-cdf",
+      "raw": "pbpPressureAllowedRate",
+      "higher": false,
+      "publicRow": true,
+      "measurement": "De-duplicated PBP hit-or-sack disruptions allowed per dropback (pass protection only)",
+      "adjustment": "None (no opponent or run-blocking input)",
+      "stabilization": "None; same-sized 2025 rolling windows absorb sample-size variance",
+      "liveMap": "continuousPercentileValue (lower better) against 2025 rolling windows of the same game count (n=448 for 4 games)",
+      "prior": "Regressed bundled 2025 olIndex",
+      "bridgeWeight": 0.08,
+      "offenseCompositeWeight": 0.15,
+      "defenseCompositeWeight": null,
+      "blend": "display = (k*prior + g*live)/(g+k); prior = 50 + 0.70*(source-50)",
+      "displayedRating": "Same numeric field as the model value (no separate display field); one decimal on Units board/team cards, whole points in tables and matchup duels",
+      "modelUse": "Bridge input: weight*(current - effective prior), share 0.50, shared cap +/-7.50 midpoint points before Elo translation",
+      "missingData": "Freshness gates suppress stale live values; prior held pre-season; bridge skips null keys (weight not redistributed)",
+      "bundledPriorField": "olIndex"
+    },
+    {
+      "key": "rbIndex",
+      "label": "RB",
+      "family": "historical-cdf",
+      "raw": "rbCalibratedComposite",
+      "higher": true,
+      "publicRow": true,
+      "measurement": "RB/FB room: 70% rushing EPA/carry + 30% partially QB-residualized receiving EPA/target",
+      "adjustment": "Receiving part only: ridge-fitted partial QB-environment subtraction; no run-block adjustment",
+      "stabilization": "50 carries and 40 targets toward current league means, then aligned to the 2025 median",
+      "liveMap": "continuousPercentileValue against 32 bundled 2025 room composites (LIVE_FITTED frame)",
+      "prior": "2025 room-composite percentile in the same LIVE_FITTED frame (MD-07 correction), regressed",
+      "bridgeWeight": 0.07,
+      "offenseCompositeWeight": 0.2,
+      "defenseCompositeWeight": null,
+      "blend": "display = (k*prior + g*live)/(g+k); prior = 50 + 0.70*(source-50)",
+      "displayedRating": "Same numeric field as the model value (no separate display field); one decimal on Units board/team cards, whole points in tables and matchup duels",
+      "modelUse": "Bridge input: weight*(current - effective prior), share 0.50, shared cap +/-7.50 midpoint points before Elo translation",
+      "missingData": "Freshness gates suppress stale live values; prior held pre-season; bridge skips null keys (weight not redistributed)",
+      "bundledPriorField": null
+    },
+    {
+      "key": "coverageIndex",
+      "label": "Coverage",
+      "family": "current-rank-composite",
+      "raw": "oppPassEpa",
+      "higher": false,
+      "publicRow": true,
+      "measurement": "75% sack-free pass-attempt EPA allowed + 25% CPOE allowed",
+      "adjustment": "None (no opponent-QB or pass-rush adjustment)",
+      "stabilization": "None inside the live grade",
+      "liveMap": "0.75*inverse current rank of EPA allowed + 0.25*inverse current rank of CPOE allowed",
+      "prior": "Regressed bundled 2025 coverageIndex",
+      "bridgeWeight": 0.162,
+      "offenseCompositeWeight": null,
+      "defenseCompositeWeight": 0.36,
+      "blend": "display = (k*prior + g*live)/(g+k); prior = 50 + 0.70*(source-50)",
+      "displayedRating": "Same numeric field as the model value (no separate display field); one decimal on Units board/team cards, whole points in tables and matchup duels",
+      "modelUse": "Bridge input: weight*(current - effective prior), share 0.50, shared cap +/-7.50 midpoint points before Elo translation",
+      "missingData": "Freshness gates suppress stale live values; prior held pre-season; bridge skips null keys (weight not redistributed)",
+      "bundledPriorField": "coverageIndex"
+    },
+    {
+      "key": "passRushIndex",
+      "label": "Pass rush",
+      "family": "mixed-provider",
+      "raw": "frontPressureRate",
+      "higher": true,
+      "publicRow": true,
+      "measurement": "Provider dependent: weekly nflverse hit+sack disruption per opponent dropback (28 teams); PFR charted pressure composite (4 teams)",
+      "adjustment": "None",
+      "stabilization": "None inside the live grade",
+      "liveMap": "Weekly: current rank of disruption among all 32; PFR: continuous CDF against same-sized 2025 charted windows",
+      "prior": "2025 PFR composite percentile when available, else 2025 dl.pressure_rate percentile, regressed",
+      "bridgeWeight": 0.072,
+      "offenseCompositeWeight": null,
+      "defenseCompositeWeight": 0.16,
+      "blend": "display = (k*prior + g*live)/(g+k); prior = 50 + 0.70*(source-50)",
+      "displayedRating": "Same numeric field as the model value (no separate display field); one decimal on Units board/team cards, whole points in tables and matchup duels",
+      "modelUse": "Bridge input: weight*(current - effective prior), share 0.50, shared cap +/-7.50 midpoint points before Elo translation",
+      "missingData": "Provider cascade; prior held (prior-held) if no current provider; bridge skips the key if null",
+      "bundledPriorField": null
+    },
+    {
+      "key": "runDefenseIndex",
+      "label": "Run defense",
+      "family": "current-rank",
+      "raw": "oppRushEpa",
+      "higher": false,
+      "publicRow": true,
+      "measurement": "Opponent rushing EPA per carry allowed (includes QB runs)",
+      "adjustment": "None",
+      "stabilization": "None inside the live grade",
+      "liveMap": "percentileMap inverse current rank",
+      "prior": "Regressed percentile of bundled 2025 dl.run_stop_rate (different construct)",
+      "bridgeWeight": 0.126,
+      "offenseCompositeWeight": null,
+      "defenseCompositeWeight": 0.28,
+      "blend": "display = (k*prior + g*live)/(g+k); prior = 50 + 0.70*(source-50)",
+      "displayedRating": "Same numeric field as the model value (no separate display field); one decimal on Units board/team cards, whole points in tables and matchup duels",
+      "modelUse": "Bridge input: weight*(current - effective prior), share 0.50, shared cap +/-7.50 midpoint points before Elo translation",
+      "missingData": "Freshness gates suppress stale live values; prior held pre-season; bridge skips null keys (weight not redistributed)",
+      "bundledPriorField": null
+    },
+    {
+      "key": "pointsAllowedPerDriveIndex",
+      "label": "Pts/drive prevention",
+      "family": "current-rank",
+      "raw": "defensivePointsPerDrive",
+      "higher": false,
+      "publicRow": true,
+      "measurement": "Opponent qualifying offensive points per drive",
+      "adjustment": "None",
+      "stabilization": "Fixed neutral one-game prior (k=1)",
+      "liveMap": "percentileMap inverse current rank",
+      "prior": "Neutral 50 (no 2025 drive prior)",
+      "bridgeWeight": 0.09,
+      "offenseCompositeWeight": null,
+      "defenseCompositeWeight": 0.2,
+      "blend": "display = (k*prior + g*live)/(g+k); prior = 50 + 0.70*(source-50)",
+      "displayedRating": "Same numeric field as the model value (no separate display field); one decimal on Units board/team cards, whole points in tables and matchup duels",
+      "modelUse": "Bridge input: weight*(current - effective prior), share 0.50, shared cap +/-7.50 midpoint points before Elo translation",
+      "missingData": "Prior 50 held until drives exist",
+      "bundledPriorField": null
+    }
+  ],
+  "displayOnly": [
+    {
+      "key": "offenseComposite",
+      "label": "Overall offense",
+      "config": "offense",
+      "weights": "20% scoring/drive + 30% QB + 15% WR + 15% OL + 20% RB",
+      "map": "soft-tail tanh softness 35",
+      "bridgeInput": false,
+      "reaggregated": "Recomputed from component grades after blending (and after QB recency); never fed back to the bridge"
+    },
+    {
+      "key": "defenseIndex",
+      "label": "Overall defense",
+      "config": "defense",
+      "weights": "36% coverage + 16% pass rush + 28% run defense + 20% prevention/drive",
+      "map": "soft-tail tanh softness 42",
+      "bridgeInput": false,
+      "reaggregated": "Recomputed from component grades after blending (and after QB recency); never fed back to the bridge"
+    },
+    {
+      "key": "offenseIndex",
+      "label": "Team efficiency (diagnostic)",
+      "config": null,
+      "weights": "team offensive EPA/play current rank",
+      "map": "current rank blended with legacy prior",
+      "bridgeInput": false,
+      "reaggregated": "Recomputed from component grades after blending (and after QB recency); never fed back to the bridge"
+    }
+  ],
+  "otherDisplayConsumers": [
+    "Units board (10 rows; scoring/drive not shown)",
+    "Rankings Units table (9 columns)",
+    "Team page unit cards",
+    "Matchup subedges compare different units directly: QB vs coverage, receivers vs coverage, OL vs pass rush, RB vs run defense (presentation-only share 50+35*tanh(diff/45), 15..85)",
+    "Matchup duels and unit cells colour by bandClass: <41 red, 41..<71 yellow, >=71 green (the overall FORCE band)",
+    "unitChangeRows week-over-week deltas",
+    "Exports"
+  ],
+  "modelConsumers": [
+    "currentRatings() -> every forecast, projection and ranking via unitForceBridge",
+    "currentTeamState() / canonicalGameTeamState() (historical states)",
+    "week2EntryState()/ratingLedger() decomposition (V99 weights; diagnostic ledger)"
+  ],
+  "anchors": {
+    "model/unit_force_bridge.js": {
+      "const WEIGHTS = Object.freeze({": 19,
+      "const SHARE = 0.50;": 30,
+      "const CAP = 7.50;": 31,
+      "const delta=current-prior;": 118,
+      "function eloPerMidpointPoint(": 92
+    },
+    "model/live_profiles.js": {
+      "const QB_COMPOSITE_EXPANSION = 1.20;": 13,
+      "function percentileMap(": 59,
+      "function continuousPercentileValue(": 965,
+      "function regressUnitIndex(": 440,
+      "function blend(prior, live, games, priorGames)": 320,
+      "const priorPointsAllowedPerDriveIndex=50;": 1454,
+      "const liveCov=teamStatsUsable": 1544,
+      "function calibrateComposite(": 461,
+      "const COMPOSITE_V108": 456,
+      "frontPass=Number.isFinite(scoreFrontPressure[t])": 1522,
+      "const v115RbPriorComposite": 1228,
+      "scoreRecvV109[t]=r.playerStatsUsable": 1269,
+      "scoreRbV109[t]=r.playerStatsUsable": 1283,
+      "const stableOlPass": 1510,
+      "scoreQbEpaV106[t]=": 1397,
+      "const qbRawLiveScore=": 1568,
+      "const pointsAllowedPerDriveIndex=livePointsAllowedPerDriveIndex!=null": 1593
+    },
+    "assets/app.js": {
+      "function unitForceBridgeForProfile(": 1189,
+      "function currentRatings()": 1218,
+      "unitPriorReversion: Number(D.config?.reversion ?? 0.30)": 1729,
+      "p.qbIndex=Math.max(0,Math.min(100,Number(p.qbIndex)+recency));": 1761,
+      "function bandClass(powerScore)": 388,
+      "function unitMatchupShare(": 2486,
+      "matchupSubedge('QB vs coverage'": 2542,
+      "function unitBoardRow(": 2469,
+      "function rawUnitCell(": 2430,
+      "const V99_UNIT_FORCE_WEIGHTS": 379
+    },
+    "model/unit_prior_controller.js": {
+      "minPriorGames: 0.25": 20
+    }
+  }
+}

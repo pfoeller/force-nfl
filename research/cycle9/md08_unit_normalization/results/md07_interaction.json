@@ -1,0 +1,777 @@
+{
+  "rbAfterCorrection": {
+    "pre": {
+      "n": 32,
+      "mean": 49.579728007459636,
+      "median": 49.61030884345816,
+      "sd": 18.614690505481747,
+      "min": 12.717324785147435,
+      "max": 85.43127288797906,
+      "p05": 24.229127554216557,
+      "p10": 27.315860088758903,
+      "p25": 34.513143205967246,
+      "p50": 49.61030884345816,
+      "p75": 67.05979449219177,
+      "p90": 74.20635499420291,
+      "p95": 76.1538912760888,
+      "atOrAbove": {
+        "60": 11,
+        "70": 5,
+        "80": 1,
+        "90": 0
+      },
+      "below": {
+        "30": 6,
+        "40": 12
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 0,
+        "within2Of100": 0
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 29,
+          "largestTieGroup": 2,
+          "valuesInTies": 6
+        }
+      }
+    },
+    "post": {
+      "n": 32,
+      "mean": 50.21936421350165,
+      "median": 50.865615443754166,
+      "sd": 18.889744442831162,
+      "min": 15.603600309354913,
+      "max": 87.26250091314247,
+      "p05": 24.868950246238818,
+      "p10": 27.847983267111044,
+      "p25": 33.06953034850112,
+      "p50": 50.865615443754166,
+      "p75": 66.95906718956238,
+      "p90": 74.47038596331612,
+      "p95": 77.26798337375344,
+      "atOrAbove": {
+        "60": 11,
+        "70": 7,
+        "80": 1,
+        "90": 0
+      },
+      "below": {
+        "30": 6,
+        "40": 12
+      },
+      "floorCeiling": {
+        "theoreticalFloor": null,
+        "theoreticalCeiling": null,
+        "atFloor": null,
+        "atCeiling": null,
+        "within2Of0": 0,
+        "within2Of100": 0
+      },
+      "ties": {
+        "exact": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "oneDecimal": {
+          "distinct": 32,
+          "largestTieGroup": 1,
+          "valuesInTies": 0
+        },
+        "integer": {
+          "distinct": 30,
+          "largestTieGroup": 2,
+          "valuesInTies": 4
+        }
+      }
+    },
+    "prePacking": {
+      "p75MinusMedian": 17.449485648733614,
+      "p90MinusMedian": 24.596046150744755,
+      "medianMinusP10": 22.294448754699253,
+      "upperHalfSpread": 34.53455910770688,
+      "rank6To15Spread": 16.787006406329382,
+      "rank4To15Spread": 21.36363471113468,
+      "atLeast70": 5,
+      "in40To60": 9,
+      "rolling5": {
+        "count": 6,
+        "lower": 33.38747810277485,
+        "upper": 38.38747810277485
+      },
+      "rolling6": {
+        "count": 6,
+        "lower": 33.38747810277485,
+        "upper": 39.38747810277485
+      },
+      "within10OfMedian": 9,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "postPacking": {
+      "p75MinusMedian": 16.09345174580821,
+      "p90MinusMedian": 23.604770519561953,
+      "medianMinusP10": 23.017632176643122,
+      "upperHalfSpread": 34.98087482913726,
+      "rank6To15Spread": 18.16200911102362,
+      "rank4To15Spread": 21.1592190336344,
+      "atLeast70": 7,
+      "in40To60": 9,
+      "rolling5": {
+        "count": 5,
+        "lower": 52.28162608400522,
+        "upper": 57.28162608400522
+      },
+      "rolling6": {
+        "count": 6,
+        "lower": 27.7939561827978,
+        "upper": 33.7939561827978
+      },
+      "within10OfMedian": 9,
+      "conventions": {
+        "middle80": false,
+        "goodBand": false,
+        "centralPacking": false
+      },
+      "sensitivity": {
+        "goodBandThresholds": {
+          "8": false,
+          "10": false,
+          "12": false
+        },
+        "packingThresholds": {
+          "8": false,
+          "10": false
+        }
+      }
+    },
+    "sdRankAmongNineBridgeUnits": 8,
+    "finding": "The LIVE_FITTED correction changes RB priors and therefore RB display/bridge deltas, but leaves the RB live mapping unchanged. Post-correction RB is neither unusually compressed nor unusually expanded relative to the other eight bridge units."
+  },
+  "stabilizationVsMapping": {
+    "receiverIndex": {
+      "production": {
+        "stats": {
+          "n": 32,
+          "mean": 45.199331905022035,
+          "median": 53.052744557722505,
+          "sd": 22.20133199667068,
+          "min": 8.910683367838132,
+          "max": 86.74548409545179,
+          "p05": 13.305792862612702,
+          "p10": 19.81113127075586,
+          "p25": 23.43788766191497,
+          "p50": 53.052744557722505,
+          "p75": 60.94669251906569,
+          "p90": 72.85940879144805,
+          "p95": 80.22701861296768,
+          "atOrAbove": {
+            "60": 10,
+            "70": 5,
+            "80": 2,
+            "90": 0
+          },
+          "below": {
+            "30": 12,
+            "40": 15
+          },
+          "floorCeiling": {
+            "theoreticalFloor": null,
+            "theoreticalCeiling": null,
+            "atFloor": null,
+            "atCeiling": null,
+            "within2Of0": 0,
+            "within2Of100": 0
+          },
+          "ties": {
+            "exact": {
+              "distinct": 32,
+              "largestTieGroup": 1,
+              "valuesInTies": 0
+            },
+            "oneDecimal": {
+              "distinct": 30,
+              "largestTieGroup": 2,
+              "valuesInTies": 4
+            },
+            "integer": {
+              "distinct": 23,
+              "largestTieGroup": 3,
+              "valuesInTies": 16
+            }
+          }
+        },
+        "packing": {
+          "p75MinusMedian": 7.893947961343187,
+          "p90MinusMedian": 19.80666423372554,
+          "medianMinusP10": 33.24161328696665,
+          "upperHalfSpread": 32.547191213442254,
+          "rank6To15Spread": 7.168207394836195,
+          "rank4To15Spread": 17.26920121019696,
+          "atLeast70": 5,
+          "in40To60": 7,
+          "rolling5": {
+            "count": 7,
+            "lower": 58.37241270921134,
+            "upper": 63.37241270921134
+          },
+          "rolling6": {
+            "count": 9,
+            "lower": 55.8082774493358,
+            "upper": 61.8082774493358
+          },
+          "within10OfMedian": 12,
+          "conventions": {
+            "middle80": false,
+            "goodBand": true,
+            "centralPacking": true
+          },
+          "sensitivity": {
+            "goodBandThresholds": {
+              "8": true,
+              "10": true,
+              "12": true
+            },
+            "packingThresholds": {
+              "8": true,
+              "10": false
+            }
+          }
+        }
+      },
+      "withoutStabilization": {
+        "stats": {
+          "n": 32,
+          "mean": 46.559284245487284,
+          "median": 53.9433535220472,
+          "sd": 30.290690490669178,
+          "min": 1.5625,
+          "max": 98.4375,
+          "p05": 6.641557398958385,
+          "p10": 9.722238688666566,
+          "p25": 12.80610329788132,
+          "p50": 53.9433535220472,
+          "p75": 69.90369707108067,
+          "p90": 86.30532069903204,
+          "p95": 88.42178193927154,
+          "atOrAbove": {
+            "60": 12,
+            "70": 8,
+            "80": 6,
+            "90": 1
+          },
+          "below": {
+            "30": 13,
+            "40": 15
+          },
+          "floorCeiling": {
+            "theoreticalFloor": null,
+            "theoreticalCeiling": null,
+            "atFloor": null,
+            "atCeiling": null,
+            "within2Of0": 1,
+            "within2Of100": 1
+          },
+          "ties": {
+            "exact": {
+              "distinct": 32,
+              "largestTieGroup": 1,
+              "valuesInTies": 0
+            },
+            "oneDecimal": {
+              "distinct": 32,
+              "largestTieGroup": 1,
+              "valuesInTies": 0
+            },
+            "integer": {
+              "distinct": 26,
+              "largestTieGroup": 4,
+              "valuesInTies": 10
+            }
+          }
+        },
+        "packing": {
+          "p75MinusMedian": 15.960343549033475,
+          "p90MinusMedian": 32.36196717698484,
+          "medianMinusP10": 44.22111483338063,
+          "upperHalfSpread": 42.879822401337826,
+          "rank6To15Spread": 21.991826090275822,
+          "rank4To15Spread": 28.258235013420816,
+          "atLeast70": 8,
+          "in40To60": 5,
+          "rolling5": {
+            "count": 6,
+            "lower": 9.631845805584618,
+            "upper": 14.631845805584618
+          },
+          "rolling6": {
+            "count": 7,
+            "lower": 6.168499558683092,
+            "upper": 12.168499558683092
+          },
+          "within10OfMedian": 5,
+          "conventions": {
+            "middle80": false,
+            "goodBand": false,
+            "centralPacking": false
+          },
+          "sensitivity": {
+            "goodBandThresholds": {
+              "8": false,
+              "10": false,
+              "12": false
+            },
+            "packingThresholds": {
+              "8": false,
+              "10": false
+            }
+          }
+        }
+      },
+      "sdRatioProductionOverUnstabilized": 0.7329424201640314
+    },
+    "rbIndex": {
+      "production": {
+        "stats": {
+          "n": 32,
+          "mean": 50.44909762370328,
+          "median": 49.79131375334265,
+          "sd": 21.741939283969444,
+          "min": 11.642079549564759,
+          "max": 90.071579170608,
+          "p05": 23.377166541787194,
+          "p10": 24.82953855280098,
+          "p25": 30.28509617599773,
+          "p50": 49.79131375334265,
+          "p75": 68.61658881248766,
+          "p90": 80.14599062983059,
+          "p95": 84.94215012534944,
+          "atOrAbove": {
+            "60": 12,
+            "70": 6,
+            "80": 5,
+            "90": 2
+          },
+          "below": {
+            "30": 8,
+            "40": 12
+          },
+          "floorCeiling": {
+            "theoreticalFloor": null,
+            "theoreticalCeiling": null,
+            "atFloor": null,
+            "atCeiling": null,
+            "within2Of0": 0,
+            "within2Of100": 0
+          },
+          "ties": {
+            "exact": {
+              "distinct": 32,
+              "largestTieGroup": 1,
+              "valuesInTies": 0
+            },
+            "oneDecimal": {
+              "distinct": 32,
+              "largestTieGroup": 1,
+              "valuesInTies": 0
+            },
+            "integer": {
+              "distinct": 24,
+              "largestTieGroup": 3,
+              "valuesInTies": 15
+            }
+          }
+        },
+        "packing": {
+          "p75MinusMedian": 18.825275059145014,
+          "p90MinusMedian": 30.354676876487943,
+          "medianMinusP10": 24.96177520054167,
+          "upperHalfSpread": 39.28698747114517,
+          "rank6To15Spread": 18.707394741622252,
+          "rank4To15Spread": 28.432708363206274,
+          "atLeast70": 6,
+          "in40To60": 8,
+          "rolling5": {
+            "count": 6,
+            "lower": 24.71510199681546,
+            "upper": 29.71510199681546
+          },
+          "rolling6": {
+            "count": 7,
+            "lower": 21.741912096752646,
+            "upper": 27.741912096752646
+          },
+          "within10OfMedian": 8,
+          "conventions": {
+            "middle80": false,
+            "goodBand": false,
+            "centralPacking": false
+          },
+          "sensitivity": {
+            "goodBandThresholds": {
+              "8": false,
+              "10": false,
+              "12": false
+            },
+            "packingThresholds": {
+              "8": false,
+              "10": false
+            }
+          }
+        }
+      },
+      "withoutStabilization": {
+        "stats": {
+          "n": 32,
+          "mean": 48.13718607904596,
+          "median": 46.93745563066457,
+          "sd": 33.53875692448147,
+          "min": 1.5625,
+          "max": 98.4375,
+          "p05": 1.5625,
+          "p10": 6.351742314969947,
+          "p25": 17.830475991949346,
+          "p50": 46.93745563066457,
+          "p75": 78.48155817982443,
+          "p90": 98.4375,
+          "p95": 98.4375,
+          "atOrAbove": {
+            "60": 12,
+            "70": 12,
+            "80": 8,
+            "90": 5
+          },
+          "below": {
+            "30": 12,
+            "40": 14
+          },
+          "floorCeiling": {
+            "theoreticalFloor": null,
+            "theoreticalCeiling": null,
+            "atFloor": null,
+            "atCeiling": null,
+            "within2Of0": 3,
+            "within2Of100": 5
+          },
+          "ties": {
+            "exact": {
+              "distinct": 26,
+              "largestTieGroup": 5,
+              "valuesInTies": 8
+            },
+            "oneDecimal": {
+              "distinct": 24,
+              "largestTieGroup": 5,
+              "valuesInTies": 12
+            },
+            "integer": {
+              "distinct": 22,
+              "largestTieGroup": 5,
+              "valuesInTies": 16
+            }
+          }
+        },
+        "packing": {
+          "p75MinusMedian": 31.54410254915986,
+          "p90MinusMedian": 51.50004436933543,
+          "medianMinusP10": 40.585713315694626,
+          "upperHalfSpread": 49.826719926370174,
+          "rank6To15Spread": 32.766348915410525,
+          "rank4To15Spread": 48.650995508432295,
+          "atLeast70": 12,
+          "in40To60": 6,
+          "rolling5": {
+            "count": 5,
+            "lower": 98.4375,
+            "upper": 103.4375
+          },
+          "rolling6": {
+            "count": 6,
+            "lower": 1.5625,
+            "upper": 7.5625
+          },
+          "within10OfMedian": 6,
+          "conventions": {
+            "middle80": false,
+            "goodBand": false,
+            "centralPacking": false
+          },
+          "sensitivity": {
+            "goodBandThresholds": {
+              "8": false,
+              "10": false,
+              "12": false
+            },
+            "packingThresholds": {
+              "8": false,
+              "10": false
+            }
+          }
+        }
+      },
+      "sdRatioProductionOverUnstabilized": 0.6482631223609548
+    },
+    "qbEpaComponent": {
+      "production": {
+        "stats": {
+          "n": 32,
+          "mean": 54.59581765741492,
+          "median": 52.416066911801195,
+          "sd": 25.602202328869126,
+          "min": 15.318752668624093,
+          "max": 97.62206792312547,
+          "p05": 17.593244178399676,
+          "p10": 18.921842342502917,
+          "p25": 27.184978525173047,
+          "p50": 52.416066911801195,
+          "p75": 79.033098277134,
+          "p90": 84.77416426046071,
+          "p95": 87.1490860203369,
+          "atOrAbove": {
+            "60": 13,
+            "70": 12,
+            "80": 7,
+            "90": 1
+          },
+          "below": {
+            "30": 9,
+            "40": 9
+          },
+          "floorCeiling": {
+            "theoreticalFloor": null,
+            "theoreticalCeiling": null,
+            "atFloor": null,
+            "atCeiling": null,
+            "within2Of0": 0,
+            "within2Of100": 0
+          },
+          "ties": {
+            "exact": {
+              "distinct": 32,
+              "largestTieGroup": 1,
+              "valuesInTies": 0
+            },
+            "oneDecimal": {
+              "distinct": 30,
+              "largestTieGroup": 2,
+              "valuesInTies": 4
+            },
+            "integer": {
+              "distinct": 22,
+              "largestTieGroup": 3,
+              "valuesInTies": 18
+            }
+          }
+        },
+        "packing": {
+          "p75MinusMedian": 26.617031365332807,
+          "p90MinusMedian": 32.35809734865951,
+          "medianMinusP10": 33.49422456929828,
+          "upperHalfSpread": 43.980912854867476,
+          "rank6To15Spread": 28.91310369011879,
+          "rank4To15Spread": 30.20666586523498,
+          "atLeast70": 12,
+          "in40To60": 10,
+          "rolling5": {
+            "count": 5,
+            "lower": 83.05347700484019,
+            "upper": 88.05347700484019
+          },
+          "rolling6": {
+            "count": 7,
+            "lower": 79.02933860615376,
+            "upper": 85.02933860615376
+          },
+          "within10OfMedian": 11,
+          "conventions": {
+            "middle80": false,
+            "goodBand": false,
+            "centralPacking": false
+          },
+          "sensitivity": {
+            "goodBandThresholds": {
+              "8": false,
+              "10": false,
+              "12": false
+            },
+            "packingThresholds": {
+              "8": false,
+              "10": false
+            }
+          }
+        }
+      },
+      "withoutStabilization": {
+        "stats": {
+          "n": 32,
+          "mean": 53.36246158138067,
+          "median": 50.854855444529676,
+          "sd": 34.61579808551601,
+          "min": 1.5625,
+          "max": 98.4375,
+          "p05": 7.439837926476344,
+          "p10": 10.830059354269238,
+          "p25": 16.103020922635462,
+          "p50": 50.854855444529676,
+          "p75": 90.64510093875819,
+          "p90": 96.73205250640689,
+          "p95": 98.4375,
+          "atOrAbove": {
+            "60": 14,
+            "70": 13,
+            "80": 11,
+            "90": 9
+          },
+          "below": {
+            "30": 13,
+            "40": 13
+          },
+          "floorCeiling": {
+            "theoreticalFloor": null,
+            "theoreticalCeiling": null,
+            "atFloor": null,
+            "atCeiling": null,
+            "within2Of0": 1,
+            "within2Of100": 3
+          },
+          "ties": {
+            "exact": {
+              "distinct": 30,
+              "largestTieGroup": 3,
+              "valuesInTies": 3
+            },
+            "oneDecimal": {
+              "distinct": 30,
+              "largestTieGroup": 3,
+              "valuesInTies": 3
+            },
+            "integer": {
+              "distinct": 29,
+              "largestTieGroup": 3,
+              "valuesInTies": 5
+            }
+          }
+        },
+        "packing": {
+          "p75MinusMedian": 39.790245494228515,
+          "p90MinusMedian": 45.87719706187721,
+          "medianMinusP10": 40.02479609026044,
+          "upperHalfSpread": 44.85261984692818,
+          "rank6To15Spread": 35.78659144924995,
+          "rank4To15Spread": 39.429377666110305,
+          "atLeast70": 13,
+          "in40To60": 5,
+          "rolling5": {
+            "count": 5,
+            "lower": 96.2126089805236,
+            "upper": 101.2126089805236
+          },
+          "rolling6": {
+            "count": 7,
+            "lower": 10.275453451282907,
+            "upper": 16.275453451282907
+          },
+          "within10OfMedian": 5,
+          "conventions": {
+            "middle80": false,
+            "goodBand": false,
+            "centralPacking": false
+          },
+          "sensitivity": {
+            "goodBandThresholds": {
+              "8": false,
+              "10": false,
+              "12": false
+            },
+            "packingThresholds": {
+              "8": false,
+              "10": false
+            }
+          }
+        }
+      },
+      "sdRatioProductionOverUnstabilized": 0.7396103439712872
+    }
+  },
+  "stabilizationNote": "Without-stabilization rows remove only the opportunity shrinkage (raw residual/composite or raw EPA, same centre alignment and same reference). They are diagnostics of where compression arises, not proposals. The CDF itself is monotone and faithful to its reference; compression enters through stabilization of 4-game values before mapping onto a full-season reference.",
+  "receiverReliabilityWeights": {
+    "n": 32,
+    "mean": 0.5525585960020534,
+    "median": 0.5402298850574713,
+    "sd": 0.045522908850137635,
+    "min": 0.4074074074074074,
+    "max": 0.6208530805687204,
+    "p05": 0.5002929801945388,
+    "p10": 0.5070707070707071,
+    "p25": 0.5287156282631396,
+    "p50": 0.5402298850574713,
+    "p75": 0.5964215710911193,
+    "p90": 0.6095648015303682,
+    "p95": 0.6157916532462154,
+    "atOrAbove": {
+      "60": 0,
+      "70": 0,
+      "80": 0,
+      "90": 0
+    },
+    "below": {
+      "30": 32,
+      "40": 32
+    },
+    "floorCeiling": {
+      "theoreticalFloor": null,
+      "theoreticalCeiling": null,
+      "atFloor": null,
+      "atCeiling": null,
+      "within2Of0": 32,
+      "within2Of100": 0
+    },
+    "ties": {
+      "exact": {
+        "distinct": 24,
+        "largestTieGroup": 4,
+        "valuesInTies": 14
+      },
+      "oneDecimal": {
+        "distinct": 3,
+        "largestTieGroup": 17,
+        "valuesInTies": 31
+      },
+      "integer": {
+        "distinct": 2,
+        "largestTieGroup": 30,
+        "valuesInTies": 32
+      }
+    }
+  },
+  "bridgeComparabilityAssumption": "The bridge multiplies each unit's grade-point delta by a fixed weight, implicitly treating one grade point as comparable across units. Current-rank units are uniform by construction (theoretical live SD 29.78), while historical-CDF units inherit whatever spread stabilization leaves; the bridge therefore gives different effective influence per nominal weight (Section 8)."
+}
