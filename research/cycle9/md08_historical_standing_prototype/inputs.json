@@ -1,0 +1,35 @@
+{
+  "purpose": "MD-08 historical-standing display prototype inputs. Research/evidence only; every input is committed in the repository. No network or new provider data.",
+  "startingBranchTip": "4818619cb48b928f187929a75013f575ced5185d",
+  "base": "6cf05419f89df7c9c8c3af228a3fb80080c6f686",
+  "inputs": [
+    {
+      "path": "research/cycle7/fixtures/unit_games.csv",
+      "role": "Historical reference: 2024-2025 regular-season team-game unit signals with exact counts (Cycle 7 derived fixture of pinned nflverse PBP)"
+    },
+    {
+      "path": "research/cycle7/inputs.json",
+      "role": "Upstream pins for the fixture (URLs, bytes, SHA-256)"
+    },
+    {
+      "path": "research/cycle7/extract.py",
+      "role": "Fixture extraction definitions"
+    },
+    {
+      "path": "research/cycle9/md08_unit_normalization/results/current_unit_values.csv",
+      "role": "Frozen Cycle 9 post-correction canonical baseline used for exact reproduction"
+    },
+    {
+      "path": "research/cycle9/md08_followup_ol_receivers/hashes.json",
+      "role": "Accepted follow-up package checksum list (every listed file re-verified); its loader pins the snapshot, V149 reference, data bundles, model sources and app.js"
+    }
+  ],
+  "pins": {
+    "research/cycle7/fixtures/unit_games.csv": "e5012000c97773e4837dbeebfd675be2ffe1cd37daa1e0bf83abe1a5f10b6828",
+    "research/cycle7/inputs.json": "3a4e84e86ec40e5ba95c1ff6393768896729bdf0b3a2743d67af60fcfd62e9bd",
+    "research/cycle7/extract.py": "9e8847f347a7784452950e674ff43de3267e16f0014a9aba7fa327b63fea6c31",
+    "research/cycle9/md08_unit_normalization/results/current_unit_values.csv": "f4ea94a81dc95e853e08003681828ebe3d71ab49dc9fe575ecd5f55d33a6fc92",
+    "research/cycle9/md08_followup_ol_receivers/hashes.json": "d73c354b6b4d2846b5ceea356d639949ad17cb63f1eed2e3b7e14939b22cdcdf"
+  },
+  "checksumConvention": "SHA-256 of UTF-8 text after CRLF->LF normalization"
+}

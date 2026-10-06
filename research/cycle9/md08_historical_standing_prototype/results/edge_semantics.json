@@ -1,0 +1,303 @@
+{
+  "rules": {
+    "A": {
+      "equalToWorst": "0",
+      "equalToBest": "100",
+      "worseThanWorst": "0, flagged belowWorst (frozen); under dynamic semantics it becomes the new worst and the frame re-anchors",
+      "betterThanBest": "100, flagged aboveBest (frozen: 100 = at or beyond the frozen best); under dynamic semantics it becomes the new best = 100 and earlier values remap down",
+      "tied": "midrank of the tied block (interior); worst/best blocks forced to 0/100",
+      "median": "50 when n is odd; for even n the two middle order statistics map to 100*(n/2-1)/(n-1) and 100*(n/2)/(n-1) and their midpoint is interpolated near 50",
+      "sparse": "linear interpolation between the adjacent distinct historical values"
+    },
+    "B": {
+      "equalToWorst": "0",
+      "equalToBest": "100",
+      "worseThanWorst": "0 flagged (as A)",
+      "betterThanBest": "100 flagged (as A)",
+      "tied": "no special rule: the kernel CDF treats tied values as coincident kernels",
+      "median": "near but not exactly 50 (kernel smoothing)",
+      "sparse": "smooth (kernel) rather than linear; same order as A"
+    },
+    "C": {
+      "equalToWorst": "100*(midrank+0.5)/n, e.g. 0.78 at n=64",
+      "equalToBest": "100*(1-0.5/n), e.g. 99.22 at n=64",
+      "worseThanWorst": "between 0 and the worst knot via a fitted normal tail; never exactly 0",
+      "betterThanBest": "between the best knot and 100 via a fitted normal tail; never exactly 100",
+      "tied": "midrank Hazen position",
+      "median": "50 exactly at the sample median order statistic (odd n) / interpolated (even n)",
+      "sparse": "linear between Hazen positions"
+    },
+    "semanticsTradeoff": {
+      "frozen": "Reproducible across a season: the same signal always maps to the same number; 100 means at or beyond the frozen historical best (records are flagged, not distinguished).",
+      "dynamic": "0/100 always mean worst/best ever including the current season, but a team's number can change because another team set a record, and published numbers are not reproducible without the reference version.",
+      "openTail": "Records remain distinguishable above the historical best, but 0/100 become unattained asymptotes and the historical best shows ~99.2 (n=64), contradicting the owner's \"100 = best observation\"."
+    }
+  },
+  "probes": {
+    "olIndex": {
+      "referenceN": 64,
+      "largestGap": {
+        "lower": -0.2934131736526946,
+        "upper": -0.2624113475177305
+      },
+      "probes": {
+        "equalToWorst": {
+          "value": -0.30158730158730157,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.78125,
+          "standing": 0.78125
+        },
+        "equalToBest": {
+          "value": -0.06206896551724138,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.21875,
+          "standing": 99.21875
+        },
+        "worseThanWorst": {
+          "value": -0.3135632183908046,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.3712252041330516,
+          "standing": 0
+        },
+        "betterThanBest": {
+          "value": -0.05009304871373837,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.55552495745478,
+          "standing": 100
+        },
+        "tiedValue": {
+          "value": -0.2222222222222222,
+          "A": 11.904761904761905,
+          "Amin": 11.11111111111111,
+          "Amax": 12.698412698412698,
+          "B": 11.36206386222515,
+          "C": 12.5,
+          "standing": 12.5
+        },
+        "historicalMedian": {
+          "value": -0.16169983862291554,
+          "A": 50.00000000000001,
+          "Amin": 50.00000000000001,
+          "Amax": 50.00000000000001,
+          "B": 47.677020780826496,
+          "C": 50.00000000000001,
+          "standing": 50
+        },
+        "betweenSparseObservations": {
+          "value": -0.27791226058521257,
+          "A": 2.3809523809523796,
+          "Amin": 2.3809523809523796,
+          "Amax": 2.3809523809523796,
+          "B": 1.7735322875508857,
+          "C": 3.1249999999999987,
+          "standing": 3.125
+        }
+      },
+      "tiedValuesInReference": 6
+    },
+    "receiverIndex": {
+      "referenceN": 64,
+      "largestGap": {
+        "lower": 0.42789166285577995,
+        "upper": 0.47598599783506307
+      },
+      "probes": {
+        "equalToWorst": {
+          "value": -0.016652667593816076,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.78125,
+          "standing": 0.78125
+        },
+        "equalToBest": {
+          "value": 0.47598599783506307,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.21875,
+          "standing": 99.21875
+        },
+        "worseThanWorst": {
+          "value": -0.041284600865260035,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.4543693309066515,
+          "standing": 0
+        },
+        "betterThanBest": {
+          "value": 0.500617931106507,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.64027525834385,
+          "standing": 100
+        },
+        "historicalMedian": {
+          "value": 0.1695694937514246,
+          "A": 50.000000000000014,
+          "Amin": 50.000000000000014,
+          "Amax": 50.000000000000014,
+          "B": 48.58650892298812,
+          "C": 50.000000000000014,
+          "standing": 50
+        },
+        "betweenSparseObservations": {
+          "value": 0.4519388303454215,
+          "A": 99.2063492063492,
+          "Amin": 99.2063492063492,
+          "Amax": 99.2063492063492,
+          "B": 99.20760946679157,
+          "C": 98.4375,
+          "standing": 98.4375
+        }
+      },
+      "tiedValuesInReference": 0
+    },
+    "rbIndex": {
+      "referenceN": 64,
+      "largestGap": {
+        "lower": -0.5206747425853472,
+        "upper": -0.27813156882560364
+      },
+      "probes": {
+        "equalToWorst": {
+          "value": -0.5206747425853472,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.78125,
+          "standing": 0.78125
+        },
+        "equalToBest": {
+          "value": 0.1871524777998361,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.21875,
+          "standing": 99.21875
+        },
+        "worseThanWorst": {
+          "value": -0.5560661036046064,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.2070240109100128,
+          "standing": 0
+        },
+        "betterThanBest": {
+          "value": 0.22254383881909526,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.66355250113212,
+          "standing": 100
+        },
+        "historicalMedian": {
+          "value": -0.058971124970184224,
+          "A": 49.999999999999986,
+          "Amin": 49.999999999999986,
+          "Amax": 49.999999999999986,
+          "B": 52.61106735052733,
+          "C": 49.999999999999986,
+          "standing": 50
+        },
+        "betweenSparseObservations": {
+          "value": -0.3994031557054754,
+          "A": 0.7936507936507936,
+          "Amin": 0.7936507936507936,
+          "Amax": 0.7936507936507936,
+          "B": 0.79659595506183,
+          "C": 1.5625,
+          "standing": 1.5625
+        }
+      },
+      "tiedValuesInReference": 0
+    },
+    "qbIndex": {
+      "referenceN": 64,
+      "largestGap": {
+        "lower": -0.2046601735257563,
+        "upper": -0.15955703764465073
+      },
+      "probes": {
+        "equalToWorst": {
+          "value": -0.3217478252599796,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.78125,
+          "standing": 0.78125
+        },
+        "equalToBest": {
+          "value": 0.38352559966261973,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.21875,
+          "standing": 99.21875
+        },
+        "worseThanWorst": {
+          "value": -0.3570114965061095,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.4663956611218463,
+          "standing": 0
+        },
+        "betterThanBest": {
+          "value": 0.4187892709087497,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.53244002433726,
+          "standing": 100
+        },
+        "historicalMedian": {
+          "value": 0.05124424354985957,
+          "A": 50,
+          "Amin": 50,
+          "Amax": 50,
+          "B": 50.833898194937355,
+          "C": 50,
+          "standing": 50
+        },
+        "betweenSparseObservations": {
+          "value": -0.18210860558520353,
+          "A": 15.079365079365079,
+          "Amin": 15.079365079365079,
+          "Amax": 15.079365079365079,
+          "B": 11.878660053075446,
+          "C": 15.625,
+          "standing": 15.625
+        }
+      },
+      "tiedValuesInReference": 0
+    }
+  }
+}

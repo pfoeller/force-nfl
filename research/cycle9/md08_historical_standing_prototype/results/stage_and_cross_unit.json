@@ -1,0 +1,592 @@
+{
+  "leaveOneSeasonOut": {
+    "olIndex": {
+      "AS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.09375,
+        "shareAtOrBelow20": 0.234375,
+        "shareAtOrBelow10": 0.09375,
+        "shareAt0or100": 0.046875,
+        "sd": 29.939256752086056
+      },
+      "BS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.21875,
+        "shareAtOrAbove90": 0.09375,
+        "shareAtOrBelow20": 0.234375,
+        "shareAtOrBelow10": 0.125,
+        "shareAt0or100": 0.046875,
+        "sd": 29.50304147486137
+      },
+      "CS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.09375,
+        "shareAtOrBelow20": 0.234375,
+        "shareAtOrBelow10": 0.09375,
+        "shareAt0or100": 0,
+        "sd": 29.087156429283887
+      },
+      "AC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.109375,
+        "shareAtOrBelow20": 0.21875,
+        "shareAtOrBelow10": 0.125,
+        "shareAt0or100": 0.015625,
+        "sd": 29.108734417161678
+      },
+      "BC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.09375,
+        "shareAtOrBelow20": 0.203125,
+        "shareAtOrBelow10": 0.125,
+        "shareAt0or100": 0.015625,
+        "sd": 28.754665950904126
+      },
+      "CC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.109375,
+        "shareAtOrBelow20": 0.21875,
+        "shareAtOrBelow10": 0.125,
+        "shareAt0or100": 0,
+        "sd": 29.043759563551927
+      },
+      "AF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.265625,
+        "shareAtOrAbove90": 0.171875,
+        "shareAtOrBelow20": 0.234375,
+        "shareAtOrBelow10": 0.21875,
+        "shareAt0or100": 0.234375,
+        "sd": 34.40047418891317
+      },
+      "BF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.265625,
+        "shareAtOrAbove90": 0.203125,
+        "shareAtOrBelow20": 0.25,
+        "shareAtOrBelow10": 0.234375,
+        "shareAt0or100": 0.234375,
+        "sd": 34.75944907392036
+      },
+      "CF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.265625,
+        "shareAtOrAbove90": 0.171875,
+        "shareAtOrBelow20": 0.234375,
+        "shareAtOrBelow10": 0.203125,
+        "shareAt0or100": 0,
+        "sd": 33.681271484457966
+      }
+    },
+    "receiverIndex": {
+      "AS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.25,
+        "shareAtOrAbove90": 0.203125,
+        "shareAtOrBelow20": 0.234375,
+        "shareAtOrBelow10": 0.15625,
+        "shareAt0or100": 0.03125,
+        "sd": 32.008696587696775
+      },
+      "BS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.234375,
+        "shareAtOrAbove90": 0.125,
+        "shareAtOrBelow20": 0.234375,
+        "shareAtOrBelow10": 0.15625,
+        "shareAt0or100": 0.03125,
+        "sd": 31.260999259613758
+      },
+      "CS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.234375,
+        "shareAtOrAbove90": 0.203125,
+        "shareAtOrBelow20": 0.234375,
+        "shareAtOrBelow10": 0.15625,
+        "shareAt0or100": 0,
+        "sd": 31.03661942910855
+      },
+      "AC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.109375,
+        "shareAtOrAbove90": 0.078125,
+        "shareAtOrBelow20": 0.203125,
+        "shareAtOrBelow10": 0.09375,
+        "shareAt0or100": 0,
+        "sd": 27.451047684555228
+      },
+      "BC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.109375,
+        "shareAtOrAbove90": 0.078125,
+        "shareAtOrBelow20": 0.203125,
+        "shareAtOrBelow10": 0.09375,
+        "shareAt0or100": 0,
+        "sd": 26.990552961167403
+      },
+      "CC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.109375,
+        "shareAtOrAbove90": 0.078125,
+        "shareAtOrBelow20": 0.203125,
+        "shareAtOrBelow10": 0.09375,
+        "shareAt0or100": 0,
+        "sd": 27.389773024545057
+      },
+      "AF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.28125,
+        "shareAtOrAbove90": 0.125,
+        "shareAtOrBelow20": 0.359375,
+        "shareAtOrBelow10": 0.265625,
+        "shareAt0or100": 0.1875,
+        "sd": 35.789454728664744
+      },
+      "BF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.28125,
+        "shareAtOrAbove90": 0.125,
+        "shareAtOrBelow20": 0.328125,
+        "shareAtOrBelow10": 0.234375,
+        "shareAt0or100": 0.1875,
+        "sd": 35.07301706766823
+      },
+      "CF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.28125,
+        "shareAtOrAbove90": 0.109375,
+        "shareAtOrBelow20": 0.34375,
+        "shareAtOrBelow10": 0.234375,
+        "shareAt0or100": 0,
+        "sd": 34.956028374978864
+      }
+    },
+    "rbIndex": {
+      "AS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.1875,
+        "shareAtOrAbove90": 0.125,
+        "shareAtOrBelow20": 0.1875,
+        "shareAtOrBelow10": 0.125,
+        "shareAt0or100": 0.046875,
+        "sd": 29.904288141292337
+      },
+      "BS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.15625,
+        "shareAtOrAbove90": 0.09375,
+        "shareAtOrBelow20": 0.203125,
+        "shareAtOrBelow10": 0.09375,
+        "shareAt0or100": 0.046875,
+        "sd": 28.898420571282465
+      },
+      "CS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.140625,
+        "shareAtOrAbove90": 0.125,
+        "shareAtOrBelow20": 0.1875,
+        "shareAtOrBelow10": 0.078125,
+        "shareAt0or100": 0,
+        "sd": 29.060961401400625
+      },
+      "AC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.15625,
+        "shareAtOrAbove90": 0.109375,
+        "shareAtOrBelow20": 0.203125,
+        "shareAtOrBelow10": 0.078125,
+        "shareAt0or100": 0.015625,
+        "sd": 27.944189388162048
+      },
+      "BC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.125,
+        "shareAtOrAbove90": 0.109375,
+        "shareAtOrBelow20": 0.203125,
+        "shareAtOrBelow10": 0.078125,
+        "shareAt0or100": 0.015625,
+        "sd": 27.308393494998462
+      },
+      "CC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.15625,
+        "shareAtOrAbove90": 0.109375,
+        "shareAtOrBelow20": 0.203125,
+        "shareAtOrBelow10": 0.078125,
+        "shareAt0or100": 0,
+        "sd": 27.884632611612133
+      },
+      "AF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.15625,
+        "shareAtOrAbove90": 0.140625,
+        "shareAtOrBelow20": 0.375,
+        "shareAtOrBelow10": 0.28125,
+        "shareAt0or100": 0.125,
+        "sd": 35.182991192496736
+      },
+      "BF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.21875,
+        "shareAtOrAbove90": 0.140625,
+        "shareAtOrBelow20": 0.34375,
+        "shareAtOrBelow10": 0.234375,
+        "shareAt0or100": 0.125,
+        "sd": 34.71205875416613
+      },
+      "CF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.140625,
+        "shareAtOrAbove90": 0.125,
+        "shareAtOrBelow20": 0.34375,
+        "shareAtOrBelow10": 0.25,
+        "shareAt0or100": 0,
+        "sd": 34.32076787980107
+      }
+    },
+    "qbIndex": {
+      "AS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.140625,
+        "shareAtOrBelow20": 0.21875,
+        "shareAtOrBelow10": 0.171875,
+        "shareAt0or100": 0.046875,
+        "sd": 30.72635552904859
+      },
+      "BS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.125,
+        "shareAtOrBelow20": 0.21875,
+        "shareAtOrBelow10": 0.171875,
+        "shareAt0or100": 0.046875,
+        "sd": 30.662531381267115
+      },
+      "CS": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.140625,
+        "shareAtOrBelow20": 0.203125,
+        "shareAtOrBelow10": 0.15625,
+        "shareAt0or100": 0,
+        "sd": 29.79846928619054
+      },
+      "AC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.140625,
+        "shareAtOrAbove90": 0.09375,
+        "shareAtOrBelow20": 0.1875,
+        "shareAtOrBelow10": 0.15625,
+        "shareAt0or100": 0,
+        "sd": 27.261756858359306
+      },
+      "BC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.125,
+        "shareAtOrAbove90": 0.0625,
+        "shareAtOrBelow20": 0.1875,
+        "shareAtOrBelow10": 0.125,
+        "shareAt0or100": 0,
+        "sd": 26.770883104690544
+      },
+      "CC": {
+        "n": 64,
+        "shareAtOrAbove80": 0.140625,
+        "shareAtOrAbove90": 0.09375,
+        "shareAtOrBelow20": 0.1875,
+        "shareAtOrBelow10": 0.15625,
+        "shareAt0or100": 0,
+        "sd": 27.20090472251475
+      },
+      "AF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.140625,
+        "shareAtOrBelow20": 0.265625,
+        "shareAtOrBelow10": 0.1875,
+        "shareAt0or100": 0.140625,
+        "sd": 32.6126811853855
+      },
+      "BF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.234375,
+        "shareAtOrAbove90": 0.140625,
+        "shareAtOrBelow20": 0.25,
+        "shareAtOrBelow10": 0.1875,
+        "shareAt0or100": 0.140625,
+        "sd": 32.441182422522544
+      },
+      "CF": {
+        "n": 64,
+        "shareAtOrAbove80": 0.203125,
+        "shareAtOrAbove90": 0.109375,
+        "shareAtOrBelow20": 0.265625,
+        "shareAtOrBelow10": 0.171875,
+        "shareAt0or100": 0,
+        "sd": 31.835493792830604
+      }
+    }
+  },
+  "currentStageEffect": {
+    "olIndex": {
+      "AS_vs_AC": {
+        "meanAbsDiff": 2.408699549712226,
+        "maxAbsDiff": 10.124627331383628,
+        "meanSignedDiff": -1.8829544294306721,
+        "sdStageMatched": 21.60357781536845,
+        "sdOther": 20.206690539191477,
+        "extremesStageMatched": 1,
+        "extremesOther": 1
+      },
+      "AS_vs_AF": {
+        "meanAbsDiff": 4.635626970960081,
+        "maxAbsDiff": 9.359774461105566,
+        "meanSignedDiff": -3.0414335399804306,
+        "sdStageMatched": 21.60357781536845,
+        "sdOther": 24.566702750432945,
+        "extremesStageMatched": 1,
+        "extremesOther": 5
+      },
+      "BS_vs_BC": {
+        "meanAbsDiff": 2.754954815397034,
+        "maxAbsDiff": 6.685722938390029,
+        "meanSignedDiff": -2.754954815397034,
+        "sdStageMatched": 20.267468245909384,
+        "sdOther": 19.933217477099113,
+        "extremesStageMatched": 1,
+        "extremesOther": 1
+      },
+      "BS_vs_BF": {
+        "meanAbsDiff": 5.737160896735464,
+        "maxAbsDiff": 8.953368839806913,
+        "meanSignedDiff": -3.900276572084927,
+        "sdStageMatched": 20.267468245909384,
+        "sdOther": 24.729861288636226,
+        "extremesStageMatched": 1,
+        "extremesOther": 5
+      },
+      "CS_vs_CC": {
+        "meanAbsDiff": 2.3904430310615234,
+        "maxAbsDiff": 9.929933678965796,
+        "meanSignedDiff": -2.0048829495446197,
+        "sdStageMatched": 21.26602191200332,
+        "sdOther": 20.184164618762086,
+        "extremesStageMatched": 1,
+        "extremesOther": 1
+      },
+      "CS_vs_CF": {
+        "meanAbsDiff": 4.572409743164907,
+        "maxAbsDiff": 9.21352798515079,
+        "meanSignedDiff": -3.003125584544315,
+        "sdStageMatched": 21.26602191200332,
+        "sdOther": 24.197304167120972,
+        "extremesStageMatched": 1,
+        "extremesOther": 5
+      }
+    },
+    "receiverIndex": {
+      "AS_vs_AC": {
+        "meanAbsDiff": 4.455815085614108,
+        "maxAbsDiff": 11.235069562754887,
+        "meanSignedDiff": -4.090935734511231,
+        "sdStageMatched": 29.98836808718383,
+        "sdOther": 27.607803649867726,
+        "extremesStageMatched": 7,
+        "extremesOther": 5
+      },
+      "AS_vs_AF": {
+        "meanAbsDiff": 6.071899602619842,
+        "maxAbsDiff": 18.6662331579625,
+        "meanSignedDiff": -2.2692814557692786,
+        "sdStageMatched": 29.98836808718383,
+        "sdOther": 36.35267061767778,
+        "extremesStageMatched": 7,
+        "extremesOther": 14
+      },
+      "BS_vs_BC": {
+        "meanAbsDiff": 2.91252733057136,
+        "maxAbsDiff": 5.55499637161499,
+        "meanSignedDiff": -2.6956949788943674,
+        "sdStageMatched": 28.56545216695226,
+        "sdOther": 27.035435355084175,
+        "extremesStageMatched": 6,
+        "extremesOther": 3
+      },
+      "BS_vs_BF": {
+        "meanAbsDiff": 6.752589373604967,
+        "maxAbsDiff": 14.194629262000518,
+        "meanSignedDiff": -0.9822324785951076,
+        "sdStageMatched": 28.56545216695226,
+        "sdOther": 35.53247328671407,
+        "extremesStageMatched": 6,
+        "extremesOther": 13
+      },
+      "CS_vs_CC": {
+        "meanAbsDiff": 4.2456966909058345,
+        "maxAbsDiff": 10.692369518350603,
+        "meanSignedDiff": -3.949273643964107,
+        "sdStageMatched": 29.52792314563738,
+        "sdOther": 27.577238962784822,
+        "extremesStageMatched": 7,
+        "extremesOther": 5
+      },
+      "CS_vs_CF": {
+        "meanAbsDiff": 6.017145552876764,
+        "maxAbsDiff": 18.374573264869333,
+        "meanSignedDiff": -2.225504280599127,
+        "sdStageMatched": 29.52792314563738,
+        "sdOther": 35.84509055735022,
+        "extremesStageMatched": 7,
+        "extremesOther": 12
+      }
+    },
+    "rbIndex": {
+      "AS_vs_AC": {
+        "meanAbsDiff": 2.4913736250446936,
+        "maxAbsDiff": 7.991262937670456,
+        "meanSignedDiff": -1.7749656832103446,
+        "sdStageMatched": 29.47220364621491,
+        "sdOther": 27.699821784027677,
+        "extremesStageMatched": 8,
+        "extremesOther": 7
+      },
+      "AS_vs_AF": {
+        "meanAbsDiff": 8.163752612685444,
+        "maxAbsDiff": 18.421181395477642,
+        "meanSignedDiff": -4.022510862833123,
+        "sdStageMatched": 29.47220364621491,
+        "sdOther": 35.61649383619966,
+        "extremesStageMatched": 8,
+        "extremesOther": 15
+      },
+      "BS_vs_BC": {
+        "meanAbsDiff": 2.33796615195015,
+        "maxAbsDiff": 6.104811578637332,
+        "meanSignedDiff": -2.118424605297544,
+        "sdStageMatched": 28.6260974166556,
+        "sdOther": 27.350987739226696,
+        "extremesStageMatched": 8,
+        "extremesOther": 7
+      },
+      "BS_vs_BF": {
+        "meanAbsDiff": 7.287681306569608,
+        "maxAbsDiff": 15.036103993931563,
+        "meanSignedDiff": -4.313647552175789,
+        "sdStageMatched": 28.6260974166556,
+        "sdOther": 34.608762110407156,
+        "extremesStageMatched": 8,
+        "extremesOther": 15
+      },
+      "CS_vs_CC": {
+        "meanAbsDiff": 2.320604272390295,
+        "maxAbsDiff": 7.610019272774693,
+        "meanSignedDiff": -1.8546554486180589,
+        "sdStageMatched": 29.0117004642428,
+        "sdOther": 27.66906029630768,
+        "extremesStageMatched": 8,
+        "extremesOther": 7
+      },
+      "CS_vs_CF": {
+        "meanAbsDiff": 8.078954924226087,
+        "maxAbsDiff": 18.133350436173306,
+        "meanSignedDiff": -3.964630989661037,
+        "sdStageMatched": 29.0117004642428,
+        "sdOther": 35.11899453957322,
+        "extremesStageMatched": 8,
+        "extremesOther": 15
+      }
+    },
+    "qbIndex": {
+      "AS_vs_AC": {
+        "meanAbsDiff": 4.135841493892161,
+        "maxAbsDiff": 10.415701613583693,
+        "meanSignedDiff": -2.4190393198895914,
+        "sdStageMatched": 31.360470501765207,
+        "sdOther": 29.295512808366933,
+        "extremesStageMatched": 6,
+        "extremesOther": 5
+      },
+      "AS_vs_AF": {
+        "meanAbsDiff": 3.9483898909708057,
+        "maxAbsDiff": 11.170000646210674,
+        "meanSignedDiff": -1.5364814386022327,
+        "sdStageMatched": 31.360470501765207,
+        "sdOther": 35.03508310806132,
+        "extremesStageMatched": 6,
+        "extremesOther": 14
+      },
+      "BS_vs_BC": {
+        "meanAbsDiff": 3.0434012483675086,
+        "maxAbsDiff": 6.599727489429085,
+        "meanSignedDiff": -1.9066703756525034,
+        "sdStageMatched": 31.225753901744206,
+        "sdOther": 28.899554218031234,
+        "extremesStageMatched": 7,
+        "extremesOther": 5
+      },
+      "BS_vs_BF": {
+        "meanAbsDiff": 3.418045544963216,
+        "maxAbsDiff": 7.498765604551473,
+        "meanSignedDiff": -0.025090888998671484,
+        "sdStageMatched": 31.225753901744206,
+        "sdOther": 34.80754137354218,
+        "extremesStageMatched": 7,
+        "extremesOther": 14
+      },
+      "CS_vs_CC": {
+        "meanAbsDiff": 3.9037158833564285,
+        "maxAbsDiff": 10.094437024756438,
+        "meanSignedDiff": -2.3641817542236834,
+        "sdStageMatched": 30.92230581239403,
+        "sdOther": 29.263013054197714,
+        "extremesStageMatched": 6,
+        "extremesOther": 5
+      },
+      "CS_vs_CF": {
+        "meanAbsDiff": 3.9191677088211154,
+        "maxAbsDiff": 10.995469386113632,
+        "meanSignedDiff": -1.503158898393867,
+        "sdStageMatched": 30.92230581239403,
+        "sdOther": 34.58041135053835,
+        "extremesStageMatched": 6,
+        "extremesOther": 14
+      }
+    }
+  },
+  "whatEightyMeans": {
+    "olIndex": {
+      "signalAt80": {
+        "disruptionRate": 0.113399209486166
+      },
+      "historicalStanding": 79.6875,
+      "referenceN": 64
+    },
+    "receiverIndex": {
+      "signalAt80": {
+        "value": 0.2421164808054091
+      },
+      "historicalStanding": 79.6875,
+      "referenceN": 64
+    },
+    "rbIndex": {
+      "signalAt80": {
+        "value": 0.01357664802987123
+      },
+      "historicalStanding": 79.6875,
+      "referenceN": 64
+    },
+    "qbIndex": {
+      "signalAt80": {
+        "value": 0.17089563251699774
+      },
+      "historicalStanding": 79.6875,
+      "referenceN": 64
+    }
+  }
+}

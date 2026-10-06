@@ -1,0 +1,20 @@
+{
+  "canonicalValues": "qbIndex, receiverIndex, olIndex, rbIndex (post-correction LIVE_FITTED frame) and defenseIndex for 32 teams, computed through production blend/recency/clamp and the identity seam, equal the frozen Cycle 9 post-correction baseline (current_unit_values.csv, 6-decimal) within 5e-7",
+  "maxAbsResidualVs6DecimalCsv": 4.905881922923072e-7,
+  "seamIsIdentity": true,
+  "constructValidation": {
+    "olVsV149": {
+      "teamGames": 544,
+      "exactWithin1e7": 544,
+      "maxAbsDiff": 4.871794884175884e-9,
+      "correlation": 1.0000000000000004
+    },
+    "qbVsV149": {
+      "teamGames": 544,
+      "exactWithin1e7": 528,
+      "maxAbsDiff": 0.17141031837993925,
+      "correlation": 0.9988530620036051
+    },
+    "note": "V149 (production 2025 reference) and the Cycle 7 fixture come from different nflverse 2025 PBP releases (sha 8ce00018 vs 2f135887). Agreement measures definitional identity up to release revisions."
+  }
+}

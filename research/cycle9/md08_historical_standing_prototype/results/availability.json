@@ -1,0 +1,91 @@
+{
+  "sourceOfHistoricalReference": {
+    "path": "research/cycle7/fixtures/unit_games.csv",
+    "derivedFrom": "research/cycle7/inputs.json pins (nflverse 2024/2025 regular-season PBP and weekly player positions; committed derived fixture)",
+    "seasons": [
+      2024,
+      2025
+    ],
+    "form": "game-level, one row per team-game, 17 games per team-season, with counts for exact pooling",
+    "futureInformation": "None within a window: a window uses only the games it covers. Position classification is full-season (Cycle 7 boundary)."
+  },
+  "seamInputQuantity": "The seam consumes the final canonical grade (live grade blended with a regressed 2025 prior; QB adds recency and a clamp). No historical population of FINAL grades exists in the repository for any unit: replaying the current model on past seasons needs past priors, provider selections and context state that are not archived (Cycle 9 Section 6). Every prototype below therefore maps the unit's measured SIGNAL, not the final grade.",
+  "units": {
+    "qbIndex": {
+      "finalQuantity": "qbIndex (five-component composite, opponent/pressure context, prior blend, recency, clamp)",
+      "historicalSeasons": [
+        2024,
+        2025
+      ],
+      "perSeason": "32 team-seasons x 17 games (EPA/play component only)",
+      "forms": "game-level -> rolling or stage windows, full season",
+      "identicalSemantics": false,
+      "mismatch": "Only the EPA/play component has history; ANY/A, CPOE, success-weighting, rushing bonus, opponent and pressure terms, prior and recency do not.",
+      "stageComparable": true,
+      "stabilizationDiffers": "Production stabilizes EPA toward the current mean (150 plays); the signal-layer reference is unstabilized.",
+      "verdict": "PARTIAL: component-level prototype only; the displayed QB composite cannot honestly be given a historical standing yet."
+    },
+    "olIndex": {
+      "finalQuantity": "olIndex (live = 2025 window percentile of disruption rate; blended with regressed legacy 2025 olIndex prior)",
+      "historicalSeasons": [
+        2024,
+        2025
+      ],
+      "perSeason": "32 x 17 games; 32 stage windows; 448 4-game windows",
+      "forms": "game-level -> windows, full season",
+      "identicalSemantics": true,
+      "mismatch": "None at the signal layer (validated). The final grade adds a prior of a different construct.",
+      "stageComparable": true,
+      "stabilizationDiffers": "None (OL is unstabilized in production too).",
+      "verdict": "SUPPORTED at the signal layer."
+    },
+    "receiverIndex": {
+      "finalQuantity": "receiverIndex (residual stabilized with 80 targets, centre-aligned, 2025 CDF, prior blend)",
+      "historicalSeasons": [
+        2024,
+        2025
+      ],
+      "perSeason": "32 x 17 games",
+      "forms": "game-level -> windows, full season",
+      "identicalSemantics": "residual construct yes; stabilization and centre alignment are not applied to the signal-layer reference or current value",
+      "mismatch": "Weekly-stat vs PBP aggregation of the same targets.",
+      "stageComparable": true,
+      "stabilizationDiffers": "Yes: production shrinks toward the current centre; the prototype maps the unshrunk 4-game residual against unshrunk 4-game windows (stage-matched).",
+      "verdict": "SUPPORTED at the signal layer (unstabilized residual)."
+    },
+    "rbIndex": {
+      "finalQuantity": "rbIndex (70% rushing + 30% residual receiving, stabilized, centre-aligned, LIVE_FITTED prior)",
+      "historicalSeasons": [
+        2024,
+        2025
+      ],
+      "perSeason": "32 x 17 games (rushing only)",
+      "forms": "game-level -> windows, full season",
+      "identicalSemantics": false,
+      "mismatch": "Receiving component missing historically.",
+      "stageComparable": true,
+      "stabilizationDiffers": "Yes (50 carries toward current mean in production).",
+      "verdict": "PARTIAL: rushing component only."
+    },
+    "defenseIndex": {
+      "finalQuantity": "defenseIndex (display-only soft-tail composite of coverage, pass rush, run defense and prevention, each a current-season rank or provider-dependent map)",
+      "historicalSeasons": [],
+      "perSeason": "none in current semantics",
+      "forms": "n/a",
+      "identicalSemantics": false,
+      "mismatch": "Components are current-season ranks; prevention (points/drive) has no history in the fixture; pass rush is provider-dependent; the fixture run-defense signal is RB-only while production includes QB runs; coverage is 75% EPA + 25% CPOE ranks.",
+      "stageComparable": null,
+      "stabilizationDiffers": "n/a",
+      "verdict": "NOT SUPPORTED: no historical population with current semantics."
+    },
+    "defensiveSubunits": {
+      "inspected": [
+        "coverageIndex",
+        "passRushIndex",
+        "runDefenseIndex",
+        "pointsAllowedPerDriveIndex"
+      ],
+      "verdict": "NOT PROTOTYPED. The fixture carries pass_rush, coverage and run_defense signals, but each differs from the production construct (provider, CPOE share, QB runs), and prevention has no history. Including them would test a different metric."
+    }
+  }
+}

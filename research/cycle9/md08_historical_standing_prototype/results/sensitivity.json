@@ -1,0 +1,394 @@
+{
+  "olIndex": {
+    "referencePopulation": {
+      "S_vs_C": {
+        "meanAbsDiff": 2.408699549712226,
+        "maxAbsDiff": 10.124627331383628
+      },
+      "S_vs_F": {
+        "meanAbsDiff": 4.635626970960081,
+        "maxAbsDiff": 9.359774461105566
+      }
+    },
+    "seasonInclusion": {
+      "only2024": {
+        "meanAbsDiff": 3.7275983549023035,
+        "maxAbsDiff": 7.645274945629048
+      },
+      "only2025": {
+        "meanAbsDiff": 3.0444207026499184,
+        "maxAbsDiff": 6.777351387815536
+      },
+      "only2024VsOnly2025": {
+        "meanAbsDiff": 6.765781890696776,
+        "maxAbsDiff": 14.263064429691905
+      }
+    },
+    "tieConvention": {
+      "minVsMid": {
+        "meanAbsDiff": 0.00579173430735902,
+        "maxAbsDiff": 0.18533549783548864
+      },
+      "maxVsMid": {
+        "meanAbsDiff": 0.00579173430735902,
+        "maxAbsDiff": 0.18533549783548864
+      }
+    },
+    "sparseTail": {
+      "BvsA": {
+        "meanAbsDiff": 2.1358352111989465,
+        "maxAbsDiff": 3.9288609229297364
+      },
+      "CvsA": {
+        "meanAbsDiff": 0.3210016041789898,
+        "maxAbsDiff": 0.6770457551707549
+      },
+      "top5AndBottom5": {
+        "A": [
+          88.82479743489753,
+          86.13796395751282,
+          76.76664605236034,
+          72.8015691402419,
+          71.23265306122448,
+          17.911509460805238,
+          17.346342098817342,
+          16.24661885468454,
+          16.148334410160594,
+          6.6690716690716565
+        ],
+        "B": [
+          89.15503883334091,
+          84.87101371986695,
+          78.88436864892982,
+          71.39825920696752,
+          67.66566789069843,
+          21.81788525145207,
+          21.27520302174708,
+          18.749566149601552,
+          18.537449239490392,
+          7.772771745700571
+        ],
+        "C": [
+          88.21815997497725,
+          85.5733082706767,
+          76.34841720779221,
+          72.44529462242564,
+          70.90089285714285,
+          18.41289212548016,
+          17.856555503523325,
+          16.774015435080095,
+          16.677266685001836,
+          7.346117424242411
+        ]
+      }
+    },
+    "signalOrderVsFinalGradeOrder": {
+      "spearman": 0.951150219373729,
+      "teamsMoving": 22,
+      "maxAbsMove": 8
+    },
+    "note": "All candidates are monotone in the signal, so within a unit they share the signal order; differences between candidates and references are spacing/level only. The signal order differs from the final model order because the final grade adds stabilization and the prior blend."
+  },
+  "receiverIndex": {
+    "referencePopulation": {
+      "S_vs_C": {
+        "meanAbsDiff": 4.455815085614108,
+        "maxAbsDiff": 11.235069562754887
+      },
+      "S_vs_F": {
+        "meanAbsDiff": 6.071899602619842,
+        "maxAbsDiff": 18.6662331579625
+      }
+    },
+    "seasonInclusion": {
+      "only2024": {
+        "meanAbsDiff": 7.036204550256771,
+        "maxAbsDiff": 13.296083007865818
+      },
+      "only2025": {
+        "meanAbsDiff": 6.945590751626296,
+        "maxAbsDiff": 13.407644874333869
+      },
+      "only2024VsOnly2025": {
+        "meanAbsDiff": 13.967803235664537,
+        "maxAbsDiff": 26.703727882199686
+      }
+    },
+    "tieConvention": {
+      "minVsMid": {
+        "meanAbsDiff": 0,
+        "maxAbsDiff": 0
+      },
+      "maxVsMid": {
+        "meanAbsDiff": 0,
+        "maxAbsDiff": 0
+      }
+    },
+    "sparseTail": {
+      "BvsA": {
+        "meanAbsDiff": 2.2304226033345316,
+        "maxAbsDiff": 7.291998825841304
+      },
+      "CvsA": {
+        "meanAbsDiff": 0.4371420536649978,
+        "maxAbsDiff": 0.7611006885766329
+      },
+      "top5AndBottom5": {
+        "A": [
+          98.71044406890438,
+          93.3168642760611,
+          92.31052661348144,
+          91.66678361139799,
+          91.0540860086684,
+          21.265332811123553,
+          20.137605562081554,
+          11.24872730130394,
+          9.2161628548835,
+          0
+        ],
+        "B": [
+          98.59142700507083,
+          93.58414298992035,
+          91.74256520621388,
+          90.84578680711711,
+          88.8090017728058,
+          23.582876956513427,
+          20.009448458756403,
+          10.369631743917115,
+          9.949909684829816,
+          0
+        ],
+        "C": [
+          97.94934338032775,
+          92.64003827174764,
+          91.64942463514579,
+          91.01574011746989,
+          90.41261591478296,
+          21.71431198594975,
+          20.60420547517403,
+          11.854215937221067,
+          9.853410310275946,
+          0.6496225201665412
+        ]
+      }
+    },
+    "signalOrderVsFinalGradeOrder": {
+      "spearman": 0.9505131964809385,
+      "teamsMoving": 25,
+      "maxAbsMove": 8
+    },
+    "note": "All candidates are monotone in the signal, so within a unit they share the signal order; differences between candidates and references are spacing/level only. The signal order differs from the final model order because the final grade adds stabilization and the prior blend."
+  },
+  "rbIndex": {
+    "referencePopulation": {
+      "S_vs_C": {
+        "meanAbsDiff": 2.4913736250446936,
+        "maxAbsDiff": 7.991262937670456
+      },
+      "S_vs_F": {
+        "meanAbsDiff": 8.163752612685444,
+        "maxAbsDiff": 18.421181395477642
+      }
+    },
+    "seasonInclusion": {
+      "only2024": {
+        "meanAbsDiff": 2.1566862436240566,
+        "maxAbsDiff": 4.932902464559582
+      },
+      "only2025": {
+        "meanAbsDiff": 2.279356169723787,
+        "maxAbsDiff": 5.819899300226282
+      },
+      "only2024VsOnly2025": {
+        "meanAbsDiff": 4.361150016441813,
+        "maxAbsDiff": 10.444786548210999
+      }
+    },
+    "tieConvention": {
+      "minVsMid": {
+        "meanAbsDiff": 0,
+        "maxAbsDiff": 0
+      },
+      "maxVsMid": {
+        "meanAbsDiff": 0,
+        "maxAbsDiff": 0
+      }
+    },
+    "sparseTail": {
+      "BvsA": {
+        "meanAbsDiff": 1.5747589611310222,
+        "maxAbsDiff": 4.065928886002787
+      },
+      "CvsA": {
+        "meanAbsDiff": 0.41029021726329373,
+        "maxAbsDiff": 0.7641371589544614
+      },
+      "top5AndBottom5": {
+        "A": [
+          96.14556473321204,
+          91.90886461730089,
+          91.73014023598579,
+          89.58802925555703,
+          89.18551810891884,
+          7.118019303451264,
+          6.875509224560911,
+          3.849114625148672,
+          2.4634146099784964,
+          1.095221826914472
+        ],
+        "B": [
+          95.50273420433074,
+          92.98973170949617,
+          91.09343718664459,
+          88.67828725880224,
+          86.91040562144394,
+          8.201524374988347,
+          7.597083788650688,
+          4.624202263144662,
+          3.0830207839494985,
+          0.8422068842959786
+        ],
+        "C": [
+          95.4245402842556,
+          91.25403860765556,
+          91.0781067947985,
+          88.96946629843896,
+          88.57324438846699,
+          7.788050251834838,
+          7.549329392927147,
+          4.570222209130724,
+          3.2061737566975825,
+          1.8593589858689334
+        ]
+      }
+    },
+    "signalOrderVsFinalGradeOrder": {
+      "spearman": 0.8493401759530792,
+      "teamsMoving": 28,
+      "maxAbsMove": 13
+    },
+    "note": "All candidates are monotone in the signal, so within a unit they share the signal order; differences between candidates and references are spacing/level only. The signal order differs from the final model order because the final grade adds stabilization and the prior blend."
+  },
+  "qbIndex": {
+    "referencePopulation": {
+      "S_vs_C": {
+        "meanAbsDiff": 4.135841493892161,
+        "maxAbsDiff": 10.415701613583693
+      },
+      "S_vs_F": {
+        "meanAbsDiff": 3.9483898909708057,
+        "maxAbsDiff": 11.170000646210674
+      }
+    },
+    "seasonInclusion": {
+      "only2024": {
+        "meanAbsDiff": 5.4325215414020285,
+        "maxAbsDiff": 8.524798381943668
+      },
+      "only2025": {
+        "meanAbsDiff": 5.323528172007113,
+        "maxAbsDiff": 8.586047750761182
+      },
+      "only2024VsOnly2025": {
+        "meanAbsDiff": 10.739707281056111,
+        "maxAbsDiff": 16.98915488621015
+      }
+    },
+    "tieConvention": {
+      "minVsMid": {
+        "meanAbsDiff": 0,
+        "maxAbsDiff": 0
+      },
+      "maxVsMid": {
+        "meanAbsDiff": 0,
+        "maxAbsDiff": 0
+      }
+    },
+    "sparseTail": {
+      "BvsA": {
+        "meanAbsDiff": 1.7112493686650776,
+        "maxAbsDiff": 5.097423788778698
+      },
+      "CvsA": {
+        "meanAbsDiff": 0.4156025675296903,
+        "maxAbsDiff": 0.7509392854855008
+      },
+      "top5AndBottom5": {
+        "A": [
+          100,
+          98.06011427107164,
+          94.00330770147202,
+          91.2588674856159,
+          91.01812985814313,
+          17.08456281815574,
+          15.828647804414148,
+          15.74526665647429,
+          12.64218702883998,
+          0
+        ],
+        "B": [
+          100,
+          98.84490067706221,
+          94.63444644188895,
+          92.15152090907387,
+          91.6217402548157,
+          15.250859035388748,
+          13.704061960680743,
+          13.502042221132308,
+          9.844116227807545,
+          0
+        ],
+        "C": [
+          99.90580169798145,
+          97.30917498558614,
+          93.31575601863652,
+          90.61419768115314,
+          90.37722157910964,
+          17.598866524122055,
+          16.362575182470177,
+          16.280496864966878,
+          13.225902856514354,
+          0.40640443126536446
+        ]
+      }
+    },
+    "signalOrderVsFinalGradeOrder": {
+      "spearman": 0.9618768328445748,
+      "teamsMoving": 23,
+      "maxAbsMove": 6
+    },
+    "note": "All candidates are monotone in the signal, so within a unit they share the signal order; differences between candidates and references are spacing/level only. The signal order differs from the final model order because the final grade adds stabilization and the prior blend."
+  },
+  "priorBlendFromFollowup": [
+    {
+      "id": "receiver K 80 -> 40",
+      "finalSpearman": 0.9805718475073314,
+      "teamsMoving": 19,
+      "maxAbsMove": 6
+    },
+    {
+      "id": "receiver K 80 -> 120",
+      "finalSpearman": 0.9970674486803519,
+      "teamsMoving": 10,
+      "maxAbsMove": 2
+    },
+    {
+      "id": "receiver K 80 -> 200",
+      "finalSpearman": 0.9853372434017595,
+      "teamsMoving": 19,
+      "maxAbsMove": 5
+    },
+    {
+      "id": "receiver K 80 -> 320",
+      "finalSpearman": 0.9629765395894428,
+      "teamsMoving": 21,
+      "maxAbsMove": 7
+    },
+    {
+      "id": "OL production -> exact measured-level-matched (rate - .0107)",
+      "finalSpearman": 0.9904692082111437,
+      "teamsMoving": 18,
+      "maxAbsMove": 3
+    }
+  ]
+}
