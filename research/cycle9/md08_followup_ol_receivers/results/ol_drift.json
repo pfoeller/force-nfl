@@ -1,0 +1,778 @@
+{
+  "construction": {
+    "steps": [
+      "Raw: per team-game PBP normal dropbacks (downs 1-4, pass attempt or sack, no spike/no-play); disruption = sack OR qb_hit, counted once (force_server.py).",
+      "Team signal: disruptions/dropbacks pooled over the season to date (no opponent, run-block or context adjustment; no stabilization).",
+      "Live grade: continuousPercentileValue against every 2025 rolling window of the same game count (all 32 teams, all start weeks; n=448 at 4 games), lower better. No centre alignment to the current league.",
+      "Prior: bundled 2025 olIndex (legacy 32-team rank of a different pressure-allowed construct) regressed 30% toward 50.",
+      "Display/model value: blend(prior, live, statGames, priorGames); the bridge reads it as delta = value - prior; presentation reads it through the identity seam."
+    ],
+    "anchors": {
+      "model/live_profiles.js": {
+        "function historicalWindowValues(": 233,
+        "function continuousPercentileValue(": 965,
+        "function blend(prior, live, games, priorGames)": 320,
+        "receiverResidualStabilizerTargets:80.0": 183,
+        "const receiverRoomTargets=sum(recRows,'targets');": 1103,
+        "r.receiverResidualEpa=receiverResidualPolicyActive(receiverPolicy)": 1234,
+        "const currentReceiverResidual=weightedLeagueMean(": 1249,
+        "r.receiverStabilizedResidual=stabilizeToward(": 1265,
+        "environmentAlignToHistoricalCenter(r.receiverStabilizedResidual": 1267,
+        "const receiverIndex=playerStatsUsable ? blend(": 1604,
+        "const priorOlIndex=regressUnitIndex(": 1445,
+        "const olHistoricalBench=": 1509,
+        "continuousPercentileValue(olHistoricalBench,effectivePressureAllowedRate,false)": 1511,
+        "const olIndex=teamStatsUsable ? blend(": 1578
+      },
+      "force_server.py": {
+        "def _v104_reference_from_drive_games(": 2333,
+        "by_team.setdefault(team,[]).append(rec)": 2359,
+        "disrupted=_pbp_truthy(row.get('sack')) or _pbp_truthy(row.get('qb_hit'))": 1847,
+        "return sorted(out,key=lambda x:(x['week'],x['game_id']))": 1936
+      }
+    }
+  },
+  "season2025ByTeamGame": [
+    {
+      "game": 1,
+      "teamMean": 0.1586723,
+      "teamMedian": 0.161764705,
+      "teamSd": 0.08124099421295135
+    },
+    {
+      "game": 2,
+      "teamMean": 0.16419083562499998,
+      "teamMedian": 0.16666667,
+      "teamSd": 0.0651927445309348
+    },
+    {
+      "game": 3,
+      "teamMean": 0.1598786509375,
+      "teamMedian": 0.155863435,
+      "teamSd": 0.07545803750120039
+    },
+    {
+      "game": 4,
+      "teamMean": 0.14419361656250002,
+      "teamMedian": 0.12347561,
+      "teamSd": 0.08584362712396117
+    },
+    {
+      "game": 5,
+      "teamMean": 0.1347333503125,
+      "teamMedian": 0.12310606,
+      "teamSd": 0.0677584717750736
+    },
+    {
+      "game": 6,
+      "teamMean": 0.160362914375,
+      "teamMedian": 0.14285714,
+      "teamSd": 0.08233130134306466
+    },
+    {
+      "game": 7,
+      "teamMean": 0.15882591281249997,
+      "teamMedian": 0.14814815,
+      "teamSd": 0.05555513649309582
+    },
+    {
+      "game": 8,
+      "teamMean": 0.15423703937500002,
+      "teamMedian": 0.1521181,
+      "teamSd": 0.08233109154391186
+    },
+    {
+      "game": 9,
+      "teamMean": 0.16873753,
+      "teamMedian": 0.15831842499999998,
+      "teamSd": 0.09403606094891069
+    },
+    {
+      "game": 10,
+      "teamMean": 0.1463154971875,
+      "teamMedian": 0.140196075,
+      "teamSd": 0.07606395168279331
+    },
+    {
+      "game": 11,
+      "teamMean": 0.1670853384375,
+      "teamMedian": 0.16,
+      "teamSd": 0.06881005125012335
+    },
+    {
+      "game": 12,
+      "teamMean": 0.1441019321875,
+      "teamMedian": 0.162280705,
+      "teamSd": 0.0631738154054049
+    },
+    {
+      "game": 13,
+      "teamMean": 0.16473050312500007,
+      "teamMedian": 0.163978495,
+      "teamSd": 0.07325676014221175
+    },
+    {
+      "game": 14,
+      "teamMean": 0.17491737656249998,
+      "teamMedian": 0.171875,
+      "teamSd": 0.08584505474530302
+    },
+    {
+      "game": 15,
+      "teamMean": 0.161851976875,
+      "teamMedian": 0.14358974,
+      "teamSd": 0.08130232335698287
+    },
+    {
+      "game": 16,
+      "teamMean": 0.170625956875,
+      "teamMedian": 0.159545455,
+      "teamSd": 0.07602157773767403
+    },
+    {
+      "game": 17,
+      "teamMean": 0.16893042624999996,
+      "teamMedian": 0.15130719,
+      "teamSd": 0.09152325387797948
+    }
+  ],
+  "season2025Replay": {
+    "definition": "Each 2025 team window of the given length and start, mapped through the production OL live map for that length. Start 1 = the same season stage as the 2026 Week-4 snapshot.",
+    "fourGame": [
+      {
+        "startGame": 1,
+        "games": "1-4",
+        "teamMeanRate": 0.1581095015625,
+        "teamMedianRate": 0.166744155,
+        "teamSdRate": 0.050869486884914564,
+        "liveMean": 49.50474330357142,
+        "liveMedian": 41.07142857142857,
+        "liveSd": 30.93170542682252
+      },
+      {
+        "startGame": 2,
+        "games": "2-5",
+        "teamMeanRate": 0.15215031062500003,
+        "teamMedianRate": 0.15027485000000002,
+        "teamSdRate": 0.041445423260772336,
+        "liveMean": 53.111049107142854,
+        "liveMedian": 54.57589285714286,
+        "liveSd": 26.815746365084262
+      },
+      {
+        "startGame": 3,
+        "games": "3-6",
+        "teamMeanRate": 0.15124482249999996,
+        "teamMedianRate": 0.156402435,
+        "teamSdRate": 0.049918850722689485,
+        "liveMean": 53.39006696428572,
+        "liveMedian": 48.88392857142857,
+        "liveSd": 29.549002131587397
+      },
+      {
+        "startGame": 4,
+        "games": "4-7",
+        "teamMeanRate": 0.15223936343749997,
+        "teamMedianRate": 0.14573501500000002,
+        "teamSdRate": 0.04507792963513247,
+        "liveMean": 53.752790178571445,
+        "liveMedian": 57.70089285714286,
+        "liveSd": 29.52728472236946
+      },
+      {
+        "startGame": 5,
+        "games": "5-8",
+        "teamMeanRate": 0.15416387562500003,
+        "teamMedianRate": 0.142618925,
+        "teamSdRate": 0.04619352294970969,
+        "liveMean": 53.34821428571428,
+        "liveMedian": 60.49107142857143,
+        "liveSd": 28.906357728701625
+      },
+      {
+        "startGame": 6,
+        "games": "6-9",
+        "teamMeanRate": 0.16152643249999998,
+        "teamMedianRate": 0.1580505,
+        "teamSdRate": 0.046452282620189064,
+        "liveMean": 48.102678571428584,
+        "liveMedian": 47.767857142857146,
+        "liveSd": 28.73011526739949
+      },
+      {
+        "startGame": 7,
+        "games": "7-10",
+        "teamMeanRate": 0.15592630750000003,
+        "teamMedianRate": 0.158430875,
+        "teamSdRate": 0.04543685721809841,
+        "liveMean": 51.33231026785713,
+        "liveMedian": 48.21428571428571,
+        "liveSd": 29.126951112370044
+      },
+      {
+        "startGame": 8,
+        "games": "8-11",
+        "teamMeanRate": 0.15694318968749998,
+        "teamMedianRate": 0.164814815,
+        "teamSdRate": 0.04831545340847833,
+        "liveMean": 50.913783482142854,
+        "liveMedian": 43.41517857142857,
+        "liveSd": 30.514598068783748
+      },
+      {
+        "startGame": 9,
+        "games": "9-12",
+        "teamMeanRate": 0.1557160296875,
+        "teamMedianRate": 0.15005117,
+        "teamSdRate": 0.04897420004536793,
+        "liveMean": 51.99497767857142,
+        "liveMedian": 54.6875,
+        "liveSd": 28.460857468668465
+      },
+      {
+        "startGame": 10,
+        "games": "10-13",
+        "teamMeanRate": 0.15624219906249998,
+        "teamMedianRate": 0.151274925,
+        "teamSdRate": 0.04646718814589013,
+        "liveMean": 51.52762276785715,
+        "liveMedian": 53.68303571428571,
+        "liveSd": 28.47046639675521
+      },
+      {
+        "startGame": 11,
+        "games": "11-14",
+        "teamMeanRate": 0.16462341218749998,
+        "teamMedianRate": 0.16147164,
+        "teamSdRate": 0.04602172002425178,
+        "liveMean": 46.421595982142854,
+        "liveMedian": 45.982142857142854,
+        "liveSd": 26.521141762588154
+      },
+      {
+        "startGame": 12,
+        "games": "12-15",
+        "teamMeanRate": 0.16212732062500002,
+        "teamMedianRate": 0.155045325,
+        "teamSdRate": 0.04730689361131228,
+        "liveMean": 47.94224330357142,
+        "liveMedian": 50,
+        "liveSd": 26.892240414091066
+      },
+      {
+        "startGame": 13,
+        "games": "13-16",
+        "teamMeanRate": 0.168806571875,
+        "teamMedianRate": 0.162386795,
+        "teamSdRate": 0.0481767359870492,
+        "liveMean": 44.49637276785714,
+        "liveMedian": 45.089285714285715,
+        "liveSd": 27.32478782739103
+      },
+      {
+        "startGame": 14,
+        "games": "14-17",
+        "teamMeanRate": 0.1691660828125,
+        "teamMedianRate": 0.16732804,
+        "teamSdRate": 0.053792801339307146,
+        "liveMean": 44.921875,
+        "liveMedian": 40.625,
+        "liveSd": 29.684510372426583
+      }
+    ],
+    "threeGame": [
+      {
+        "startGame": 1,
+        "games": "1-3",
+        "teamMeanRate": 0.16147603437499997,
+        "teamMedianRate": 0.17108586,
+        "teamSdRate": 0.052349969989005665,
+        "liveMean": 48.346354166666664,
+        "liveMedian": 38.85416666666667,
+        "liveSd": 29.70266140174628
+      },
+      {
+        "startGame": 2,
+        "games": "2-4",
+        "teamMeanRate": 0.15756859093749992,
+        "teamMedianRate": 0.15304716499999999,
+        "teamSdRate": 0.05126393855096543,
+        "liveMean": 49.4921875,
+        "liveMedian": 50.9375,
+        "liveSd": 29.299082671449884
+      },
+      {
+        "startGame": 3,
+        "games": "3-5",
+        "teamMeanRate": 0.14780792312500002,
+        "teamMedianRate": 0.142652175,
+        "teamSdRate": 0.05205516708697432,
+        "liveMean": 55.149739583333336,
+        "liveMedian": 58.75,
+        "liveSd": 28.0036800024958
+      },
+      {
+        "startGame": 4,
+        "games": "4-6",
+        "teamMeanRate": 0.14820845562499996,
+        "teamMedianRate": 0.15541796000000002,
+        "teamSdRate": 0.05054842898456661,
+        "liveMean": 55.26041666666668,
+        "liveMedian": 49.58333333333333,
+        "liveSd": 29.51480288617429
+      },
+      {
+        "startGame": 5,
+        "games": "5-7",
+        "teamMeanRate": 0.15347007312500005,
+        "teamMedianRate": 0.14253532000000002,
+        "teamSdRate": 0.04947403988317013,
+        "liveMean": 53.7109375,
+        "liveMedian": 58.85416666666667,
+        "liveSd": 28.210298771193163
+      },
+      {
+        "startGame": 6,
+        "games": "6-8",
+        "teamMeanRate": 0.16000900843750004,
+        "teamMedianRate": 0.14779520000000002,
+        "teamSdRate": 0.04830637938318344,
+        "liveMean": 49.609375,
+        "liveMedian": 54.58333333333333,
+        "liveSd": 27.763189257258883
+      },
+      {
+        "startGame": 7,
+        "games": "7-9",
+        "teamMeanRate": 0.15988218531249998,
+        "teamMedianRate": 0.146877595,
+        "teamSdRate": 0.04914581316241471,
+        "liveMean": 50.05859374999999,
+        "liveMedian": 55.625,
+        "liveSd": 27.37125275471948
+      },
+      {
+        "startGame": 8,
+        "games": "8-10",
+        "teamMeanRate": 0.15283667187500002,
+        "teamMedianRate": 0.15720246999999998,
+        "teamSdRate": 0.05226980935532722,
+        "liveMean": 53.02734375000002,
+        "liveMedian": 48.64583333333333,
+        "liveSd": 30.14070574728362
+      },
+      {
+        "startGame": 9,
+        "games": "9-11",
+        "teamMeanRate": 0.15952756656249995,
+        "teamMedianRate": 0.15200231,
+        "teamSdRate": 0.05532021525472789,
+        "liveMean": 50.41015625,
+        "liveMedian": 51.875,
+        "liveSd": 30.237413462335905
+      },
+      {
+        "startGame": 10,
+        "games": "10-12",
+        "teamMeanRate": 0.15349891312500002,
+        "teamMedianRate": 0.14953271,
+        "teamSdRate": 0.047992298159701845,
+        "liveMean": 52.65625,
+        "liveMedian": 53.645833333333336,
+        "liveSd": 26.615857356982175
+      },
+      {
+        "startGame": 11,
+        "games": "11-13",
+        "teamMeanRate": 0.160230079375,
+        "teamMedianRate": 0.167115735,
+        "teamSdRate": 0.0495450833855595,
+        "liveMean": 48.860677083333336,
+        "liveMedian": 41.35416666666667,
+        "liveSd": 28.603779945065387
+      },
+      {
+        "startGame": 12,
+        "games": "12-14",
+        "teamMeanRate": 0.16165882874999998,
+        "teamMedianRate": 0.16141439,
+        "teamSdRate": 0.05201936454857014,
+        "liveMean": 48.606770833333336,
+        "liveMedian": 46.25,
+        "liveSd": 27.897295707678357
+      },
+      {
+        "startGame": 13,
+        "games": "13-15",
+        "teamMeanRate": 0.16873712906249994,
+        "teamMedianRate": 0.158476215,
+        "teamSdRate": 0.050141536475295,
+        "liveMean": 44.609375,
+        "liveMedian": 47.29166666666667,
+        "liveSd": 25.99332753173158
+      },
+      {
+        "startGame": 14,
+        "games": "14-16",
+        "teamMeanRate": 0.1695302046875,
+        "teamMedianRate": 0.16084895500000002,
+        "teamSdRate": 0.05547316724930317,
+        "liveMean": 44.33593750000001,
+        "liveMedian": 45.9375,
+        "liveSd": 29.791914220817336
+      },
+      {
+        "startGame": 15,
+        "games": "15-17",
+        "teamMeanRate": 0.16640335906250003,
+        "teamMedianRate": 0.167182665,
+        "teamSdRate": 0.05756335580186193,
+        "liveMean": 47.00520833333334,
+        "liveMedian": 41.97916666666667,
+        "liveSd": 30.702351912800275
+      }
+    ],
+    "fourGameRanges": {
+      "teamMeanRate": {
+        "min": 0.15124482249999996,
+        "max": 0.1691660828125
+      },
+      "liveMean": {
+        "min": 44.49637276785714,
+        "max": 53.752790178571445
+      },
+      "liveMedian": {
+        "min": 40.625,
+        "max": 60.49107142857143
+      },
+      "teamSdRate": {
+        "min": 0.041445423260772336,
+        "max": 0.053792801339307146
+      }
+    },
+    "reference4": {
+      "n": 448,
+      "mean": 0.15849895854910717,
+      "median": 0.154508495,
+      "sd": 0.04788450988647276,
+      "mappedGradeOfReferenceMean": 47.08116518454703
+    }
+  },
+  "levelVs2025": {
+    "pbp": {
+      "y2025games1to4": {
+        "teamMean": 0.1581095015625,
+        "teamMedian": 0.166744155
+      },
+      "y2026week4": {
+        "teamMean": 0.16880367822369205,
+        "teamMedian": 0.17277568922305764,
+        "pooled": 0.16984559491371481,
+        "teamMeanFourGameTeamsOnly": 0.1704415549741483
+      },
+      "differenceTeamMean": 0.010694176661192045,
+      "bootstrap95": [
+        -0.009297381191364931,
+        0.030729196073105265
+      ],
+      "bootstrapShareAtOrBelowZero": 0.1518,
+      "bootstrapDefinition": "Independent resampling of the 32 team rates in each season, 10,000 draws, seed 20261006. Sampling uncertainty of one season stage only; no year-to-year variance is available.",
+      "within2025RangeOfFourGameLeagueMeans": {
+        "min": 0.15124482249999996,
+        "max": 0.1691660828125
+      }
+    },
+    "pfrIndependentProvider": {
+      "y2025w1to3": {
+        "teamGames": 96,
+        "pooledSackOrHitPerDropback": 0.14378705145830134,
+        "pooledSackPerDropback": 0.06311911904567165,
+        "pooledPressurePerDropback": 0.2012452629662446,
+        "teamSdSackOrHit": 0.04743420743241498,
+        "teamSdSack": 0.03102468976310309,
+        "teamSdPressure": 0.05722242434318817,
+        "rowsWithoutDerivableDropbacks": 12
+      },
+      "y2025w1to4": {
+        "teamGames": 128,
+        "pooledSackOrHitPerDropback": 0.14184376645728317,
+        "pooledSackPerDropback": 0.06180182260166044,
+        "pooledPressurePerDropback": 0.20321640973532099,
+        "teamSdSackOrHit": 0.046273089748273384,
+        "teamSdSack": 0.02701822686826579,
+        "teamSdPressure": 0.056890168461507046,
+        "rowsWithoutDerivableDropbacks": 16
+      },
+      "y2025all": {
+        "teamGames": 544,
+        "pooledSackOrHitPerDropback": 0.14583125841163191,
+        "pooledSackPerDropback": 0.06559334340776,
+        "pooledPressurePerDropback": 0.2190029115964009,
+        "teamSdSackOrHit": 0.03237726918023682,
+        "teamSdSack": 0.019361158624351102,
+        "teamSdPressure": 0.03429157279527386,
+        "rowsWithoutDerivableDropbacks": 69
+      },
+      "y2026w1to3": {
+        "teamGames": 96,
+        "pooledSackOrHitPerDropback": 0.15384723880090206,
+        "pooledSackPerDropback": 0.06051134438922307,
+        "pooledPressurePerDropback": 0.23262615885479623,
+        "teamSdSackOrHit": 0.031370685135106324,
+        "teamSdSack": 0.023236889324909252,
+        "teamSdPressure": 0.03707236979710617,
+        "rowsWithoutDerivableDropbacks": 9
+      }
+    },
+    "pfrDifferences2026minus2025weeks1to3": {
+      "sackOrHit": 0.010060187342600724,
+      "sackOnly": -0.0026077746564485763,
+      "pressure": 0.03138089588855164
+    },
+    "crossProviderAgreement2026": {
+      "pbpWeek4VsPfrWeeks1to3": {
+        "n": 32,
+        "pearson": 0.767947734092629,
+        "spearman": 0.6994775943592504
+      }
+    },
+    "pfrDropbackNote": "PFR dropbacks are derived per QB row as times_pressured / times_pressured_pct; rows with zero pressures cannot be sized and are excluded (count reported)."
+  },
+  "spreadVs2025": {
+    "y2026teamSd": 0.02921556171151265,
+    "y2025fourGameTeamSdByStart": {
+      "min": 0.041445423260772336,
+      "max": 0.053792801339307146
+    },
+    "y2025start1TeamSd": 0.050869486884914564,
+    "binomialSamplingSdAt2026Dropbacks": 0.032389972087287125,
+    "y2026varianceInExcessOfBinomial": -0.00016802740549864146,
+    "y2025start1VarianceInExcessOfBinomial": 0.0016220687491494007,
+    "varianceRatio2026over2025start1": 0.32984793336743656,
+    "pfrTeamSdSackOrHit": {
+      "y2025w1to3": 0.04743420743241498,
+      "y2026w1to3": 0.031370685135106324
+    },
+    "note": "Binomial SD uses the pooled 2026 rate and each team's 2026 dropbacks; it is the dispersion expected if every team had the same true rate."
+  },
+  "reliabilityAndPersistence": {
+    "ol": {
+      "oddVsEvenGames": {
+        "n": 32,
+        "pearson": 0.7075136769049692,
+        "spearman": 0.7038123167155426
+      },
+      "perGameReliability": 0.22153781652992485,
+      "reliabilityAt4Games": 0.532346573517162,
+      "reliabilityAt17Games": 0.8287063072752716
+    },
+    "qbEpaPerPlay": {
+      "oddVsEvenGames": {
+        "n": 32,
+        "pearson": 0.4904550160565927,
+        "spearman": 0.38343108504398826
+      },
+      "perGameReliability": 0.1017206528568124,
+      "reliabilityAt4Games": 0.31174875175868133,
+      "reliabilityAt17Games": 0.6581279015776349
+    },
+    "qbPassSuccess": {
+      "oddVsEvenGames": {
+        "n": 32,
+        "pearson": 0.6258248085106684,
+        "spearman": 0.5300586510263929
+      },
+      "perGameReliability": 0.16441754910536616,
+      "reliabilityAt4Games": 0.44042794607029817,
+      "reliabilityAt17Games": 0.7698551593439557
+    },
+    "olFirst4VsGames5to17": {
+      "n": 32,
+      "pearson": 0.4627244657066989,
+      "spearman": 0.44898709186989844
+    },
+    "olSeason2025VsWeek4of2026": {
+      "n": 32,
+      "pearson": 0.2246349971754182,
+      "spearman": 0.16112180436105375
+    },
+    "priorConstruct": {
+      "bundledOlIndexVsPbpSeason2025": {
+        "n": 32,
+        "pearson": -0.8752677055030085,
+        "spearman": -0.8680351906158358
+      },
+      "olPriorVs2026Live": {
+        "n": 32,
+        "pearson": 0.2480949323816312,
+        "spearman": 0.2230776290186603
+      }
+    },
+    "method": "Split-half = mean of 1-game rates over odd vs even 2025 team games (unweighted by dropbacks), stepped to k games with Spearman-Brown from 8.5 games. Pearson on 32 teams; descriptive."
+  },
+  "meanDeltaDecomposition": {
+    "meanBridgeDelta": -7.691855997408119,
+    "meanDisplay": 42.308144002591874,
+    "meanPrior": 49.99999999999999,
+    "meanLive": 40.69614980126734,
+    "meanLiveWeight": 0.8179479527436105,
+    "identity": "delta = w*(live - prior) per team; mean prior is 50 by construction, so a mean live grade below 50 yields a negative channel mean.",
+    "counterfactualLevelMatchedTo2025Start": {
+      "shiftRemoved": 0.010694176661192045,
+      "meanLive": 47.85382733086704,
+      "medianLive": 45.05906872036721,
+      "meanDelta": -1.8375150364024113,
+      "positiveDeltaTeams": 13
+    },
+    "replay2025Start1": {
+      "meanLive": 49.50474330357142,
+      "medianLive": 41.07142857142857
+    },
+    "pooledVersusTeamMeanFrame": {
+      "pooledRateGrade": 37.679727422970636,
+      "teamMeanRateGrade": 38.61328589504398,
+      "y2025start1TeamMeanRateGrade": 47.752858938227696,
+      "referenceMeanGrade": 47.08116518454703,
+      "note": "The reference CDF is right-skewed in the rate, so a league-average rate maps below 50 even in 2025 (reference mean maps to ~47). The Cycle 9 pooled-rate frame therefore overstates the gap by about 3 points; the like-for-like 2025 start-1 team-mean maps to ~48."
+    }
+  },
+  "syntheticProbes": {
+    "noTrueDifferences": {
+      "label": "Every team true rate = 2026 team mean; binomial dropbacks as observed in 2026",
+      "replications": 2000,
+      "rateSd": {
+        "p05": 0.025063279421073767,
+        "p50": 0.03144319037292597,
+        "p95": 0.0384602521634595
+      },
+      "shareRateSdAtOrBelowObserved": 0.2795,
+      "liveSd": {
+        "p05": 16.799275387650635,
+        "p50": 20.297625105633255,
+        "p95": 23.90423509993409
+      },
+      "liveMean": 41.496153138839276,
+      "liveMedian": 39.887066996958985
+    },
+    "truth2025SeasonSpreadAt2026Level": {
+      "label": "True rates = each team's 2025 17-game rate, re-centred on the 2026 team mean",
+      "replications": 2000,
+      "rateSd": {
+        "p05": 0.03952179553903509,
+        "p50": 0.047809502301694375,
+        "p95": 0.05637160140662325
+      },
+      "shareRateSdAtOrBelowObserved": 0,
+      "liveSd": {
+        "p05": 24.034024641443033,
+        "p50": 27.811664380430468,
+        "p95": 31.114756384371248
+      },
+      "liveMean": 43.97033346357705,
+      "liveMedian": 43.4594108690805
+    },
+    "truth2025SeasonSpreadAt2025Level": {
+      "label": "True rates = 2025 17-game rates re-centred on the 2025 games 1-4 team mean",
+      "replications": 2000,
+      "rateSd": {
+        "p05": 0.03911593515004361,
+        "p50": 0.047509375688452184,
+        "p95": 0.05605466098712644
+      },
+      "shareRateSdAtOrBelowObserved": 0.0005,
+      "liveSd": {
+        "p05": 24.920029369619453,
+        "p50": 28.532299029348028,
+        "p95": 31.823527543447867
+      },
+      "liveMean": 50.12293763365871,
+      "liveMedian": 51.36013457883716
+    },
+    "levelSensitivity": [
+      {
+        "addedRate": -0.02,
+        "meanLive": 54.42979202824097,
+        "medianLive": 52.197008673798805
+      },
+      {
+        "addedRate": -0.015,
+        "meanLive": 51.040503534388264,
+        "medianLive": 48.16584309615274
+      },
+      {
+        "addedRate": -0.01,
+        "meanLive": 47.40063544492445,
+        "medianLive": 44.82782601388268
+      },
+      {
+        "addedRate": -0.005,
+        "meanLive": 44.05018375605724,
+        "medianLive": 39.8658964088512
+      },
+      {
+        "addedRate": 0,
+        "meanLive": 40.69614980126734,
+        "medianLive": 35.280292859944105
+      },
+      {
+        "addedRate": 0.005,
+        "meanLive": 37.25527815144444,
+        "medianLive": 32.49553561196429
+      },
+      {
+        "addedRate": 0.01,
+        "meanLive": 34.14248616678907,
+        "medianLive": 29.336223707662185
+      },
+      {
+        "addedRate": 0.015,
+        "meanLive": 31.327334517855896,
+        "medianLive": 28.14503852639988
+      },
+      {
+        "addedRate": 0.02,
+        "meanLive": 28.609049366310796,
+        "medianLive": 23.385405915635417
+      }
+    ],
+    "note": "Probes are diagnostics of mechanism only. They hold the 2026 dropback counts fixed and treat every play as an independent Bernoulli trial."
+  },
+  "comparableUnits": {
+    "qbEpaPerPlayFourGameLeagueMeans": {
+      "min": -0.0215940559375,
+      "max": 0.08114625750000001
+    },
+    "qbPassSuccessFourGameLeagueMeans": {
+      "min": 0.46288874875,
+      "max": 0.5022950028125
+    },
+    "exposure": [
+      {
+        "unit": "OL",
+        "levelExposed": true,
+        "why": "Raw rate mapped to 2025 windows with no centre alignment; a league-wide shift moves every grade."
+      },
+      {
+        "unit": "Pass rush (4 PFR teams)",
+        "levelExposed": true,
+        "why": "PFR teams map to 2025 charted windows without centre alignment; weekly-fallback teams are current-rank and not exposed."
+      },
+      {
+        "unit": "QB EPA/success components",
+        "levelExposed": "partly",
+        "why": "Stabilized toward the current league mean before the 2025 17-game CDF; this absorbs part of a league-wide level shift early in the season but does not re-centre the league exactly. Not quantified in this tranche."
+      },
+      {
+        "unit": "Receivers, RB",
+        "levelExposed": false,
+        "why": "Current weighted centre aligned onto the 2025 reference median by construction."
+      },
+      {
+        "unit": "Scoring, coverage, run defense, prevention, weekly pass rush, ANY/A",
+        "levelExposed": false,
+        "why": "Current-season ranks."
+      }
+    ],
+    "mirror": "The same hit/sack events that lower OL grades raise defensive disruption, but the weekly pass-rush grade is a current rank, so a league-wide rise is charged to offenses (OL mean delta -7.69) with no offsetting league-wide credit to defenses (pass-rush mean delta -0.44 in Cycle 9)."
+  }
+}

@@ -1,0 +1,417 @@
+{
+  "olLevelGapExplainedByStage": {
+    "replayStart1MeanLive": 49.50474330357142,
+    "productionMeanLive": 40.69614980126734,
+    "levelMatchedMeanLive": 47.85382733086704
+  },
+  "receiverWeek4ProductionUnderTruthSets": {
+    "observedReference": {
+      "label": "K=80",
+      "targetScale": 1,
+      "stabilizerTargets": 80,
+      "noiseVariancePerTarget": 0.9961717550661194,
+      "liveSd": 27.12194903517249,
+      "liveMean": 46.153040809502286,
+      "teamsAtOrAbove70": 7,
+      "ranks6to15Span": 23.237360368614983,
+      "spearmanWithTruth": 0.659274193548387,
+      "meanAbsErrorVsTruthPercentile": 18.196987123706826
+    },
+    "deconvolvedOverlapNoise": {
+      "label": "K=80",
+      "targetScale": 1,
+      "stabilizerTargets": 80,
+      "noiseVariancePerTarget": 0.9961717550661194,
+      "liveSd": 26.161449193315327,
+      "liveMean": 45.8297846717576,
+      "teamsAtOrAbove70": 7,
+      "ranks6to15Span": 20.901800160201397,
+      "spearmanWithTruth": 0.5876099706744868,
+      "meanAbsErrorVsTruthPercentile": 19.982585999213384
+    },
+    "deconvolvedUpperNoise": {
+      "label": "K=80",
+      "targetScale": 1,
+      "stabilizerTargets": 80,
+      "noiseVariancePerTarget": 2.815160488370231,
+      "liveSd": 29.903118061189154,
+      "liveMean": 46.05230306333904,
+      "teamsAtOrAbove70": 9,
+      "ranks6to15Span": 27.97472738629765,
+      "spearmanWithTruth": 0.16532258064516128,
+      "meanAbsErrorVsTruthPercentile": 31.00651768308692
+    }
+  },
+  "stationarity": {
+    "olLiveMeanAcross2025Starts": {
+      "min": 44.49637276785714,
+      "max": 53.752790178571445
+    },
+    "olLiveSdAcross2025Starts": {
+      "min": 26.521141762588154,
+      "max": 30.93170542682252
+    },
+    "receiverLiveSdBySeasonStage": {
+      "observedReference": [
+        {
+          "games": 4,
+          "liveSd": 27.24945269804376,
+          "teamsAtOrAbove70": 7.5,
+          "spearmanWithTruth": 0.657258064516129
+        },
+        {
+          "games": 8,
+          "liveSd": 28.400257194470626,
+          "teamsAtOrAbove70": 8,
+          "spearmanWithTruth": 0.7668621700879765
+        },
+        {
+          "games": 12,
+          "liveSd": 28.72961132720662,
+          "teamsAtOrAbove70": 8,
+          "spearmanWithTruth": 0.8207478005865103
+        },
+        {
+          "games": 17,
+          "liveSd": 28.86658905401563,
+          "teamsAtOrAbove70": 8,
+          "spearmanWithTruth": 0.8558335660543344
+        }
+      ],
+      "deconvolvedOverlapNoise": [
+        {
+          "games": 4,
+          "liveSd": 26.104391254303142,
+          "teamsAtOrAbove70": 7,
+          "spearmanWithTruth": 0.5910923753665689
+        },
+        {
+          "games": 8,
+          "liveSd": 26.88780658132721,
+          "teamsAtOrAbove70": 7,
+          "spearmanWithTruth": 0.7104105571847508
+        },
+        {
+          "games": 12,
+          "liveSd": 27.164255980687013,
+          "teamsAtOrAbove70": 7,
+          "spearmanWithTruth": 0.7701612903225806
+        },
+        {
+          "games": 17,
+          "liveSd": 27.207607975655925,
+          "teamsAtOrAbove70": 7,
+          "spearmanWithTruth": 0.8156158357771262
+        }
+      ],
+      "deconvolvedUpperNoise": [
+        {
+          "games": 4,
+          "liveSd": 29.901585553389552,
+          "teamsAtOrAbove70": 9,
+          "spearmanWithTruth": 0.16148099855651918
+        },
+        {
+          "games": 8,
+          "liveSd": 28.856363579758828,
+          "teamsAtOrAbove70": 8,
+          "spearmanWithTruth": 0.22012463343108504
+        },
+        {
+          "games": 12,
+          "liveSd": 27.706478349968883,
+          "teamsAtOrAbove70": 8,
+          "spearmanWithTruth": 0.28097507331378296
+        },
+        {
+          "games": 17,
+          "liveSd": 26.674328358298297,
+          "teamsAtOrAbove70": 7,
+          "spearmanWithTruth": 0.32368035190615835
+        }
+      ]
+    },
+    "qbEpaWindowDriftFromCycle9": {
+      "qbEpaComponent": {
+        "playsPerGameAssumed": 37.75,
+        "stabilizerPlays": 150,
+        "windows": [
+          {
+            "games": 1,
+            "windows": 544,
+            "reliability": 0.2010652463382157,
+            "currentDesignStabilizedToFullSeason": {
+              "sd": 21.053216706430373,
+              "p10": 20.40414013582186,
+              "p90": 78.15913089191466,
+              "shareAtOrAbove90": 0.007352941176470588,
+              "shareAtOrAbove80": 0.04963235294117647,
+              "shareAtOrBelow10": 0.001838235294117647
+            },
+            "unstabilizedToFullSeason": {
+              "sd": 40.129221246248235,
+              "p10": 1.5625,
+              "p90": 98.4375,
+              "shareAtOrAbove90": 0.3235294117647059,
+              "shareAtOrAbove80": 0.3786764705882353,
+              "shareAtOrBelow10": 0.24816176470588236
+            },
+            "windowMatched": {
+              "sd": 28.867464686202876,
+              "p10": 10.073529411764707,
+              "p90": 89.92647058823529,
+              "shareAtOrAbove90": 0.09926470588235294,
+              "shareAtOrAbove80": 0.20036764705882354,
+              "shareAtOrBelow10": 0.09926470588235294
+            }
+          },
+          {
+            "games": 2,
+            "windows": 512,
+            "reliability": 0.3348115299334812,
+            "currentDesignStabilizedToFullSeason": {
+              "sd": 23.37280675143906,
+              "p10": 16.78824045572525,
+              "p90": 79.15476489475726,
+              "shareAtOrAbove90": 0.01953125,
+              "shareAtOrAbove80": 0.078125,
+              "shareAtOrBelow10": 0.00390625
+            },
+            "unstabilizedToFullSeason": {
+              "sd": 37.535549407669784,
+              "p10": 1.5625,
+              "p90": 98.4375,
+              "shareAtOrAbove90": 0.251953125,
+              "shareAtOrAbove80": 0.326171875,
+              "shareAtOrBelow10": 0.197265625
+            },
+            "windowMatched": {
+              "sd": 28.86745839901645,
+              "p10": 10.078125,
+              "p90": 89.921875,
+              "shareAtOrAbove90": 0.099609375,
+              "shareAtOrAbove80": 0.19921875,
+              "shareAtOrBelow10": 0.099609375
+            }
+          },
+          {
+            "games": 3,
+            "windows": 480,
+            "reliability": 0.4301994301994302,
+            "currentDesignStabilizedToFullSeason": {
+              "sd": 24.671844736255082,
+              "p10": 16.284627994398516,
+              "p90": 82.62299514059578,
+              "shareAtOrAbove90": 0.020833333333333332,
+              "shareAtOrAbove80": 0.10416666666666667,
+              "shareAtOrBelow10": 0.008333333333333333
+            },
+            "unstabilizedToFullSeason": {
+              "sd": 36.017299981174816,
+              "p10": 2.494028134723394,
+              "p90": 98.4375,
+              "shareAtOrAbove90": 0.22708333333333333,
+              "shareAtOrAbove80": 0.325,
+              "shareAtOrBelow10": 0.16458333333333333
+            },
+            "windowMatched": {
+              "sd": 28.867450812899705,
+              "p10": 10.083333333333334,
+              "p90": 89.91666666666667,
+              "shareAtOrAbove90": 0.1,
+              "shareAtOrAbove80": 0.2,
+              "shareAtOrBelow10": 0.1
+            }
+          },
+          {
+            "games": 4,
+            "windows": 448,
+            "reliability": 0.5016611295681063,
+            "currentDesignStabilizedToFullSeason": {
+              "sd": 25.186703228065088,
+              "p10": 16.085366730548305,
+              "p90": 83.78800728463628,
+              "shareAtOrAbove90": 0.024553571428571428,
+              "shareAtOrAbove80": 0.12053571428571429,
+              "shareAtOrBelow10": 0.008928571428571428
+            },
+            "unstabilizedToFullSeason": {
+              "sd": 34.690512587089096,
+              "p10": 3.996822135171678,
+              "p90": 97.5271638293738,
+              "shareAtOrAbove90": 0.18973214285714285,
+              "shareAtOrAbove80": 0.28794642857142855,
+              "shareAtOrBelow10": 0.14508928571428573
+            },
+            "windowMatched": {
+              "sd": 28.867441543751124,
+              "p10": 10.089285714285715,
+              "p90": 89.91071428571429,
+              "shareAtOrAbove90": 0.10044642857142858,
+              "shareAtOrAbove80": 0.20089285714285715,
+              "shareAtOrBelow10": 0.10044642857142858
+            }
+          },
+          {
+            "games": 6,
+            "windows": 384,
+            "reliability": 0.601593625498008,
+            "currentDesignStabilizedToFullSeason": {
+              "sd": 25.595868104297832,
+              "p10": 15.003851555604252,
+              "p90": 84.1853190324646,
+              "shareAtOrAbove90": 0.03125,
+              "shareAtOrAbove80": 0.1328125,
+              "shareAtOrBelow10": 0.0078125
+            },
+            "unstabilizedToFullSeason": {
+              "sd": 33.23107092004475,
+              "p10": 4.092968387851951,
+              "p90": 94.79533185102966,
+              "shareAtOrAbove90": 0.16666666666666666,
+              "shareAtOrAbove80": 0.2526041666666667,
+              "shareAtOrBelow10": 0.11979166666666667
+            },
+            "windowMatched": {
+              "sd": 28.86741557413785,
+              "p10": 10.104166666666668,
+              "p90": 89.89583333333333,
+              "shareAtOrAbove90": 0.09895833333333333,
+              "shareAtOrAbove80": 0.20052083333333334,
+              "shareAtOrBelow10": 0.09895833333333333
+            }
+          },
+          {
+            "games": 8,
+            "windows": 320,
+            "reliability": 0.668141592920354,
+            "currentDesignStabilizedToFullSeason": {
+              "sd": 25.96498646386511,
+              "p10": 15.551367387823904,
+              "p90": 84.48552616447672,
+              "shareAtOrAbove90": 0.028125,
+              "shareAtOrAbove80": 0.14375,
+              "shareAtOrBelow10": 0.021875
+            },
+            "unstabilizedToFullSeason": {
+              "sd": 32.246284917119155,
+              "p10": 10.980375898228763,
+              "p90": 93.10697675059939,
+              "shareAtOrAbove90": 0.15,
+              "shareAtOrAbove80": 0.21875,
+              "shareAtOrBelow10": 0.096875
+            },
+            "windowMatched": {
+              "sd": 28.867372504481594,
+              "p10": 10.125,
+              "p90": 89.875,
+              "shareAtOrAbove90": 0.1,
+              "shareAtOrAbove80": 0.2,
+              "shareAtOrBelow10": 0.1
+            }
+          },
+          {
+            "games": 12,
+            "windows": 192,
+            "reliability": 0.7512437810945274,
+            "currentDesignStabilizedToFullSeason": {
+              "sd": 26.719483763106577,
+              "p10": 14.349364996638407,
+              "p90": 84.40271346094212,
+              "shareAtOrAbove90": 0.046875,
+              "shareAtOrAbove80": 0.140625,
+              "shareAtOrBelow10": 0.026041666666666668
+            },
+            "unstabilizedToFullSeason": {
+              "sd": 31.383474865051635,
+              "p10": 8.425446019942427,
+              "p90": 90.45850010279877,
+              "shareAtOrAbove90": 0.109375,
+              "shareAtOrAbove80": 0.20833333333333334,
+              "shareAtOrBelow10": 0.109375
+            },
+            "windowMatched": {
+              "sd": 28.867121916116048,
+              "p10": 10.208333333333334,
+              "p90": 89.79166666666667,
+              "shareAtOrAbove90": 0.09895833333333333,
+              "shareAtOrAbove80": 0.19791666666666666,
+              "shareAtOrBelow10": 0.09895833333333333
+            }
+          },
+          {
+            "games": 17,
+            "windows": 32,
+            "reliability": 0.8105462582886012,
+            "currentDesignStabilizedToFullSeason": {
+              "sd": 25.12918091549754,
+              "p10": 14.515304293086892,
+              "p90": 84.34091975440299,
+              "shareAtOrAbove90": 0.0625,
+              "shareAtOrAbove80": 0.15625,
+              "shareAtOrBelow10": 0.03125
+            },
+            "unstabilizedToFullSeason": {
+              "sd": 28.853414550967795,
+              "p10": 11.25,
+              "p90": 88.75,
+              "shareAtOrAbove90": 0.09375,
+              "shareAtOrAbove80": 0.1875,
+              "shareAtOrBelow10": 0.09375
+            },
+            "windowMatched": {
+              "sd": 28.853414550967795,
+              "p10": 11.25,
+              "p90": 88.75,
+              "shareAtOrAbove90": 0.09375,
+              "shareAtOrAbove80": 0.1875,
+              "shareAtOrBelow10": 0.09375
+            }
+          }
+        ],
+        "boundary": "Replays only the QB EPA component mapping on 2025 rolling windows (reference v5), with an assumed plays/game from the current snapshot and the window-pool mean as stabilization centre. It is not a reconstruction of past whole QB grades."
+      },
+      "olReferenceWindows": [
+        {
+          "games": 1,
+          "n": 544,
+          "p10": 0.06451613,
+          "p50": 0.15384615,
+          "p90": 0.26470588
+        },
+        {
+          "games": 2,
+          "n": 512,
+          "p10": 0.08695652,
+          "p50": 0.15517241,
+          "p90": 0.24131545300000004
+        },
+        {
+          "games": 4,
+          "n": 448,
+          "p10": 0.099770992,
+          "p50": 0.154508495,
+          "p90": 0.227993664
+        },
+        {
+          "games": 8,
+          "n": 320,
+          "p10": 0.105602817,
+          "p50": 0.15625,
+          "p90": 0.21867894000000002
+        },
+        {
+          "games": 17,
+          "n": 32,
+          "p10": 0.114571356,
+          "p50": 0.15343436,
+          "p90": 0.21298480000000003
+        }
+      ],
+      "finding": "OL is window-matched, so a percentile keeps its meaning as games accumulate. QB EPA, WR and RB map early-season stabilized values onto a full-season reference, so the share of teams able to reach 80/90 changes with sample size: the meaning of a displayed QB/WR/RB number drifts within a season even with no change in football quality."
+    }
+  },
+  "rankPreservation": {
+    "receiverKSweepMinSpearman": 0.9937683284457478
+  }
+}

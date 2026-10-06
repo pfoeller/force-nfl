@@ -1,0 +1,139 @@
+{
+  "referenceOrdering": {
+    "claim": "sample_windows[len][metric] is team-major; within a team, windows are chronological by team game (force_server.py _v104_reference_from_drive_games). 32 teams x 17 games.",
+    "perMetric": {
+      "ol_disruption_rate": {
+        "aligned": {
+          "consistent": 512,
+          "inconsistent": 0
+        },
+        "shiftedByOneControl": {
+          "consistent": 270,
+          "inconsistent": 242
+        }
+      },
+      "qb_epa_per_play": {
+        "aligned": {
+          "consistent": 512,
+          "inconsistent": 0
+        },
+        "shiftedByOneControl": {
+          "consistent": 269,
+          "inconsistent": 243
+        }
+      },
+      "qb_pass_success_rate": {
+        "aligned": {
+          "consistent": 512,
+          "inconsistent": 0
+        },
+        "shiftedByOneControl": {
+          "consistent": 247,
+          "inconsistent": 265
+        }
+      },
+      "qb_pass_epa": {
+        "aligned": {
+          "consistent": 512,
+          "inconsistent": 0
+        },
+        "shiftedByOneControl": {
+          "consistent": 267,
+          "inconsistent": 245
+        }
+      }
+    }
+  },
+  "referenceTeamIdentity": {
+    "order": [
+      "NO",
+      "ARI",
+      "BUF",
+      "BAL",
+      "JAX",
+      "CAR",
+      "CLE",
+      "CIN",
+      "PHI",
+      "DAL",
+      "GB",
+      "DET",
+      "LAR",
+      "HOU",
+      "LAC",
+      "KC",
+      "NE",
+      "LV",
+      "IND",
+      "MIA",
+      "CHI",
+      "MIN",
+      "WAS",
+      "NYG",
+      "NYJ",
+      "PIT",
+      "SEA",
+      "SF",
+      "ATL",
+      "TB",
+      "DEN",
+      "TEN"
+    ],
+    "aligned": {
+      "n": 540,
+      "pearson": 0.9623730859244756,
+      "spearman": 0.9525851156450036
+    },
+    "awayFirstControl": {
+      "n": 540,
+      "pearson": -0.045608777163338644,
+      "spearman": -0.03181899994540098
+    },
+    "rotatedControl": {
+      "n": 540,
+      "pearson": -0.030617307008848738,
+      "spearman": -0.0019177660016851993
+    },
+    "note": "PFR charting is an independent provider; the aligned per-game correlation is far above both controls, so slot identity is established for this research."
+  },
+  "productionReproduction": {
+    "teams": 32,
+    "maxAbsResidual": 0,
+    "olLive": "continuousPercentileValue(2025 same-length window reference, team PBP hit-or-sack/dropback, lower better)",
+    "receiverLive": "partialResidual -> stabilizeToward(80 targets) -> environmentAlignToHistoricalCenter -> continuousPercentileValue(32 2025 team residuals)",
+    "wrBeta": 0.5879714747913416,
+    "qbCenter": 0.0615,
+    "wrReferenceMedian": 0.25468363810119243,
+    "wrCurrentCenter": 0.1983939019947613
+  },
+  "cycle9Reproduced": {
+    "values": {
+      "olDisplayMean": 42.308144002591874,
+      "olDisplaySd": 17.752207871004458,
+      "olLiveMedian": 35.280292859944105,
+      "olPooledRate": 0.16984559491371481,
+      "olPooledMapped": 37.679727422970636,
+      "olMeanBridgeDelta": -7.691855997408119,
+      "wrDisplayMean": 45.92306695722357,
+      "wrDisplaySd": 19.815452760252366,
+      "wrLiveSd": 22.20133199667068,
+      "wrLiveSdWithoutStabilization": 30.29069049066918,
+      "wrMedianReliability": 0.5402298850574713,
+      "wrMeanBridgeDelta": -4.076933042776433
+    },
+    "olDeltaSigns": {
+      "positive": 13,
+      "negative": 19
+    },
+    "tolerance": 1e-9,
+    "note": "Each value equals the frozen aa0ad397 result (read, not modified). OL and receiver formulas are unchanged since that revision; only the RB prior frame and the presentation seam differ, neither of which touches these two units."
+  },
+  "weeklyCacheConsistency": {
+    "weeks1to3": "data/live-cache player-stats (saved 2026-10-01); week 4 = Week-4 snapshot total minus weeks 1-3",
+    "byeTeams": [
+      "ATL",
+      "NO"
+    ],
+    "byeTeamsExact": true
+  }
+}

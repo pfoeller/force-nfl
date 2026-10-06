@@ -1,0 +1,635 @@
+{
+  "construction": {
+    "steps": [
+      "Raw: WR/TE receiving EPA per target from nflverse weekly player stats (positions WR, TE).",
+      "QB coupling: residual = EPA/target - beta*(sack-free QB attempt EPA - centre), beta 0.5880 ridge-fitted on 2025 bundled teams, centre 0.0615 (2025 median QB pass EPA).",
+      "Stabilization: stabilizeToward(residual, current target-weighted league residual, targets, 80); reliability weight = targets/(targets+80).",
+      "Centre alignment: value - current centre + 2025 reference median, so the current league centre maps to live 50 exactly by construction.",
+      "Live grade: continuousPercentileValue against the 32 2025 full-season team residuals (unstabilized, ~328 targets each).",
+      "Prior: 2025 residual percentile regressed 30%; display/model value = blend(prior, live, playerStatGames, priorGames)."
+    ],
+    "anchors": {
+      "function historicalWindowValues(": 233,
+      "function continuousPercentileValue(": 965,
+      "function blend(prior, live, games, priorGames)": 320,
+      "receiverResidualStabilizerTargets:80.0": 183,
+      "const receiverRoomTargets=sum(recRows,'targets');": 1103,
+      "r.receiverResidualEpa=receiverResidualPolicyActive(receiverPolicy)": 1234,
+      "const currentReceiverResidual=weightedLeagueMean(": 1249,
+      "r.receiverStabilizedResidual=stabilizeToward(": 1265,
+      "environmentAlignToHistoricalCenter(r.receiverStabilizedResidual": 1267,
+      "const receiverIndex=playerStatsUsable ? blend(": 1604,
+      "const priorOlIndex=regressUnitIndex(": 1445,
+      "const olHistoricalBench=": 1509,
+      "continuousPercentileValue(olHistoricalBench,effectivePressureAllowedRate,false)": 1511,
+      "const olIndex=teamStatsUsable ? blend(": 1578
+    }
+  },
+  "noiseAndSignal": {
+    "sigma2PerTargetFromWeeklyVariation": {
+      "value": 2.815160488370231,
+      "df": 94
+    },
+    "raw": {
+      "betweenTeamVariance": 0.03800547572712003,
+      "expectedNoiseVariance": 0.028965115966373946,
+      "impliedTrueVariance": 0.009040359760746082,
+      "impliedReliability": 0.23786992762979792,
+      "impliedStabilizerTargets": 311.39916583783184
+    },
+    "residual": {
+      "betweenTeamVariance": 0.009918170429402238,
+      "expectedNoiseVarianceOverlapModel": 0.01035746854999896,
+      "impliedTrueVariance": -0.00043929812059672127,
+      "note": "Implied true variance at or below zero means the Week-4 residual dispersion is not distinguishable from modelled sampling noise. The overlap model assumes equal per-play EPA variance for all attempts and is an approximation."
+    },
+    "rawSplitHalfWeeks1and3vs2and4": {
+      "n": 32,
+      "pearson": 0.12909795032418858,
+      "spearman": 0.12609970674486803,
+      "reliabilityAtFourWeeks": 0.22867449238947207
+    },
+    "caveat": "sigma2 is estimated from week-to-week variation within each team (94 df), which also contains genuine weekly variation (opponent, game script); it is an upper bound on pure sampling noise. 2026 weekly residuals cannot be formed because sack-free weekly QB attempt EPA is not in the cached weekly feeds."
+  },
+  "coupling": {
+    "rawEpaVsQbAttemptEpa": {
+      "n": 32,
+      "pearson": 0.9495804331118919,
+      "spearman": 0.9303519061583577
+    },
+    "residualVsQbAttemptEpa": {
+      "n": 32,
+      "pearson": 0.7895158899706437,
+      "spearman": 0.749633431085044
+    },
+    "receiverLiveVsQbLive": {
+      "n": 32,
+      "pearson": 0.7613278851518055,
+      "spearman": 0.7360703812316716
+    },
+    "receiverDisplayVsQbDisplay": {
+      "n": 32,
+      "pearson": 0.7560165250593802,
+      "spearman": 0.7734604105571847
+    },
+    "y2025ResidualVsQbPassEpa": {
+      "n": 32,
+      "pearson": 0.4513995688255578,
+      "spearman": 0.4747067448680352
+    },
+    "y2025RawVsQbPassEpa": {
+      "n": 32,
+      "pearson": 0.8350200002797261,
+      "spearman": 0.8266129032258065
+    },
+    "rawToResidualSdRatio2026": 0.5108491755472896
+  },
+  "volume": {
+    "targetsVsLive": {
+      "n": 32,
+      "pearson": 0.012718921440406178,
+      "spearman": -0.06185194443940647
+    },
+    "targetsVsAbsLiveMinus50": {
+      "n": 32,
+      "pearson": -0.20929375023734742,
+      "spearman": -0.1877582764436582
+    },
+    "targetsVsResidual": {
+      "n": 32,
+      "pearson": 0.04300101537859226,
+      "spearman": -0.04900435954101343
+    },
+    "reliabilityWeight": {
+      "n": 32,
+      "mean": 0.5525585960020534,
+      "median": 0.5402298850574713,
+      "sd": 0.045522908850137635,
+      "min": 0.4074074074074074,
+      "max": 0.6208530805687204,
+      "p10": 0.5070707070707071,
+      "p25": 0.5287156282631396,
+      "p75": 0.5964215710911193,
+      "p90": 0.6095648015303682,
+      "atOrAbove": {
+        "60": 0,
+        "70": 0,
+        "80": 0,
+        "90": 0
+      },
+      "below": {
+        "30": 32,
+        "40": 32
+      }
+    },
+    "targets": {
+      "n": 32,
+      "mean": 100.59375,
+      "median": 94,
+      "sd": 17.876065309164094,
+      "min": 55,
+      "max": 131,
+      "p10": 82.3,
+      "p25": 89.75,
+      "p75": 118.25,
+      "p90": 124.9,
+      "atOrAbove": {
+        "60": 31,
+        "70": 31,
+        "80": 30,
+        "90": 24
+      },
+      "below": {
+        "30": 0,
+        "40": 0
+      }
+    }
+  },
+  "week4Alternatives": {
+    "stabilizerSweep": [
+      {
+        "label": "K=0 targets",
+        "n": 32,
+        "mean": 46.559284245487284,
+        "median": 53.9433535220472,
+        "sd": 30.290690490669178,
+        "min": 1.5625,
+        "max": 98.4375,
+        "p10": 9.722238688666566,
+        "p25": 12.80610329788132,
+        "p75": 69.90369707108067,
+        "p90": 86.30532069903204,
+        "atOrAbove": {
+          "60": 12,
+          "70": 8,
+          "80": 6,
+          "90": 1
+        },
+        "below": {
+          "30": 13,
+          "40": 15
+        },
+        "ranks6to15Span": 21.991826090275822,
+        "spearmanWithProduction": 0.9959677419354839
+      },
+      {
+        "label": "K=40 targets",
+        "n": 32,
+        "mean": 45.38171268356468,
+        "median": 53.43122527982074,
+        "sd": 26.068109479254655,
+        "min": 6.886119016086468,
+        "max": 90.69364051734195,
+        "p10": 12.970973080158826,
+        "p25": 19.780679832053867,
+        "p75": 63.1897389588511,
+        "p90": 82.6650733201359,
+        "atOrAbove": {
+          "60": 12,
+          "70": 5,
+          "80": 5,
+          "90": 1
+        },
+        "below": {
+          "30": 12,
+          "40": 15
+        },
+        "ranks6to15Span": 12.39619443277995,
+        "spearmanWithProduction": 0.998900293255132
+      },
+      {
+        "label": "K=80 targets",
+        "n": 32,
+        "mean": 45.199331905022035,
+        "median": 53.052744557722505,
+        "sd": 22.20133199667068,
+        "min": 8.910683367838132,
+        "max": 86.74548409545179,
+        "p10": 19.81113127075586,
+        "p25": 23.43788766191497,
+        "p75": 60.94669251906569,
+        "p90": 72.85940879144805,
+        "atOrAbove": {
+          "60": 10,
+          "70": 5,
+          "80": 2,
+          "90": 0
+        },
+        "below": {
+          "30": 12,
+          "40": 15
+        },
+        "ranks6to15Span": 7.168207394836195,
+        "spearmanWithProduction": 1
+      },
+      {
+        "label": "K=120 targets",
+        "n": 32,
+        "mean": 44.95282859601399,
+        "median": 52.78269781596684,
+        "sd": 19.56647797948972,
+        "min": 10.515982780041387,
+        "max": 84.23823656778974,
+        "p10": 22.9703567002095,
+        "p25": 24.536586487908046,
+        "p75": 59.16223525134716,
+        "p90": 68.61586529069498,
+        "atOrAbove": {
+          "60": 6,
+          "70": 3,
+          "80": 1,
+          "90": 0
+        },
+        "below": {
+          "30": 12,
+          "40": 15
+        },
+        "ranks6to15Span": 5.6968623780834164,
+        "spearmanWithProduction": 0.999266862170088
+      },
+      {
+        "label": "K=200 targets",
+        "n": 32,
+        "mean": 44.365645902398974,
+        "median": 52.445542245050476,
+        "sd": 16.538610700508375,
+        "min": 13.734687528855337,
+        "max": 75.32470550003072,
+        "p10": 24.737025228141494,
+        "p25": 25.66874082264254,
+        "p75": 57.099213199009796,
+        "p90": 62.137451443875555,
+        "atOrAbove": {
+          "60": 5,
+          "70": 1,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 10,
+          "40": 13
+        },
+        "ranks6to15Span": 3.658953709085175,
+        "spearmanWithProduction": 0.9978005865102639
+      },
+      {
+        "label": "K=320 targets",
+        "n": 32,
+        "mean": 44.34254375141333,
+        "median": 52.16972475520589,
+        "sd": 14.027499400402471,
+        "min": 22.4884442731005,
+        "max": 67.47475442589065,
+        "p10": 25.860049537905255,
+        "p25": 27.303789166077635,
+        "p75": 55.77555837886737,
+        "p90": 58.97110441573679,
+        "atOrAbove": {
+          "60": 3,
+          "70": 0,
+          "80": 0,
+          "90": 0
+        },
+        "below": {
+          "30": 9,
+          "40": 13
+        },
+        "ranks6to15Span": 2.8461817968527683,
+        "spearmanWithProduction": 0.9937683284457478
+      }
+    ],
+    "currentRankOfProductionValue": {
+      "label": "current-season rank of the production calibrated residual",
+      "n": 32,
+      "mean": 49.999999999999986,
+      "median": 50,
+      "sd": 29.784169859063528,
+      "min": 0,
+      "max": 100,
+      "p10": 10,
+      "p25": 25,
+      "p75": 75,
+      "p90": 90.00000000000001,
+      "atOrAbove": {
+        "60": 13,
+        "70": 10,
+        "80": 7,
+        "90": 4
+      },
+      "below": {
+        "30": 10,
+        "40": 13
+      },
+      "ranks6to15Span": 29.032258064516135,
+      "spearmanWithProduction": -0.04142228739002932
+    },
+    "note": "Diagnostics only. None is proposed. Rank preservation across K is reported because stabilization weights differ by team target counts."
+  },
+  "syntheticProbe": {
+    "design": "32 synthetic rooms whose true residuals are a truth set below; each keeps a 2026 Week-4 target count (paired in fixed order) scaled by season stage; observed = truth + normal noise of variance noise/targets; then the production stabilize -> align -> 2025 CDF path. Truth percentile = rank percentile of the truth value in the 2025 reference (ordering is identical across truth sets).",
+    "replications": 2000,
+    "noiseLevels": {
+      "upper": 2.815160488370231,
+      "overlapModel": 0.9961717550661194
+    },
+    "referenceTargetsMean": 327.6875,
+    "observedWeek4": {
+      "liveSd": 22.20133199667068,
+      "teamsAtOrAbove70": 5,
+      "ranks6to15Span": 7.168207394836195
+    },
+    "runs": {
+      "observedReference": {
+        "spreadFactor": 1,
+        "truthSd": 0.09574719560535214,
+        "week4": [
+          {
+            "label": "K=0",
+            "targetScale": 1,
+            "stabilizerTargets": 0,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 34.68421203055348,
+            "liveMean": 47.82005169623872,
+            "teamsAtOrAbove70": 11,
+            "ranks6to15Span": 31.22227096657056,
+            "spearmanWithTruth": 0.6547368339013317,
+            "meanAbsErrorVsTruthPercentile": 20.985808553726237
+          },
+          {
+            "label": "K=80",
+            "targetScale": 1,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 27.12194903517249,
+            "liveMean": 46.153040809502286,
+            "teamsAtOrAbove70": 7,
+            "ranks6to15Span": 23.237360368614983,
+            "spearmanWithTruth": 0.659274193548387,
+            "meanAbsErrorVsTruthPercentile": 18.196987123706826
+          },
+          {
+            "label": "K=320",
+            "targetScale": 1,
+            "stabilizerTargets": 320,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 16.797553179444726,
+            "liveMean": 44.54618537026239,
+            "teamsAtOrAbove70": 1,
+            "ranks6to15Span": 7.215361784985149,
+            "spearmanWithTruth": 0.6605571847507331,
+            "meanAbsErrorVsTruthPercentile": 18.98110864273879
+          }
+        ],
+        "bySeasonStage": [
+          {
+            "label": "production K=80 at 4 games",
+            "targetScale": 1,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 27.24945269804376,
+            "liveMean": 46.117227794346235,
+            "teamsAtOrAbove70": 7.5,
+            "ranks6to15Span": 23.68010811744576,
+            "spearmanWithTruth": 0.657258064516129,
+            "meanAbsErrorVsTruthPercentile": 18.308850480116742
+          },
+          {
+            "label": "production K=80 at 8 games",
+            "targetScale": 2,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 28.400257194470626,
+            "liveMean": 46.74912805628907,
+            "teamsAtOrAbove70": 8,
+            "ranks6to15Span": 26.541514522704958,
+            "spearmanWithTruth": 0.7668621700879765,
+            "meanAbsErrorVsTruthPercentile": 15.171877428999778
+          },
+          {
+            "label": "production K=80 at 12 games",
+            "targetScale": 3,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 28.72961132720662,
+            "liveMean": 46.92231463842113,
+            "teamsAtOrAbove70": 8,
+            "ranks6to15Span": 27.393695644796086,
+            "spearmanWithTruth": 0.8207478005865103,
+            "meanAbsErrorVsTruthPercentile": 13.27868182448298
+          },
+          {
+            "label": "production K=80 at 17 games",
+            "targetScale": 4.25,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 28.86658905401563,
+            "liveMean": 47.04189550987005,
+            "teamsAtOrAbove70": 8,
+            "ranks6to15Span": 27.537342832157524,
+            "spearmanWithTruth": 0.8558335660543344,
+            "meanAbsErrorVsTruthPercentile": 11.972131941288641
+          }
+        ]
+      },
+      "deconvolvedOverlapNoise": {
+        "spreadFactor": 0.8238669814298374,
+        "truthSd": 0.07888295302375364,
+        "week4": [
+          {
+            "label": "K=0",
+            "targetScale": 1,
+            "stabilizerTargets": 0,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 33.70986007879563,
+            "liveMean": 47.56876739791819,
+            "teamsAtOrAbove70": 11,
+            "ranks6to15Span": 30.3390771235605,
+            "spearmanWithTruth": 0.5859271786963678,
+            "meanAbsErrorVsTruthPercentile": 22.456942605357554
+          },
+          {
+            "label": "K=80",
+            "targetScale": 1,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 26.161449193315327,
+            "liveMean": 45.8297846717576,
+            "teamsAtOrAbove70": 7,
+            "ranks6to15Span": 20.901800160201397,
+            "spearmanWithTruth": 0.5876099706744868,
+            "meanAbsErrorVsTruthPercentile": 19.982585999213384
+          },
+          {
+            "label": "K=320",
+            "targetScale": 1,
+            "stabilizerTargets": 320,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 15.956903824724588,
+            "liveMean": 44.48387161396545,
+            "teamsAtOrAbove70": 1,
+            "ranks6to15Span": 6.648022103209691,
+            "spearmanWithTruth": 0.5824780058651027,
+            "meanAbsErrorVsTruthPercentile": 20.36482107101872
+          }
+        ],
+        "bySeasonStage": [
+          {
+            "label": "production K=80 at 4 games",
+            "targetScale": 1,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 26.104391254303142,
+            "liveMean": 45.84120189565573,
+            "teamsAtOrAbove70": 7,
+            "ranks6to15Span": 20.62194720904026,
+            "spearmanWithTruth": 0.5910923753665689,
+            "meanAbsErrorVsTruthPercentile": 19.86885777613214
+          },
+          {
+            "label": "production K=80 at 8 games",
+            "targetScale": 2,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 26.88780658132721,
+            "liveMean": 46.27312021414302,
+            "teamsAtOrAbove70": 7,
+            "ranks6to15Span": 23.500965776443575,
+            "spearmanWithTruth": 0.7104105571847508,
+            "meanAbsErrorVsTruthPercentile": 16.805942437318258
+          },
+          {
+            "label": "production K=80 at 12 games",
+            "targetScale": 3,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 27.164255980687013,
+            "liveMean": 46.45211579581964,
+            "teamsAtOrAbove70": 7,
+            "ranks6to15Span": 24.205684067234476,
+            "spearmanWithTruth": 0.7701612903225806,
+            "meanAbsErrorVsTruthPercentile": 14.98196444232631
+          },
+          {
+            "label": "production K=80 at 17 games",
+            "targetScale": 4.25,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 0.9961717550661194,
+            "liveSd": 27.207607975655925,
+            "liveMean": 46.59986503169857,
+            "teamsAtOrAbove70": 7,
+            "ranks6to15Span": 25.173676119404004,
+            "spearmanWithTruth": 0.8156158357771262,
+            "meanAbsErrorVsTruthPercentile": 13.332874727164747
+          }
+        ]
+      },
+      "deconvolvedUpperNoise": {
+        "spreadFactor": 0.3036008276657179,
+        "truthSd": 0.0290689278324563,
+        "week4": [
+          {
+            "label": "K=0",
+            "targetScale": 1,
+            "stabilizerTargets": 0,
+            "noiseVariancePerTarget": 2.815160488370231,
+            "liveSd": 36.943059838467306,
+            "liveMean": 47.48892236075851,
+            "teamsAtOrAbove70": 12,
+            "ranks6to15Span": 33.783119919267506,
+            "spearmanWithTruth": 0.1553925748198442,
+            "meanAbsErrorVsTruthPercentile": 35.11292472673496
+          },
+          {
+            "label": "K=80",
+            "targetScale": 1,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 2.815160488370231,
+            "liveSd": 29.903118061189154,
+            "liveMean": 46.05230306333904,
+            "teamsAtOrAbove70": 9,
+            "ranks6to15Span": 27.97472738629765,
+            "spearmanWithTruth": 0.16532258064516128,
+            "meanAbsErrorVsTruthPercentile": 31.00651768308692
+          },
+          {
+            "label": "K=320",
+            "targetScale": 1,
+            "stabilizerTargets": 320,
+            "noiseVariancePerTarget": 2.815160488370231,
+            "liveSd": 18.93346400405244,
+            "liveMean": 44.433907600716765,
+            "teamsAtOrAbove70": 2,
+            "ranks6to15Span": 9.186334044217727,
+            "spearmanWithTruth": 0.16330645161290322,
+            "meanAbsErrorVsTruthPercentile": 26.62713142778557
+          }
+        ],
+        "bySeasonStage": [
+          {
+            "label": "production K=80 at 4 games",
+            "targetScale": 1,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 2.815160488370231,
+            "liveSd": 29.901585553389552,
+            "liveMean": 46.02235106629839,
+            "teamsAtOrAbove70": 9,
+            "ranks6to15Span": 28.0674477537087,
+            "spearmanWithTruth": 0.16148099855651918,
+            "meanAbsErrorVsTruthPercentile": 30.830977034708795
+          },
+          {
+            "label": "production K=80 at 8 games",
+            "targetScale": 2,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 2.815160488370231,
+            "liveSd": 28.856363579758828,
+            "liveMean": 45.89360628590482,
+            "teamsAtOrAbove70": 8,
+            "ranks6to15Span": 27.06425390594859,
+            "spearmanWithTruth": 0.22012463343108504,
+            "meanAbsErrorVsTruthPercentile": 28.995498090463435
+          },
+          {
+            "label": "production K=80 at 12 games",
+            "targetScale": 3,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 2.815160488370231,
+            "liveSd": 27.706478349968883,
+            "liveMean": 45.7676210174248,
+            "teamsAtOrAbove70": 8,
+            "ranks6to15Span": 25.187574847582027,
+            "spearmanWithTruth": 0.28097507331378296,
+            "meanAbsErrorVsTruthPercentile": 27.39092195577701
+          },
+          {
+            "label": "production K=80 at 17 games",
+            "targetScale": 4.25,
+            "stabilizerTargets": 80,
+            "noiseVariancePerTarget": 2.815160488370231,
+            "liveSd": 26.674328358298297,
+            "liveMean": 45.586114851368094,
+            "teamsAtOrAbove70": 7,
+            "ranks6to15Span": 22.69270711428393,
+            "spearmanWithTruth": 0.32368035190615835,
+            "meanAbsErrorVsTruthPercentile": 26.08084190952058
+          }
+        ]
+      }
+    },
+    "note": "Observed and deconvolved truth sets bracket plausible true spread. Results describe mechanism under stated noise assumptions only."
+  },
+  "meanDeltaDecomposition": {
+    "meanBridgeDelta": -4.076933042776433,
+    "meanLive": 45.19933190502204,
+    "medianLive": 53.052744557722505,
+    "meanPrior": 50,
+    "meanLiveWeight": 0.8179479527436105,
+    "liveSkew": {
+      "mean": 45.19933190502204,
+      "median": 53.052744557722505,
+      "p10": 19.81113127075586,
+      "p90": 72.85940879144805
+    },
+    "note": "The current centre maps to 50 exactly, but the stabilized values are skewed (long lower tail), so the mean live grade is below 50 while the median is above it. The negative channel mean is a shape effect, not a level drift."
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "purpose": "MD-08 follow-up research inputs (OL drift, receiver stabilization). Every input is already committed in the repository at researchBase; no new capture, provider fetch or private payload.",
+  "researchBase": "6cf05419f89df7c9c8c3af228a3fb80080c6f686",
+  "frozenResearch": "aa0ad397a08cf2ff6f69e73c979e22667667a716",
+  "inputs": [
+    {
+      "path": "research/cycle8/md07_unit_calibration/inputs/current_snapshot.json",
+      "role": "Frozen MD-07 2026 Week-4 public bootstrap numeric stages (captured 2026-10-05T18:03:19Z); same baseline as the frozen MD-08 package"
+    },
+    {
+      "path": "data/live-cache/c6cb7af1f41f107e7e3f.bin",
+      "role": "V149 2025 reference v5: rolling team-game windows (1-17 games) of PBP OL disruption and QB EPA/success, team-major and chronological; upstream nflverse play_by_play_2025.csv.gz sha256 8ce00018..."
+    },
+    {
+      "path": "data/live-cache/3362f7b501485ee0411e.bin",
+      "role": "PFR advanced passing 2025 per QB-game (times sacked/hit/pressured); independent-provider check and slot-identity validation"
+    },
+    {
+      "path": "data/live-cache/62cf9e3ac57b4b573023.bin",
+      "role": "PFR advanced passing 2026 weeks 1-3 per QB-game"
+    },
+    {
+      "path": "data/live-cache/6c5538f80f72ee7f5aa4.bin",
+      "role": "nflverse weekly player stats 2026 weeks 1-3 (WR/TE targets and receiving EPA)"
+    },
+    {
+      "path": "data/live-cache/ac994a29342b05dc3e69.bin",
+      "role": "nflverse weekly team stats 2026 weeks 1-3 (pinned; read for provenance, not used in a reported number)"
+    },
+    {
+      "path": "data/matchup-data.js",
+      "role": "Bundled 2025 team profiles: OL prior source and the 32-team 2025 receiver residual reference"
+    },
+    {
+      "path": "data/model-data.js",
+      "role": "Reversion 0.30 and Elo anchors"
+    },
+    {
+      "path": "model/live_profiles.js",
+      "role": "BASE unit formulas (byte-identical to the frozen MD-08 pin)"
+    },
+    {
+      "path": "model/unit_force_bridge.js",
+      "role": "Bridge (byte-identical to the frozen MD-08 pin)"
+    },
+    {
+      "path": "assets/app.js",
+      "role": "Production wiring at BASE, including the owner-accepted identity presentation seam (differs from the frozen pin only by that seam)"
+    },
+    {
+      "path": "research/cycle8/md07_unit_calibration/stats.mjs",
+      "role": "Shared descriptive statistics helpers"
+    },
+    {
+      "path": "research/cycle9/md08_unit_normalization/lib.mjs",
+      "role": "Frozen MD-08 helper functions imported read-only (fullStats, blendInputs)"
+    },
+    {
+      "path": "research/cycle9/md08_unit_normalization/hashes.json",
+      "role": "Frozen package checksum list; every listed file is re-verified on load"
+    }
+  ],
+  "pins": {
+    "research/cycle8/md07_unit_calibration/inputs/current_snapshot.json": "b84d5d17e49f5114053bcc2c69ca31024a0a088136b6047b75460fef34e8b247",
+    "data/live-cache/c6cb7af1f41f107e7e3f.bin": "ec8023a04119be8f71857c6b732dc1b0aa510ad50d200ce63e4d1fbc45395961",
+    "data/matchup-data.js": "88b100a3e10158990398b46740c7d01e2048cf05d1601a03ae3c6b0f1613357d",
+    "data/model-data.js": "fa852ce51b25bebd57fa49dca4e2d8e73575ced372e37ea5c6e30fb76217e8ac",
+    "model/unit_force_bridge.js": "1882dd71c1efcd479b604e924e3ed547bb60af9c16122a3bc453b1a815a3ac51",
+    "model/live_profiles.js": "9b2485b3ba89be8fbdbdbe421e2c8923f09479484dbc598667686206262c16de",
+    "assets/app.js": "8724f2001ae8ab0edb9e367a28348cb85df373304098e15586bf0959acfeef6a",
+    "data/live-cache/ac994a29342b05dc3e69.bin": "a0a869cf320a7e2efceba27bda7094345a5cc19107cb535e9c303e6fb73d0586",
+    "data/live-cache/6c5538f80f72ee7f5aa4.bin": "ff5a780f59bbdccbf2bb88e02aa64fa736b09d31757e528cdebc8caaa2facd34",
+    "data/live-cache/62cf9e3ac57b4b573023.bin": "cb61d6c725fd270edca77d63d244b4746181033622d05fbaeb7a1277c98d810f",
+    "data/live-cache/3362f7b501485ee0411e.bin": "79cd92f9a3b46a3fcc50904b3199b39303f7cab8b484040a1cb2b2c3bf51bd40",
+    "research/cycle8/md07_unit_calibration/stats.mjs": "45feebea12b9f9396419725b9cefd0ce0611e45e2a7aa10cf7098ebebb8a6058",
+    "research/cycle9/md08_unit_normalization/lib.mjs": "f89b946151b303c78c50323f9c5bef21194a5687b401fe6794f4ee0671a94649",
+    "research/cycle9/md08_unit_normalization/hashes.json": "c0af5a7b49d0bc9e7764d1c21b6fd7af8ee263104331e7ce4bb96d0917d2d762"
+  },
+  "checksumConvention": "SHA-256 of UTF-8 text after CRLF->LF normalization",
+  "boundary": "Research only. The Week-4 snapshot is not re-captured. Weekly 2026 caches are those committed at BASE (saved 2026-10-01, weeks 1-3); week 4 is snapshot total minus weeks 1-3."
+}
