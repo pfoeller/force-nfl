@@ -49,19 +49,19 @@ Every bridge unit passes through the same outer pipeline ([live_profiles.js](../
 
 ## Normalization inventory
 
-"Nominal midpoint" is what the code intends 50 to mean; "effective midpoint" is the live grade the current (Week-4 2026) league-average signal actually receives ([midpoint_thresholds.json](results/midpoint_thresholds.json)).
+"Transform / reference midpoint" is what live 50 corresponds to by construction. The next column gives the separately defined current signal it is compared with: median standing for rank units, the current weighted centre for receivers/RB, the pooled current rate for OL and a constructed proxy for QB. These are not interchangeable with the raw arithmetic mean or the empirical displayed median, which are reported separately in README Section 4 ([midpoint_thresholds.json](results/midpoint_thresholds.json)).
 
-| Unit | Transform | Nominal midpoint | Effective midpoint (live) | Hard floor / ceiling (live) | Anchor constants and provenance |
+| Unit | Transform | Transform / reference midpoint | Current signal compared (live grade) | Hard floor / ceiling (live) | Anchor constants and provenance |
 |---|---|---|---|---|---|
-| Scoring/drive | Current-rank percentile | Median current team | 50 by construction | 0 / 100, always hit by worst/best team | None; recomputed every build |
-| QB play | Multicomponent, ×1.20 expansion, clamp | League average | 53.98 before context (EPA comp 53.70, success 58.70) | 0 / 100 clamp; rushing component floor 50 | 1.20 (V144, hand-selected), weights 30/30/20/10/10 (hand-selected), CPOE softness 7.5, stabilizers 150/100/60, 2025 V149 reference v5 (fitted data) |
-| Receivers | Stabilize → centre-align → 2025 CDF | Current league centre | 50.00 by construction | 1.5625 / 98.4375 | Stabilizer 80 (V115, hand-selected), ridge fraction .50 (hand-selected), 2025 bundled team values |
-| Offensive line | Raw rate → 2025 same-length window CDF | 2025 window median (.1545) | **37.68** (pooled 2026 rate .1698) | 0.11 / 99.89 | 2025 V149 reference windows; no centre alignment |
-| RB | As receivers, 70/30 | Current league centre | 50.00 by construction | 1.5625 / 98.4375 | Stabilizers 50/40 (V115), 70/30 (V57), ridge .50; LIVE_FITTED frame (owner decision 2026-10-05) |
-| Coverage | .75/.25 current-rank mix | Median | 50 | 0 / 100 (needs both ranks extreme) | .75/.25 (V101, hand-selected) |
-| Pass rush | Weekly: current rank. PFR: 2025 window CDF | Median / 2025 window median | 50 (weekly) | 0 / 100 weekly; CDF bounds PFR | PFR hit .20 / sack .60 bonuses (hand-selected); provider order |
-| Run defense | Current rank | Median | 50 | 0 / 100 | None |
-| Pts/drive prevention | Current rank, then blend with 50 at `k=1` | Median | 50 | live 0 / 100; **display exactly 10 / 90 at four drive-games** | Neutral prior 50 (V100) |
+| Scoring/drive | Current-rank percentile | Median standing (not the raw mean) | Median standing → 50; raw mean 2.160 pts/drive sits at grade 56.64 | 0 / 100, always hit by worst/best team | None; recomputed every build |
+| QB play | Multicomponent, ×1.20 expansion, clamp | Weighted component mean 50 | Constructed pre-context proxy 53.98 (EPA comp 53.70, success 58.70); not the displayed median (53.40) or a unique raw average | 0 / 100 clamp; rushing component floor 50 | 1.20 (V144, hand-selected), weights 30/30/20/10/10 (hand-selected), CPOE softness 7.5, stabilizers 150/100/60, 2025 V149 reference v5 (fitted data) |
+| Receivers | Stabilize → centre-align → 2025 CDF | 2025 reference median | Target-weighted current centre aligned onto the reference median → 50.00 | 1.5625 / 98.4375 | Stabilizer 80 (V115, hand-selected), ridge fraction .50 (hand-selected), 2025 bundled team values |
+| Offensive line | Raw rate → 2025 same-length window CDF | 2025 window median (.1545) | Pooled 2026 rate .1698 → **37.68** (mapped pooled signal, not the displayed median 37.84) | 0.11 / 99.89 | 2025 V149 reference windows; no centre alignment |
+| RB | As receivers, 70/30 | 2025 reference median | Weighted current centre aligned → 50.00 | 1.5625 / 98.4375 | Stabilizers 50/40 (V115), 70/30 (V57), ridge .50; LIVE_FITTED frame (owner decision 2026-10-05) |
+| Coverage | .75/.25 current-rank mix | Median standing of each component | 50 when both components are at median standing | 0 / 100 (needs both ranks extreme) | .75/.25 (V101, hand-selected) |
+| Pass rush | Weekly: current rank. PFR: 2025 window CDF | Median standing / 2025 window median | Median standing → 50 (weekly) | 0 / 100 weekly; CDF bounds PFR | PFR hit .20 / sack .60 bonuses (hand-selected); provider order |
+| Run defense | Current rank | Median standing | 50 | 0 / 100 | None |
+| Pts/drive prevention | Current rank, then blend with 50 at `k=1` | Median standing | 50 | live 0 / 100; **display exactly 10 / 90 at four drive-games** | Neutral prior 50 (V100) |
 | Priors (all) | `50 + .70*(source-50)` | 50 | 50 (all priors mean 50.00) | 15 / 85 (16.09 / 83.91 for CDF-based priors) | Reversion .30 (2021+ era, model-data) |
 | Composites | Soft-tail tanh | 50 | — | 0 / 100 preserved | Softness 35 / 42 (V108, hand-selected) |
 

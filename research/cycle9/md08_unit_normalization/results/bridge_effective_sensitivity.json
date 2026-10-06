@@ -23,7 +23,41 @@
       "oneSdDeltaEloDown": 14.421541982961575,
       "practicalMaxPreCapPoints": 5.6551061317442395,
       "practicalMaxPreCapElo": 32.890097262224494,
+      "signDistribution": {
+        "positive": 17,
+        "negative": 15,
+        "zero": 0,
+        "largestPositive": [
+          {
+            "team": "LV",
+            "delta": 49.02801608118074
+          },
+          {
+            "team": "CAR",
+            "delta": 36.02349342118853
+          },
+          {
+            "team": "NO",
+            "delta": 31.19950588770412
+          }
+        ],
+        "largestNegative": [
+          {
+            "team": "NE",
+            "delta": -56.55106131744239
+          },
+          {
+            "team": "GB",
+            "delta": -48.37231553406872
+          },
+          {
+            "team": "MIA",
+            "delta": -32.68337514343767
+          }
+        ]
+      },
       "theoreticalMaxAbsDelta": 70.40262799668187,
+      "theoreticalMaxDefinition": "Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",
       "theoreticalMaxPreCapPoints": 7.040262799668188,
       "effectiveShareBySdDelta": 0.2073356577640144,
       "varianceContributionShare": 0.29316726840940244,
@@ -45,8 +79,42 @@
       "oneSdDeltaEloDown": 8.805896100065874,
       "practicalMaxPreCapPoints": 2.7530091852530116,
       "practicalMaxPreCapElo": 16.011501421431515,
-      "theoreticalMaxAbsDelta": 71.0505038781856,
-      "theoreticalMaxPreCapPoints": 4.263030232691135,
+      "signDistribution": {
+        "positive": 18,
+        "negative": 14,
+        "zero": 0,
+        "largestPositive": [
+          {
+            "team": "LV",
+            "delta": 44.04639281505996
+          },
+          {
+            "team": "NYJ",
+            "delta": 42.0050058628835
+          },
+          {
+            "team": "CAR",
+            "delta": 41.60453919095956
+          }
+        ],
+        "largestNegative": [
+          {
+            "team": "IND",
+            "delta": -45.88348642088353
+          },
+          {
+            "team": "GB",
+            "delta": -39.03676951953926
+          },
+          {
+            "team": "TB",
+            "delta": -33.87388450943745
+          }
+        ]
+      },
+      "theoreticalMaxAbsDelta": 70.45263905761993,
+      "theoreticalMaxDefinition": "Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",
+      "theoreticalMaxPreCapPoints": 4.227158343457196,
       "effectiveShareBySdDelta": 0.12660062719130885,
       "varianceContributionShare": 0.1816686808992488,
       "correlationWithTotal": 0.7964837113782446
@@ -67,7 +135,41 @@
       "oneSdDeltaEloDown": 4.508575811912263,
       "practicalMaxPreCapPoints": 2.0244473933178133,
       "practicalMaxPreCapElo": 11.7741860395364,
+      "signDistribution": {
+        "positive": 14,
+        "negative": 18,
+        "zero": 0,
+        "largestPositive": [
+          {
+            "team": "NYJ",
+            "delta": 26.822930167369073
+          },
+          {
+            "team": "NO",
+            "delta": 24.76677433569529
+          },
+          {
+            "team": "BUF",
+            "delta": 22.073420767284382
+          }
+        ],
+        "largestNegative": [
+          {
+            "team": "ARI",
+            "delta": -50.611184832945334
+          },
+          {
+            "team": "LAR",
+            "delta": -40.84573034815159
+          },
+          {
+            "team": "NE",
+            "delta": -38.44676070974504
+          }
+        ]
+      },
       "theoreticalMaxAbsDelta": 66.98409801820941,
+      "theoreticalMaxDefinition": "Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",
       "theoreticalMaxPreCapPoints": 2.6793639207283766,
       "effectiveShareBySdDelta": 0.06481890304422139,
       "varianceContributionShare": 0.06251720407301915,
@@ -89,7 +191,41 @@
       "oneSdDeltaEloDown": 4.774370238543146,
       "practicalMaxPreCapPoints": 1.7684090549968343,
       "practicalMaxPreCapElo": 10.285067063861586,
+      "signDistribution": {
+        "positive": 13,
+        "negative": 19,
+        "zero": 0,
+        "largestPositive": [
+          {
+            "team": "BAL",
+            "delta": 32.05859050999321
+          },
+          {
+            "team": "SF",
+            "delta": 27.51103091561734
+          },
+          {
+            "team": "TEN",
+            "delta": 20.14684694792301
+          }
+        ],
+        "largestNegative": [
+          {
+            "team": "PIT",
+            "delta": -44.21022637492086
+          },
+          {
+            "team": "CIN",
+            "delta": -43.14077918122436
+          },
+          {
+            "team": "LAR",
+            "delta": -40.54006464709761
+          }
+        ]
+      },
       "theoreticalMaxAbsDelta": 69.27543928343235,
+      "theoreticalMaxDefinition": "Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",
       "theoreticalMaxPreCapPoints": 2.771017571337294,
       "effectiveShareBySdDelta": 0.06864017696490418,
       "varianceContributionShare": 0.05283903630065837,
@@ -111,7 +247,41 @@
       "oneSdDeltaEloDown": 4.427925984139645,
       "practicalMaxPreCapPoints": 2.033436692035455,
       "practicalMaxPreCapElo": 11.826467800878206,
+      "signDistribution": {
+        "positive": 15,
+        "negative": 17,
+        "zero": 0,
+        "largestPositive": [
+          {
+            "team": "KC",
+            "delta": 58.098191201012995
+          },
+          {
+            "team": "CHI",
+            "delta": 39.43432809431911
+          },
+          {
+            "team": "BAL",
+            "delta": 30.898491192862615
+          }
+        ],
+        "largestNegative": [
+          {
+            "team": "PHI",
+            "delta": -47.11801476781251
+          },
+          {
+            "team": "NE",
+            "delta": -26.46087696420618
+          },
+          {
+            "team": "SEA",
+            "delta": -25.4872938172022
+          }
+        ]
+      },
       "theoreticalMaxAbsDelta": 69.77279432727667,
+      "theoreticalMaxDefinition": "Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",
       "theoreticalMaxPreCapPoints": 2.4420478014546836,
       "effectiveShareBySdDelta": 0.06365941641584655,
       "varianceContributionShare": 0.04577691425630247,
@@ -133,7 +303,41 @@
       "oneSdDeltaEloDown": 10.822301961355807,
       "practicalMaxPreCapPoints": 4.068400867668319,
       "practicalMaxPreCapElo": 23.66181944635894,
+      "signDistribution": {
+        "positive": 15,
+        "negative": 17,
+        "zero": 0,
+        "largestPositive": [
+          {
+            "team": "LV",
+            "delta": 35.553995094946714
+          },
+          {
+            "team": "CHI",
+            "delta": 29.383379408700506
+          },
+          {
+            "team": "KC",
+            "delta": 29.284803711776974
+          }
+        ],
+        "largestNegative": [
+          {
+            "team": "HOU",
+            "delta": -50.227171205781715
+          },
+          {
+            "team": "BUF",
+            "delta": -44.788984805966585
+          },
+          {
+            "team": "DET",
+            "delta": -41.08763145304723
+          }
+        ]
+      },
       "theoreticalMaxAbsDelta": 71.15515920819077,
+      "theoreticalMaxDefinition": "Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",
       "theoreticalMaxPreCapPoints": 5.763567895863452,
       "effectiveShareBySdDelta": 0.15559009558960477,
       "varianceContributionShare": 0.15722267973764423,
@@ -155,7 +359,41 @@
       "oneSdDeltaEloDown": 5.158211156696913,
       "practicalMaxPreCapPoints": 2.014340087133716,
       "practicalMaxPreCapElo": 11.71540194676969,
+      "signDistribution": {
+        "positive": 18,
+        "negative": 14,
+        "zero": 0,
+        "largestPositive": [
+          {
+            "team": "LV",
+            "delta": 55.95389130926989
+          },
+          {
+            "team": "CHI",
+            "delta": 37.48197998977946
+          },
+          {
+            "team": "HOU",
+            "delta": 37.463630135764106
+          }
+        ],
+        "largestNegative": [
+          {
+            "team": "NYG",
+            "delta": -44.45198620078017
+          },
+          {
+            "team": "DAL",
+            "delta": -41.13564575474441
+          },
+          {
+            "team": "LAR",
+            "delta": -39.42588278118203
+          }
+        ]
+      },
       "theoreticalMaxAbsDelta": 69.84447224564069,
+      "theoreticalMaxDefinition": "Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",
       "theoreticalMaxPreCapPoints": 2.5144010008430646,
       "effectiveShareBySdDelta": 0.07415858195489619,
       "varianceContributionShare": 0.04187204106534428,
@@ -177,7 +415,41 @@
       "oneSdDeltaEloDown": 10.43638712722346,
       "practicalMaxPreCapPoints": 4.133999218820298,
       "practicalMaxPreCapElo": 24.04333945665885,
+      "signDistribution": {
+        "positive": 15,
+        "negative": 17,
+        "zero": 0,
+        "largestPositive": [
+          {
+            "team": "ARI",
+            "delta": 51.31905673527503
+          },
+          {
+            "team": "ATL",
+            "delta": 48.43708234348068
+          },
+          {
+            "team": "MIA",
+            "delta": 46.96077296280558
+          }
+        ],
+        "largestNegative": [
+          {
+            "team": "DEN",
+            "delta": -65.6190352193698
+          },
+          {
+            "team": "CLE",
+            "delta": -51.45207209042087
+          },
+          {
+            "team": "CAR",
+            "delta": -42.9040404287302
+          }
+        ]
+      },
       "theoreticalMaxAbsDelta": 68.87528421844402,
+      "theoreticalMaxDefinition": "Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",
       "theoreticalMaxPreCapPoints": 4.339142905761974,
       "effectiveShareBySdDelta": 0.15004187431962865,
       "varianceContributionShare": 0.10255066549444475,
@@ -199,7 +471,41 @@
       "oneSdDeltaEloDown": 6.20128627877356,
       "practicalMaxPreCapPoints": 1.7999999999999998,
       "practicalMaxPreCapElo": 10.468799999999996,
+      "signDistribution": {
+        "positive": 16,
+        "negative": 16,
+        "zero": 0,
+        "largestPositive": [
+          {
+            "team": "MIN",
+            "delta": 40
+          },
+          {
+            "team": "JAX",
+            "delta": 37.419354838709694
+          },
+          {
+            "team": "SEA",
+            "delta": 34.83870967741936
+          }
+        ],
+        "largestNegative": [
+          {
+            "team": "DET",
+            "delta": -40
+          },
+          {
+            "team": "DAL",
+            "delta": -37.41935483870968
+          },
+          {
+            "team": "MIA",
+            "delta": -34.83870967741936
+          }
+        ]
+      },
       "theoreticalMaxAbsDelta": 40,
+      "theoreticalMaxDefinition": "Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",
       "theoreticalMaxPreCapPoints": 1.7999999999999998,
       "effectiveShareBySdDelta": 0.08915466675557498,
       "varianceContributionShare": 0.06238550976393527,

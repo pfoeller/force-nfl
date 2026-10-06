@@ -2714,7 +2714,7 @@
     }
   },
   "D": {
-    "description": "Percentile display: Hazen position within this snapshot (continuous CDF)",
+    "description": "Percentile display: Hazen position within this snapshot (continuous CDF). Under relative-standing semantics its full-range spacing is expected by design; under evidence-strength/absolute-separation semantics it may overstate weakly separated units. Percentile spacing is not performance magnitude.",
     "units": {
       "pointsScoredPerDriveIndex": {
         "spearman": 1,
@@ -8070,6 +8070,6 @@
   },
   "B": {
     "description": "Fixed absolute anchors: unit-specific raw-anchor -> 0..100 maps",
-    "status": "NOT PROTOTYPED AS A NEW MAP. WR, RB, OL and the QB EPA/success components already use fixed 2025 references at the live layer (Section 4 inverts them exactly). Coverage, run defense, both drive outcomes, ANY/A and the weekly pass-rush fallback have no pinned like-for-like historical raw reference in the repository, so a fixed-anchor map for them cannot be built reproducibly here."
+    "status": "NOT PROTOTYPED AS A NEW MAP. WR, RB, OL and the QB EPA/success components already use fixed 2025 references at the live layer (Section 4 classifies their threshold inversions). Coverage, run defense, both drive outcomes, ANY/A and the weekly pass-rush fallback have no pinned like-for-like historical raw reference in the repository, so a fixed-anchor map for them cannot be built reproducibly here."
   }
 }

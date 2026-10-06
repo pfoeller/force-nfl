@@ -722,7 +722,7 @@
       "sdRatioProductionOverUnstabilized": 0.7396103439712872
     }
   },
-  "stabilizationNote": "Without-stabilization rows remove only the opportunity shrinkage (raw residual/composite or raw EPA, same centre alignment and same reference). They are diagnostics of where compression arises, not proposals. The CDF itself is monotone and faithful to its reference; compression enters through stabilization of 4-game values before mapping onto a full-season reference.",
+  "stabilizationNote": "Without-stabilization rows remove only the opportunity shrinkage (raw residual/composite or raw EPA, same centre alignment and same reference). They show the computational contribution of opportunity stabilization/shrinkage to compression, with reference, centre alignment and downstream mapping held fixed. They do NOT establish that the stabilization is wrong, that the underlying measurement is accurate, that compression should be removed, or that a wider distribution would be more predictive. They are diagnostics, not proposals.",
   "receiverReliabilityWeights": {
     "n": 32,
     "mean": 0.5525585960020534,

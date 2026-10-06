@@ -107,72 +107,86 @@ export function analyze(){
 
   // ---- 4. Distributions ----
   const liveBounds={'current-rank':[0,100],'current-rank-composite':[0,100],'mixed-provider':[0,100],multicomponent:[0,100],'historical-cdf':[50/32,100-50/32],'historical-window-cdf':[50/448,100-50/448]};
+  // Display path (blend -> QB recency -> final clamp), verified against every model value.
+  for(const t of T)for(const k of BRIDGE_KEYS)close(H.displayFromLive(L,Z[t],k,S[t].prior[k],S[t].live[k]),S[t].model[k],t+' '+k+' display path');
   const dist={};
   for(const u of UNITS){const k=u.key,[lo,hi]=liveBounds[u.family];
     const delta=T.map(t=>S[t].model[k]-S[t].prior[k]);
     const liveAtBound=T.filter(t=>Math.abs(S[t].live[k]-lo)<1e-9||Math.abs(S[t].live[k]-hi)<1e-9);
+    const bounds=T.map(t=>H.conditionalDisplayBounds(L,Z[t],k,S[t].prior[k],lo,hi));
     dist[k]={label:u.label,family:u.family,display:fullStats(col(k)),live:fullStats(col(k,'live'),{floor:lo,ceiling:hi}),prior:fullStats(col(k,'prior'),{floor:15,ceiling:85}),bridgeDelta:fullStats(delta),
       liveAtTheoreticalBound:liveAtBound.map(t=>({team:t,live:S[t].live[k],display:S[t].model[k]})),
-      displayHardBounds:T.map(t=>{const l=S[t].lam[k];return [L.blend(S[t].prior[k],lo,l.g,l.k)+(k==='qbIndex'?0:0),L.blend(S[t].prior[k],hi,l.g,l.k)];}).reduce((a,[p,q])=>[Math.min(a[0],p),Math.max(a[1],q)],[100,0]),
+      conditionalDisplayBounds:{lower:Math.min(...bounds.map(b=>b[0])),upper:Math.max(...bounds.map(b=>b[1])),
+        definition:'Conditional on the frozen Week-4 inputs: each team\'s own prior, blend weights'+(k==='qbIndex'?' and recency adjustment':'')+' held fixed, live grade set to the family floor/ceiling, then the production display path (blend'+(k==='qbIndex'?' -> recency -> final clamp 0..100':'')+'). Not universal hard bounds.'},
       packing:packing(col(k)),liveWeight:fullStats(T.map(t=>S[t].lam[k].liveWeight))};}
   for(const d of DISPLAY_ONLY){const v=T.map(t=>S[t][d.key]);dist[d.key]={label:d.label,family:'display-only',display:fullStats(v),packing:packing(v)};}
   dist.offenseCompositeRaw={label:'Overall offense raw weighted grade',family:'display-only input',display:fullStats(T.map(t=>S[t].offenseCompositeRaw))};
   dist.defenseCompositeRaw={label:'Overall defense raw weighted grade',family:'display-only input',display:fullStats(T.map(t=>S[t].defenseCompositeRaw))};
   const teamRows=T.map(t=>({team:t,passRushProvider:S[t].provider,...Object.fromEntries(BRIDGE_KEYS.flatMap(k=>[[k,S[t].model[k]],[k+'_live',S[t].live[k]],[k+'_prior',S[t].prior[k]],[k+'_delta',S[t].model[k]-S[t].prior[k]]])),offenseComposite:S[t].offenseComposite,defenseIndex:S[t].defenseIndex,offenseIndex:S[t].offenseIndex,bridgePoints:S[t].bridge.bridgePoints,eloDelta:S[t].bridge.eloDelta,force:S[t].force}));
-  const distributions={conventions:'Population SD; quantiles linear at (n-1)p; counts are at-or-above 60/70/80/90 and strictly below 40/30; ties counted on exact, one-decimal (Units board) and whole-point (tables/matchups) values. Theoretical bounds: current-rank live 0/100; 32-team historical CDF 1.5625/98.4375; 448-window CDF 0.1116/99.8884 (two teams use 3-game windows); priors 15/85 from regressing 0..100 sources.',
+  const distributions={conventions:'Population SD; quantiles linear at (n-1)p; counts are at-or-above 60/70/80/90 and strictly below 40/30; ties counted on exact, one-decimal (Units board) and whole-point (tables/matchups) values. Live-layer theoretical bounds: current-rank 0/100; 32-team historical CDF 1.5625/98.4375; 448-window CDF 0.1116/99.8884 (two teams use 3-game windows); priors 15/85 from regressing 0..100 sources. Display bounds are conditional on frozen inputs (see conditionalDisplayBounds).',
     units:dist,teams:teamRows};
   const csvKeys=Object.keys(teamRows[0]);
   const csv=[csvKeys.join(','),...teamRows.map(r=>csvKeys.map(k=>typeof r[k]==='number'?r[k].toFixed(6):r[k]).join(','))].join('\n')+'\n';
 
-  // ---- 5. What does 50/60/70/80/90 mean (live mapping inverse, exact) ----
+  // ---- 5. What do 50/60/70/80/90 correspond to (classified per unit; not a blanket inversion) ----
   const med=k=>median(T.map(t=>Z[t].raw[k]));
+  const rawMean=k=>mean(T.map(t=>Z[t].raw[k]));
   const cur=(k)=>Z[T[0]].raw[k];
   const curQ=(k,p)=>quantile(T.map(t=>Z[t].raw[k]),p);
-  const rt=(arr,X,higher,label)=>{const inv=H.inverseCdf(arr,X,higher);
-    if(inv.bound==null)close(L.continuousPercentileValue(arr,inv.value,higher),X,label+' round trip',1e-8);
-    else if(inv.bound==='tieJump'){const at=L.continuousPercentileValue(arr,inv.value,higher);assert(higher?at<=X:at>=X,label+' tie jump');}
-    return inv;};
+  const rt=(arr,X,higher,label)=>{const inv=H.inverseCdf(arr,X,higher),reconstructed=L.continuousPercentileValue(arr,inv.value,higher);
+    if(inv.bound==null){close(reconstructed,X,label+' round trip',1e-8);return {...inv,targetRating:X,reconstructedRating:reconstructed,classification:'EXACT / UNIQUE',roundTripAsserted:true};}
+    if(inv.bound==='tieJump'){assert(higher?reconstructed<=X:reconstructed>=X,label+' tie jump');return {...inv,targetRating:X,reconstructedRating:reconstructed,classification:'TIE-JUMP / APPROXIMATE',roundTripAsserted:false,reason:'Empirical-CDF tie: the production map jumps over the target; the reported raw value is the tied reference value. Production CDF behaviour is not altered.'};}
+    return {...inv,targetRating:X,reconstructedRating:reconstructed,classification:inv.attainable?'EXACT / UNIQUE':'UNREACHABLE',roundTripAsserted:false};};
   const wrW=med('receiverRoomTargets')/(med('receiverRoomTargets')+80),rbWr=med('rbCarries')/(med('rbCarries')+50);
   const qbP=med('qbValuePlays'),qbA=med('qbAttemptPassAttempts'),qbWe=qbP/(qbP+150),qbWs=qbA/(qbA+100),qbWc=qbA/(qbA+60);
   const pooledOl=T.reduce((s,t)=>s+Z[t].raw.pbpPassProtectionDisruptions,0)/T.reduce((s,t)=>s+Z[t].raw.pbpPassProtectionDropbacks,0);
+  const dispMed=k=>median(col(k)),liveMed=k=>median(col(k,'live'));
+  const rankMid=(k,higher,key)=>({transformMidpoint:'50 = median standing under the current-season rank transform (not the arithmetic mean of the raw metric)',rawMedian:med(k),rawMean:rawMean(k),interpolatedRankGradeAtRawMean:H.rankGradeAt(T.map(t=>Z[t].raw[k]),rawMean(k),higher),empiricalLiveMedian:liveMed(key),empiricalDisplayedMedian:dispMed(key)});
+  const assume=o=>({fixedAssumptions:o});
   const thr={};
   thr.receiverIndex={mappedInput:'receiverCalibratedResidual (EPA/target after residualization, stabilization and centre alignment)',reference:'32 bundled 2025 WR/TE residual team-seasons (full season)',
-    currentLeagueCentre:cur('receiverCurrentLeagueResidual'),historicalMedian:cur('receiverHistoricalResidualMedian'),medianTargets:med('receiverRoomTargets'),medianReliability:wrW,
-    effectiveMidpoint:L.continuousPercentileValue(wrRef,cur('receiverHistoricalResidualMedian'),true),
-    thresholds:THRESHOLDS.map(X=>{const inv=rt(wrRef,X,true,'WR '+X);return {live:X,referencePercentile:X,mappedInput:inv.value,impliedRawResidualAtMedianTargets:cur('receiverCurrentLeagueResidual')+(inv.value-cur('receiverHistoricalResidualMedian'))/wrW,bound:inv.bound};})};
+    midpoint:{transformMidpoint:'2025 reference median residual maps to live 50',referenceMedian:cur('receiverHistoricalResidualMedian'),currentWeightedCentre:cur('receiverCurrentLeagueResidual'),currentWeightedCentreDefinition:'Target-weighted 2026 league residual mean; aligned onto the reference median after stabilization',mappedGradeOfCurrentWeightedCentre:L.continuousPercentileValue(wrRef,cur('receiverHistoricalResidualMedian'),true),rawResidualMedian:med('receiverResidualEpa'),rawResidualMean:rawMean('receiverResidualEpa'),empiricalLiveMedian:liveMed('receiverIndex'),empiricalDisplayedMedian:dispMed('receiverIndex')},
+    medianTargets:med('receiverRoomTargets'),medianReliability:wrW,
+    thresholds:THRESHOLDS.map(X=>{const inv=rt(wrRef,X,true,'WR '+X);return {target:X,referencePercentile:X,referenceScope:"REFERENCE-RELATIVE (2025 reference percentile)",mappedInput:{value:inv.value,classification:inv.classification,reconstructedRating:inv.reconstructedRating,attainable:inv.attainable,roundTripAsserted:inv.roundTripAsserted},impliedRawResidual:{value:cur('receiverCurrentLeagueResidual')+(inv.value-cur('receiverHistoricalResidualMedian'))/wrW,classification:'OPPORTUNITY-ASSUMPTION APPROXIMATION',...assume({targets:med('receiverRoomTargets'),stabilizerTargets:80,reliability:wrW})}};})};
   thr.rbIndex={mappedInput:'rbCalibratedComposite (70/30 room composite after stabilization and centre alignment)',reference:'32 bundled 2025 RB room composites, LIVE_FITTED frame',
-    currentLeagueCentre:cur('rbCurrentLeagueCompositeCenter'),historicalMedian:cur('rbHistoricalCompositeMedian'),medianCarries:med('rbCarries'),medianRushReliability:rbWr,
-    effectiveMidpoint:L.continuousPercentileValue(rbRef,cur('rbHistoricalCompositeMedian'),true),
-    thresholds:THRESHOLDS.map(X=>{const inv=rt(rbRef,X,true,'RB '+X);return {live:X,referencePercentile:X,mappedInput:inv.value,impliedRushEpaPerCarryAtMedianCarriesWithReceivingAtCentre:cur('rbCurrentLeagueRush')+(inv.value-cur('rbHistoricalCompositeMedian'))/(.7*rbWr),bound:inv.bound};})};
+    midpoint:{transformMidpoint:'2025 reference median composite maps to live 50',referenceMedian:cur('rbHistoricalCompositeMedian'),currentWeightedCentre:cur('rbCurrentLeagueCompositeCenter'),currentWeightedCentreDefinition:'0.70*carry-weighted 2026 rush EPA mean + 0.30*target-weighted residual receiving mean; aligned onto the reference median after stabilization',mappedGradeOfCurrentWeightedCentre:L.continuousPercentileValue(rbRef,cur('rbHistoricalCompositeMedian'),true),rawCompositeMedian:med('rbCompositeOrthogonal'),rawCompositeMean:rawMean('rbCompositeOrthogonal'),empiricalLiveMedian:liveMed('rbIndex'),empiricalDisplayedMedian:dispMed('rbIndex')},
+    medianCarries:med('rbCarries'),medianRushReliability:rbWr,
+    thresholds:THRESHOLDS.map(X=>{const inv=rt(rbRef,X,true,'RB '+X);return {target:X,referencePercentile:X,referenceScope:"REFERENCE-RELATIVE (2025 reference percentile)",mappedInput:{value:inv.value,classification:inv.classification,reconstructedRating:inv.reconstructedRating,attainable:inv.attainable,roundTripAsserted:inv.roundTripAsserted},impliedRushEpaPerCarry:{value:cur('rbCurrentLeagueRush')+(inv.value-cur('rbHistoricalCompositeMedian'))/(.7*rbWr),classification:'OPPORTUNITY-ASSUMPTION APPROXIMATION',...assume({carries:med('rbCarries'),stabilizerCarries:50,rushReliability:rbWr,receivingResidual:'held at current centre'})}};})};
   thr.olIndex={mappedInput:'pbpPressureAllowedRate (raw; lower is better)',reference:'448 rolling 4-game 2025 team windows (two teams with 3 drive-games use 480 3-game windows)',
-    pooledCurrentRate:pooledOl,effectiveMidpoint:L.continuousPercentileValue(olRef(4),pooledOl,false),medianCurrentRate:med('pbpPressureAllowedRate'),
-    thresholds:THRESHOLDS.map(X=>{const inv=rt(olRef(4),X,false,'OL '+X);return {live:X,referencePercentile:X,disruptionRateAllowed:inv.value,bound:inv.bound};})};
+    midpoint:{transformMidpoint:'2025 4-game reference median rate maps to live 50',referenceMedian:quantile(olRef(4),.5),pooledCurrentRate:pooledOl,pooledCurrentRateDefinition:'Sum of 2026 disruptions / sum of dropbacks across all 32 teams',mappedGradeOfPooledCurrentRate:L.continuousPercentileValue(olRef(4),pooledOl,false),rawTeamRateMedian:med('pbpPressureAllowedRate'),rawTeamRateMean:rawMean('pbpPressureAllowedRate'),empiricalLiveMedian:liveMed('olIndex'),empiricalDisplayedMedian:dispMed('olIndex'),
+      note:'The pooled-signal grade is the mapped grade of the pooled current signal against the 2025 reference, not the empirical displayed median.'},
+    thresholds:THRESHOLDS.map(X=>{const inv=rt(olRef(4),X,false,'OL '+X);return {target:X,referencePercentile:X,referenceScope:"REFERENCE-RELATIVE (2025 reference percentile)",disruptionRateAllowed:inv.value,classification:inv.classification,reconstructedRating:inv.reconstructedRating,attainable:inv.attainable,roundTripAsserted:inv.roundTripAsserted,...(inv.reason?{reason:inv.reason}:{})};})};
   const cLeague={epa:cur('qbCurrentLeagueEpa'),succ:cur('qbCurrentLeagueSuccess'),cpoe:cur('qbCurrentLeagueCpoe')};
-  const qbComp=c=>({component:c,epaComponentMappedEpa:rt(qbEpaRef,c,true,'QB EPA').value,epaImpliedRawAtMedianPlays:cLeague.epa+(rt(qbEpaRef,c,true,'QB EPA').value-cLeague.epa)/qbWe,
-    successMapped:rt(qbSuccRef,c,true,'QB success').value,successImpliedRawAtMedianAttempts:cLeague.succ+(rt(qbSuccRef,c,true,'QB success').value-cLeague.succ)/qbWs,
-    anyAAtCurrentRank:curQ('qbAnyA',c/100),cpoeImpliedRaw:c<100&&c>0?cLeague.cpoe+7.5*Math.atanh((c-50)/50)/qbWc:null,rushingBonusPoints:c>=50?12*(c-50)/50:null});
-  const leagueQb=(()=>{const rush=median(T.map(t=>Z[t].components.qb.rushing_value_score));const e=L.continuousPercentileValue(qbEpaRef,cLeague.epa,true),s=L.continuousPercentileValue(qbSuccRef,cLeague.succ,true);
-    return {epaComponent:e,successComponent:s,anyAComponent:50,cpoeComponent:50,medianRushingValueComponent:rush,compositeBeforeContext:L.calibrateQbComposite(.3*e+.3*50+.2*s+.1*rush+.1*50)};})();
+  const qbComp=c=>{const e=rt(qbEpaRef,c,true,'QB EPA'),s=rt(qbSuccRef,c,true,'QB success');return {component:c,epaComponentMappedEpa:e.value,epaComponentReconstructed:e.reconstructedRating,epaImpliedRawAtMedianPlays:cLeague.epa+(e.value-cLeague.epa)/qbWe,
+    successMapped:s.value,successComponentReconstructed:s.reconstructedRating,successImpliedRawAtMedianAttempts:cLeague.succ+(s.value-cLeague.succ)/qbWs,
+    anyAAtCurrentRank:curQ('qbAnyA',c/100),cpoeImpliedRaw:c<100&&c>0?cLeague.cpoe+7.5*Math.atanh((c-50)/50)/qbWc:null,rushingBonusPoints:c>=50?12*(c-50)/50:null};};
+  const qbProxy=(()=>{const rush=median(T.map(t=>Z[t].components.qb.rushing_value_score));const e=L.continuousPercentileValue(qbEpaRef,cLeague.epa,true),s=L.continuousPercentileValue(qbSuccRef,cLeague.succ,true);
+    return {epaComponent:e,successComponent:s,anyAComponent:50,cpoeComponent:50,medianRushingValueComponent:rush,constructedPreContextProxy:L.calibrateQbComposite(.3*e+.3*50+.2*s+.1*rush+.1*50),
+      definition:'Constructed under the current component mappings and weights: EPA and success at the current weighted league means, ANY/A at median standing (50), CPOE at the current mean (50), rushing at the median team rushing component; before opponent, pressure, prior and recency. It is not the empirical displayed median, not a unique raw "average QB" and not a single observed football signal.'};})();
   thr.qbIndex={mappedInput:'Five component scores, expanded 1.20x about 50, plus opponent and pressure context, then blended and recency-adjusted',
-    medianValuePlays:qbP,medianAttempts:qbA,reliability:{epa:qbWe,success:qbWs,cpoe:qbWc},currentLeague:cLeague,leagueAverageQb:leagueQb,
-    thresholds:THRESHOLDS.map(X=>{const cu=50+(X-50)/1.2,c4=(50+(X-50)/1.2-5)/.9;return {live:X,uniformComponentLevel:cu,componentLevelWithRushingAtFloor50:c4,atUniformLevel:qbComp(cu)};}),
-    note:'Rushing value cannot fall below 50 (bonus clamped at 0), so a non-running QB needs higher passing components for the same grade. Opponent (+/-4) and pressure context are added after expansion.'};
-  const rankThr=(k,higher,unit)=>({mappedInput:k+' (current-season rank; '+(higher?'higher':'lower')+' is better)',reference:'The 32 current 2026 teams (Week 4)',effectiveMidpoint:50,
-    thresholds:THRESHOLDS.map(X=>({live:X,currentSeasonPercentile:X,raw:curQ(k,higher?X/100:1-X/100)})),unit});
-  thr.runDefenseIndex=rankThr('oppRushEpa',false,'rush EPA/carry allowed');
-  thr.pointsScoredPerDriveIndex=rankThr('offensivePointsPerDrive',true,'points per qualifying drive');
-  thr.pointsAllowedPerDriveIndex={...rankThr('defensivePointsPerDrive',false,'points allowed per opponent drive'),
-    displayReachability:THRESHOLDS.map(X=>({display:X,liveNeededAtG4K1:(X-.2*50)/.8,attainable:(X-.2*50)/.8<=100})),note:'Prior is fixed at 50 with k=1, so at four drive-games display = 10 + 0.8*live: displayed range is exactly 10..90 and 90 is only the league-best team.'};
-  thr.passRushIndex={...rankThr('frontPressureRate',true,'weekly hit+sack disruption rate (all 32 ranked; grade used for 28 weekly-provider teams)'),pfrStratum:'Four PFR-charted teams map against same-sized 2025 charted windows; not inverted here (four-team stratum; provider rows not parsed in this tranche).'};
-  thr.coverageIndex={mappedInput:'0.75*EPA-allowed rank + 0.25*CPOE-allowed rank (current season)',reference:'The 32 current 2026 teams',effectiveMidpoint:50,
-    thresholds:THRESHOLDS.map(X=>({live:X,epaAllowedAtPercentileX:curQ('oppPassEpa',1-X/100),cpoeAllowedAtPercentileX:curQ('oppCpoe',1-X/100),epaRankNeededIfCpoeNeutral:(X-12.5)/.75,attainableIfCpoeNeutral:(X-12.5)/.75<=100})),
-    note:'With a league-median CPOE allowed the live grade cannot exceed 87.5; live 90+ requires a top-tier rank on both components.'};
+    midpoint:{transformMidpoint:'Composite 50 when the weighted component mean is 50',constructedQbProxy:qbProxy,rawQbEpaMedian:med('qbEpaPerPlay'),rawQbEpaMean:rawMean('qbEpaPerPlay'),currentWeightedLeagueEpa:cLeague.epa,currentWeightedLeague:cLeague,empiricalLiveMedian:liveMed('qbIndex'),empiricalDisplayedMedian:dispMed('qbIndex')},
+    medianValuePlays:qbP,medianAttempts:qbA,reliability:{epa:qbWe,success:qbWs,cpoe:qbWc},
+    thresholds:THRESHOLDS.map(X=>{const cu=50+(X-50)/1.2,c4=(50+(X-50)/1.2-5)/.9;return {target:X,classification:'MULTIDIMENSIONAL PROXY',uniformComponentLevel:cu,componentLevelWithRushingAtFloor50:c4,illustrativeAtUniformLevel:qbComp(cu),...assume({allFiveComponentsEqual:true,opponentAdjustment:0,pressureAdjustment:0,plays:qbP,attempts:qbA})};}),
+    note:'Uniform component level, implied EPA and implied ANY/A are illustrative multidimensional proxies, not unique raw thresholds: many component combinations reach the same grade. Rushing value cannot fall below 50 (bonus clamped at 0). Opponent (+/-4) and pressure context are added after expansion.'};
+  const rankThr=(k,higher,key,unit)=>({mappedInput:k+' (current-season rank; '+(higher?'higher':'lower')+' is better)',reference:'The 32 current 2026 teams (Week 4)',midpoint:rankMid(k,higher,key),
+    thresholds:THRESHOLDS.map(X=>{const raw=curQ(k,higher?X/100:1-X/100),vals=T.map(t=>Z[t].raw[k]),below=Math.max(...vals.filter(v=>v<=raw)),above=Math.min(...vals.filter(v=>v>=raw));
+      return {target:X,currentSeasonPercentile:X,raw,classification:'DISCRETE / INTERVAL',interpolatedRankGrade:H.rankGradeAt(vals,raw,higher),bracketingObservedRaw:[below,above],bracketingObservedGrades:[H.rankGradeAt(vals,below,higher),H.rankGradeAt(vals,above,higher)].sort((a,b)=>a-b),
+        reason:'Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade.'};}),unit});
+  thr.runDefenseIndex=rankThr('oppRushEpa',false,'runDefenseIndex','rush EPA/carry allowed');
+  thr.pointsScoredPerDriveIndex=rankThr('offensivePointsPerDrive',true,'pointsScoredPerDriveIndex','points per qualifying drive');
+  thr.pointsAllowedPerDriveIndex={...rankThr('defensivePointsPerDrive',false,'pointsAllowedPerDriveIndex','points allowed per opponent drive'),
+    displayReachability:THRESHOLDS.map(X=>({display:X,liveNeededAtG4K1:(X-.2*50)/.8,attainable:(X-.2*50)/.8<=100,classification:(X-.2*50)/.8<=100?((X-.2*50)/.8===100?'EXACT / UNIQUE (boundary: league-best only)':'EXACT / UNIQUE'):'UNREACHABLE'})),note:'Prior is fixed at 50 with k=1, so at four drive-games display = 10 + 0.8*live: displayed range is exactly 10..90 and 90 is only the league-best team.'};
+  thr.passRushIndex={...rankThr('frontPressureRate',true,'passRushIndex','weekly hit+sack disruption rate (all 32 ranked; grade used for 28 weekly-provider teams)'),pfrStratum:{classification:'NOT INVERTED',reason:'Four PFR-charted teams map against same-sized 2025 charted windows under a different map; not inverted here (four-team stratum; provider rows not parsed in this tranche).'}};
+  thr.coverageIndex={mappedInput:'0.75*EPA-allowed rank + 0.25*CPOE-allowed rank (current season)',reference:'The 32 current 2026 teams',midpoint:{...rankMid('oppPassEpa',false,'coverageIndex'),cpoeComponent:rankMid('oppCpoe',false,'coverageIndex')},
+    thresholds:THRESHOLDS.map(X=>{const need=(X-12.5)/.75;return {target:X,classification:need<=100?'MULTIDIMENSIONAL PROXY':'UNREACHABLE',epaAllowedAtPercentileX:curQ('oppPassEpa',1-X/100),cpoeAllowedAtPercentileX:curQ('oppCpoe',1-X/100),epaRankNeededIfCpoeNeutral:need,attainableIfCpoeNeutral:need<=100,...assume({cpoeRank:50})};}),
+    note:'Two-component rank mix: the EPA/CPOE columns are each component at percentile X, not a joint threshold. With a league-median CPOE rank held fixed the live grade cannot exceed 87.5, so live 90 is UNREACHABLE under that assumption.'};
   const comp={offenseComposite:DISPLAY_ONLY[0],defenseIndex:DISPLAY_ONLY[1]};
-  for(const [k,d] of Object.entries(comp))thr[k]={mappedInput:'Weighted average of component grades (raw composite)',map:d.map,thresholds:THRESHOLDS.map(X=>({display:X,rawWeightedGrade:L.uncalibrateComposite(X,L.COMPOSITE_V108[d.config])}))};
-  const displayLayer=Object.fromEntries(BRIDGE_KEYS.map(k=>{const lw=median(T.map(t=>S[t].lam[k].liveWeight));return [k,{medianLiveWeight:lw,liveNeeded:THRESHOLDS.map(X=>({display:X,...Object.fromEntries([35,50,65].map(Pr=>[`prior${Pr}`,(X-(1-lw)*Pr)/lw]))}))}];}));
-  const midpoints={conventions:'Live-layer thresholds invert the exact production mapping on the exact reference (round trip verified to 1e-8). Implied-raw columns are labelled approximations for a team with median opportunities. Display = liveWeight*live + (1-liveWeight)*prior (QB adds recency), so display thresholds are reported separately.',
-    live:thr,displayLayer,
-    descriptiveAnswers:Object.fromEntries([...BRIDGE_KEYS,'offenseComposite','defenseIndex'].map(k=>{const v=k in S[T[0]].model?col(k):T.map(t=>S[t][k]);return [k,{median:median(v),mean:mean(v),percentileOf50:H.empiricalPercentile(v,50),countAtOrAbove70:v.filter(a=>a>=70).length,countAtOrAbove80:v.filter(a=>a>=80).length,countAtOrAbove90:v.filter(a=>a>=90).length}];}))};
+  for(const [k,d] of Object.entries(comp))thr[k]={mappedInput:'Weighted average of component grades (raw composite)',map:d.map,thresholds:THRESHOLDS.map(X=>{const raw=L.uncalibrateComposite(X,L.COMPOSITE_V108[d.config]),rec=L.calibrateComposite(raw,L.COMPOSITE_V108[d.config]);close(rec,X,k+' composite round trip',1e-8);return {target:X,rawWeightedGrade:raw,reconstructedRating:rec,classification:'EXACT / UNIQUE',roundTripAsserted:true};})};
+  const displayLayer=Object.fromEntries(BRIDGE_KEYS.map(k=>{const lw=median(T.map(t=>S[t].lam[k].liveWeight));return [k,{medianLiveWeight:lw,liveNeeded:THRESHOLDS.map(X=>({display:X,...Object.fromEntries([35,50,65].map(Pr=>[`prior${Pr}`,(X-(1-lw)*Pr)/lw]))})),...(k==='qbIndex'?{note:'QB also adds recency after the blend; shown for zero recency.'}:{})}];}));
+  const classes=['EXACT / UNIQUE','DISCRETE / INTERVAL','REFERENCE-RELATIVE','TIE-JUMP / APPROXIMATE','MULTIDIMENSIONAL PROXY','OPPORTUNITY-ASSUMPTION APPROXIMATION','UNREACHABLE','NOT INVERTED'];
+  const midpoints={conventions:'Thresholds are classified per unit and per target; no blanket round-trip claim is made. EXACT / UNIQUE round trips are asserted only where that class is recorded (roundTripAsserted true). Historical-reference thresholds are REFERENCE-RELATIVE by nature (a 2025 reference percentile). Implied-raw columns are OPPORTUNITY-ASSUMPTION APPROXIMATIONS with the fixed assumptions listed. Midpoint objects separate the transform/reference midpoint, raw median, raw arithmetic mean, current weighted centre, mapped pooled/centre signal, constructed QB proxy and empirical displayed median. Display = liveWeight*live + (1-liveWeight)*prior (QB adds recency), reported separately.',
+    classificationVocabulary:classes,live:thr,displayLayer,
+    descriptiveAnswers:Object.fromEntries([...BRIDGE_KEYS,'offenseComposite','defenseIndex'].map(k=>{const v=k in S[T[0]].model?col(k):T.map(t=>S[t][k]);return [k,{empiricalDisplayedMedian:median(v),mean:mean(v),percentileOf50:H.empiricalPercentile(v,50),countAtOrAbove70:v.filter(a=>a>=70).length,countAtOrAbove80:v.filter(a=>a>=80).length,countAtOrAbove90:v.filter(a=>a>=90).length}];}))};
 
   // ---- 6. Cross-unit percentile comparability ----
   const crossKeys=[...BRIDGE_KEYS,'offenseComposite','defenseIndex'];
@@ -216,11 +230,13 @@ export function analyze(){
   const tot=T.map(t=>BRIDGE_KEYS.reduce((s,k)=>s+W[k]*(S[t].model[k]-S[t].prior[k]),0)),vt=sd(tot)**2;
   const sens=BRIDGE_KEYS.map(k=>{const d=T.map(t=>S[t].model[k]-S[t].prior[k]),wd=d.map(v=>W[k]*v),m=mean(tot),mw=mean(wd);
     const cov=mean(wd.map((v,i)=>(v-mw)*(tot[i]-m)));
-    const theo=Math.max(...T.map(t=>{const l=S[t].lam[k],u=UNITS.find(v=>v.key===k),[lo,hi]=liveBounds[u.family];return Math.max(Math.abs(L.blend(S[t].prior[k],hi,l.g,l.k)-S[t].prior[k]),Math.abs(L.blend(S[t].prior[k],lo,l.g,l.k)-S[t].prior[k]));}));
+    const theo=Math.max(...T.map(t=>{const u=UNITS.find(v=>v.key===k),[lo,hi]=liveBounds[u.family],[a,b]=H.conditionalDisplayBounds(L,Z[t],k,S[t].prior[k],lo,hi);return Math.max(Math.abs(b-S[t].prior[k]),Math.abs(a-S[t].prior[k]));}));
+    const pos=T.filter((t,i)=>d[i]>0),neg=T.filter((t,i)=>d[i]<0),ranked=T.map((t,i)=>({team:t,delta:d[i]})).sort((p,q)=>q.delta-p.delta);
     return {key:k,nominalWeight:W[k],nominalShare:W[k]/BRIDGE_KEYS.reduce((s,q)=>s+W[q],0),sdDisplay:sd(col(k)),sdLive:sd(col(k,'live')),sdPrior:sd(col(k,'prior')),sdDelta:sd(d),meanDelta:mean(d),meanAbsDelta:mean(d.map(Math.abs)),maxAbsDelta:Math.max(...d.map(Math.abs)),
       oneSdDisplayMoveEloUp:W[k]*sd(col(k))*U.SHARE*eloUp,oneSdDeltaEloUp:W[k]*sd(d)*U.SHARE*eloUp,oneSdDeltaEloDown:W[k]*sd(d)*U.SHARE*eloDown,
       practicalMaxPreCapPoints:Math.max(...wd.map(v=>Math.abs(v)))*U.SHARE,practicalMaxPreCapElo:Math.max(...wd.map(v=>Math.abs(v)))*U.SHARE*eloDown,
-      theoreticalMaxAbsDelta:theo,theoreticalMaxPreCapPoints:W[k]*theo*U.SHARE,
+      signDistribution:{positive:pos.length,negative:neg.length,zero:T.length-pos.length-neg.length,largestPositive:ranked.slice(0,3),largestNegative:ranked.slice(-3).reverse()},
+      theoreticalMaxAbsDelta:theo,theoreticalMaxDefinition:"Conditional on frozen inputs through the production display path (QB includes recency and final clamp)",theoreticalMaxPreCapPoints:W[k]*theo*U.SHARE,
       effectiveShareBySdDelta:null,varianceContributionShare:cov/vt,correlationWithTotal:correlation(d,tot).pearson};});
   const sumWsd=sens.reduce((s,r)=>s+r.nominalWeight*r.sdDelta,0);sens.forEach(r=>r.effectiveShareBySdDelta=r.nominalWeight*r.sdDelta/sumWsd);
   const bp=T.map(t=>S[t].bridge.bridgePoints);
@@ -239,7 +255,7 @@ export function analyze(){
     if(kind==='D')return x0=>L.continuousPercentileValue(s,x0,true);
     if(kind==='N')return x0=>clamp(50+15*H.normInv(L.continuousPercentileValue(s,x0,true)/100));
     return x0=>x0;};
-  const KINDS={A:'As-is (identity)',C:'Season-standardized: 50+50*tanh(0.3*z), z=(x-median)/(IQR/1.349) of this snapshot',D:'Percentile display: Hazen position within this snapshot (continuous CDF)',N:'Normal-score display: 50+15*Phi^-1(Hazen position)'};
+  const KINDS={A:'As-is (identity)',C:'Season-standardized: 50+50*tanh(0.3*z), z=(x-median)/(IQR/1.349) of this snapshot',D:'Percentile display: Hazen position within this snapshot (continuous CDF). Under relative-standing semantics its full-range spacing is expected by design; under evidence-strength/absolute-separation semantics it may overstate weakly separated units. Percentile spacing is not performance magnitude.',N:'Normal-score display: 50+15*Phi^-1(Hazen position)'};
   const gaps=a=>{const s=[...a].sort((p,q)=>p-q),g=s.slice(1).map((v,i)=>v-s[i]);return {mean:mean(g),sd:sd(g),min:Math.min(...g),max:Math.max(...g)};};
   const span615=a=>{const s=[...a].sort((p,q)=>q-p);return s[5]-s[14];};
   const prototypes={};
@@ -263,7 +279,7 @@ export function analyze(){
       naiveSingleLayerRisk:{maxAbsEloChange:Math.max(...dElo.map(Math.abs)),meanAbsEloChange:mean(dElo.map(Math.abs)),maxAbsForceScoreChange:Math.max(...dForce.map(Math.abs)),teamForceRankChanges:r0.filter((v,i)=>v!==r1[i]).length,maxTeamForceRankMove:Math.max(...r0.map((v,i)=>Math.abs(v-r1[i]))),capBoundBefore:T.filter(t=>Math.abs(S[t].bridge.bridgePoints)>=U.CAP-1e-12).length,capBoundAfter:naive.filter(b=>Math.abs(b.bridgePoints)>=U.CAP-1e-12).length,maxAbsWinProbShiftVsEqualOpponent:Math.max(...dElo.map(d=>Math.abs(wp(d)))),
         boundary:'Illustrates why a display remap must not be applied to the shared model field. Win-probability shift uses the production logistic scale '+scale+' at zero home field; no predictive validation was run.'}};}
   prototypes.A={description:KINDS.A,twoLayerModelNeutrality:{maxAbsEloChange:0},naiveSingleLayerRisk:{maxAbsEloChange:0}};
-  prototypes.B={description:'Fixed absolute anchors: unit-specific raw-anchor -> 0..100 maps',status:'NOT PROTOTYPED AS A NEW MAP. WR, RB, OL and the QB EPA/success components already use fixed 2025 references at the live layer (Section 4 inverts them exactly). Coverage, run defense, both drive outcomes, ANY/A and the weekly pass-rush fallback have no pinned like-for-like historical raw reference in the repository, so a fixed-anchor map for them cannot be built reproducibly here.'};
+  prototypes.B={description:'Fixed absolute anchors: unit-specific raw-anchor -> 0..100 maps',status:'NOT PROTOTYPED AS A NEW MAP. WR, RB, OL and the QB EPA/success components already use fixed 2025 references at the live layer (Section 4 classifies their threshold inversions). Coverage, run defense, both drive outcomes, ANY/A and the weekly pass-rush fallback have no pinned like-for-like historical raw reference in the repository, so a fixed-anchor map for them cannot be built reproducibly here.'};
 
   // ---- 11. MD-07 interaction ----
   const preRb=T.map(t=>Z[t].display.rbIndex),postRb=col('rbIndex');
@@ -277,9 +293,19 @@ export function analyze(){
     rbAfterCorrection:{pre:fullStats(preRb),post:fullStats(postRb),prePacking:packing(preRb),postPacking:packing(postRb),sdRankAmongNineBridgeUnits:sdRank('rbIndex'),
       finding:'The LIVE_FITTED correction changes RB priors and therefore RB display/bridge deltas, but leaves the RB live mapping unchanged. Post-correction RB is neither unusually compressed nor unusually expanded relative to the other eight bridge units.'},
     stabilizationVsMapping:Object.fromEntries(Object.keys(unstab).map(k=>[k,{production:{stats:fullStats(prodStage[k]),packing:packing(prodStage[k])},withoutStabilization:{stats:fullStats(unstab[k]),packing:packing(unstab[k])},sdRatioProductionOverUnstabilized:sd(prodStage[k])/sd(unstab[k])}])),
-    stabilizationNote:'Without-stabilization rows remove only the opportunity shrinkage (raw residual/composite or raw EPA, same centre alignment and same reference). They are diagnostics of where compression arises, not proposals. The CDF itself is monotone and faithful to its reference; compression enters through stabilization of 4-game values before mapping onto a full-season reference.',
+    stabilizationNote:'Without-stabilization rows remove only the opportunity shrinkage (raw residual/composite or raw EPA, same centre alignment and same reference). They show the computational contribution of opportunity stabilization/shrinkage to compression, with reference, centre alignment and downstream mapping held fixed. They do NOT establish that the stabilization is wrong, that the underlying measurement is accurate, that compression should be removed, or that a wider distribution would be more predictive. They are diagnostics, not proposals.',
     receiverReliabilityWeights:fullStats(T.map(t=>Z[t].raw.receiverReliabilityWeight)),
     bridgeComparabilityAssumption:'The bridge multiplies each unit\'s grade-point delta by a fixed weight, implicitly treating one grade point as comparable across units. Current-rank units are uniform by construction (theoretical live SD '+latticeSd.toFixed(2)+'), while historical-CDF units inherit whatever spread stabilization leaves; the bridge therefore gives different effective influence per nominal weight (Section 8).'};
+  // ---- 12. Future authorization criteria, branched by owner semantics (structure only; no owner choice encoded) ----
+  const successCriteria={note:'Branches are alternatives selected by the owner meaning contract. Universal criteria always apply. No branch is preferred here.',
+    universal:['Explicit owner-approved meaning contract per unit (population, season scope, absolute vs relative)','Raw, model and display layers identified for every unit','Anchor/reference provenance recorded (fitted, hand-selected, inherited)','Prior semantics documented and consistent with the live meaning','Missing-data semantics documented','No hidden production effect beyond the declared route','Offline reproducibility with pinned inputs','No unintended mechanical ceilings or floors unless deliberately documented (e.g. prevention display 10..90 at four drive-games)'],
+    routes:{
+      displayOnlyModelNeutral:{when:'Presentation is separated from the model-consumed value (stored display field, render-time transform or equivalent)',requires:['Bridge/model input values bit-identical','Canonical team Elo and forecast outputs bit-identical','Monotonicity / rank preservation as required by the chosen contract','Threshold labels and legends disclose the reference population','Cross-unit equal-standing criterion applies ONLY if equal-standing semantics is chosen']},
+      modelLayerNormalization:{when:'Bridge/model inputs are altered',requires:['Bit-identical Elo is NOT required','Pre-declared predictive non-inferiority or improvement','Full-stack Brier, calibration, rank and stability validation','Bridge weights and cap behaviour revalidated','Historical/reference drift addressed']},
+      relativeStandingDisplay:{when:'Percentile-like semantics chosen',requires:['Do not fail merely because spacing is wider than current display','Labels state the number expresses standing, not performance magnitude','Cross-unit percentile consistency under the chosen convention','Small-n and tie behaviour inspected']},
+      absoluteHistoricalAnchor:{when:'Absolute-quality semantics chosen',requires:['Stable reference anchors','Cross-season comparability evidence from archived like-for-like inputs','Provider and definition stability (including the OL anchor drift question)','Football-performance thresholds with dimensional meaning']},
+      standardizedDistance:{when:'Standardized-distance semantics chosen',requires:['Fixed vs season-relative mean/SD defined','Robustness and tail treatment defined','Early-season stability verified']}},
+    spacingCriterion:'Any spacing/tail test must name the statistic (e.g. ranks 6-15 span or SD), its units (displayed grade points or reference percentile) and why the comparison follows from the chosen contract; wider spacing is not an automatic failure.'};
 
   return {
     'reconstruction.json':reconstruction,
@@ -291,7 +317,8 @@ export function analyze(){
     'cross_season.json':crossSeason,
     'bridge_effective_sensitivity.json':bridgeSensitivity,
     'candidate_display_mappings.json':prototypes,
-    'md07_interaction.json':md07Interaction
+    'md07_interaction.json':md07Interaction,
+    'success_criteria.json':successCriteria
   };
 }
 

@@ -1,5 +1,5 @@
 {
-  "conventions": "Population SD; quantiles linear at (n-1)p; counts are at-or-above 60/70/80/90 and strictly below 40/30; ties counted on exact, one-decimal (Units board) and whole-point (tables/matchups) values. Theoretical bounds: current-rank live 0/100; 32-team historical CDF 1.5625/98.4375; 448-window CDF 0.1116/99.8884 (two teams use 3-game windows); priors 15/85 from regressing 0..100 sources.",
+  "conventions": "Population SD; quantiles linear at (n-1)p; counts are at-or-above 60/70/80/90 and strictly below 40/30; ties counted on exact, one-decimal (Units board) and whole-point (tables/matchups) values. Live-layer theoretical bounds: current-rank 0/100; 32-team historical CDF 1.5625/98.4375; 448-window CDF 0.1116/99.8884 (two teams use 3-game windows); priors 15/85 from regressing 0..100 sources. Display bounds are conditional on frozen inputs (see conditionalDisplayBounds).",
   "units": {
     "pointsScoredPerDriveIndex": {
       "label": "Scoring/drive",
@@ -211,10 +211,11 @@
           "display": 7.166624856562327
         }
       ],
-      "displayHardBounds": [
-        2.5760068241149625,
-        97.24115045975981
-      ],
+      "conditionalDisplayBounds": {
+        "lower": 2.5760068241149625,
+        "upper": 97.24115045975981,
+        "definition": "Conditional on the frozen Week-4 inputs: each team's own prior, blend weights held fixed, live grade set to the family floor/ceiling, then the production display path (blend). Not universal hard bounds."
+      },
       "packing": {
         "p75MinusMedian": 17.878071787972814,
         "p90MinusMedian": 35.952892530740655,
@@ -507,10 +508,11 @@
         }
       },
       "liveAtTheoreticalBound": [],
-      "displayHardBounds": [
-        2.999999999999999,
-        97.53832421379747
-      ],
+      "conditionalDisplayBounds": {
+        "lower": 1.979246594252594,
+        "upper": 98.13618903436313,
+        "definition": "Conditional on the frozen Week-4 inputs: each team's own prior, blend weights and recency adjustment held fixed, live grade set to the family floor/ceiling, then the production display path (blend -> recency -> final clamp 0..100). Not universal hard bounds."
+      },
       "packing": {
         "p75MinusMedian": 19.453200863691805,
         "p90MinusMedian": 29.639691452651846,
@@ -803,10 +805,11 @@
         }
       },
       "liveAtTheoreticalBound": [],
-      "displayHardBounds": [
-        4.424984940459832,
-        95.72697317968401
-      ],
+      "conditionalDisplayBounds": {
+        "lower": 4.424984940459832,
+        "upper": 95.72697317968401,
+        "definition": "Conditional on the frozen Week-4 inputs: each team's own prior, blend weights held fixed, live grade set to the family floor/ceiling, then the production display path (blend). Not universal hard bounds."
+      },
       "packing": {
         "p75MinusMedian": 6.837954817558668,
         "p90MinusMedian": 13.913899807564462,
@@ -1099,10 +1102,11 @@
         }
       },
       "liveAtTheoreticalBound": [],
-      "displayHardBounds": [
-        2.9149116842326404,
-        97.15007047121992
-      ],
+      "conditionalDisplayBounds": {
+        "lower": 2.9149116842326404,
+        "upper": 97.15007047121992,
+        "definition": "Conditional on the frozen Week-4 inputs: each team's own prior, blend weights held fixed, live grade set to the family floor/ceiling, then the production display path (blend). Not universal hard bounds."
+      },
       "packing": {
         "p75MinusMedian": 12.316219727353833,
         "p90MinusMedian": 31.240720036144296,
@@ -1395,10 +1399,11 @@
         }
       },
       "liveAtTheoreticalBound": [],
-      "displayHardBounds": [
-        4.058006610861369,
-        96.21909605775471
-      ],
+      "conditionalDisplayBounds": {
+        "lower": 4.058006610861369,
+        "upper": 96.21909605775471,
+        "definition": "Conditional on the frozen Week-4 inputs: each team's own prior, blend weights held fixed, live grade set to the family floor/ceiling, then the production display path (blend). Not universal hard bounds."
+      },
       "packing": {
         "p75MinusMedian": 16.09345174580821,
         "p90MinusMedian": 23.604770519561953,
@@ -1697,10 +1702,11 @@
           "display": 93.5075074153014
         }
       ],
-      "displayHardBounds": [
-        2.8695556215034363,
-        97.55679280144543
-      ],
+      "conditionalDisplayBounds": {
+        "lower": 2.8695556215034363,
+        "upper": 97.55679280144543,
+        "definition": "Conditional on the frozen Week-4 inputs: each team's own prior, blend weights held fixed, live grade set to the family floor/ceiling, then the production display path (blend). Not universal hard bounds."
+      },
       "packing": {
         "p75MinusMedian": 11.328123646965416,
         "p90MinusMedian": 28.111018606033646,
@@ -2004,10 +2010,11 @@
           "display": 11.016763799219834
         }
       ],
-      "displayHardBounds": [
-        2.6971380050260887,
-        97.02759139876302
-      ],
+      "conditionalDisplayBounds": {
+        "lower": 2.6971380050260887,
+        "upper": 97.02759139876302,
+        "definition": "Conditional on the frozen Week-4 inputs: each team's own prior, blend weights held fixed, live grade set to the family floor/ceiling, then the production display path (blend). Not universal hard bounds."
+      },
       "packing": {
         "p75MinusMedian": 22.910536988779647,
         "p90MinusMedian": 36.73898783686766,
@@ -2311,10 +2318,11 @@
           "display": 14.864835748372137
         }
       ],
-      "displayHardBounds": [
-        2.892264493958449,
-        97.12166876904126
-      ],
+      "conditionalDisplayBounds": {
+        "lower": 2.892264493958449,
+        "upper": 97.12166876904126,
+        "definition": "Conditional on the frozen Week-4 inputs: each team's own prior, blend weights held fixed, live grade set to the family floor/ceiling, then the production display path (blend). Not universal hard bounds."
+      },
       "packing": {
         "p75MinusMedian": 25.24153056446326,
         "p90MinusMedian": 38.37145233837906,
@@ -2618,10 +2626,11 @@
           "display": 90
         }
       ],
-      "displayHardBounds": [
-        9.999999999999998,
-        90
-      ],
+      "conditionalDisplayBounds": {
+        "lower": 9.999999999999998,
+        "upper": 90,
+        "definition": "Conditional on the frozen Week-4 inputs: each team's own prior, blend weights held fixed, live grade set to the family floor/ceiling, then the production display path (blend). Not universal hard bounds."
+      },
       "packing": {
         "p75MinusMedian": 20.64516129032259,
         "p90MinusMedian": 31.81451612903227,

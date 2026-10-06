@@ -109,6 +109,22 @@ export function blendInputs(z,key){
   return {g:m.statGames,k:m.priorGames};
 }
 
+// Production display path from a live grade: blend, then (QB only) recency and final clamp.
+// Options exist only so check.mjs can prove that omitting recency or the clamp is detected.
+export function displayFromLive(L,z,key,prior,live,{recency=true,finalClamp=true}={}){
+  const {g,k}=blendInputs(z,key);let v=L.blend(prior,live,g,k);
+  if(key==='qbIndex'){if(recency)v+=z.components.qb.recency_adjustment;if(finalClamp)v=clamp(v);}
+  return v;
+}
+export const conditionalDisplayBounds=(L,z,key,prior,lo,hi,opts)=>[displayFromLive(L,z,key,prior,lo,opts),displayFromLive(L,z,key,prior,hi,opts)];
+
+// Grade the production rank transform would give a raw value interpolated between observed teams.
+export function rankGradeAt(values,x,higher=true){
+  const a=values.filter(finite).sort((p,q)=>p-q),n=a.length;
+  let pos;if(x<=a[0])pos=0;else if(x>=a[n-1])pos=n-1;else{let i=0;while(a[i+1]<x)i++;pos=a[i+1]===a[i]?i:i+(x-a[i])/(a[i+1]-a[i]);}
+  const g=100*pos/(n-1);return higher?g:100-g;
+}
+
 export function load(){
   for(const [p,pin] of Object.entries(PINS))assert.equal(hash(lf(p)),pin,p+' pin');
   const x=JSON.parse(lf(SNAPSHOT));

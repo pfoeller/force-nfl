@@ -1,0 +1,62 @@
+{
+  "note": "Branches are alternatives selected by the owner meaning contract. Universal criteria always apply. No branch is preferred here.",
+  "universal": [
+    "Explicit owner-approved meaning contract per unit (population, season scope, absolute vs relative)",
+    "Raw, model and display layers identified for every unit",
+    "Anchor/reference provenance recorded (fitted, hand-selected, inherited)",
+    "Prior semantics documented and consistent with the live meaning",
+    "Missing-data semantics documented",
+    "No hidden production effect beyond the declared route",
+    "Offline reproducibility with pinned inputs",
+    "No unintended mechanical ceilings or floors unless deliberately documented (e.g. prevention display 10..90 at four drive-games)"
+  ],
+  "routes": {
+    "displayOnlyModelNeutral": {
+      "when": "Presentation is separated from the model-consumed value (stored display field, render-time transform or equivalent)",
+      "requires": [
+        "Bridge/model input values bit-identical",
+        "Canonical team Elo and forecast outputs bit-identical",
+        "Monotonicity / rank preservation as required by the chosen contract",
+        "Threshold labels and legends disclose the reference population",
+        "Cross-unit equal-standing criterion applies ONLY if equal-standing semantics is chosen"
+      ]
+    },
+    "modelLayerNormalization": {
+      "when": "Bridge/model inputs are altered",
+      "requires": [
+        "Bit-identical Elo is NOT required",
+        "Pre-declared predictive non-inferiority or improvement",
+        "Full-stack Brier, calibration, rank and stability validation",
+        "Bridge weights and cap behaviour revalidated",
+        "Historical/reference drift addressed"
+      ]
+    },
+    "relativeStandingDisplay": {
+      "when": "Percentile-like semantics chosen",
+      "requires": [
+        "Do not fail merely because spacing is wider than current display",
+        "Labels state the number expresses standing, not performance magnitude",
+        "Cross-unit percentile consistency under the chosen convention",
+        "Small-n and tie behaviour inspected"
+      ]
+    },
+    "absoluteHistoricalAnchor": {
+      "when": "Absolute-quality semantics chosen",
+      "requires": [
+        "Stable reference anchors",
+        "Cross-season comparability evidence from archived like-for-like inputs",
+        "Provider and definition stability (including the OL anchor drift question)",
+        "Football-performance thresholds with dimensional meaning"
+      ]
+    },
+    "standardizedDistance": {
+      "when": "Standardized-distance semantics chosen",
+      "requires": [
+        "Fixed vs season-relative mean/SD defined",
+        "Robustness and tail treatment defined",
+        "Early-season stability verified"
+      ]
+    }
+  },
+  "spacingCriterion": "Any spacing/tail test must name the statistic (e.g. ranks 6-15 span or SD), its units (displayed grade points or reference percentile) and why the comparison follows from the chosen contract; wider spacing is not an automatic failure."
+}

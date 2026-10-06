@@ -1,139 +1,362 @@
 {
-  "conventions": "Live-layer thresholds invert the exact production mapping on the exact reference (round trip verified to 1e-8). Implied-raw columns are labelled approximations for a team with median opportunities. Display = liveWeight*live + (1-liveWeight)*prior (QB adds recency), so display thresholds are reported separately.",
+  "conventions": "Thresholds are classified per unit and per target; no blanket round-trip claim is made. EXACT / UNIQUE round trips are asserted only where that class is recorded (roundTripAsserted true). Historical-reference thresholds are REFERENCE-RELATIVE by nature (a 2025 reference percentile). Implied-raw columns are OPPORTUNITY-ASSUMPTION APPROXIMATIONS with the fixed assumptions listed. Midpoint objects separate the transform/reference midpoint, raw median, raw arithmetic mean, current weighted centre, mapped pooled/centre signal, constructed QB proxy and empirical displayed median. Display = liveWeight*live + (1-liveWeight)*prior (QB adds recency), reported separately.",
+  "classificationVocabulary": [
+    "EXACT / UNIQUE",
+    "DISCRETE / INTERVAL",
+    "REFERENCE-RELATIVE",
+    "TIE-JUMP / APPROXIMATE",
+    "MULTIDIMENSIONAL PROXY",
+    "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+    "UNREACHABLE",
+    "NOT INVERTED"
+  ],
   "live": {
     "receiverIndex": {
       "mappedInput": "receiverCalibratedResidual (EPA/target after residualization, stabilization and centre alignment)",
       "reference": "32 bundled 2025 WR/TE residual team-seasons (full season)",
-      "currentLeagueCentre": 0.1983939019947613,
-      "historicalMedian": 0.25468363810119243,
+      "midpoint": {
+        "transformMidpoint": "2025 reference median residual maps to live 50",
+        "referenceMedian": 0.25468363810119243,
+        "currentWeightedCentre": 0.1983939019947613,
+        "currentWeightedCentreDefinition": "Target-weighted 2026 league residual mean; aligned onto the reference median after stabilization",
+        "mappedGradeOfCurrentWeightedCentre": 50.000000000000114,
+        "rawResidualMedian": 0.20641456363434996,
+        "rawResidualMean": 0.19764486841814305,
+        "empiricalLiveMedian": 53.052744557722505,
+        "empiricalDisplayedMedian": 51.9201696161538
+      },
       "medianTargets": 94,
       "medianReliability": 0.5402298850574713,
-      "effectiveMidpoint": 50.000000000000114,
       "thresholds": [
         {
-          "live": 50,
+          "target": 50,
           "referencePercentile": 50,
-          "mappedInput": 0.25468363810119243,
-          "impliedRawResidualAtMedianTargets": 0.1983939019947613,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": 0.25468363810119243,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 50.000000000000114,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRawResidual": {
+            "value": 0.1983939019947613,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "targets": 94,
+              "stabilizerTargets": 80,
+              "reliability": 0.5402298850574713
+            }
+          }
         },
         {
-          "live": 60,
+          "target": 60,
           "referencePercentile": 60,
-          "mappedInput": 0.28477673735417863,
-          "impliedRawResidualAtMedianTargets": 0.2540981495481613,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": 0.28477673735417863,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 60,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRawResidual": {
+            "value": 0.2540981495481613,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "targets": 94,
+              "stabilizerTargets": 80,
+              "reliability": 0.5402298850574713
+            }
+          }
         },
         {
-          "live": 70,
+          "target": 70,
           "referencePercentile": 70,
-          "mappedInput": 0.3111332616586283,
-          "impliedRawResidualAtMedianTargets": 0.30288575836703624,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": 0.3111332616586283,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 70,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRawResidual": {
+            "value": 0.30288575836703624,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "targets": 94,
+              "stabilizerTargets": 80,
+              "reliability": 0.5402298850574713
+            }
+          }
         },
         {
-          "live": 80,
+          "target": 80,
           "referencePercentile": 80,
-          "mappedInput": 0.32997539863513786,
-          "impliedRawResidualAtMedianTargets": 0.3377637566001497,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": 0.32997539863513786,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 79.99999999999999,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRawResidual": {
+            "value": 0.3377637566001497,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "targets": 94,
+              "stabilizerTargets": 80,
+              "reliability": 0.5402298850574713
+            }
+          }
         },
         {
-          "live": 90,
+          "target": 90,
           "referencePercentile": 90,
-          "mappedInput": 0.4054288396022507,
-          "impliedRawResidualAtMedianTargets": 0.4774328920073585,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": 0.4054288396022507,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 90,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRawResidual": {
+            "value": 0.4774328920073585,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "targets": 94,
+              "stabilizerTargets": 80,
+              "reliability": 0.5402298850574713
+            }
+          }
         }
       ]
     },
     "rbIndex": {
       "mappedInput": "rbCalibratedComposite (70/30 room composite after stabilization and centre alignment)",
       "reference": "32 bundled 2025 RB room composites, LIVE_FITTED frame",
-      "currentLeagueCentre": -0.07238155062234153,
-      "historicalMedian": -0.02942361358590208,
+      "midpoint": {
+        "transformMidpoint": "2025 reference median composite maps to live 50",
+        "referenceMedian": -0.02942361358590208,
+        "currentWeightedCentre": -0.07238155062234153,
+        "currentWeightedCentreDefinition": "0.70*carry-weighted 2026 rush EPA mean + 0.30*target-weighted residual receiving mean; aligned onto the reference median after stabilization",
+        "mappedGradeOfCurrentWeightedCentre": 50,
+        "rawCompositeMedian": -0.08055216449830066,
+        "rawCompositeMean": -0.07688299590395915,
+        "empiricalLiveMedian": 49.79131375334265,
+        "empiricalDisplayedMedian": 50.865615443754166
+      },
       "medianCarries": 88,
       "medianRushReliability": 0.6376811594202898,
-      "effectiveMidpoint": 50,
       "thresholds": [
         {
-          "live": 50,
+          "target": 50,
           "referencePercentile": 50,
-          "mappedInput": -0.02942361358590208,
-          "impliedRushEpaPerCarryAtMedianCarriesWithReceivingAtCentre": -0.08501538011508222,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": -0.02942361358590208,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 50,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRushEpaPerCarry": {
+            "value": -0.08501538011508222,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "carries": 88,
+              "stabilizerCarries": 50,
+              "rushReliability": 0.6376811594202898,
+              "receivingResidual": "held at current centre"
+            }
+          }
         },
         {
-          "live": 60,
+          "target": 60,
           "referencePercentile": 60,
-          "mappedInput": -0.008282895173788603,
-          "impliedRushEpaPerCarryAtMedianCarriesWithReceivingAtCentre": -0.03765467977625657,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": -0.008282895173788603,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 60,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRushEpaPerCarry": {
+            "value": -0.03765467977625657,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "carries": 88,
+              "stabilizerCarries": 50,
+              "rushReliability": 0.6376811594202898,
+              "receivingResidual": "held at current centre"
+            }
+          }
         },
         {
-          "live": 70,
+          "target": 70,
           "referencePercentile": 70,
-          "mappedInput": 0.007110666465751492,
-          "impliedRushEpaPerCarryAtMedianCarriesWithReceivingAtCentre": -0.0031691033759881637,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": 0.007110666465751492,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 70,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRushEpaPerCarry": {
+            "value": -0.0031691033759881637,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "carries": 88,
+              "stabilizerCarries": 50,
+              "rushReliability": 0.6376811594202898,
+              "receivingResidual": "held at current centre"
+            }
+          }
         },
         {
-          "live": 80,
+          "target": 80,
           "referencePercentile": 80,
-          "mappedInput": 0.036991720256496684,
-          "impliedRushEpaPerCarryAtMedianCarriesWithReceivingAtCentre": 0.063772218427954,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": 0.036991720256496684,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 80,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRushEpaPerCarry": {
+            "value": 0.063772218427954,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "carries": 88,
+              "stabilizerCarries": 50,
+              "rushReliability": 0.6376811594202898,
+              "receivingResidual": "held at current centre"
+            }
+          }
         },
         {
-          "live": 90,
+          "target": 90,
           "referencePercentile": 90,
-          "mappedInput": 0.07552732585308372,
-          "impliedRushEpaPerCarryAtMedianCarriesWithReceivingAtCentre": 0.15010198421251586,
-          "bound": null
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
+          "mappedInput": {
+            "value": 0.07552732585308372,
+            "classification": "EXACT / UNIQUE",
+            "reconstructedRating": 90,
+            "attainable": true,
+            "roundTripAsserted": true
+          },
+          "impliedRushEpaPerCarry": {
+            "value": 0.15010198421251586,
+            "classification": "OPPORTUNITY-ASSUMPTION APPROXIMATION",
+            "fixedAssumptions": {
+              "carries": 88,
+              "stabilizerCarries": 50,
+              "rushReliability": 0.6376811594202898,
+              "receivingResidual": "held at current centre"
+            }
+          }
         }
       ]
     },
     "olIndex": {
       "mappedInput": "pbpPressureAllowedRate (raw; lower is better)",
       "reference": "448 rolling 4-game 2025 team windows (two teams with 3 drive-games use 480 3-game windows)",
-      "pooledCurrentRate": 0.16984559491371481,
-      "effectiveMidpoint": 37.679727422970636,
-      "medianCurrentRate": 0.17277568922305764,
+      "midpoint": {
+        "transformMidpoint": "2025 4-game reference median rate maps to live 50",
+        "referenceMedian": 0.154508495,
+        "pooledCurrentRate": 0.16984559491371481,
+        "pooledCurrentRateDefinition": "Sum of 2026 disruptions / sum of dropbacks across all 32 teams",
+        "mappedGradeOfPooledCurrentRate": 37.679727422970636,
+        "rawTeamRateMedian": 0.17277568922305764,
+        "rawTeamRateMean": 0.16880367822369205,
+        "empiricalLiveMedian": 35.280292859944105,
+        "empiricalDisplayedMedian": 37.84025719035655,
+        "note": "The pooled-signal grade is the mapped grade of the pooled current signal against the 2025 reference, not the empirical displayed median."
+      },
       "thresholds": [
         {
-          "live": 50,
+          "target": 50,
           "referencePercentile": 50,
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
           "disruptionRateAllowed": 0.154508495,
-          "bound": null
+          "classification": "EXACT / UNIQUE",
+          "reconstructedRating": 50,
+          "attainable": true,
+          "roundTripAsserted": true
         },
         {
-          "live": 60,
+          "target": 60,
           "referencePercentile": 60,
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
           "disruptionRateAllowed": 0.14285714,
-          "bound": "tieJump"
+          "classification": "TIE-JUMP / APPROXIMATE",
+          "reconstructedRating": 60.15625,
+          "attainable": false,
+          "roundTripAsserted": false,
+          "reason": "Empirical-CDF tie: the production map jumps over the target; the reported raw value is the tied reference value. Production CDF behaviour is not altered."
         },
         {
-          "live": 70,
+          "target": 70,
           "referencePercentile": 70,
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
           "disruptionRateAllowed": 0.126972284,
-          "bound": null
+          "classification": "EXACT / UNIQUE",
+          "reconstructedRating": 70.00000000000003,
+          "attainable": true,
+          "roundTripAsserted": true
         },
         {
-          "live": 80,
+          "target": 80,
           "referencePercentile": 80,
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
           "disruptionRateAllowed": 0.114564229,
-          "bound": null
+          "classification": "EXACT / UNIQUE",
+          "reconstructedRating": 80,
+          "attainable": true,
+          "roundTripAsserted": true
         },
         {
-          "live": 90,
+          "target": 90,
           "referencePercentile": 90,
+          "referenceScope": "REFERENCE-RELATIVE (2025 reference percentile)",
           "disruptionRateAllowed": 0.099465648,
-          "bound": null
+          "classification": "EXACT / UNIQUE",
+          "reconstructedRating": 90,
+          "attainable": true,
+          "roundTripAsserted": true
         }
       ]
     },
     "qbIndex": {
       "mappedInput": "Five component scores, expanded 1.20x about 50, plus opponent and pressure context, then blended and recency-adjusted",
+      "midpoint": {
+        "transformMidpoint": "Composite 50 when the weighted component mean is 50",
+        "constructedQbProxy": {
+          "epaComponent": 53.704558139367755,
+          "successComponent": 58.70476090435927,
+          "anyAComponent": 50,
+          "cpoeComponent": 50,
+          "medianRushingValueComponent": 54.65717572464713,
+          "constructedPreContextProxy": 53.98164463417627,
+          "definition": "Constructed under the current component mappings and weights: EPA and success at the current weighted league means, ANY/A at median standing (50), CPOE at the current mean (50), rushing at the median team rushing component; before opponent, pressure, prior and recency. It is not the empirical displayed median, not a unique raw \"average QB\" and not a single observed football signal."
+        },
+        "rawQbEpaMedian": 0.05337170443536694,
+        "rawQbEpaMean": 0.06358218482843296,
+        "currentWeightedLeagueEpa": 0.0660398973377474,
+        "currentWeightedLeague": {
+          "epa": 0.0660398973377474,
+          "succ": 0.48231589147286824,
+          "cpoe": 1.2000072700340918
+        },
+        "empiricalLiveMedian": 54.54386064892503,
+        "empiricalDisplayedMedian": 53.39507845762938
+      },
       "medianValuePlays": 151,
       "medianAttempts": 127,
       "reliability": {
@@ -141,127 +364,226 @@
         "success": 0.5594713656387665,
         "cpoe": 0.679144385026738
       },
-      "currentLeague": {
-        "epa": 0.0660398973377474,
-        "succ": 0.48231589147286824,
-        "cpoe": 1.2000072700340918
-      },
-      "leagueAverageQb": {
-        "epaComponent": 53.704558139367755,
-        "successComponent": 58.70476090435927,
-        "anyAComponent": 50,
-        "cpoeComponent": 50,
-        "medianRushingValueComponent": 54.65717572464713,
-        "compositeBeforeContext": 53.98164463417627
-      },
       "thresholds": [
         {
-          "live": 50,
+          "target": 50,
+          "classification": "MULTIDIMENSIONAL PROXY",
           "uniformComponentLevel": 50,
           "componentLevelWithRushingAtFloor50": 50,
-          "atUniformLevel": {
+          "illustrativeAtUniformLevel": {
             "component": 50,
             "epaComponentMappedEpa": 0.048590405,
+            "epaComponentReconstructed": 50,
             "epaImpliedRawAtMedianPlays": 0.03125647221415821,
             "successMapped": 0.475134235,
+            "successComponentReconstructed": 50,
             "successImpliedRawAtMedianAttempts": 0.46947938738356837,
             "anyAAtCurrentRank": 6.2900352733686065,
             "cpoeImpliedRaw": 1.2000072700340918,
             "rushingBonusPoints": 0
+          },
+          "fixedAssumptions": {
+            "allFiveComponentsEqual": true,
+            "opponentAdjustment": 0,
+            "pressureAdjustment": 0,
+            "plays": 151,
+            "attempts": 127
           }
         },
         {
-          "live": 60,
+          "target": 60,
+          "classification": "MULTIDIMENSIONAL PROXY",
           "uniformComponentLevel": 58.333333333333336,
           "componentLevelWithRushingAtFloor50": 59.25925925925926,
-          "atUniformLevel": {
+          "illustrativeAtUniformLevel": {
             "component": 58.333333333333336,
             "epaComponentMappedEpa": 0.07618854333333334,
+            "epaComponentReconstructed": 58.333333333333336,
             "epaImpliedRawAtMedianPlays": 0.08626997975278958,
             "successMapped": 0.48194125833333334,
+            "successComponentReconstructed": 58.33333333333335,
             "successImpliedRawAtMedianAttempts": 0.48164627160929013,
             "anyAAtCurrentRank": 6.633479963017538,
             "cpoeImpliedRaw": 3.057890387598073,
             "rushingBonusPoints": 2.0000000000000004
+          },
+          "fixedAssumptions": {
+            "allFiveComponentsEqual": true,
+            "opponentAdjustment": 0,
+            "pressureAdjustment": 0,
+            "plays": 151,
+            "attempts": 127
           }
         },
         {
-          "live": 70,
+          "target": 70,
+          "classification": "MULTIDIMENSIONAL PROXY",
           "uniformComponentLevel": 66.66666666666667,
           "componentLevelWithRushingAtFloor50": 68.51851851851852,
-          "atUniformLevel": {
+          "illustrativeAtUniformLevel": {
             "component": 66.66666666666667,
             "epaComponentMappedEpa": 0.09145846833333333,
+            "epaComponentReconstructed": 66.66666666666667,
             "epaImpliedRawAtMedianPlays": 0.11670870442166373,
             "successMapped": 0.49630516,
+            "successComponentReconstructed": 66.66666666666667,
             "successImpliedRawAtMedianAttempts": 0.5073203320686077,
             "anyAAtCurrentRank": 7.019128383885681,
             "cpoeImpliedRaw": 5.0273258556062315,
             "rushingBonusPoints": 4.000000000000001
+          },
+          "fixedAssumptions": {
+            "allFiveComponentsEqual": true,
+            "opponentAdjustment": 0,
+            "pressureAdjustment": 0,
+            "plays": 151,
+            "attempts": 127
           }
         },
         {
-          "live": 80,
+          "target": 80,
+          "classification": "MULTIDIMENSIONAL PROXY",
           "uniformComponentLevel": 75,
           "componentLevelWithRushingAtFloor50": 77.77777777777777,
-          "atUniformLevel": {
+          "illustrativeAtUniformLevel": {
             "component": 75,
             "epaComponentMappedEpa": 0.09789503499999999,
+            "epaComponentReconstructed": 74.99999999999994,
             "epaImpliedRawAtMedianPlays": 0.12953921148568137,
             "successMapped": 0.500056705,
+            "successComponentReconstructed": 74.99999999999996,
             "successImpliedRawAtMedianAttempts": 0.5140258495095525,
             "anyAAtCurrentRank": 7.385810360160071,
             "cpoeImpliedRaw": 7.266163706479066,
             "rushingBonusPoints": 6
+          },
+          "fixedAssumptions": {
+            "allFiveComponentsEqual": true,
+            "opponentAdjustment": 0,
+            "pressureAdjustment": 0,
+            "plays": 151,
+            "attempts": 127
           }
         },
         {
-          "live": 90,
+          "target": 90,
+          "classification": "MULTIDIMENSIONAL PROXY",
           "uniformComponentLevel": 83.33333333333334,
           "componentLevelWithRushingAtFloor50": 87.03703703703705,
-          "atUniformLevel": {
+          "illustrativeAtUniformLevel": {
             "component": 83.33333333333334,
             "epaComponentMappedEpa": 0.15327080333333343,
+            "epaComponentReconstructed": 83.33333333333334,
             "epaImpliedRawAtMedianPlays": 0.2399240212097434,
             "successMapped": 0.5189390133333334,
+            "successComponentReconstructed": 83.33333333333337,
             "successImpliedRawAtMedianAttempts": 0.5477761171604713,
             "anyAAtCurrentRank": 7.719122023809525,
             "cpoeImpliedRaw": 10.086765821958608,
             "rushingBonusPoints": 8.000000000000002
+          },
+          "fixedAssumptions": {
+            "allFiveComponentsEqual": true,
+            "opponentAdjustment": 0,
+            "pressureAdjustment": 0,
+            "plays": 151,
+            "attempts": 127
           }
         }
       ],
-      "note": "Rushing value cannot fall below 50 (bonus clamped at 0), so a non-running QB needs higher passing components for the same grade. Opponent (+/-4) and pressure context are added after expansion."
+      "note": "Uniform component level, implied EPA and implied ANY/A are illustrative multidimensional proxies, not unique raw thresholds: many component combinations reach the same grade. Rushing value cannot fall below 50 (bonus clamped at 0). Opponent (+/-4) and pressure context are added after expansion."
     },
     "runDefenseIndex": {
       "mappedInput": "oppRushEpa (current-season rank; lower is better)",
       "reference": "The 32 current 2026 teams (Week 4)",
-      "effectiveMidpoint": 50,
+      "midpoint": {
+        "transformMidpoint": "50 = median standing under the current-season rank transform (not the arithmetic mean of the raw metric)",
+        "rawMedian": -0.05193354608950755,
+        "rawMean": -0.061425708088193524,
+        "interpolatedRankGradeAtRawMean": 53.05566317549928,
+        "empiricalLiveMedian": 50,
+        "empiricalDisplayedMedian": 47.047031325098644
+      },
       "thresholds": [
         {
-          "live": 50,
+          "target": 50,
           "currentSeasonPercentile": 50,
-          "raw": -0.05193354608950755
+          "raw": -0.05193354608950755,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 50,
+          "bracketingObservedRaw": [
+            -0.054277510826616124,
+            -0.04958958135239898
+          ],
+          "bracketingObservedGrades": [
+            48.38709677419355,
+            51.61290322580645
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 60,
+          "target": 60,
           "currentSeasonPercentile": 60,
-          "raw": -0.08705858039993998
+          "raw": -0.08705858039993998,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 60,
+          "bracketingObservedRaw": [
+            -0.0921288285388645,
+            -0.0794532081915532
+          ],
+          "bracketingObservedGrades": [
+            58.064516129032256,
+            61.29032258064516
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 70,
+          "target": 70,
           "currentSeasonPercentile": 70,
-          "raw": -0.10070533671448771
+          "raw": -0.10070533671448771,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 70,
+          "bracketingObservedRaw": [
+            -0.10290033553637927,
+            -0.09558367279674075
+          ],
+          "bracketingObservedGrades": [
+            67.74193548387098,
+            70.96774193548387
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 80,
+          "target": 80,
           "currentSeasonPercentile": 80,
-          "raw": -0.12649629751672695
+          "raw": -0.12649629751672695,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 80,
+          "bracketingObservedRaw": [
+            -0.1279754790161838,
+            -0.12057957151889946
+          ],
+          "bracketingObservedGrades": [
+            77.41935483870968,
+            80.64516129032258
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 90,
+          "target": 90,
           "currentSeasonPercentile": 90,
-          "raw": -0.1740633523243626
+          "raw": -0.1740633523243626,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 90,
+          "bracketingObservedRaw": [
+            -0.17593596978387785,
+            -0.15720979518872527
+          ],
+          "bracketingObservedGrades": [
+            87.09677419354838,
+            90.3225806451613
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         }
       ],
       "unit": "rush EPA/carry allowed"
@@ -269,32 +591,94 @@
     "pointsScoredPerDriveIndex": {
       "mappedInput": "offensivePointsPerDrive (current-season rank; higher is better)",
       "reference": "The 32 current 2026 teams (Week 4)",
-      "effectiveMidpoint": 50,
+      "midpoint": {
+        "transformMidpoint": "50 = median standing under the current-season rank transform (not the arithmetic mean of the raw metric)",
+        "rawMedian": 1.9859868813357187,
+        "rawMean": 2.1601684693288488,
+        "interpolatedRankGradeAtRawMean": 56.64296065844959,
+        "empiricalLiveMedian": 50,
+        "empiricalDisplayedMedian": 49.11694725947481
+      },
       "thresholds": [
         {
-          "live": 50,
+          "target": 50,
           "currentSeasonPercentile": 50,
-          "raw": 1.9859868813357187
+          "raw": 1.9859868813357187,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 50.00000000000001,
+          "bracketingObservedRaw": [
+            1.9487179487179487,
+            2.0232558139534884
+          ],
+          "bracketingObservedGrades": [
+            48.38709677419355,
+            51.61290322580645
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 60,
+          "target": 60,
           "currentSeasonPercentile": 60,
-          "raw": 2.3066666666666666
+          "raw": 2.3066666666666666,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 59.99999999999999,
+          "bracketingObservedRaw": [
+            2.2666666666666666,
+            2.3333333333333335
+          ],
+          "bracketingObservedGrades": [
+            58.064516129032256,
+            61.29032258064516
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 70,
+          "target": 70,
           "currentSeasonPercentile": 70,
-          "raw": 2.565909090909091
+          "raw": 2.565909090909091,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 70,
+          "bracketingObservedRaw": [
+            2.4545454545454546,
+            2.6136363636363638
+          ],
+          "bracketingObservedGrades": [
+            67.74193548387096,
+            70.96774193548387
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 80,
+          "target": 80,
           "currentSeasonPercentile": 80,
-          "raw": 2.6606060606060606
+          "raw": 2.6606060606060606,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 80.00000000000001,
+          "bracketingObservedRaw": [
+            2.6363636363636362,
+            2.6666666666666665
+          ],
+          "bracketingObservedGrades": [
+            77.41935483870968,
+            80.64516129032258
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 90,
+          "target": 90,
           "currentSeasonPercentile": 90,
-          "raw": 2.964529616724739
+          "raw": 2.964529616724739,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 90.00000000000001,
+          "bracketingObservedRaw": [
+            2.902439024390244,
+            2.9714285714285715
+          ],
+          "bracketingObservedGrades": [
+            87.09677419354838,
+            90.3225806451613
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         }
       ],
       "unit": "points per qualifying drive"
@@ -302,32 +686,94 @@
     "pointsAllowedPerDriveIndex": {
       "mappedInput": "defensivePointsPerDrive (current-season rank; lower is better)",
       "reference": "The 32 current 2026 teams (Week 4)",
-      "effectiveMidpoint": 50,
+      "midpoint": {
+        "transformMidpoint": "50 = median standing under the current-season rank transform (not the arithmetic mean of the raw metric)",
+        "rawMedian": 2.197674418604651,
+        "rawMean": 2.1496158847858067,
+        "interpolatedRankGradeAtRawMean": 52.710186990967586,
+        "empiricalLiveMedian": 50,
+        "empiricalDisplayedMedian": 50
+      },
       "thresholds": [
         {
-          "live": 50,
+          "target": 50,
           "currentSeasonPercentile": 50,
-          "raw": 2.197674418604651
+          "raw": 2.197674418604651,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 50,
+          "bracketingObservedRaw": [
+            2.186046511627907,
+            2.2093023255813953
+          ],
+          "bracketingObservedGrades": [
+            48.38709677419355,
+            51.61290322580645
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 60,
+          "target": 60,
           "currentSeasonPercentile": 60,
-          "raw": 2.0300000000000002
+          "raw": 2.0300000000000002,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 59.99999999999999,
+          "bracketingObservedRaw": [
+            2,
+            2.075
+          ],
+          "bracketingObservedGrades": [
+            58.064516129032256,
+            61.29032258064516
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 70,
+          "target": 70,
           "currentSeasonPercentile": 70,
-          "raw": 1.8797504254112307
+          "raw": 1.8797504254112307,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 70.00000000000003,
+          "bracketingObservedRaw": [
+            1.8780487804878048,
+            1.8837209302325582
+          ],
+          "bracketingObservedGrades": [
+            67.74193548387098,
+            70.96774193548387
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 80,
+          "target": 80,
           "currentSeasonPercentile": 80,
-          "raw": 1.8275362318840578
+          "raw": 1.8275362318840578,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 80.00000000000004,
+          "bracketingObservedRaw": [
+            1.826086956521739,
+            1.8333333333333333
+          ],
+          "bracketingObservedGrades": [
+            77.41935483870968,
+            80.64516129032258
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 90,
+          "target": 90,
           "currentSeasonPercentile": 90,
-          "raw": 1.6696969696969697
+          "raw": 1.6696969696969697,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 90.00000000000001,
+          "bracketingObservedRaw": [
+            1.6666666666666667,
+            1.696969696969697
+          ],
+          "bracketingObservedGrades": [
+            87.09677419354838,
+            90.3225806451613
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         }
       ],
       "unit": "points allowed per opponent drive",
@@ -335,27 +781,32 @@
         {
           "display": 50,
           "liveNeededAtG4K1": 50,
-          "attainable": true
+          "attainable": true,
+          "classification": "EXACT / UNIQUE"
         },
         {
           "display": 60,
           "liveNeededAtG4K1": 62.5,
-          "attainable": true
+          "attainable": true,
+          "classification": "EXACT / UNIQUE"
         },
         {
           "display": 70,
           "liveNeededAtG4K1": 75,
-          "attainable": true
+          "attainable": true,
+          "classification": "EXACT / UNIQUE"
         },
         {
           "display": 80,
           "liveNeededAtG4K1": 87.5,
-          "attainable": true
+          "attainable": true,
+          "classification": "EXACT / UNIQUE"
         },
         {
           "display": 90,
           "liveNeededAtG4K1": 100,
-          "attainable": true
+          "attainable": true,
+          "classification": "EXACT / UNIQUE (boundary: league-best only)"
         }
       ],
       "note": "Prior is fixed at 50 with k=1, so at four drive-games display = 10 + 0.8*live: displayed range is exactly 10..90 and 90 is only the league-best team."
@@ -363,103 +814,218 @@
     "passRushIndex": {
       "mappedInput": "frontPressureRate (current-season rank; higher is better)",
       "reference": "The 32 current 2026 teams (Week 4)",
-      "effectiveMidpoint": 50,
+      "midpoint": {
+        "transformMidpoint": "50 = median standing under the current-season rank transform (not the arithmetic mean of the raw metric)",
+        "rawMedian": 0.2363612969634586,
+        "rawMean": 0.23439717952768468,
+        "interpolatedRankGradeAtRawMean": 49.36868814264538,
+        "empiricalLiveMedian": 46.7741935483871,
+        "empiricalDisplayedMedian": 48.069631247951186
+      },
       "thresholds": [
         {
-          "live": 50,
+          "target": 50,
           "currentSeasonPercentile": 50,
-          "raw": 0.2363612969634586
+          "raw": 0.2363612969634586,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 50.00000000000001,
+          "bracketingObservedRaw": [
+            0.23134328358208955,
+            0.2413793103448276
+          ],
+          "bracketingObservedGrades": [
+            48.38709677419355,
+            51.61290322580645
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 60,
+          "target": 60,
           "currentSeasonPercentile": 60,
-          "raw": 0.24457002457002458
+          "raw": 0.24457002457002458,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 60.00000000000001,
+          "bracketingObservedRaw": [
+            0.24324324324324326,
+            0.24545454545454545
+          ],
+          "bracketingObservedGrades": [
+            58.064516129032256,
+            61.29032258064516
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 70,
+          "target": 70,
           "currentSeasonPercentile": 70,
-          "raw": 0.26724028448056897
+          "raw": 0.26724028448056897,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 69.99999999999999,
+          "bracketingObservedRaw": [
+            0.2661290322580645,
+            0.2677165354330709
+          ],
+          "bracketingObservedGrades": [
+            67.74193548387096,
+            70.96774193548387
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 80,
+          "target": 80,
           "currentSeasonPercentile": 80,
-          "raw": 0.2749605563022264
+          "raw": 0.2749605563022264,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 79.99999999999997,
+          "bracketingObservedRaw": [
+            0.27388535031847133,
+            0.27522935779816515
+          ],
+          "bracketingObservedGrades": [
+            77.41935483870968,
+            80.64516129032258
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         },
         {
-          "live": 90,
+          "target": 90,
           "currentSeasonPercentile": 90,
-          "raw": 0.31032258064516133
+          "raw": 0.31032258064516133,
+          "classification": "DISCRETE / INTERVAL",
+          "interpolatedRankGrade": 90.00000000000001,
+          "bracketingObservedRaw": [
+            0.3032258064516129,
+            0.3111111111111111
+          ],
+          "bracketingObservedGrades": [
+            87.09677419354838,
+            90.3225806451613
+          ],
+          "reason": "Interpolated rank quantile: a snapshot descriptor between observed teams; production ranks observed teams only, so no single observed raw value need map back to the nominal grade."
         }
       ],
       "unit": "weekly hit+sack disruption rate (all 32 ranked; grade used for 28 weekly-provider teams)",
-      "pfrStratum": "Four PFR-charted teams map against same-sized 2025 charted windows; not inverted here (four-team stratum; provider rows not parsed in this tranche)."
+      "pfrStratum": {
+        "classification": "NOT INVERTED",
+        "reason": "Four PFR-charted teams map against same-sized 2025 charted windows under a different map; not inverted here (four-team stratum; provider rows not parsed in this tranche)."
+      }
     },
     "coverageIndex": {
       "mappedInput": "0.75*EPA-allowed rank + 0.25*CPOE-allowed rank (current season)",
       "reference": "The 32 current 2026 teams",
-      "effectiveMidpoint": 50,
+      "midpoint": {
+        "transformMidpoint": "50 = median standing under the current-season rank transform (not the arithmetic mean of the raw metric)",
+        "rawMedian": 0.14325818349456831,
+        "rawMean": 0.1706591465456609,
+        "interpolatedRankGradeAtRawMean": 37.546048147873535,
+        "empiricalLiveMedian": 51.61290322580645,
+        "empiricalDisplayedMedian": 54.31964267543568,
+        "cpoeComponent": {
+          "transformMidpoint": "50 = median standing under the current-season rank transform (not the arithmetic mean of the raw metric)",
+          "rawMedian": 1.4897514002723735,
+          "rawMean": 1.3076431908389838,
+          "interpolatedRankGradeAtRawMean": 50.745790798210926,
+          "empiricalLiveMedian": 51.61290322580645,
+          "empiricalDisplayedMedian": 54.31964267543568
+        }
+      },
       "thresholds": [
         {
-          "live": 50,
+          "target": 50,
+          "classification": "MULTIDIMENSIONAL PROXY",
           "epaAllowedAtPercentileX": 0.14325818349456831,
           "cpoeAllowedAtPercentileX": 1.4897514002723735,
           "epaRankNeededIfCpoeNeutral": 50,
-          "attainableIfCpoeNeutral": true
+          "attainableIfCpoeNeutral": true,
+          "fixedAssumptions": {
+            "cpoeRank": 50
+          }
         },
         {
-          "live": 60,
+          "target": 60,
+          "classification": "MULTIDIMENSIONAL PROXY",
           "epaAllowedAtPercentileX": 0.11222909797423215,
           "cpoeAllowedAtPercentileX": 0.4263455492141384,
           "epaRankNeededIfCpoeNeutral": 63.333333333333336,
-          "attainableIfCpoeNeutral": true
+          "attainableIfCpoeNeutral": true,
+          "fixedAssumptions": {
+            "cpoeRank": 50
+          }
         },
         {
-          "live": 70,
+          "target": 70,
+          "classification": "MULTIDIMENSIONAL PROXY",
           "epaAllowedAtPercentileX": 0.09972525647745145,
           "cpoeAllowedAtPercentileX": -0.3414859227080876,
           "epaRankNeededIfCpoeNeutral": 76.66666666666667,
-          "attainableIfCpoeNeutral": true
+          "attainableIfCpoeNeutral": true,
+          "fixedAssumptions": {
+            "cpoeRank": 50
+          }
         },
         {
-          "live": 80,
+          "target": 80,
+          "classification": "MULTIDIMENSIONAL PROXY",
           "epaAllowedAtPercentileX": 0.07052282886560876,
           "cpoeAllowedAtPercentileX": -1.8748995901473016,
           "epaRankNeededIfCpoeNeutral": 90,
-          "attainableIfCpoeNeutral": true
+          "attainableIfCpoeNeutral": true,
+          "fixedAssumptions": {
+            "cpoeRank": 50
+          }
         },
         {
-          "live": 90,
+          "target": 90,
+          "classification": "UNREACHABLE",
           "epaAllowedAtPercentileX": 0.019772146241947654,
           "cpoeAllowedAtPercentileX": -3.5187914368235726,
           "epaRankNeededIfCpoeNeutral": 103.33333333333333,
-          "attainableIfCpoeNeutral": false
+          "attainableIfCpoeNeutral": false,
+          "fixedAssumptions": {
+            "cpoeRank": 50
+          }
         }
       ],
-      "note": "With a league-median CPOE allowed the live grade cannot exceed 87.5; live 90+ requires a top-tier rank on both components."
+      "note": "Two-component rank mix: the EPA/CPOE columns are each component at percentile X, not a joint threshold. With a league-median CPOE rank held fixed the live grade cannot exceed 87.5, so live 90 is UNREACHABLE under that assumption."
     },
     "offenseComposite": {
       "mappedInput": "Weighted average of component grades (raw composite)",
       "map": "soft-tail tanh softness 35",
       "thresholds": [
         {
-          "display": 50,
-          "rawWeightedGrade": 50
+          "target": 50,
+          "rawWeightedGrade": 50,
+          "reconstructedRating": 50,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         },
         {
-          "display": 60,
-          "rawWeightedGrade": 56.30700632201955
+          "target": 60,
+          "rawWeightedGrade": 56.30700632201955,
+          "reconstructedRating": 60,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         },
         {
-          "display": 70,
-          "rawWeightedGrade": 63.05244959728431
+          "target": 70,
+          "rawWeightedGrade": 63.05244959728431,
+          "reconstructedRating": 70.00000000000001,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         },
         {
-          "display": 80,
-          "rawWeightedGrade": 70.89071937336004
+          "target": 80,
+          "rawWeightedGrade": 70.89071937336004,
+          "reconstructedRating": 80,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         },
         {
-          "display": 90,
-          "rawWeightedGrade": 81.27112034540306
+          "target": 90,
+          "rawWeightedGrade": 81.27112034540306,
+          "reconstructedRating": 90.00000000000001,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         }
       ]
     },
@@ -468,24 +1034,39 @@
       "map": "soft-tail tanh softness 42",
       "thresholds": [
         {
-          "display": 50,
-          "rawWeightedGrade": 50
+          "target": 50,
+          "rawWeightedGrade": 50,
+          "reconstructedRating": 50,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         },
         {
-          "display": 60,
-          "rawWeightedGrade": 57.04339589876046
+          "target": 60,
+          "rawWeightedGrade": 57.04339589876046,
+          "reconstructedRating": 60,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         },
         {
-          "display": 70,
-          "rawWeightedGrade": 64.50684078750935
+          "target": 70,
+          "rawWeightedGrade": 64.50684078750935,
+          "reconstructedRating": 70,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         },
         {
-          "display": 80,
-          "rawWeightedGrade": 72.98335941379591
+          "target": 80,
+          "rawWeightedGrade": 72.98335941379591,
+          "reconstructedRating": 80,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         },
         {
-          "display": 90,
-          "rawWeightedGrade": 83.64092743240069
+          "target": 90,
+          "rawWeightedGrade": 83.64092743240069,
+          "reconstructedRating": 90,
+          "classification": "EXACT / UNIQUE",
+          "roundTripAsserted": true
         }
       ]
     }
@@ -559,7 +1140,8 @@
           "prior50": 98.91301802852152,
           "prior65": 95.57063626782595
         }
-      ]
+      ],
+      "note": "QB also adds recency after the blend; shown for zero recency."
     },
     "receiverIndex": {
       "medianLiveWeight": 0.8177782032725056,
@@ -809,7 +1391,7 @@
   },
   "descriptiveAnswers": {
     "pointsScoredPerDriveIndex": {
-      "median": 49.11694725947481,
+      "empiricalDisplayedMedian": 49.11694725947481,
       "mean": 50.00868640189721,
       "percentileOf50": 53.125,
       "countAtOrAbove70": 8,
@@ -817,7 +1399,7 @@
       "countAtOrAbove90": 3
     },
     "qbIndex": {
-      "median": 53.39507845762938,
+      "empiricalDisplayedMedian": 53.39507845762938,
       "mean": 52.26715669996495,
       "percentileOf50": 43.75,
       "countAtOrAbove70": 10,
@@ -825,7 +1407,7 @@
       "countAtOrAbove90": 1
     },
     "receiverIndex": {
-      "median": 51.9201696161538,
+      "empiricalDisplayedMedian": 51.9201696161538,
       "mean": 45.92306695722357,
       "percentileOf50": 46.875,
       "countAtOrAbove70": 3,
@@ -833,7 +1415,7 @@
       "countAtOrAbove90": 0
     },
     "olIndex": {
-      "median": 37.84025719035655,
+      "empiricalDisplayedMedian": 37.84025719035655,
       "mean": 42.308144002591874,
       "percentileOf50": 75,
       "countAtOrAbove70": 2,
@@ -841,7 +1423,7 @@
       "countAtOrAbove90": 0
     },
     "rbIndex": {
-      "median": 50.865615443754166,
+      "empiricalDisplayedMedian": 50.865615443754166,
       "mean": 50.219364213501635,
       "percentileOf50": 50,
       "countAtOrAbove70": 7,
@@ -849,7 +1431,7 @@
       "countAtOrAbove90": 0
     },
     "coverageIndex": {
-      "median": 54.31964267543568,
+      "empiricalDisplayedMedian": 54.31964267543568,
       "mean": 50.00655785927527,
       "percentileOf50": 46.875,
       "countAtOrAbove70": 7,
@@ -857,7 +1439,7 @@
       "countAtOrAbove90": 2
     },
     "passRushIndex": {
-      "median": 48.069631247951186,
+      "empiricalDisplayedMedian": 48.069631247951186,
       "mean": 49.557301246653545,
       "percentileOf50": 53.125,
       "countAtOrAbove70": 9,
@@ -865,7 +1447,7 @@
       "countAtOrAbove90": 1
     },
     "runDefenseIndex": {
-      "median": 47.047031325098644,
+      "empiricalDisplayedMedian": 47.047031325098644,
       "mean": 49.90057025942694,
       "percentileOf50": 53.125,
       "countAtOrAbove70": 9,
@@ -873,7 +1455,7 @@
       "countAtOrAbove90": 1
     },
     "pointsAllowedPerDriveIndex": {
-      "median": 50,
+      "empiricalDisplayedMedian": 50,
       "mean": 49.994959677419345,
       "percentileOf50": 50,
       "countAtOrAbove70": 9,
@@ -881,7 +1463,7 @@
       "countAtOrAbove90": 1
     },
     "offenseComposite": {
-      "median": 44.3923067547984,
+      "empiricalDisplayedMedian": 44.3923067547984,
       "mean": 48.030969500053025,
       "percentileOf50": 56.25,
       "countAtOrAbove70": 8,
@@ -889,7 +1471,7 @@
       "countAtOrAbove90": 1
     },
     "defenseIndex": {
-      "median": 46.47774744792572,
+      "empiricalDisplayedMedian": 46.47774744792572,
       "mean": 49.34135376585738,
       "percentileOf50": 59.375,
       "countAtOrAbove70": 6,
