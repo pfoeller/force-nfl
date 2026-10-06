@@ -23,7 +23,7 @@ export function anchorLines(){
 }
 
 export function analyze(){
-  const {x,L,M,D,reference}=H.load();
+  const {x,L,M,D,reference,seam}=H.load();
   const Z=x.teams,T=Object.keys(Z).sort(),P=M.profiles,vals=Object.values(P),rev=D.config.reversion;
   const pfr25=H.csv(H.CACHE.pfrPass2025),pfr26=H.csv(H.CACHE.pfrPass2026),ts26=H.csv(H.CACHE.teamStats2026),ps26=H.csv(H.CACHE.playerStats2026);
   const OL='ol_disruption_rate',ORDER=H.referenceTeamOrder(pfr25);
@@ -267,11 +267,54 @@ export function analyze(){
       receiverLiveSdBySeasonStage:Object.fromEntries(Object.entries(wr.syntheticProbe.runs).map(([k,v])=>[k,v.bySeasonStage.map(r=>({games:Math.round(4*r.targetScale),liveSd:r.liveSd,teamsAtOrAbove70:r.teamsAtOrAbove70,spearmanWithTruth:r.spearmanWithTruth}))])),
       qbEpaWindowDriftFromCycle9:qbWindowDrift.withinSeasonSampleSizeDrift},
     rankPreservation:{receiverKSweepMinSpearman:Math.min(...wr.week4Alternatives.stabilizerSweep.map(r=>r.spearmanWithProduction))}};
-  return {reproduction:rep,ol,wr,cross:X};
+  // ================= 4. Final-grade sensitivity (correction after Codex review C) =================
+  // The presentation seam consumes the FINAL grade: live grade -> production blend with the
+  // team's own prior -> unitDisplayGrade (identity). OL and receivers have no post-blend
+  // recency or clamp, so this is the complete remaining production path after the live grade
+  // (it reproduces every displayed value with residual 0, section 0c).
+  const finalOf=(key,t,live,prior=Z[t].prior[key])=>{const {g,k}=H.blendInputs(Z[t],key);return seam.unitDisplayGrade({[key]:L.blend(prior,live,g,k)},key);};
+  for(const t of T)for(const key of ['olIndex','receiverIndex'])close(finalOf(key,t,Z[t].liveGrade[key]),Z[t].display[key],t+' '+key+' final via seam',1e-12);
+  const ordinal=v=>{const idx=v.map((_,i)=>i).sort((a,b)=>v[b]-v[a]);const r=new Array(v.length);idx.forEach((i,p)=>r[i]=p+1);return r;};
+  const compare=(base,alt)=>{const rb=ordinal(base),ra=ordinal(alt),mv=rb.map((r,i)=>Math.abs(r-ra[i]));let conc=0,disc=0;
+    for(let i=0;i<base.length;i++)for(let j=i+1;j<base.length;j++){const s=Math.sign(base[i]-base[j])*Math.sign(alt[i]-alt[j]);if(s>0)conc++;else if(s<0)disc++;}
+    const top=(r,n)=>T.filter((t,i)=>r[i]<=n),diff=(n)=>{const a=top(rb,n),b=top(ra,n);return {left:a.filter(t=>!b.includes(t)),entered:b.filter(t=>!a.includes(t))};};
+    const moves=T.map((t,i)=>({team:t,from:rb[i],to:ra[i]})).filter(m=>m.from!==m.to).sort((p,q)=>Math.abs(q.to-q.from)-Math.abs(p.to-p.from)||p.team.localeCompare(q.team));
+    return {spearman:correlation(base,alt).spearman,kendallTau:(conc-disc)/(conc+disc),teamsMoving:moves.length,maxAbsMove:Math.max(...mv),meanAbsMove:mean(mv),medianAbsMove:median(mv),
+      pairReversals:disc,top5:diff(5),top10:diff(10),largestMoves:moves.slice(0,5)};};
+  const wrFinal=K=>T.map(t=>finalOf('receiverIndex',t,wrPipeline(t,K))),wrLiveK=K=>T.map(t=>wrPipeline(t,K));
+  const olLiveCf=T.map((t,i)=>liveShifted[i]),olFinalCf=T.map((t,i)=>finalOf('olIndex',t,olLiveCf[i]));
+  const wrFinalProd=wrFinal(80),olFinalProd=T.map(t=>Z[t].display.olIndex);
+  const eqPrior=(key,lives)=>T.map((t,i)=>finalOf(key,t,lives[i],50));
+  const counterfactuals=[
+    ...[40,120,200,320].map(K=>({id:`receiver K 80 -> ${K}`,unit:'receiverIndex',
+      live:compare(wrLiveK(80),wrLiveK(K)),final:compare(wrFinalProd,wrFinal(K)),
+      finalWithEqualPriorsControl:compare(eqPrior('receiverIndex',wrLiveK(80)),eqPrior('receiverIndex',wrLiveK(K))),
+      spread:{liveSdProduction:sd(wrLiveK(80)),liveSdAlternative:sd(wrLiveK(K)),priorSd:sd(T.map(t=>Z[t].prior.receiverIndex))}})),
+    {id:'OL production -> exact measured-level-matched (rate - .0107)',unit:'olIndex',
+      live:compare(T.map(t=>Z[t].liveGrade.olIndex),olLiveCf),final:compare(olFinalProd,olFinalCf),
+      finalWithEqualPriorsControl:compare(eqPrior('olIndex',T.map(t=>Z[t].liveGrade.olIndex)),eqPrior('olIndex',olLiveCf)),
+      spread:{liveSdProduction:sd(T.map(t=>Z[t].liveGrade.olIndex)),liveSdAlternative:sd(olLiveCf),priorSd:sd(T.map(t=>Z[t].prior.olIndex))}}];
+  const finalSens={path:'live grade (counterfactual) -> L.blend(team prior, live, games, priorGames) -> FORCE_UNIT_PRESENTATION_TEST_HOOKS.unitDisplayGrade (identity, asserted). Production values reproduce exactly through this path.',
+    rankConvention:'Ordinal position 1 = highest grade; no ties occur. Kendall tau-a over 496 pairs; pair reversals = discordant pairs.',
+    counterfactuals,
+    mechanism:'A live-grade change that is nearly monotone (or a uniform shift) is added to unequal team priors with weight w=g/(g+k) (median .82). Teams whose live grades move by different amounts relative to their prior gaps cross. The equal-priors control (every prior set to 50) shows how much of the final-order change disappears when priors are equal.',
+    monotoneTransformInvariance:'For any strictly increasing presentation transform f, ordering of f(final) equals ordering of final. The rank statistics above are therefore identical for every monotone presentation candidate (rank/percentile, standardized, normal-score, identity); presentation candidates differ only in spacing.'};
+  // Codex review C reproduced values (independent reproduction gate).
+  const cx=id=>counterfactuals.find(c=>c.id.startsWith(id)).final;
+  close(cx('receiver K 80 -> 40').spearman,.980572,'Codex K40 spearman',5e-7);assert.deepEqual([cx('receiver K 80 -> 40').teamsMoving,cx('receiver K 80 -> 40').maxAbsMove,cx('receiver K 80 -> 40').pairReversals],[19,6,20]);
+  close(cx('receiver K 80 -> 320').spearman,.962977,'Codex K320 spearman',5e-7);assert.deepEqual([cx('receiver K 80 -> 320').teamsMoving,cx('receiver K 80 -> 320').maxAbsMove,cx('receiver K 80 -> 320').pairReversals],[21,7,33]);
+  close(cx('OL production').spearman,.990469,'Codex OL spearman',5e-7);assert.deepEqual([cx('OL production').teamsMoving,cx('OL production').maxAbsMove,cx('OL production').pairReversals],[18,3,15]);
+  finalSens.codexReviewCReproduced={receiverK40:{spearman:.980572,teamsMoving:19,maxMove:6,pairReversals:20},receiverK320:{spearman:.962977,teamsMoving:21,maxMove:7,pairReversals:33},olLevelMatched:{spearman:.990469,teamsMoving:18,maxMove:3,pairReversals:15},reproduced:true};
+  // Correction 4: receiver residual noise conclusion conditional on the noise estimate.
+  wr.noiseAndSignal.residual.sensitivityToNoiseScale=[1,.95,.9,.85,.8,.7].map(f=>{const n=noiseRes*f,tv=varS(resE)-n;return {noiseScale:f,impliedTrueVariance:tv,impliedReliability:tv/varS(resE)};});
+  wr.noiseAndSignal.residual.note='Under the stated overlap model with the upper-bound sigma2, implied true residual variance is slightly negative, i.e. Week-4 residual dispersion is compatible with the modelled noise level and not clearly distinguishable from it under these assumptions. The estimate is sensitive: a 10% smaller noise variance implies reliability of about .06. This does not show that there is no between-team receiver signal.';
+  X.rankPreservation={liveLayerReceiverKSweepMinSpearman:X.rankPreservation.receiverKSweepMinSpearman,finalLayer:Object.fromEntries(counterfactuals.map(c=>[c.id,{spearman:c.final.spearman,teamsMoving:c.final.teamsMoving,maxAbsMove:c.final.maxAbsMove,pairReversals:c.final.pairReversals}])),
+    note:'Live-layer order is nearly invariant to K; final-grade order (the presentation input) is not, because of blending with unequal team priors.'};
+  return {reproduction:rep,ol,wr,cross:X,finalSens};
 }
 
 export function serialize(a){
-  return {'reproduction.json':H.json(a.reproduction),'ol_drift.json':H.json(a.ol),'receiver_stabilization.json':H.json(a.wr),'cross_unit.json':H.json(a.cross)};
+  return {'reproduction.json':H.json(a.reproduction),'ol_drift.json':H.json(a.ol),'receiver_stabilization.json':H.json(a.wr),'cross_unit.json':H.json(a.cross),'final_grade_sensitivity.json':H.json(a.finalSens)};
 }
 
 if(import.meta.url===`file://${process.argv[1].replace(/\\/g,'/')}`||process.argv[1]?.endsWith('analyze.mjs')){

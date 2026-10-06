@@ -79,7 +79,9 @@ export function load({pins=PINS}={}){
   const U=context.window.FORCE_UNIT_FORCE_BRIDGE_MODEL;
   const reference=JSON.parse(lf(REFERENCE));
   assert(L.qbReferenceValid(reference),'V149 reference valid');
-  return {x,api,L,U,M:api.M,D:api.D,reference};
+  const seam=context.window.FORCE_UNIT_PRESENTATION_TEST_HOOKS;
+  assert(seam&&seam.isIdentity(),'identity presentation seam present and unchanged');
+  return {x,api,L,U,M:api.M,D:api.D,reference,seam};
 }
 
 // 2025 reference windows are written team-major, each team's windows in chronological

@@ -41,7 +41,39 @@
       "betweenTeamVariance": 0.009918170429402238,
       "expectedNoiseVarianceOverlapModel": 0.01035746854999896,
       "impliedTrueVariance": -0.00043929812059672127,
-      "note": "Implied true variance at or below zero means the Week-4 residual dispersion is not distinguishable from modelled sampling noise. The overlap model assumes equal per-play EPA variance for all attempts and is an approximation."
+      "note": "Under the stated overlap model with the upper-bound sigma2, implied true residual variance is slightly negative, i.e. Week-4 residual dispersion is compatible with the modelled noise level and not clearly distinguishable from it under these assumptions. The estimate is sensitive: a 10% smaller noise variance implies reliability of about .06. This does not show that there is no between-team receiver signal.",
+      "sensitivityToNoiseScale": [
+        {
+          "noiseScale": 1,
+          "impliedTrueVariance": -0.00043929812059672127,
+          "impliedReliability": -0.04429225366953061
+        },
+        {
+          "noiseScale": 0.95,
+          "impliedTrueVariance": 0.00007857530690322766,
+          "impliedReliability": 0.007922359013946017
+        },
+        {
+          "noiseScale": 0.9,
+          "impliedTrueVariance": 0.0005964487344031748,
+          "impliedReliability": 0.06013697169742247
+        },
+        {
+          "noiseScale": 0.85,
+          "impliedTrueVariance": 0.001114322161903122,
+          "impliedReliability": 0.11235158438089891
+        },
+        {
+          "noiseScale": 0.8,
+          "impliedTrueVariance": 0.001632195589403071,
+          "impliedReliability": 0.16456619706437556
+        },
+        {
+          "noiseScale": 0.7,
+          "impliedTrueVariance": 0.002667942444402967,
+          "impliedReliability": 0.2689954224313286
+        }
+      ]
     },
     "rawSplitHalfWeeks1and3vs2and4": {
       "n": 32,

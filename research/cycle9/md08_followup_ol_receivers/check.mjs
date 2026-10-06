@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import * as H from './lib.mjs';
 import {analyze,serialize} from './analyze.mjs';
 
-const RESULTS=['reproduction.json','ol_drift.json','receiver_stabilization.json','cross_unit.json'];
+const RESULTS=['reproduction.json','ol_drift.json','receiver_stabilization.json','cross_unit.json','final_grade_sensitivity.json'];
 const PACKAGE=['README.md','inputs.json','lib.mjs','analyze.mjs','check.mjs',...RESULTS.map(f=>'results/'+f)];
 
 // 1. Pins, frozen-package integrity, production reproduction and Cycle 9 reproduction all
@@ -34,11 +34,17 @@ near(o.season2025Replay.fourGame[0].liveMean,49.5047,1e-3,'2025 start-1 replay m
 near(o.meanDeltaDecomposition.pooledVersusTeamMeanFrame.referenceMeanGrade,47.0812,1e-3,'reference mean maps below 50');
 assert(o.meanDeltaDecomposition.counterfactualLevelMatchedTo2025Start.meanDelta>-2.5,'level-matched OL channel mean near zero');
 assert(w.noiseAndSignal.residual.impliedTrueVariance<=0,'Week-4 residual dispersion not above modelled noise');
-assert(Math.min(...w.week4Alternatives.stabilizerSweep.map(r=>r.spearmanWithProduction))>.99,'K sweep preserves order');
+assert(Math.min(...w.week4Alternatives.stabilizerSweep.map(r=>r.spearmanWithProduction))>.99,'K sweep preserves LIVE-layer order only');
+// Final-grade layer (presentation input): order is NOT preserved; Codex review C values reproduce.
+const fs2=a.finalSens.counterfactuals;
+for(const c of fs2)assert(c.final.teamsMoving>c.live.teamsMoving,c.id+': final-layer order moves more than live-layer order');
+assert.equal(fs2.find(c=>c.id.startsWith('OL')).live.teamsMoving,0,'OL level shift is order-neutral at the live layer');
+assert(a.finalSens.codexReviewCReproduced.reproduced);
+const ns=w.noiseAndSignal.residual.sensitivityToNoiseScale;assert(ns[0].impliedReliability<=0&&ns.find(r=>r.noiseScale===.9).impliedReliability>0,'receiver noise conclusion is conditional on the noise estimate');
 for(const run of Object.values(w.syntheticProbe.runs))assert(run.week4.find(r=>r.stabilizerTargets===80).liveSd>w.syntheticProbe.observedWeek4.liveSd,'observed WR spread narrower than every probe');
 
 // 5. Negative controls: each must detect a deliberate defect.
-const {x,L,M,reference}=H.load(),T=Object.keys(x.teams).sort(),Z=x.teams;
+const {x,L,M,reference,seam}=H.load(),T=Object.keys(x.teams).sort(),Z=x.teams;
 const fails=(fn,label)=>{let threw=false;try{fn();}catch{threw=true;}assert(threw,'negative control did not fail: '+label);return label;};
 const pfr25=H.csv(H.CACHE.pfrPass2025);
 const controls=[
@@ -54,6 +60,8 @@ const controls=[
     assert(H.correlation(xs,ys).pearson>.9);},'a wrong 2025 slot-to-team mapping fails the PFR validation'),
   fails(()=>{const a1=reference.sample_windows['1'].ol_disruption_rate,b2=[...reference.sample_windows['2'].ol_disruption_rate].reverse();
     for(let t=0;t<32;t++)for(let i=0;i<16;i++){const u=a1[t*17+i],v=a1[t*17+i+1],q=b2[t*16+i];assert(q>=Math.min(u,v)-1e-7&&q<=Math.max(u,v)+1e-7);}},'a reordered 2-game reference fails the chronology bracket'),
+  fails(()=>{const c=a.finalSens.counterfactuals.find(q=>q.id==='receiver K 80 -> 40');assert.deepEqual([c.live.teamsMoving,c.live.maxAbsMove,c.live.pairReversals],[19,6,20]);},'live-layer ranks cannot reproduce the final-grade (presentation-input) movements'),
+  fails(()=>{seam.setTransform((k,v)=>Math.min(100,v+10));try{for(const t of T){const {g,k}=H.blendInputs(Z[t],'olIndex');H.close(seam.unitDisplayGrade({olIndex:L.blend(Z[t].prior.olIndex,Z[t].liveGrade.olIndex,g,k)},'olIndex'),Z[t].display.olIndex,'seam');}}finally{seam.reset();}},'a non-identity presentation transform breaks the final-grade path reproduction'),
   fails(()=>{const ps=H.csv(H.CACHE.playerStats2026);let tg=0;for(const r of ps)if(H.canon(r.team)==='ATL'&&['WR','TE'].includes(r.position)&&r.week!=='3')tg+=+r.targets;assert.equal(tg,Z.ATL.raw.receiverRoomTargets);},'a missing week breaks the bye-team weekly reconstruction')
 ];
 

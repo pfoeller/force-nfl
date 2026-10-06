@@ -1,0 +1,732 @@
+{
+  "path": "live grade (counterfactual) -> L.blend(team prior, live, games, priorGames) -> FORCE_UNIT_PRESENTATION_TEST_HOOKS.unitDisplayGrade (identity, asserted). Production values reproduce exactly through this path.",
+  "rankConvention": "Ordinal position 1 = highest grade; no ties occur. Kendall tau-a over 496 pairs; pair reversals = discordant pairs.",
+  "counterfactuals": [
+    {
+      "id": "receiver K 80 -> 40",
+      "unit": "receiverIndex",
+      "live": {
+        "spearman": 0.998900293255132,
+        "kendallTau": 0.9879032258064516,
+        "teamsMoving": 6,
+        "maxAbsMove": 1,
+        "meanAbsMove": 0.1875,
+        "medianAbsMove": 0,
+        "pairReversals": 3,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [
+            "CAR"
+          ],
+          "entered": [
+            "KC"
+          ]
+        },
+        "largestMoves": [
+          {
+            "team": "CAR",
+            "from": 10,
+            "to": 11
+          },
+          {
+            "team": "GB",
+            "from": 27,
+            "to": 26
+          },
+          {
+            "team": "KC",
+            "from": 11,
+            "to": 10
+          },
+          {
+            "team": "LV",
+            "from": 7,
+            "to": 8
+          },
+          {
+            "team": "MIN",
+            "from": 8,
+            "to": 7
+          }
+        ]
+      },
+      "final": {
+        "spearman": 0.9805718475073314,
+        "kendallTau": 0.9193548387096774,
+        "teamsMoving": 19,
+        "maxAbsMove": 6,
+        "meanAbsMove": 1.125,
+        "medianAbsMove": 1,
+        "pairReversals": 20,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [
+            "HOU",
+            "PHI"
+          ],
+          "entered": [
+            "BUF",
+            "MIN"
+          ]
+        },
+        "largestMoves": [
+          {
+            "team": "MIN",
+            "from": 15,
+            "to": 9
+          },
+          {
+            "team": "BUF",
+            "from": 12,
+            "to": 7
+          },
+          {
+            "team": "DET",
+            "from": 11,
+            "to": 14
+          },
+          {
+            "team": "HOU",
+            "from": 9,
+            "to": 12
+          },
+          {
+            "team": "ARI",
+            "from": 22,
+            "to": 24
+          }
+        ]
+      },
+      "finalWithEqualPriorsControl": {
+        "spearman": 0.9978005865102639,
+        "kendallTau": 0.9758064516129032,
+        "teamsMoving": 12,
+        "maxAbsMove": 1,
+        "meanAbsMove": 0.375,
+        "medianAbsMove": 0,
+        "pairReversals": 6,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": [
+          {
+            "team": "ARI",
+            "from": 28,
+            "to": 29
+          },
+          {
+            "team": "BAL",
+            "from": 5,
+            "to": 4
+          },
+          {
+            "team": "DEN",
+            "from": 26,
+            "to": 25
+          },
+          {
+            "team": "HOU",
+            "from": 14,
+            "to": 15
+          },
+          {
+            "team": "IND",
+            "from": 22,
+            "to": 21
+          }
+        ]
+      },
+      "spread": {
+        "liveSdProduction": 22.20133199667068,
+        "liveSdAlternative": 26.068109479254648,
+        "priorSd": 20.197390185677456
+      }
+    },
+    {
+      "id": "receiver K 80 -> 120",
+      "unit": "receiverIndex",
+      "live": {
+        "spearman": 0.999266862170088,
+        "kendallTau": 0.9919354838709677,
+        "teamsMoving": 4,
+        "maxAbsMove": 1,
+        "meanAbsMove": 0.125,
+        "medianAbsMove": 0,
+        "pairReversals": 2,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": [
+          {
+            "team": "DAL",
+            "from": 3,
+            "to": 2
+          },
+          {
+            "team": "JAX",
+            "from": 2,
+            "to": 3
+          },
+          {
+            "team": "PHI",
+            "from": 13,
+            "to": 14
+          },
+          {
+            "team": "SEA",
+            "from": 14,
+            "to": 13
+          }
+        ]
+      },
+      "final": {
+        "spearman": 0.9970674486803519,
+        "kendallTau": 0.9758064516129032,
+        "teamsMoving": 10,
+        "maxAbsMove": 2,
+        "meanAbsMove": 0.375,
+        "medianAbsMove": 0,
+        "pairReversals": 6,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [
+            "PHI"
+          ],
+          "entered": [
+            "DET"
+          ]
+        },
+        "largestMoves": [
+          {
+            "team": "DET",
+            "from": 11,
+            "to": 9
+          },
+          {
+            "team": "KC",
+            "from": 8,
+            "to": 10
+          },
+          {
+            "team": "ATL",
+            "from": 30,
+            "to": 29
+          },
+          {
+            "team": "BUF",
+            "from": 12,
+            "to": 13
+          },
+          {
+            "team": "GB",
+            "from": 25,
+            "to": 24
+          }
+        ]
+      },
+      "finalWithEqualPriorsControl": {
+        "spearman": 0.9974340175953079,
+        "kendallTau": 0.9758064516129032,
+        "teamsMoving": 11,
+        "maxAbsMove": 2,
+        "meanAbsMove": 0.375,
+        "medianAbsMove": 0,
+        "pairReversals": 6,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": [
+          {
+            "team": "TB",
+            "from": 29,
+            "to": 27
+          },
+          {
+            "team": "ARI",
+            "from": 28,
+            "to": 29
+          },
+          {
+            "team": "BAL",
+            "from": 5,
+            "to": 4
+          },
+          {
+            "team": "CIN",
+            "from": 9,
+            "to": 8
+          },
+          {
+            "team": "GB",
+            "from": 27,
+            "to": 28
+          }
+        ]
+      },
+      "spread": {
+        "liveSdProduction": 22.20133199667068,
+        "liveSdAlternative": 19.566477979489715,
+        "priorSd": 20.197390185677456
+      }
+    },
+    {
+      "id": "receiver K 80 -> 200",
+      "unit": "receiverIndex",
+      "live": {
+        "spearman": 0.9978005865102639,
+        "kendallTau": 0.9798387096774194,
+        "teamsMoving": 6,
+        "maxAbsMove": 2,
+        "meanAbsMove": 0.25,
+        "medianAbsMove": 0,
+        "pairReversals": 5,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": [
+          {
+            "team": "HOU",
+            "from": 15,
+            "to": 13
+          },
+          {
+            "team": "PHI",
+            "from": 13,
+            "to": 15
+          },
+          {
+            "team": "CIN",
+            "from": 9,
+            "to": 8
+          },
+          {
+            "team": "DAL",
+            "from": 3,
+            "to": 2
+          },
+          {
+            "team": "JAX",
+            "from": 2,
+            "to": 3
+          }
+        ]
+      },
+      "final": {
+        "spearman": 0.9853372434017595,
+        "kendallTau": 0.9274193548387096,
+        "teamsMoving": 19,
+        "maxAbsMove": 5,
+        "meanAbsMove": 1.0625,
+        "medianAbsMove": 1,
+        "pairReversals": 18,
+        "top5": {
+          "left": [
+            "NO"
+          ],
+          "entered": [
+            "LV"
+          ]
+        },
+        "top10": {
+          "left": [
+            "KC"
+          ],
+          "entered": [
+            "DET"
+          ]
+        },
+        "largestMoves": [
+          {
+            "team": "NO",
+            "from": 5,
+            "to": 10
+          },
+          {
+            "team": "DET",
+            "from": 11,
+            "to": 8
+          },
+          {
+            "team": "KC",
+            "from": 8,
+            "to": 11
+          },
+          {
+            "team": "ATL",
+            "from": 30,
+            "to": 28
+          },
+          {
+            "team": "BUF",
+            "from": 12,
+            "to": 14
+          }
+        ]
+      },
+      "finalWithEqualPriorsControl": {
+        "spearman": 0.9871700879765396,
+        "kendallTau": 0.9314516129032258,
+        "teamsMoving": 16,
+        "maxAbsMove": 6,
+        "meanAbsMove": 0.8125,
+        "medianAbsMove": 0.5,
+        "pairReversals": 17,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": [
+          {
+            "team": "ATL",
+            "from": 30,
+            "to": 24
+          },
+          {
+            "team": "GB",
+            "from": 27,
+            "to": 30
+          },
+          {
+            "team": "WAS",
+            "from": 24,
+            "to": 27
+          },
+          {
+            "team": "MIN",
+            "from": 8,
+            "to": 10
+          },
+          {
+            "team": "ARI",
+            "from": 28,
+            "to": 29
+          }
+        ]
+      },
+      "spread": {
+        "liveSdProduction": 22.20133199667068,
+        "liveSdAlternative": 16.53861070050838,
+        "priorSd": 20.197390185677456
+      }
+    },
+    {
+      "id": "receiver K 80 -> 320",
+      "unit": "receiverIndex",
+      "live": {
+        "spearman": 0.9937683284457478,
+        "kendallTau": 0.9556451612903226,
+        "teamsMoving": 11,
+        "maxAbsMove": 3,
+        "meanAbsMove": 0.5625,
+        "medianAbsMove": 0,
+        "pairReversals": 11,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": [
+          {
+            "team": "GB",
+            "from": 27,
+            "to": 30
+          },
+          {
+            "team": "ATL",
+            "from": 30,
+            "to": 28
+          },
+          {
+            "team": "HOU",
+            "from": 15,
+            "to": 13
+          },
+          {
+            "team": "MIN",
+            "from": 8,
+            "to": 10
+          },
+          {
+            "team": "PHI",
+            "from": 13,
+            "to": 15
+          }
+        ]
+      },
+      "final": {
+        "spearman": 0.9629765395894428,
+        "kendallTau": 0.8669354838709677,
+        "teamsMoving": 21,
+        "maxAbsMove": 7,
+        "meanAbsMove": 1.625,
+        "medianAbsMove": 1,
+        "pairReversals": 33,
+        "top5": {
+          "left": [
+            "BAL",
+            "NO"
+          ],
+          "entered": [
+            "DET",
+            "LV"
+          ]
+        },
+        "top10": {
+          "left": [
+            "BAL",
+            "NO"
+          ],
+          "entered": [
+            "DET",
+            "SEA"
+          ]
+        },
+        "largestMoves": [
+          {
+            "team": "BAL",
+            "from": 4,
+            "to": 11
+          },
+          {
+            "team": "NO",
+            "from": 5,
+            "to": 12
+          },
+          {
+            "team": "DET",
+            "from": 11,
+            "to": 5
+          },
+          {
+            "team": "HOU",
+            "from": 9,
+            "to": 6
+          },
+          {
+            "team": "MIA",
+            "from": 31,
+            "to": 28
+          }
+        ]
+      },
+      "finalWithEqualPriorsControl": {
+        "spearman": 0.9904692082111437,
+        "kendallTau": 0.9435483870967742,
+        "teamsMoving": 14,
+        "maxAbsMove": 5,
+        "meanAbsMove": 0.6875,
+        "medianAbsMove": 0,
+        "pairReversals": 14,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": [
+          {
+            "team": "ATL",
+            "from": 30,
+            "to": 25
+          },
+          {
+            "team": "GB",
+            "from": 27,
+            "to": 30
+          },
+          {
+            "team": "CAR",
+            "from": 10,
+            "to": 8
+          },
+          {
+            "team": "MIN",
+            "from": 8,
+            "to": 10
+          },
+          {
+            "team": "ARI",
+            "from": 28,
+            "to": 29
+          }
+        ]
+      },
+      "spread": {
+        "liveSdProduction": 22.20133199667068,
+        "liveSdAlternative": 14.02749940040247,
+        "priorSd": 20.197390185677456
+      }
+    },
+    {
+      "id": "OL production -> exact measured-level-matched (rate - .0107)",
+      "unit": "olIndex",
+      "live": {
+        "spearman": 1,
+        "kendallTau": 1,
+        "teamsMoving": 0,
+        "maxAbsMove": 0,
+        "meanAbsMove": 0,
+        "medianAbsMove": 0,
+        "pairReversals": 0,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": []
+      },
+      "final": {
+        "spearman": 0.9904692082111437,
+        "kendallTau": 0.9395161290322581,
+        "teamsMoving": 18,
+        "maxAbsMove": 3,
+        "meanAbsMove": 0.875,
+        "medianAbsMove": 1,
+        "pairReversals": 15,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": [
+          {
+            "team": "LAR",
+            "from": 14,
+            "to": 11
+          },
+          {
+            "team": "SEA",
+            "from": 17,
+            "to": 20
+          },
+          {
+            "team": "DAL",
+            "from": 11,
+            "to": 13
+          },
+          {
+            "team": "IND",
+            "from": 18,
+            "to": 16
+          },
+          {
+            "team": "MIA",
+            "from": 12,
+            "to": 14
+          }
+        ]
+      },
+      "finalWithEqualPriorsControl": {
+        "spearman": 0.999266862170088,
+        "kendallTau": 0.9919354838709677,
+        "teamsMoving": 4,
+        "maxAbsMove": 1,
+        "meanAbsMove": 0.125,
+        "medianAbsMove": 0,
+        "pairReversals": 2,
+        "top5": {
+          "left": [],
+          "entered": []
+        },
+        "top10": {
+          "left": [],
+          "entered": []
+        },
+        "largestMoves": [
+          {
+            "team": "IND",
+            "from": 19,
+            "to": 18
+          },
+          {
+            "team": "LV",
+            "from": 24,
+            "to": 23
+          },
+          {
+            "team": "NYJ",
+            "from": 18,
+            "to": 19
+          },
+          {
+            "team": "PIT",
+            "from": 23,
+            "to": 24
+          }
+        ]
+      },
+      "spread": {
+        "liveSdProduction": 19.993374388126856,
+        "liveSdAlternative": 20.270317289698784,
+        "priorSd": 20.845137322646735
+      }
+    }
+  ],
+  "mechanism": "A live-grade change that is nearly monotone (or a uniform shift) is added to unequal team priors with weight w=g/(g+k) (median .82). Teams whose live grades move by different amounts relative to their prior gaps cross. The equal-priors control (every prior set to 50) shows how much of the final-order change disappears when priors are equal.",
+  "monotoneTransformInvariance": "For any strictly increasing presentation transform f, ordering of f(final) equals ordering of final. The rank statistics above are therefore identical for every monotone presentation candidate (rank/percentile, standardized, normal-score, identity); presentation candidates differ only in spacing.",
+  "codexReviewCReproduced": {
+    "receiverK40": {
+      "spearman": 0.980572,
+      "teamsMoving": 19,
+      "maxMove": 6,
+      "pairReversals": 20
+    },
+    "receiverK320": {
+      "spearman": 0.962977,
+      "teamsMoving": 21,
+      "maxMove": 7,
+      "pairReversals": 33
+    },
+    "olLevelMatched": {
+      "spearman": 0.990469,
+      "teamsMoving": 18,
+      "maxMove": 3,
+      "pairReversals": 15
+    },
+    "reproduced": true
+  }
+}

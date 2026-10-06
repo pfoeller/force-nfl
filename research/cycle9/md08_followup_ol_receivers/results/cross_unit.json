@@ -412,6 +412,39 @@
     }
   },
   "rankPreservation": {
-    "receiverKSweepMinSpearman": 0.9937683284457478
+    "liveLayerReceiverKSweepMinSpearman": 0.9937683284457478,
+    "finalLayer": {
+      "receiver K 80 -> 40": {
+        "spearman": 0.9805718475073314,
+        "teamsMoving": 19,
+        "maxAbsMove": 6,
+        "pairReversals": 20
+      },
+      "receiver K 80 -> 120": {
+        "spearman": 0.9970674486803519,
+        "teamsMoving": 10,
+        "maxAbsMove": 2,
+        "pairReversals": 6
+      },
+      "receiver K 80 -> 200": {
+        "spearman": 0.9853372434017595,
+        "teamsMoving": 19,
+        "maxAbsMove": 5,
+        "pairReversals": 18
+      },
+      "receiver K 80 -> 320": {
+        "spearman": 0.9629765395894428,
+        "teamsMoving": 21,
+        "maxAbsMove": 7,
+        "pairReversals": 33
+      },
+      "OL production -> exact measured-level-matched (rate - .0107)": {
+        "spearman": 0.9904692082111437,
+        "teamsMoving": 18,
+        "maxAbsMove": 3,
+        "pairReversals": 15
+      }
+    },
+    "note": "Live-layer order is nearly invariant to K; final-grade order (the presentation input) is not, because of blending with unequal team priors."
   }
 }
