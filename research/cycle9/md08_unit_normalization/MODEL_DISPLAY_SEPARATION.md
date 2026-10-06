@@ -2,6 +2,23 @@
 
 **Owner-authorized architecture tranche only.** Branch `cycle9/claude-md08-model-display-separation`, from the independently re-reviewed research tip `aa0ad397a08cf2ff6f69e73c979e22667667a716` (Codex targeted re-review **A. CORRECTIONS VERIFIED — READY FOR OWNER DECISIONS**). Decision INVESTIGATE; Priority unset; MD-08 NOT COMPLETE. Independent implementation review and owner implementation acceptance are pending. Not merged, pushed or deployed. This document sits beside the frozen research package; it is not part of that package's checksummed set.
 
+## Which checks validate what
+
+There are two separate checks here: one reproduces the frozen research, the other validates this implementation.
+
+- **Frozen research reproduction.** The MD-08 normalization research package in this directory is frozen to exact revision `aa0ad397a08cf2ff6f69e73c979e22667667a716`. To reproduce it, check out that revision (LF-clean) and run `node research/cycle9/md08_unit_normalization/check.mjs`.
+- **Expected failure at the implementation tip.** At implementation revision `6a03f09d51e36f5df7e4f80aeb3bffc0b9fac0c6` and later, that frozen checker is expected to fail its `assets/app.js` source pin. This tranche deliberately changed that production file after the research snapshot. The mismatch is the frozen checker doing its job; it does **not** indicate a model/presentation regression.
+- **Current implementation health.** Validate with `node scripts/test_md08_model_display_separation.mjs`, plus the project's authoritative suite gates run from an LF-clean tree:
+  - `npm run test:safe`
+  - `npm run test:model`
+  - `npm run test:release`
+  - `npm run test:qb`
+  - `npm run test:snapshot`
+  - `npm run test:server`
+
+  Each wraps `node scripts/run_tests.mjs --suite <name>`. Also check canonical public-build parity: `python scripts/build_public.py` must leave `public/` unchanged.
+- **Do not reseal.** The frozen research source pins, result artifacts, output hashes and package checksums (`check.mjs`, `lib.mjs` pins, `results/`, `hashes.json`) must stay unchanged. Do not update them to the implementation tip unless a future explicitly authorized research-revision task creates a new research snapshot.
+
 ## Owner decisions recorded (2026-10-05)
 
 1. **Display meaning contract:** human-facing unit ratings are intended to express **current-season / current-reference standing**, answering roughly "how strong is this unit relative to the NFL right now?". This is a presentation contract only. It does not authorize changing the model-consumed grade.
