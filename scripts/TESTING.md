@@ -555,6 +555,21 @@ no push or deployment occurred. Closeout changes only merge/review status
 and history; retirement and UX-19 implementation remain separately
 unauthorized. The existing automatic correction remains active.
 
+## MD-08 model/presentation separation — 2026-10-05
+
+Owner-authorized architecture tranche only; no display transform is adopted.
+`test_md08_model_display_separation.mjs` (safe/model; `timeoutMs` 180000) drives
+the real ordered bundle. It proves the identity `unitDisplayGrade()` seam for
+11 keys x 32 teams, routes every classified presentation consumer through it,
+and shows that a TEST-ONLY synthetic transform installed through
+`FORCE_UNIT_PRESENTATION_TEST_HOOKS` (test mode only) changes presentation while
+ratings, bridge, forecasts, exact scores, projections, Week-2 and historical
+states stay bit-identical. Bridge-reads-presentation and consumer-bypass source
+mutations must be detected. `test_v148_canonical_qb_everywhere.mjs` keeps its
+matchup qbIndex source assertion, updated to the seam form
+`unitDisplayGrade(offProfile,'qbIndex')`. No golden fixture was recaptured. Expected
+inventory: catalog 260; safe 148; model 51; default exclusions 112.
+
 ## MD-07 V115 RB effective-prior frame correction — 2026-10-05
 
 Owner-selected LIVE_FITTED, not proven original V115 intent.

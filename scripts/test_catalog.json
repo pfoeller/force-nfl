@@ -114,6 +114,16 @@
       "timeoutMs": 120000
     },
     {
+      "file": "test_md08_model_display_separation.mjs",
+      "suites": [
+        "safe",
+        "model"
+      ],
+      "classification": "regression",
+      "reason": "MD-08 Cycle 9: real-bundle proof that the nine canonical unit grades stay model inputs while presentation consumers read the identity unitDisplayGrade() seam; a test-only synthetic display transform moves presentation only, and bridge-reads-presentation or consumer-bypass mutations are detected",
+      "timeoutMs": 180000
+    },
+    {
       "file": "test_postseason_state_audit.mjs",
       "suites": [
         "safe",

@@ -383,6 +383,25 @@
   const UNIT_FORCE_SHARE = UFB?.SHARE ?? 0.50;
   const UNIT_FORCE_CAP = UFB?.CAP ?? 7.50;
 
+  // MD-08 model/presentation seam. The nine bridge keys hold the canonical
+  // model-consumed unit grades; the bridge, ratings, forecasts, projections,
+  // ledgers and debug audits read them directly from the profile. Presentation
+  // consumers (Units board/table, team strengths, matchup duels/subedges and
+  // unit-change rows, plus the two display-only composites) read through
+  // unitDisplayGrade() instead. The production mapping is the identity, so every
+  // rendered number is unchanged; a future owner-approved display transform must
+  // be inserted here only and must never be read by model code.
+  const UNIT_MODEL_KEYS = Object.freeze(Object.keys(UNIT_FORCE_WEIGHTS));
+  const UNIT_PRESENTATION_KEYS = Object.freeze([...UNIT_MODEL_KEYS, 'offenseComposite', 'defenseIndex']);
+  const identityUnitPresentation = (key, modelGrade) => modelGrade;
+  let unitPresentationTransform = identityUnitPresentation;
+  function unitDisplayGrade(p, key) {
+    const raw = p?.[key];
+    if (!UNIT_PRESENTATION_KEYS.includes(key) || raw == null || raw === '') return raw;
+    const v = Number(raw);
+    return Number.isFinite(v) ? unitPresentationTransform(key, v) : raw;
+  }
+
   // Requested visual bands. Decimal values inherit their containing integer band:
   // [0,41) red, [41,71) yellow, [71,100] green.
   function bandClass(powerScore) {
@@ -1877,7 +1896,7 @@
       ['OL', 'olIndex'], ['RB', 'rbIndex'], ['Receivers', 'receiverIndex'], ['Pass rush', 'passRushIndex'], ['Run defense', 'runDefenseIndex'], ['Coverage', 'coverageIndex'], ['Pts/drive prevention', 'pointsAllowedPerDriveIndex']
     ];
     return metrics.map(([label,key]) => {
-      const a = Number(pre?.[key]), b = Number(post?.[key]);
+      const a = Number(unitDisplayGrade(pre, key)), b = Number(unitDisplayGrade(post, key));
       if (!Number.isFinite(a) || !Number.isFinite(b)) return '';
       const d = b-a;
       const cls = d > .05 ? 'positive' : d < -.05 ? 'negative' : '';
@@ -2428,7 +2447,7 @@
   }
 
   function rawUnitCell(p, key) {
-    const raw = p?.[key];
+    const raw = unitDisplayGrade(p, key);
     const v = raw == null || raw === '' ? NaN : Number(raw);
     let detail = '';
     if (key === 'passRushIndex') {
@@ -2467,7 +2486,7 @@
   }
 
   function unitBoardRow(p, label, key) {
-    const raw = p?.[key];
+    const raw = unitDisplayGrade(p, key);
     const v = raw == null || raw === '' ? NaN : Number(raw);
     return `<div class="unit-row"><span>${label}</span><strong>${Number.isFinite(v) ? fmt(v,1) : '-'}</strong><div class="unit-meter"><i style="width:${Math.max(0, Math.min(100, v || 0))}%"></i></div></div>`;
   }
@@ -2531,7 +2550,7 @@
   }
 
   function matchupBreakdown(offTeam, defTeam, offProfile, defProfile) {
-    const off=matchupValue(offProfile.offenseComposite), def=matchupValue(defProfile.defenseIndex);
+    const off=matchupValue(unitDisplayGrade(offProfile,'offenseComposite')), def=matchupValue(unitDisplayGrade(defProfile,'defenseIndex'));
     const overall = off==null || def==null ? null : off-def;
     const overallWinner = overall==null ? 'data unavailable' : Math.abs(overall) < .5 ? 'Even' : overall > 0
       ? `${teamToken(offTeam)} offense +${fmt(overall,0)}`
@@ -2539,10 +2558,10 @@
     return `<div class="matchup-summary">
       <div class="matchup-overall ${overall==null?'matchup-subedge-missing':''}"><span>Overall edge</span><strong>${off==null?'-':fmt(off,0)} offense vs ${def==null?'-':fmt(def,0)} defense</strong><b class="${overall==null?'':overall >= 0 ? 'positive' : 'negative'}">${overallWinner}</b></div>
       <div class="matchup-subedges">
-        ${matchupSubedge('QB vs coverage', offTeam, defTeam, offProfile.qbIndex, defProfile.coverageIndex)}
-        ${matchupSubedge('Receivers vs coverage', offTeam, defTeam, offProfile.receiverIndex, defProfile.coverageIndex)}
-        ${matchupSubedge('OL vs pass rush', offTeam, defTeam, offProfile.olIndex, defProfile.passRushIndex)}
-        ${matchupSubedge('RB vs run defense', offTeam, defTeam, offProfile.rbIndex, defProfile.runDefenseIndex)}
+        ${matchupSubedge('QB vs coverage', offTeam, defTeam, unitDisplayGrade(offProfile,'qbIndex'), unitDisplayGrade(defProfile,'coverageIndex'))}
+        ${matchupSubedge('Receivers vs coverage', offTeam, defTeam, unitDisplayGrade(offProfile,'receiverIndex'), unitDisplayGrade(defProfile,'coverageIndex'))}
+        ${matchupSubedge('OL vs pass rush', offTeam, defTeam, unitDisplayGrade(offProfile,'olIndex'), unitDisplayGrade(defProfile,'passRushIndex'))}
+        ${matchupSubedge('RB vs run defense', offTeam, defTeam, unitDisplayGrade(offProfile,'rbIndex'), unitDisplayGrade(defProfile,'runDefenseIndex'))}
       </div>
       <p class="matchup-footnote">Overall edge = offense profile − defense profile. The rows below show absolute FORCE unit grades plus a presentation-only relative matchup share. The donut is not added to FORCEcast.</p>
     </div>`;
@@ -3041,9 +3060,9 @@
   function profileStrengths(t, pOverride = null) {
     const p = pOverride || displayProfile(t);
     const metrics = [
-      ['Offense', p.offenseComposite], ['QB play', p.qbIndex], ['RB', p.rbIndex], ['Receivers', p.receiverIndex],
-      ['Offensive line', p.olIndex], ['Pass rush', p.passRushIndex], ['Run defense', p.runDefenseIndex], ['Coverage', p.coverageIndex], ['Defense', p.defenseIndex]
-    ].filter((x) => x[1] != null && x[1] !== '' && Number.isFinite(Number(x[1])));
+      ['Offense', 'offenseComposite'], ['QB play', 'qbIndex'], ['RB', 'rbIndex'], ['Receivers', 'receiverIndex'],
+      ['Offensive line', 'olIndex'], ['Pass rush', 'passRushIndex'], ['Run defense', 'runDefenseIndex'], ['Coverage', 'coverageIndex'], ['Defense', 'defenseIndex']
+    ].map(([label, key]) => [label, unitDisplayGrade(p, key)]).filter((x) => x[1] != null && x[1] !== '' && Number.isFinite(Number(x[1])));
     const high = [...metrics].sort((a, b) => b[1] - a[1]).slice(0, 2);
     const low = [...metrics].sort((a, b) => a[1] - b[1]).slice(0, 2);
     return { high, low };
@@ -3822,8 +3841,8 @@
     const aStrength = profileStrengths(g.away, ap), hStrength = profileStrengths(g.home, hp);
     const marketText = marketLineLabel(g);
     const resultText = g.homeScore != null ? `${g.away} ${g.awayScore} · ${g.home} ${g.homeScore}` : null;
-    const awayOff=matchupValue(ap.offenseComposite), homeDef=matchupValue(hp.defenseIndex);
-    const homeOff=matchupValue(hp.offenseComposite), awayDef=matchupValue(ap.defenseIndex);
+    const awayOff=matchupValue(unitDisplayGrade(ap,'offenseComposite')), homeDef=matchupValue(unitDisplayGrade(hp,'defenseIndex'));
+    const homeOff=matchupValue(unitDisplayGrade(hp,'offenseComposite')), awayDef=matchupValue(unitDisplayGrade(ap,'defenseIndex'));
     const offAwayVsHome = awayOff==null || homeDef==null ? null : awayOff-homeDef;
     const offHomeVsAway = homeOff==null || awayDef==null ? null : homeOff-awayDef;
     const qbAway = ap.qb || {}, qbHome = hp.qb || {};
@@ -3854,15 +3873,15 @@
       <section class="card duel-card">
         ${g.homeScore != null ? duel('Postgame FORCE Score', g.away, g.home, historicalPostAway?.forceScore, historicalPostHome?.forceScore, 'Postgame rating', 'Postgame rating') : ''}
         ${duel(g.homeScore != null ? 'Current FORCE Score' : 'FORCE Score', g.away, g.home, awayState.forceScore, homeState.forceScore, g.homeScore != null ? 'Latest rating' : '0–100 strength', g.homeScore != null ? 'Latest rating' : '0–100 strength')}
-        ${duel('Offensive profile', g.away, g.home, ap.offenseComposite, hp.offenseComposite, awayOffNote, homeOffNote)}
-        ${duel('Defensive profile', g.away, g.home, ap.defenseIndex, hp.defenseIndex)}
-        ${duel('Quarterback play', g.away, g.home, ap.qbIndex, hp.qbIndex, awayQbNote, homeQbNote)}
-        ${duel('Offensive line', g.away, g.home, ap.olIndex, hp.olIndex, ap.ol ? `${fmt((1-ap.ol.pressure_rate_allowed)*100,1)}% disruption-free dropback proxy` : '', hp.ol ? `${fmt((1-hp.ol.pressure_rate_allowed)*100,1)}% disruption-free dropback proxy` : '')}
-        ${duel('Pass rush', g.away, g.home, ap.passRushIndex, hp.passRushIndex, ap.dl ? passRushRateLabel(ap) : '', hp.dl ? passRushRateLabel(hp) : '')}
-        ${duel('Run defense', g.away, g.home, ap.runDefenseIndex, hp.runDefenseIndex, ap.dl?.run_epa_allowed != null ? `${fmt(ap.dl.run_epa_allowed,3)} rush EPA/play allowed` : '', hp.dl?.run_epa_allowed != null ? `${fmt(hp.dl.run_epa_allowed,3)} rush EPA/play allowed` : '')}
-        ${duel('Coverage', g.away, g.home, ap.coverageIndex, hp.coverageIndex, ap.cov ? `${fmt(ap.cov.press_adj_epa,3)} pass EPA/play allowed` : '', hp.cov ? `${fmt(hp.cov.press_adj_epa,3)} pass EPA/play allowed` : '')}
-        ${duel('Receiving efficiency', g.away, g.home, ap.receiverIndex, hp.receiverIndex, ap.receivers ? `${fmt(ap.receivers.adj_epa,3)} receiving EPA/target` : '', hp.receivers ? `${fmt(hp.receivers.adj_epa,3)} receiving EPA/target` : '')}
-        ${duel('RB efficiency', g.away, g.home, ap.rbIndex, hp.rbIndex, ap.rb?.room_composite != null ? `${ap.rb.name || 'RB room'} · ${fmt(ap.rb.room_composite,3)} composite EPA` : 'RB/FB room efficiency', hp.rb?.room_composite != null ? `${hp.rb.name || 'RB room'} · ${fmt(hp.rb.room_composite,3)} composite EPA` : 'RB/FB room efficiency')}
+        ${duel('Offensive profile', g.away, g.home, unitDisplayGrade(ap,'offenseComposite'), unitDisplayGrade(hp,'offenseComposite'), awayOffNote, homeOffNote)}
+        ${duel('Defensive profile', g.away, g.home, unitDisplayGrade(ap,'defenseIndex'), unitDisplayGrade(hp,'defenseIndex'))}
+        ${duel('Quarterback play', g.away, g.home, unitDisplayGrade(ap,'qbIndex'), unitDisplayGrade(hp,'qbIndex'), awayQbNote, homeQbNote)}
+        ${duel('Offensive line', g.away, g.home, unitDisplayGrade(ap,'olIndex'), unitDisplayGrade(hp,'olIndex'), ap.ol ? `${fmt((1-ap.ol.pressure_rate_allowed)*100,1)}% disruption-free dropback proxy` : '', hp.ol ? `${fmt((1-hp.ol.pressure_rate_allowed)*100,1)}% disruption-free dropback proxy` : '')}
+        ${duel('Pass rush', g.away, g.home, unitDisplayGrade(ap,'passRushIndex'), unitDisplayGrade(hp,'passRushIndex'), ap.dl ? passRushRateLabel(ap) : '', hp.dl ? passRushRateLabel(hp) : '')}
+        ${duel('Run defense', g.away, g.home, unitDisplayGrade(ap,'runDefenseIndex'), unitDisplayGrade(hp,'runDefenseIndex'), ap.dl?.run_epa_allowed != null ? `${fmt(ap.dl.run_epa_allowed,3)} rush EPA/play allowed` : '', hp.dl?.run_epa_allowed != null ? `${fmt(hp.dl.run_epa_allowed,3)} rush EPA/play allowed` : '')}
+        ${duel('Coverage', g.away, g.home, unitDisplayGrade(ap,'coverageIndex'), unitDisplayGrade(hp,'coverageIndex'), ap.cov ? `${fmt(ap.cov.press_adj_epa,3)} pass EPA/play allowed` : '', hp.cov ? `${fmt(hp.cov.press_adj_epa,3)} pass EPA/play allowed` : '')}
+        ${duel('Receiving efficiency', g.away, g.home, unitDisplayGrade(ap,'receiverIndex'), unitDisplayGrade(hp,'receiverIndex'), ap.receivers ? `${fmt(ap.receivers.adj_epa,3)} receiving EPA/target` : '', hp.receivers ? `${fmt(hp.receivers.adj_epa,3)} receiving EPA/target` : '')}
+        ${duel('RB efficiency', g.away, g.home, unitDisplayGrade(ap,'rbIndex'), unitDisplayGrade(hp,'rbIndex'), ap.rb?.room_composite != null ? `${ap.rb.name || 'RB room'} · ${fmt(ap.rb.room_composite,3)} composite EPA` : 'RB/FB room efficiency', hp.rb?.room_composite != null ? `${hp.rb.name || 'RB room'} · ${fmt(hp.rb.room_composite,3)} composite EPA` : 'RB/FB room efficiency')}
       </section>
       <div class="grid two matchup-pair matchup-analysis" style="margin-top:16px">
         <section class="card team-accent-card" style="${teamAccentStyle(g.away)}"><div class="card-head"><h2 class="headed-team matchup-versus-title">${teamToken(g.away, 'xs')}<span>offense vs</span>${teamToken(g.home, 'xs')}<span>defense</span></h2>${edgeBadge(g.away, g.home, offAwayVsHome)}</div><div class="card-body">
@@ -3949,8 +3968,8 @@
         force: state.forceScore, elo: state.elo, sinceBase: state.elo - r.elo,
         actualWins: Number(l.w ?? r.w ?? 0), expectedWins: Number(l.exp_w ?? 0), luck: Number(luckContextScore(l) ?? -999), luckPct: Number(l.luck_pct ?? 0),
         penEPA: pen.unavailable ? null : penaltyContextScore(pen), penUnavailable: Boolean(pen.unavailable), penWP: Number(pen.live ? (pen.net_pen_yards ?? 0) : (pen.pen_wp_swing ?? 0)), decisive: Number(pr._live?.games ?? 0),
-        off: Number(pr.offenseComposite ?? -999), def: Number(pr.defenseIndex ?? -999), qb: Number(pr.qbIndex ?? -999), ol: Number(pr.olIndex ?? -999),
-        passRush: Number(pr.passRushIndex ?? -999), runDef: Number(pr.runDefenseIndex ?? -999), cov: Number(pr.coverageIndex ?? -999), rb: Number(pr.rbIndex ?? -999), rec: Number(pr.receiverIndex ?? -999),
+        off: Number(unitDisplayGrade(pr,'offenseComposite') ?? -999), def: Number(unitDisplayGrade(pr,'defenseIndex') ?? -999), qb: Number(unitDisplayGrade(pr,'qbIndex') ?? -999), ol: Number(unitDisplayGrade(pr,'olIndex') ?? -999),
+        passRush: Number(unitDisplayGrade(pr,'passRushIndex') ?? -999), runDef: Number(unitDisplayGrade(pr,'runDefenseIndex') ?? -999), cov: Number(unitDisplayGrade(pr,'coverageIndex') ?? -999), rb: Number(unitDisplayGrade(pr,'rbIndex') ?? -999), rec: Number(unitDisplayGrade(pr,'receiverIndex') ?? -999),
         offEpa: Number(pr.off_epa ?? -999), vsVegas: Number(spreadContextScore(ai) ?? -999), vegasWeight: Number(ai?.marketWeight ?? 0)
       }};
     });
@@ -5409,6 +5428,12 @@
   }
 
   if (window.__FORCE_TEST_MODE__) {
+    window.FORCE_UNIT_PRESENTATION_TEST_HOOKS = {
+      modelKeys: UNIT_MODEL_KEYS, presentationKeys: UNIT_PRESENTATION_KEYS, unitDisplayGrade,
+      setTransform(fn) { unitPresentationTransform = typeof fn === 'function' ? fn : identityUnitPresentation; },
+      reset() { unitPresentationTransform = identityUnitPresentation; },
+      isIdentity() { return unitPresentationTransform === identityUnitPresentation; }
+    };
     window.FORCE_PROJECTION_TEST_HOOKS = {
       recordPct, tiebreakCompare, resolveDivisionTie, resolveCrossDivisionWildcardTie,
       selectWildcardTeam, rankConferenceCandidates, rankDivisionTeams, buildConferenceField, addProjectedOutcome, selectRepresentativeProjection
