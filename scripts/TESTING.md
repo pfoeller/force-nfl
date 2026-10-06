@@ -18,14 +18,52 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 147 tests: 114 JavaScript and 33 Python |
+| `npm test` / `npm run test:safe` | 148 tests: 115 JavaScript and 33 Python |
 | `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 28 QB/pressure/research regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
 | `npm run test:server` | 30 server and PBP/calibration fixtures |
-| `npm run test:model` | 50 model/unit/research regressions |
+| `npm run test:model` | 51 model/unit/research regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
+
+### FORCE Gate (Phase 2A)
+
+[FORCE Gate](../.github/workflows/force-gate.yml) is a single validation job on
+`pull_request` events targeting `main`. It checks out and immediately verifies
+the exact PR head SHA with full history and no persisted checkout credentials;
+the synthetic merge SHA is recorded for comparison, not tested. The
+`ubuntu-24.04` runner verifies index-LF files remain LF in its working tree,
+without rewriting files. Runtimes are exactly Node **24.19.0** and Python
+**3.12.14**; `FORCE_TEST_PYTHON` selects that Python and
+`PYTHONDONTWRITEBYTECODE=1` prevents bytecode writes.
+
+The gate validates inventory structure: known suite names, every normal-suite
+test in `safe`, no special test in a normal suite, and reasons for every
+exclusion. Counts are reported rather than frozen. It runs `test:safe` once;
+model, release, QB, snapshot and server selections are subsets of safe and are
+not rerun. Fixtures are read-only: tracked or untracked fixture changes fail.
+The canonical `build:public` must leave all tracked and non-ignored untracked
+files clean, with HEAD still the tested PR SHA. No fixture capture, dependency
+installation, cache, secrets, artifact upload or deployment is part of the gate.
+The token has only `contents: read`. One concurrency group per PR cancels older
+runs; there are no conditional jobs or paths that report success by skipping
+validation. The job summary records revisions, ancestry, runtime versions,
+inventory and validation outcomes.
+
+Fast-forward eligibility from both the event base and main at checkout is
+**report-only** in Phase 2A: a false result warns without failing validation.
+The gate never updates or rebases the branch. FORCE's required integration
+path remains local exact-SHA `ff-only` integration; web merge, rebase and squash
+methods do not preserve the desired reviewed SHA state.
+
+**FORCE Gate is NOT YET REQUIRED; the PR requirement is NOT YET ENABLED.**
+Phase 1 remains deletion and non-fast-forward protection only. A real PR must
+first establish event/check-run behavior and observation evidence before any
+separate authorization of required-check enforcement. Require-PR compatibility
+with local exact-SHA fast-forward integration remains unproven; it stays OFF
+until a separately authorized disposable ruleset/branch experiment proves it.
+Local LF dry runs do not prove those GitHub semantics.
 
 ### Golden fixture: `scripts/fixtures/ux19_golden.json`
 

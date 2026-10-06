@@ -1,0 +1,191 @@
+name: FORCE Gate
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: force-gate-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  force-gate:
+    name: FORCE Gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out exact PR head
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Assert and record tested revision
+        run: |
+          tested_head=$(git rev-parse HEAD)
+          main_at_checkout=$(git rev-parse refs/remotes/origin/main)
+          printf 'PR: %s\nPR head: %s\nEvent base: %s\nTested HEAD: %s\nGITHUB_SHA: %s\nMain at checkout: %s\n' \
+            "$PR_NUMBER" "$HEAD_SHA" "$EVENT_BASE_SHA" "$tested_head" "$GITHUB_SHA" "$main_at_checkout"
+          {
+            printf '## FORCE Gate\n\n'
+            printf -- '- PR: %s\n- PR head SHA: %s\n- Event base SHA: %s\n- Tested HEAD: %s\n- GITHUB_SHA: %s\n- Main-at-checkout SHA: %s\n' \
+              "$PR_NUMBER" "$HEAD_SHA" "$EVENT_BASE_SHA" "$tested_head" "$GITHUB_SHA" "$main_at_checkout"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [[ "$tested_head" != "$HEAD_SHA" ]]; then
+            echo "::error::Checkout did not produce the exact PR head"
+            exit 1
+          fi
+          printf 'MAIN_AT_CHECKOUT=%s\n' "$main_at_checkout" >> "$GITHUB_ENV"
+
+      - name: Report fast-forward eligibility
+        run: |
+          report_ancestor() {
+            local label="$1" base="$2" result status
+            if git merge-base --is-ancestor "$base" "$HEAD_SHA"; then
+              result=yes
+            else
+              status=$?
+              if [[ "$status" -ne 1 ]]; then
+                echo "::error::Could not determine ancestry for $label"
+                return "$status"
+              fi
+              result=no
+              echo "::warning::Fast-forward eligibility from $label is false (Phase 2A report only)"
+            fi
+            printf '%s ancestor of tested head: %s\n' "$label" "$result"
+            printf -- '- FF eligibility from %s: %s (report only)\n' "$label" "$result" >> "$GITHUB_STEP_SUMMARY"
+          }
+          report_ancestor "event base" "$EVENT_BASE_SHA"
+          report_ancestor "main at checkout" "$MAIN_AT_CHECKOUT"
+
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.19.0'
+          package-manager-cache: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12.14'
+
+      - name: Verify and record runtimes
+        run: |
+          python_path=$(python -c 'import sys; print(sys.executable)')
+          printf 'FORCE_TEST_PYTHON=%s\n' "$python_path" >> "$GITHUB_ENV"
+          {
+            printf -- '- Node: %s\n' "$(node --version)"
+            printf -- '- Python: %s\n' "$(python --version)"
+            printf -- '- Git: %s\n' "$(git --version)"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          node -e 'if (process.versions.node !== "24.19.0") throw new Error("Node 24.19.0 required")'
+          python -c 'import sys; assert sys.version_info[:3] == (3, 12, 14), "Python 3.12.14 required"'
+
+      - name: Assert LF working tree
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          const entries = execFileSync('git', ['ls-files', '--eol', '-z'], {encoding: 'utf8'}).split('\0').filter(Boolean);
+          const bad = entries.filter(entry => {
+            const match = /^i\/lf\s+w\/([^\s]+)/.exec(entry);
+            return match && match[1] !== 'lf';
+          });
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `- LF working-tree contract: ${bad.length ? 'FAIL' : 'PASS'}\n`);
+          if (bad.length) {
+            console.error('Index-LF files with non-LF working-tree form:', bad);
+            process.exitCode = 1;
+          }
+          NODE
+
+      - name: Validate test inventory structure
+        run: |
+          npm run --silent test:inventory > "$RUNNER_TEMP/force-test-inventory.json"
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          const inventory = JSON.parse(fs.readFileSync(path.join(process.env.RUNNER_TEMP, 'force-test-inventory.json'), 'utf8'));
+          const normal = new Set(['safe', 'release', 'qb', 'snapshot', 'server', 'model']);
+          assert(Array.isArray(inventory.tests) && inventory.tests.length > 0, 'Nonempty test inventory required');
+          for (const test of inventory.tests) {
+            assert(Array.isArray(test.suites), `${test.file}: suites must be an array`);
+            assert(test.suites.every(suite => normal.has(suite)), `${test.file}: unknown suite name`);
+            assert(!test.suites.length || test.suites.includes('safe'), `${test.file}: normal-suite test missing safe membership`);
+            assert(test.special === undefined || Array.isArray(test.special), `${test.file}: special must be an array`);
+            assert(!test.special?.length || !test.suites.length, `${test.file}: special test belongs to a normal suite`);
+            if (!test.suites.includes('safe')) {
+              assert(typeof test.reason === 'string' && test.reason.trim(), `${test.file}: excluded test lacks a reason`);
+            }
+          }
+          const counts = {
+            total: inventory.tests.length,
+            safe: inventory.tests.filter(test => test.suites.includes('safe')).length,
+            excluded: inventory.tests.filter(test => !test.suites.includes('safe')).length,
+          };
+          assert.deepEqual(inventory.counts, counts, 'Inventory counts must agree with membership');
+          const message = `Inventory: ${counts.total} total / ${counts.safe} safe / ${counts.excluded} excluded`;
+          console.log(message);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `- ${message}; structural assertions PASS\n`);
+          NODE
+
+      - name: Run safe suite once
+        run: |
+          if npm run test:safe; then
+            printf -- '- Safe suite: PASS\n' >> "$GITHUB_STEP_SUMMARY"
+          else
+            status=$?
+            printf -- '- Safe suite: FAIL\n' >> "$GITHUB_STEP_SUMMARY"
+            exit "$status"
+          fi
+
+      - name: Assert golden fixtures unchanged
+        run: |
+          fixture_status=$(git status --porcelain=v1 --untracked-files=all -- scripts/fixtures/)
+          if [[ -n "$fixture_status" ]]; then
+            printf '%s\n' "$fixture_status"
+            printf -- '- Golden fixtures unchanged: FAIL\n' >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::Tests changed golden fixtures; no regeneration permitted"
+            exit 1
+          fi
+          printf -- '- Golden fixtures unchanged: PASS\n' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Build canonical public output
+        run: |
+          if npm run build:public; then
+            printf -- '- Public build: PASS (parity checked next)\n' >> "$GITHUB_STEP_SUMMARY"
+          else
+            status=$?
+            printf -- '- Public build: FAIL\n' >> "$GITHUB_STEP_SUMMARY"
+            exit "$status"
+          fi
+
+      - name: Assert public parity and final clean revision
+        run: |
+          tree_status=$(git status --porcelain=v1 --untracked-files=all)
+          if [[ -n "$tree_status" ]]; then
+            printf '%s\n' "$tree_status"
+            printf -- '- Public-build parity: FAIL\n- Final clean state: FAIL\n' >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::Validation or public build changed the repository"
+            exit 1
+          fi
+          git diff --exit-code
+          git diff --cached --exit-code
+          if [[ "$(git rev-parse HEAD)" != "$HEAD_SHA" ]]; then
+            printf -- '- Final clean state: FAIL (HEAD changed)\n' >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::HEAD changed during validation"
+            exit 1
+          fi
+          printf -- '- Public-build parity: PASS\n- Final clean state and exact HEAD: PASS\n' >> "$GITHUB_STEP_SUMMARY"
