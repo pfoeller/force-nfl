@@ -1,13 +1,25 @@
 {
   "path": "live grade (counterfactual) -> L.blend(team prior, live, games, priorGames) -> FORCE_UNIT_PRESENTATION_TEST_HOOKS.unitDisplayGrade (identity, asserted). Production values reproduce exactly through this path.",
-  "rankConvention": "Ordinal position 1 = highest grade; no ties occur. Kendall tau-a over 496 pairs; pair reversals = discordant pairs.",
+  "rankConvention": "Ranks are descending average (mid) ranks: rank = 1 + #teams with a strictly higher grade + (#teams with an exactly equal grade - 1)/2, so tied teams share a rank. A team moves when its midrank changes; moves are absolute midrank differences. Spearman is Pearson on these midranks. Kendall is tau-b over all 496 pairs: (concordant - discordant)/sqrt((496 - pairs tied in base)(496 - pairs tied in alternative)). Pair reversals = discordant pairs (strictly opposite order); pairs tied in either vector are neither concordant nor reversed and are counted separately. Ties are exact numeric equality. The only tie in any compared vector is the OL live grade of DAL and MIA (identical raw rate and game count), which stays tied in the level-matched counterfactual; no final-grade vector has a tie, so final-layer tau-b equals tau-a.",
   "counterfactuals": [
     {
       "id": "receiver K 80 -> 40",
       "unit": "receiverIndex",
       "live": {
         "spearman": 0.998900293255132,
-        "kendallTau": 0.9879032258064516,
+        "kendallTauB": 0.9879032258064516,
+        "pairs": {
+          "total": 496,
+          "concordant": 493,
+          "discordant": 3,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 6,
         "maxAbsMove": 1,
         "meanAbsMove": 0.1875,
@@ -55,7 +67,19 @@
       },
       "final": {
         "spearman": 0.9805718475073314,
-        "kendallTau": 0.9193548387096774,
+        "kendallTauB": 0.9193548387096774,
+        "pairs": {
+          "total": 496,
+          "concordant": 476,
+          "discordant": 20,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 19,
         "maxAbsMove": 6,
         "meanAbsMove": 1.125,
@@ -105,7 +129,19 @@
       },
       "finalWithEqualPriorsControl": {
         "spearman": 0.9978005865102639,
-        "kendallTau": 0.9758064516129032,
+        "kendallTauB": 0.9758064516129032,
+        "pairs": {
+          "total": 496,
+          "concordant": 490,
+          "discordant": 6,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 12,
         "maxAbsMove": 1,
         "meanAbsMove": 0.375,
@@ -158,7 +194,19 @@
       "unit": "receiverIndex",
       "live": {
         "spearman": 0.999266862170088,
-        "kendallTau": 0.9919354838709677,
+        "kendallTauB": 0.9919354838709677,
+        "pairs": {
+          "total": 496,
+          "concordant": 494,
+          "discordant": 2,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 4,
         "maxAbsMove": 1,
         "meanAbsMove": 0.125,
@@ -197,7 +245,19 @@
       },
       "final": {
         "spearman": 0.9970674486803519,
-        "kendallTau": 0.9758064516129032,
+        "kendallTauB": 0.9758064516129032,
+        "pairs": {
+          "total": 496,
+          "concordant": 490,
+          "discordant": 6,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 10,
         "maxAbsMove": 2,
         "meanAbsMove": 0.375,
@@ -245,7 +305,19 @@
       },
       "finalWithEqualPriorsControl": {
         "spearman": 0.9974340175953079,
-        "kendallTau": 0.9758064516129032,
+        "kendallTauB": 0.9758064516129032,
+        "pairs": {
+          "total": 496,
+          "concordant": 490,
+          "discordant": 6,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 11,
         "maxAbsMove": 2,
         "meanAbsMove": 0.375,
@@ -298,7 +370,19 @@
       "unit": "receiverIndex",
       "live": {
         "spearman": 0.9978005865102639,
-        "kendallTau": 0.9798387096774194,
+        "kendallTauB": 0.9798387096774194,
+        "pairs": {
+          "total": 496,
+          "concordant": 491,
+          "discordant": 5,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 6,
         "maxAbsMove": 2,
         "meanAbsMove": 0.25,
@@ -342,7 +426,19 @@
       },
       "final": {
         "spearman": 0.9853372434017595,
-        "kendallTau": 0.9274193548387096,
+        "kendallTauB": 0.9274193548387096,
+        "pairs": {
+          "total": 496,
+          "concordant": 478,
+          "discordant": 18,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 19,
         "maxAbsMove": 5,
         "meanAbsMove": 1.0625,
@@ -394,7 +490,19 @@
       },
       "finalWithEqualPriorsControl": {
         "spearman": 0.9871700879765396,
-        "kendallTau": 0.9314516129032258,
+        "kendallTauB": 0.9314516129032258,
+        "pairs": {
+          "total": 496,
+          "concordant": 479,
+          "discordant": 17,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 16,
         "maxAbsMove": 6,
         "meanAbsMove": 0.8125,
@@ -447,7 +555,19 @@
       "unit": "receiverIndex",
       "live": {
         "spearman": 0.9937683284457478,
-        "kendallTau": 0.9556451612903226,
+        "kendallTauB": 0.9556451612903226,
+        "pairs": {
+          "total": 496,
+          "concordant": 485,
+          "discordant": 11,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 11,
         "maxAbsMove": 3,
         "meanAbsMove": 0.5625,
@@ -491,7 +611,19 @@
       },
       "final": {
         "spearman": 0.9629765395894428,
-        "kendallTau": 0.8669354838709677,
+        "kendallTauB": 0.8669354838709677,
+        "pairs": {
+          "total": 496,
+          "concordant": 463,
+          "discordant": 33,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 21,
         "maxAbsMove": 7,
         "meanAbsMove": 1.625,
@@ -547,7 +679,19 @@
       },
       "finalWithEqualPriorsControl": {
         "spearman": 0.9904692082111437,
-        "kendallTau": 0.9435483870967742,
+        "kendallTauB": 0.9435483870967742,
+        "pairs": {
+          "total": 496,
+          "concordant": 482,
+          "discordant": 14,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 14,
         "maxAbsMove": 5,
         "meanAbsMove": 0.6875,
@@ -600,7 +744,29 @@
       "unit": "olIndex",
       "live": {
         "spearman": 1,
-        "kendallTau": 1,
+        "kendallTauB": 1,
+        "pairs": {
+          "total": 496,
+          "concordant": 495,
+          "discordant": 0,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 1
+        },
+        "tiedGroups": {
+          "base": [
+            [
+              "DAL",
+              "MIA"
+            ]
+          ],
+          "alternative": [
+            [
+              "DAL",
+              "MIA"
+            ]
+          ]
+        },
         "teamsMoving": 0,
         "maxAbsMove": 0,
         "meanAbsMove": 0,
@@ -618,7 +784,19 @@
       },
       "final": {
         "spearman": 0.9904692082111437,
-        "kendallTau": 0.9395161290322581,
+        "kendallTauB": 0.9395161290322581,
+        "pairs": {
+          "total": 496,
+          "concordant": 481,
+          "discordant": 15,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 18,
         "maxAbsMove": 3,
         "meanAbsMove": 0.875,
@@ -662,7 +840,19 @@
       },
       "finalWithEqualPriorsControl": {
         "spearman": 0.999266862170088,
-        "kendallTau": 0.9919354838709677,
+        "kendallTauB": 0.9919354838709677,
+        "pairs": {
+          "total": 496,
+          "concordant": 494,
+          "discordant": 2,
+          "tiedInBaseOnly": 0,
+          "tiedInAlternativeOnly": 0,
+          "tiedInBoth": 0
+        },
+        "tiedGroups": {
+          "base": [],
+          "alternative": []
+        },
         "teamsMoving": 4,
         "maxAbsMove": 1,
         "meanAbsMove": 0.125,
@@ -703,11 +893,19 @@
         "liveSdProduction": 19.993374388126856,
         "liveSdAlternative": 20.270317289698784,
         "priorSd": 20.845137322646735
+      },
+      "rawRateAdjustment": "Uniform: every team raw disruption rate minus the measured league difference (identical for all teams) before the production CDF map.",
+      "liveGradeChange": {
+        "min": 3.130582320925029,
+        "max": 9.780791763706262,
+        "mean": 7.1576775295997095,
+        "sd": 1.573629639486399,
+        "note": "The same raw-rate adjustment produces team-specific live-grade changes because the 2025 window CDF is nonlinear; in this counterfactual no live rank changed."
       }
     }
   ],
-  "mechanism": "A live-grade change that is nearly monotone (or a uniform shift) is added to unequal team priors with weight w=g/(g+k) (median .82). Teams whose live grades move by different amounts relative to their prior gaps cross. The equal-priors control (every prior set to 50) shows how much of the final-order change disappears when priors are equal.",
-  "monotoneTransformInvariance": "For any strictly increasing presentation transform f, ordering of f(final) equals ordering of final. The rank statistics above are therefore identical for every monotone presentation candidate (rank/percentile, standardized, normal-score, identity); presentation candidates differ only in spacing.",
+  "mechanism": "A counterfactual live grade (for OL: a uniform shift of the raw disruption rate, which the nonlinear 2025 CDF map turns into team-specific live-grade changes) is blended with unequal team priors with weight w=g/(g+k) (median .82). Teams whose live grades move by different amounts relative to their prior gaps cross. The equal-priors control (every prior set to 50) shows how much of the final-order change disappears when priors are equal.",
+  "monotoneTransformInvariance": "For any strictly increasing, unrounded presentation transform f (no rounding, bucketing, clipping or other step that can create ties), ordering of f(final) equals ordering of final. The rank statistics above are therefore identical for every monotone presentation candidate (rank/percentile, standardized, normal-score, identity); presentation candidates differ only in spacing.",
   "codexReviewCReproduced": {
     "receiverK40": {
       "spearman": 0.980572,

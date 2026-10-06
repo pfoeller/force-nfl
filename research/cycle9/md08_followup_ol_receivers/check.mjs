@@ -34,11 +34,19 @@ near(o.season2025Replay.fourGame[0].liveMean,49.5047,1e-3,'2025 start-1 replay m
 near(o.meanDeltaDecomposition.pooledVersusTeamMeanFrame.referenceMeanGrade,47.0812,1e-3,'reference mean maps below 50');
 assert(o.meanDeltaDecomposition.counterfactualLevelMatchedTo2025Start.meanDelta>-2.5,'level-matched OL channel mean near zero');
 assert(w.noiseAndSignal.residual.impliedTrueVariance<=0,'Week-4 residual dispersion not above modelled noise');
-assert(Math.min(...w.week4Alternatives.stabilizerSweep.map(r=>r.spearmanWithProduction))>.99,'K sweep preserves LIVE-layer order only');
 // Final-grade layer (presentation input): order is NOT preserved; Codex review C values reproduce.
 const fs2=a.finalSens.counterfactuals;
 for(const c of fs2)assert(c.final.teamsMoving>c.live.teamsMoving,c.id+': final-layer order moves more than live-layer order');
-assert.equal(fs2.find(c=>c.id.startsWith('OL')).live.teamsMoving,0,'OL level shift is order-neutral at the live layer');
+// Live layer: receiver K alternatives DO move live ranks; exact reproduced statistics, not preservation.
+// [teamsMoving, maxAbsMove, pairReversals, concordant, tied pairs (base+alt+both)] under midrank / tau-b conventions.
+const LIVE={'receiver K 80 -> 40':[6,1,3,493,0],'receiver K 80 -> 120':[4,1,2,494,0],'receiver K 80 -> 200':[6,2,5,491,0],'receiver K 80 -> 320':[11,3,11,485,0],'OL production -> exact measured-level-matched (rate - .0107)':[0,0,0,495,1]};
+for(const [id,v] of Object.entries(LIVE)){const l=fs2.find(c=>c.id===id).live;assert.deepEqual([l.teamsMoving,l.maxAbsMove,l.pairReversals,l.pairs.concordant,l.pairs.tiedInBaseOnly+l.pairs.tiedInAlternativeOnly+l.pairs.tiedInBoth],v,id+' live-layer statistics');
+  H.close(l.kendallTauB,(l.pairs.concordant-l.pairs.discordant)/Math.sqrt((496-l.pairs.tiedInBaseOnly-l.pairs.tiedInBoth)*(496-l.pairs.tiedInAlternativeOnly-l.pairs.tiedInBoth)),id+' tau-b',1e-12);}
+// OL: this particular raw-rate counterfactual produced no live-rank change (DAL/MIA tied in both), while live-grade changes are non-uniform.
+const olc=fs2.find(c=>c.id.startsWith('OL'));assert.deepEqual(olc.live.tiedGroups,{base:[['DAL','MIA']],alternative:[['DAL','MIA']]});assert(olc.liveGradeChange.max-olc.liveGradeChange.min>1,'uniform raw-rate shift gives non-uniform live-grade changes');
+// Final layer: accepted values unchanged by the tie/Kendall convention fix (no final-grade ties).
+const FIN={'receiver K 80 -> 40':[19,6,20],'receiver K 80 -> 120':[10,2,6],'receiver K 80 -> 200':[19,5,18],'receiver K 80 -> 320':[21,7,33],'OL production -> exact measured-level-matched (rate - .0107)':[18,3,15]};
+for(const [id,v] of Object.entries(FIN)){const f=fs2.find(c=>c.id===id).final;assert.deepEqual([f.teamsMoving,f.maxAbsMove,f.pairReversals],v,id+' final');assert.equal(f.pairs.tiedInBaseOnly+f.pairs.tiedInAlternativeOnly+f.pairs.tiedInBoth,0,id+' final has no ties');}
 assert(a.finalSens.codexReviewCReproduced.reproduced);
 const ns=w.noiseAndSignal.residual.sensitivityToNoiseScale;assert(ns[0].impliedReliability<=0&&ns.find(r=>r.noiseScale===.9).impliedReliability>0,'receiver noise conclusion is conditional on the noise estimate');
 for(const run of Object.values(w.syntheticProbe.runs))assert(run.week4.find(r=>r.stabilizerTargets===80).liveSd>w.syntheticProbe.observedWeek4.liveSd,'observed WR spread narrower than every probe');

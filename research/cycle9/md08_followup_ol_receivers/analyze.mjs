@@ -274,12 +274,18 @@ export function analyze(){
   // (it reproduces every displayed value with residual 0, section 0c).
   const finalOf=(key,t,live,prior=Z[t].prior[key])=>{const {g,k}=H.blendInputs(Z[t],key);return seam.unitDisplayGrade({[key]:L.blend(prior,live,g,k)},key);};
   for(const t of T)for(const key of ['olIndex','receiverIndex'])close(finalOf(key,t,Z[t].liveGrade[key]),Z[t].display[key],t+' '+key+' final via seam',1e-12);
-  const ordinal=v=>{const idx=v.map((_,i)=>i).sort((a,b)=>v[b]-v[a]);const r=new Array(v.length);idx.forEach((i,p)=>r[i]=p+1);return r;};
-  const compare=(base,alt)=>{const rb=ordinal(base),ra=ordinal(alt),mv=rb.map((r,i)=>Math.abs(r-ra[i]));let conc=0,disc=0;
-    for(let i=0;i<base.length;i++)for(let j=i+1;j<base.length;j++){const s=Math.sign(base[i]-base[j])*Math.sign(alt[i]-alt[j]);if(s>0)conc++;else if(s<0)disc++;}
+  // Tie convention: exact numeric equality defines a tie; tied teams share the average
+  // (mid) rank, descending (1 = highest): rank = 1 + #greater + (#equal - 1)/2.
+  const ordinal=v=>v.map(x=>1+v.filter(y=>y>x).length+(v.filter(y=>y===x).length-1)/2);
+  const tiedGroups=v=>{const c={};v.forEach((x,i)=>(c[x]=c[x]||[]).push(T[i]));return Object.values(c).filter(a=>a.length>1);};
+  const compare=(base,alt)=>{const rb=ordinal(base),ra=ordinal(alt),mv=rb.map((r,i)=>Math.abs(r-ra[i]));let conc=0,disc=0,tieBase=0,tieAlt=0,tieBoth=0;
+    for(let i=0;i<base.length;i++)for(let j=i+1;j<base.length;j++){const a=Math.sign(base[i]-base[j]),b=Math.sign(alt[i]-alt[j]);
+      if(a===0&&b===0)tieBoth++;else if(a===0)tieBase++;else if(b===0)tieAlt++;else if(a===b)conc++;else disc++;}
+    const n0=base.length*(base.length-1)/2,n1=tieBase+tieBoth,n2=tieAlt+tieBoth;
     const top=(r,n)=>T.filter((t,i)=>r[i]<=n),diff=(n)=>{const a=top(rb,n),b=top(ra,n);return {left:a.filter(t=>!b.includes(t)),entered:b.filter(t=>!a.includes(t))};};
     const moves=T.map((t,i)=>({team:t,from:rb[i],to:ra[i]})).filter(m=>m.from!==m.to).sort((p,q)=>Math.abs(q.to-q.from)-Math.abs(p.to-p.from)||p.team.localeCompare(q.team));
-    return {spearman:correlation(base,alt).spearman,kendallTau:(conc-disc)/(conc+disc),teamsMoving:moves.length,maxAbsMove:Math.max(...mv),meanAbsMove:mean(mv),medianAbsMove:median(mv),
+    return {spearman:correlation(base,alt).spearman,kendallTauB:(conc-disc)/Math.sqrt((n0-n1)*(n0-n2)),pairs:{total:n0,concordant:conc,discordant:disc,tiedInBaseOnly:tieBase,tiedInAlternativeOnly:tieAlt,tiedInBoth:tieBoth},
+      tiedGroups:{base:tiedGroups(base),alternative:tiedGroups(alt)},teamsMoving:moves.length,maxAbsMove:Math.max(...mv),meanAbsMove:mean(mv),medianAbsMove:median(mv),
       pairReversals:disc,top5:diff(5),top10:diff(10),largestMoves:moves.slice(0,5)};};
   const wrFinal=K=>T.map(t=>finalOf('receiverIndex',t,wrPipeline(t,K))),wrLiveK=K=>T.map(t=>wrPipeline(t,K));
   const olLiveCf=T.map((t,i)=>liveShifted[i]),olFinalCf=T.map((t,i)=>finalOf('olIndex',t,olLiveCf[i]));
@@ -293,12 +299,14 @@ export function analyze(){
     {id:'OL production -> exact measured-level-matched (rate - .0107)',unit:'olIndex',
       live:compare(T.map(t=>Z[t].liveGrade.olIndex),olLiveCf),final:compare(olFinalProd,olFinalCf),
       finalWithEqualPriorsControl:compare(eqPrior('olIndex',T.map(t=>Z[t].liveGrade.olIndex)),eqPrior('olIndex',olLiveCf)),
-      spread:{liveSdProduction:sd(T.map(t=>Z[t].liveGrade.olIndex)),liveSdAlternative:sd(olLiveCf),priorSd:sd(T.map(t=>Z[t].prior.olIndex))}}];
+      spread:{liveSdProduction:sd(T.map(t=>Z[t].liveGrade.olIndex)),liveSdAlternative:sd(olLiveCf),priorSd:sd(T.map(t=>Z[t].prior.olIndex))},
+      rawRateAdjustment:'Uniform: every team raw disruption rate minus the measured league difference (identical for all teams) before the production CDF map.',
+      liveGradeChange:(()=>{const d=T.map((t,i)=>olLiveCf[i]-Z[t].liveGrade.olIndex);return {min:Math.min(...d),max:Math.max(...d),mean:mean(d),sd:sd(d),note:'The same raw-rate adjustment produces team-specific live-grade changes because the 2025 window CDF is nonlinear; in this counterfactual no live rank changed.'};})()}];
   const finalSens={path:'live grade (counterfactual) -> L.blend(team prior, live, games, priorGames) -> FORCE_UNIT_PRESENTATION_TEST_HOOKS.unitDisplayGrade (identity, asserted). Production values reproduce exactly through this path.',
-    rankConvention:'Ordinal position 1 = highest grade; no ties occur. Kendall tau-a over 496 pairs; pair reversals = discordant pairs.',
+    rankConvention:'Ranks are descending average (mid) ranks: rank = 1 + #teams with a strictly higher grade + (#teams with an exactly equal grade - 1)/2, so tied teams share a rank. A team moves when its midrank changes; moves are absolute midrank differences. Spearman is Pearson on these midranks. Kendall is tau-b over all 496 pairs: (concordant - discordant)/sqrt((496 - pairs tied in base)(496 - pairs tied in alternative)). Pair reversals = discordant pairs (strictly opposite order); pairs tied in either vector are neither concordant nor reversed and are counted separately. Ties are exact numeric equality. The only tie in any compared vector is the OL live grade of DAL and MIA (identical raw rate and game count), which stays tied in the level-matched counterfactual; no final-grade vector has a tie, so final-layer tau-b equals tau-a.',
     counterfactuals,
-    mechanism:'A live-grade change that is nearly monotone (or a uniform shift) is added to unequal team priors with weight w=g/(g+k) (median .82). Teams whose live grades move by different amounts relative to their prior gaps cross. The equal-priors control (every prior set to 50) shows how much of the final-order change disappears when priors are equal.',
-    monotoneTransformInvariance:'For any strictly increasing presentation transform f, ordering of f(final) equals ordering of final. The rank statistics above are therefore identical for every monotone presentation candidate (rank/percentile, standardized, normal-score, identity); presentation candidates differ only in spacing.'};
+    mechanism:'A counterfactual live grade (for OL: a uniform shift of the raw disruption rate, which the nonlinear 2025 CDF map turns into team-specific live-grade changes) is blended with unequal team priors with weight w=g/(g+k) (median .82). Teams whose live grades move by different amounts relative to their prior gaps cross. The equal-priors control (every prior set to 50) shows how much of the final-order change disappears when priors are equal.',
+    monotoneTransformInvariance:'For any strictly increasing, unrounded presentation transform f (no rounding, bucketing, clipping or other step that can create ties), ordering of f(final) equals ordering of final. The rank statistics above are therefore identical for every monotone presentation candidate (rank/percentile, standardized, normal-score, identity); presentation candidates differ only in spacing.'};
   // Codex review C reproduced values (independent reproduction gate).
   const cx=id=>counterfactuals.find(c=>c.id.startsWith(id)).final;
   close(cx('receiver K 80 -> 40').spearman,.980572,'Codex K40 spearman',5e-7);assert.deepEqual([cx('receiver K 80 -> 40').teamsMoving,cx('receiver K 80 -> 40').maxAbsMove,cx('receiver K 80 -> 40').pairReversals],[19,6,20]);
