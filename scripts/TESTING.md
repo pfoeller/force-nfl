@@ -82,6 +82,19 @@ repeat capture was byte-identical.
   its own with the source SHA in the commit message and in this section.
 - Replacing the committed fixture requires that review before it is accepted.
 
+Owner-authorized cross-platform portability correction (2026-10-06): the
+committed fixture is unchanged. The complete 2,248-leaf audit found Windows
+exact throughout and Linux exact except for one 1-ULP forecast `prob` difference
+at `played.games["2|2026-09-20|SEA|ARI"].prob`, isolated to platform `Math.pow`
+rounding. A7/A8 compares exact first, then permits at most 2 IEEE-754 ULP only
+for finite, non-integer game-row `prob` values. Ordered keys, structure, array
+lengths and every non-probability value (including historical Elo and
+`qbRestore`) remain exact; ratings, teams, projections and HTML hashes retain
+their existing exact assertions. Bounded synthetic controls reject a 3-ULP
+probability change and even a 1-ULP historical Elo change. This is a test-only
+portability allowance; fixture recapture still requires separate authorization
+and the review/provenance procedure above.
+
 Fixture provenance log: Cycle 8 MD-07, `cdcfa8de4eed10f26be0c28b05583c4240586537` (transition `e35145aac5a66bb141d6dc8593b2902d0fc52503` independently verified and owner ACCEPTED 2026-10-05); Cycle 7 MD-04, `f984ed9`; Cycle 6, `fe09e67`.
 
 Cycle 8 MD-07 fixture-only transition (2026-10-05): captured with

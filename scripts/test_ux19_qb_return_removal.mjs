@@ -68,6 +68,80 @@ if (CAPTURE) {
   process.exit(0);
 }
 
+// Test-only portability: exact first, then at most two ULP for game-row prob.
+// All other leaves (including historical Elo/qbRestore) and ordered keys stay exact.
+const floatBits=new DataView(new ArrayBuffer(8));
+const SIGN=1n<<63n, MASK=(1n<<64n)-1n;
+function floatOrdinal(value) {
+  floatBits.setFloat64(0,value,false);
+  const bits=floatBits.getBigUint64(0,false);
+  return bits&SIGN ? (~bits)&MASK : bits|SIGN;
+}
+function ulpDistance(actual,expected) {
+  if (Object.is(actual,expected)) return 0n; // Includes equal NaN and infinities.
+  if (!Number.isFinite(actual)||!Number.isFinite(expected)) return null;
+  // Signed zeros have distinct ordinals; they are never tolerance-eligible.
+  const delta=floatOrdinal(actual)-floatOrdinal(expected);
+  return delta<0n ? -delta : delta;
+}
+function assertGames(actual,expected,path) {
+  const show=(v)=>Object.is(v,-0)?'-0':typeof v==='number'?String(v):JSON.stringify(v)??String(v);
+  function compare(a,e,at,keys=[]) {
+    if (Object.is(a,e)) return;
+    const eligible=keys.length===2 && keys[1]==='prob' &&
+      typeof a==='number' && typeof e==='number' &&
+      Number.isFinite(a) && Number.isFinite(e) && !Number.isInteger(a) && !Number.isInteger(e);
+    const distance=typeof a==='number' && typeof e==='number'?ulpDistance(a,e):null;
+    const fail=(av=a,ev=e)=>assert.fail(`A7/A8: ${at} expected=${show(ev)} actual=${show(av)} ULP=${distance??'n/a'} toleranceEligible=${eligible}`);
+    if (eligible && distance<=2n) return;
+    if (a===null||e===null||typeof a!=='object'||typeof e!=='object') fail();
+    if (Array.isArray(a)!==Array.isArray(e)) fail();
+    if (Array.isArray(a)&&a.length!==e.length) fail(a.length,e.length);
+    const ak=Object.keys(a), ek=Object.keys(e);
+    if (ak.length!==ek.length||ak.some((k,i)=>k!==ek[i])) fail(ak,ek);
+    for (const k of ek) compare(a[k],e[k],`${at}[${JSON.stringify(k)}]`,[...keys,k]);
+  }
+  compare(actual,expected,path);
+}
+
+// Bounded synthetic comparator controls; no production fixture is modified.
+const controlKey='synthetic-game';
+const controlGames={[controlKey]:{prob:0.25150204238573154,home:17,away:24,margin:-7,total:41,'SEA:pre':[1534.25,0]}};
+const shifted=(value,ulps)=>{
+  floatBits.setFloat64(0,value,false);
+  floatBits.setBigUint64(0,floatBits.getBigUint64(0,false)+(value<0?-ulps:ulps),false);
+  return floatBits.getFloat64(0,false);
+};
+function comparatorControl(label,mutate,reject=false) {
+  const actual=structuredClone(controlGames);
+  mutate(actual,actual[controlKey]);
+  if (reject) assert.throws(()=>assertGames(actual,controlGames,'control.games'),assert.AssertionError,label);
+  else assertGames(actual,controlGames,'control.games');
+  checks++;
+}
+comparatorControl('A: exact probability',()=>{});
+comparatorControl('B: probability +1 ULP',(_,g)=>{g.prob=shifted(g.prob,1n);});
+comparatorControl('C: probability +2 ULP',(_,g)=>{g.prob=shifted(g.prob,2n);});
+comparatorControl('D: probability +3 ULP',(_,g)=>{g.prob=shifted(g.prob,3n);},true);
+comparatorControl('E: probability +1e-15',(_,g)=>{g.prob+=1e-15;},true);
+comparatorControl('F: score +1',(_,g)=>{g.home++;},true);
+comparatorControl('G: margin +1',(_,g)=>{g.margin++;},true);
+comparatorControl('H: total +1',(_,g)=>{g.total++;},true);
+comparatorControl('I: historical Elo +1 ULP',(_,g)=>{g['SEA:pre'][0]=shifted(g['SEA:pre'][0],1n);},true);
+comparatorControl('J: removed game',(a)=>{delete a[controlKey];},true);
+comparatorControl('K: renamed key',(a,g)=>{delete a[controlKey];a.renamed=g;},true);
+comparatorControl('L: extra field',(_,g)=>{g.extra=0;},true);
+comparatorControl('M: changed key order',(_,g)=>{const prob=g.prob;delete g.prob;g.prob=prob;},true);
+comparatorControl('N: number to null',(_,g)=>{g.prob=null;},true);
+// Ordinal edge cases and diagnostics: negative doubles, nonfinite values, signed zero.
+ok(ulpDistance(-0.25,shifted(-0.25,1n))===1n && ulpDistance(0.25,shifted(0.25,1n))===1n,'ULP: negative and positive adjacent doubles');
+ok(ulpDistance(NaN,NaN)===0n && ulpDistance(Infinity,Infinity)===0n && ulpDistance(-Infinity,-Infinity)===0n && ulpDistance(0,-0)===1n,'ULP: exact nonfinite values and distinct signed zeros');
+ok(ulpDistance(NaN,0.25)===null && ulpDistance(Infinity,-Infinity)===null,'ULP: nonfinite mismatches have no finite distance');
+assert.throws(()=>assertGames({g:{prob:-0}},{g:{prob:0}},'control.games'),/expected=0 actual=-0 ULP=1 toleranceEligible=false/); checks++;
+assert.throws(()=>assertGames({g:{prob:Infinity}},{g:{prob:0.25}},'control.games'),/ULP=n\/a toleranceEligible=false/); checks++;
+const badElo=structuredClone(controlGames);badElo[controlKey]['SEA:pre'][0]=shifted(1534.25,1n);
+assert.throws(()=>assertGames(badElo,controlGames,'control.games'),/control\.games\["synthetic-game"\]\["SEA:pre"\]\["0"\] expected=1534\.25 actual=1534\.2500000000002 ULP=1 toleranceEligible=false/); checks++;
+
 // A1, A2, A11. Public controls, tool strings and MANUAL/OFF state are absent.
 const forbidden=['data-qbquick','qb-quick','QB Return Lab','qbCarryoverQB','qbCarryoverElo','qbCarryoverValue','applyQBCarryover','clearQBCarryover',
   '<th>QB return</th>','qb-action-cell','No verified QB-return preset','Apply QB fix','Clear QB fix','QB manual','base projection',
@@ -204,7 +278,7 @@ const G=JSON.parse(fs.readFileSync(goldenPath,'utf8'));
 for (const [state,h] of [['bundled',build()],['played',build({mutate:played})]]) {
   const now=golden(h), was=G[state];
   for (const key of ['ratings','active','teams']) assert.deepEqual(now[key],was[key],`A5/A13: ${state} ${key} unchanged`),checks++;
-  assert.deepEqual(now.games,was.games,`A7/A8: ${state} forecasts, Monte Carlo scores and historical states unchanged`); checks++;
+  assertGames(now.games,was.games,`${state}.games`); checks++;
   assert.deepEqual(now.projection,was.projection,`A7: ${state} season projection unchanged`); checks++;
   assert.deepEqual(now.lab,was.lab,`A10: ${state} Roster Lab unchanged`); checks++;
   assert.deepEqual(now.qbRankings,was.qbRankings,`A13: ${state} QB Rankings Default and Customize unchanged`); checks++;
