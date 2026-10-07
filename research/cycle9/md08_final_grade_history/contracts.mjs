@@ -5,6 +5,11 @@
 // semantics. A malformed or blocked replay request FAILS; nothing is substituted.
 // Corrected after Codex review C of 25155a5.
 import crypto from 'node:crypto';
+import fs from 'node:fs';
+
+// Canonical team identities: the production team set (data/model-data.js MODEL_DATA.teams).
+let TEAMS=null;
+export function canonicalTeams(){if(!TEAMS){const src=fs.readFileSync('data/model-data.js','utf8').replace(/^\s*window\.MODEL_DATA\s*=\s*/,'').replace(/;\s*$/,'');TEAMS=new Set(Object.keys(JSON.parse(src).teams));}return TEAMS;}
 
 export const TRANSFORM_VERSION='md08-candidate-A-prototype-0';
 
@@ -37,19 +42,19 @@ export const BLOCKERS={
     fact:'buildProfiles filters season 2026 (current rows) and 2025 (prior PFR); qbReferenceValid requires reference season 2025 and qb_id_source "2025-player-stats-positional".',
     resolution:'A replay harness must relabel consistently and be checked.'},
   B6_SEVENTEEN_GAME_REFERENCE:{kind:'semantic requirement (span-limiting)',
-    fact:'The QB EPA/success CDF uses the season Y-1 17-game windows, and qbReferenceValid (app) and _v106_reference_valid (server) require >=30 17-game windows. A 16-game season Y-1 (1999-2020) yields none, so the reference is invalid: QB becomes unavailable and OL falls back to the bundle-based percentile (B1).',
-    consequence:'Under current semantics QB and OL need Y-1 >= 2021, i.e. display season >= 2022.'}
+    fact:'The QB EPA/success CDF uses the season Y-1 17-game windows, and qbReferenceValid (app) and _v106_reference_valid (server) require >=30 17-game windows. A 16-game season Y-1 (1999-2020) yields none, so the reference is invalid: QB becomes unavailable (no fallback), while OL switches to its legacy bundle-percentile fallback route (still a finite grade, but B1-dependent).',
+    consequence:'QB needs Y-1 >= 2021, i.e. display season >= 2022 (necessary lower bound). For OL, 2022 bounds only the reference-backed route; the fallback route is not bounded by B6 but depends on B1, so no OL span is assertable.'}
 };
 
 // ---------- k behavior (source: model/rating_continuity.js V99, model/unit_prior_controller.js V37) ----------
 export const V99_WEEK_FADE={1:0,2:1,3:1,4:.85,5:.70,6:.55,7:.40,8:.28,9:.18,10:.10,11:.05,12:0};
 export function kStatus(week){const w=Math.floor(Number(week));const fade=w>12?0:(V99_WEEK_FADE[w]??0);
-  return fade===0?{week:w,fade,k:'1 exactly (fixed)',needsEloState:false}:{week:w,fade,k:'continuous in [0.25, 1]; =1 only if every recent residual is within 3 points',needsEloState:true};}
+  return fade===0?{week:w,fade,k:'1 exactly (fixed)',needsEloState:false}:{week:w,fade,k:'k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])',needsEloState:true};}
 
 // ---------- Dependency graphs (present-day canonical chain; audited source-first) ----------
 // role: 'current' = season Y rows through the as-of week; 'priorSeason' = season Y-1;
 // 'fixed' = constant/config. status: REPRODUCIBLE | BLOCKED | CONDITIONAL.
-const C=(component,role,source,status,anchor,note='',blocker=null)=>({component,role,source,status,anchor,note,blocker});
+const C=(component,role,source,status,anchor,note='',blocker=null,extra={})=>({component,role,source,status,anchor,note,blocker,...extra});
 const K_COMPONENT=C('Effective prior games k (V37 on V99 continuity; fixed 1 in week 1 and week 12+)','current','core Elo from end-(Y-1) preseason Elo + completed results','CONDITIONAL','assets/app.js#effectivePriorGames','Blocked only in weeks 2-11 (B3).','B3_ACTIVE_CONTINUITY_K');
 export const UNITS={
   qbIndex:{label:'QB',chain:[
@@ -58,17 +63,18 @@ export const UNITS={
     C('ANY/A (current rank)','current','nflverse weekly player stats','REPRODUCIBLE','model/live_profiles.js#const qbAnyA='),
     C('CPOE (attempt-weighted passing_cpoe; tanh vs current mean; 60-attempt stabilizer)','current','nflverse weekly player stats passing_cpoe','CONDITIONAL','model/live_profiles.js#const qbCpoe=','Season coverage of passing_cpoe not verified.'),
     C('Rushing bonus','current','nflverse pbp QB rushes','REPRODUCIBLE','model/live_profiles.js#function qbRushingBonus'),
-    C('V139 leave-one-matchup-out opponent adjustment','current','current-season coverage allowed','REPRODUCIBLE','model/live_profiles.js#qbOpponentEpaAdjustment'),
-    C('V137 pressure context','current','nflverse pbp pressure plays','REPRODUCIBLE','model/live_profiles.js#pressureEpaDrop'),
+    C('V139 opponent adjustment: leave-one-matchup-out FORCE QB Rating allowed (other teams\' per-game ratings vs each opponent, dropback-weighted, 100-dropback stabilized toward 50); adjustment 4*(50-allowed)/50','current','current-season per-game QB ratings (same pipeline)','REPRODUCIBLE','model/live_profiles.js#raw[t].qbOpponentRatingAdjustment=','Active path. qbOpponentEpaAdjustment is set to 0 and is inactive/diagnostic.'),
+    C('V137 pressure adjustment: standard-rush (<=4 rushers) hit-or-sack protection difficulty (current rank) plus QB performance on disrupted dropbacks (70% EPA, 30% success rank, sample-stabilized)','current','nflverse pbp standard-rush and pressure plays','REPRODUCIBLE','model/live_profiles.js#const qbOlRatingAdjustment=','Active path (qbStandardRushPressureAdjustment + qbPressurePerformanceAdjustment). pressureEpaDrop / cleanEpaPerPlay are diagnostic only.'),
     C('Stabilization toward current league means (EPA 150 plays, success 100, CPOE 60)','current','current season','REPRODUCIBLE','model/live_profiles.js#qbStabilizedEpa'),
-    C('EPA/success CDF reference (season Y-1 17-game windows)','priorSeason','V149-style reference from Y-1 pbp + Y-1 player-stat QB ids','CONDITIONAL','force_server.py#def _v104_reference_from_drive_games(','Requires a 17-game season Y-1 (B6).','B6_SEVENTEEN_GAME_REFERENCE'),
+    C('EPA/success CDF reference (season Y-1 17-game windows)','priorSeason','V149-style reference from Y-1 pbp + Y-1 player-stat QB ids','CONDITIONAL','force_server.py#def _v104_reference_from_drive_games(','Requires a 17-game season Y-1 (B6); without it QB is unavailable (no fallback).','B6_SEVENTEEN_GAME_REFERENCE',{windowRule:'fixed17'}),
     C('Composite x1.20 expansion and clamp','fixed','constants','REPRODUCIBLE','model/live_profiles.js#const QB_COMPOSITE_EXPANSION'),
     C('Prior: regressed bundled qbIndex','priorSeason','data/matchup-data.js (2025 only)','BLOCKED','model/live_profiles.js#const priorQbIndex=','','B1_LEGACY_PRIOR_SOURCE_FIELDS'),
     K_COMPONENT,
     C('V148 recency (+/-4) after blend, final clamp','current','weekly QB game rows','REPRODUCIBLE','assets/app.js#qbIndex=Math.max(0,Math.min(100,Number(p.qbIndex)+recency))')]},
   olIndex:{label:'Offensive line',chain:[
     C('Hit-or-sack disruption per dropback','current','nflverse pbp','REPRODUCIBLE','force_server.py#disrupted=_pbp_truthy(row.get(\'sack\')) or _pbp_truthy(row.get(\'qb_hit\'))'),
-    C('Same-length window CDF (season Y-1)','priorSeason','V149-style windows from Y-1 pbp','CONDITIONAL','model/live_profiles.js#const olHistoricalBench=','The reference object is valid only with a 17-game season Y-1 (B6); otherwise OL falls back to a bundle percentile (B1).','B6_SEVENTEEN_GAME_REFERENCE'),
+    C('Live route 1 - same-length window CDF (season Y-1 reference)','priorSeason','V149-style windows from Y-1 pbp','CONDITIONAL','model/live_profiles.js#const olHistoricalBench=','Valid only when the season Y-1 reference is valid (17-game season, B6).','B6_SEVENTEEN_GAME_REFERENCE',{windowRule:'sameLength'}),
+    C('Live route 2 - legacy fallback: percentile of the rate among bundled ol.pressure_rate_allowed','priorSeason','data/matchup-data.js','BLOCKED','model/live_profiles.js#priorPercentile(priorProfiles, (p)=>p?.ol?.pressure_rate_allowed','Used when the reference is invalid or has <100 windows; yields a finite grade but depends on B1. Alternative to route 1 (one of the two is supplied).','B1_LEGACY_PRIOR_SOURCE_FIELDS',{alternativeTo:'Live route 1 - same-length window CDF (season Y-1 reference)'}),
     C('Prior: regressed bundled olIndex','priorSeason','data/matchup-data.js','BLOCKED','model/live_profiles.js#const priorOlIndex=','','B1_LEGACY_PRIOR_SOURCE_FIELDS'),
     K_COMPONENT,
     C('Blend','fixed','blend(prior, live, statGames, k)','REPRODUCIBLE','model/live_profiles.js#const olIndex=teamStatsUsable ? blend(')]},
@@ -113,6 +119,10 @@ export const STALE=[
   {was:'QB and OL references need only season Y-1 play-by-play (QB 2007+, OL 2000+)',now:'Both need a valid V149-style reference, which requires >=30 17-game windows (a 17-game season Y-1, 2021+); QB is unavailable and OL falls back to the bundle otherwise.',source:'model/live_profiles.js qbReferenceValid; force_server.py _v106_reference_valid'},
   {was:'FTN is the first-choice pass-rush provider from 2022',now:'FTN is selected only when the feed has a pressure-outcome field; the public nflverse FTN schema (2026 cache) has none, so FTN is not ready.',source:'model/live_profiles.js ftnPressureField / ftnPressureContract; data/live-cache ftn-charting header'},
   {was:'Pass-rush provider state is a single hard blocker',now:'Hard blocker for historical-as-run selection; retrospective current-policy selection is a possible owner policy.',source:'model/live_profiles.js provider cascade'},
+  {was:'k = 1 in the active window only if every recent residual is within 3 points',now:'k = 1 exactly when the signed recency-weighted correction is 0; opposing surprises can cancel (residuals [8,-6] give 0 with neutral opponents).',source:'model/rating_continuity.js rawCorrectionPoints; model/unit_prior_controller.js effectivePriorGames'},
+  {was:'QB opponent adjustment = V139 coverage-allowed / qbOpponentEpaAdjustment',now:'qbOpponentEpaAdjustment is set to 0; the active V139 term is qbOpponentRatingAdjustment from leave-one-matchup-out FORCE QB Rating allowed.',source:'model/live_profiles.js'},
+  {was:'QB pressure context = pressureEpaDrop',now:'pressureEpaDrop is diagnostic; the active V137 term is qbOlRatingAdjustment = standard-rush protection difficulty + QB performance on disrupted dropbacks.',source:'model/live_profiles.js'},
+  {was:'OL cannot start before display season 2022',now:'2022 bounds only the reference-backed OL route; with an invalid reference OL uses the B1-dependent bundle-percentile fallback and still produces a finite grade.',source:'model/live_profiles.js stableOlPass'},
   {was:'Season literals are confined to buildProfiles filters',now:'qbReferenceValid also requires reference season 2025 and the 2025 QB-id source label.',source:'model/live_profiles.js qbReferenceValid'}];
 
 export function unitStatus(unit){const bl=[...new Set(UNITS[unit].chain.filter(c=>c.status==='BLOCKED').map(c=>c.blocker))];return {unit,status:bl.length?'BLOCKED':'REPLAYABLE',blockers:bl};}
@@ -122,10 +132,11 @@ export function unitStatus(unit){const bl=[...new Set(UNITS[unit].chain.filter(c
 const ROLES=new Set(['current','priorSeason']);
 export function validateShape(plan){
   const errs=[];const U=UNITS[plan?.unit];if(!U)return ['unknown unit '+plan?.unit];
-  if(typeof plan.team!=='string'||!/^[A-Z]{2,3}$/.test(plan.team))errs.push('missing or invalid observation team');
+  if(typeof plan.team!=='string'||!canonicalTeams().has(plan.team))errs.push('missing or non-canonical observation team '+plan.team);
   if(!Number.isInteger(plan.season)||plan.season<1999)errs.push('invalid season');
   if(!Number.isInteger(plan.asOfWeek)||plan.asOfWeek<1||plan.asOfWeek>18)errs.push('invalid as-of week');
-  if(!Number.isInteger(plan.gameCount)||plan.gameCount<1||plan.gameCount>17)errs.push('invalid game count');
+  if(!('gameCount' in plan)||plan.gameCount==null)errs.push('missing game count');
+  else if(!Number.isInteger(plan.gameCount)||plan.gameCount<1||plan.gameCount>17)errs.push('invalid game count');
   else if(Number.isInteger(plan.asOfWeek)&&plan.gameCount>plan.asOfWeek)errs.push('game count exceeds as-of week');
   const seen=new Set();
   for(const i of plan.inputs||[]){
@@ -140,10 +151,20 @@ export function validateShape(plan){
       if(!Number.isInteger(i.throughWeek)||i.throughWeek<1)errs.push('null or invalid week for '+i.component);
       else if(i.throughWeek>plan.asOfWeek)errs.push('future leakage in '+i.component);
       if(i.games!=null&&i.games!==plan.gameCount)errs.push('wrong game-count window for '+i.component);}
-    if(comp.role==='priorSeason'&&i.season!==plan.season-1)errs.push('wrong prior season for '+i.component+' (need '+(plan.season-1)+')');
+    if(comp.role==='priorSeason'){
+      if(i.season!==plan.season-1)errs.push('wrong prior season for '+i.component+' (need '+(plan.season-1)+')');
+      // A prior-season input is a full-season object: no as-of week, explicit full-season scope.
+      if(i.throughWeek!=null)errs.push('prior-season input must not carry a week ('+i.component+')');
+      if(i.scope!=='full-season')errs.push('prior-season input must declare scope full-season ('+i.component+')');
+      if(comp.windowRule==='fixed17'&&i.windowGames!==17)errs.push('reference window must be 17 games for '+i.component);
+      if(comp.windowRule==='sameLength'&&i.windowGames!==plan.gameCount)errs.push('reference window must equal the game count for '+i.component);
+      if(!comp.windowRule&&i.windowGames!=null)errs.push('unexpected window on '+i.component);}
     if(i.kind==='signal-substitute'||i.kind==='proxy')errs.push('substituted '+i.kind+' for '+i.component);
     if(comp.status==='BLOCKED'&&!/^owner-authorized:/.test(String(i.source)))errs.push('blocked component '+i.component+' supplied from '+i.source);}
-  for(const c of U.chain)if(c.role!=='fixed'&&!seen.has(c.component))errs.push('missing component '+c.component);
+  for(const c of U.chain){if(c.role==='fixed'||seen.has(c.component))continue;
+    const alt=U.chain.find(o=>o.alternativeTo===c.component||c.alternativeTo===o.component);if(alt&&seen.has(alt.component))continue;
+    errs.push('missing component '+c.component);}
+  for(const c of U.chain)if(c.alternativeTo&&seen.has(c.component)&&seen.has(c.alternativeTo))errs.push('both live routes supplied for '+plan.unit);
   return errs;
 }
 export function validatePlan(plan){const e=validateShape(plan);if(e.length&&/^unknown unit/.test(e[0]))return e;const st=unitStatus(plan.unit);
@@ -154,15 +175,43 @@ export function replayFinalGrade(plan){const e=validateShape(plan);if(e.length)t
 
 // ---------- Dynamic-record versioning (schema + mechanics; no persistence) ----------
 export const METADATA_SCHEMA={transformVersion:'string, e.g. '+TRANSFORM_VERSION,referenceVersion:'sha256 of the canonical population serialization below',unit:'canonical key',design:"'S' (first g games) | 'C' (any g-game window)",gameCount:'integer g',asOf:'ISO date of the newest observation included',population:'n observations',sourceHistorySpan:'[firstSeason, lastSeason]',modelSemantics:'model source hashes the population was replayed under',
-  canonicalSerialization:'JSON of {transformVersion, unit, design, gameCount, modelSemantics, observations: sorted [season, team, asOfWeek, finalGrade(full precision)]}'};
-export function referenceVersion({unit,design,gameCount,modelSemantics,observations}){
-  const obs=[...observations].map(o=>[o.season,o.team,o.asOfWeek,o.finalGrade]).sort((a,b)=>a[0]-b[0]||String(a[1]).localeCompare(String(b[1]))||a[2]-b[2]);
-  return crypto.createHash('sha256').update(JSON.stringify({transformVersion:TRANSFORM_VERSION,unit,design,gameCount,modelSemantics,observations:obs})).digest('hex');}
+  canonicalSerialization:'newline-joined lines: transform=, unit=, design=, gameCount=, model=<sorted key=hash list>, then one line per observation sorted by (season, team, asOfWeek): season|team|asOfWeek|finalGrade, numbers as shortest round-trip decimals; every observation validated (finite grade, canonical team, season >= 1999, week 1-18, unique identity) before hashing'};
+// Observations are validated BEFORE hashing. Numbers are serialized only after a finiteness
+// check, as ECMAScript shortest round-trip decimal strings (Number.prototype.toString; -0 -> "0"),
+// so NaN/Infinity/undefined can never collapse to null or disappear.
+export function validateReferenceInput({unit,design,gameCount,modelSemantics,observations}){
+  const errs=[];
+  if(!UNITS[unit])errs.push('unknown unit');
+  if(design!=='S'&&design!=='C')errs.push('invalid design');
+  if(!Number.isInteger(gameCount)||gameCount<1||gameCount>17)errs.push('invalid game count');
+  if(!modelSemantics||typeof modelSemantics!=='object'||Object.values(modelSemantics).some(v=>typeof v!=='string'))errs.push('invalid model semantics');
+  if(!Array.isArray(observations)||!observations.length)errs.push('no observations');
+  const keys=new Set();
+  (observations||[]).forEach((o,i)=>{
+    if(!Number.isInteger(o?.season)||o.season<1999)errs.push('observation '+i+': invalid season');
+    if(typeof o?.team!=='string'||!canonicalTeams().has(o.team))errs.push('observation '+i+': invalid team');
+    if(!Number.isInteger(o?.asOfWeek)||o.asOfWeek<1||o.asOfWeek>18)errs.push('observation '+i+': invalid week');
+    if(typeof o?.finalGrade!=='number'||!Number.isFinite(o.finalGrade))errs.push('observation '+i+': non-finite grade');
+    const k=o?.season+'|'+o?.team+'|'+o?.asOfWeek;if(keys.has(k))errs.push('observation '+i+': duplicate identity');keys.add(k);});
+  return errs;}
+const num=x=>Object.is(x,-0)?'0':String(x);
+export function referenceVersion(ref){
+  const errs=validateReferenceInput(ref);if(errs.length)throw new Error('INVALID REFERENCE: '+errs.join('; '));
+  const obs=ref.observations.map(o=>[o.season,o.team,o.asOfWeek,o.finalGrade]).sort((a,b)=>a[0]-b[0]||a[1].localeCompare(b[1])||a[2]-b[2]);
+  const ms=Object.keys(ref.modelSemantics).sort().map(k=>k+'='+ref.modelSemantics[k]).join(',');
+  const canon=['transform='+TRANSFORM_VERSION,'unit='+ref.unit,'design='+ref.design,'gameCount='+ref.gameCount,'model='+ms,...obs.map(o=>[num(o[0]),o[1],num(o[2]),num(o[3])].join('|'))].join('\n');
+  return crypto.createHash('sha256').update(canon).digest('hex');}
+// Candidate A requires a non-degenerate reference: at least two distinct finite values. With no
+// ordering there is no historical standing to express (worst = best), so the scale is undefined.
+export function validateReferencePopulation(values){const v=(values||[]).filter(x=>typeof x==='number'&&Number.isFinite(x));
+  if(v.length!==(values||[]).length)return ['non-finite value in reference'];return new Set(v).size>=2?[]:['degenerate reference: fewer than two distinct values'];}
 // Re-anchoring of previously displayed values (old-population values) under Candidate A.
 // distinctOnly: valid when the old reference and the added observations are all distinct values.
 // tieAware: t = size of the larger extreme (worst or best) tied block of the old reference;
-//   derived for the extreme-block mechanism and verified exhaustively on small adversarial
-//   references (see dynamic_record.json); NOT proven for every reference size.
+//   derived for the extreme-block mechanism and verified exhaustively only on NON-DEGENERATE
+//   old references (>= 2 distinct values; n = 3-6, values 0-4, m = 1-3 additions in -1..5);
+//   NOT proven for every reference size. Degenerate (all-equal) references are invalid for
+//   Candidate A (validateReferencePopulation); e.g. [1,1,1] + [0] moves 1 from 0 to 100.
 export const reanchorBound={
   distinctOneRecord:n=>100/n,
   distinctAdd:(n,m)=>100*m/(n+m-1),

@@ -9,11 +9,12 @@
     "population": "n observations",
     "sourceHistorySpan": "[firstSeason, lastSeason]",
     "modelSemantics": "model source hashes the population was replayed under",
-    "canonicalSerialization": "JSON of {transformVersion, unit, design, gameCount, modelSemantics, observations: sorted [season, team, asOfWeek, finalGrade(full precision)]}"
+    "canonicalSerialization": "newline-joined lines: transform=, unit=, design=, gameCount=, model=<sorted key=hash list>, then one line per observation sorted by (season, team, asOfWeek): season|team|asOfWeek|finalGrade, numbers as shortest round-trip decimals; every observation validated (finite grade, canonical team, season >= 1999, week 1-18, unique identity) before hashing"
   },
   "statements": {
     "distinctReferences": "If the old reference and the added observations are all distinct values: one new record moves any previously displayed value by at most 100/n; m added observations by at most 100*m/(n+m-1). (Derived; 0 violations in the exhaustive distinct cases.)",
-    "tiedReferences": "With ties those bounds are FALSE (counterexample below). Tie-aware statement: max shift <= 100*(2m+t-1)/(2(n+m-1)), t = size of the larger extreme tied block of the old reference. Derived for the extreme-block mechanism and verified exhaustively on small adversarial references (no violations; tight); not proven for all n.",
+    "tiedReferences": "With ties those bounds are FALSE (counterexample below). Tie-aware statement for NON-DEGENERATE old references (>= 2 distinct values): max shift <= 100*(2m+t-1)/(2(n+m-1)), t = size of the larger extreme tied block. Derived for the extreme-block mechanism and verified exhaustively on the tested domain only (no violations; tight); not proven for all n.",
+    "degenerateReferences": "An all-equal reference has no ordering, so Candidate A historical standing is undefined (worst = best). Contract: such references are INVALID and rejected (validateReferencePopulation). The tie-aware expression does not apply: [1,1,1] + [0] moves the old value 1 from 0 to 100 (shift 100 > 66.67).",
     "contract": "Because the tie-aware form is verified only on small exhaustive cases, the safest production contract is to MEASURE the actual movement of published values whenever the reference version changes, with the closed forms as expectations."
   },
   "counterexample": {
@@ -30,8 +31,25 @@
     "oldClaimedBound": 20,
     "tieAwareBound": 30
   },
+  "degenerateCase": {
+    "reference": [
+      1,
+      1,
+      1
+    ],
+    "add": [
+      0
+    ],
+    "valueBefore": 0,
+    "valueAfter": 100,
+    "tieAwareExpression": 66.66666666666667,
+    "referenceValidity": [
+      "degenerate reference: fewer than two distinct values"
+    ],
+    "handling": "rejected as an invalid Candidate A reference; outside the domain of every stated bound"
+  },
   "exhaustiveCheck": {
-    "domain": "n=3..6 reference values in {0..4}, m=1..3 additions in {-1..5}; shifts evaluated at every old distinct value and every midpoint inside the old range",
+    "domain": "old references with >= 2 distinct values (all-equal references explicitly excluded), n=3..6, values in {0..4}; m=1..3 additions in {-1..5}; shifts evaluated at every old distinct value and every midpoint inside the old range",
     "cases": 50099,
     "distinctCases": 178,
     "oldBoundViolations": {
@@ -131,6 +149,6 @@
   },
   "exampleReferenceVersion": {
     "note": "Illustrates the identifier only; the population is the 2026 Week-4 final OL grades, which is NOT a historical reference.",
-    "id": "6e40855fb3465e61dacc2947d27fde7668262c1ac6440bc24b799843ec9716d0"
+    "id": "2c346a060149a77f61f975126c2af14cbb8ccc9d2bd90b182e7175c40c9c2cb0"
   }
 }

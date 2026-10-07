@@ -176,61 +176,61 @@
     {
       "week": 2,
       "fade": 1,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
       "week": 3,
       "fade": 1,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
       "week": 4,
       "fade": 0.85,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
       "week": 5,
       "fade": 0.7,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
       "week": 6,
       "fade": 0.55,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
       "week": 7,
       "fade": 0.4,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
       "week": 8,
       "fade": 0.28,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
       "week": 9,
       "fade": 0.18,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
       "week": 10,
       "fade": 0.1,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
       "week": 11,
       "fade": 0.05,
-      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "k": "k = 1 - 0.75*min(|c|/7,1) in [0.25, 1], where c is the signed recency-weighted V99 correction; k = 1 exactly when c = 0 (no observations, all excesses zero, or opposing signed excesses cancelling, e.g. residuals [8,-6])",
       "needsEloState": true
     },
     {
@@ -321,6 +321,82 @@
         "maxAbsChange": 0,
         "regimeClassChanges": 0,
         "distinctKProduction": 1
+      }
+    }
+  },
+  "kCancellation": {
+    "residuals": [
+      8,
+      -6
+    ],
+    "opponentQuality": 0,
+    "week": 3,
+    "signedCorrection": 0,
+    "k": 1,
+    "note": "Both residuals exceed the 3-point threshold, yet the recency-weighted signed excesses cancel (latest -3 at weight 1, earlier +5 at weight 0.6)."
+  },
+  "olRoutes": {
+    "route1": "reference-backed (needs valid 17-game Y-1 reference; B6)",
+    "route2": "legacy bundle-percentile fallback (finite grade; B1)",
+    "fallbackDemo": [
+      {
+        "team": "ARI",
+        "rate": 0.14556962025316456,
+        "fallbackLive": 93.54838709677419,
+        "fallbackFinal": 83.9440003920662,
+        "referenceRouteLive": 58.098936151436476
+      },
+      {
+        "team": "ATL",
+        "rate": 0.13953488372093023,
+        "fallbackLive": 93.54838709677419,
+        "fallbackFinal": 89.10896138468435,
+        "referenceRouteLive": 61.14583023342612
+      },
+      {
+        "team": "BAL",
+        "rate": 0.11818181818181818,
+        "fallbackLive": 100,
+        "fallbackFinal": 88.25940746231868,
+        "referenceRouteLive": 77.09980969632278
+      },
+      {
+        "team": "BUF",
+        "rate": 0.1640625,
+        "fallbackLive": 77.41935483870968,
+        "fallbackFinal": 75.02385536848567,
+        "referenceRouteLive": 44.22665603547841
+      }
+    ]
+  },
+  "qbActivePaths": {
+    "qbOpponentEpaAdjustmentAllZero": true,
+    "qbOpponentRatingAdjustmentNonzeroTeams": 32,
+    "anchors": {
+      "opponent": {
+        "file": "model/live_profiles.js",
+        "line": 1383,
+        "match": "raw[t].qbOpponentRatingAdjustment="
+      },
+      "inactiveOpponentField": {
+        "file": "model/live_profiles.js",
+        "line": 1216,
+        "match": "r.qbOpponentEpaAdjustment=0"
+      },
+      "pressure": {
+        "file": "model/live_profiles.js",
+        "line": 1567,
+        "match": "const qbOlRatingAdjustment="
+      },
+      "passCore": {
+        "file": "model/live_profiles.js",
+        "line": 1571,
+        "match": "qbRawLiveScore+qbOpponentRatingAdjustment+qbOlRatingAdjustment"
+      },
+      "diagnosticPressureField": {
+        "file": "model/live_profiles.js",
+        "line": 1165,
+        "match": "pressureEpaDrop"
       }
     }
   },

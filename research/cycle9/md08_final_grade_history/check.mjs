@@ -37,7 +37,9 @@ ctl('old universal 100/n bound fails on tied reference [0,1,2,3,3] + 4 (shift 30
 ctl('tie-aware bound holds and is tight on every exhaustive case; old bound holds on distinct cases',a.dynamic.exhaustiveCheck.tieAwareViolations===0&&a.dynamic.exhaustiveCheck.oldBoundViolationsDistinct===0&&Math.abs(a.dynamic.exhaustiveCheck.maxRatioToTieAware-1)<1e-12);
 
 // Validator: a well-formed plan, then malformed variants rejected BEFORE any replay.
-const plan=(unit,season=2024,week=13,g=12)=>({unit,team:'KC',season,asOfWeek:week,gameCount:g,inputs:K.UNITS[unit].chain.filter(c=>c.role!=='fixed').map(c=>({component:c.component,role:c.role,season:c.role==='current'?season:season-1,throughWeek:c.role==='current'?week:null,games:c.role==='current'?g:null,source:c.status==='BLOCKED'?'owner-authorized:test':'pinned-public'}))});
+const plan=(unit,season=2024,week=13,g=12)=>({unit,team:'KC',season,asOfWeek:week,gameCount:g,inputs:K.UNITS[unit].chain.filter(c=>c.role!=='fixed'&&!c.alternativeTo).map(c=>c.role==='current'
+  ?{component:c.component,role:'current',season,throughWeek:week,games:g,source:c.status==='BLOCKED'?'owner-authorized:test':'pinned-public'}
+  :{component:c.component,role:'priorSeason',season:season-1,scope:'full-season',...(c.windowRule==='fixed17'?{windowGames:17}:c.windowRule==='sameLength'?{windowGames:g}:{}),source:c.status==='BLOCKED'?'owner-authorized:test':'pinned-public'})});
 for(const u of Object.keys(K.UNITS)){assert.deepEqual(K.validateShape(plan(u)),[],u+' well-formed plan');assert(K.validatePlan(plan(u)).some(e=>/^BLOCKED/.test(e)));assert.throws(()=>K.replayFinalGrade(plan(u)),/REPLAY REFUSED/);}
 assert(K.validatePlan(plan('olIndex',2024,4,4)).some(e=>/^B3/.test(e)),'active-k week flagged');
 const mut=(unit,fn,args)=>{const p=args?plan(unit,...args):plan(unit);fn(p);return K.validateShape(p);};
@@ -46,6 +48,17 @@ const has=(e,re)=>e.some(x=>re.test(x));
 const malformed=[
   ['mixed-role probe (current+priorSeason role)',mut('rbIndex',p=>{pick(p,/receiving EPA/).role='current+priorSeason';}),/invalid role/],
   ['role mismatch (priorSeason component declared current)',mut('olIndex',p=>{const i=pick(p,/Prior/);i.role='current';i.season=2024;i.throughWeek=13;}),/role mismatch/],
+  ['unknown team ZZZ',mut('olIndex',p=>{p.team='ZZZ';}),/non-canonical observation team/],
+  ['missing game count',mut('olIndex',p=>{delete p.gameCount;}),/missing game count/],
+  ['null game count',mut('olIndex',p=>{p.gameCount=null;}),/missing game count/],
+  ['non-integer game count',mut('olIndex',p=>{p.gameCount=3.5;}),/invalid game count/],
+  ['impossible game count (0)',mut('olIndex',p=>{p.gameCount=0;}),/invalid game count/],
+  ['prior-season input with throughWeek 100',mut('olIndex',p=>{pick(p,/Prior/).throughWeek=100;}),/must not carry a week/],
+  ['prior-season input without full-season scope',mut('olIndex',p=>{delete pick(p,/Prior/).scope;}),/scope full-season/],
+  ['OL same-length reference window wrong',mut('olIndex',p=>{pick(p,/route 1/).windowGames=17;}),/must equal the game count/],
+  ['QB reference window not 17',mut('qbIndex',p=>{pick(p,/17-game windows/).windowGames=16;}),/must be 17 games/],
+  ['both OL live routes supplied',mut('olIndex',p=>{p.inputs.push({component:K.UNITS.olIndex.chain.find(c=>c.alternativeTo).component,role:'priorSeason',season:2023,scope:'full-season',source:'owner-authorized:test'});}),/both live routes/],
+  ['window on a non-window prior input',mut('olIndex',p=>{pick(p,/Prior/).windowGames=4;}),/unexpected window/],
   ['null-week probe',mut('olIndex',p=>{pick(p,/disruption/).throughWeek=null;}),/null or invalid week/],
   ['future leakage',mut('olIndex',p=>{pick(p,/disruption/).throughWeek=14;}),/future leakage/],
   ['wrong season',mut('olIndex',p=>{pick(p,/disruption/).season=2025;}),/wrong season/],
@@ -61,10 +74,33 @@ const malformed=[
   ['missing recency',mut('qbIndex',p=>{p.inputs=p.inputs.filter(i=>!/recency/.test(i.component));}),/missing component V148/],
   ['duplicated input',mut('olIndex',p=>{p.inputs.push({...p.inputs[0]});}),/duplicated input/],
   ['blocked component from the bundle',mut('olIndex',p=>{pick(p,/Prior/).source='data/matchup-data.js';}),/blocked component/]];
-for(const [label,errs,re] of malformed){ctl('validator rejects: '+label,has(errs,re));assert.throws(()=>{const p=plan('olIndex');p.inputs=[];p.team=undefined;K.replayFinalGrade(p);},/MALFORMED PLAN/);}
+for(const [label,errs,re] of malformed)ctl('validator rejects: '+label,has(errs,re));
+ctl('malformed plans fail with MALFORMED PLAN before blocker evaluation',(()=>{try{const p=plan('olIndex');p.team='ZZZ';K.replayFinalGrade(p);}catch(e){return /^MALFORMED PLAN/.test(e.message)&&!/BLOCKED/.test(e.message);}return false;})());
+// Reference hashing: invalid observations are rejected before hashing.
+const good=[{season:2025,team:'KC',asOfWeek:4,finalGrade:50},{season:2025,team:'BUF',asOfWeek:4,finalGrade:60}];
+const ref=o=>({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{'model/live_profiles.js':'abc'},observations:o});
+const rejects=o=>{try{K.referenceVersion(ref(o));return false;}catch(e){return /INVALID REFERENCE/.test(e.message);}};
+ctl('hash rejects NaN grade',rejects([{...good[0],finalGrade:NaN}]));
+ctl('hash rejects null grade',rejects([{...good[0],finalGrade:null}]));
+ctl('hash rejects infinite grade',rejects([{...good[0],finalGrade:Infinity}])&&rejects([{...good[0],finalGrade:-Infinity}]));
+ctl('hash rejects missing season',rejects([{team:'KC',asOfWeek:4,finalGrade:50}]));
+ctl('hash rejects missing team',rejects([{season:2025,asOfWeek:4,finalGrade:50}]));
+ctl('hash rejects non-canonical team',rejects([{...good[0],team:'ZZZ'}]));
+ctl('hash rejects missing week',rejects([{season:2025,team:'KC',finalGrade:50}]));
+ctl('hash rejects duplicate observation identity',rejects([good[0],{...good[0],finalGrade:51}]));
+ctl('hash is order-independent',K.referenceVersion(ref(good))===K.referenceVersion(ref([good[1],good[0]])));
+ctl('a real grade change changes the hash',K.referenceVersion(ref(good))!==K.referenceVersion(ref([good[0],{...good[1],finalGrade:60.0000001}])));
+ctl('hash covers design and game count',K.referenceVersion(ref(good))!==K.referenceVersion({...ref(good),design:'C'})&&K.referenceVersion(ref(good))!==K.referenceVersion({...ref(good),gameCount:3}));
+// k cancellation, OL routes, QB active paths, degenerate references.
+const kc=a.priorEvidence.kCancellation;
+ctl('opposing residuals [8,-6] (both beyond 3) cancel to correction 0 and k = 1',kc.residuals.every(r=>Math.abs(r)>3)&&kc.signedCorrection===0&&kc.k===1&&/when the signed recency-weighted V99 correction|signed recency-weighted/.test(K.kStatus(3).k));
+ctl('OL: reference-backed route bounded at 2022, legacy fallback route finite but B1-dependent and not bounded',a.coverage.unitSpans.olIndex.routes.referenceBacked.necessaryLowerBound===2022&&a.coverage.unitSpans.olIndex.routes.legacyFallback.necessaryLowerBound===null&&a.priorEvidence.olRoutes.fallbackDemo.every(r=>Number.isFinite(r.fallbackFinal)));
+ctl('QB: inactive qbOpponentEpaAdjustment is 0; active qbOpponentRatingAdjustment nonzero for 32 teams',a.priorEvidence.qbActivePaths.qbOpponentEpaAdjustmentAllZero&&a.priorEvidence.qbActivePaths.qbOpponentRatingAdjustmentNonzeroTeams===32);
+ctl('degenerate [1,1,1] reference rejected; [1,1,1]+[0] shift 100 exceeds 66.67',K.validateReferencePopulation([1,1,1]).length===1&&K.validateReferencePopulation([0,1,1]).length===0&&a.dynamic.degenerateCase.valueAfter-a.dynamic.degenerateCase.valueBefore===100&&a.dynamic.degenerateCase.tieAwareExpression<100);
+ctl('common necessary lower bound 2022 comes from QB (no QB fallback)',a.coverage.unitSpans.common.necessaryLowerBound===2022&&!K.UNITS.qbIndex.chain.some(c=>c.alternativeTo));
 ctl('unknown unit rejected',has(K.validatePlan({unit:'kickerIndex',inputs:[]}),/unknown unit/));
 assert.throws(()=>analyze({pins:{...PINS,'data/matchup-data.js':'0'.repeat(64)}}),/pin/);controls.push('altered pin rejected');
-const obs=[{season:2025,team:'A',asOfWeek:4,finalGrade:50},{season:2025,team:'B',asOfWeek:4,finalGrade:60}];
+const obs=[{season:2025,team:'KC',asOfWeek:4,finalGrade:50},{season:2025,team:'BUF',asOfWeek:4,finalGrade:60}];
 const v0=K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{},observations:obs});
 ctl('reference version changes with a grade',v0!==K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{},observations:[obs[0],{...obs[1],finalGrade:60.0000001}]}));
 ctl('reference version is order-independent',v0===K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{},observations:[obs[1],obs[0]]}));

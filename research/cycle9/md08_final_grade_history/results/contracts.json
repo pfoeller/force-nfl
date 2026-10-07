@@ -49,8 +49,8 @@
     },
     "B6_SEVENTEEN_GAME_REFERENCE": {
       "kind": "semantic requirement (span-limiting)",
-      "fact": "The QB EPA/success CDF uses the season Y-1 17-game windows, and qbReferenceValid (app) and _v106_reference_valid (server) require >=30 17-game windows. A 16-game season Y-1 (1999-2020) yields none, so the reference is invalid: QB becomes unavailable and OL falls back to the bundle-based percentile (B1).",
-      "consequence": "Under current semantics QB and OL need Y-1 >= 2021, i.e. display season >= 2022."
+      "fact": "The QB EPA/success CDF uses the season Y-1 17-game windows, and qbReferenceValid (app) and _v106_reference_valid (server) require >=30 17-game windows. A 16-game season Y-1 (1999-2020) yields none, so the reference is invalid: QB becomes unavailable (no fallback), while OL switches to its legacy bundle-percentile fallback route (still a finite grade, but B1-dependent).",
+      "consequence": "QB needs Y-1 >= 2021, i.e. display season >= 2022 (necessary lower bound). For OL, 2022 bounds only the reference-backed route; the fallback route is not bounded by B6 but depends on B1, so no OL span is assertable."
     }
   },
   "staleAssumptionsCorrected": [
@@ -93,6 +93,26 @@
       "was": "Pass-rush provider state is a single hard blocker",
       "now": "Hard blocker for historical-as-run selection; retrospective current-policy selection is a possible owner policy.",
       "source": "model/live_profiles.js provider cascade"
+    },
+    {
+      "was": "k = 1 in the active window only if every recent residual is within 3 points",
+      "now": "k = 1 exactly when the signed recency-weighted correction is 0; opposing surprises can cancel (residuals [8,-6] give 0 with neutral opponents).",
+      "source": "model/rating_continuity.js rawCorrectionPoints; model/unit_prior_controller.js effectivePriorGames"
+    },
+    {
+      "was": "QB opponent adjustment = V139 coverage-allowed / qbOpponentEpaAdjustment",
+      "now": "qbOpponentEpaAdjustment is set to 0; the active V139 term is qbOpponentRatingAdjustment from leave-one-matchup-out FORCE QB Rating allowed.",
+      "source": "model/live_profiles.js"
+    },
+    {
+      "was": "QB pressure context = pressureEpaDrop",
+      "now": "pressureEpaDrop is diagnostic; the active V137 term is qbOlRatingAdjustment = standard-rush protection difficulty + QB performance on disrupted dropbacks.",
+      "source": "model/live_profiles.js"
+    },
+    {
+      "was": "OL cannot start before display season 2022",
+      "now": "2022 bounds only the reference-backed OL route; with an invalid reference OL uses the B1-dependent bundle-percentile fallback and still produces a finite grade.",
+      "source": "model/live_profiles.js stableOlPass"
     },
     {
       "was": "Season literals are confined to buildProfiles filters",
@@ -195,29 +215,29 @@
           "blocker": null
         },
         {
-          "component": "V139 leave-one-matchup-out opponent adjustment",
+          "component": "V139 opponent adjustment: leave-one-matchup-out FORCE QB Rating allowed (other teams' per-game ratings vs each opponent, dropback-weighted, 100-dropback stabilized toward 50); adjustment 4*(50-allowed)/50",
           "role": "current",
-          "source": "current-season coverage allowed",
+          "source": "current-season per-game QB ratings (same pipeline)",
           "status": "REPRODUCIBLE",
           "anchor": {
             "file": "model/live_profiles.js",
-            "line": 1216,
-            "match": "qbOpponentEpaAdjustment"
+            "line": 1383,
+            "match": "raw[t].qbOpponentRatingAdjustment="
           },
-          "note": "",
+          "note": "Active path. qbOpponentEpaAdjustment is set to 0 and is inactive/diagnostic.",
           "blocker": null
         },
         {
-          "component": "V137 pressure context",
+          "component": "V137 pressure adjustment: standard-rush (<=4 rushers) hit-or-sack protection difficulty (current rank) plus QB performance on disrupted dropbacks (70% EPA, 30% success rank, sample-stabilized)",
           "role": "current",
-          "source": "nflverse pbp pressure plays",
+          "source": "nflverse pbp standard-rush and pressure plays",
           "status": "REPRODUCIBLE",
           "anchor": {
             "file": "model/live_profiles.js",
-            "line": 1165,
-            "match": "pressureEpaDrop"
+            "line": 1567,
+            "match": "const qbOlRatingAdjustment="
           },
-          "note": "",
+          "note": "Active path (qbStandardRushPressureAdjustment + qbPressurePerformanceAdjustment). pressureEpaDrop / cleanEpaPerPlay are diagnostic only.",
           "blocker": null
         },
         {
@@ -243,8 +263,9 @@
             "line": 2333,
             "match": "def _v104_reference_from_drive_games("
           },
-          "note": "Requires a 17-game season Y-1 (B6).",
-          "blocker": "B6_SEVENTEEN_GAME_REFERENCE"
+          "note": "Requires a 17-game season Y-1 (B6); without it QB is unavailable (no fallback).",
+          "blocker": "B6_SEVENTEEN_GAME_REFERENCE",
+          "windowRule": "fixed17"
         },
         {
           "component": "Composite x1.20 expansion and clamp",
@@ -322,7 +343,7 @@
           "blocker": null
         },
         {
-          "component": "Same-length window CDF (season Y-1)",
+          "component": "Live route 1 - same-length window CDF (season Y-1 reference)",
           "role": "priorSeason",
           "source": "V149-style windows from Y-1 pbp",
           "status": "CONDITIONAL",
@@ -331,8 +352,23 @@
             "line": 1509,
             "match": "const olHistoricalBench="
           },
-          "note": "The reference object is valid only with a 17-game season Y-1 (B6); otherwise OL falls back to a bundle percentile (B1).",
-          "blocker": "B6_SEVENTEEN_GAME_REFERENCE"
+          "note": "Valid only when the season Y-1 reference is valid (17-game season, B6).",
+          "blocker": "B6_SEVENTEEN_GAME_REFERENCE",
+          "windowRule": "sameLength"
+        },
+        {
+          "component": "Live route 2 - legacy fallback: percentile of the rate among bundled ol.pressure_rate_allowed",
+          "role": "priorSeason",
+          "source": "data/matchup-data.js",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1512,
+            "match": "priorPercentile(priorProfiles, (p)=>p?.ol?.pressure_rate_allowed"
+          },
+          "note": "Used when the reference is invalid or has <100 windows; yields a finite grade but depends on B1. Alternative to route 1 (one of the two is supplied).",
+          "blocker": "B1_LEGACY_PRIOR_SOURCE_FIELDS",
+          "alternativeTo": "Live route 1 - same-length window CDF (season Y-1 reference)"
         },
         {
           "component": "Prior: regressed bundled olIndex",

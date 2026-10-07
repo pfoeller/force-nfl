@@ -1,38 +1,46 @@
 [
   {
-    "q": "What exactly remains of B1?",
-    "a": "The season Y-1 legacy source fields behind every regressed prior: qb.epaoe/epa_per_play and qbIndex, ol.rating (pressure_rate_allowed, stuff_rate_allowed, avg_opp_dl), cov.rating, off_epa, receivers.adj_epa/targets, rb rush/adj fields, dl.run_stop_rate (and dl.pressure_rate as the pass-rush fallback). Their downstream rank definitions are largely recoverable; the fields themselves are not, and no producer exists in the repository or its history."
+    "q": "1. Is B1 still the decisive blocker?",
+    "a": "Yes. The season Y-1 legacy source fields behind every unit prior (and the OL fallback route) cannot be regenerated; no producer exists in the repository or its history."
   },
   {
-    "q": "What exactly remains of B2?",
-    "a": "Only historical receiver/RB reference populations for seasons before the committed 2025 reference. The current 2025 betas, centre and CDFs reproduce exactly."
+    "q": "2. Is B2 still narrowed to earlier historical reference populations?",
+    "a": "Yes. The current 2025 receiver/RB betas, centre and CDFs reproduce exactly; only earlier-season populations are missing."
   },
   {
-    "q": "During which game counts/weeks does B3 matter?",
-    "a": "Weeks 2-11 (V99 fade > 0). k = 1 exactly in week 1 and from week 12. In the active window k is continuous: different preseason Elo changes week-2 k for 24 teams (max 0.0198) with no regime-class change."
+    "q": "3. Is B3 still limited to weeks 2-11?",
+    "a": "Yes. k = 1 in week 1 and from week 12. In weeks 2-11 k = 1 - 0.75*min(|c|/7,1); it equals 1 exactly when the signed weighted correction c is 0, which can happen by cancellation (residuals [8,-6])."
   },
   {
-    "q": "Is B4 a blocker, a policy decision, or both?",
-    "a": "Both: a hard blocker for historical-as-run provider selection; an owner policy decision for retrospective current-policy reconstruction (whose per-season coverage is not verified, and in which FTN is never ready with the public schema)."
+    "q": "4. Is B4 still both a blocker and a policy decision?",
+    "a": "Yes: a hard blocker for historical-as-run selection; an owner policy decision for retrospective current-policy replay (coverage unverified)."
   },
   {
-    "q": "Is any unit/year span defensibly assertable?",
-    "a": "No. The only defensible statement is a necessary lower bound: QB and OL cannot start before display season 2022 under current semantics (17-game Y-1 reference). No unit is assertable while B1 remains."
+    "q": "5. Is QB's 2022 necessary lower bound still correct?",
+    "a": "Yes. QB needs a valid 17-game season Y-1 reference and has no fallback."
   },
   {
-    "q": "What dynamic-record statements are valid under ties?",
-    "a": "For distinct references: 100/n per record and 100m/(n+m-1) per batch. With ties those bounds fail; the tie-aware form 100(2m+t-1)/(2(n+m-1)) holds on all exhaustive small cases but is not proven generally, so production should measure movement per reference version."
+    "q": "6. What is the correct OL statement?",
+    "a": "OL has two live routes. The reference-backed route needs a valid 17-game Y-1 reference (2022+). The legacy fallback route (bundle ol.pressure_rate_allowed percentile) is not bounded by B6 and yields a finite grade, but depends on B1. No OL span is assertable, and no earlier start is claimed."
   },
   {
-    "q": "Is the blocker registry complete enough for the intended research use?",
-    "a": "Yes for deciding the next step: it now separates current-reference reproducibility, k activity by week, provider semantics, the 17-game reference requirement and engineering literals, each with source anchors. It is not a replay engine."
+    "q": "7. Valid dynamic-record statements?",
+    "a": "Distinct references: 100/n per record and 100m/(n+m-1) per batch. Non-degenerate tied references: the tie-aware form 100(2m+t-1)/(2(n+m-1)) holds on the tested domain only (not proven). Degenerate all-equal references: invalid for Candidate A and rejected; no bound applies ([1,1,1]+[0] shifts 100). In every case, measure actual movement per reference version."
   },
   {
-    "q": "Does anything found eliminate the need to recover the legacy producer?",
-    "a": "No. Recoverable rank definitions and current-reference reproducibility do not regenerate the season Y-1 source fields."
+    "q": "8. Is reference hashing safe against malformed observations?",
+    "a": "Yes for the defined contract: non-finite/null grades, missing or non-canonical teams, invalid seasons/weeks/game counts, duplicate identities and invalid design/model fields are rejected before hashing; serialization is explicit and order-independent."
   },
   {
-    "q": "What is the single smallest owner decision required next?",
-    "a": "Determine whether the original legacy profile producer and its exact definitions can be supplied or recovered from outside this repository."
+    "q": "9. Is the plan validator sufficiently hardened for this research decision?",
+    "a": "Yes: canonical team identity, required game count, role-specific temporal schemas (current weeks; full-season prior inputs with no week; fixed-17 and same-length reference windows), alternative routes, leakage, duplicates, substitutes and blocked sources are all rejected as MALFORMED PLAN before blocker evaluation."
+  },
+  {
+    "q": "10. Does any new finding eliminate the need to recover the legacy producer?",
+    "a": "No. The OL fallback route itself depends on the same legacy fields."
+  },
+  {
+    "q": "11. Is the smallest substantive next decision still external legacy-producer recovery?",
+    "a": "Yes: determine whether the original legacy profile producer and its exact definitions can be supplied or recovered from outside this repository."
   }
 ]

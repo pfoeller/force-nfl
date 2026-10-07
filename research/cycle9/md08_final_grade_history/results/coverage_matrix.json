@@ -88,6 +88,7 @@
       "semanticCompatibility": "repository Elo history is a different chain"
     }
   ],
+  "olCorrection": "Earlier wording \"QB and OL cannot start before 2022\" overstated OL: 2022 applies to the reference-backed route only.",
   "withdrawn": "The earlier conditional spans (OL 2000+, QB 2007+, receivers/RB 2000+, defense 2019+/2023+, common 2019+/2023+) are WITHDRAWN: they were inferred from release dates and missed the 17-game reference requirement, the FTN pressure-field contract and unverified component coverage.",
   "unitSpans": {
     "qbIndex": {
@@ -104,14 +105,23 @@
     },
     "olIndex": {
       "earliestRawSourceYear": 1999,
-      "theoreticalEarliestDisplayYear": 2022,
-      "why": "valid reference needs a 17-game season Y-1 (B6); otherwise OL falls back to the bundle",
+      "routes": {
+        "referenceBacked": {
+          "necessaryLowerBound": 2022,
+          "why": "needs a valid 17-game season Y-1 reference (B6)"
+        },
+        "legacyFallback": {
+          "necessaryLowerBound": null,
+          "why": "not bounded by B6, but uses bundle ol.pressure_rate_allowed of season Y-1 (B1)"
+        }
+      },
+      "theoreticalEarliestDisplayYear": null,
       "unresolved": [
-        "B1 prior",
+        "B1 (prior and fallback route)",
         "B3 weeks 2-11",
         "pbp coverage not verified outside 2024-2025"
       ],
-      "status": "NOT ASSERTABLE (B1); 2022 is a necessary lower bound only"
+      "status": "NOT ASSERTABLE; 2022 bounds only the reference-backed route"
     },
     "receiverIndex": {
       "earliestRawSourceYear": 1999,
@@ -150,7 +160,7 @@
     "common": {
       "status": "NOT ASSERTABLE",
       "necessaryLowerBound": 2022,
-      "why": "QB and OL cannot start before 2022 under current semantics; all units remain blocked by B1"
+      "why": "QB has no fallback and cannot start before 2022 (B6), which bounds any all-unit span; OL is not itself bounded by B6 (fallback route); all units remain blocked by B1"
     }
   },
   "burnIn": "Every unit needs season Y-1 inputs (prior and/or reference) and Y-1 must be a 17-game season for QB/OL; burn-in seasons are not display-eligible. Weeks 2-11 also need a verified Elo chain ending at Y-1."

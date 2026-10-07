@@ -98,6 +98,17 @@ export function analyze({pins=PINS}={}){
   assert.equal(kExperiment.byWeek[2].teamsChanged,24);close(kExperiment.byWeek[2].maxAbsChange,0.0197653235,'Codex week-2 k change',1e-9);assert.equal(kExperiment.byWeek[2].regimeClassChanges,0);
   for(const w of [1,12,13]){assert.equal(kExperiment.byWeek[w].teamsChanged,0);assert(Object.values(base.weeks[w].k).every(v=>v===1));}
 
+  const {context:hctx}=appHarness({});const RC=hctx.window.FORCE_RATING_CONTINUITY,UP=hctx.window.FORCE_UNIT_PRIOR;
+  const cancelState={T:[{residual:8,opponentQuality:0},{residual:-6,opponentQuality:0}]};
+  const cancel={residuals:[8,-6],opponentQuality:0,week:3,signedCorrection:RC.rawCorrectionPoints('T',3,cancelState),k:null,note:'Both residuals exceed the 3-point threshold, yet the recency-weighted signed excesses cancel (latest -3 at weight 1, earlier +5 at weight 0.6).'};
+  cancel.k=UP.effectivePriorGames(cancel.signedCorrection,1);assert.equal(cancel.signedCorrection,0);assert.equal(cancel.k,1);
+  // OL fallback route: with an invalid reference production uses the bundle percentile (B1-dependent) and still yields a finite grade.
+  const olFallback=T.slice(0,4).map(t=>{const z=Zt[t],rate=z.raw.pbpPressureAllowedRate,live=L.priorPercentile(P,(p)=>p?.ol?.pressure_rate_allowed,rate,false);const {g,k}=Z0.blendInputs(z,'olIndex');return {team:t,rate,fallbackLive:live,fallbackFinal:L.blend(z.prior.olIndex,live,g,k),referenceRouteLive:z.liveGrade.olIndex};});
+  for(const r of olFallback)assert(Number.isFinite(r.fallbackFinal),'OL fallback finite');
+  const qbActive={qbOpponentEpaAdjustmentAllZero:T.every(t=>Zt[t].raw.qbOpponentEpaAdjustment===0),qbOpponentRatingAdjustmentNonzeroTeams:T.filter(t=>Zt[t].raw.qbOpponentRatingAdjustment!==0).length,
+    anchors:{opponent:resolveAnchor('model/live_profiles.js#raw[t].qbOpponentRatingAdjustment='),inactiveOpponentField:resolveAnchor('model/live_profiles.js#r.qbOpponentEpaAdjustment=0'),pressure:resolveAnchor('model/live_profiles.js#const qbOlRatingAdjustment='),passCore:resolveAnchor('model/live_profiles.js#qbRawLiveScore+qbOpponentRatingAdjustment+qbOlRatingAdjustment'),diagnosticPressureField:resolveAnchor('model/live_profiles.js#pressureEpaDrop')}};
+  assert(qbActive.qbOpponentEpaAdjustmentAllZero&&qbActive.qbOpponentRatingAdjustmentNonzeroTeams===32);
+
   // ---------- B4: provider evidence ----------
   const ftnHeader=F.lf('data/live-cache/2e8d73150c460a0bed43.bin').split('\n')[0].split(',');
   const providers={};for(const z of Object.values(Zt))providers[z.metadata.passRushProvider]=(providers[z.metadata.passRushProvider]||0)+1;
@@ -109,7 +120,7 @@ export function analyze({pins=PINS}={}){
       playerLevelExamples:T.slice(0,4).map(t=>({team:t,qb:P[t].qb.qb,qbGames:P[t].qb.games,rb:P[t].rb.name,rbGames:P[t].rb.games}))},
     fieldReproducibility:fields,recoverableRankDefinitions:rankDefs,
     eloChain:{productionPreseasonSource:'data/model-data.js rankings (end-2025 Elo), regressed 30%',repositoryHistory:'research/season_end_elo.json seasons '+Object.keys(elo)[0]+'-'+Object.keys(elo).at(-1),maxAbsDiff2025:Math.max(...eloDiff),meanAbsDiff2025:mean(eloDiff),verdict:'not the same chain'},
-    b2,kTable,kExperiment,b4};
+    b2,kTable,kExperiment,kCancellation:cancel,olRoutes:{route1:'reference-backed (needs valid 17-game Y-1 reference; B6)',route2:'legacy bundle-percentile fallback (finite grade; B1)',fallbackDemo:olFallback},qbActivePaths:qbActive,b4};
 
   // ---------- Coverage matrix with evidence labels ----------
   const listing=JSON.parse(F.lf(DIR+'/results/source_listing.json'));
@@ -126,14 +137,15 @@ export function analyze({pins=PINS}={}){
       {input:'Manual pressure override',sourceAvailable:[2026,2026],componentCoverage:'current only',semanticCompatibility:'n/a'},
       {input:'Bundled prior-season profiles',sourceAvailable:[2025,2025],componentCoverage:'2025 only; producer absent',semanticCompatibility:'legacy'},
       {input:'Preseason Elo (production)',sourceAvailable:[2025,2025],componentCoverage:'2025 only',semanticCompatibility:'repository Elo history is a different chain'}],
+    olCorrection:'Earlier wording "QB and OL cannot start before 2022" overstated OL: 2022 applies to the reference-backed route only.',
     withdrawn:'The earlier conditional spans (OL 2000+, QB 2007+, receivers/RB 2000+, defense 2019+/2023+, common 2019+/2023+) are WITHDRAWN: they were inferred from release dates and missed the 17-game reference requirement, the FTN pressure-field contract and unverified component coverage.',
     unitSpans:{
       qbIndex:{earliestRawSourceYear:1999,theoreticalEarliestDisplayYear:2022,why:'season Y-1 must be a 17-game season (2021+) for a valid reference (B6)',unresolved:['B1 prior','B3 weeks 2-11','passing_cpoe coverage not verified','QB-id source literal (B5)'],status:'NOT ASSERTABLE (B1); 2022 is a necessary lower bound only'},
-      olIndex:{earliestRawSourceYear:1999,theoreticalEarliestDisplayYear:2022,why:'valid reference needs a 17-game season Y-1 (B6); otherwise OL falls back to the bundle',unresolved:['B1 prior','B3 weeks 2-11','pbp coverage not verified outside 2024-2025'],status:'NOT ASSERTABLE (B1); 2022 is a necessary lower bound only'},
+      olIndex:{earliestRawSourceYear:1999,routes:{referenceBacked:{necessaryLowerBound:2022,why:'needs a valid 17-game season Y-1 reference (B6)'},legacyFallback:{necessaryLowerBound:null,why:'not bounded by B6, but uses bundle ol.pressure_rate_allowed of season Y-1 (B1)'}},theoreticalEarliestDisplayYear:null,unresolved:['B1 (prior and fallback route)','B3 weeks 2-11','pbp coverage not verified outside 2024-2025'],status:'NOT ASSERTABLE; 2022 bounds only the reference-backed route'},
       receiverIndex:{earliestRawSourceYear:1999,theoreticalEarliestDisplayYear:null,why:'season Y-1 reference population needs B1 fields',unresolved:['B1','B2','B3 weeks 2-11'],status:'NOT ASSERTABLE'},
       rbIndex:{earliestRawSourceYear:1999,theoreticalEarliestDisplayYear:null,why:'as receivers',unresolved:['B1','B2','B3 weeks 2-11'],status:'NOT ASSERTABLE'},
       defenseIndex:{earliestRawSourceYear:1999,theoreticalEarliestDisplayYear:null,why:'coverage and run-defense priors need B1; pass rush depends on the B4 replay policy; the PFR prior branch would need Y-1 >= 2018 and component coverage that is not verified',unresolved:['B1','B4 policy','B3 weeks 2-11','passing_cpoe coverage'],status:'NOT ASSERTABLE'},
-      common:{status:'NOT ASSERTABLE',necessaryLowerBound:2022,why:'QB and OL cannot start before 2022 under current semantics; all units remain blocked by B1'}},
+      common:{status:'NOT ASSERTABLE',necessaryLowerBound:2022,why:'QB has no fallback and cannot start before 2022 (B6), which bounds any all-unit span; OL is not itself bounded by B6 (fallback route); all units remain blocked by B1'}},
     burnIn:'Every unit needs season Y-1 inputs (prior and/or reference) and Y-1 must be a 17-game season for QB/OL; burn-in seasons are not display-eligible. Weeks 2-11 also need a verified Elo chain ending at Y-1.'};
 
   // ---------- Phase 5: current reproduction gate (unchanged) ----------
@@ -166,7 +178,7 @@ export function analyze({pins=PINS}={}){
       const distinct=new Set(ref2).size===ref2.length;if(distinct){brute.distinctCases++;if(mx>old+1e-9)brute.oldBoundViolationsDistinct++;}
       if(mx>old+1e-9)brute.oldBoundViolations[m===1?'oneRecord':'batch']++;if(mx>tb+1e-9)brute.tieAwareViolations++;
       const ratio=mx/tb;if(ratio>brute.maxRatioToTieAware+1e-12){brute.maxRatioToTieAware=ratio;}if(Math.abs(ratio-1)<1e-12&&brute.tightExamples.length<3&&t>1)brute.tightExamples.push({ref,add,maxShift:mx,bound:tb});}}
-  assert.equal(brute.tieAwareViolations,0);assert.equal(brute.oldBoundViolationsDistinct,0);assert(brute.oldBoundViolations.oneRecord>0);
+  assert.equal(brute.tieAwareViolations,0);assert.deepEqual(K.validateReferencePopulation([1,1,1]).length,1);assert.equal(A([1,1,1,0],1)-A([1,1,1],1),100);assert.equal(brute.oldBoundViolationsDistinct,0);assert(brute.oldBoundViolations.oneRecord>0);
   const R=F.rng(20261007),samples=[];
   for(const n of [64,160,320,640]){const pop=Array.from({length:n},()=>R.normal());const hi=Math.max(...pop)+1,lo=Math.min(...pop)-1;
     const d0=pop.map(v=>A(pop,v)),mx=a=>Math.max(...a.map((v,i)=>Math.abs(v-d0[i])));
@@ -175,23 +187,27 @@ export function analyze({pins=PINS}={}){
   const dynamic={schema:K.METADATA_SCHEMA,
     statements:{
       distinctReferences:'If the old reference and the added observations are all distinct values: one new record moves any previously displayed value by at most 100/n; m added observations by at most 100*m/(n+m-1). (Derived; 0 violations in the exhaustive distinct cases.)',
-      tiedReferences:'With ties those bounds are FALSE (counterexample below). Tie-aware statement: max shift <= 100*(2m+t-1)/(2(n+m-1)), t = size of the larger extreme tied block of the old reference. Derived for the extreme-block mechanism and verified exhaustively on small adversarial references (no violations; tight); not proven for all n.',
+      tiedReferences:'With ties those bounds are FALSE (counterexample below). Tie-aware statement for NON-DEGENERATE old references (>= 2 distinct values): max shift <= 100*(2m+t-1)/(2(n+m-1)), t = size of the larger extreme tied block. Derived for the extreme-block mechanism and verified exhaustively on the tested domain only (no violations; tight); not proven for all n.',
+      degenerateReferences:'An all-equal reference has no ordering, so Candidate A historical standing is undefined (worst = best). Contract: such references are INVALID and rejected (validateReferencePopulation). The tie-aware expression does not apply: [1,1,1] + [0] moves the old value 1 from 0 to 100 (shift 100 > 66.67).',
       contract:'Because the tie-aware form is verified only on small exhaustive cases, the safest production contract is to MEASURE the actual movement of published values whenever the reference version changes, with the closed forms as expectations.'},
-    counterexample,exhaustiveCheck:{domain:'n=3..6 reference values in {0..4}, m=1..3 additions in {-1..5}; shifts evaluated at every old distinct value and every midpoint inside the old range',...brute},
+    counterexample,degenerateCase:{reference:[1,1,1],add:[0],valueBefore:A([1,1,1],1),valueAfter:A([1,1,1,0],1),tieAwareExpression:K.reanchorBound.tieAware(3,1,3),referenceValidity:K.validateReferencePopulation([1,1,1]),handling:'rejected as an invalid Candidate A reference; outside the domain of every stated bound'},
+    exhaustiveCheck:{domain:'old references with >= 2 distinct values (all-equal references explicitly excluded), n=3..6, values in {0..4}; m=1..3 additions in {-1..5}; shifts evaluated at every old distinct value and every midpoint inside the old range',...brute},
     syntheticDistinct:{label:'MECHANICS ONLY: seeded standard-normal (distinct) populations, not FORCE grades',seed:20261007,samples},
     exampleReferenceVersion:{note:'Illustrates the identifier only; the population is the 2026 Week-4 final OL grades, which is NOT a historical reference.',id:K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{'model/live_profiles.js':Z0.PINS['model/live_profiles.js']},observations:T.map(t=>({season:2026,team:t,asOfWeek:4,finalGrade:gate[t].olIndex}))})}};
 
   // ---------- Revised owner decision package ----------
   const decision=[
-    {q:'What exactly remains of B1?',a:'The season Y-1 legacy source fields behind every regressed prior: qb.epaoe/epa_per_play and qbIndex, ol.rating (pressure_rate_allowed, stuff_rate_allowed, avg_opp_dl), cov.rating, off_epa, receivers.adj_epa/targets, rb rush/adj fields, dl.run_stop_rate (and dl.pressure_rate as the pass-rush fallback). Their downstream rank definitions are largely recoverable; the fields themselves are not, and no producer exists in the repository or its history.'},
-    {q:'What exactly remains of B2?',a:'Only historical receiver/RB reference populations for seasons before the committed 2025 reference. The current 2025 betas, centre and CDFs reproduce exactly.'},
-    {q:'During which game counts/weeks does B3 matter?',a:'Weeks 2-11 (V99 fade > 0). k = 1 exactly in week 1 and from week 12. In the active window k is continuous: different preseason Elo changes week-2 k for 24 teams (max 0.0198) with no regime-class change.'},
-    {q:'Is B4 a blocker, a policy decision, or both?',a:'Both: a hard blocker for historical-as-run provider selection; an owner policy decision for retrospective current-policy reconstruction (whose per-season coverage is not verified, and in which FTN is never ready with the public schema).'},
-    {q:'Is any unit/year span defensibly assertable?',a:'No. The only defensible statement is a necessary lower bound: QB and OL cannot start before display season 2022 under current semantics (17-game Y-1 reference). No unit is assertable while B1 remains.'},
-    {q:'What dynamic-record statements are valid under ties?',a:'For distinct references: 100/n per record and 100m/(n+m-1) per batch. With ties those bounds fail; the tie-aware form 100(2m+t-1)/(2(n+m-1)) holds on all exhaustive small cases but is not proven generally, so production should measure movement per reference version.'},
-    {q:'Is the blocker registry complete enough for the intended research use?',a:'Yes for deciding the next step: it now separates current-reference reproducibility, k activity by week, provider semantics, the 17-game reference requirement and engineering literals, each with source anchors. It is not a replay engine.'},
-    {q:'Does anything found eliminate the need to recover the legacy producer?',a:'No. Recoverable rank definitions and current-reference reproducibility do not regenerate the season Y-1 source fields.'},
-    {q:'What is the single smallest owner decision required next?',a:'Determine whether the original legacy profile producer and its exact definitions can be supplied or recovered from outside this repository.'}];
+    {q:'1. Is B1 still the decisive blocker?',a:'Yes. The season Y-1 legacy source fields behind every unit prior (and the OL fallback route) cannot be regenerated; no producer exists in the repository or its history.'},
+    {q:'2. Is B2 still narrowed to earlier historical reference populations?',a:'Yes. The current 2025 receiver/RB betas, centre and CDFs reproduce exactly; only earlier-season populations are missing.'},
+    {q:'3. Is B3 still limited to weeks 2-11?',a:'Yes. k = 1 in week 1 and from week 12. In weeks 2-11 k = 1 - 0.75*min(|c|/7,1); it equals 1 exactly when the signed weighted correction c is 0, which can happen by cancellation (residuals [8,-6]).'},
+    {q:'4. Is B4 still both a blocker and a policy decision?',a:'Yes: a hard blocker for historical-as-run selection; an owner policy decision for retrospective current-policy replay (coverage unverified).'},
+    {q:'5. Is QB\'s 2022 necessary lower bound still correct?',a:'Yes. QB needs a valid 17-game season Y-1 reference and has no fallback.'},
+    {q:'6. What is the correct OL statement?',a:'OL has two live routes. The reference-backed route needs a valid 17-game Y-1 reference (2022+). The legacy fallback route (bundle ol.pressure_rate_allowed percentile) is not bounded by B6 and yields a finite grade, but depends on B1. No OL span is assertable, and no earlier start is claimed.'},
+    {q:'7. Valid dynamic-record statements?',a:'Distinct references: 100/n per record and 100m/(n+m-1) per batch. Non-degenerate tied references: the tie-aware form 100(2m+t-1)/(2(n+m-1)) holds on the tested domain only (not proven). Degenerate all-equal references: invalid for Candidate A and rejected; no bound applies ([1,1,1]+[0] shifts 100). In every case, measure actual movement per reference version.'},
+    {q:'8. Is reference hashing safe against malformed observations?',a:'Yes for the defined contract: non-finite/null grades, missing or non-canonical teams, invalid seasons/weeks/game counts, duplicate identities and invalid design/model fields are rejected before hashing; serialization is explicit and order-independent.'},
+    {q:'9. Is the plan validator sufficiently hardened for this research decision?',a:'Yes: canonical team identity, required game count, role-specific temporal schemas (current weeks; full-season prior inputs with no week; fixed-17 and same-length reference windows), alternative routes, leakage, duplicates, substitutes and blocked sources are all rejected as MALFORMED PLAN before blocker evaluation.'},
+    {q:'10. Does any new finding eliminate the need to recover the legacy producer?',a:'No. The OL fallback route itself depends on the same legacy fields.'},
+    {q:'11. Is the smallest substantive next decision still external legacy-producer recovery?',a:'Yes: determine whether the original legacy profile producer and its exact definitions can be supplied or recovered from outside this repository.'}];
   return {contracts,priorEvidence,coverage,currentReproduction,dynamic,decision};
 }
 
