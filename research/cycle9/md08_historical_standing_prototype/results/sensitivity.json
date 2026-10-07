@@ -82,12 +82,37 @@
         ]
       }
     },
-    "signalOrderVsFinalGradeOrder": {
+    "rawSignalOrderVsFinalGradeOrder": {
       "spearman": 0.951150219373729,
+      "kendallTauB": 0.8456109249701096,
       "teamsMoving": 22,
-      "maxAbsMove": 8
+      "maxAbsMove": 8,
+      "meanAbsMove": 1.9375,
+      "pairReversals": 38,
+      "tiedPairsInFirst": 1,
+      "tiedPairsInSecond": 0
     },
-    "note": "All candidates are monotone in the signal, so within a unit they share the signal order; differences between candidates and references are spacing/level only. The signal order differs from the final model order because the final grade adds stabilization and the prior blend."
+    "candidateA_S_displayOrderVsFinalGradeOrder": {
+      "spearman": 0.9507836168609621,
+      "kendallTauB": 0.8415745959726388,
+      "teamsMoving": 24,
+      "maxAbsMove": 8,
+      "meanAbsMove": 2,
+      "pairReversals": 39,
+      "tiedPairsInFirst": 1,
+      "tiedPairsInSecond": 0
+    },
+    "candidateA_S_displayOrderVsRawSignalOrder": {
+      "spearman": 0.9996333638863428,
+      "kendallTauB": 0.9959595959595959,
+      "teamsMoving": 2,
+      "maxAbsMove": 1,
+      "meanAbsMove": 0.0625,
+      "pairReversals": 1,
+      "tiedPairsInFirst": 1,
+      "tiedPairsInSecond": 1
+    },
+    "note": "Within one strictly increasing transform applied with one common reference, display order equals signal order apart from ties. Here 3-game teams (ATL, NO) and 4-game teams use different references, and 0/100 clipping can create ties, so the actual Candidate A/S display order can differ from the raw-signal order. Both differ from the final model order, which adds stabilization and the prior blend."
   },
   "receiverIndex": {
     "referencePopulation": {
@@ -172,12 +197,37 @@
         ]
       }
     },
-    "signalOrderVsFinalGradeOrder": {
+    "rawSignalOrderVsFinalGradeOrder": {
       "spearman": 0.9505131964809385,
+      "kendallTauB": 0.842741935483871,
       "teamsMoving": 25,
-      "maxAbsMove": 8
+      "maxAbsMove": 8,
+      "meanAbsMove": 2.0625,
+      "pairReversals": 39,
+      "tiedPairsInFirst": 0,
+      "tiedPairsInSecond": 0
     },
-    "note": "All candidates are monotone in the signal, so within a unit they share the signal order; differences between candidates and references are spacing/level only. The signal order differs from the final model order because the final grade adds stabilization and the prior blend."
+    "candidateA_S_displayOrderVsFinalGradeOrder": {
+      "spearman": 0.9508797653958945,
+      "kendallTauB": 0.8467741935483871,
+      "teamsMoving": 23,
+      "maxAbsMove": 8,
+      "meanAbsMove": 2,
+      "pairReversals": 38,
+      "tiedPairsInFirst": 0,
+      "tiedPairsInSecond": 0
+    },
+    "candidateA_S_displayOrderVsRawSignalOrder": {
+      "spearman": 0.999633431085044,
+      "kendallTauB": 0.9959677419354839,
+      "teamsMoving": 2,
+      "maxAbsMove": 1,
+      "meanAbsMove": 0.0625,
+      "pairReversals": 1,
+      "tiedPairsInFirst": 0,
+      "tiedPairsInSecond": 0
+    },
+    "note": "Within one strictly increasing transform applied with one common reference, display order equals signal order apart from ties. Here 3-game teams (ATL, NO) and 4-game teams use different references, and 0/100 clipping can create ties, so the actual Candidate A/S display order can differ from the raw-signal order. Both differ from the final model order, which adds stabilization and the prior blend."
   },
   "rbIndex": {
     "referencePopulation": {
@@ -262,12 +312,37 @@
         ]
       }
     },
-    "signalOrderVsFinalGradeOrder": {
+    "rawSignalOrderVsFinalGradeOrder": {
       "spearman": 0.8493401759530792,
+      "kendallTauB": 0.6854838709677419,
       "teamsMoving": 28,
-      "maxAbsMove": 13
+      "maxAbsMove": 13,
+      "meanAbsMove": 3.75,
+      "pairReversals": 78,
+      "tiedPairsInFirst": 0,
+      "tiedPairsInSecond": 0
     },
-    "note": "All candidates are monotone in the signal, so within a unit they share the signal order; differences between candidates and references are spacing/level only. The signal order differs from the final model order because the final grade adds stabilization and the prior blend."
+    "candidateA_S_displayOrderVsFinalGradeOrder": {
+      "spearman": 0.8493401759530792,
+      "kendallTauB": 0.6854838709677419,
+      "teamsMoving": 28,
+      "maxAbsMove": 13,
+      "meanAbsMove": 3.75,
+      "pairReversals": 78,
+      "tiedPairsInFirst": 0,
+      "tiedPairsInSecond": 0
+    },
+    "candidateA_S_displayOrderVsRawSignalOrder": {
+      "spearman": 1,
+      "kendallTauB": 1,
+      "teamsMoving": 0,
+      "maxAbsMove": 0,
+      "meanAbsMove": 0,
+      "pairReversals": 0,
+      "tiedPairsInFirst": 0,
+      "tiedPairsInSecond": 0
+    },
+    "note": "Within one strictly increasing transform applied with one common reference, display order equals signal order apart from ties. Here 3-game teams (ATL, NO) and 4-game teams use different references, and 0/100 clipping can create ties, so the actual Candidate A/S display order can differ from the raw-signal order. Both differ from the final model order, which adds stabilization and the prior blend."
   },
   "qbIndex": {
     "referencePopulation": {
@@ -352,12 +427,37 @@
         ]
       }
     },
-    "signalOrderVsFinalGradeOrder": {
+    "rawSignalOrderVsFinalGradeOrder": {
       "spearman": 0.9618768328445748,
+      "kendallTauB": 0.842741935483871,
       "teamsMoving": 23,
-      "maxAbsMove": 6
+      "maxAbsMove": 6,
+      "meanAbsMove": 1.9375,
+      "pairReversals": 39,
+      "tiedPairsInFirst": 0,
+      "tiedPairsInSecond": 0
     },
-    "note": "All candidates are monotone in the signal, so within a unit they share the signal order; differences between candidates and references are spacing/level only. The signal order differs from the final model order because the final grade adds stabilization and the prior blend."
+    "candidateA_S_displayOrderVsFinalGradeOrder": {
+      "spearman": 0.9618768328445748,
+      "kendallTauB": 0.842741935483871,
+      "teamsMoving": 23,
+      "maxAbsMove": 6,
+      "meanAbsMove": 1.9375,
+      "pairReversals": 39,
+      "tiedPairsInFirst": 0,
+      "tiedPairsInSecond": 0
+    },
+    "candidateA_S_displayOrderVsRawSignalOrder": {
+      "spearman": 1,
+      "kendallTauB": 1,
+      "teamsMoving": 0,
+      "maxAbsMove": 0,
+      "meanAbsMove": 0,
+      "pairReversals": 0,
+      "tiedPairsInFirst": 0,
+      "tiedPairsInSecond": 0
+    },
+    "note": "Within one strictly increasing transform applied with one common reference, display order equals signal order apart from ties. Here 3-game teams (ATL, NO) and 4-game teams use different references, and 0/100 clipping can create ties, so the actual Candidate A/S display order can differ from the raw-signal order. Both differ from the final model order, which adds stabilization and the prior blend."
   },
   "priorBlendFromFollowup": [
     {

@@ -1,4 +1,42 @@
 {
+  "repositoryHistoricalLayers": {
+    "selectedPrototypeFixture": {
+      "path": "research/cycle7/fixtures/unit_games.csv",
+      "seasons": [
+        2024,
+        2025
+      ],
+      "role": "Provides every historical signal actually used by this prototype (OL disruption, WR/TE and sack-free pass EPA for the receiver residual, RB rushing EPA, QB EPA/play)."
+    },
+    "otherComponentReferences": {
+      "path": "data/live-cache/c6cb7af1f41f107e7e3f.bin",
+      "season": 2025,
+      "metrics": {
+        "qb_pass_epa": {
+          "oneGame": 544,
+          "fourGame": 448,
+          "fullSeason": 32
+        },
+        "qb_epa_per_play": {
+          "oneGame": 544,
+          "fourGame": 448,
+          "fullSeason": 32
+        },
+        "qb_pass_success_rate": {
+          "oneGame": 544,
+          "fourGame": 448,
+          "fullSeason": 32
+        },
+        "ol_disruption_rate": {
+          "oneGame": 544,
+          "fourGame": 448,
+          "fullSeason": 32
+        }
+      },
+      "role": "Production V149 2025 rolling-window component references (1-17 game windows, team-major). Includes QB pass-success-rate history (448 four-game and 32 full-season observations) and QB sack-free pass EPA, which this prototype does not use. Evidence that further component populations exist; one season only."
+    },
+    "missingFinalCanonicalGrades": "No layer contains historical FINAL canonical grades. QB component histories (EPA/play, pass EPA, success rate) do not provide the five-component composite and do not reconstruct historical stabilization, opponent/pressure context, priors, recency or clamp state."
+  },
   "sourceOfHistoricalReference": {
     "path": "research/cycle7/fixtures/unit_games.csv",
     "derivedFrom": "research/cycle7/inputs.json pins (nflverse 2024/2025 regular-season PBP and weekly player positions; committed derived fixture)",
@@ -17,10 +55,10 @@
         2024,
         2025
       ],
-      "perSeason": "32 team-seasons x 17 games (EPA/play component only)",
+      "perSeason": "Fixture: 32 team-seasons x 17 games (EPA/play). V149 2025: success rate and pass EPA, 448 four-game and 32 full-season windows",
       "forms": "game-level -> rolling or stage windows, full season",
       "identicalSemantics": false,
-      "mismatch": "Only the EPA/play component has history; ANY/A, CPOE, success-weighting, rushing bonus, opponent and pressure terms, prior and recency do not.",
+      "mismatch": "The prototype fixture gives EPA/play (2024-2025); V149 also holds 2025 pass-success-rate and sack-free pass-EPA windows (not used here). ANY/A, CPOE and the rushing bonus have no committed history, and the opponent/pressure context, prior, recency and clamp cannot be replayed.",
       "stageComparable": true,
       "stabilizationDiffers": "Production stabilizes EPA toward the current mean (150 plays); the signal-layer reference is unstabilized.",
       "verdict": "PARTIAL: component-level prototype only; the displayed QB composite cannot honestly be given a historical standing yet."

@@ -6,7 +6,7 @@
       "worseThanWorst": "0, flagged belowWorst (frozen); under dynamic semantics it becomes the new worst and the frame re-anchors",
       "betterThanBest": "100, flagged aboveBest (frozen: 100 = at or beyond the frozen best); under dynamic semantics it becomes the new best = 100 and earlier values remap down",
       "tied": "midrank of the tied block (interior); worst/best blocks forced to 0/100",
-      "median": "50 when n is odd; for even n the two middle order statistics map to 100*(n/2-1)/(n-1) and 100*(n/2)/(n-1) and their midpoint is interpolated near 50",
+      "median": "Near 50 for these references (4-game: 50.000 all units; 3-game: OL 49.603, others 50.000), but exact 50 is not guaranteed: tied blocks at the centre shift the midrank (reference [0,1,1,1,2,3]: median 1 maps to 40). ~50 means ordinary/middle historical quality, not an exact identity",
       "sparse": "linear interpolation between the adjacent distinct historical values"
     },
     "B": {
@@ -15,26 +15,51 @@
       "worseThanWorst": "0 flagged (as A)",
       "betterThanBest": "100 flagged (as A)",
       "tied": "no special rule: the kernel CDF treats tied values as coincident kernels",
-      "median": "near but not exactly 50 (kernel smoothing)",
+      "median": "not exactly 50 (kernel smoothing); tested references give 47.7-52.6 at 4 games and 44.0-52.5 at 3 games (see probes; tested references only)",
       "sparse": "smooth (kernel) rather than linear; same order as A"
     },
     "C": {
       "equalToWorst": "100*(midrank+0.5)/n, e.g. 0.78 at n=64",
       "equalToBest": "100*(1-0.5/n), e.g. 99.22 at n=64",
-      "worseThanWorst": "between 0 and the worst knot via a fitted normal tail; never exactly 0",
-      "betterThanBest": "between the best knot and 100 via a fitted normal tail; never exactly 100",
+      "worseThanWorst": "between 0 and the worst knot via a fitted normal tail; 0 is an asymptote in exact arithmetic, but sufficiently distant finite inputs saturate to exactly 0 in double precision",
+      "betterThanBest": "between the best knot and 100 via a fitted normal tail; 100 is an asymptote in exact arithmetic, but sufficiently distant finite inputs saturate to exactly 100 in double precision (e.g. candidateC([0,1,2,3],100) === 100). The historical best itself still maps to 100*(1-0.5/n), not 100",
       "tied": "midrank Hazen position",
-      "median": "50 exactly at the sample median order statistic (odd n) / interpolated (even n)",
+      "median": "near 50 (Hazen midrank); exact 50 not guaranteed with tied centre blocks (reference [0,1,1,1,2,3]: 41.667)",
       "sparse": "linear between Hazen positions"
+    },
+    "tieMedianExample": {
+      "reference": [
+        0,
+        1,
+        1,
+        1,
+        2,
+        3
+      ],
+      "median": 1,
+      "A": 40,
+      "C": 41.666666666666664
+    },
+    "numericalSaturationExample": {
+      "reference": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "C_at_100": 100,
+      "C_at_minus100": 0,
+      "C_at_best": 87.5
     },
     "semanticsTradeoff": {
       "frozen": "Reproducible across a season: the same signal always maps to the same number; 100 means at or beyond the frozen historical best (records are flagged, not distinguished).",
       "dynamic": "0/100 always mean worst/best ever including the current season, but a team's number can change because another team set a record, and published numbers are not reproducible without the reference version.",
-      "openTail": "Records remain distinguishable above the historical best, but 0/100 become unattained asymptotes and the historical best shows ~99.2 (n=64), contradicting the owner's \"100 = best observation\"."
+      "openTail": "Records remain distinguishable above the historical best (until double-precision saturation for very distant values), but the historical best shows ~99.2 (n=64), contradicting the owner's \"100 = best observation\"."
     }
   },
   "probes": {
     "olIndex": {
+      "games": 4,
       "referenceN": 64,
       "largestGap": {
         "lower": -0.2934131736526946,
@@ -77,6 +102,24 @@
           "C": 99.55552495745478,
           "standing": 100
         },
+        "distantWorseThanWorst": {
+          "value": -239.81992337164746,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0,
+          "standing": 0
+        },
+        "distantBetterThanBest": {
+          "value": 239.45626710454292,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 100,
+          "standing": 100
+        },
         "tiedValue": {
           "value": -0.2222222222222222,
           "A": 11.904761904761905,
@@ -107,7 +150,100 @@
       },
       "tiedValuesInReference": 6
     },
+    "olIndex_3game": {
+      "games": 3,
+      "referenceN": 64,
+      "largestGap": {
+        "lower": -0.29545454545454547,
+        "upper": -0.2631578947368421
+      },
+      "probes": {
+        "equalToWorst": {
+          "value": -0.29545454545454547,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 1.5625,
+          "standing": 1.5625
+        },
+        "equalToBest": {
+          "value": -0.05333333333333334,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.21875,
+          "standing": 99.21875
+        },
+        "worseThanWorst": {
+          "value": -0.3075606060606061,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.8277957689228985,
+          "standing": 0
+        },
+        "betterThanBest": {
+          "value": -0.04122727272727273,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.54734648935168,
+          "standing": 100
+        },
+        "distantWorseThanWorst": {
+          "value": -242.41666666666666,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0,
+          "standing": 0
+        },
+        "distantBetterThanBest": {
+          "value": 242.06787878787878,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 100,
+          "standing": 100
+        },
+        "tiedValue": {
+          "value": -0.29545454545454547,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 1.5625,
+          "standing": 1.5625
+        },
+        "historicalMedian": {
+          "value": -0.1705931263858093,
+          "A": 49.6031746031746,
+          "Amin": 49.20634920634921,
+          "Amax": 50,
+          "B": 44.0400785508106,
+          "C": 49.609375,
+          "standing": 50
+        },
+        "betweenSparseObservations": {
+          "value": -0.2793062200956938,
+          "A": 1.5873015873015872,
+          "Amin": 1.5873015873015872,
+          "Amax": 1.5873015873015872,
+          "B": 1.5917258069586055,
+          "C": 2.734375,
+          "standing": 3.125
+        }
+      },
+      "tiedValuesInReference": 13
+    },
     "receiverIndex": {
+      "games": 4,
       "referenceN": 64,
       "largestGap": {
         "lower": 0.42789166285577995,
@@ -150,6 +286,24 @@
           "C": 99.64027525834385,
           "standing": 100
         },
+        "distantWorseThanWorst": {
+          "value": -492.6553180964729,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0,
+          "standing": 0
+        },
+        "distantBetterThanBest": {
+          "value": 493.11465142671415,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 100,
+          "standing": 100
+        },
         "historicalMedian": {
           "value": 0.1695694937514246,
           "A": 50.000000000000014,
@@ -171,7 +325,91 @@
       },
       "tiedValuesInReference": 0
     },
+    "receiverIndex_3game": {
+      "games": 3,
+      "referenceN": 64,
+      "largestGap": {
+        "lower": 0.31715230682683543,
+        "upper": 0.40682002404961326
+      },
+      "probes": {
+        "equalToWorst": {
+          "value": -0.05208162200556771,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.78125,
+          "standing": 0.78125
+        },
+        "equalToBest": {
+          "value": 0.5045081178632532,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.21875,
+          "standing": 99.21875
+        },
+        "worseThanWorst": {
+          "value": -0.07991110899900875,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.4396598663455941,
+          "standing": 0
+        },
+        "betterThanBest": {
+          "value": 0.5323376048566942,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.62126046184557,
+          "standing": 100
+        },
+        "distantWorseThanWorst": {
+          "value": -556.6418214908264,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0,
+          "standing": 0
+        },
+        "distantBetterThanBest": {
+          "value": 557.0942479866841,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 100,
+          "standing": 100
+        },
+        "historicalMedian": {
+          "value": 0.19692495497880202,
+          "A": 50.00000000000002,
+          "Amin": 50.00000000000002,
+          "Amax": 50.00000000000002,
+          "B": 52.48035325330643,
+          "C": 50.00000000000002,
+          "standing": 50
+        },
+        "betweenSparseObservations": {
+          "value": 0.36198616543822437,
+          "A": 92.85714285714286,
+          "Amin": 92.85714285714286,
+          "Amax": 92.85714285714286,
+          "B": 92.75590055860458,
+          "C": 92.1875,
+          "standing": 92.1875
+        }
+      },
+      "tiedValuesInReference": 0
+    },
     "rbIndex": {
+      "games": 4,
       "referenceN": 64,
       "largestGap": {
         "lower": -0.5206747425853472,
@@ -214,6 +452,24 @@
           "C": 99.66355250113212,
           "standing": 100
         },
+        "distantWorseThanWorst": {
+          "value": -708.3478951277687,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0,
+          "standing": 0
+        },
+        "distantBetterThanBest": {
+          "value": 708.0143728629831,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 100,
+          "standing": 100
+        },
         "historicalMedian": {
           "value": -0.058971124970184224,
           "A": 49.999999999999986,
@@ -235,7 +491,91 @@
       },
       "tiedValuesInReference": 0
     },
+    "rbIndex_3game": {
+      "games": 3,
+      "referenceN": 64,
+      "largestGap": {
+        "lower": -0.5683649718525847,
+        "upper": -0.39960374817667516
+      },
+      "probes": {
+        "equalToWorst": {
+          "value": -0.5683649718525847,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.78125,
+          "standing": 0.78125
+        },
+        "equalToBest": {
+          "value": 0.15211720230550768,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.21875,
+          "standing": 99.21875
+        },
+        "worseThanWorst": {
+          "value": -0.6043890805604893,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.24446737809903957,
+          "standing": 0
+        },
+        "betterThanBest": {
+          "value": 0.1881413110134123,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.59208924957527,
+          "standing": 100
+        },
+        "distantWorseThanWorst": {
+          "value": -721.050539129945,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0,
+          "standing": 0
+        },
+        "distantBetterThanBest": {
+          "value": 720.6342913603979,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 100,
+          "standing": 100
+        },
+        "historicalMedian": {
+          "value": -0.07829569752261419,
+          "A": 50,
+          "Amin": 50,
+          "Amax": 50,
+          "B": 49.72353015804352,
+          "C": 50,
+          "standing": 50
+        },
+        "betweenSparseObservations": {
+          "value": -0.48398436001462997,
+          "A": 0.7936507936507934,
+          "Amin": 0.7936507936507934,
+          "Amax": 0.7936507936507934,
+          "B": 0.8055405741355732,
+          "C": 1.5624999999999998,
+          "standing": 1.5625
+        }
+      },
+      "tiedValuesInReference": 0
+    },
     "qbIndex": {
+      "games": 4,
       "referenceN": 64,
       "largestGap": {
         "lower": -0.2046601735257563,
@@ -278,6 +618,24 @@
           "C": 99.53244002433726,
           "standing": 100
         },
+        "distantWorseThanWorst": {
+          "value": -705.5951727478594,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0,
+          "standing": 0
+        },
+        "distantBetterThanBest": {
+          "value": 705.656950522262,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 100,
+          "standing": 100
+        },
         "historicalMedian": {
           "value": 0.05124424354985957,
           "A": 50,
@@ -295,6 +653,89 @@
           "B": 11.878660053075446,
           "C": 15.625,
           "standing": 15.625
+        }
+      },
+      "tiedValuesInReference": 0
+    },
+    "qbIndex_3game": {
+      "games": 3,
+      "referenceN": 64,
+      "largestGap": {
+        "lower": 0.41408685841595205,
+        "upper": 0.624624782868815
+      },
+      "probes": {
+        "equalToWorst": {
+          "value": -0.3205516545018352,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.78125,
+          "standing": 0.78125
+        },
+        "equalToBest": {
+          "value": 0.624624782868815,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.21875,
+          "standing": 99.21875
+        },
+        "worseThanWorst": {
+          "value": -0.3678104763703677,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0.45082417722676765,
+          "standing": 0
+        },
+        "betterThanBest": {
+          "value": 0.6718836047373474,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 99.65499024557379,
+          "standing": 100
+        },
+        "distantWorseThanWorst": {
+          "value": -945.496989025152,
+          "A": 0,
+          "Amin": 0,
+          "Amax": 0,
+          "B": 0,
+          "C": 0,
+          "standing": 0
+        },
+        "distantBetterThanBest": {
+          "value": 945.801062153519,
+          "A": 100,
+          "Amin": 100,
+          "Amax": 100,
+          "B": 100,
+          "C": 100,
+          "standing": 100
+        },
+        "historicalMedian": {
+          "value": 0.019533903407086023,
+          "A": 50,
+          "Amin": 50,
+          "Amax": 50,
+          "B": 48.45365975359687,
+          "C": 50,
+          "standing": 50
+        },
+        "betweenSparseObservations": {
+          "value": 0.5193558206423835,
+          "A": 99.2063492063492,
+          "Amin": 99.2063492063492,
+          "Amax": 99.2063492063492,
+          "B": 99.12376340076297,
+          "C": 98.4375,
+          "standing": 98.4375
         }
       },
       "tiedValuesInReference": 0

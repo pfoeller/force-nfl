@@ -1,5 +1,10 @@
 {
-  "canonicalValues": "qbIndex, receiverIndex, olIndex, rbIndex (post-correction LIVE_FITTED frame) and defenseIndex for 32 teams, computed through production blend/recency/clamp and the identity seam, equal the frozen Cycle 9 post-correction baseline (current_unit_values.csv, 6-decimal) within 5e-7",
+  "canonicalValues": "qbIndex, receiverIndex, olIndex and rbIndex (post-correction LIVE_FITTED frame) for 32 teams are recomputed from the snapshot live grades and priors through the production blend (QB: recency and clamp) and the identity seam. defenseIndex is recomputed with the production composite function L.defenseCompositeFrom from the stored constituent display grades (coverage, pass rush, run defense, prevention). All five equal the frozen Cycle 9 post-correction baseline (current_unit_values.csv, 6-decimal) within 5e-7.",
+  "defenseEvidenceLevels": {
+    "snapshotConsistency": "YES: the stored defenseIndex agrees with the frozen baseline CSV",
+    "recomputedFromStoredConstituents": "YES: L.defenseCompositeFrom(stored display grades) equals the stored defenseIndex exactly for all 32 teams (max residual 0)",
+    "historicalInputReplay": "NO: the constituent grades themselves are current-season snapshot values; this package does not rebuild defense from raw inputs, current or historical"
+  },
   "maxAbsResidualVs6DecimalCsv": 4.905881922923072e-7,
   "seamIsIdentity": true,
   "constructValidation": {
