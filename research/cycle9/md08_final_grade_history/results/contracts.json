@@ -81,7 +81,7 @@
     },
     {
       "was": "QB and OL references need only season Y-1 play-by-play (QB 2007+, OL 2000+)",
-      "now": "Both need a valid V149-style reference, which requires >=30 17-game windows (a 17-game season Y-1, 2021+); QB is unavailable and OL falls back to the bundle otherwise.",
+      "now": "QB needs a valid V149-style reference (>=30 17-game windows, i.e. a 17-game season Y-1, 2021+) and is unavailable otherwise. OL route 1 (reference-backed) has the same requirement; OL route 2 (legacy bundle-percentile fallback) does not need the reference but depends on B1.",
       "source": "model/live_profiles.js qbReferenceValid; force_server.py _v106_reference_valid"
     },
     {

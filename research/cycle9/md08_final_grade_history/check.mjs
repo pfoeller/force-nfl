@@ -53,12 +53,25 @@ const malformed=[
   ['null game count',mut('olIndex',p=>{p.gameCount=null;}),/missing game count/],
   ['non-integer game count',mut('olIndex',p=>{p.gameCount=3.5;}),/invalid game count/],
   ['impossible game count (0)',mut('olIndex',p=>{p.gameCount=0;}),/invalid game count/],
-  ['prior-season input with throughWeek 100',mut('olIndex',p=>{pick(p,/Prior/).throughWeek=100;}),/must not carry a week/],
+  ['prior-season input with throughWeek 100',mut('olIndex',p=>{pick(p,/Prior/).throughWeek=100;}),/unexpected throughWeek on priorSeasonFullSeason/],
   ['prior-season input without full-season scope',mut('olIndex',p=>{delete pick(p,/Prior/).scope;}),/scope full-season/],
   ['OL same-length reference window wrong',mut('olIndex',p=>{pick(p,/route 1/).windowGames=17;}),/must equal the game count/],
   ['QB reference window not 17',mut('qbIndex',p=>{pick(p,/17-game windows/).windowGames=16;}),/must be 17 games/],
   ['both OL live routes supplied',mut('olIndex',p=>{p.inputs.push({component:K.UNITS.olIndex.chain.find(c=>c.alternativeTo).component,role:'priorSeason',season:2023,scope:'full-season',source:'owner-authorized:test'});}),/both live routes/],
-  ['window on a non-window prior input',mut('olIndex',p=>{pick(p,/Prior/).windowGames=4;}),/unexpected window/],
+  ['current input missing games',mut('olIndex',p=>{delete pick(p,/disruption/).games;}),/missing or invalid games/],
+  ['current input null games',mut('olIndex',p=>{pick(p,/disruption/).games=null;}),/missing or invalid games/],
+  ['current input non-integer games',mut('olIndex',p=>{pick(p,/disruption/).games=11.5;}),/missing or invalid games/],
+  ['current input impossible games (100)',mut('olIndex',p=>{pick(p,/disruption/).games=100;}),/wrong game-count window/],
+  ['current input games not equal to plan game count',mut('olIndex',p=>{pick(p,/disruption/).games=11;}),/wrong game-count window/],
+  ['windowGames 100 on a current non-window input',mut('olIndex',p=>{pick(p,/disruption/).windowGames=100;}),/unexpected windowGames on currentSeasonToDate/],
+  ['scope on a current input',mut('olIndex',p=>{pick(p,/disruption/).scope='full-season';}),/unexpected scope on currentSeasonToDate/],
+  ['games 100 on a full-season prior input',mut('olIndex',p=>{pick(p,/Prior/).games=100;}),/unexpected games on priorSeasonFullSeason/],
+  ['throughWeek on a prior reference window',mut('qbIndex',p=>{pick(p,/17-game windows/).throughWeek=17;}),/unexpected throughWeek on priorSeasonReferenceWindow/],
+  ['games on a prior reference window',mut('qbIndex',p=>{pick(p,/17-game windows/).games=17;}),/unexpected games on priorSeasonReferenceWindow/],
+  ['missing windowGames on a reference window',mut('olIndex',p=>{delete pick(p,/route 1/).windowGames;}),/missing or invalid windowGames/],
+  ['sparse inputs array',mut('olIndex',p=>{p.inputs=[p.inputs[0],,p.inputs[1]];}),/sparse array hole/],
+  ['inherited unit name toString in a plan',K.validateShape({...plan('olIndex'),unit:'toString'}),/unknown unit/],
+  ['window on a non-window prior input',mut('olIndex',p=>{pick(p,/Prior/).windowGames=4;}),/unexpected windowGames on priorSeasonFullSeason/],
   ['null-week probe',mut('olIndex',p=>{pick(p,/disruption/).throughWeek=null;}),/null or invalid week/],
   ['future leakage',mut('olIndex',p=>{pick(p,/disruption/).throughWeek=14;}),/future leakage/],
   ['wrong season',mut('olIndex',p=>{pick(p,/disruption/).season=2025;}),/wrong season/],
@@ -75,11 +88,14 @@ const malformed=[
   ['duplicated input',mut('olIndex',p=>{p.inputs.push({...p.inputs[0]});}),/duplicated input/],
   ['blocked component from the bundle',mut('olIndex',p=>{pick(p,/Prior/).source='data/matchup-data.js';}),/blocked component/]];
 for(const [label,errs,re] of malformed)ctl('validator rejects: '+label,has(errs,re));
+for(const u of Object.keys(K.UNITS))ctl('valid '+u+' plan (current, full-season prior and reference-window components) passes shape validation',K.validateShape(plan(u)).length===0);
+ctl('malformed temporal component fails MALFORMED PLAN before blocker evaluation',(()=>{try{const p=plan('olIndex');pick(p,/Prior/).games=100;K.replayFinalGrade(p);}catch(e){return /^MALFORMED PLAN/.test(e.message)&&!/BLOCKED/.test(e.message);}return false;})());
 ctl('malformed plans fail with MALFORMED PLAN before blocker evaluation',(()=>{try{const p=plan('olIndex');p.team='ZZZ';K.replayFinalGrade(p);}catch(e){return /^MALFORMED PLAN/.test(e.message)&&!/BLOCKED/.test(e.message);}return false;})());
 // Reference hashing: invalid observations are rejected before hashing.
 const good=[{season:2025,team:'KC',asOfWeek:4,finalGrade:50},{season:2025,team:'BUF',asOfWeek:4,finalGrade:60}];
 const ref=o=>({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{'model/live_profiles.js':'abc'},observations:o});
 const rejects=o=>{try{K.referenceVersion(ref(o));return false;}catch(e){return /INVALID REFERENCE/.test(e.message);}};
+const rejects2=over=>{try{K.referenceVersion({...ref(good),...over});return false;}catch(e){return /INVALID REFERENCE/.test(e.message);}};
 ctl('hash rejects NaN grade',rejects([{...good[0],finalGrade:NaN}]));
 ctl('hash rejects null grade',rejects([{...good[0],finalGrade:null}]));
 ctl('hash rejects infinite grade',rejects([{...good[0],finalGrade:Infinity}])&&rejects([{...good[0],finalGrade:-Infinity}]));
@@ -90,7 +106,20 @@ ctl('hash rejects missing week',rejects([{season:2025,team:'KC',finalGrade:50}])
 ctl('hash rejects duplicate observation identity',rejects([good[0],{...good[0],finalGrade:51}]));
 ctl('hash is order-independent',K.referenceVersion(ref(good))===K.referenceVersion(ref([good[1],good[0]])));
 ctl('a real grade change changes the hash',K.referenceVersion(ref(good))!==K.referenceVersion(ref([good[0],{...good[1],finalGrade:60.0000001}])));
-ctl('hash covers design and game count',K.referenceVersion(ref(good))!==K.referenceVersion({...ref(good),design:'C'})&&K.referenceVersion(ref(good))!==K.referenceVersion({...ref(good),gameCount:3}));
+ctl('delimiter collision pair {a:"b,c=d"} vs {a:"b",c:"d"} hashes differently',K.referenceVersion({...ref(good),modelSemantics:{a:'b,c=d'}})!==K.referenceVersion({...ref(good),modelSemantics:{a:'b',c:'d'}}));
+ctl('array model-semantics map rejected',rejects2({modelSemantics:['x']}));
+ctl('Date model-semantics map rejected',rejects2({modelSemantics:new Date(0)}));
+ctl('Map / Set / function model semantics rejected',rejects2({modelSemantics:new Map()})&&rejects2({modelSemantics:new Set()})&&rejects2({modelSemantics:()=>1}));
+ctl('unsupported prototype rejected',rejects2({modelSemantics:new (class S{constructor(){this.a='b';}})()}));
+ctl('nested unsupported value rejected',rejects2({modelSemantics:{a:{b:1}}})&&rejects2({modelSemantics:{a:[1]}}));
+ctl('sparse observation array rejected',(()=>{const o=[good[0]];o[2]=good[1];return rejects2({observations:o});})());
+ctl('inherited unit name toString rejected',rejects2({unit:'toString'}));
+ctl('17-game reference with a week-4 observation rejected',rejects2({gameCount:17})&&!rejects2({gameCount:17,observations:[{...good[0],asOfWeek:18},{...good[1],asOfWeek:17}]}));
+ctl('design C requires a consistent windowEndGame',rejects2({design:'C'})&&!rejects2({design:'C',observations:[{...good[0],windowEndGame:6,asOfWeek:7},{...good[1],windowEndGame:4,asOfWeek:4}]}));
+ctl('ordinary valid reference hashes deterministically',K.referenceVersion(ref(good))===K.referenceVersion(ref(good))&&/^[0-9a-f]{64}$/.test(K.referenceVersion(ref(good))));
+ctl('valid nested model-semantics difference changes the hash',K.referenceVersion({...ref(good),modelSemantics:{a:{b:'x'}}})!==K.referenceVersion({...ref(good),modelSemantics:{a:{b:'y'}}}));
+ctl('serializer type-tags numbers, normalizes -0 and rejects non-finite',K.canonicalEncode(1)!==K.canonicalEncode('1')&&K.canonicalEncode(-0)===K.canonicalEncode(0)&&(()=>{try{K.canonicalEncode(NaN);return false;}catch{return true;}})());
+ctl('hash covers design and game count',K.referenceVersion(ref(good))!==K.referenceVersion({...ref(good),design:'C',observations:good.map(o=>({...o,windowEndGame:4}))})&&K.referenceVersion(ref(good))!==K.referenceVersion({...ref(good),gameCount:3}));
 // k cancellation, OL routes, QB active paths, degenerate references.
 const kc=a.priorEvidence.kCancellation;
 ctl('opposing residuals [8,-6] (both beyond 3) cancel to correction 0 and k = 1',kc.residuals.every(r=>Math.abs(r)>3)&&kc.signedCorrection===0&&kc.k===1&&/when the signed recency-weighted V99 correction|signed recency-weighted/.test(K.kStatus(3).k));
@@ -104,8 +133,10 @@ const obs=[{season:2025,team:'KC',asOfWeek:4,finalGrade:50},{season:2025,team:'B
 const v0=K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{},observations:obs});
 ctl('reference version changes with a grade',v0!==K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{},observations:[obs[0],{...obs[1],finalGrade:60.0000001}]}));
 ctl('reference version is order-independent',v0===K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{},observations:[obs[1],obs[0]]}));
-ctl('reference version includes the design',v0!==K.referenceVersion({unit:'olIndex',design:'C',gameCount:4,modelSemantics:{},observations:obs}));
+ctl('reference version includes the design',v0!==K.referenceVersion({unit:'olIndex',design:'C',gameCount:4,modelSemantics:{},observations:obs.map(o=>({...o,windowEndGame:4}))}));
 
+ctl('no universal OL 17-game / 2022 claim remains in package text',(()=>{const files=['README.md','contracts.mjs','analyze.mjs',...RESULTS.map(f=>'results/'+f)].map(f=>F.lf(DIR+'/'+f));return !files.some(t=>/both need a valid 17-game|for QB\/OL|QB and OL (both )?need|QB\/OL cannot|QB and OL cannot start/.test(t.replace(/"QB and OL need only season Y.1 play-by-play[^"]*"/g,'').replace(/QB and OL references need only season Y-1 play-by-play/g,'').replace(/Earlier wording \\?"QB and OL cannot start before 2022\\?"/g,'')));})());
+ctl('OL route 1 bounded at 2022, route 2 unbounded, common bound 2022 from QB',a.coverage.unitSpans.olIndex.routes.referenceBacked.necessaryLowerBound===2022&&a.coverage.unitSpans.olIndex.routes.legacyFallback.necessaryLowerBound===null&&a.coverage.unitSpans.qbIndex.theoreticalEarliestDisplayYear===2022&&a.coverage.unitSpans.common.necessaryLowerBound===2022);
 const writing=process.argv.includes('--write-hashes'),pins=writing?{}:JSON.parse(F.lf(DIR+'/hashes.json'));
 const now=Object.fromEntries(PACKAGE.map(f=>[f,F.hash(F.lf(DIR+'/'+f))]));
 if(writing){fs.writeFileSync(DIR+'/hashes.json',F.json(now));console.log('hashes.json written');}

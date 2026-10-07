@@ -9,7 +9,8 @@
     "population": "n observations",
     "sourceHistorySpan": "[firstSeason, lastSeason]",
     "modelSemantics": "model source hashes the population was replayed under",
-    "canonicalSerialization": "newline-joined lines: transform=, unit=, design=, gameCount=, model=<sorted key=hash list>, then one line per observation sorted by (season, team, asOfWeek): season|team|asOfWeek|finalGrade, numbers as shortest round-trip decimals; every observation validated (finite grade, canonical team, season >= 1999, week 1-18, unique identity) before hashing"
+    "canonicalSerialization": "md08-refser-2: canonicalEncode of {serialization, transformVersion, unit, design, gameCount, modelSemantics, observations sorted by encoded (season, team, asOfWeek, windowEndGame)}; objects with code-unit-sorted keys, JSON-escaped strings, type-tagged shortest round-trip numbers (-0 -> 0), booleans/null literal; non-finite numbers, sparse arrays and non-plain objects rejected. Supersedes the 5278d37 line format (hashes not backward compatible).",
+    "chronology": "design S: g <= asOfWeek <= min(18, g+1), no windowEndGame; design C: windowEndGame e required, g <= e <= 17, e <= asOfWeek <= min(18, e+1)"
   },
   "statements": {
     "distinctReferences": "If the old reference and the added observations are all distinct values: one new record moves any previously displayed value by at most 100/n; m added observations by at most 100*m/(n+m-1). (Derived; 0 violations in the exhaustive distinct cases.)",
@@ -148,7 +149,8 @@
     ]
   },
   "exampleReferenceVersion": {
-    "note": "Illustrates the identifier only; the population is the 2026 Week-4 final OL grades, which is NOT a historical reference.",
-    "id": "2c346a060149a77f61f975126c2af14cbb8ccc9d2bd90b182e7175c40c9c2cb0"
+    "note": "Illustrates the md08-refser-2 identifier only; the population is the 2026 Week-4 final OL grades of the 30 four-game teams, which is NOT a historical reference.",
+    "serialization": "md08-refser-2",
+    "id": "531fb9b4bead1ba4940c64c1dc98113a79a9fc4ed19b8d8819bee1a972e8e459"
   }
 }

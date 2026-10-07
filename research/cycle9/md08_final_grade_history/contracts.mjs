@@ -116,7 +116,7 @@ export const STALE=[
   {was:'QB effective prior games are floored at 1.00 through four games',now:'That floor applies only under qbPolicy v104-historical-calibrated; production runs v106-current-season-stabilized, so qbPriorGames = the team k.',source:'model/live_profiles.js qbPriorGames; assets/app.js qbPolicy'},
   {was:'Receiver/RB betas and reference CDFs are not reproducible',now:'They reproduce exactly for the current 2025 reference; only earlier-season references are blocked.',source:'model/live_profiles.js ridgeOrthogonalSlope/priorReceiverResidual; follow-up reproduction'},
   {was:'RB receiving residual is a single mixed current+prior component',now:'Split into current receiving inputs and the season Y-1 ridge beta.',source:'model/live_profiles.js rbRecvResidual / rbRecvPassBeta'},
-  {was:'QB and OL references need only season Y-1 play-by-play (QB 2007+, OL 2000+)',now:'Both need a valid V149-style reference, which requires >=30 17-game windows (a 17-game season Y-1, 2021+); QB is unavailable and OL falls back to the bundle otherwise.',source:'model/live_profiles.js qbReferenceValid; force_server.py _v106_reference_valid'},
+  {was:'QB and OL references need only season Y-1 play-by-play (QB 2007+, OL 2000+)',now:'QB needs a valid V149-style reference (>=30 17-game windows, i.e. a 17-game season Y-1, 2021+) and is unavailable otherwise. OL route 1 (reference-backed) has the same requirement; OL route 2 (legacy bundle-percentile fallback) does not need the reference but depends on B1.',source:'model/live_profiles.js qbReferenceValid; force_server.py _v106_reference_valid'},
   {was:'FTN is the first-choice pass-rush provider from 2022',now:'FTN is selected only when the feed has a pressure-outcome field; the public nflverse FTN schema (2026 cache) has none, so FTN is not ready.',source:'model/live_profiles.js ftnPressureField / ftnPressureContract; data/live-cache ftn-charting header'},
   {was:'Pass-rush provider state is a single hard blocker',now:'Hard blocker for historical-as-run selection; retrospective current-policy selection is a possible owner policy.',source:'model/live_profiles.js provider cascade'},
   {was:'k = 1 in the active window only if every recent residual is within 3 points',now:'k = 1 exactly when the signed recency-weighted correction is 0; opposing surprises can cancel (residuals [8,-6] give 0 with neutral opponents).',source:'model/rating_continuity.js rawCorrectionPoints; model/unit_prior_controller.js effectivePriorGames'},
@@ -125,13 +125,14 @@ export const STALE=[
   {was:'OL cannot start before display season 2022',now:'2022 bounds only the reference-backed OL route; with an invalid reference OL uses the B1-dependent bundle-percentile fallback and still produces a finite grade.',source:'model/live_profiles.js stableOlPass'},
   {was:'Season literals are confined to buildProfiles filters',now:'qbReferenceValid also requires reference season 2025 and the 2025 QB-id source label.',source:'model/live_profiles.js qbReferenceValid'}];
 
-export function unitStatus(unit){const bl=[...new Set(UNITS[unit].chain.filter(c=>c.status==='BLOCKED').map(c=>c.blocker))];return {unit,status:bl.length?'BLOCKED':'REPLAYABLE',blockers:bl};}
+export function unitStatus(unit){if(!Object.prototype.hasOwnProperty.call(UNITS,unit))throw new Error('unknown unit '+unit);const bl=[...new Set(UNITS[unit].chain.filter(c=>c.status==='BLOCKED').map(c=>c.blocker))];return {unit,status:bl.length?'BLOCKED':'REPLAYABLE',blockers:bl};}
 
 // ---------- Replay-plan validator: rejects malformed plans before any replay attempt ----------
 // plan = {unit, team, season, asOfWeek, gameCount, inputs:[{component, role, season, throughWeek, games, source, kind}]}
 const ROLES=new Set(['current','priorSeason']);
 export function validateShape(plan){
-  const errs=[];const U=UNITS[plan?.unit];if(!U)return ['unknown unit '+plan?.unit];
+  if(!plan||typeof plan!=='object')return ['plan must be an object'];
+  const errs=[];if(!isCanonicalUnit(plan.unit))return ['unknown unit '+plan.unit];const U=UNITS[plan.unit];
   if(typeof plan.team!=='string'||!canonicalTeams().has(plan.team))errs.push('missing or non-canonical observation team '+plan.team);
   if(!Number.isInteger(plan.season)||plan.season<1999)errs.push('invalid season');
   if(!Number.isInteger(plan.asOfWeek)||plan.asOfWeek<1||plan.asOfWeek>18)errs.push('invalid as-of week');
@@ -139,26 +140,35 @@ export function validateShape(plan){
   else if(!Number.isInteger(plan.gameCount)||plan.gameCount<1||plan.gameCount>17)errs.push('invalid game count');
   else if(Number.isInteger(plan.asOfWeek)&&plan.gameCount>plan.asOfWeek)errs.push('game count exceeds as-of week');
   const seen=new Set();
-  for(const i of plan.inputs||[]){
+  if(!Array.isArray(plan.inputs))errs.push('inputs must be an array');
+  const TEMPORAL=['throughWeek','games','windowGames','scope'];
+  for(let n=0;n<(plan.inputs||[]).length;n++){
+    if(!Object.prototype.hasOwnProperty.call(plan.inputs,n)){errs.push('inputs: sparse array hole at '+n);continue;}
+    const i=plan.inputs[n];if(!i||typeof i!=='object'){errs.push('input '+n+' is not an object');continue;}
     const comp=U.chain.find(c=>c.component===i.component);
     if(!comp){errs.push('unknown component '+i.component);continue;}
     if(seen.has(i.component))errs.push('duplicated input '+i.component);seen.add(i.component);
     if(!ROLES.has(i.role))errs.push('invalid role '+i.role+' for '+i.component);
     else if(i.role!==comp.role)errs.push('role mismatch for '+i.component+' ('+i.role+' vs '+comp.role+')');
     if(!Number.isInteger(i.season))errs.push('missing season for '+i.component);
-    if(comp.role==='current'){
+    // Component temporal schema by role/type: every temporal field is required with bounds, or forbidden.
+    const schema=comp.role==='current'?'currentSeasonToDate':(comp.windowRule?'priorSeasonReferenceWindow':'priorSeasonFullSeason');
+    const required={currentSeasonToDate:['throughWeek','games'],priorSeasonReferenceWindow:['scope','windowGames'],priorSeasonFullSeason:['scope']}[schema];
+    for(const f of TEMPORAL)if(!required.includes(f)&&Object.prototype.hasOwnProperty.call(i,f))errs.push('unexpected '+f+' on '+schema+' input '+i.component);
+    if(schema==='currentSeasonToDate'){
       if(i.season!==plan.season)errs.push('wrong season for '+i.component);
       if(!Number.isInteger(i.throughWeek)||i.throughWeek<1)errs.push('null or invalid week for '+i.component);
       else if(i.throughWeek>plan.asOfWeek)errs.push('future leakage in '+i.component);
-      if(i.games!=null&&i.games!==plan.gameCount)errs.push('wrong game-count window for '+i.component);}
-    if(comp.role==='priorSeason'){
+      if(!Number.isInteger(i.games)||i.games<1)errs.push('missing or invalid games for '+i.component);
+      else if(i.games!==plan.gameCount)errs.push('wrong game-count window for '+i.component+' (season-to-date sample must equal the plan game count)');
+      else if(Number.isInteger(i.throughWeek)&&i.games>i.throughWeek)errs.push('games exceed weeks for '+i.component);}
+    else{
       if(i.season!==plan.season-1)errs.push('wrong prior season for '+i.component+' (need '+(plan.season-1)+')');
-      // A prior-season input is a full-season object: no as-of week, explicit full-season scope.
-      if(i.throughWeek!=null)errs.push('prior-season input must not carry a week ('+i.component+')');
       if(i.scope!=='full-season')errs.push('prior-season input must declare scope full-season ('+i.component+')');
-      if(comp.windowRule==='fixed17'&&i.windowGames!==17)errs.push('reference window must be 17 games for '+i.component);
-      if(comp.windowRule==='sameLength'&&i.windowGames!==plan.gameCount)errs.push('reference window must equal the game count for '+i.component);
-      if(!comp.windowRule&&i.windowGames!=null)errs.push('unexpected window on '+i.component);}
+      if(schema==='priorSeasonReferenceWindow'){
+        if(!Number.isInteger(i.windowGames))errs.push('missing or invalid windowGames for '+i.component);
+        else if(comp.windowRule==='fixed17'&&i.windowGames!==17)errs.push('reference window must be 17 games for '+i.component);
+        else if(comp.windowRule==='sameLength'&&i.windowGames!==plan.gameCount)errs.push('reference window must equal the game count for '+i.component);}}
     if(i.kind==='signal-substitute'||i.kind==='proxy')errs.push('substituted '+i.kind+' for '+i.component);
     if(comp.status==='BLOCKED'&&!/^owner-authorized:/.test(String(i.source)))errs.push('blocked component '+i.component+' supplied from '+i.source);}
   for(const c of U.chain){if(c.role==='fixed'||seen.has(c.component))continue;
@@ -175,32 +185,76 @@ export function replayFinalGrade(plan){const e=validateShape(plan);if(e.length)t
 
 // ---------- Dynamic-record versioning (schema + mechanics; no persistence) ----------
 export const METADATA_SCHEMA={transformVersion:'string, e.g. '+TRANSFORM_VERSION,referenceVersion:'sha256 of the canonical population serialization below',unit:'canonical key',design:"'S' (first g games) | 'C' (any g-game window)",gameCount:'integer g',asOf:'ISO date of the newest observation included',population:'n observations',sourceHistorySpan:'[firstSeason, lastSeason]',modelSemantics:'model source hashes the population was replayed under',
-  canonicalSerialization:'newline-joined lines: transform=, unit=, design=, gameCount=, model=<sorted key=hash list>, then one line per observation sorted by (season, team, asOfWeek): season|team|asOfWeek|finalGrade, numbers as shortest round-trip decimals; every observation validated (finite grade, canonical team, season >= 1999, week 1-18, unique identity) before hashing'};
-// Observations are validated BEFORE hashing. Numbers are serialized only after a finiteness
-// check, as ECMAScript shortest round-trip decimal strings (Number.prototype.toString; -0 -> "0"),
-// so NaN/Infinity/undefined can never collapse to null or disappear.
-export function validateReferenceInput({unit,design,gameCount,modelSemantics,observations}){
+  canonicalSerialization:'md08-refser-2: canonicalEncode of {serialization, transformVersion, unit, design, gameCount, modelSemantics, observations sorted by encoded (season, team, asOfWeek, windowEndGame)}; objects with code-unit-sorted keys, JSON-escaped strings, type-tagged shortest round-trip numbers (-0 -> 0), booleans/null literal; non-finite numbers, sparse arrays and non-plain objects rejected. Supersedes the 5278d37 line format (hashes not backward compatible).',
+  chronology:'design S: g <= asOfWeek <= min(18, g+1), no windowEndGame; design C: windowEndGame e required, g <= e <= 17, e <= asOfWeek <= min(18, e+1)'};
+// Reference serialization contract md08-refser-2 (replaces the ambiguous line format of
+// 5278d37; hashes are intentionally NOT backward compatible). Every value is validated, then
+// encoded by a strict canonical encoder: objects as {"k":v,...} with keys sorted by code unit,
+// arrays as [v,...], strings as JSON string literals (fully escaped), finite numbers as
+// shortest round-trip decimals with -0 -> 0 and a type tag, booleans and null literally.
+// NaN/Infinity, undefined, functions, Dates, Maps, Sets, class instances, sparse arrays and
+// prototype-chain names are rejected before encoding.
+export const SERIALIZATION_VERSION='md08-refser-2';
+const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+export const isCanonicalUnit=u=>typeof u==='string'&&own(UNITS,u);
+const isPlainObject=v=>v!==null&&typeof v==='object'&&!Array.isArray(v)&&(Object.getPrototypeOf(v)===Object.prototype||Object.getPrototypeOf(v)===null);
+// Model-semantics schema: a plain object; keys non-empty strings; values strings or nested
+// plain objects of the same schema (max depth 4). Nothing else.
+export function validateModelSemantics(m,depth=0){
+  if(!isPlainObject(m))return ['model semantics must be a plain object'];
+  if(depth>4)return ['model semantics nested too deeply'];
   const errs=[];
-  if(!UNITS[unit])errs.push('unknown unit');
+  for(const k of Object.keys(m)){if(!k)errs.push('empty model-semantics key');const v=m[k];
+    if(typeof v==='string')continue;if(isPlainObject(v)){errs.push(...validateModelSemantics(v,depth+1));continue;}
+    errs.push('unsupported model-semantics value at '+k);}
+  if(Object.getOwnPropertySymbols(m).length)errs.push('symbol keys not allowed');
+  return errs;}
+export function canonicalEncode(v){
+  if(v===null)return 'null';
+  if(typeof v==='boolean')return v?'true':'false';
+  if(typeof v==='string')return JSON.stringify(v);
+  if(typeof v==='number'){if(!Number.isFinite(v))throw new Error('non-finite number');return 'n:'+(Object.is(v,-0)?'0':String(v));}
+  if(Array.isArray(v)){for(let i=0;i<v.length;i++)if(!own(v,i))throw new Error('sparse array');return '['+v.map(canonicalEncode).join(',')+']';}
+  if(isPlainObject(v)){const ks=Object.keys(v).sort();return '{'+ks.map(k=>JSON.stringify(k)+':'+canonicalEncode(v[k])).join(',')+'}';}
+  throw new Error('unsupported value type');}
+// Reference chronology: an observation is the team's state after its g-th game.
+//  design S (first g games): asOfWeek = week of the g-th game, so g <= asOfWeek <= min(18, g+1)
+//    (one bye in an 18-week season); windowEndGame is forbidden.
+//  design C (any g-game window): windowEndGame e is required with g <= e <= 17, and
+//    e <= asOfWeek <= min(18, e+1). A 17-game (full-season) reference therefore needs week 17-18.
+export function validateReferenceInput(ref){
+  const errs=[];
+  if(!isPlainObject(ref))return ['reference must be a plain object'];
+  const {unit,design,gameCount,modelSemantics,observations}=ref;
+  if(!isCanonicalUnit(unit))errs.push('unknown unit');
   if(design!=='S'&&design!=='C')errs.push('invalid design');
   if(!Number.isInteger(gameCount)||gameCount<1||gameCount>17)errs.push('invalid game count');
-  if(!modelSemantics||typeof modelSemantics!=='object'||Object.values(modelSemantics).some(v=>typeof v!=='string'))errs.push('invalid model semantics');
-  if(!Array.isArray(observations)||!observations.length)errs.push('no observations');
+  errs.push(...validateModelSemantics(modelSemantics));
+  if(!Array.isArray(observations)||!observations.length)return [...errs,'no observations'];
   const keys=new Set();
-  (observations||[]).forEach((o,i)=>{
-    if(!Number.isInteger(o?.season)||o.season<1999)errs.push('observation '+i+': invalid season');
-    if(typeof o?.team!=='string'||!canonicalTeams().has(o.team))errs.push('observation '+i+': invalid team');
-    if(!Number.isInteger(o?.asOfWeek)||o.asOfWeek<1||o.asOfWeek>18)errs.push('observation '+i+': invalid week');
-    if(typeof o?.finalGrade!=='number'||!Number.isFinite(o.finalGrade))errs.push('observation '+i+': non-finite grade');
-    const k=o?.season+'|'+o?.team+'|'+o?.asOfWeek;if(keys.has(k))errs.push('observation '+i+': duplicate identity');keys.add(k);});
+  for(let i=0;i<observations.length;i++){
+    if(!own(observations,i)){errs.push('observation '+i+': sparse array hole');continue;}
+    const o=observations[i];if(!isPlainObject(o)){errs.push('observation '+i+': not a plain object');continue;}
+    const allowed=new Set(['season','team','asOfWeek','finalGrade','windowEndGame']);
+    for(const k of Object.keys(o))if(!allowed.has(k))errs.push('observation '+i+': unexpected field '+k);
+    if(!Number.isInteger(o.season)||o.season<1999)errs.push('observation '+i+': invalid season');
+    if(typeof o.team!=='string'||!canonicalTeams().has(o.team))errs.push('observation '+i+': invalid team');
+    if(typeof o.finalGrade!=='number'||!Number.isFinite(o.finalGrade))errs.push('observation '+i+': non-finite grade');
+    if(!Number.isInteger(o.asOfWeek)||o.asOfWeek<1||o.asOfWeek>18)errs.push('observation '+i+': invalid week');
+    else if(Number.isInteger(gameCount)){
+      if(design==='S'){if(own(o,'windowEndGame'))errs.push('observation '+i+': windowEndGame not allowed for design S');
+        if(o.asOfWeek<gameCount||o.asOfWeek>Math.min(18,gameCount+1))errs.push('observation '+i+': week '+o.asOfWeek+' inconsistent with the first '+gameCount+' games');}
+      if(design==='C'){const e=o.windowEndGame;if(!Number.isInteger(e)||e<gameCount||e>17)errs.push('observation '+i+': invalid windowEndGame for a '+gameCount+'-game window');
+        else if(o.asOfWeek<e||o.asOfWeek>Math.min(18,e+1))errs.push('observation '+i+': week inconsistent with windowEndGame');}}
+    const k=o.season+'|'+o.team+'|'+o.asOfWeek+'|'+(o.windowEndGame??'');if(keys.has(k))errs.push('observation '+i+': duplicate identity');keys.add(k);}
   return errs;}
-const num=x=>Object.is(x,-0)?'0':String(x);
 export function referenceVersion(ref){
   const errs=validateReferenceInput(ref);if(errs.length)throw new Error('INVALID REFERENCE: '+errs.join('; '));
-  const obs=ref.observations.map(o=>[o.season,o.team,o.asOfWeek,o.finalGrade]).sort((a,b)=>a[0]-b[0]||a[1].localeCompare(b[1])||a[2]-b[2]);
-  const ms=Object.keys(ref.modelSemantics).sort().map(k=>k+'='+ref.modelSemantics[k]).join(',');
-  const canon=['transform='+TRANSFORM_VERSION,'unit='+ref.unit,'design='+ref.design,'gameCount='+ref.gameCount,'model='+ms,...obs.map(o=>[num(o[0]),o[1],num(o[2]),num(o[3])].join('|'))].join('\n');
-  return crypto.createHash('sha256').update(canon).digest('hex');}
+  const obs=ref.observations.map(o=>({season:o.season,team:o.team,asOfWeek:o.asOfWeek,...(own(o,'windowEndGame')?{windowEndGame:o.windowEndGame}:{}),finalGrade:o.finalGrade}));
+  const keyOf=o=>canonicalEncode([o.season,o.team,o.asOfWeek,o.windowEndGame??null]);
+  obs.sort((a,b)=>keyOf(a)<keyOf(b)?-1:keyOf(a)>keyOf(b)?1:0);
+  const doc={serialization:SERIALIZATION_VERSION,transformVersion:TRANSFORM_VERSION,unit:ref.unit,design:ref.design,gameCount:ref.gameCount,modelSemantics:ref.modelSemantics,observations:obs};
+  return crypto.createHash('sha256').update(canonicalEncode(doc)).digest('hex');}
 // Candidate A requires a non-degenerate reference: at least two distinct finite values. With no
 // ordering there is no historical standing to express (worst = best), so the scale is undefined.
 export function validateReferencePopulation(values){const v=(values||[]).filter(x=>typeof x==='number'&&Number.isFinite(x));

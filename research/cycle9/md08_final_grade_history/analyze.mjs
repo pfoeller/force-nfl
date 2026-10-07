@@ -146,7 +146,7 @@ export function analyze({pins=PINS}={}){
       rbIndex:{earliestRawSourceYear:1999,theoreticalEarliestDisplayYear:null,why:'as receivers',unresolved:['B1','B2','B3 weeks 2-11'],status:'NOT ASSERTABLE'},
       defenseIndex:{earliestRawSourceYear:1999,theoreticalEarliestDisplayYear:null,why:'coverage and run-defense priors need B1; pass rush depends on the B4 replay policy; the PFR prior branch would need Y-1 >= 2018 and component coverage that is not verified',unresolved:['B1','B4 policy','B3 weeks 2-11','passing_cpoe coverage'],status:'NOT ASSERTABLE'},
       common:{status:'NOT ASSERTABLE',necessaryLowerBound:2022,why:'QB has no fallback and cannot start before 2022 (B6), which bounds any all-unit span; OL is not itself bounded by B6 (fallback route); all units remain blocked by B1'}},
-    burnIn:'Every unit needs season Y-1 inputs (prior and/or reference) and Y-1 must be a 17-game season for QB/OL; burn-in seasons are not display-eligible. Weeks 2-11 also need a verified Elo chain ending at Y-1.'};
+    burnIn:'Every unit needs season Y-1 inputs (prior and/or reference) and Y-1 must be a 17-game season for QB and for the reference-backed OL route (OL fallback route: B1-dependent instead); burn-in seasons are not display-eligible. Weeks 2-11 also need a verified Elo chain ending at Y-1.'};
 
   // ---------- Phase 5: current reproduction gate (unchanged) ----------
   const rbRefGate=rbRef;
@@ -193,7 +193,7 @@ export function analyze({pins=PINS}={}){
     counterexample,degenerateCase:{reference:[1,1,1],add:[0],valueBefore:A([1,1,1],1),valueAfter:A([1,1,1,0],1),tieAwareExpression:K.reanchorBound.tieAware(3,1,3),referenceValidity:K.validateReferencePopulation([1,1,1]),handling:'rejected as an invalid Candidate A reference; outside the domain of every stated bound'},
     exhaustiveCheck:{domain:'old references with >= 2 distinct values (all-equal references explicitly excluded), n=3..6, values in {0..4}; m=1..3 additions in {-1..5}; shifts evaluated at every old distinct value and every midpoint inside the old range',...brute},
     syntheticDistinct:{label:'MECHANICS ONLY: seeded standard-normal (distinct) populations, not FORCE grades',seed:20261007,samples},
-    exampleReferenceVersion:{note:'Illustrates the identifier only; the population is the 2026 Week-4 final OL grades, which is NOT a historical reference.',id:K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{'model/live_profiles.js':Z0.PINS['model/live_profiles.js']},observations:T.map(t=>({season:2026,team:t,asOfWeek:4,finalGrade:gate[t].olIndex}))})}};
+    exampleReferenceVersion:{note:'Illustrates the md08-refser-2 identifier only; the population is the 2026 Week-4 final OL grades of the 30 four-game teams, which is NOT a historical reference.',serialization:K.SERIALIZATION_VERSION,id:K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{'model/live_profiles.js':Z0.PINS['model/live_profiles.js']},observations:T.filter(t=>(Zt[t].raw.offensiveDriveGames||Zt[t].raw.games)===4).map(t=>({season:2026,team:t,asOfWeek:4,finalGrade:gate[t].olIndex}))})}};
 
   // ---------- Revised owner decision package ----------
   const decision=[

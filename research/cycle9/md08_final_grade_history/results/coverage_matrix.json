@@ -163,5 +163,5 @@
       "why": "QB has no fallback and cannot start before 2022 (B6), which bounds any all-unit span; OL is not itself bounded by B6 (fallback route); all units remain blocked by B1"
     }
   },
-  "burnIn": "Every unit needs season Y-1 inputs (prior and/or reference) and Y-1 must be a 17-game season for QB/OL; burn-in seasons are not display-eligible. Weeks 2-11 also need a verified Elo chain ending at Y-1."
+  "burnIn": "Every unit needs season Y-1 inputs (prior and/or reference) and Y-1 must be a 17-game season for QB and for the reference-backed OL route (OL fallback route: B1-dependent instead); burn-in seasons are not display-eligible. Weeks 2-11 also need a verified Elo chain ending at Y-1."
 }

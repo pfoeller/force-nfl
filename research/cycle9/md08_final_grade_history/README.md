@@ -1,6 +1,6 @@
 # MD-08 final-grade history build
 
-**Research/data infrastructure only.** Corrected after Codex review C of `25155a5` and Codex review B of `196b847` (six bounded fixes, §11).
+**Research/data infrastructure only.** Corrected after Codex review C of `25155a5`, Codex review B of `196b847` (six bounded fixes, §11) and Codex review B of `5278d37` (three bounded fixes, §12).
 
 Owner decisions of 2026-10-07:
 - The public historical-standing rating derives from the final canonical grade.
@@ -65,7 +65,7 @@ All five unit chains were re-audited against current source; code anchors are in
 3. **"QB prior games floored at 1.00 through four games."** Actual: that floor applies only under the `v104-historical-calibrated` policy. Production runs `v106-current-season-stabilized`, so QB uses the team k.
 4. **"Receiver/RB betas and CDFs are not reproducible."** Actual: they are reproducible for the current 2025 reference.
 5. **"RB receiving residual is one mixed current+prior component."** Actual: it has two parts, current receiving inputs and a season Y−1 ridge beta. The contract now splits them.
-6. **"QB and OL need only season Y−1 play-by-play (QB 2007+, OL 2000+)."** Actual: both need a valid 17-game reference (B6).
+6. **"QB and OL need only season Y−1 play-by-play (QB 2007+, OL 2000+)."** Actual: QB needs a valid 17-game season Y−1 reference (B6), as does OL route 1 (reference-backed). OL route 2 (legacy fallback) does not need that reference but depends on B1.
 7. **"FTN is the first-choice pass-rush provider from 2022."** Actual: FTN is ready only if the feed has a pressure-outcome field (`was_pressure`/`is_qb_pressure`/`is_pressure`/`pressure`). The public 2026 FTN schema has none.
 8. **"B4 is a single hard blocker."** Actual: it is split into as-run and retrospective semantics (§3).
 9. **"Season literals are confined to `buildProfiles`."** Actual: `qbReferenceValid` also hard-codes the 2025 reference season and id label.
@@ -222,7 +222,7 @@ The first analysis rightly avoided large downloads but stopped early on six loca
 
 1. **Reference hashing.**
    - Observations are validated before hashing. The checks are: finite numeric grade, canonical team (the production `MODEL_DATA.teams` set), season ≥ 1999, week 1–18 and unique (season, team, week) identity. Design S/C, game count 1–17 and the model-semantics map are validated too.
-   - Serialization is an explicit line format. Numbers are written as shortest round-trip decimals (−0 → 0), so NaN, Infinity and undefined can never collapse to null.
+   - Serialization at that point was an explicit line format with shortest round-trip numbers (−0 → 0). §12 supersedes it with the `md08-refser-2` canonical encoder, because that line format had a delimiter ambiguity.
    - Hashes are order-independent. Before the fix, a NaN grade and a null grade produced the same hash, and an observation missing season/team/week still hashed.
 2. **QB opponent adjustment (active).**
    - The active term is `qbOpponentRatingAdjustment = 4·(50 − allowed)/50`.
@@ -257,6 +257,85 @@ The first analysis rightly avoided large downloads but stopped early on six loca
 - Nothing removes the need for the legacy producer: OL's fallback uses the same fields.
 - The smallest next decision is **unchanged**: whether the original legacy profile producer and its exact definitions can be supplied or recovered from outside this repository.
 
+## 12. Final three fixes (Codex review B of `5278d37`)
+
+### 1. Canonical reference serialization: `md08-refser-2`
+
+- **Collision fixed.** The 5278d37 line format joined model-semantics entries with unescaped `=` and `,`, so `{a: "b,c=d"}` and `{a: "b", c: "d"}` serialized identically. They now hash differently (control).
+- **Encoder.** `canonicalEncode` writes:
+  - objects with keys sorted by code unit
+  - arrays (holes rejected)
+  - JSON-escaped strings
+  - type-tagged shortest round-trip numbers (`n:` prefix; −0 → 0; NaN and ±Infinity rejected)
+  - literal booleans and null
+- **Hashed document:** {serialization, transformVersion, unit, design, gameCount, modelSemantics, observations}, with observations sorted by their encoded identity.
+- **Not backward compatible.** Hashes from 5278d37 are deliberately not reproduced, and the version string is part of the hashed document.
+
+### 2. Strict reference validation
+
+Everything is checked before encoding:
+- **Model semantics** must be a plain object (prototype `Object.prototype` or null) whose values are strings or nested plain objects of the same schema, at most 4 levels deep. Arrays, Dates, Maps, Sets, functions, class instances, numbers and nested arrays are rejected.
+- **Observations** must be a dense array of plain objects. Holes are rejected, as are unexpected fields.
+- **Unit** must be an own-property canonical unit; prototype names such as `toString` are rejected. Plans use the same own-property rule.
+- **Chronology**, where an observation is the state after the team's g-th game:
+  - Design S (first g games): g ≤ asOfWeek ≤ min(18, g+1), and `windowEndGame` is forbidden. A 17-game reference therefore needs week 17 or 18, and week 4 is rejected.
+  - Design C (any g-game window): `windowEndGame` e is required, with g ≤ e ≤ 17 and e ≤ asOfWeek ≤ min(18, e+1).
+
+### 3. Component-level temporal schemas
+
+The rule: every temporal field (`throughWeek`, `games`, `windowGames`, `scope`) is either required with bounds for the component's schema, or forbidden.
+
+| Schema | Required | Bounds | Forbidden |
+|---|---|---|---|
+| `currentSeasonToDate` (all current inputs) | `throughWeek`, `games` | `throughWeek`: integer, 1 ≤ week ≤ as-of week. `games`: integer ≥ 1, equal to the plan game count (season-to-date sample), and ≤ `throughWeek` | `windowGames`, `scope` |
+| `priorSeasonFullSeason` | `scope: 'full-season'` | season Y−1 | `throughWeek`, `games`, `windowGames` |
+| `priorSeasonReferenceWindow` | `scope`, `windowGames` | 17 for QB; equal to the game count for OL route 1 | `throughWeek`, `games` |
+
+The current contracts contain no current-season rolling-window component, so no such schema is used. Sparse `inputs` arrays are rejected.
+
+Codex's four probes now fail as `MALFORMED PLAN` before blocker evaluation:
+- missing current `games`
+- null current `games`
+- `windowGames: 100` on a current input
+- `games: 100` on a full-season prior input
+
+### 4. OL wording
+
+The remaining universal OL 17-game claims were removed from three places:
+- README §1 item 6
+- the `contracts.mjs` stale-assumption replacement
+- the coverage `burnIn` text
+
+They now distinguish:
+- **QB:** needs the valid Y−1 17-game reference, so the necessary lower bound is 2022.
+- **OL route 1 (reference-backed):** same requirement, 2022+.
+- **OL route 2 (legacy fallback):** does not need the reference, but depends on B1.
+
+No OL span is assertable, and the common necessary lower bound stays 2022 because of QB. A checker control scans the package text for universal QB/OL wording.
+
+### Artifacts
+
+- **Changed:**
+  - `contracts.json`: stale-assumption text
+  - `coverage_matrix.json`: `burnIn` wording
+  - `dynamic_record.json`: metadata schema (serialization and chronology contract) and the `md08-refser-2` example identifier, now over the 30 four-game teams
+- **Byte-identical:** `prior_reproducibility.json`, `current_reproduction.json`, `decision_package.json`, `source_listing.json`
+
+### Owner-decision confirmations after these fixes
+
+1. B1 remains decisive.
+2. B2 remains narrowed to earlier populations.
+3. B3 remains weeks 2–11 only.
+4. B4 remains both a blocker and a policy decision, depending on semantics.
+5. QB keeps the 2022 necessary lower bound.
+6. OL route 1 is bounded at 2022; the OL fallback is not.
+7. No OL span is assertable while B1 is unresolved.
+8. Reference hashing now has an unambiguous canonical encoding and a strict valid-input domain.
+9. Reference validation rejects malformed shapes and chronology before hashing.
+10. Component-level validation rejects meaningless temporal and window metadata before blocker evaluation.
+11. Nothing removes the need for the external legacy producer.
+12. The smallest substantive next decision is unchanged: **whether the external legacy profile producer and its exact definitions can be recovered.**
+
 ## Reproducibility and checks
 
 ```text
@@ -272,7 +351,7 @@ The checker uses no network: the release listing is committed. It verifies:
 - the k experiment (24 teams / 0.0197653235 / no class change, and no change in weeks 1, 12 and 13)
 - the B4 split and the FTN schema evidence
 - the tied-bound counterexample and the exhaustive bound checks
-- 56 controls in total, including 29 malformed-plan rejections (mixed-role, null-week, team, game-count and window probes), 11 reference-hash controls, and the k-cancellation, OL-route, QB-active-path and degenerate-reference controls
+- 90 controls in total (after §12), including 29 malformed-plan rejections (mixed-role, null-week, team, game-count and window probes), 11 reference-hash controls, and the k-cancellation, OL-route, QB-active-path and degenerate-reference controls
 - the reference-version controls and an altered-pin control
 - byte-equal regeneration of six results
 - `hashes.json`
