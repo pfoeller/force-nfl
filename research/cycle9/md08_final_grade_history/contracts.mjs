@@ -141,11 +141,11 @@ export function validateShape(plan){
   else if(!Number.isInteger(plan.gameCount)||plan.gameCount<1||plan.gameCount>17)errs.push('invalid game count');
   else if(Number.isInteger(plan.asOfWeek)&&plan.gameCount>plan.asOfWeek)errs.push('game count exceeds as-of week');
   const seen=new Set();
-  if(!Array.isArray(plan.inputs))errs.push('inputs must be an array');else errs.push(...dataPropertyErrors(plan.inputs,null,'inputs array'));
+  const inErrs=arrayDomainErrors(plan.inputs,'inputs array');if(inErrs.length)return [...errs,...inErrs];
+  const inputs=trustedItems(plan.inputs);
   const TEMPORAL=['throughWeek','games','windowGames','scope'];
-  for(let n=0;n<(plan.inputs||[]).length;n++){
-    if(!Object.prototype.hasOwnProperty.call(plan.inputs,n)){errs.push('inputs: sparse array hole at '+n);continue;}
-    const i=plan.inputs[n];if(!isPlainObject(i)){errs.push('input '+n+' is not a plain object');continue;}
+  for(let n=0;n<inputs.length;n++){
+    const i=inputs[n];if(!isPlainObject(i)){errs.push('input '+n+' is not a plain object');continue;}
     const iErrs=dataPropertyErrors(i,new Set(['component','role','season','throughWeek','games','windowGames','scope','source','kind']),'input '+n);if(iErrs.length){errs.push(...iErrs);continue;}
     const comp=U.chain.find(c=>c.component===i.component);
     if(!comp){errs.push('unknown component '+i.component);continue;}
@@ -216,6 +216,19 @@ export function dataPropertyErrors(obj,allowed=null,label='object'){
   return errs;}
 // Model-semantics schema: a plain object; keys non-empty strings; values strings or nested
 // plain objects of the same schema (max depth 4). Nothing else.
+// Array domain for research-contract arrays: a genuine built-in array whose prototype is exactly
+// Array.prototype (no subclasses), with only dense, enumerable data-property index keys and length.
+// Checked from descriptors alone, so no element getter is ever executed; callers must return on
+// any error BEFORE reading arr[i], and then traverse by index only (never arr.map/forEach/sort or
+// iteration, which an input could override).
+export function arrayDomainErrors(arr,label='array'){
+  if(!Array.isArray(arr))return [label+': not an array'];
+  if(Object.getPrototypeOf(arr)!==Array.prototype)return [label+': unsupported array prototype/subclass'];
+  const errs=dataPropertyErrors(arr,null,label);
+  for(let i=0;i<arr.length;i++)if(!own(arr,i))errs.push(label+': sparse array hole at '+i);
+  return errs;}
+// Trusted copy of a validated array's items into a fresh built-in array (index traversal only).
+function trustedItems(arr){const out=[];for(let i=0;i<arr.length;i++)out[out.length]=Object.getOwnPropertyDescriptor(arr,i).value;return out;}
 export function validateModelSemantics(m,depth=0){
   if(!isPlainObject(m))return ['model semantics must be a plain object'];
   if(depth>4)return ['model semantics nested too deeply'];
@@ -229,7 +242,7 @@ export function canonicalEncode(v){
   if(typeof v==='boolean')return v?'true':'false';
   if(typeof v==='string')return JSON.stringify(v);
   if(typeof v==='number'){if(!Number.isFinite(v))throw new Error('non-finite number');return 'n:'+(Object.is(v,-0)?'0':String(v));}
-  if(Array.isArray(v)){for(let i=0;i<v.length;i++)if(!own(v,i))throw new Error('sparse array');if(dataPropertyErrors(v).length)throw new Error('unsupported array property');return '['+v.map(canonicalEncode).join(',')+']';}
+  if(Array.isArray(v)){if(arrayDomainErrors(v).length)throw new Error('unsupported array');const items=trustedItems(v),parts=[];for(let i=0;i<items.length;i++)parts[i]=canonicalEncode(items[i]);return '['+parts.join(',')+']';}
   if(isPlainObject(v)){if(dataPropertyErrors(v).length)throw new Error('unsupported own property');const ks=Reflect.ownKeys(v).sort();return '{'+ks.map(k=>JSON.stringify(k)+':'+canonicalEncode(Object.getOwnPropertyDescriptor(v,k).value)).join(',')+'}';}
   throw new Error('unsupported value type');}
 // Reference chronology: an observation is the team's state after its g-th game.
@@ -246,12 +259,12 @@ export function validateReferenceInput(ref){
   if(design!=='S'&&design!=='C')errs.push('invalid design');
   if(!Number.isInteger(gameCount)||gameCount<1||gameCount>17)errs.push('invalid game count');
   errs.push(...validateModelSemantics(modelSemantics));
-  if(!Array.isArray(observations)||!observations.length)return [...errs,'no observations'];
-  errs.push(...dataPropertyErrors(observations,null,'observations array'));
+  const aErrs=arrayDomainErrors(observations,'observations array');if(aErrs.length)return [...errs,...aErrs];
+  if(!observations.length)return [...errs,'no observations'];
+  const items=trustedItems(observations);
   const keys=new Set();
-  for(let i=0;i<observations.length;i++){
-    if(!own(observations,i)){errs.push('observation '+i+': sparse array hole');continue;}
-    const o=observations[i];if(!isPlainObject(o)){errs.push('observation '+i+': not a plain object');continue;}
+  for(let i=0;i<items.length;i++){
+    const o=items[i];if(!isPlainObject(o)){errs.push('observation '+i+': not a plain object');continue;}
     const oErrs=dataPropertyErrors(o,new Set(['season','team','asOfWeek','finalGrade','windowEndGame']),'observation '+i);if(oErrs.length){errs.push(...oErrs);continue;}
     if(!Number.isInteger(o.season)||o.season<1999)errs.push('observation '+i+': invalid season');
     if(typeof o.team!=='string'||!canonicalTeams().has(o.team))errs.push('observation '+i+': invalid team');
@@ -266,15 +279,17 @@ export function validateReferenceInput(ref){
   return errs;}
 export function referenceVersion(ref){
   const errs=validateReferenceInput(ref);if(errs.length)throw new Error('INVALID REFERENCE: '+errs.join('; '));
-  const obs=ref.observations.map(o=>({season:o.season,team:o.team,asOfWeek:o.asOfWeek,...(own(o,'windowEndGame')?{windowEndGame:o.windowEndGame}:{}),finalGrade:o.finalGrade}));
+  const src=trustedItems(ref.observations),obs=[];
+  for(let i=0;i<src.length;i++){const o=src[i];obs[i]={season:o.season,team:o.team,asOfWeek:o.asOfWeek,...(own(o,'windowEndGame')?{windowEndGame:o.windowEndGame}:{}),finalGrade:o.finalGrade};}
   const keyOf=o=>canonicalEncode([o.season,o.team,o.asOfWeek,o.windowEndGame??null]);
   obs.sort((a,b)=>keyOf(a)<keyOf(b)?-1:keyOf(a)>keyOf(b)?1:0);
   const doc={serialization:SERIALIZATION_VERSION,transformVersion:TRANSFORM_VERSION,unit:ref.unit,design:ref.design,gameCount:ref.gameCount,modelSemantics:ref.modelSemantics,observations:obs};
   return crypto.createHash('sha256').update(canonicalEncode(doc)).digest('hex');}
 // Candidate A requires a non-degenerate reference: at least two distinct finite values. With no
 // ordering there is no historical standing to express (worst = best), so the scale is undefined.
-export function validateReferencePopulation(values){const v=(values||[]).filter(x=>typeof x==='number'&&Number.isFinite(x));
-  if(v.length!==(values||[]).length)return ['non-finite value in reference'];return new Set(v).size>=2?[]:['degenerate reference: fewer than two distinct values'];}
+export function validateReferencePopulation(values){const aErrs=arrayDomainErrors(values,'reference population');if(aErrs.length)return aErrs;
+  const v=trustedItems(values),distinct=new Set();for(let i=0;i<v.length;i++){if(typeof v[i]!=='number'||!Number.isFinite(v[i]))return ['non-finite value in reference'];distinct.add(v[i]);}
+  return distinct.size>=2?[]:['degenerate reference: fewer than two distinct values'];}
 // Re-anchoring of previously displayed values (old-population values) under Candidate A.
 // distinctOnly: valid when the old reference and the added observations are all distinct values.
 // tieAware: t = size of the larger extreme (worst or best) tied block of the old reference;
@@ -286,7 +301,7 @@ export const reanchorBound={
   distinctOneRecord:n=>100/n,
   distinctAdd:(n,m)=>100*m/(n+m-1),
   tieAware:(n,m,t)=>100*(2*m+t-1)/(2*(n+m-1))};
-export function extremeTieBlock(ref){const s=[...ref].sort((p,q)=>p-q);let top=1,bot=1;while(top<s.length&&s[s.length-1-top]===s.at(-1))top++;while(bot<s.length&&s[bot]===s[0])bot++;return Math.max(top,bot);}
+export function extremeTieBlock(ref){if(arrayDomainErrors(ref).length)throw new Error('invalid reference array');const s=trustedItems(ref).sort((p,q)=>p-q);let top=1,bot=1;while(top<s.length&&s[s.length-1-top]===s.at(-1))top++;while(bot<s.length&&s[bot]===s[0])bot++;return Math.max(top,bot);}
 
 // Validator history (Codex review C): what the 25155a5 validator let through at the input layer.
 export const VALIDATOR_HISTORY=[

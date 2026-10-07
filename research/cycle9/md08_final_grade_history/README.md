@@ -1,6 +1,6 @@
 # MD-08 final-grade history build
 
-**Research/data infrastructure only.** Corrected after Codex review C of `25155a5`, Codex review B of `196b847` (six bounded fixes, §11) Codex review B of `5278d37` (three bounded fixes, §12) and Codex review B of `35a49b2` (property-domain fix, §13).
+**Research/data infrastructure only.** Corrected after Codex review C of `25155a5`, Codex review B of `196b847` (six bounded fixes, §11) Codex review B of `5278d37` (three bounded fixes, §12) Codex review B of `35a49b2` (property-domain fix, §13) and Codex review B of `27c8aea` (array-safety fixes, §14).
 
 Owner decisions of 2026-10-07:
 - The public historical-standing rating derives from the final canonical grade.
@@ -379,6 +379,50 @@ Equivalent ordinary enumerable objects still validate. The former hidden-field o
 - No further repository-local research remains.
 - The next decision is still external legacy-producer recovery.
 
+## 14. Array-safety fixes (Codex review B of `27c8aea`)
+
+**Defects.**
+- A `DroppingArray extends Array` whose `map()` returns `[]` passed validation. Because `referenceVersion` traversed observations with `.map`, the observations vanished from the fingerprint, and mutating an observation left the fingerprint unchanged.
+- A getter at an observation index, or at a plan-input index, was executed during validation (`ACCESSOR WAS EXECUTED`). That bypassed the `INVALID REFERENCE` and `MALFORMED PLAN` boundaries.
+
+**Array contract.** Every research-contract array must:
+- be a genuine built-in array whose prototype is exactly `Array.prototype` (subclasses and foreign prototypes are rejected)
+- have only dense, enumerable data-property index keys plus `length`
+
+This applies to the observations array, the plan inputs array, reference-population arrays (`validateReferencePopulation`, `extremeTieBlock`) and arrays inside `canonicalEncode`. `arrayDomainErrors` checks it from descriptors alone, so no element getter ever runs.
+
+**Validation order.** The array descriptor domain is checked first. On any error, validation returns immediately: `INVALID REFERENCE` for references, `MALFORMED PLAN` for plans. Only after that are items read, and they are read through descriptor values into a fresh, trusted built-in array (`trustedItems`).
+
+**Traversal.** Fingerprinting and validation use only index loops over that trusted copy. Sorting happens only on the trusted copy, with known comparator code. Nothing calls an input-controlled `map`, `forEach`, `filter`, `sort` or iterator.
+
+**Audit.** I checked `contracts.mjs` for array methods, spread and iteration on caller-supplied arrays. Four sites were hardened:
+1. `canonicalEncode`'s array branch (it used `.map`)
+2. `referenceVersion`'s observation traversal (`.map`)
+3. `validateReferencePopulation` (`.filter`)
+4. `extremeTieBlock` (spread)
+
+The validation loops over observations and plan inputs were also reordered so descriptors are checked before any item is read. Other uses operate on internal or freshly built arrays (the `UNITS` chains, `Reflect.ownKeys` results, the trusted copies) and were left alone. `analyze.mjs` and `check.mjs` only pass internal data.
+
+**Serialization.** `md08-refser-2` is retained. The valid domain changed only by closing the accidentally accepted subclasses and accessors, and ordinary arrays encode to the same bytes. No valid fingerprint changed, the example identifier is unchanged, and all six generated results are byte-identical.
+
+**Controls (10 new; 116 in total):**
+- a DroppingArray observations container is rejected
+- arrays overriding forEach, filter, sort or the iterator are rejected for observations, plan inputs and populations
+- a foreign array prototype is rejected
+- an observation-index getter is rejected as `INVALID REFERENCE` with `executed === false`
+- a plan-input-index getter is rejected as `MALFORMED PLAN`, before BLOCKED, with `executed === false`
+- a population-index getter is not executed
+- `canonicalEncode` refuses subclasses and index accessors without executing them
+- ordinary arrays remain valid
+- mutating a real observation changes the fingerprint
+- deterministic ordering is unchanged
+
+**Conclusions unchanged:**
+- B1 remains decisive.
+- B2, B3 and B4 are unchanged.
+- No further repository-local research remains.
+- The next decision is still external legacy-producer recovery.
+
 ## Reproducibility and checks
 
 ```text
@@ -394,7 +438,7 @@ The checker uses no network: the release listing is committed. It verifies:
 - the k experiment (24 teams / 0.0197653235 / no class change, and no change in weeks 1, 12 and 13)
 - the B4 split and the FTN schema evidence
 - the tied-bound counterexample and the exhaustive bound checks
-- 106 controls in total (after §13), including 29 malformed-plan rejections (mixed-role, null-week, team, game-count and window probes), 11 reference-hash controls, and the k-cancellation, OL-route, QB-active-path and degenerate-reference controls
+- 116 controls in total (after §14), including 29 malformed-plan rejections (mixed-role, null-week, team, game-count and window probes), 11 reference-hash controls, and the k-cancellation, OL-route, QB-active-path and degenerate-reference controls
 - the reference-version controls and an altered-pin control
 - byte-equal regeneration of six results
 - `hashes.json`
