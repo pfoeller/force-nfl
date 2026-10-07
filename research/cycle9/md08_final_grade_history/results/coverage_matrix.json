@@ -1,0 +1,150 @@
+{
+  "sourceListing": {
+    "retrievedAt": "2026-10-07T01:21:42.950Z",
+    "source": "GitHub REST API GET /repos/nflverse/nflverse-data/releases/tags/{tag} (read-only listing; no data files downloaded)"
+  },
+  "inputs": [
+    {
+      "input": "nflverse play-by-play",
+      "source": "nflverse-data releases pbp",
+      "seasons": [
+        1999,
+        2026
+      ],
+      "committed": "2024/2025 only as derived fixture; V149 2025 windows",
+      "production": "2026 live; 2025 reference",
+      "semantics": "same definitions via force_server.py builders",
+      "reconstructibleAtDate": "yes (filter week <= g)",
+      "note": "Release revisions: the Cycle 7 and V149 2025 pins differ (2f135887 vs 8ce00018)."
+    },
+    {
+      "input": "nflverse weekly player stats",
+      "source": "nflverse-data releases stats_player",
+      "seasons": [
+        1999,
+        2026
+      ],
+      "committed": "2026 weeks 1-3 cache",
+      "production": "2026 live",
+      "semantics": "same",
+      "reconstructibleAtDate": "yes"
+    },
+    {
+      "input": "nflverse weekly team stats",
+      "source": "nflverse-data releases stats_team",
+      "seasons": [
+        1999,
+        2026
+      ],
+      "committed": "2026 weeks 1-3 cache",
+      "production": "2026 live",
+      "semantics": "same",
+      "reconstructibleAtDate": "yes"
+    },
+    {
+      "input": "PFR advanced weekly passing",
+      "source": "nflverse-data releases pfr_advstats",
+      "seasons": [
+        2018,
+        2026
+      ],
+      "committed": "2025 full, 2026 weeks 1-3 caches",
+      "production": "pass-rush provider (complete teams) and prior",
+      "semantics": "same",
+      "reconstructibleAtDate": "data yes; per-date completeness/readiness state no (B4)"
+    },
+    {
+      "input": "FTN charting",
+      "source": "nflverse-data releases ftn_charting",
+      "seasons": [
+        2022,
+        2026
+      ],
+      "committed": "2026 cache",
+      "production": "first-choice pass-rush provider when ready",
+      "semantics": "same",
+      "reconstructibleAtDate": "data yes from 2022; readiness state no (B4)"
+    },
+    {
+      "input": "StatRankings pressure scrape",
+      "source": "statrankings.com (scraped HTML)",
+      "seasons": null,
+      "committed": "no",
+      "production": "pass-rush provider when fresh",
+      "semantics": "n/a",
+      "reconstructibleAtDate": "no historical archive (B4)"
+    },
+    {
+      "input": "Manual current pressure override",
+      "source": "data/pressure-current.manual.json",
+      "seasons": [
+        2026,
+        2026
+      ],
+      "committed": "yes (current only)",
+      "production": "highest-priority provider",
+      "semantics": "n/a",
+      "reconstructibleAtDate": "no history (B4)"
+    },
+    {
+      "input": "Bundled prior-season profiles",
+      "source": "data/matchup-data.js",
+      "seasons": [
+        2025,
+        2025
+      ],
+      "committed": "yes",
+      "production": "every unit prior; receiver/RB references",
+      "semantics": "legacy, generator absent",
+      "reconstructibleAtDate": "no (B1/B2)"
+    },
+    {
+      "input": "Preseason Elo / season engine",
+      "source": "data/model-data.js rankings",
+      "seasons": [
+        2025,
+        2025
+      ],
+      "committed": "yes",
+      "production": "core Elo -> V34 regime -> V37 prior games",
+      "semantics": "repository history differs (season_end_elo.json)",
+      "reconstructibleAtDate": "no verified chain (B3)"
+    },
+    {
+      "input": "nflverse schedules/results",
+      "source": "nflverse nfldata games.csv",
+      "seasons": null,
+      "committed": "2026 cache",
+      "production": "schedule, drives, freshness",
+      "semantics": "same",
+      "reconstructibleAtDate": "yes"
+    }
+  ],
+  "unitSpans": {
+    "honest": "NONE: every intended displayed unit is BLOCKED for every historical season (B1, plus B2/B3/B4 by unit).",
+    "conditionalIfBlockersResolved": {
+      "olIndex": {
+        "earliest": 2000,
+        "why": "pbp from 1999 gives the season Y-1 window reference"
+      },
+      "qbIndex": {
+        "earliest": 2007,
+        "why": "pbp CPOE from 2006 plus a 1-season reference burn-in"
+      },
+      "receiverIndex": {
+        "earliest": 2000,
+        "why": "player stats from 1999 plus burn-in, IF B1/B2 resolved by a reproducible prior/reference generator"
+      },
+      "rbIndex": {
+        "earliest": 2000,
+        "why": "as receivers"
+      },
+      "defenseIndex": {
+        "earliest": "2019 with PFR pass rush (2018 burn-in) or 2023 with FTN (2022 burn-in); earlier only if the owner fixes a nflverse-weekly-only provider rule",
+        "why": "B4 provider semantics"
+      },
+      "commonAllUnits": "2019+ (PFR-based pass rush) or 2023+ (FTN-ready semantics), conditional on B1-B4 resolution; not established"
+    },
+    "burnIn": "Every unit needs season Y-1 as burn-in (prior and/or reference); burn-in seasons are not display-eligible. The Elo/regime chain needs a verified replay start before the first display season."
+  }
+}

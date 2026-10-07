@@ -1,0 +1,14 @@
+{
+  "README.md": "85b0e0f9a27f41a3b42a9c603c419ce9aff80624ccc04abf5be127366ca4ed94",
+  "inputs.json": "f9a4adadf2ffa9be535f5b721641edfe22565921b1337b4c50fea86cb151c70e",
+  "contracts.mjs": "f84ad571acacfa784a6a49863fafd127e0c1fc4f0f9d8a8192086044445f7acb",
+  "analyze.mjs": "7fc8a8118193f3d6e9ec64070c494102f9f3b9e91d1cc7d0be38c2708763208c",
+  "check.mjs": "841f6064b3ea81c98e8920317e7532c4306467995390355a86ba202865ecd942",
+  "results/source_listing.json": "ef1d7cb7d4320452c77b4414a52df41c95e9608475b5d0ceee7618c6b0590898",
+  "results/contracts.json": "50ab4827901b30e93f1895313fffa72820f187caeb966e094181493eacc1ba26",
+  "results/prior_reproducibility.json": "5322a5eb9be59808dfecc6ce3eccdfdd40c4d42836d0ed00a3390abba8748eec",
+  "results/coverage_matrix.json": "aa275703d058cbc83d4bb79a2f5b17971cda3074b6edc89736a4aac3bfdccf87",
+  "results/current_reproduction.json": "15e20f47e66591328e45b0fb480e512f87152340b1090a4c445773fae6c42df8",
+  "results/dynamic_record.json": "686e8dd136b413a7a93775bf045a413bb219d52fc880f15a483bc7630f11e08c",
+  "results/decision_package.json": "7ad341ac292203f5d82530e2c1f9a867183baf46978f797fd2012d615b4dce62"
+}

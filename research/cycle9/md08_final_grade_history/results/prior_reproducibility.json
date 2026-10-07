@@ -1,0 +1,105 @@
+{
+  "bundle": {
+    "path": "data/matchup-data.js",
+    "season": 2025,
+    "firstCommit": "43d2c71 (Initial FORCE V149 web repository; history before V149 is not in Git)",
+    "changelog": "CHANGELOG_V4.md: \"Added data/matchup-data.js ... packages 2025 model diagnostics\"",
+    "generatorInRepository": false,
+    "playerLevelExamples": [
+      {
+        "team": "ARI",
+        "qb": "Jacoby Brissett",
+        "qbGames": 12,
+        "rb": "M.Carter",
+        "rbGames": 13
+      },
+      {
+        "team": "ATL",
+        "qb": "Michael Penix",
+        "qbGames": 9,
+        "rb": "T.Allgeier",
+        "rbGames": 17
+      },
+      {
+        "team": "BAL",
+        "qb": "Lamar Jackson",
+        "qbGames": 13,
+        "rb": "K.Mitchell",
+        "rbGames": 12
+      },
+      {
+        "team": "BUF",
+        "qb": "Josh Allen",
+        "qbGames": 18,
+        "rb": "J.Cook",
+        "rbGames": 17
+      }
+    ]
+  },
+  "fieldReproducibility": [
+    {
+      "bundledField": "receivers.adj_epa",
+      "publicDefinition": "2025 REG WR/TE EPA per target (team, PBP)",
+      "maxAbsDiff": 0.10401998619668293,
+      "meanAbsDiff": 0.0487665035073161,
+      "exactTeams": 0,
+      "pearson": 0.9177337852468602
+    },
+    {
+      "bundledField": "receivers.targets",
+      "publicDefinition": "2025 REG WR/TE targets",
+      "maxAbsDiff": 152,
+      "meanAbsDiff": 96.375,
+      "exactTeams": 0,
+      "pearson": 0.6778513260021417
+    },
+    {
+      "bundledField": "qb.epa_per_play",
+      "publicDefinition": "2025 REG team QB EPA/play",
+      "maxAbsDiff": 0.1554403854240684,
+      "meanAbsDiff": 0.04163309089699136,
+      "exactTeams": 0,
+      "pearson": 0.9275831713436404
+    },
+    {
+      "bundledField": "qb.epaoe",
+      "publicDefinition": "2025 REG team QB EPA/play (no public expected-EPA model)",
+      "maxAbsDiff": 0.1523715437898175,
+      "meanAbsDiff": 0.04233389208450982,
+      "exactTeams": 0,
+      "pearson": 0.9365765096577807
+    },
+    {
+      "bundledField": "rb.rush_epa",
+      "publicDefinition": "2025 REG RB/FB rush EPA per carry",
+      "maxAbsDiff": 0.18568858599531113,
+      "meanAbsDiff": 0.037128392145941956,
+      "exactTeams": 0,
+      "pearson": 0.7303959357918753
+    },
+    {
+      "bundledField": "ol.pressure_rate_allowed",
+      "publicDefinition": "2025 REG hit-or-sack per dropback",
+      "maxAbsDiff": 0.09530000000000002,
+      "meanAbsDiff": 0.04618399047481461,
+      "exactTeams": 0,
+      "pearson": 0.8804464267616322
+    },
+    {
+      "bundledField": "ol.dropbacks",
+      "publicDefinition": "2025 REG dropbacks",
+      "maxAbsDiff": 64,
+      "meanAbsDiff": 34.03125,
+      "exactTeams": 0,
+      "pearson": 0.9543223973820789
+    }
+  ],
+  "eloChain": {
+    "productionPreseasonSource": "data/model-data.js rankings (end-2025 Elo), regressed 30%",
+    "repositoryHistory": "research/season_end_elo.json seasons 2008-2025",
+    "maxAbsDiff2025": 10.700000000000045,
+    "meanAbsDiff2025": 3.940624999999997,
+    "verdict": "not the same semantic chain"
+  },
+  "conclusion": "No bundled prior field is reproduced exactly from public 2025 data (0 of 32 teams for every field tested). The fields are player-level, adjusted or legacy-ranked constructs whose generator is absent. Historical priors under current semantics are therefore BLOCKED (B1), as are receiver/RB live references (B2)."
+}

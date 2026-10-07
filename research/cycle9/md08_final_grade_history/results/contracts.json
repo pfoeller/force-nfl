@@ -1,0 +1,649 @@
+{
+  "transformVersion": "md08-candidate-A-prototype-0",
+  "blockers": {
+    "B1_LEGACY_PRIOR_BUNDLE": {
+      "scope": "Every unit prior except prevention (fixed 50) and the PFR pass-rush prior",
+      "fact": "Unit priors are regressed fields of data/matchup-data.js (season 2025 only). The bundle was added in CHANGELOG_V4 as \"2025 model diagnostics\"; no generator exists in the repository (local Git begins at the V149 import). Its fields are legacy constructs: primary-QB epaoe/epa_per_play with games played, lead-RB rush/receiving \"adj\" values, a receiver subset with its own target counts, legacy olIndex/qbIndex/coverageIndex/offenseIndex ranks of unpublished score_raw values, dl.run_stop_rate. They do not reproduce from public 2025 play-by-play (results/prior_reproducibility.json).",
+      "consequence": "A season-Y replay needs the same fields for season Y-1. They cannot be generated under current semantics, and using the 2025 bundle for any earlier season would be future leakage.",
+      "resolution": "Owner decision: recover the legacy generator (if it exists outside the repository) or authorize a new, versioned prior definition (a model change outside MD-08)."
+    },
+    "B2_LEGACY_REFERENCE_POPULATION": {
+      "scope": "Receiver and RB LIVE grades (and therefore their final grades)",
+      "fact": "The receiver and RB live maps use the 32 bundled 2025 profiles as their reference CDF and median (priorReceiverResidual / priorRbOrthogonalComposite over M.profiles), and the ridge beta is fitted on the same bundle.",
+      "consequence": "Even the live grade of a historical season needs a season Y-1 bundle in the legacy schema.",
+      "resolution": "Same as B1."
+    },
+    "B3_PRESEASON_ELO_STATE": {
+      "scope": "Effective prior games k for every blended unit (V37 controller)",
+      "fact": "k comes from the V34 early-regime state, built from core (result-only) Elo replayed from the regressed preseason ratings in data/model-data.js (end-2025). The only repository Elo history (research/season_end_elo.json, 2008-2025) differs from those ratings by up to 10.7 points in 2025, so it is not the same semantic chain.",
+      "consequence": "k for week g of season Y cannot be reproduced exactly without a verified current-semantics Elo chain ending at Y-1.",
+      "resolution": "A separate, verified Elo replay that reproduces data/model-data.js 2025 exactly, or an owner rule for historical k."
+    },
+    "B4_PASS_RUSH_PROVIDER_STATE": {
+      "scope": "Pass rush, hence defense overall",
+      "fact": "The live pass-rush provider is selected per team at run time: manual override, FTN play-level (when ready), StatRankings scrape (fresh), complete PFR charting, then nflverse weekly disruption. The 2026 Week-4 snapshot used nflverse weekly for 28 teams and PFR for 4. StatRankings has no archive; FTN exists only from 2022; PFR from 2018; readiness/completeness at historical dates is not archived.",
+      "consequence": "Which provider a historical team-week would have used is undetermined, and different providers map to different populations.",
+      "resolution": "Owner rule fixing the historical provider policy, or restricting history to a provider-stable span."
+    },
+    "B5_SEASON_LITERALS": {
+      "scope": "All units (engineering, not semantic)",
+      "fact": "buildProfiles filters rows with the literal seasons 2026 (current) and 2025 (prior PFR).",
+      "consequence": "A replay harness must relabel historical rows; harmless if done consistently, but it must be audited.",
+      "resolution": "Harness relabelling with a checker; no formula change."
+    }
+  },
+  "units": {
+    "qbIndex": {
+      "label": "QB",
+      "unit": "qbIndex",
+      "status": "BLOCKED",
+      "blockers": [
+        "B1_LEGACY_PRIOR_BUNDLE",
+        "B3_PRESEASON_ELO_STATE"
+      ],
+      "chain": [
+        {
+          "component": "All-play QB EPA/play (dropbacks + QB runs, downs 1-4)",
+          "role": "current",
+          "source": "nflverse pbp (server drive context)",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1151,
+            "match": "qbEpaPerPlay"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Actual-pass success rate",
+          "role": "current",
+          "source": "nflverse pbp",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1153,
+            "match": "qbPassSuccessRate"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "ANY/A (current rank)",
+          "role": "current",
+          "source": "nflverse weekly player stats",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1088,
+            "match": "qbAnyA"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "CPOE (tanh vs current mean, 60-attempt stabilizer)",
+          "role": "current",
+          "source": "nflverse weekly player stats passing_cpoe (pbp cpoe from 2006)",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 221,
+            "match": "function qbCpoeScore"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Rushing bonus",
+          "role": "current",
+          "source": "nflverse pbp QB rushes",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 302,
+            "match": "function qbRushingBonus"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "V139 leave-one-matchup-out opponent adjustment",
+          "role": "current",
+          "source": "current-season coverage allowed",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1216,
+            "match": "qbOpponentEpaAdjustment"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "V137 pressure context",
+          "role": "current",
+          "source": "nflverse pbp pressure plays",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1165,
+            "match": "pressureEpaDrop"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Stabilization toward current league means (150/100/60)",
+          "role": "current",
+          "source": "current season",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1393,
+            "match": "qbStabilizedEpa"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "EPA/success CDF reference (17-game windows)",
+          "role": "priorSeason",
+          "source": "V149-style reference rebuilt from season Y-1 pbp + player-stat QB ids",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "force_server.py",
+            "line": 2333,
+            "match": "def _v104_reference_from_drive_games("
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Composite x1.20 expansion and clamp",
+          "role": "fixed",
+          "source": "constants",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 13,
+            "match": "const QB_COMPOSITE_EXPANSION"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Prior: regressed bundled qbIndex",
+          "role": "priorSeason",
+          "source": "data/matchup-data.js (legacy, 2025 only)",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1448,
+            "match": "const priorQbIndex="
+          },
+          "note": "",
+          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+        },
+        {
+          "component": "Effective prior games (QB floor 1.00 through 4 games)",
+          "role": "current",
+          "source": "V34/V37 regime state on core Elo",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "assets/app.js",
+            "line": 1369,
+            "match": "effectivePriorGames"
+          },
+          "note": "",
+          "blocker": "B3_PRESEASON_ELO_STATE"
+        },
+        {
+          "component": "V148 recency (+/-4) after blend, final clamp",
+          "role": "current",
+          "source": "weekly QB game rows",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "assets/app.js",
+            "line": 1780,
+            "match": "qbIndex=Math.max(0,Math.min(100,Number(p.qbIndex)+recency))"
+          },
+          "note": "",
+          "blocker": null
+        }
+      ]
+    },
+    "olIndex": {
+      "label": "Offensive line",
+      "unit": "olIndex",
+      "status": "BLOCKED",
+      "blockers": [
+        "B1_LEGACY_PRIOR_BUNDLE",
+        "B3_PRESEASON_ELO_STATE"
+      ],
+      "chain": [
+        {
+          "component": "Hit-or-sack disruption per dropback",
+          "role": "current",
+          "source": "nflverse pbp",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "force_server.py",
+            "line": 1847,
+            "match": "disrupted=_pbp_truthy(row.get('sack')) or _pbp_truthy(row.get('qb_hit'))"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Same-length window CDF",
+          "role": "priorSeason",
+          "source": "V149-style windows rebuilt from season Y-1 pbp",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1509,
+            "match": "const olHistoricalBench="
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Prior: regressed bundled olIndex",
+          "role": "priorSeason",
+          "source": "data/matchup-data.js (legacy, 2025 only)",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1445,
+            "match": "const priorOlIndex="
+          },
+          "note": "",
+          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+        },
+        {
+          "component": "Effective prior games",
+          "role": "current",
+          "source": "V34/V37 regime state on core Elo",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "assets/app.js",
+            "line": 1369,
+            "match": "effectivePriorGames"
+          },
+          "note": "",
+          "blocker": "B3_PRESEASON_ELO_STATE"
+        },
+        {
+          "component": "Blend",
+          "role": "fixed",
+          "source": "blend(prior, live, statGames, k)",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1578,
+            "match": "const olIndex=teamStatsUsable ? blend("
+          },
+          "note": "",
+          "blocker": null
+        }
+      ]
+    },
+    "receiverIndex": {
+      "label": "Receivers",
+      "unit": "receiverIndex",
+      "status": "BLOCKED",
+      "blockers": [
+        "B2_LEGACY_REFERENCE_POPULATION",
+        "B1_LEGACY_PRIOR_BUNDLE",
+        "B3_PRESEASON_ELO_STATE"
+      ],
+      "chain": [
+        {
+          "component": "WR/TE EPA/target",
+          "role": "current",
+          "source": "nflverse weekly player stats",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1103,
+            "match": "const receiverRoomTargets=sum(recRows,'targets');"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Sack-free QB attempt EPA",
+          "role": "current",
+          "source": "nflverse pbp",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1152,
+            "match": "qbAttemptEpa"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Ridge beta and QB centre",
+          "role": "priorSeason",
+          "source": "fitted on bundled 2025 profiles",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 269,
+            "match": "ridgeOrthogonalSlope"
+          },
+          "note": "",
+          "blocker": "B2_LEGACY_REFERENCE_POPULATION"
+        },
+        {
+          "component": "Stabilization 80 targets, centre alignment",
+          "role": "current",
+          "source": "current season",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1265,
+            "match": "r.receiverStabilizedResidual=stabilizeToward("
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Live CDF reference (32 bundled residuals)",
+          "role": "priorSeason",
+          "source": "data/matchup-data.js",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1254,
+            "match": "continuousPercentileValue(priorReceiverResidualValues"
+          },
+          "note": "",
+          "blocker": "B2_LEGACY_REFERENCE_POPULATION"
+        },
+        {
+          "component": "Prior: regressed bundled residual percentile",
+          "role": "priorSeason",
+          "source": "data/matchup-data.js",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1449,
+            "match": "const priorReceiverIndex="
+          },
+          "note": "",
+          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+        },
+        {
+          "component": "Effective prior games",
+          "role": "current",
+          "source": "V34/V37 regime state",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "assets/app.js",
+            "line": 1369,
+            "match": "effectivePriorGames"
+          },
+          "note": "",
+          "blocker": "B3_PRESEASON_ELO_STATE"
+        },
+        {
+          "component": "Blend",
+          "role": "fixed",
+          "source": "blend",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1604,
+            "match": "const receiverIndex=playerStatsUsable ? blend("
+          },
+          "note": "",
+          "blocker": null
+        }
+      ]
+    },
+    "rbIndex": {
+      "label": "RB",
+      "unit": "rbIndex",
+      "status": "BLOCKED",
+      "blockers": [
+        "B2_LEGACY_REFERENCE_POPULATION",
+        "B1_LEGACY_PRIOR_BUNDLE",
+        "B3_PRESEASON_ELO_STATE"
+      ],
+      "chain": [
+        {
+          "component": "RB/FB rushing EPA/carry",
+          "role": "current",
+          "source": "nflverse weekly player stats",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1128,
+            "match": "rbRushEpa"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "RB receiving residual (beta fitted on bundle)",
+          "role": "current+priorSeason",
+          "source": "player stats + bundled fit",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1237,
+            "match": "const rbRecvResidual="
+          },
+          "note": "",
+          "blocker": "B2_LEGACY_REFERENCE_POPULATION"
+        },
+        {
+          "component": "Stabilization 50 carries / 40 targets, alignment",
+          "role": "current",
+          "source": "current season",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1275,
+            "match": "rbStabilizedRushEpa"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Live CDF reference (LIVE_FITTED bundled composites)",
+          "role": "priorSeason",
+          "source": "data/matchup-data.js",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1255,
+            "match": "priorRbOrthogonalValuesV109"
+          },
+          "note": "",
+          "blocker": "B2_LEGACY_REFERENCE_POPULATION"
+        },
+        {
+          "component": "Prior: regressed LIVE_FITTED bundled composite percentile",
+          "role": "priorSeason",
+          "source": "data/matchup-data.js",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1453,
+            "match": "const priorRbIndex="
+          },
+          "note": "",
+          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+        },
+        {
+          "component": "Effective prior games",
+          "role": "current",
+          "source": "V34/V37 regime state",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "assets/app.js",
+            "line": 1369,
+            "match": "effectivePriorGames"
+          },
+          "note": "",
+          "blocker": "B3_PRESEASON_ELO_STATE"
+        },
+        {
+          "component": "Blend",
+          "role": "fixed",
+          "source": "blend",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1615,
+            "match": "const rbIndex="
+          },
+          "note": "",
+          "blocker": null
+        }
+      ]
+    },
+    "defenseIndex": {
+      "label": "Defense overall",
+      "unit": "defenseIndex",
+      "status": "BLOCKED",
+      "blockers": [
+        "B1_LEGACY_PRIOR_BUNDLE",
+        "B4_PASS_RUSH_PROVIDER_STATE",
+        "B3_PRESEASON_ELO_STATE"
+      ],
+      "chain": [
+        {
+          "component": "Coverage: 75% EPA-allowed rank + 25% CPOE-allowed rank",
+          "role": "current",
+          "source": "nflverse pbp / team stats",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1544,
+            "match": "const liveCov=teamStatsUsable"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Coverage prior: regressed bundled coverageIndex",
+          "role": "priorSeason",
+          "source": "data/matchup-data.js",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1447,
+            "match": "const priorCoverageIndex="
+          },
+          "note": "",
+          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+        },
+        {
+          "component": "Pass rush: provider cascade",
+          "role": "current",
+          "source": "manual / FTN / StatRankings / PFR / nflverse weekly",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1489,
+            "match": "passRushProvider="
+          },
+          "note": "",
+          "blocker": "B4_PASS_RUSH_PROVIDER_STATE"
+        },
+        {
+          "component": "Pass-rush prior: Y-1 PFR composite percentile, else bundled dl.pressure_rate",
+          "role": "priorSeason",
+          "source": "nflverse pfr_advstats (2018+) / bundle",
+          "status": "CONDITIONAL",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1451,
+            "match": "const priorPassRushIndex"
+          },
+          "note": "Reproducible from PFR for 2019+ (2018 burn-in) when every team has Y-1 PFR rows; the bundle fallback is B1.",
+          "blocker": null
+        },
+        {
+          "component": "Run defense: opponent rush EPA rank (incl. QB runs)",
+          "role": "current",
+          "source": "nflverse pbp",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1588,
+            "match": "const runDefenseIndex="
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Run-defense prior: regressed percentile of bundled dl.run_stop_rate",
+          "role": "priorSeason",
+          "source": "data/matchup-data.js",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1452,
+            "match": "const priorRunDefenseIndex"
+          },
+          "note": "",
+          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+        },
+        {
+          "component": "Prevention: opponent points/drive rank, prior fixed 50, k=1",
+          "role": "current",
+          "source": "nflverse pbp drives",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1454,
+            "match": "const priorPointsAllowedPerDriveIndex=50;"
+          },
+          "note": "",
+          "blocker": null
+        },
+        {
+          "component": "Effective prior games for coverage/pass rush/run",
+          "role": "current",
+          "source": "V34/V37 regime state",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "assets/app.js",
+            "line": 1369,
+            "match": "effectivePriorGames"
+          },
+          "note": "",
+          "blocker": "B3_PRESEASON_ELO_STATE"
+        },
+        {
+          "component": "Composite .36/.16/.28/.20, soft-tail softness 42",
+          "role": "fixed",
+          "source": "constants",
+          "status": "REPRODUCIBLE",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 461,
+            "match": "function calibrateComposite("
+          },
+          "note": "",
+          "blocker": null
+        }
+      ]
+    }
+  },
+  "engineering": {
+    "B5_SEASON_LITERALS": {
+      "file": "model/live_profiles.js",
+      "line": 1003,
+      "match": "String(r.season)==='2026'"
+    }
+  },
+  "asOfRule": "A season-Y week-g observation may use season-Y rows with week <= g (the production profileBeforeWeek filter, app.js) plus season Y-1 full-season inputs for priorSeason roles. Anything later is leakage."
+}

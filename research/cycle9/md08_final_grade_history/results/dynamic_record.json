@@ -1,0 +1,118 @@
+{
+  "schema": {
+    "transformVersion": "string, e.g. md08-candidate-A-prototype-0",
+    "referenceVersion": "sha256 of the canonical population serialization below",
+    "unit": "canonical key",
+    "design": "'S' (first g games) | 'C' (any g-game window)",
+    "gameCount": "integer g",
+    "asOf": "ISO date of the newest observation included",
+    "population": "n observations",
+    "sourceHistorySpan": "[firstSeason, lastSeason]",
+    "modelSemantics": "model source hashes the population was replayed under",
+    "canonicalSerialization": "JSON of {transformVersion, unit, design, gameCount, modelSemantics, observations: sorted [season, team, asOfWeek, finalGrade(full precision)]}"
+  },
+  "boundsCandidateA": {
+    "oneNewRecord": "max shift of any existing value = 100/n",
+    "addMObservations": "max shift <= 100*m/(n+m-1)",
+    "table": [
+      {
+        "n": 64,
+        "seasonsAt32PerSeason": 2,
+        "oneRecord": 1.5625,
+        "oneSeason": 33.68421052631579
+      },
+      {
+        "n": 160,
+        "seasonsAt32PerSeason": 5,
+        "oneRecord": 0.625,
+        "oneSeason": 16.75392670157068
+      },
+      {
+        "n": 320,
+        "seasonsAt32PerSeason": 10,
+        "oneRecord": 0.3125,
+        "oneSeason": 9.116809116809117
+      },
+      {
+        "n": 640,
+        "seasonsAt32PerSeason": 20,
+        "oneRecord": 0.15625,
+        "oneSeason": 4.769001490312966
+      }
+    ]
+  },
+  "syntheticCheck": {
+    "label": "MECHANICS ONLY: seeded standard-normal populations, not FORCE grades",
+    "seed": 20261007,
+    "samples": [
+      {
+        "n": 64,
+        "newHighRecord": {
+          "maxShift": 1.5625,
+          "bound": 1.5625
+        },
+        "newLowRecord": {
+          "maxShift": 1.5625,
+          "bound": 1.5625
+        },
+        "newSeasonOf32": {
+          "maxShift": 11.495405179615702,
+          "meanShift": 5.674342105263159,
+          "bound": 33.68421052631579
+        }
+      },
+      {
+        "n": 160,
+        "newHighRecord": {
+          "maxShift": 0.625,
+          "bound": 0.625
+        },
+        "newLowRecord": {
+          "maxShift": 0.625,
+          "bound": 0.625
+        },
+        "newSeasonOf32": {
+          "maxShift": 5.512199940729026,
+          "meanShift": 3.1708115183246095,
+          "bound": 16.75392670157068
+        }
+      },
+      {
+        "n": 320,
+        "newHighRecord": {
+          "maxShift": 0.3125,
+          "bound": 0.3125
+        },
+        "newLowRecord": {
+          "maxShift": 0.3125,
+          "bound": 0.3125
+        },
+        "newSeasonOf32": {
+          "maxShift": 1.7201189614982724,
+          "meanShift": 0.8254991336887892,
+          "bound": 9.116809116809117
+        }
+      },
+      {
+        "n": 640,
+        "newHighRecord": {
+          "maxShift": 0.15625,
+          "bound": 0.15625
+        },
+        "newLowRecord": {
+          "maxShift": 0.15625,
+          "bound": 0.15625
+        },
+        "newSeasonOf32": {
+          "maxShift": 1.1498032740240092,
+          "meanShift": 0.3804769438788718,
+          "bound": 4.769001490312966
+        }
+      }
+    ]
+  },
+  "exampleReferenceVersion": {
+    "note": "Illustrates the identifier only; the population is the 2026 Week-4 final OL grades, which is NOT a historical reference.",
+    "id": "6e40855fb3465e61dacc2947d27fde7668262c1ac6440bc24b799843ec9716d0"
+  }
+}

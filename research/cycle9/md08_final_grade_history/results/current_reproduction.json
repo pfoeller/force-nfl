@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "priorPlusLiveToFinal": "REPRODUCED for qb/OL/receiver (stored snapshot, residual 0), RB (post-correction LIVE_FITTED frame vs frozen CSV, <=5e-7 rounding) and defense (composite recomputed from stored constituents, residual 0), all through the identity seam",
+    "rawToLive": "Reproduced in the accepted follow-up for OL and receivers from snapshot raw signals, and in Cycle 9 for QB components and RB; the raw->snapshot-raw step (PBP -> drive context) is production server code and was not re-run here",
+    "historicalInputs": "NOT ATTEMPTED: blocked inputs (B1-B4) make a raw-history gate impossible without substitution"
+  },
+  "maxAbsResidualVsSnapshot": 0,
+  "maxAbsResidualVsFrozenCsv": 4.905881922923072e-7,
+  "teams": 32
+}

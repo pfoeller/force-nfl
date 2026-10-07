@@ -1,0 +1,45 @@
+{
+  "purpose": "MD-08 final-grade history build inputs. Committed repository files plus one read-only release listing (committed as results/source_listing.json). No data files were downloaded: the replay is blocked before any download would help.",
+  "startingTip": "a1a781019388cd86f5f60f3345b7b6c757ba9d74",
+  "base": "6cf05419f89df7c9c8c3af228a3fb80080c6f686",
+  "inputs": [
+    {
+      "path": "data/matchup-data.js",
+      "role": "Bundled 2025 prior profiles (B1/B2 evidence)"
+    },
+    {
+      "path": "data/model-data.js",
+      "role": "Preseason Elo source (B3 evidence)"
+    },
+    {
+      "path": "research/season_end_elo.json",
+      "role": "Repository Elo history (B3 evidence)"
+    },
+    {
+      "path": "research/cycle7/fixtures/unit_games.csv",
+      "role": "Public 2025 team signals used to test bundle reproducibility"
+    },
+    {
+      "path": "CHANGELOG_V4.md",
+      "role": "Provenance of the bundle"
+    },
+    {
+      "path": "research/cycle9/md08_historical_standing_prototype/hashes.json",
+      "role": "Accepted prototype package integrity"
+    },
+    {
+      "path": "research/cycle9/md08_final_grade_history/results/source_listing.json",
+      "role": "nflverse release season coverage (read-only GitHub API listing, retrieved 2026-10-07)"
+    }
+  ],
+  "pins": {
+    "research/cycle7/fixtures/unit_games.csv": "e5012000c97773e4837dbeebfd675be2ffe1cd37daa1e0bf83abe1a5f10b6828",
+    "research/season_end_elo.json": "46c006e048876ab594456d98406177572e9f43abf6fcf394655d21b8aff1867c",
+    "data/model-data.js": "fa852ce51b25bebd57fa49dca4e2d8e73575ced372e37ea5c6e30fb76217e8ac",
+    "data/matchup-data.js": "88b100a3e10158990398b46740c7d01e2048cf05d1601a03ae3c6b0f1613357d",
+    "CHANGELOG_V4.md": "ed1b0b7063be019bb9195e0d40cbcaf911407295ee3534abcf81c9fa46eb3bc4",
+    "research/cycle9/md08_historical_standing_prototype/hashes.json": "2d2e72197fdb3dd63d78f2d2ad6a344bbaab352ff6d06a9daa230be70cea46af",
+    "research/cycle9/md08_final_grade_history/results/source_listing.json": "ef1d7cb7d4320452c77b4414a52df41c95e9608475b5d0ceee7618c6b0590898"
+  },
+  "checksumConvention": "SHA-256 of UTF-8 text after CRLF->LF normalization"
+}

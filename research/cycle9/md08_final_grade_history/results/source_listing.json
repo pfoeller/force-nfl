@@ -1,0 +1,727 @@
+{
+  "retrievedAt": "2026-10-07T01:21:42.950Z",
+  "source": "GitHub REST API GET /repos/nflverse/nflverse-data/releases/tags/{tag} (read-only listing; no data files downloaded)",
+  "tags": {
+    "pbp": {
+      "assetPattern": "/^play_by_play_(\\d{4})\\.csv\\.gz$/",
+      "seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "assets": [
+        {
+          "season": 1999,
+          "name": "play_by_play_1999.csv.gz",
+          "size": 12836909,
+          "updated_at": "2025-04-30T06:32:43Z"
+        },
+        {
+          "season": 2000,
+          "name": "play_by_play_2000.csv.gz",
+          "size": 12972701,
+          "updated_at": "2025-07-16T14:29:04Z"
+        },
+        {
+          "season": 2001,
+          "name": "play_by_play_2001.csv.gz",
+          "size": 13890995,
+          "updated_at": "2026-08-13T12:38:45Z"
+        },
+        {
+          "season": 2002,
+          "name": "play_by_play_2002.csv.gz",
+          "size": 14608544,
+          "updated_at": "2026-08-13T12:39:26Z"
+        },
+        {
+          "season": 2003,
+          "name": "play_by_play_2003.csv.gz",
+          "size": 14381489,
+          "updated_at": "2025-04-30T06:35:51Z"
+        },
+        {
+          "season": 2004,
+          "name": "play_by_play_2004.csv.gz",
+          "size": 14348591,
+          "updated_at": "2025-04-30T06:37:54Z"
+        },
+        {
+          "season": 2005,
+          "name": "play_by_play_2005.csv.gz",
+          "size": 14373053,
+          "updated_at": "2025-04-30T06:38:09Z"
+        },
+        {
+          "season": 2006,
+          "name": "play_by_play_2006.csv.gz",
+          "size": 17478126,
+          "updated_at": "2025-04-30T06:33:16Z"
+        },
+        {
+          "season": 2007,
+          "name": "play_by_play_2007.csv.gz",
+          "size": 17618113,
+          "updated_at": "2025-04-30T06:41:08Z"
+        },
+        {
+          "season": 2008,
+          "name": "play_by_play_2008.csv.gz",
+          "size": 17469625,
+          "updated_at": "2025-04-30T06:34:15Z"
+        },
+        {
+          "season": 2009,
+          "name": "play_by_play_2009.csv.gz",
+          "size": 17819486,
+          "updated_at": "2025-04-30T06:36:09Z"
+        },
+        {
+          "season": 2010,
+          "name": "play_by_play_2010.csv.gz",
+          "size": 17960191,
+          "updated_at": "2025-04-30T06:34:42Z"
+        },
+        {
+          "season": 2011,
+          "name": "play_by_play_2011.csv.gz",
+          "size": 18021304,
+          "updated_at": "2025-04-30T06:38:47Z"
+        },
+        {
+          "season": 2012,
+          "name": "play_by_play_2012.csv.gz",
+          "size": 18195788,
+          "updated_at": "2025-04-30T06:33:24Z"
+        },
+        {
+          "season": 2013,
+          "name": "play_by_play_2013.csv.gz",
+          "size": 18339628,
+          "updated_at": "2024-08-13T15:36:20Z"
+        },
+        {
+          "season": 2014,
+          "name": "play_by_play_2014.csv.gz",
+          "size": 18202391,
+          "updated_at": "2024-08-13T15:38:05Z"
+        },
+        {
+          "season": 2015,
+          "name": "play_by_play_2015.csv.gz",
+          "size": 18392969,
+          "updated_at": "2025-04-30T06:33:27Z"
+        },
+        {
+          "season": 2016,
+          "name": "play_by_play_2016.csv.gz",
+          "size": 18230362,
+          "updated_at": "2025-04-30T06:34:28Z"
+        },
+        {
+          "season": 2017,
+          "name": "play_by_play_2017.csv.gz",
+          "size": 17973428,
+          "updated_at": "2025-04-30T06:41:25Z"
+        },
+        {
+          "season": 2018,
+          "name": "play_by_play_2018.csv.gz",
+          "size": 17920627,
+          "updated_at": "2025-04-30T06:39:20Z"
+        },
+        {
+          "season": 2019,
+          "name": "play_by_play_2019.csv.gz",
+          "size": 17992849,
+          "updated_at": "2025-07-31T18:17:18Z"
+        },
+        {
+          "season": 2020,
+          "name": "play_by_play_2020.csv.gz",
+          "size": 18143553,
+          "updated_at": "2026-08-26T07:33:10Z"
+        },
+        {
+          "season": 2021,
+          "name": "play_by_play_2021.csv.gz",
+          "size": 19022201,
+          "updated_at": "2026-01-08T13:13:13Z"
+        },
+        {
+          "season": 2022,
+          "name": "play_by_play_2022.csv.gz",
+          "size": 19093961,
+          "updated_at": "2026-02-12T10:25:24Z"
+        },
+        {
+          "season": 2023,
+          "name": "play_by_play_2023.csv.gz",
+          "size": 19169807,
+          "updated_at": "2026-02-12T10:24:52Z"
+        },
+        {
+          "season": 2024,
+          "name": "play_by_play_2024.csv.gz",
+          "size": 19362351,
+          "updated_at": "2026-08-13T12:26:27Z"
+        },
+        {
+          "season": 2025,
+          "name": "play_by_play_2025.csv.gz",
+          "size": 19105296,
+          "updated_at": "2026-08-13T12:26:09Z"
+        },
+        {
+          "season": 2026,
+          "name": "play_by_play_2026.csv.gz",
+          "size": 4380228,
+          "updated_at": "2026-10-06T15:53:37Z"
+        }
+      ]
+    },
+    "stats_team": {
+      "assetPattern": "/^stats_team_week_(\\d{4})\\.csv$/",
+      "seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "assets": [
+        {
+          "season": 1999,
+          "name": "stats_team_week_1999.csv",
+          "size": 198485,
+          "updated_at": "2026-08-13T12:42:29Z"
+        },
+        {
+          "season": 2000,
+          "name": "stats_team_week_2000.csv",
+          "size": 196689,
+          "updated_at": "2026-08-13T12:42:31Z"
+        },
+        {
+          "season": 2001,
+          "name": "stats_team_week_2001.csv",
+          "size": 195798,
+          "updated_at": "2026-08-13T12:41:59Z"
+        },
+        {
+          "season": 2002,
+          "name": "stats_team_week_2002.csv",
+          "size": 201723,
+          "updated_at": "2026-08-13T12:41:56Z"
+        },
+        {
+          "season": 2003,
+          "name": "stats_team_week_2003.csv",
+          "size": 202528,
+          "updated_at": "2026-08-13T12:41:31Z"
+        },
+        {
+          "season": 2004,
+          "name": "stats_team_week_2004.csv",
+          "size": 202286,
+          "updated_at": "2026-08-13T12:41:40Z"
+        },
+        {
+          "season": 2005,
+          "name": "stats_team_week_2005.csv",
+          "size": 202756,
+          "updated_at": "2026-08-13T12:44:34Z"
+        },
+        {
+          "season": 2006,
+          "name": "stats_team_week_2006.csv",
+          "size": 213975,
+          "updated_at": "2026-08-13T12:45:18Z"
+        },
+        {
+          "season": 2007,
+          "name": "stats_team_week_2007.csv",
+          "size": 213699,
+          "updated_at": "2026-08-13T12:45:09Z"
+        },
+        {
+          "season": 2008,
+          "name": "stats_team_week_2008.csv",
+          "size": 213940,
+          "updated_at": "2026-08-13T12:45:12Z"
+        },
+        {
+          "season": 2009,
+          "name": "stats_team_week_2009.csv",
+          "size": 214917,
+          "updated_at": "2026-08-13T12:47:36Z"
+        },
+        {
+          "season": 2010,
+          "name": "stats_team_week_2010.csv",
+          "size": 215059,
+          "updated_at": "2026-08-13T12:48:31Z"
+        },
+        {
+          "season": 2011,
+          "name": "stats_team_week_2011.csv",
+          "size": 215055,
+          "updated_at": "2026-08-13T12:49:00Z"
+        },
+        {
+          "season": 2012,
+          "name": "stats_team_week_2012.csv",
+          "size": 215528,
+          "updated_at": "2026-08-13T12:48:27Z"
+        },
+        {
+          "season": 2013,
+          "name": "stats_team_week_2013.csv",
+          "size": 215374,
+          "updated_at": "2026-08-13T12:51:06Z"
+        },
+        {
+          "season": 2014,
+          "name": "stats_team_week_2014.csv",
+          "size": 215324,
+          "updated_at": "2026-08-13T12:52:38Z"
+        },
+        {
+          "season": 2015,
+          "name": "stats_team_week_2015.csv",
+          "size": 215934,
+          "updated_at": "2026-08-13T12:51:42Z"
+        },
+        {
+          "season": 2016,
+          "name": "stats_team_week_2016.csv",
+          "size": 215795,
+          "updated_at": "2026-08-13T12:52:47Z"
+        },
+        {
+          "season": 2017,
+          "name": "stats_team_week_2017.csv",
+          "size": 215661,
+          "updated_at": "2026-08-13T16:44:55Z"
+        },
+        {
+          "season": 2018,
+          "name": "stats_team_week_2018.csv",
+          "size": 215509,
+          "updated_at": "2026-08-13T16:44:59Z"
+        },
+        {
+          "season": 2019,
+          "name": "stats_team_week_2019.csv",
+          "size": 215441,
+          "updated_at": "2026-08-13T16:45:40Z"
+        },
+        {
+          "season": 2020,
+          "name": "stats_team_week_2020.csv",
+          "size": 216943,
+          "updated_at": "2026-08-26T07:35:27Z"
+        },
+        {
+          "season": 2021,
+          "name": "stats_team_week_2021.csv",
+          "size": 229707,
+          "updated_at": "2026-08-13T16:48:01Z"
+        },
+        {
+          "season": 2022,
+          "name": "stats_team_week_2022.csv",
+          "size": 228947,
+          "updated_at": "2026-08-13T16:48:16Z"
+        },
+        {
+          "season": 2023,
+          "name": "stats_team_week_2023.csv",
+          "size": 229582,
+          "updated_at": "2026-08-13T16:48:38Z"
+        },
+        {
+          "season": 2024,
+          "name": "stats_team_week_2024.csv",
+          "size": 229712,
+          "updated_at": "2026-08-13T16:49:13Z"
+        },
+        {
+          "season": 2025,
+          "name": "stats_team_week_2025.csv",
+          "size": 229660,
+          "updated_at": "2026-08-13T16:51:24Z"
+        },
+        {
+          "season": 2026,
+          "name": "stats_team_week_2026.csv",
+          "size": 53166,
+          "updated_at": "2026-10-06T15:55:08Z"
+        }
+      ]
+    },
+    "stats_player": {
+      "assetPattern": "/^stats_player_week_(\\d{4})\\.csv$/",
+      "seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "assets": [
+        {
+          "season": 1999,
+          "name": "stats_player_week_1999.csv",
+          "size": 7369576,
+          "updated_at": "2026-08-13T12:42:26Z"
+        },
+        {
+          "season": 2000,
+          "name": "stats_player_week_2000.csv",
+          "size": 7268743,
+          "updated_at": "2026-08-13T12:42:21Z"
+        },
+        {
+          "season": 2001,
+          "name": "stats_player_week_2001.csv",
+          "size": 7344977,
+          "updated_at": "2026-08-13T12:41:57Z"
+        },
+        {
+          "season": 2002,
+          "name": "stats_player_week_2002.csv",
+          "size": 7651673,
+          "updated_at": "2026-08-13T12:41:54Z"
+        },
+        {
+          "season": 2003,
+          "name": "stats_player_week_2003.csv",
+          "size": 7390720,
+          "updated_at": "2026-08-13T12:41:29Z"
+        },
+        {
+          "season": 2004,
+          "name": "stats_player_week_2004.csv",
+          "size": 7401579,
+          "updated_at": "2026-08-13T12:41:38Z"
+        },
+        {
+          "season": 2005,
+          "name": "stats_player_week_2005.csv",
+          "size": 7434902,
+          "updated_at": "2026-08-13T12:44:33Z"
+        },
+        {
+          "season": 2006,
+          "name": "stats_player_week_2006.csv",
+          "size": 7418077,
+          "updated_at": "2026-08-13T12:45:16Z"
+        },
+        {
+          "season": 2007,
+          "name": "stats_player_week_2007.csv",
+          "size": 7442890,
+          "updated_at": "2026-08-13T12:45:08Z"
+        },
+        {
+          "season": 2008,
+          "name": "stats_player_week_2008.csv",
+          "size": 7420439,
+          "updated_at": "2026-08-13T12:45:10Z"
+        },
+        {
+          "season": 2009,
+          "name": "stats_player_week_2009.csv",
+          "size": 7902720,
+          "updated_at": "2026-08-13T12:47:34Z"
+        },
+        {
+          "season": 2010,
+          "name": "stats_player_week_2010.csv",
+          "size": 7859210,
+          "updated_at": "2026-08-13T12:48:28Z"
+        },
+        {
+          "season": 2011,
+          "name": "stats_player_week_2011.csv",
+          "size": 7800649,
+          "updated_at": "2026-08-13T12:48:57Z"
+        },
+        {
+          "season": 2012,
+          "name": "stats_player_week_2012.csv",
+          "size": 7796458,
+          "updated_at": "2026-08-13T12:48:26Z"
+        },
+        {
+          "season": 2013,
+          "name": "stats_player_week_2013.csv",
+          "size": 7713866,
+          "updated_at": "2026-08-13T12:51:04Z"
+        },
+        {
+          "season": 2014,
+          "name": "stats_player_week_2014.csv",
+          "size": 7883194,
+          "updated_at": "2026-08-13T12:52:33Z"
+        },
+        {
+          "season": 2015,
+          "name": "stats_player_week_2015.csv",
+          "size": 7881066,
+          "updated_at": "2026-08-13T12:51:40Z"
+        },
+        {
+          "season": 2016,
+          "name": "stats_player_week_2016.csv",
+          "size": 7852359,
+          "updated_at": "2026-08-13T12:52:44Z"
+        },
+        {
+          "season": 2017,
+          "name": "stats_player_week_2017.csv",
+          "size": 7821392,
+          "updated_at": "2026-08-13T16:44:54Z"
+        },
+        {
+          "season": 2018,
+          "name": "stats_player_week_2018.csv",
+          "size": 7792665,
+          "updated_at": "2026-08-13T16:44:58Z"
+        },
+        {
+          "season": 2019,
+          "name": "stats_player_week_2019.csv",
+          "size": 7767165,
+          "updated_at": "2026-08-13T16:45:38Z"
+        },
+        {
+          "season": 2020,
+          "name": "stats_player_week_2020.csv",
+          "size": 7883270,
+          "updated_at": "2026-08-26T07:35:24Z"
+        },
+        {
+          "season": 2021,
+          "name": "stats_player_week_2021.csv",
+          "size": 8477784,
+          "updated_at": "2026-08-13T16:48:00Z"
+        },
+        {
+          "season": 2022,
+          "name": "stats_player_week_2022.csv",
+          "size": 8408729,
+          "updated_at": "2026-08-13T16:48:13Z"
+        },
+        {
+          "season": 2023,
+          "name": "stats_player_week_2023.csv",
+          "size": 8332874,
+          "updated_at": "2026-08-13T16:48:37Z"
+        },
+        {
+          "season": 2024,
+          "name": "stats_player_week_2024.csv",
+          "size": 8470040,
+          "updated_at": "2026-08-13T16:49:11Z"
+        },
+        {
+          "season": 2025,
+          "name": "stats_player_week_2025.csv",
+          "size": 8656387,
+          "updated_at": "2026-08-13T16:51:22Z"
+        },
+        {
+          "season": 2026,
+          "name": "stats_player_week_2026.csv",
+          "size": 1981105,
+          "updated_at": "2026-10-06T15:55:05Z"
+        }
+      ]
+    },
+    "pfr_advstats": {
+      "assetPattern": "/^advstats_week_pass_(\\d{4})\\.csv$/",
+      "seasons": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "assets": [
+        {
+          "season": 2018,
+          "name": "advstats_week_pass_2018.csv",
+          "size": 74625,
+          "updated_at": "2022-03-08T18:20:04Z"
+        },
+        {
+          "season": 2019,
+          "name": "advstats_week_pass_2019.csv",
+          "size": 74092,
+          "updated_at": "2022-03-08T18:20:22Z"
+        },
+        {
+          "season": 2020,
+          "name": "advstats_week_pass_2020.csv",
+          "size": 76950,
+          "updated_at": "2022-03-08T18:20:40Z"
+        },
+        {
+          "season": 2021,
+          "name": "advstats_week_pass_2021.csv",
+          "size": 81254,
+          "updated_at": "2022-03-08T18:19:37Z"
+        },
+        {
+          "season": 2022,
+          "name": "advstats_week_pass_2022.csv",
+          "size": 72106,
+          "updated_at": "2023-08-28T08:28:37Z"
+        },
+        {
+          "season": 2023,
+          "name": "advstats_week_pass_2023.csv",
+          "size": 73567,
+          "updated_at": "2024-02-15T07:13:05Z"
+        },
+        {
+          "season": 2024,
+          "name": "advstats_week_pass_2024.csv",
+          "size": 73095,
+          "updated_at": "2025-02-13T07:17:28Z"
+        },
+        {
+          "season": 2025,
+          "name": "advstats_week_pass_2025.csv",
+          "size": 71483,
+          "updated_at": "2026-02-11T13:24:09Z"
+        },
+        {
+          "season": 2026,
+          "name": "advstats_week_pass_2026.csv",
+          "size": 12499,
+          "updated_at": "2026-10-04T11:02:18Z"
+        }
+      ]
+    },
+    "ftn_charting": {
+      "assetPattern": "/^ftn_charting_(\\d{4})\\.csv$/",
+      "seasons": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "assets": [
+        {
+          "season": 2022,
+          "name": "ftn_charting_2022.csv",
+          "size": 7089615,
+          "updated_at": "2024-10-10T01:13:45Z"
+        },
+        {
+          "season": 2023,
+          "name": "ftn_charting_2023.csv",
+          "size": 8285822,
+          "updated_at": "2024-09-06T23:50:22Z"
+        },
+        {
+          "season": 2024,
+          "name": "ftn_charting_2024.csv",
+          "size": 8254908,
+          "updated_at": "2025-09-01T01:29:37Z"
+        },
+        {
+          "season": 2025,
+          "name": "ftn_charting_2025.csv",
+          "size": 8128926,
+          "updated_at": "2026-09-23T03:14:31Z"
+        },
+        {
+          "season": 2026,
+          "name": "ftn_charting_2026.csv",
+          "size": 1826229,
+          "updated_at": "2026-10-06T17:05:01Z"
+        }
+      ]
+    }
+  }
+}
