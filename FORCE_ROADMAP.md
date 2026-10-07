@@ -43,7 +43,7 @@ Documentation chronology matters. [README](README.md) still describes V105; [mod
 ## How to use this roadmap
 
 1. Read the baseline, execution doctrine, decision state, and dependencies before proposing substantial work.
-2. Locate the authorized item by its stable ID. `UX-01` through `UX-18` correspond to the original accepted Product / UX audit items; `UX-19` through `UX-31` come from the 2026-10-01 owner-direction intake; `UX-32` through `UX-40` and `MD-04` through `MD-06` come from the 2026-10-02 pre-Cycle 6 owner intake; `UX-41` through `UX-43` and `MD-07` through `MD-12` come from the 2026-10-05 pre-Cycle 8 owner intake. Model items use `MD-` IDs; security items use `SEC-` IDs. Every ID has exactly one authoritative roadmap entry.
+2. Locate the authorized item by its stable ID. `UX-01` through `UX-18` correspond to the original accepted Product / UX audit items; `UX-19` through `UX-31` come from the 2026-10-01 owner-direction intake; `UX-32` through `UX-40` and `MD-04` through `MD-06` come from the 2026-10-02 pre-Cycle 6 owner intake; `UX-41` through `UX-43` and `MD-07` through `MD-12` come from the 2026-10-05 pre-Cycle 8 owner intake; `UX-44`, `MD-13`, `MD-14`, `SEC-02`, `GTM-01` and `GTM-02` come from the [2026-10-07 owner intake](#owner-direction-intake--2026-10-07). Model items use `MD-` IDs; security items use `SEC-` IDs; launch / communications items use `GTM-` IDs. Speculative future launch work is not numbered until the owner records it. Every ID has exactly one authoritative roadmap entry.
 3. Separate accepted outcomes from open implementation details. An investigation can establish a cause without deciding the desired product behavior.
 4. Agree a bounded deliverable, non-goals, acceptance criteria, and necessary owner decisions within the active prompt's scope. Do not assign yourself the next tranche.
 5. Use the linked technical documents rather than duplicating their mechanisms here. Report conflicting or stale documentation as intake evidence in the tranche handoff.
@@ -93,7 +93,7 @@ The authoritative near-term order is **Phase 1 → Phase 2 → Phase 3**. This i
 
 | Phase | Scope | Deliverable and handoff |
 | --- | --- | --- |
-| **PHASE 1 — Understand before redesigning** | Audit `UX-08`–`UX-12` with the revised `UX-09` scope; prepare alternatives for still-open `UX-13`, `UX-15`, `UX-17`, `UX-18`, `UX-24`, and `UX-31`. | Evidence, calculation/source traces, the projection semantic map, baseline contracts/options, and an owner-decision brief. Also prepare the `UX-14` explanation inventory/approval proposal, mobile navigation options for `UX-30`, and quarter-score approach options for `UX-26`. Gather later taper-review evidence for `MD-02` when separately authorized and appropriate. No product-design choices are implemented without a separately authorized prompt. Stop for owner direction. |
+| **PHASE 1 — Understand before redesigning** | Audit `UX-08`–`UX-12` with the revised `UX-09` scope; prepare alternatives for still-open `UX-13`, `UX-15`, `UX-17`, `UX-18`, `UX-24` (adoption question resolved YES on 2026-10-07; implementation design remains open), and `UX-31`. | Evidence, calculation/source traces, the projection semantic map, baseline contracts/options, and an owner-decision brief. Also prepare the `UX-14` explanation inventory/approval proposal, mobile navigation options for `UX-30`, and quarter-score approach options for `UX-26`. Gather later taper-review evidence for `MD-02` when separately authorized and appropriate. No product-design choices are implemented without a separately authorized prompt. Stop for owner direction. |
 | **PHASE 2 — Build shared UI foundations** | `UX-01`, `UX-02`, `UX-05`, informed by `UX-20`, `UX-23`, `UX-28`, `UX-29`, and `UX-30`. | Shared navigation/header, responsive data-view, and numeric/label conventions, with reviewable examples and applicable responsive/accessibility verification. Account for semantic theme tokens, mobile architecture, universal sort/rank behavior, intentional viewport use, and human-language copy architecture. Obtain owner decisions required by the authorized design; agents do not resolve open `OWNER DECISION` items themselves. Unrelated open choices remain open. |
 | **PHASE 3 — Apply foundations in bounded product tranches** | `UX-03`, `UX-04`, `UX-06`, `UX-07`. | Independently reviewable page/workflow changes using the shared foundations. Avoid a giant redesign PR or repeated page-local solutions. |
 
@@ -105,7 +105,9 @@ The 2026-10-02 pre-Cycle 6 intake (`UX-32`–`UX-40`, `MD-04`–`MD-06`, and ext
 
 The 2026-10-05 pre-Cycle 8 intake (`UX-41`–`UX-43`, `MD-07`–`MD-12`) likewise records owner direction only. Those items are not assigned to Phase 1, 2 or 3, carry no priority and set no implementation order; their dependencies and relationships are stated per item and in the [2026-10-05 intake table](#owner-direction-intake--2026-10-05-pre-cycle-8).
 
-**Security (`SEC-01`) is a separate CONFIRMED HIGH-priority workstream.** It need not wait for all UX work to finish and must not be buried in visual redesign. Bound each authorized security cycle independently around its threat model, safe test environment, and findings ledger. Neither its priority nor this sequence authorizes starting it automatically.
+The 2026-10-07 owner intake (`UX-44`, `MD-13`, `MD-14`, `SEC-02`, `GTM-01`, `GTM-02`, extensions to `UX-11`, `UX-12`, `UX-20`, `UX-21` and `UX-27`, the `UX-23` architecture revision and the `UX-24` resolution) records owner direction only. Its new items are not assigned to Phase 1, 2 or 3, carry no priority and set no implementation order. It does not change the Phase 1 → Phase 2 → Phase 3 sequence or `MD-08`'s accepted status; see the [2026-10-07 intake authority statement](#owner-direction-intake--2026-10-07).
+
+**Security (`SEC-01`) is a separate CONFIRMED HIGH-priority workstream.** It need not wait for all UX work to finish and must not be buried in visual redesign. Bound each authorized security cycle independently around its threat model, safe test environment, and findings ledger. Neither its priority nor this sequence authorizes starting it automatically. `SEC-02` (public implementation / IP exposure) complements `SEC-01` but does not inherit its HIGH priority or any execution authority; its priority is unset.
 
 ## Product / UX
 
@@ -163,6 +165,7 @@ Priority does not override phase order or dependencies.
 - **Dependencies/open decisions:** Phase 2 foundations; `UX-10` labels; `UX-14`'s confirmed high-level explanation direction and owner-approved removal inventory; `UX-18` market disclosure placement. `UX-20` supplements this item with human-language voice; `UX-21` supplies data-grounded narratives; `UX-22` supplies canonical feature/score education. They do not replace this disclosure-system work.
 - **Acceptance:** Shared explanation/disclosure patterns exist; normal workflows use understandable labels; definitions and limitations remain accessible; technical implementation prose is not repeated on every card. Touch and keyboard users can access necessary explanations.
 - **Candidate next deliverable (requires authorization):** Copy inventory and a bounded disclosure-system tranche after owner choices. Related: [brand/copy guidance](BRAND_FORCE.md), [application](assets/app.js).
+- **2026-10-07 intake cross-reference (intake item D):** Conversational value explanations on hover, focus and tap are owned by `UX-21`; this item's disclosure system is the delivery mechanism they use, not a second tooltip project. Status unchanged (CONFIRMED / PLANNED / HIGH).
 
 #### UX-07 — Confirmed responsive / polish defects
 
@@ -212,6 +215,13 @@ Priority does not override phase order or dependencies.
 - **Boundary/dependencies:** Supplements `UX-06`; does not replace tooltips/transparency or `UX-14`'s inventory/owner approval gate. Exact formulas, weights, stabilizers, provider names, implementation details, and the term “Monte Carlo” may remain in appropriate deeper/internal documentation. Informs `UX-21`/`UX-22` and shared copy architecture before page application.
 - **Acceptance / next candidate:** Shared voice examples and an accuracy-checked public-copy inventory, then bounded authorized applications. No calculation changes. Related: [brand/copy guidance](BRAND_FORCE.md), [application](assets/app.js).
 - **Pre-Cycle 6 intake extension: rendered public-copy / internal-jargon audit (owner direction 2026-10-02, intake item N):** Normal users should not meet internal design, developer or project language. The public-copy inventory this item already requires must be gathered from **rendered** public pages in a real browser (Claude in Chrome), on desktop and mobile, not only from source grep, and must include export-visible copy. Look for design/brand-principle language, implementation and roadmap terms, debug/raw/canonical/fallback/provider wording where it does not help the user, stale or development-history copy, awkward or computer-like explanatory prose, developer-only labels, localhost/debug leakage and duplicate explanations. Classify each finding `KEEP`, `SIMPLIFY`, `REWORD`, `REMOVE` or `INTERNAL-ONLY`. The goal is football/product language that preserves model meaning and honesty, not a rewrite into a reviewer's personal voice. **Evidence note:** the owner's example ("brand principle") is the About notice `UX-14` classified as R9; source at `aa4e82c` no longer contains it (removed in `82400c4`, `UX-14` tranche A). A live sighting would indicate the deployed site predates that change or another occurrence exists; the audit must confirm on the rendered site rather than assume either. Removing or simplifying explanatory content still follows `UX-14`'s approved inventory and owner-approval gate; new removals found by this audit go to the owner first. Status unchanged (CONFIRMED / PLANNED). No live audit was run by this intake.
+- **2026-10-07 intake extension: human-written public voice / AI-pattern removal (owner direction 2026-10-07, intake item K):**
+  - **Hard owner rule:** no em dashes in public FORCE copy. This is an explicit public-copy requirement, not a style preference.
+  - **Standard:** all public-facing FORCE language should read as if a knowledgeable human football analyst deliberately wrote and edited it. Avoid em dashes; overused "not just X, but Y" constructions; canned AI-style contrasts; generic AI transitions; repetitive "This means…" or "In other words…" phrasing; excessive hedging; throat-clearing; repetitive three-part rhetorical constructions; filler; and awkwardly technical statistical language where normal football language works. Prefer contractions where natural, varied sentence lengths, direct football-specific wording, natural punctuation, occasional fragments where useful, concise explanation and language an informed analyst would actually say.
+  - **Scope:** navigation; labels; tooltips; methodology; contextual explanations; hover/focus/tap explanations; loading states; FORCEcast narratives; Luck; FLAG; errors; onboarding; exports; deterministic narrative text; product-generated social copy.
+  - **Future audit:** the rendered audit above governs. Eventually audit rendered desktop, mobile, dynamic states and exports; source-code string search supplements the rendered audit and is not sufficient on its own.
+  - **Constraints:** do not remove necessary uncertainty, meaningful caveats, mathematical meaning, model limitations, market transparency or meaningful error states merely to sound less technical. Internal developer and research language, including this roadmap, may remain technical; the rule governs public product copy and does not call for rewriting historical roadmap text.
+  - **Coordination:** `UX-06` disclosure, `UX-14` approval gate, `UX-21` value explanations and narratives, `UX-22` education, `UX-36` terminology, `UX-35` exports, `UX-38` sharing, `UX-43` market copy, `UX-27` loading states, `GTM-01` promotional copy. No new ID; status unchanged (CONFIRMED / PLANNED, Priority unset). No audit or copy change is authorized by this intake.
 
 #### UX-21 — Tokenized football narratives
 
@@ -220,6 +230,12 @@ Priority does not override phase order or dependencies.
 - **Candidate factual tokens, not final definitions:** Elite/strong/average/weak QB, offense, or defense; strong pass rush; weak coverage; strong/weak run defense or recent form; record outperforming/underperforming underlying performance; a strong rating held back by one unit; balanced, offense-driven, or defense-driven team.
 - **Required design:** Define tokens, thresholds, priority rules, sentence templates/variation, conflict resolution, and placement. Do not invent final thresholds now; reuse canonical definitions only when verified. No live generative-AI prose dependency, unsupported causal claims, contradictory tokens, or absurd combinations.
 - **Dependencies/acceptance:** `UX-10` semantics, `UX-20` voice, `UX-14` disclosure gate, and `UX-22` feature roles. Future authorized design must show adequate variation and regression coverage for contradictory/absurd combinations without changing model outputs. Next candidate is the bounded narrative design, not implementation in this intake.
+- **2026-10-07 intake extension: conversational value explanations (owner direction 2026-10-07, intake item D):**
+  - **Direction:** important FORCE scores and metrics expose a deterministic conversational interpretation of the **value**, not just a definition of the metric, through desktop hover, keyboard focus/activation and mobile tap. Illustrative style only, not universal templates: "One of the strongest teams in the league right now."; "This pass rush has been clearly above average."; "They're still alive, but they need several things to go their way."
+  - **Contract:** the interpretation depends on the metric's actual context: comparison population, directionality, sample/state evidence, model/reference version, historical versus current standing, and forecast versus actual state. No single good/bad range is applied to every metric.
+  - **Requirements:** deterministic, with no free-form AI dependency; the same inputs and context yield the same language; no unsupported causality or certainty; hover is never the only access path; link to canonical deeper methodology rather than duplicating it. Unit-value language inherits the accepted `MD-08` meaning contract and must not invent a historical scale.
+  - **Reconciliation:** this is the owner of value explanations, not a new tooltip project. `UX-06` supplies the disclosure mechanism; `UX-20` the voice (including the no-em-dash rule); `UX-22` the canonical feature roles and deeper methodology destination; `UX-36` first-encounter terminology; `UX-39` the raw-stat quality family. Status unchanged (CONFIRMED / PLANNED, Priority unset).
+- **2026-10-07 intake extension: rating-movement explanations (owner direction 2026-10-07, intake item J):** Once `MD-13` establishes calculation-backed contributors, FORCE may show prominent deterministic explanations such as "Why did the rating fall after a win?". Explanations must reconcile to `MD-13`'s attribution and disclose residuals or ordering dependence where it does. Trigger thresholds, placement and detail remain open design questions. This does not duplicate `UX-42` Luck decomposition or `UX-37` FLAG/penalty accounting. Nothing here is authorized; any future work also waits for `MD-13` to deliver and for the owner to approve its contract, and then still needs separate authorization.
 
 #### UX-22 — How FORCE Works / How to Use FORCE
 
@@ -228,14 +244,24 @@ Priority does not override phase order or dependencies.
 - **Canonical feature map:** Explicitly classify roles conceptually as `PART OF THE FORCE RATING`, `CONTEXT ONLY / DOES NOT CHANGE FORCE`, `FORECAST / OUTPUT`, `WHAT-IF / SCENARIO TOOL`, and `DIAGNOSTIC / RESEARCH VIEW`. Labels may be refined, but the role distinctions must remain explicit and come from one canonical map rather than conflicting page descriptions.
 - **Dependencies/non-goals:** `UX-10` quantities, `UX-20` voice, `UX-14` inventory/approval, and `UX-19`'s public-tool boundary. Ordinary pages become shorter/conversational while retaining necessary transparency. Do not expose deep internals, revive a removed tool, invent feature contributions, or promise a paid layer.
 - **Acceptance / next candidate:** Verified feature-role map and high-level education outline, followed by a bounded authorized surface; actual public explanation removals remain gated by `UX-14`.
+- **2026-10-07 intake cross-reference (intake item D):** This surface is the canonical deeper methodology destination that `UX-21` value explanations link to instead of repeating. Status unchanged.
 
 #### UX-23 — Shared accessibility themes
 
-- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01.** Support Dark, Light, Dark High Contrast, and Light High Contrast. Dark may remain the default unless later changed.
+- **Decision status: CONFIRMED; Execution status: PLANNED; Priority: unset. Owner direction: 2026-10-01; architecture revised by owner decision 2026-10-07.** FORCE has **three base appearance modes**: Light, Dark and Favorite Team Colors (`UX-24`). **High Contrast is an independent accessibility toggle** that applies to every base mode. Six effective combinations exist: Light; Light + High Contrast; Dark; Dark + High Contrast; Favorite Team Colors; Favorite Team Colors + High Contrast. Dark may remain the default unless later changed. Base appearance preference and High Contrast are stored and chosen independently.
+- **Prior architecture (historical, 2026-10-01):** The original direction listed four modes: Dark, Light, Dark High Contrast and Light High Contrast, with favorite-team appearance a separate unapproved question. Those four remain valid as combinations of the current architecture; the 2026-10-01 intake record is preserved unchanged.
 - **Shared architecture:** Semantic theme tokens for surfaces, text, borders, focus, interaction states, warnings/errors, rating semantics, and context semantics. Persist user preference and consider OS `prefers-color-scheme`; do not implement page-specific theme CSS.
-- **Accessibility:** Intentionally design high-contrast modes rather than merely increasing saturation; validate contrast across all semantic states.
-- **Dependencies/open decisions:** Theme modes are confirmed; `UX-13` still owns the exact semantic rating/context palette. `UX-24` favorite-team personalization is separate and unapproved. Retain the dark navy identity in the dark presentation; adding owner-approved light modes does not authorize a rebrand or removal of preserved typography/brand patterns.
+- **Accessibility:** Intentionally design High Contrast for each base mode rather than merely increasing saturation; validate contrast across all semantic states in all six combinations.
+- **Dependencies/open decisions:** The base-mode / High Contrast architecture is confirmed; `UX-13` still owns the exact semantic rating/context palette, and this revision does not complete or imply any semantic-palette decision. `UX-24` (Favorite Team Colors) is CONFIRMED as of 2026-10-07 and must use the same semantic tokens, so team brand colors never change semantic meaning. Retain the dark navy identity in the dark presentation; adding owner-approved light modes does not authorize a rebrand or removal of preserved typography/brand patterns.
 - **Acceptance / next candidate:** Token/theme architecture and semantic-state contrast evidence, then a bounded authorized implementation integrated with Phase 2 foundations. No autonomous palette choice. Related: [styles](assets/styles.css), [brand guidance](BRAND_FORCE.md).
+
+#### UX-24 — Favorite-team personalization
+
+- **Decision status: CONFIRMED (owner decision 2026-10-07: favorite-team appearance is adopted); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset. Owner question recorded: 2026-10-01; resolved: 2026-10-07.** Favorite Team Colors is one of `UX-23`'s three base appearance modes and combines with the independent High Contrast toggle. This entry moved from Owner decisions to Confirmed with its stable ID; it is not COMPLETE.
+- **Prior decision record (historical, 2026-10-01):** The owner asked whether a favorite-team selection should give non-semantic surfaces/background accents that team's visual identity; at that time it was an experiment candidate kept separate from the four confirmed theme modes. The 2026-10-07 decision answers that exact question YES.
+- **Semantic-color requirement:** Favorite-team colors must never change semantic meaning. Use `UX-23` semantic/theme tokens. A team whose brand color is red, for example, must not make warning, negative, FLAG, Luck or other data semantics ambiguous. Do not recolor FORCE rating meaning, Luck/FLAG meaning, positive/negative semantics, or warnings/errors. Use safe fallback colors when team palettes have poor contrast.
+- **Preserve:** accessible contrast; focus visibility; chart and table legibility; the approved FORCE brand identity; and the still-open `UX-13` semantic palette work. This decision does not authorize a global rebrand and does not settle `UX-13`.
+- **Dependencies / next candidate:** `UX-23` architecture and tokens; `UX-13` semantic families; `UX-41` unit-rating colors and `UX-39` raw-stat interpretation must stay legible in this mode. Implementation design (which surfaces take team accents, fallback rules, contrast evidence in both High Contrast states) remains design work requiring a separately authorized tranche.
 
 #### UX-25 — Postseason odds display floor / ceiling
 
@@ -263,6 +289,11 @@ Priority does not override phase order or dependencies.
 - **Behavior:** If ready earlier, observe the minimum presentation time. If readiness takes longer, hold the bar complete without restarting/erratic behavior. Exit only when both minimum time and required app readiness are satisfied.
 - **Dependencies/non-goals:** Shared theme/state accessibility (`UX-23`); preserve the loader concept and readiness contract. This specific owner-approved progression does not settle `UX-13`'s general palette and is separate from `UX-17`'s matchup graphics.
 - **Acceptance / next candidate:** A bounded authorized loader tranche with early/late readiness evidence, stable completion, and preserved readiness gating. Related: [application/minimum loader duration](assets/app.js), [styles](assets/styles.css).
+- **2026-10-07 intake extension: FORCE-branded data-transformation loading animation (owner direction 2026-10-07, intake item C):**
+  - **Direction:** develop a lightweight FORCE-branded loading animation in which the approved FORCE "F" colors and shapes transform into tiers/layers of real football-data concepts: raw signal → processing → structured FORCE output. Potential uses: initial app load; substantial view transitions; simulation refresh; export preparation; other waits long enough to justify it.
+  - **Existing contract preserved:** the red → yellow → green progression, the approximately 3-second initial-load progression aligned with the minimum branded-loader duration, the readiness gate (exit only when minimum time and required readiness are both satisfied) and the held-complete behavior for late readiness all remain in force for the initial load unless the owner explicitly replaces them. The initial-load minimum duration does **not** apply to every small wait.
+  - **Requirements:** lightweight; no artificial waits just to show animation; honors `prefers-reduced-motion`; static or skeleton fallback; accessible status and error messaging; mobile support; transitions naturally into the loaded UI; never falsely implies real numerical progress or data readiness.
+  - **Boundaries:** any incompatible replacement of prior loader behavior remains an owner decision. Uses the approved brand ([brand guidance](BRAND_FORCE.md)); no rebrand. Loading-state copy follows `UX-20`. No new ID; status unchanged (CONFIRMED / PLANNED, Priority unset); no implementation is authorized.
 
 #### UX-28 — Brand scale / intentional viewport use
 
@@ -325,6 +356,12 @@ All entries in this group have **Decision status: INVESTIGATE; Sequence: PHASE 1
 - **Options to prepare:** Odds-first ordering with a most-likely-seed column; representative simulation as a clearly labeled secondary view; or another defensible presentation, with consequences for record/seed coherence.
 - **Dependencies/non-goals:** `UX-10` semantic map and `UX-25`'s confirmed display bounds, gated by actual clinch/elimination rather than representative “Out”/seed results. Owner still chooses the presentation interpretation. Do not change simulations, probabilities, or tiebreak behavior to resolve the presentation issue. Preserve Out dimming as a visual constraint; it does not settle which view is primary.
 - **Acceptance/next step:** Verified source map, confusing examples, and concrete alternatives for owner decision. Any proposed “Out”/seed presentation beside marginal odds must unmistakably label the different quantities. Related: [V124 representative season](CHANGELOG_V124.md), [playoff/application](assets/app.js).
+- **2026-10-07 intake extension: projected standings versus division odds (owner direction 2026-10-07, intake item I):**
+  - **Owner-reported observation (to reproduce, not a verified defect):** Denver and Kansas City can display the same predicted final record while Kansas City shows roughly an 80-percentage-point higher division-title probability.
+  - **Required future investigation:** from one exact pinned snapshot, trace the displayed projected record, unrounded expected wins, simulation mean, representative simulated season, division probability, playoff probability, seed, tiebreak handling and remaining-schedule uncertainty. Classify the divergence as rounding, representative-selection semantics, asymmetric distributions, schedule, tiebreaks, stale/mismatched inputs, misleading labels, a genuine simulation defect, or a combination.
+  - **Direction:** users should not need to understand Monte Carlo marginalization to reconcile projected standings with odds. When two values answer different questions, the presentation says so clearly.
+  - **Constraint:** do not force representative standings and marginal probabilities to agree merely because the difference looks surprising, and do not alter mathematically valid probabilities for presentation neatness.
+  - **Coordination:** `UX-10` semantic map, `UX-25` display bounds, `UX-05` numeric conventions, and `UX-12` / `MD-14` where representative outcomes overlap. No new ID; Decision INVESTIGATE and Execution PLANNED unchanged; no investigation is authorized by this intake.
 
 #### UX-12 — Rounded / modal predicted-score ties
 
@@ -332,10 +369,11 @@ All entries in this group have **Decision status: INVESTIGATE; Sequence: PHASE 1
 - **Initial reference:** [V149 changelog](CHANGELOG_V149.md) describes a representative score selected from simulated outcomes near the joint center. Verify the actual current path and examples rather than inferring from a generic “predicted score” label.
 - **Dependencies/non-goals:** `UX-10` terminology and forecast source tracing. Do **not** manufacture a non-tied score for visual agreement with the favored side or alter probability/line calculations.
 - **Acceptance/next step:** Reproducible cases, exact score-selection explanation, and product options for labels/disclosure. Owner decides the presentation contract before changes. Related: [application](assets/app.js), [score normalizer](model/score_normalizer.js), [V149 changelog](CHANGELOG_V149.md).
+- **Relationship to `MD-14` (owner direction 2026-10-07):** Which representative score the model selects from the simulation, including the owner-observed concentration of displayed scores, is owned by [`MD-14`](#md-14--forcecast-representative-score-selection). This item owns how that representative score is labeled, explained and presented, including tie disclosure. Do not duplicate `MD-14`'s statistical investigation here. Status unchanged.
 
 ### Owner decisions
 
-All entries in this group have **Decision status: OWNER DECISION; Execution status: PLANNED**. Phase 1 prepares alternatives; priorities beyond these dependencies are not assigned. `UX-14` and `UX-16` moved to Confirmed with their stable IDs after dated owner decisions; `UX-13`, `UX-15`, `UX-17`, and `UX-18` remain open. Preparing options does not authorize implementing one.
+All entries in this group have **Decision status: OWNER DECISION; Execution status: PLANNED**. Phase 1 prepares alternatives; priorities beyond these dependencies are not assigned. `UX-14` and `UX-16` moved to Confirmed with their stable IDs after dated owner decisions, and `UX-24` moved to Confirmed after the 2026-10-07 owner decision; `UX-13`, `UX-15`, `UX-17`, `UX-18` and `UX-31` remain open. Preparing options does not authorize implementing one.
 
 #### UX-13 — Color-system direction
 
@@ -361,12 +399,6 @@ All entries in this group have **Decision status: OWNER DECISION; Execution stat
 - **Owner choices:** Game cards, tooltip/details, matchup, Method, or a combination for market weighting/sourcing.
 - **Preserve/non-goals:** Do not reduce transparency without owner approval. Presentation choices must not change forecast weighting or benchmark claims.
 - **Evidence/acceptance:** Surface inventory, disclosure alternatives, distinction between current/opening inputs and closing-line benchmark evidence, then a dated owner decision. Informs `UX-03`/`UX-04`/`UX-06`; related: [forecast overview](model/README.md), [application](assets/app.js).
-
-#### UX-24 — Favorite-team personalization
-
-- **Decision status: OWNER DECISION; Execution status: PLANNED; Priority: unset. Owner question recorded: 2026-10-01.** Evaluate whether a favorite-team selection should give non-semantic surfaces/background accents that team's visual identity. This is an experiment candidate, not implementation approval.
-- **Guardrails if approved:** Do not recolor FORCE rating meaning, Luck/FLAG meaning, positive/negative semantics, or warnings/errors. Preserve accessibility; use safe fallback colors when team palettes have poor contrast.
-- **Dependencies / next candidate:** `UX-23`'s confirmed accessibility themes and `UX-13`'s semantic families. Prepare concrete options, contrast/fallback evidence, and consequences for owner choice. Keep this separate from the four confirmed theme modes.
 
 #### UX-31 — Expanded FORCE name: Rating vs Ratings
 
@@ -421,6 +453,7 @@ Entries in this group come from the owner's 2026-10-02 roadmap intake. Each reco
 - **Established expansions:** Do not invent an acronym expansion the repository does not establish. The established current expansion is "Football Objective Rating & Comparative Efficiency." `UX-31` owns only the proposed Rating-to-Ratings change; contextual explanation can use the current authoritative expansion without resolving that choice. The established current FLAG expansion is "Flag Leverage & Advantage Gauge." Contextual explanations may use that authoritative current expansion. Any future naming change requires a separate owner decision.
 - **Dependencies:** `UX-06` disclosure system, `UX-14` approval gate, `UX-20` voice, `UX-22` canonical feature map, `UX-10` quantity labels, `UX-31`, `UX-35`.
 - **Acceptance (proposed):** Terminology inventory per surface with first-encounter, repeat and dense-table treatments; touch/keyboard access to essential meaning; stand-alone export context.
+- **2026-10-07 intake cross-reference (intake item D):** This item explains what a term means; `UX-21` interprets what a particular value means. The two share access patterns (hover, focus and tap) and must not contradict each other. Status unchanged.
 
 #### UX-37 — Game-level FLAG penalty ledger / drill-down
 
@@ -447,6 +480,7 @@ Entries in this group come from the owner's 2026-10-02 roadmap intake. Each reco
 - **INVESTIGATE:** Default-on with an off preference; subtle/full/none; or another approach.
 - **Dependencies:** `UX-13` owns the semantic color families/palette (this item adds a raw-stat quality family for that decision); `UX-23` theme tokens and contrast; `UX-05` numeric conventions; `UX-35` exports. No metric or rating calculation changes.
 - **Acceptance (proposed):** Per-metric benchmark/direction/sample specification with sources; accessible non-color indicator; contrast evidence across themes; regression tests for direction reversal, missing values and small samples.
+- **2026-10-07 intake cross-reference (intake item D):** `UX-21` conversational value explanations for raw stats reuse this item's per-metric benchmark, direction and sample specification rather than defining their own ranges. Status unchanged.
 
 #### UX-40 — Consistent controls / interaction design system
 
@@ -495,6 +529,24 @@ Entries in this group come from the owner's 2026-10-05 roadmap intake, recorded 
 - **Dependencies/relationships:** `MD-12` → `UX-43`: the technical audit establishes truth; this item's copy reflects it. `UX-18` placement; `UX-14` inventory/approval gate and its open C3 finding (market "never changes FORCE" versus "market effect on team rating"); `UX-20` rendered-copy audit; `UX-36`; `UX-35`/`UX-38` exports.
 - **Owner decisions eventually required:** Approval of the replacement wording and of any removals under the `UX-14` gate.
 - **Acceptance (proposed):** Rendered-surface inventory of every market-provenance claim, each mapped to an `MD-12` finding; a content regression rejecting unsupported percentage-from-market claims; desktop/mobile/export evidence.
+
+### Owner roadmap intake (2026-10-07)
+
+Entries in this group come from the owner's 2026-10-07 roadmap intake, recorded after the `MD-08` Celo reassessment was accepted at `fb4c21b`. Each enters as **Execution status: PLANNED, NOT AUTHORIZED**; none is assigned to a phase or priority, none is in progress or complete, and recording it starts no work. Other items from this intake are `MD-13` and `MD-14` (Model design), `SEC-02` (Security assurance) and `GTM-01`/`GTM-02` (Launch / communications); see the [2026-10-07 intake table](#owner-direction-intake--2026-10-07).
+
+#### UX-44 — Historical FORCE / season archive
+
+- **Decision status: CONFIRMED product direction (owner direction 2026-10-07); feasibility and design INVESTIGATE; Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** FORCE should provide year-by-year functionality for prior NFL seasons wherever honestly reconstructible. Historical coverage must not begin only when FORCE launches: go back as far as valid data and model reconstruction allow. No universal historical start date is inferred.
+- **Potential surfaces, where honestly reconstructible:** overall FORCE team rating/rank; offense; defense; unit ratings/rankings; QB rankings; FLAG; Luck; FORCEcast; division/playoff views; other supported model outputs.
+- **Two distinct products, never conflated:** (1) season-end history; (2) as-of-week history.
+- **Temporal-integrity rule:** an as-of-week view uses only information allowed by its declared historical contract. It must not present end-of-season hindsight, unavailable provider state, proxy-filled values or fabricated ratings as genuine Week N FORCE state. Recorded historical outputs and retrospective reconstructions are labeled distinctly.
+- **UX direction:** changing seasons should feel like changing the season inside FORCE, not entering an unrelated archive product. Later possibilities, not implementation authority: the same franchise across seasons; historical team, offense/defense/unit and QB leaders; year-over-year franchise trends; "Where does this team rank historically?".
+- **Availability / provenance:** publish support honestly per metric, season, week where relevant, source coverage, reconstruction method and model/reference version.
+- **Dependency on `MD-08` (strong):** this item depends on the latest accepted `MD-08` replay/reference contracts and does not claim `MD-08` is complete. The accepted `MD-08` state, summarized here (the `MD-08` entry is authoritative): historical replay is NOT authorized; not every unit is replayable; QB and OL spans are only CONDITIONAL possibilities; receivers and RB remain blocked under the owner's current exclusions; defense remains blocked by B4; B3 remains unresolved for as-of weeks 2-11; authenticated Celo provenance does not imply universal historical replayability.
+- **Further prerequisites:** historical FORCEcast requires honest pregame information and market provenance (`MD-12`, `UX-18`, `UX-43`); historical playoffs and standings require correct season rules and tiebreak logic (`UX-25`, `UX-32`); unit values inherit `MD-08` meaning semantics and `UX-41` mapping; historical FLAG and Luck inherit `UX-37` / `UX-42` / `MD-11`.
+- **Non-goals:** no new historical-data acquisition, replay, reference build or data download is authorized by this item. Does not unblock any `MD-08` blocker.
+- **Owner decisions eventually required:** season-end versus as-of-week scope and order; per-surface support thresholds; how reconstructions are labeled; navigation placement.
+- **Acceptance (proposed):** a per-metric / per-season / per-week support matrix with provenance and method, a temporal-integrity contract per product, and labeled examples distinguishing recorded from reconstructed outputs, for owner decision before any build.
 
 ### Preserve
 
@@ -728,6 +780,33 @@ Known reference material: [predictive feature policy](PREDICTIVE_FEATURE_POLICY_
 - **Owner decisions eventually required:** Acceptable bound on market influence; disposition if the market dominates.
 - **Acceptance (proposed):** Complete market-path inventory, reproducible ablation results with distributions by output and season phase, a glossary separating correlation / prior / marginal influence / share of output, and findings for owner decision.
 
+`MD-13` and `MD-14` below come from the 2026-10-07 owner intake. Each enters as **Execution status: PLANNED, NOT AUTHORIZED** with priority unset; neither is assigned to a phase or implementation order. The Model design boundary above applies in full.
+
+### MD-13 — Canonical rating-movement attribution
+
+- **Decision status: INVESTIGATE (owner concern and explainability direction CONFIRMED 2026-10-07); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** FORCE must be able to audit and, where appropriate, explain a pregame → postgame canonical rating change.
+- **Owner-reported observation (to reproduce, not a verified defect):** Kansas City's FORCE rating reportedly fell after a road win against a strong undefeated divisional opponent. A win does not automatically imply that the canonical rating should rise.
+- **Required future attribution:** using pinned pre/post states, identify the actual contribution of active terms such as core results; offense; defense; QB; unit grades; opponent adjustments; priors; recency; previous-opponent re-rating; league-relative normalization; newly revised data; schedule/context changes; and any other actual calculation term. Distinguish canonical rating movement, rank movement and display-transform movement.
+- **Accounting requirement:** an attribution method must reconcile to the actual full-precision canonical change. If interactions or nonlinearity mean attribution is not uniquely additive, document that, disclose ordering dependence and residuals, and do not present independent counterfactual effects as an exact causal identity.
+- **Adversarial cases:** win but rating falls; loss but rating rises; blowout win with little movement; close win over a weak team with a decline; bye-week movement; movement caused by old-opponent re-rating or data revision.
+- **Hard boundary:** do not retune FORCE so that wins always raise ratings. Preserve the `MD-01` taper and the `MD-03` retirement. Coordinate with `MD-05` where applicable without reopening its banked research. Display-transform movement follows `MD-08`'s accepted state; this item does not reopen it.
+- **Relationships:** `MD-13` → `UX-21`: public "Why did the rating fall after a win?" explanations may follow only from calculation-backed contributors. Does not duplicate `UX-42` (Luck decomposition) or `UX-37` (FLAG/penalty accounting).
+- **Non-goals:** no formula, weight, prior or normalization change; no public explanation implemented by this entry.
+- **Owner decisions eventually required:** the attribution method and its residual/ordering disclosure; whether and where public movement explanations appear.
+- **Acceptance (proposed):** pinned pre/post traces for the reported case and each adversarial case, an attribution that reconciles to the full-precision change with disclosed residuals, and options for owner decision.
+
+### MD-14 — FORCEcast representative-score selection
+
+- **Decision status: INVESTIGATE (owner direction 2026-10-07; owner override: a separate model item, not only a `UX-12` extension); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Investigate whether the representative score shown from the Monte Carlo output faithfully communicates the matchup-specific shape of the simulation.
+- **Problem (owner-observed):** displayed FORCEcast representative scores appear excessively concentrated, with most teams in most matchups shown roughly in the 20-27 point range. Possible causes include genuinely concentrated simulations, selector compression, rounding, an overly central statistic, joint-score selection behavior or another representation issue. No defect is assumed until reproduced.
+- **Required investigation:** on pinned reproducible matchups, compare the displayed representative score; the full joint score distribution; marginal team scoring distributions; expected spread; expected total; modal or central outcomes; high-density realized outcomes; and any current representative-selector contract ([V149 changelog](CHANGELOG_V149.md), [score normalizer](model/score_normalizer.js)). Quantify whether the displayed selection compresses differences relative to the underlying distribution.
+- **Candidate approaches (not decisions):** a representative realized simulation from a high-density region; a joint-game medoid; a deterministic high-density score pair; a deterministic score near the model-implied spread/total that respects distribution shape; another defensible distribution-aware method.
+- **Hard constraints:** do not alter win probability, expected spread or expected total for more visually varied scores; do not change the underlying simulation to create score variety; do not manufacture outliers, force non-ties or add aesthetic variation the model does not support. Identical inputs remain deterministic.
+- **Acceptance before implementation:** establish current selector behavior; quantify compression if present; compare defensible alternatives; document tradeoffs; reconcile the selected score with spread, total and distribution; obtain owner approval of the representative-score contract.
+- **Relationships:** `MD-14` owns **which** representative score the model selects; `UX-12` owns **how** it is labeled, explained and presented. Coordinate with `UX-10` terminology, `UX-26` quarter scores (which must sum to the selected final), `UX-11` where representative outcomes overlap, and current FORCEcast simulation contracts.
+- **Non-goals:** no change to FORCEcast probabilities, lines, totals or simulation; no selector change authorized by this entry.
+- **Owner decisions eventually required:** the representative-score contract.
+
 ## Data semantics / provenance
 
 **Future intake placeholder; priority unset.** Record source definitions, pinned input hashes, schema compatibility, cache identities, reproducibility evidence, and effects on historical/current comparisons. A semantic change must keep producers, consumers, reference provenance, and migration behavior coherent.
@@ -751,6 +830,42 @@ Use [deployment structure](DEPLOYMENT_STRUCTURE.md) and the current Worker/serve
 - **Testing safety:** Production probes require explicit owner approval for that specific cycle and must be bounded and non-destructive; an agent's assessment that a probe is safe does not authorize it. DoS, resource-exhaustion, oversized-request, rebuild-storm, destructive, or availability-impacting testing must run only against local/scratch/staging environments.
 - **Evidence / acceptance:** Threat model, attack-surface inventory, findings ledger, severity, safe reproduction/exploit evidence, mitigation/fix, regression test, residual risk, and untested/unprovable areas. Both reviewers' independent closeout evidence is required; historical audit claims or one review alone do not meet this cycle's criteria.
 - **Dependencies / next candidate:** Establish the bounded scope and safe environment from [deployment boundaries](DEPLOYMENT_STRUCTURE.md), [Worker](src/index.js), [server](force_server.py), and [testing guide](scripts/TESTING.md). Security may proceed under separate authorization before UX completion; it is not a visual-redesign subtask. This roadmap intake launches no audit, probes, reviewers, or fixes.
+
+### SEC-02 — Public implementation and IP exposure
+
+- **Decision status: CONFIRMED direction (owner direction 2026-10-07); implementation methods open; Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Reduce unnecessary public exposure of FORCE implementation and intellectual property.
+- **Problem:** browser-delivered code, data, diagnostics and build artifacts may expose more useful FORCE implementation detail than the public product requires.
+- **Preference order:** removing sensitive implementation from browser delivery is preferred over obscuring shipped implementation.
+- **Potential future options (none selected):** production minification; safe symbol/property mangling; no public source maps; removal of public comments, debug hooks and development exports; dead-code elimination; fewer unnecessary raw model inputs shipped client-side; moving proprietary calculations server-side where practical; optional stronger JavaScript obfuscation only after parity and performance testing.
+- **Security doctrine:** **obfuscation is not a security boundary.** Secrets, credentials, authorization rules and security-sensitive logic must never be shipped to the browser, whatever obfuscation is applied.
+- **Relationship to `SEC-01`:** complements `SEC-01`; does not replace security assurance and does not inherit `SEC-01`'s HIGH priority, round structure or any execution authority. Any trust-boundary or API migration (for example moving calculations server-side) needs separately authorized `SEC-01` review.
+- **Acceptance (proposed):** inventory public artifacts before and after any change, and preserve canonical outputs, behavior, performance, accessibility, maintainability, reproducible builds and appropriate public transparency (Preserve: transparent presentation of model limitations and the market benchmark; `UX-14` public methodology direction).
+- **Non-goals:** no build, bundler, deployment, Worker or server change is authorized by this entry; no SEC work begins.
+- **Owner decisions eventually required:** which methods to adopt; what remains intentionally public.
+
+## Launch / communications
+
+Launch and communications items use `GTM-` IDs. They record owner direction only: no account creation, DNS change, subscription, purchase, advertising spend or publication is authorized by any entry here. Speculative future launch work is not numbered until the owner records it.
+
+### GTM-01 — Short-form FORCE promotional creative
+
+- **Decision status: CONFIRMED (owner direction 2026-10-07); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Create polished animated/social creative that demonstrates the actual FORCE application.
+- **Duration:** preferred primary length 10-15 seconds; approximately 30 seconds allowed when needed for a coherent product story.
+- **Potential content, only where production-ready:** FORCE ratings; team/unit ratings; QB rankings; FORCEcast; predicted/simulated scores; playoff views; FLAG; Luck; Roster Lab; other genuinely available workflows. Not every feature is required in one video.
+- **Constraints:** promotional material may advertise only genuinely available capabilities. Do not advertise unreleased functionality as available, imply unapproved model claims, show retired tools (for example the `UX-19` QB-return tool) as current, hide experimental status (`UX-34` Roster Lab Beta) or distort score/projection meanings (`UX-10`, `UX-12`, `MD-14`).
+- **Future deliverables:** prefer one reusable creative source that can produce an approximately 15-second cut, an approximately 30-second cut where useful, and vertical and landscape formats.
+- **Dependencies:** approved branding ([brand guidance](BRAND_FORCE.md)); `UX-20` public voice, including the no-em-dash rule for on-screen and caption copy; verified feature availability at production time; official social/email identity from `GTM-02`; `UX-38` sharing.
+- **Non-goals:** no publication, advertising spend, paid tool or external account is authorized.
+
+### GTM-02 — Official email and social communications
+
+- **Decision status: CONFIRMED (owner direction 2026-10-07); Execution status: PLANNED, NOT AUTHORIZED; Priority: unset.** Establish official FORCE communications on the `forceratings.com` domain before public launch, without exposing personal email publicly.
+- **Candidate addresses:** `hello@forceratings.com`; `support@forceratings.com`; `contact@forceratings.com`; possibly `media@forceratings.com` later. Prefer aliases over unnecessary paid inboxes where practical.
+- **Email requirements:** SPF; DKIM; DMARC; tested sending and receiving; intended alias routing; durable owner-controlled access and recovery.
+- **Social:** evaluate X, Instagram, TikTok and YouTube first; do not automatically create every possible account. Requirements: consistent naming and branding; strong unique credentials; 2FA; durable recovery and ownership records.
+- **Secrets boundary:** credentials, recovery codes and similar secrets are never stored in this roadmap, the repository or any public location.
+- **Non-goals:** account creation, DNS changes, subscriptions, purchases and publication remain NOT AUTHORIZED by this documentation intake.
+- **Owner decisions eventually required:** final address set; which social platforms to establish; email provider.
 
 ## Testing
 
@@ -799,6 +914,17 @@ Use [predictive feature policy](PREDICTIVE_FEATURE_POLICY_V30.md), [research sou
 10. No paid provider or subscription is authorized by this intake.
 
 **Pre-Cycle 8 intake (owner direction 2026-10-05).** The doctrines above are preserved unchanged and apply to `MD-07`–`MD-12` and `UX-41`–`UX-43`: explicit authorization is required before implementation; no paid data or provider choice without owner approval; raw data, normalized display and model contribution stay distinct (`MD-08`, `MD-10`, `MD-12`, `UX-41`); shared signals are not blindly double-counted (`MD-05`, `MD-07`, `MD-10`); public terminology explains itself (`UX-36`); outputs are auditable (`UX-42`, `MD-12`); mobile is first-class; exports are designed outputs. One clarification is added: proprietary names should be understandable, not jargon for its own sake (`MD-09`, `MD-11`).
+
+**2026-10-07 intake (owner direction).** All doctrines above are preserved unchanged. Added cross-references; each item's own entry remains authoritative:
+
+1. Presentation improvements do not justify changing underlying model outputs or probabilities (`MD-14`, `UX-11`, `UX-12`, `UX-25`).
+2. Obfuscation is not a security boundary (`SEC-02`, `SEC-01`).
+3. Metric explanations are deterministic and evidence-based (`UX-21`, `UX-39`, `UX-36`).
+4. Base appearance preference and High Contrast are independent (`UX-23`, `UX-24`).
+5. Historical availability and information boundaries are explicit (`UX-44`, `MD-08`).
+6. Rating-change explanations reconcile to actual calculations (`MD-13`, `UX-21`).
+7. Public voice rules apply to rendered, dynamic and exported copy (`UX-20`).
+8. Promotional material advertises only genuinely available capabilities (`GTM-01`).
 
 The accepted shared principles also include intentional viewport/brand use (`UX-28`), metric-relative sorting (`UX-29`), and first-class mobile access (`UX-30`). Their authoritative contracts are the items above; theme modes and human-language voice are similarly defined once in `UX-23` and `UX-20`.
 
@@ -880,6 +1006,7 @@ At handoff:
 | 2026-10-06 | Cycle 9 `cycle9/claude-md08-ol-receiver-followup` from exact `6cf05419`: authorized `MD-08` research-only OL drift and receiver stabilization follow-ups | REVIEW — research only; local commits, not merged, pushed or deployed | [OL/receiver follow-up package](research/cycle9/md08_followup_ol_receivers/README.md): 2025 season-stage replay, PFR cross-provider check, receiver noise/K sweep, synthetic probes, cross-unit synthesis; frozen `aa0ad397` package unchanged. | Codex review C (NOT ACCEPTED: live-layer rank evidence used for a final-grade presentation input) → bounded correction adding final-grade sensitivity; targeted re-review and owner acceptance pending. No Cycle 9 conclusion contradicted; identity seam remains valid; research recommends MD-08 is ready for the owner display-transform candidate decision with final-rank sensitivity disclosed. Exact transform, model changes, UX-41 and MD-09–MD-12 NOT AUTHORIZED; MD-08 NOT COMPLETE. |
 | 2026-10-06 | Cycle 9 `cycle9/claude-md08-historical-standing-prototype` from `4818619c`: owner-selected MD-08 historical-standing presentation direction; prototype/evidence tranche | REVIEW — prototype/evidence only; local commits, not merged, pushed or deployed | [Historical-standing prototype](research/cycle9/md08_historical_standing_prototype/README.md): reference availability, candidates A/B/C, edge semantics, stage fairness, 2026 tables, cross-unit test, sensitivity, owner decision table. | Exact transform pending owner selection; implementation NOT AUTHORIZED; MD-08 NOT COMPLETE (Decision INVESTIGATE, Priority unset); UX-41 NOT AUTHORIZED. |
 | 2026-10-07 | Cycle 9 `cycle9/claude-md08-final-grade-history` from `a1a78101`: owner MD-08 architecture decisions and authorized deeper historical-reference build | REVIEW — research/data infrastructure only; local commits, not merged, pushed or deployed | [Final-grade history build](research/cycle9/md08_final_grade_history/README.md): replay contracts, coverage matrix, blocker registry (B1 legacy prior source fields; B2 earlier receiver/RB references; B3 continuity k in weeks 2-11; B4 provider as-run vs retrospective policy; B6 17-game reference), fail-closed validator, current reproduction gate, dynamic-record schema; corrected after Codex review C. | Final-grade replay BLOCKED for all units pending owner decisions on prior/state reconstruction; production transform and UX-41 NOT AUTHORIZED; MD-08 NOT COMPLETE. |
+| 2026-10-07 | Added UX-44, MD-13, MD-14, SEC-02, GTM-01 and GTM-02 as owner-requested roadmap intake; resolved UX-24; revised UX-23 | Documentation only; `docs/roadmap-intake-2026-10-07` from exact `fb4c21b`; local commit, not merged, pushed or deployed | Six new IDs and the `GTM-` category; extensions to `UX-11`, `UX-12`, `UX-20`, `UX-21`, `UX-27` and cross-references in `UX-06`, `UX-22`, `UX-36`, `UX-39`; 62 unique authoritative IDs. See the [2026-10-07 intake table](#owner-direction-intake--2026-10-07). | Independent roadmap review. No new item started; `MD-08` status unchanged; all new items PLANNED / NOT AUTHORIZED with priority unset. |
 
 Owner-confirmed production deployment for integration tip `0f41552f4126b67bd2887d791fdbebb57040c650`: Worker Version ID `20315d1d-62ca-4238-b76b-ee4443c37c06`; container digest `sha256:2531332f85fcf61c4942d1a50d0b14672d1086825fd81380e427f20e09826e00`.
 
@@ -906,7 +1033,7 @@ This records decisions and accepted requirements only. At intake, resulting work
 | Current-season taper preservation pending empirical review | `MD-01`, `MD-02` | Preserve current canonical V99 behavior; longer-term changes remain undecided. |
 | Deep security assurance workstream | `SEC-01` | Confirmed HIGH priority, independent review cycles and evidence requirements; no absolute-security claim. |
 
-**Still open:** `UX-13` exact semantic color palette; `UX-15` public status/Update placement; `UX-17` matchup comparative graphics; `UX-18` market disclosure placement; `UX-24` favorite-team theme; `UX-31` Rating vs Ratings; `UX-30` exact mobile navigation/destinations; `UX-26` quarter-generation strategy; `MD-02` longer-term taper changes; generalized QB-return replacement is inactive. Cycle 6 `MD-03` and `UX-19` are COMPLETE on local `main @ cb80c827` after review, owner acceptance and integration; not pushed or deployed. `UX-08`–`UX-12` remain investigations, not decisions to force matching numbers. `UX-14`'s removal inventory is owner-approved (2026-10-01); content tranches A and B passed final independent review and are merged to local `main` (not deployed); the remaining approved content still requires separately authorized tranches.
+**Still open:** `UX-13` exact semantic color palette; `UX-15` public status/Update placement; `UX-17` matchup comparative graphics; `UX-18` market disclosure placement; `UX-31` Rating vs Ratings; `UX-30` exact mobile navigation/destinations; `UX-26` quarter-generation strategy; `MD-02` longer-term taper changes; generalized QB-return replacement is inactive. Cycle 6 `MD-03` and `UX-19` are COMPLETE on local `main @ cb80c827` after review, owner acceptance and integration; not pushed or deployed. `UX-08`–`UX-12` remain investigations, not decisions to force matching numbers. `UX-14`'s removal inventory is owner-approved (2026-10-01); content tranches A and B passed final independent review and are merged to local `main` (not deployed); the remaining approved content still requires separately authorized tranches. `UX-24` favorite-team appearance was resolved YES on 2026-10-07 (CONFIRMED; implementation PLANNED / NOT AUTHORIZED); see the [2026-10-07 intake](#owner-direction-intake--2026-10-07).
 
 ### Owner direction intake — 2026-10-02 (pre-Cycle 6)
 
@@ -953,6 +1080,32 @@ Recorded after Cycle 7 closed at `main @ 882085d`. This records owner direction 
 Arrows record information dependencies, not priority or implementation order. Cross-item doctrines are under [Shared product / UX principles](#shared-product--ux-principles).
 
 **Open after this intake:** `MD-07` per-unit redesign need and OL grade meaning; `MD-08` normalization anchor and cross-unit comparability; `MD-09` QB metric definition and name; `MD-10` naming and raw-versus-normalized treatment; `MD-11` Luck metric definition and name; `MD-12` acceptable market bound and disposition if the market dominates; `UX-41` adoption of the overall-rating mapping; `UX-42` public weighting/normalization depth and event-level scope; `UX-43` replacement wording approval.
+
+### Owner direction intake — 2026-10-07
+
+Recorded after the `MD-08` Celo reassessment received final acceptance at `fb4c21b` (production `main` remains `6cf05419`). Before IDs were assigned the authoritative inventory was rechecked: 56 IDs (`UX-01`–`UX-43`, `MD-01`–`MD-12`, `SEC-01`) with no collisions. This intake adds six (`UX-44`, `MD-13`, `MD-14`, `SEC-02`, `GTM-01`, `GTM-02`) for 62 authoritative IDs, and adds the `GTM-` (Launch / communications) category. No existing ID was renumbered or repurposed.
+
+**Intake authority statement.** This intake records owner direction. It resolves only the owner decisions specifically identified below (`UX-24` adoption; `UX-23` architecture). It does not authorize investigation or implementation unless an existing entry already carries such authority separately. It authorizes no account creation, publication, purchase, subscription, DNS change, deployment or external-data acquisition. It does not change the Phase 1 → Phase 2 → Phase 3 sequence. It does not change `MD-08`'s accepted status (Decision INVESTIGATE; Execution REVIEW; Priority unset; NOT COMPLETE; transform, `UX-41`, replacement prior/reference semantics and historical replay implementation NOT AUTHORIZED). New entries are PLANNED / NOT AUTHORIZED with priority unset and no phase assignment; existing statuses are unchanged except `UX-24`.
+
+| Intake item | Owner direction | Authoritative item(s) | Reconciliation |
+| --- | --- | --- | --- |
+| A | FORCEcast representative-score diversity | `MD-14` (new); `UX-12` (pointer) | Owner override: a separate model item, not only a `UX-12` extension. `MD-14` owns which score is selected; `UX-12` owns labeling/presentation. Decision INVESTIGATE. |
+| B | Public implementation / IP exposure | `SEC-02` (new) | CONFIRMED direction, methods open. Obfuscation is not a security boundary; complements `SEC-01` without inheriting its priority or authority. |
+| C | FORCE-branded data-transformation loading animation | `UX-27` (extended) | Prior loader contract preserved; no initial-load minimum on small waits; incompatible replacement stays an owner decision. |
+| D | Conversational value explanations | `UX-21` (extended); `UX-06`, `UX-22`, `UX-36`, `UX-39` (cross-references); `UX-20` voice | Deterministic, context-dependent value interpretation; not a new tooltip project; unit language inherits `MD-08` meaning. |
+| E | Appearance architecture | `UX-23` (revised); `UX-24` (resolved) | Three base modes (Light, Dark, Favorite Team Colors) plus an independent High Contrast toggle: six combinations. `UX-24` CONFIRMED, not complete. `UX-13` palette stays open. |
+| F | Short-form promotional video | `GTM-01` (new) | New Launch / communications category. CONFIRMED; no publication or ad spend. |
+| G | Official email and social accounts | `GTM-02` (new) | CONFIRMED; `forceratings.com`; no account, DNS or subscription action; secrets never stored in the repository. |
+| H | Historical FORCE / season archive | `UX-44` (new) | CONFIRMED direction; feasibility/design INVESTIGATE; season-end and as-of-week products distinct; depends on accepted `MD-08` contracts without claiming completion. |
+| I | Projected standings versus division odds | `UX-11` (extended) | Owner-reported Denver / Kansas City case recorded for reproduction, not as a verified defect. |
+| J | Counterintuitive postgame rating movement | `MD-13` (new); `UX-21` (extended) | Decision INVESTIGATE; attribution must reconcile to the full-precision change; no retuning so wins always raise ratings. |
+| K | Human-written public voice / AI-pattern removal | `UX-20` (extended) | Hard owner rule: no em dashes in public FORCE copy. Applies to rendered, dynamic and exported copy; historical roadmap text is not rewritten. |
+
+**Owner decisions resolved by this intake:** `UX-24` favorite-team appearance adoption RESOLVED YES (CONFIRMED; implementation PLANNED / NOT AUTHORIZED; not complete). `UX-23` architecture clarified as three base modes plus independent High Contrast; no semantic-palette decision is implied. No other owner decision is closed. Earlier decisions superseded in architecture (the 2026-10-01 four-mode theme list) remain in the chronology above.
+
+Cross-item doctrines added by this intake are under [Shared product / UX principles](#shared-product--ux-principles).
+
+**Open after this intake:** `MD-13` attribution method and public explanation placement; `MD-14` representative-score contract; `UX-44` season-end versus as-of-week scope, per-surface support and reconstruction labeling; `SEC-02` method selection; `GTM-01` content and cuts; `GTM-02` address set, platforms and provider; `UX-24` implementation design; `UX-27` any incompatible loader replacement; `UX-11` classification of the reported Denver / Kansas City divergence.
 
 ## Candidate recommendations / intake
 
