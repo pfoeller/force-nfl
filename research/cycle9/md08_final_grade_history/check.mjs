@@ -135,6 +135,27 @@ ctl('reference version changes with a grade',v0!==K.referenceVersion({unit:'olIn
 ctl('reference version is order-independent',v0===K.referenceVersion({unit:'olIndex',design:'S',gameCount:4,modelSemantics:{},observations:[obs[1],obs[0]]}));
 ctl('reference version includes the design',v0!==K.referenceVersion({unit:'olIndex',design:'C',gameCount:4,modelSemantics:{},observations:obs.map(o=>({...o,windowEndGame:4}))}));
 
+// Property-domain controls (Codex review B of 35a49b2): hidden own properties are rejected, never ignored.
+const hid=(o,k,d)=>Object.defineProperty(o,k,d);
+const sym=(o)=>{o[Symbol('hidden')]='x';return o;};
+const acc=(o,k)=>Object.defineProperty(o,k,{get(){return 'x';},enumerable:true});
+ctl('non-enumerable unsupported numeric model-semantics field rejected',rejects2({modelSemantics:hid({a:'b'},'unsupported',{value:42,enumerable:false})}));
+ctl('non-enumerable string model-semantics field rejected',rejects2({modelSemantics:hid({a:'b'},'c',{value:'d',enumerable:false})}));
+ctl('nested non-enumerable model-semantics field rejected',rejects2({modelSemantics:{a:hid({b:'c'},'h',{value:'x',enumerable:false})}}));
+ctl('symbol-keyed model-semantics field rejected',rejects2({modelSemantics:sym({a:'b'})}));
+ctl('accessor model-semantics property rejected',rejects2({modelSemantics:acc({a:'b'},'c')}));
+ctl('non-enumerable unexpected observation field rejected',rejects2({observations:[hid({...good[0]},'hidden',{value:'x',enumerable:false}),good[1]]}));
+ctl('non-enumerable allowed-name observation field rejected',rejects2({observations:[hid({season:2025,team:'KC',asOfWeek:4},'finalGrade',{value:50,enumerable:false}),good[1]]}));
+ctl('symbol-keyed observation field rejected',rejects2({observations:[sym({...good[0]}),good[1]]}));
+ctl('accessor observation property rejected',rejects2({observations:[acc({season:2025,team:'KC',asOfWeek:4},'finalGrade'),good[1]]}));
+ctl('extra or symbol property on the observations array rejected',(()=>{const o=[...good];o.extra=1;const o2=[...good];o2[Symbol('h')]=1;return rejects2({observations:o})&&rejects2({observations:o2});})());
+ctl('hidden or symbol property on the reference object rejected',(()=>{const r1=hid(ref(good),'hidden',{value:1,enumerable:false});const r2=sym(ref(good));const t=r=>{try{K.referenceVersion(r);return false;}catch(e){return /INVALID REFERENCE/.test(e.message);}};return t(r1)&&t(r2);})());
+ctl('hidden, symbol or accessor property on a plan or plan input rejected as MALFORMED PLAN',(()=>{const t=f=>{const p=plan('olIndex');f(p);try{K.replayFinalGrade(p);}catch(e){return /^MALFORMED PLAN/.test(e.message);}return false;};
+  return t(p=>hid(p,'hidden',{value:1,enumerable:false}))&&t(p=>sym(p))&&t(p=>hid(p.inputs[0],'games2',{value:1,enumerable:false}))&&t(p=>sym(p.inputs[0]))&&t(p=>acc(p.inputs[0],'kind'))&&t(p=>{p.inputs.extra=1;});})());
+ctl('equivalent ordinary enumerable model-semantics object validates',K.validateModelSemantics({a:'b',unsupported:'42'}).length===0&&K.validateModelSemantics({a:'b'}).length===0);
+ctl('equivalent ordinary enumerable observation validates',!rejects2({observations:[{...good[0]},{...good[1]}]}));
+ctl('former hidden-field object cannot share the visible-only fingerprint (rejected before hashing)',rejects2({modelSemantics:hid({a:'b'},'unsupported',{value:42,enumerable:false})})&&/^[0-9a-f]{64}$/.test(K.referenceVersion({...ref(good),modelSemantics:{a:'b'}})));
+ctl('canonicalEncode refuses hidden, symbol and accessor properties',['n','s','a'].every(m=>{const o=m==='n'?hid({a:'b'},'h',{value:1,enumerable:false}):m==='s'?sym({a:'b'}):acc({a:'b'},'g');try{K.canonicalEncode(o);return false;}catch{return true;}}));
 ctl('no universal OL 17-game / 2022 claim remains in package text',(()=>{const files=['README.md','contracts.mjs','analyze.mjs',...RESULTS.map(f=>'results/'+f)].map(f=>F.lf(DIR+'/'+f));return !files.some(t=>/both need a valid 17-game|for QB\/OL|QB and OL (both )?need|QB\/OL cannot|QB and OL cannot start/.test(t.replace(/"QB and OL need only season Y.1 play-by-play[^"]*"/g,'').replace(/QB and OL references need only season Y-1 play-by-play/g,'').replace(/Earlier wording \\?"QB and OL cannot start before 2022\\?"/g,'')));})());
 ctl('OL route 1 bounded at 2022, route 2 unbounded, common bound 2022 from QB',a.coverage.unitSpans.olIndex.routes.referenceBacked.necessaryLowerBound===2022&&a.coverage.unitSpans.olIndex.routes.legacyFallback.necessaryLowerBound===null&&a.coverage.unitSpans.qbIndex.theoreticalEarliestDisplayYear===2022&&a.coverage.unitSpans.common.necessaryLowerBound===2022);
 const writing=process.argv.includes('--write-hashes'),pins=writing?{}:JSON.parse(F.lf(DIR+'/hashes.json'));

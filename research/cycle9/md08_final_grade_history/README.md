@@ -1,6 +1,6 @@
 # MD-08 final-grade history build
 
-**Research/data infrastructure only.** Corrected after Codex review C of `25155a5`, Codex review B of `196b847` (six bounded fixes, §11) and Codex review B of `5278d37` (three bounded fixes, §12).
+**Research/data infrastructure only.** Corrected after Codex review C of `25155a5`, Codex review B of `196b847` (six bounded fixes, §11) Codex review B of `5278d37` (three bounded fixes, §12) and Codex review B of `35a49b2` (property-domain fix, §13).
 
 Owner decisions of 2026-10-07:
 - The public historical-standing rating derives from the final canonical grade.
@@ -336,6 +336,49 @@ No OL span is assertable, and the common necessary lower bound stays 2022 becaus
 11. Nothing removes the need for the external legacy producer.
 12. The smallest substantive next decision is unchanged: **whether the external legacy profile producer and its exact definitions can be recovered.**
 
+## 13. Property-domain fix (Codex review B of `35a49b2`)
+
+**Defect.** `validateModelSemantics`, `canonicalEncode` and observation validation only looked at `Object.keys`. As a result:
+- A non-enumerable `unsupported: 42` on `{a: "b"}` passed validation and hashed identically to `{a: "b"}`.
+- Non-enumerable and symbol-keyed observation fields were accepted.
+- A hidden property on the reference object itself was accepted.
+
+**Contract: plain data objects only.** Every own property, enumerated with `Reflect.ownKeys` and inspected with `Object.getOwnPropertyDescriptor`, must be an enumerable, string-keyed **data** property. That rules out symbol keys, non-enumerable properties and get/set accessors. Where a schema exists, every own key must be in its allowed set. Arrays may own only their index keys and `length`.
+
+The helper is `dataPropertyErrors`, applied to:
+- model semantics, at every nesting level
+- the reference object (`unit`, `design`, `gameCount`, `modelSemantics`, `observations`)
+- the observations array and each observation
+- the adjacent replay structures: the plan object (`unit`, `team`, `season`, `asOfWeek`, `gameCount`, `inputs`), the inputs array, and each input (`component`, `role`, `season`, `throughWeek`, `games`, `windowGames`, `scope`, `source`, `kind`)
+
+`canonicalEncode` uses the same domain. It enumerates `Reflect.ownKeys` and throws on any property outside the domain, so a property that validation accepts can never be omitted from the encoding.
+
+**Serialization version.** `md08-refser-2` is retained. Only the valid input domain was tightened; previously valid plain objects encode to the same bytes. As a result:
+- no valid fingerprint changed
+- the example reference identifier is unchanged
+- all six generated results are byte-identical
+
+**Controls (16 new; 106 in total).** These cases are now rejected:
+- non-enumerable model-semantics fields, numeric and string, top-level and nested
+- symbol-keyed and accessor model-semantics fields
+- non-enumerable observation fields, both unexpected names and allowed names
+- symbol-keyed and accessor observation fields
+- extra or symbol properties on the observations array
+- hidden or symbol properties on the reference object
+- hidden, symbol or accessor properties on a plan or input, and extra properties on the inputs array, all as MALFORMED PLAN
+- hidden, symbol and accessor properties passed to `canonicalEncode`
+
+Equivalent ordinary enumerable objects still validate. The former hidden-field object is rejected before hashing, so it cannot share the visible-only fingerprint. The existing collision, ordering and determinism controls still pass.
+
+**Conclusions unchanged:**
+- B1 remains decisive.
+- B2 remains narrowed.
+- B3 remains weeks 2–11.
+- B4 remains both a blocker and a policy decision.
+- The QB and OL route semantics are unchanged.
+- No further repository-local research remains.
+- The next decision is still external legacy-producer recovery.
+
 ## Reproducibility and checks
 
 ```text
@@ -351,7 +394,7 @@ The checker uses no network: the release listing is committed. It verifies:
 - the k experiment (24 teams / 0.0197653235 / no class change, and no change in weeks 1, 12 and 13)
 - the B4 split and the FTN schema evidence
 - the tied-bound counterexample and the exhaustive bound checks
-- 90 controls in total (after §12), including 29 malformed-plan rejections (mixed-role, null-week, team, game-count and window probes), 11 reference-hash controls, and the k-cancellation, OL-route, QB-active-path and degenerate-reference controls
+- 106 controls in total (after §13), including 29 malformed-plan rejections (mixed-role, null-week, team, game-count and window probes), 11 reference-hash controls, and the k-cancellation, OL-route, QB-active-path and degenerate-reference controls
 - the reference-version controls and an altered-pin control
 - byte-equal regeneration of six results
 - `hashes.json`

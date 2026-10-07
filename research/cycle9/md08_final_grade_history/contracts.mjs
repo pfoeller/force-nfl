@@ -131,7 +131,8 @@ export function unitStatus(unit){if(!Object.prototype.hasOwnProperty.call(UNITS,
 // plan = {unit, team, season, asOfWeek, gameCount, inputs:[{component, role, season, throughWeek, games, source, kind}]}
 const ROLES=new Set(['current','priorSeason']);
 export function validateShape(plan){
-  if(!plan||typeof plan!=='object')return ['plan must be an object'];
+  if(!isPlainObject(plan))return ['plan must be a plain object'];
+  const pErrs=dataPropertyErrors(plan,new Set(['unit','team','season','asOfWeek','gameCount','inputs']),'plan');if(pErrs.length)return pErrs;
   const errs=[];if(!isCanonicalUnit(plan.unit))return ['unknown unit '+plan.unit];const U=UNITS[plan.unit];
   if(typeof plan.team!=='string'||!canonicalTeams().has(plan.team))errs.push('missing or non-canonical observation team '+plan.team);
   if(!Number.isInteger(plan.season)||plan.season<1999)errs.push('invalid season');
@@ -140,11 +141,12 @@ export function validateShape(plan){
   else if(!Number.isInteger(plan.gameCount)||plan.gameCount<1||plan.gameCount>17)errs.push('invalid game count');
   else if(Number.isInteger(plan.asOfWeek)&&plan.gameCount>plan.asOfWeek)errs.push('game count exceeds as-of week');
   const seen=new Set();
-  if(!Array.isArray(plan.inputs))errs.push('inputs must be an array');
+  if(!Array.isArray(plan.inputs))errs.push('inputs must be an array');else errs.push(...dataPropertyErrors(plan.inputs,null,'inputs array'));
   const TEMPORAL=['throughWeek','games','windowGames','scope'];
   for(let n=0;n<(plan.inputs||[]).length;n++){
     if(!Object.prototype.hasOwnProperty.call(plan.inputs,n)){errs.push('inputs: sparse array hole at '+n);continue;}
-    const i=plan.inputs[n];if(!i||typeof i!=='object'){errs.push('input '+n+' is not an object');continue;}
+    const i=plan.inputs[n];if(!isPlainObject(i)){errs.push('input '+n+' is not a plain object');continue;}
+    const iErrs=dataPropertyErrors(i,new Set(['component','role','season','throughWeek','games','windowGames','scope','source','kind']),'input '+n);if(iErrs.length){errs.push(...iErrs);continue;}
     const comp=U.chain.find(c=>c.component===i.component);
     if(!comp){errs.push('unknown component '+i.component);continue;}
     if(seen.has(i.component))errs.push('duplicated input '+i.component);seen.add(i.component);
@@ -177,7 +179,7 @@ export function validateShape(plan){
   for(const c of U.chain)if(c.alternativeTo&&seen.has(c.component)&&seen.has(c.alternativeTo))errs.push('both live routes supplied for '+plan.unit);
   return errs;
 }
-export function validatePlan(plan){const e=validateShape(plan);if(e.length&&/^unknown unit/.test(e[0]))return e;const st=unitStatus(plan.unit);
+export function validatePlan(plan){const e=validateShape(plan);if(e.length&&(/^unknown unit/.test(e[0])||!isPlainObject(plan)||!isCanonicalUnit(plan.unit)))return e;const st=unitStatus(plan.unit);
   const blk=[];if(st.status==='BLOCKED')blk.push('BLOCKED: '+st.blockers.join(', '));
   if(Number.isInteger(plan.asOfWeek)&&kStatus(plan.asOfWeek).needsEloState)blk.push('B3: as-of week '+plan.asOfWeek+' needs reconstructed Elo state');
   return [...e,...blk];}
@@ -198,24 +200,37 @@ export const SERIALIZATION_VERSION='md08-refser-2';
 const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
 export const isCanonicalUnit=u=>typeof u==='string'&&own(UNITS,u);
 const isPlainObject=v=>v!==null&&typeof v==='object'&&!Array.isArray(v)&&(Object.getPrototypeOf(v)===Object.prototype||Object.getPrototypeOf(v)===null);
+// Supported own-property domain (plain data objects only): every own property, as seen by
+// Reflect.ownKeys + Object.getOwnPropertyDescriptor, must be an enumerable, string-keyed data
+// property (no symbol keys, no non-enumerable properties, no get/set accessors). When an allowed
+// key set is given, every own key must be in it. Arrays may own only their index keys and length.
+export function dataPropertyErrors(obj,allowed=null,label='object'){
+  const errs=[];
+  for(const k of Reflect.ownKeys(obj)){
+    if(typeof k==='symbol'){errs.push(label+': symbol-keyed property not allowed');continue;}
+    const d=Object.getOwnPropertyDescriptor(obj,k);
+    if(Array.isArray(obj)){if(k==='length')continue;if(!/^(0|[1-9]\d*)$/.test(k)||Number(k)>=obj.length){errs.push(label+': unexpected array property '+k);continue;}}
+    if(!('value' in d))errs.push(label+': accessor property '+k+' not allowed');
+    else if(!d.enumerable)errs.push(label+': non-enumerable property '+k+' not allowed');
+    if(allowed&&!allowed.has(k))errs.push(label+': unexpected field '+k);}
+  return errs;}
 // Model-semantics schema: a plain object; keys non-empty strings; values strings or nested
 // plain objects of the same schema (max depth 4). Nothing else.
 export function validateModelSemantics(m,depth=0){
   if(!isPlainObject(m))return ['model semantics must be a plain object'];
   if(depth>4)return ['model semantics nested too deeply'];
-  const errs=[];
-  for(const k of Object.keys(m)){if(!k)errs.push('empty model-semantics key');const v=m[k];
+  const errs=dataPropertyErrors(m,null,'model semantics');if(errs.length)return errs;
+  for(const k of Reflect.ownKeys(m)){if(!k)errs.push('empty model-semantics key');const v=Object.getOwnPropertyDescriptor(m,k).value;
     if(typeof v==='string')continue;if(isPlainObject(v)){errs.push(...validateModelSemantics(v,depth+1));continue;}
     errs.push('unsupported model-semantics value at '+k);}
-  if(Object.getOwnPropertySymbols(m).length)errs.push('symbol keys not allowed');
   return errs;}
 export function canonicalEncode(v){
   if(v===null)return 'null';
   if(typeof v==='boolean')return v?'true':'false';
   if(typeof v==='string')return JSON.stringify(v);
   if(typeof v==='number'){if(!Number.isFinite(v))throw new Error('non-finite number');return 'n:'+(Object.is(v,-0)?'0':String(v));}
-  if(Array.isArray(v)){for(let i=0;i<v.length;i++)if(!own(v,i))throw new Error('sparse array');return '['+v.map(canonicalEncode).join(',')+']';}
-  if(isPlainObject(v)){const ks=Object.keys(v).sort();return '{'+ks.map(k=>JSON.stringify(k)+':'+canonicalEncode(v[k])).join(',')+'}';}
+  if(Array.isArray(v)){for(let i=0;i<v.length;i++)if(!own(v,i))throw new Error('sparse array');if(dataPropertyErrors(v).length)throw new Error('unsupported array property');return '['+v.map(canonicalEncode).join(',')+']';}
+  if(isPlainObject(v)){if(dataPropertyErrors(v).length)throw new Error('unsupported own property');const ks=Reflect.ownKeys(v).sort();return '{'+ks.map(k=>JSON.stringify(k)+':'+canonicalEncode(Object.getOwnPropertyDescriptor(v,k).value)).join(',')+'}';}
   throw new Error('unsupported value type');}
 // Reference chronology: an observation is the team's state after its g-th game.
 //  design S (first g games): asOfWeek = week of the g-th game, so g <= asOfWeek <= min(18, g+1)
@@ -225,18 +240,19 @@ export function canonicalEncode(v){
 export function validateReferenceInput(ref){
   const errs=[];
   if(!isPlainObject(ref))return ['reference must be a plain object'];
+  const refErrs=dataPropertyErrors(ref,new Set(['unit','design','gameCount','modelSemantics','observations']),'reference');if(refErrs.length)return refErrs;
   const {unit,design,gameCount,modelSemantics,observations}=ref;
   if(!isCanonicalUnit(unit))errs.push('unknown unit');
   if(design!=='S'&&design!=='C')errs.push('invalid design');
   if(!Number.isInteger(gameCount)||gameCount<1||gameCount>17)errs.push('invalid game count');
   errs.push(...validateModelSemantics(modelSemantics));
   if(!Array.isArray(observations)||!observations.length)return [...errs,'no observations'];
+  errs.push(...dataPropertyErrors(observations,null,'observations array'));
   const keys=new Set();
   for(let i=0;i<observations.length;i++){
     if(!own(observations,i)){errs.push('observation '+i+': sparse array hole');continue;}
     const o=observations[i];if(!isPlainObject(o)){errs.push('observation '+i+': not a plain object');continue;}
-    const allowed=new Set(['season','team','asOfWeek','finalGrade','windowEndGame']);
-    for(const k of Object.keys(o))if(!allowed.has(k))errs.push('observation '+i+': unexpected field '+k);
+    const oErrs=dataPropertyErrors(o,new Set(['season','team','asOfWeek','finalGrade','windowEndGame']),'observation '+i);if(oErrs.length){errs.push(...oErrs);continue;}
     if(!Number.isInteger(o.season)||o.season<1999)errs.push('observation '+i+': invalid season');
     if(typeof o.team!=='string'||!canonicalTeams().has(o.team))errs.push('observation '+i+': invalid team');
     if(typeof o.finalGrade!=='number'||!Number.isFinite(o.finalGrade))errs.push('observation '+i+': non-finite grade');
