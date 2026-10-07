@@ -1,0 +1,367 @@
+{
+ "note": "Read-only provenance pins of the owner-accepted Celo legacy record (owner decision 2026-10-07). Originals live outside FORCE and are not imported; only hashes and recovered facts are recorded here.",
+ "ownerDecision": {
+  "date": "2026-10-07",
+  "provenance": "ACCEPTED: preserved July 2026 Celo output is the authoritative B1 legacy provenance/source record for 2008-2025",
+  "historicalReplay": "RESTRICTED to the leak-free subset; excluded fields stay archived but may not be consumed without a separate owner decision"
+ },
+ "celo": {
+  "location": "C:/Users/paul1.PAUL/Videos/Celo (byte-identical archive C:/Users/paul1.PAUL/Videos/Celo.zip)",
+  "archiveSha256": "23a54e51e04af203d3fd7c218193435b583fe3dfee7b6a506aebd07143b56da2",
+  "fileCount": 55,
+  "outputs": {
+   "sample_data/entropy_data.json": "7f70722d28ac02625f8dcf4b5d3cd2cfe16797e62cf1f0015dd6442e4b3b7aba",
+   "sample_data/ui_data.json": "7639dd1bad4d37ea887a4e57beedf7dc0d07491ab54d9e28da1879286012ff20"
+  },
+  "sourceAndConfigSha256": {
+   "IMPORT_GUIDE.md": "3c77971716594da3cff35b80c9f657ad9a49650842e3d3abfdf30bd306b53b58",
+   "README.md": "03a1b9f51c8b889605c6dcb11110ae7a916e24325d9d7d92fdcd2730c183971c",
+   "__pycache__/backtest.cpython-312.pyc": "76f91716dd61a5dbaa4e41ff68b80b7a0d35592587914e9ef3bd00cbabf804f0",
+   "__pycache__/backtest.cpython-314.pyc": "3f0231e99798471820b78e3bf212ee4bd8671d16156c3d37ee7aebc9f22678a5",
+   "__pycache__/config.cpython-312.pyc": "f6e2231b73afd941b9276b92380fddc44c62edad83a6391289d4ce72fbb12e04",
+   "__pycache__/config.cpython-314.pyc": "887e8d6d21cb59da6198ab4c8d802a37c9ad1d040826274bdc73f61c81f2d68e",
+   "__pycache__/data.cpython-312.pyc": "2c9c3cb8be675ffe072d2dff67caeac649392ea4b259ff3aae8d3f7f38dcd5f0",
+   "__pycache__/data.cpython-314.pyc": "99394fd487ac514aefa8f9dc8b0c3de2ea100962a1a3dd0b0c64e63e5fa79490",
+   "__pycache__/efficiency.cpython-312.pyc": "2be592f58796085b1f4f530d93b6c7be38a18a2c5f2a4b0dfa630c23450381a9",
+   "__pycache__/efficiency.cpython-314.pyc": "6823a08630d63eec1095d606aa3dbef46882f3f65c0c8d6182cb325d07de9c83",
+   "__pycache__/elo.cpython-312.pyc": "a62eb9b43ebbe13b191f4710300be38c29229bc09c4ce1b084ca556f326a5cae",
+   "__pycache__/elo.cpython-314.pyc": "b58ee3fca26c1937256e78f976efbfeff9810094b98965d094a0eebf82f1e09b",
+   "__pycache__/export_ui_data.cpython-314.pyc": "5bf7af20281c75cafa303485e4da3a478d1ae841b44e5708ce5d135a3c7a7e8a",
+   "__pycache__/penalties.cpython-312.pyc": "fee6398ad419ac4de1dcc8892057f79a1e4faa2dfaaecb74b7b1c77ff571d982",
+   "__pycache__/penalties.cpython-314.pyc": "760542308f0a3c13a8b2e3e49c1e22c4bc8dc7e34f9ad78549666b1a4ed80da6",
+   "__pycache__/qb.cpython-312.pyc": "8bcbbd4d0afd857172a6dc030b613495afc8fa64fb30536fec24dc2bca83cf7f",
+   "__pycache__/qb.cpython-314.pyc": "a4e1415ad29fba43a5c618fd5f14134bcbbfd181ed72d5c849f907e33373b3af",
+   "__pycache__/tune.cpython-314.pyc": "2c0803e28049771195a0009be630a23842b99e59c7488c12672ecf89b173b95c",
+   "backtest.py": "27bf34c6516c9e7a4be84072398cf41430111651d27d6c1ef2a18bf693bd2ee4",
+   "build_entropy.py": "9023898b1e6ca8b83aa795fc6906d50ad8a8ba8dd1fe070ecbe27022bf308588",
+   "build_ui.py": "0ed221aca6467554b272ce37ebd0f60afcd704abcbaf6f46666bf7147f32b78e",
+   "config.py": "7bde290e7e15b9ec8c9aebf6e6110a4e1f78c1d6be3bce7d29068cfa5ad4561f",
+   "data.py": "ffafba0d00ef3369b397c26e15e03debea54067813f7f6429bda5e9e0c36d88d",
+   "diagnose.py": "8d8c5db0fd3788b393f4cce4cc6c887d59461c7dd96839a77acbdb9f08e6cdc5",
+   "diagnose_external.py": "7622925ce79e8bf536aad59c4a43c64dcf1d362417c8cdcf36f502ec7f44b182",
+   "efficiency.py": "b5f7b6e16a90f53080091af90d14f197c2c261cbc25f2dd000d7a0faac16e237",
+   "elo.py": "a36214d4ca692c5bb29be64f296dc662feb7f790d73bccbc3cb6cf0dc1e8412e",
+   "elo_ui.html": "b1c329ac689c4c536701a844f97e2a3f8fe151d0f71107f76a5647b79c3ca9b3",
+   "elo_ui_template.html": "cb3e1c57259af6385b595d615950ec67a12346fe05bf33248a7695025b1dbecf",
+   "entropy_analysis.py": "d0778b078d47ed47d694f3e91ba590b7a8bc9787247802c31982ce89fea77045",
+   "export_ui_data.py": "1d37c22402636bef13b1b9315339ea9dffa6fe0a441e095b44cb1636226af39f",
+   "penalties.py": "27cd81d7490ff6c6485dce5b763eebeddffac0d3db363d46d9ee03183d063f4d",
+   "qb.py": "6ac0044d1338c16d1c7c52781634aa35caa97dfcfdefd3493273e7e5a44f8a3b",
+   "run.py": "759c2e799b7fdd13006977658c0e2ac2f47a5121b8e9a24fe5772c9a5a39a64d",
+   "sample_data/espn_qbr.csv": "e3e429304ffa4a4d1bdf7624a9c4d0b529d72998575b0cb362298765d789b0e8",
+   "sample_data/injuries_designated.csv": "8bd9ba8533ba8b7733954bb7963bd70a648033c7b8d96d21f015874734cc0853",
+   "sample_data/officials.csv": "600c71d77261581e037398ffec8d194ee4263bdcdf198baf7220b394e7033046",
+   "sample_data/opening_lines.csv": "e247620d945e4489869bcacf06d81852268362a199a5e4f834e0ac2bd53d106b",
+   "sample_data/roster_av.csv": "9dd2fbde030af303e18402c1f6b00968bb8d0fa77fe74e9d4ba6bd52568c79fd",
+   "sample_data/roster_retention.csv": "a690069e584eab2caa85f5410dd4d02af47f7626e4d5be435dc81d1894a6e47f",
+   "sample_data/team_av_proxy.csv": "a130e21e99afac09290adbd61b48c455592e80ac42f474ccc24c7d3cdf867f47",
+   "sample_data/tuned_config.json": "025e4e449e9c3a633e7d640418dc61178c4e09254ca1e2b6f16b7c06243d25a6",
+   "sample_data/weather.csv": "6aef99660352bf698a346d485f1e2c7f24b7616128c71c20d8214125939b6af6",
+   "scrape_external.py": "70526d5a5f4d1e15ac62c7ce9af06e2d58a75b0692e2b75684f4df62dc56a7eb",
+   "scrape_odds.py": "1cd918d988eae8acbe667e0a3897c9529d1c1278306a7df2c638846bad1d2b5a",
+   "scrape_signals.py": "4198a0b762e70430700efb1e0378c021bf022509b9c85a1700bd3ea5fd0001d6",
+   "serve.py": "fa5bf4898bb1a1a272ff94974e7ca4ceb9874862798cdeac2f27515049bac087",
+   "test_clutch_qb_adj.py": "322c0136d4d61deb33040d4ad814cec7c41dce12315713418882ab90b3f5df81",
+   "test_composite_cv.py": "885b148d863db9e20dca17108d527b9a04967a5cfb4dd5aa9b19ac53439dd885",
+   "test_full_ablation.py": "d8113cb9f8efc16f0aea10e25831d9449329a0f7523ef06a317fe48970c4cb6d",
+   "test_qb_adj_ablation.py": "b7347268e18975d293b047ab4b077d0e3a2a8d84642ea0200aed790b318e8dd5",
+   "test_retro_correction.py": "2df0a60f3a2cf0764768ce5d0fad3384116f8b5d395cb7b18ef24d521928bc48",
+   "tune.py": "f285db5873666fbe11901bddb0b73531fe3ca6ad8cf9d68b2ed447d299d7f76a"
+  },
+  "uiDataGenerated": "2026-07-16 10:48 (meta.generated; equals FORCE sourceGenerated)",
+  "entropyDataBuilt": "2026-06-03 19:13 (file mtime; consumed unchanged by the 2026-07-16 UI build)",
+  "recoveredCommands": [
+   "python build_entropy.py --seasons 2008-2025 --rolling 10",
+   "python build_ui.py --refresh --source real --seasons 2008-2025  (runs export_ui_data.py --source real --seasons 2008-2025)"
+  ],
+  "commandSource": "owner PowerShell history (targeted search for Celo script names only)"
+ },
+ "regeneration": {
+  "verdict": "B. PRODUCER REGENERATED WITH EXPLAINED UPSTREAM-VERSION DIFFERENCES",
+  "summary": "Unchanged producer, recorded commands, scratch only. Position groups/offense exact for 14 of 18 seasons (2008-2012, 2014-2018, 2021-2023); 2013/2019 differ only by last-digit OC-entropy flips through the cross-season pooled baseline. QB chain exact for 15 of 18 seasons (all but 2020, 2024, 2025), including epaoe and pred_adj. No producer-definition mismatch; no runtime effect evident.",
+  "runtime": {
+   "python": "3.12.10",
+   "nflreadpy": "0.1.5",
+   "polars": "1.42.1",
+   "pandas": "3.0.3",
+   "numpy": "2.5.1",
+   "pyarrow": "25.0.0",
+   "scipy": "1.18.0"
+  },
+  "upstreamRepublicationCaveats": [
+   "play_by_play_2020 republished 2026-08-26, after the 2026-07-16 run",
+   "play_by_play_2024 and play_by_play_2025 republished 2026-08-13, after the run",
+   "ngs_passing republished daily; 2025 cpoe differs (probable NGS revision, unproven: July snapshot unavailable)",
+   "schedules/games.parquet republished daily",
+   "the preserved July output is therefore the only exact record of as-run 2020/2024/2025 values"
+  ],
+  "downloadedUpstream": [
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2025.parquet",
+    "asset_updated_at": "2026-08-13T12:26:09Z",
+    "bytes": 20337029,
+    "sha256": "c6ecedd6d678cc37ed316b23ef84ee1ec6abb69c514bb11868a7ebd5a367df29",
+    "retrieved_utc": "2026-10-07T12:44:45.594830+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.parquet",
+    "asset_updated_at": "2026-10-06T19:47:58Z",
+    "bytes": 521818,
+    "sha256": "dbce02c5371a3dc0ebe19accf45c993d8401a2b581e3295174bfad07cadc88f9",
+    "retrieved_utc": "2026-10-07T12:44:48.851928+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2025.parquet",
+    "asset_updated_at": "2026-03-14T07:33:08Z",
+    "bytes": 585103,
+    "sha256": "902904a0500f066f02ef23f7857e3db35060517e50ffcfe36cc1bc5c6d230f70",
+    "retrieved_utc": "2026-10-07T12:44:49.821169+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_passing.parquet",
+    "asset_updated_at": "2026-10-07T06:07:09Z",
+    "bytes": 744040,
+    "sha256": "c39bce8fc3daef26fd2b3ccd2642960b3c6a7ae31d8b77ea709676b62ca87bb8",
+    "retrieved_utc": "2026-10-07T12:44:51.296328+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2008.parquet",
+    "asset_updated_at": "2025-04-30T06:34:15Z",
+    "bytes": 18565820,
+    "sha256": "f625e836a0117698feaad1a6e84f4ab341ff03197c1904313836ef7313af0f07",
+    "retrieved_utc": "2026-10-07T12:48:02.973578+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2008.parquet",
+    "asset_updated_at": "2023-09-06T17:30:45Z",
+    "bytes": 275314,
+    "sha256": "43fc467ab23d11e3f32cac804b1ba64eac96087c022c309c33091cf929f78ebb",
+    "retrieved_utc": "2026-10-07T12:48:05.295547+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2009.parquet",
+    "asset_updated_at": "2025-04-30T06:36:09Z",
+    "bytes": 18905386,
+    "sha256": "17ba96f594a7b84c86060a99a3082158ebab206672d6c16036a069829d77dee7",
+    "retrieved_utc": "2026-10-07T12:48:06.326537+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2009.parquet",
+    "asset_updated_at": "2023-09-06T17:34:16Z",
+    "bytes": 283617,
+    "sha256": "958fa64c44e78fe91988c61a2607886f0fcfcbb0cdc1262d871d792c18000d68",
+    "retrieved_utc": "2026-10-07T12:48:08.551005+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2010.parquet",
+    "asset_updated_at": "2025-04-30T06:34:41Z",
+    "bytes": 19059048,
+    "sha256": "d2ef9c407319719910ad8de8c4c1b88f0ea945ffb3f78f48ef32fa3ed3a7573b",
+    "retrieved_utc": "2026-10-07T12:48:09.751283+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2010.parquet",
+    "asset_updated_at": "2023-09-06T17:37:44Z",
+    "bytes": 296031,
+    "sha256": "7cdf397d498df9fed8b86714f339b87cb3d8b9876f56fd782791ea81cbbf8009",
+    "retrieved_utc": "2026-10-07T12:48:13.314388+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2011.parquet",
+    "asset_updated_at": "2025-04-30T06:38:47Z",
+    "bytes": 19117830,
+    "sha256": "c54753b8137b88dab260489b1462cbf1309c3d11741eb8d10e5f1b0a9b8795b1",
+    "retrieved_utc": "2026-10-07T12:48:14.381157+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2011.parquet",
+    "asset_updated_at": "2023-09-06T17:41:15Z",
+    "bytes": 304268,
+    "sha256": "11eae922edd6f77ebba75560d604bd3ab21030a75c6eaf113cfb609b7b1283a0",
+    "retrieved_utc": "2026-10-07T12:48:16.666628+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2012.parquet",
+    "asset_updated_at": "2025-04-30T06:33:24Z",
+    "bytes": 19322039,
+    "sha256": "447b90789104aac70427ec9d3b51df7247234029d0ecabd269279369b1cc6278",
+    "retrieved_utc": "2026-10-07T12:48:17.656299+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2012.parquet",
+    "asset_updated_at": "2023-09-06T17:44:44Z",
+    "bytes": 318855,
+    "sha256": "016ae9c3f447521e0c3e4e570e449fdc3a752905be152ab2ad757f3bc12911a3",
+    "retrieved_utc": "2026-10-07T12:48:20.711474+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2013.parquet",
+    "asset_updated_at": "2024-08-25T12:30:13Z",
+    "bytes": 19521610,
+    "sha256": "f454605a1983b3946baf0ffadf3a0b9f5e04735c4b84732e0483f2049a780d00",
+    "retrieved_utc": "2026-10-07T12:48:21.921413+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2013.parquet",
+    "asset_updated_at": "2023-09-06T17:48:10Z",
+    "bytes": 331575,
+    "sha256": "c5629b691d7182f3ef6044e3a4f687b439755efc2bf7855ecc2eb32adf074f06",
+    "retrieved_utc": "2026-10-07T12:48:23.934859+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2014.parquet",
+    "asset_updated_at": "2024-08-25T12:30:16Z",
+    "bytes": 19360792,
+    "sha256": "54c01408d8f0ff9e013a4ea51428b91d610101f72545d082e932f5710e2fb4f7",
+    "retrieved_utc": "2026-10-07T12:48:25.035758+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2014.parquet",
+    "asset_updated_at": "2023-09-06T17:51:38Z",
+    "bytes": 350575,
+    "sha256": "24ff5af09bf06e7da21bd86213cbff6546cc87bbf679b2516c2e85202621fc05",
+    "retrieved_utc": "2026-10-07T12:48:27.856725+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2015.parquet",
+    "asset_updated_at": "2025-04-30T06:33:27Z",
+    "bytes": 19545842,
+    "sha256": "01b5ae7d06633a2e66b418404461a3d4ff055ad2f3a87d453cebcc8d3fda7ed9",
+    "retrieved_utc": "2026-10-07T12:48:29.073949+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2015.parquet",
+    "asset_updated_at": "2023-09-06T17:55:11Z",
+    "bytes": 370744,
+    "sha256": "4c745ba50ba3def3354d924ea871c474e76517a341a6fdc9a5e3d9f212e847eb",
+    "retrieved_utc": "2026-10-07T12:48:32.193325+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2016.parquet",
+    "asset_updated_at": "2025-04-30T06:34:29Z",
+    "bytes": 19344382,
+    "sha256": "95eba04e2145e3c1c8ca502f2a3a76cfb0a5990680c3fb480f02a74a45f54a3b",
+    "retrieved_utc": "2026-10-07T12:48:33.378067+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2016.parquet",
+    "asset_updated_at": "2023-09-13T00:43:48Z",
+    "bytes": 502416,
+    "sha256": "a99e54a253f9cfa2ff59158264ddcbe72d05aee601258eaa2ec928bd2400b0f5",
+    "retrieved_utc": "2026-10-07T12:48:35.808297+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2017.parquet",
+    "asset_updated_at": "2025-04-30T06:41:25Z",
+    "bytes": 19050401,
+    "sha256": "84eacd963c1fdd45965f6222c62e9329a7f3412f029d92c1ac5e34a1bb4d3710",
+    "retrieved_utc": "2026-10-07T12:48:36.809307+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2017.parquet",
+    "asset_updated_at": "2023-09-13T00:49:11Z",
+    "bytes": 539689,
+    "sha256": "e8e6b9b056e4e6e99f72498070dfe7ca217d8c7cb5af9f606c9a0324e8bc3cb5",
+    "retrieved_utc": "2026-10-07T12:48:39.260788+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2018.parquet",
+    "asset_updated_at": "2025-04-30T06:39:20Z",
+    "bytes": 19072097,
+    "sha256": "2e6f2dce7c7ebd46e985cabe0c17eb72b39a77f98cb4478409294f50b5820150",
+    "retrieved_utc": "2026-10-07T12:48:40.490582+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2018.parquet",
+    "asset_updated_at": "2023-09-13T00:54:25Z",
+    "bytes": 573712,
+    "sha256": "259532b0bd2f68e01db949023e9f001878c9da9d2c912fef5352324d08b9df07",
+    "retrieved_utc": "2026-10-07T12:48:43.315465+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2019.parquet",
+    "asset_updated_at": "2025-07-31T18:17:19Z",
+    "bytes": 19119729,
+    "sha256": "60c3067017db2d28a78f66a79b657268be8578d9a5288e6a827efdcd7fe42540",
+    "retrieved_utc": "2026-10-07T12:48:44.537973+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2019.parquet",
+    "asset_updated_at": "2023-09-13T00:59:48Z",
+    "bytes": 582005,
+    "sha256": "8aeee315dbf27fc07d5a41a65ac0be0cb00bd63c4a4a23298e0b15228cedd49f",
+    "retrieved_utc": "2026-10-07T12:48:47.910310+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2020.parquet",
+    "asset_updated_at": "2026-08-26T07:33:10Z",
+    "bytes": 19286459,
+    "sha256": "8889f5d8782b5c5dce3c3644acdc0322b228a7e9cb13fa36cbac250e260e9f60",
+    "retrieved_utc": "2026-10-07T12:48:49.029532+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2020.parquet",
+    "asset_updated_at": "2023-09-13T01:05:03Z",
+    "bytes": 582955,
+    "sha256": "f511f31fe0472c0d0bca87583240c68ca7dc1294f9b7975f5793655bd4598948",
+    "retrieved_utc": "2026-10-07T12:48:51.332987+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2021.parquet",
+    "asset_updated_at": "2026-01-08T13:13:13Z",
+    "bytes": 20249925,
+    "sha256": "333ad34378e5339d5172717cc83378e908daf02c8699416ab3e17c2ec10f78d8",
+    "retrieved_utc": "2026-10-07T12:48:52.557016+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2021.parquet",
+    "asset_updated_at": "2023-09-13T01:10:40Z",
+    "bytes": 559243,
+    "sha256": "6201527093636f44ac74d94f88d57b65bc48c3818c65854ee092b742d6ae6e47",
+    "retrieved_utc": "2026-10-07T12:48:55.239995+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2022.parquet",
+    "asset_updated_at": "2026-02-12T10:25:24Z",
+    "bytes": 20426548,
+    "sha256": "931121d8897779d7944e2a293e92ed8799c8e5cceef84096ac42339003fedc09",
+    "retrieved_utc": "2026-10-07T12:48:56.209952+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2022.parquet",
+    "asset_updated_at": "2023-09-13T01:16:17Z",
+    "bytes": 559611,
+    "sha256": "1d8e7987d2b07f510fdce9977354a960041064fdc4a51816cb51540f7835e193",
+    "retrieved_utc": "2026-10-07T12:48:58.356441+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2023.parquet",
+    "asset_updated_at": "2026-02-12T10:24:52Z",
+    "bytes": 20534088,
+    "sha256": "bd3484731408def6b0ec93225bba2bd7b2c65769ca707a2b9444d891abdc6776",
+    "retrieved_utc": "2026-10-07T12:48:59.440440+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2023.parquet",
+    "asset_updated_at": "2024-03-14T07:18:17Z",
+    "bytes": 554634,
+    "sha256": "66dcb7d0e203c41b49e997b93eb55ed77bcc960e5dd0774b7e2426a87cef3c90",
+    "retrieved_utc": "2026-10-07T12:49:01.636271+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2024.parquet",
+    "asset_updated_at": "2026-08-13T12:26:27Z",
+    "bytes": 20597560,
+    "sha256": "3fd2896bc0b911b615142d2f1fabae54a4bbba5ab7b73b28187b118ef8af6a3b",
+    "retrieved_utc": "2026-10-07T12:49:02.846193+00:00"
+   },
+   {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2024.parquet",
+    "asset_updated_at": "2025-03-14T07:16:10Z",
+    "bytes": 566179,
+    "sha256": "bd38dbe785728c6b4ddc0b56b7d4fee69a8337595db3b631528d284253c04aaf",
+    "retrieved_utc": "2026-10-07T12:49:05.167335+00:00"
+   }
+  ]
+ }
+}
