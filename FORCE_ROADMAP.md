@@ -674,12 +674,14 @@ Known reference material: [predictive feature policy](PREDICTIVE_FEATURE_POLICY_
   - **Not done:** no data files were downloaded; S vs C and Candidate A were not evaluated on final-grade history because none exists.
   - **Next owner decision (as of the blocker package):** determine whether the original legacy profile producer and its exact definitions can be supplied or recovered from outside this repository.
   - **Celo producer recovered; B1 provenance resolved (2026-10-07):** an owner-authorized read-only search found the legacy producer, the owner's Celo project (outside FORCE), and its July 2026 output. An authorized scratch-only regeneration returned verdict B: exact wherever upstream nflverse data are unrevised. The owner accepted that output as the **authoritative B1 provenance record** for 2008-2025 and **restricted historical replay to its leak-free subset**. [Reassessment](research/cycle9/md08_celo_replay_reassessment/README.md):
-    - The bundle is an exact function of the record: every 2025 field and all seven indices rebuild 32/32. `qbIndex` ranks `epa_per_play`.
+    - The bundle is an exact function of the record: every 2025 field matches 32/32 and the indices rebuild 224/224. `qbIndex` ranks `epa_per_play`.
+    - Owner tie rule (compatibility only): ties keep preserved Celo source order; primary QB = most games, then Celo row order; lead RB = most carries, then Celo dictionary order. This covers 53 index tie groups, 9 QB ties and 2 RB ties for 2008-2025.
     - The QB, OL, coverage, run-defense and pass-rush prior source fields are leak-free, and those source blockers are removed.
-    - `qb.epaoe` (hindsight-tuned Elo) and RB lead-back selection (later-season passers) are authentic but leaked. Because receiver/RB references and priors read them, receivers and RB stay blocked, and B2 is now purely semantic.
-    - B3 is unchanged in effect, B4 is unchanged and B6 is unchanged.
-    - QB (display 2022-2025) and OL (display 2009-2025) are CONDITIONAL in week 1 and week 12+, pending an index/selection tie rule and component-coverage verification. No unit is fully replayable, and the common historical-standing reference is not unblocked.
-  - **Status:** Decision INVESTIGATE; Execution REVIEW; Priority unset; MD-08 NOT COMPLETE. Production transform, replacement prior semantics and UX-41 NOT AUTHORIZED. Not pushed, merged or deployed.
+    - `qb.epaoe` (hindsight-tuned Elo) and cross-season RB eligibility (130 player-seasons / 131 groups under the producer's regular-season filter) are authentic but leaked, and the owner keeps them excluded. Receivers and RB stay blocked.
+    - B2 is materially narrowed but not fully resolved: authenticated 2008-2025 populations exist, but the excluded leaked dependencies, relocation-era QB-row gaps (Celo aliasing) and 2008 under-four-receiver cases remain.
+    - B3 is unresolved for weeks 2-11: no authenticated historical full-run Elo state exists, and the 10.7 gap compares two differently fed Celo runs (non-equivalence only). B4 and B6 are unchanged.
+    - QB (display 2022-2025) and OL (display 2009-2025) are CONDITIONAL possibilities in week 1 and week 12+, subject to component coverage, relocation gaps, B5/B6 and the tie rule. No unit is fully replayable, and the common historical-standing reference is not unblocked.
+  - **Status:** Decision INVESTIGATE; Execution REVIEW; Priority unset; MD-08 NOT COMPLETE. Production transform, replacement prior/reference semantics, historical replay implementation and UX-41 NOT AUTHORIZED. Not pushed, merged or deployed.
 
 ### MD-09 — Quarterback metric identity and naming
 

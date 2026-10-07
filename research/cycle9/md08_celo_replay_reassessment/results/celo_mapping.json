@@ -226,11 +226,19 @@
     "tiedGroups": []
    }
   },
+  "indexValuesExact": 224,
+  "indexValuesCompared": 224,
   "selectionTies": {
    "qbSelection": [],
    "rbSelection": [
     "MIA"
    ]
+  },
+  "selectionPicks": {
+   "qbSelection": {},
+   "rbSelection": {
+    "MIA": "J.Wright"
+   }
   },
   "schemaNote": "Only alias LA->LAR is needed in 2025. Celo-only fields dropped by the bundle: clutch, epa_tgt, adot, yac, team, wpa_per_play and entropy excess fields."
  },
@@ -238,24 +246,43 @@
   "teams": 32,
   "eloExact": 32,
   "trajectoryExact": 32,
-  "finalEloVsSeasonEndSnapshotMaxGap2025": 10.7,
-  "finalEloEqualsSeasonEndSnapshot": 0,
-  "note": "Production preseason Elo is Celo rankings.elo. Earlier seasons keep only season-end snapshots (by_season_rank = trajectory), which differ from the final Elo; the historical analogue of rankings.elo is not preserved."
+  "mainRunVsTrajectoryRunMaxGap2025": 10.7,
+  "mainRunEqualsTrajectoryRun2025": 0,
+  "runs": {
+   "rankingsElo": "export_ui_data.py main EloModel run over all games WITH supplementary inputs (roster_ret, personnel_data, team_av, espn_qbr, qb_pressure)",
+   "trajectoryAndBySeasonRank": "export_ui_data.py traj_model: a separate EloModel run season by season WITHOUT those supplementary inputs, snapshotted after each season"
+  },
+  "note": "Production preseason Elo equals Celo rankings.elo exactly. The 2025 gap to the trajectory run compares two runs with different input construction, so it shows non-equivalence only and does not establish a season-end vs preseason distinction. No per-season state of the main (full-input) run is preserved for earlier seasons; that missing authenticated historical full-run state is the B3 blocker for weeks 2-11."
  },
  "historical": {
   "2008": {
    "teams": 32,
    "withQb": 29,
+   "teamsWithoutQbRow": [
+    "LAC",
+    "LAR",
+    "LV"
+   ],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "BUF",
     "MIA"
    ],
    "withFourReceivers": 24,
+   "teamsUnderFourReceivers": {
+    "ATL": 3,
+    "BAL": 3,
+    "CAR": 1,
+    "CIN": 2,
+    "CLE": 2,
+    "DET": 2,
+    "LAR": 3,
+    "LV": 2
+   },
    "indexTies": {
     "qbIndex": [],
     "olIndex": [
-     "CLE/DET"
+     "CLE<DET"
     ],
     "coverageIndex": [],
     "frontIndex": [],
@@ -266,44 +293,63 @@
    "selectionTies": {
     "qbSelection": [],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {}
    }
   },
   "2009": {
    "teams": 32,
    "withQb": 29,
+   "teamsWithoutQbRow": [
+    "LAC",
+    "LAR",
+    "LV"
+   ],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "BUF",
     "IND"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "GB/TEN"
+     "GB<TEN"
     ],
     "olIndex": [
-     "CHI/SEA"
+     "CHI<SEA"
     ],
     "coverageIndex": [
-     "BAL/CAR"
+     "BAL<CAR"
     ],
     "frontIndex": [
-     "HOU/MIA"
+     "MIA<HOU"
     ],
     "offenseIndex": [],
     "receiverIndex": [],
     "rushIndex": [
-     "NYG/PHI"
+     "NYG<PHI"
     ]
    },
    "selectionTies": {
     "qbSelection": [],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {}
    }
   },
   "2010": {
    "teams": 32,
    "withQb": 29,
+   "teamsWithoutQbRow": [
+    "LAC",
+    "LAR",
+    "LV"
+   ],
    "withLeadRb": 29,
    "teamsWithoutRb": [
     "CHI",
@@ -311,14 +357,15 @@
     "MIA"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "BAL/DEN"
+     "DEN<BAL"
     ],
     "olIndex": [],
     "coverageIndex": [],
     "frontIndex": [
-     "CAR/TEN"
+     "CAR<TEN"
     ],
     "offenseIndex": [],
     "receiverIndex": [],
@@ -329,26 +376,38 @@
      "TEN"
     ],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {
+     "TEN": "Vince Young"
+    },
+    "rbSelection": {}
    }
   },
   "2011": {
    "teams": 32,
    "withQb": 29,
+   "teamsWithoutQbRow": [
+    "LAC",
+    "LAR",
+    "LV"
+   ],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "BAL",
     "LV"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [],
     "olIndex": [
-     "DAL/NYG",
-     "PIT/TB"
+     "DAL<NYG",
+     "TB<PIT"
     ],
     "coverageIndex": [],
     "frontIndex": [
-     "ARI/PIT"
+     "ARI<PIT"
     ],
     "offenseIndex": [],
     "receiverIndex": [],
@@ -357,25 +416,35 @@
    "selectionTies": {
     "qbSelection": [],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {}
    }
   },
   "2012": {
    "teams": 32,
    "withQb": 29,
+   "teamsWithoutQbRow": [
+    "LAC",
+    "LAR",
+    "LV"
+   ],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "CHI",
     "TEN"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [],
     "olIndex": [
-     "HOU/TB"
+     "TB<HOU"
     ],
     "coverageIndex": [],
     "frontIndex": [
-     "DEN/LV"
+     "DEN<LV"
     ],
     "offenseIndex": [],
     "receiverIndex": [],
@@ -386,25 +455,37 @@
      "KC"
     ],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {
+     "KC": "Matt Cassel"
+    },
+    "rbSelection": {}
    }
   },
   "2013": {
    "teams": 32,
    "withQb": 29,
+   "teamsWithoutQbRow": [
+    "LAC",
+    "LAR",
+    "LV"
+   ],
    "withLeadRb": 31,
    "teamsWithoutRb": [
     "CHI"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [],
     "olIndex": [
-     "CAR/KC"
+     "KC<CAR"
     ],
     "coverageIndex": [],
     "frontIndex": [
-     "ARI/CAR",
-     "PIT/SF"
+     "ARI<CAR",
+     "SF<PIT"
     ],
     "offenseIndex": [],
     "receiverIndex": [],
@@ -415,23 +496,35 @@
      "HOU"
     ],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {
+     "HOU": "Case Keenum"
+    },
+    "rbSelection": {}
    }
   },
   "2014": {
    "teams": 32,
    "withQb": 29,
+   "teamsWithoutQbRow": [
+    "LAC",
+    "LAR",
+    "LV"
+   ],
    "withLeadRb": 32,
    "teamsWithoutRb": [],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [],
     "olIndex": [
-     "CLE/KC"
+     "CLE<KC"
     ],
     "coverageIndex": [],
     "frontIndex": [],
     "offenseIndex": [
-     "IND/LAC"
+     "IND<LAC"
     ],
     "receiverIndex": [],
     "rushIndex": []
@@ -439,19 +532,29 @@
    "selectionTies": {
     "qbSelection": [],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {}
    }
   },
   "2015": {
    "teams": 32,
    "withQb": 29,
+   "teamsWithoutQbRow": [
+    "LAC",
+    "LAR",
+    "LV"
+   ],
    "withLeadRb": 32,
    "teamsWithoutRb": [],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [],
     "olIndex": [],
     "coverageIndex": [
-     "CHI/DET"
+     "DET<CHI"
     ],
     "frontIndex": [],
     "offenseIndex": [],
@@ -461,50 +564,67 @@
    "selectionTies": {
     "qbSelection": [],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {}
    }
   },
   "2016": {
    "teams": 32,
    "withQb": 30,
+   "teamsWithoutQbRow": [
+    "LAC",
+    "LV"
+   ],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "NYJ",
     "TEN"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [],
     "olIndex": [
-     "ATL/CAR",
-     "BAL/CHI"
+     "CAR<ATL",
+     "BAL<CHI"
     ],
     "coverageIndex": [],
     "frontIndex": [
-     "LV/PIT"
+     "LV<PIT"
     ],
     "offenseIndex": [],
     "receiverIndex": [],
     "rushIndex": [
-     "DET/WAS"
+     "WAS<DET"
     ]
    },
    "selectionTies": {
     "qbSelection": [],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {}
    }
   },
   "2017": {
    "teams": 32,
    "withQb": 31,
+   "teamsWithoutQbRow": [
+    "LV"
+   ],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "KC",
     "TEN"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "LAC/LAR"
+     "LAR<LAC"
     ],
     "olIndex": [],
     "coverageIndex": [],
@@ -516,26 +636,34 @@
    "selectionTies": {
     "qbSelection": [],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {}
    }
   },
   "2018": {
    "teams": 32,
    "withQb": 31,
+   "teamsWithoutQbRow": [
+    "LV"
+   ],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "CAR",
     "DAL"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "LAR/SEA"
+     "LAR<SEA"
     ],
     "olIndex": [
-     "MIN/NYJ"
+     "NYJ<MIN"
     ],
     "coverageIndex": [
-     "CAR/NYG"
+     "CAR<NYG"
     ],
     "frontIndex": [],
     "offenseIndex": [],
@@ -545,17 +673,25 @@
    "selectionTies": {
     "qbSelection": [],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {}
    }
   },
   "2019": {
    "teams": 32,
    "withQb": 31,
+   "teamsWithoutQbRow": [
+    "LV"
+   ],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "CAR",
     "CHI"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [],
     "olIndex": [],
@@ -563,7 +699,7 @@
     "frontIndex": [],
     "offenseIndex": [],
     "receiverIndex": [
-     "PHI/PIT"
+     "PHI<PIT"
     ],
     "rushIndex": []
    },
@@ -572,27 +708,35 @@
     "rbSelection": [
      "SF"
     ]
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {
+     "SF": "R.Mostert"
+    }
    }
   },
   "2020": {
    "teams": 32,
    "withQb": 32,
+   "teamsWithoutQbRow": [],
    "withLeadRb": 31,
    "teamsWithoutRb": [
     "CHI"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "IND/LAC"
+     "LAC<IND"
     ],
     "olIndex": [],
     "coverageIndex": [
-     "NYJ/TEN"
+     "NYJ<TEN"
     ],
     "frontIndex": [],
     "offenseIndex": [
-     "JAX/WAS"
+     "JAX<WAS"
     ],
     "receiverIndex": [],
     "rushIndex": []
@@ -603,52 +747,67 @@
      "WAS"
     ],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {
+     "JAX": "Gardner Minshew II",
+     "WAS": "Alex Smith"
+    },
+    "rbSelection": {}
    }
   },
   "2021": {
    "teams": 32,
    "withQb": 32,
+   "teamsWithoutQbRow": [],
    "withLeadRb": 32,
    "teamsWithoutRb": [],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "IND/LV"
+     "LV<IND"
     ],
     "olIndex": [],
     "coverageIndex": [],
     "frontIndex": [
-     "LV/TB"
+     "LV<TB"
     ],
     "offenseIndex": [],
     "receiverIndex": [
-     "CIN/GB"
+     "GB<CIN"
     ],
     "rushIndex": []
    },
    "selectionTies": {
     "qbSelection": [],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {}
    }
   },
   "2022": {
    "teams": 32,
    "withQb": 32,
+   "teamsWithoutQbRow": [],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "LV",
     "TEN"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "ARI/CHI",
-     "ATL/NO",
-     "GB/WAS"
+     "CHI<ARI",
+     "ATL<NO",
+     "WAS<GB"
     ],
     "olIndex": [],
     "coverageIndex": [
-     "CIN/LAC"
+     "LAC<CIN"
     ],
     "frontIndex": [],
     "offenseIndex": [],
@@ -660,25 +819,33 @@
      "CAR"
     ],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {
+     "CAR": "Sam Darnold"
+    },
+    "rbSelection": {}
    }
   },
   "2023": {
    "teams": 32,
    "withQb": 32,
+   "teamsWithoutQbRow": [],
    "withLeadRb": 30,
    "teamsWithoutRb": [
     "CIN",
     "PHI"
    ],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "ARI/CIN",
-     "CLE/IND",
-     "SEA/TB"
+     "CIN<ARI",
+     "CLE<IND",
+     "TB<SEA"
     ],
     "olIndex": [
-     "ATL/JAX"
+     "ATL<JAX"
     ],
     "coverageIndex": [],
     "frontIndex": [],
@@ -692,32 +859,41 @@
      "NYG"
     ],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {
+     "CLE": "Joe Flacco",
+     "NYG": "Tommy DeVito"
+    },
+    "rbSelection": {}
    }
   },
   "2024": {
    "teams": 32,
    "withQb": 32,
+   "teamsWithoutQbRow": [],
    "withLeadRb": 32,
    "teamsWithoutRb": [],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "CHI/NYG"
+     "NYG<CHI"
     ],
     "olIndex": [],
     "coverageIndex": [
-     "BAL/SEA",
-     "CIN/TB",
-     "KC/LV",
-     "PIT/SF"
+     "BAL<SEA",
+     "CIN<TB",
+     "KC<LV",
+     "SF<PIT"
     ],
     "frontIndex": [
-     "DAL/DET"
+     "DAL<DET"
     ],
     "offenseIndex": [],
     "receiverIndex": [],
     "rushIndex": [
-     "GB/MIN"
+     "MIN<GB"
     ]
    },
    "selectionTies": {
@@ -725,26 +901,34 @@
      "DAL"
     ],
     "rbSelection": []
+   },
+   "selectionPicks": {
+    "qbSelection": {
+     "DAL": "Dak Prescott"
+    },
+    "rbSelection": {}
    }
   },
   "2025": {
    "teams": 32,
    "withQb": 32,
+   "teamsWithoutQbRow": [],
    "withLeadRb": 32,
    "teamsWithoutRb": [],
    "withFourReceivers": 32,
+   "teamsUnderFourReceivers": {},
    "indexTies": {
     "qbIndex": [
-     "ATL/WAS"
+     "WAS<ATL"
     ],
     "olIndex": [
-     "BUF/DAL",
-     "GB/NO"
+     "BUF<DAL",
+     "NO<GB"
     ],
     "coverageIndex": [],
     "frontIndex": [],
     "offenseIndex": [
-     "BAL/KC"
+     "BAL<KC"
     ],
     "receiverIndex": [],
     "rushIndex": []
@@ -754,6 +938,12 @@
     "rbSelection": [
      "MIA"
     ]
+   },
+   "selectionPicks": {
+    "qbSelection": {},
+    "rbSelection": {
+     "MIA": "J.Wright"
+    }
    }
   }
  }

@@ -30,13 +30,13 @@ export function loadBundle() {
 }
 
 // Index transform recovered from the 2025 bundle: ordinal rank (ascending) as a percentile
-// 100*pos/(n-1), rounded to one decimal. Tied values need an order; the 2025 bundle's ties
-// resolve exactly by reverse bundle file order (stable descending sort in file order). That
-// order has no recovered provenance, so ties are reported, not resolved, for other seasons.
+// 100*pos/(n-1), rounded to one decimal. Owner tie rule (2026-10-07): ties keep the preserved
+// Celo source/team-record order (stable ascending sort in that order). Under this rule the
+// 2025 bundle reproduces 224/224 index values.
 export function ordinalIndex(values, tieOrder) {
   const teams = Object.keys(values);
   const pos = new Map(tieOrder.map((t, i) => [t, i]));
-  const sorted = [...teams].sort((a, b) => values[a] - values[b] || pos.get(b) - pos.get(a));
+  const sorted = [...teams].sort((a, b) => values[a] - values[b] || pos.get(a) - pos.get(b));
   const n = teams.length;
   return Object.fromEntries(sorted.map((t, i) => [t, Math.round(1000 * i / (n - 1)) / 10]));
 }
@@ -51,7 +51,8 @@ export function rebuildSeason(ui, season) {
   const s = String(season), pg = ui.position_groups;
   const ol = pg.ol.by_season[s], dl = pg.dl.by_season[s], cov = pg.cov.by_season[s];
   const teams = Object.keys(ol).map(canon).sort();
-  const out = {}, ties = {qbSelection: [], rbSelection: []};
+  const out = {}, ties = {qbSelection: [], rbSelection: []}, picks = {qbSelection: {}, rbSelection: {}};
+  const firstSeen = rows => { const o = []; for (const t of rows) if (!o.includes(t)) o.push(t); return o; };
   const qbs = {};
   for (const r of ui.qb_by_season[s] || []) (qbs[canon(r.team)] ||= []).push(r);
   const rbs = {};
@@ -63,16 +64,16 @@ export function rebuildSeason(ui, season) {
   const offEpaC = Object.fromEntries(Object.entries(offEpa).map(([t, v]) => [canon(t), v]));
   for (const t of teams) {
     const p = {ol: raw.ol[t], dl: raw.dl[t], cov: raw.cov[t], off_epa: offEpaC[t]};
-    // Primary QB: most games in the season (2025: 32/32). Ties are recorded.
+    // Primary QB: most games, then preserved Celo QB-row order (stable sort; owner tie rule).
     const q = (qbs[t] || []).slice().sort((a, b) => b.games - a.games);
-    if (q.length > 1 && q[0].games === q[1].games) ties.qbSelection.push(t);
+    if (q.length > 1 && q[0].games === q[1].games) { ties.qbSelection.push(t); picks.qbSelection[t] = q[0].qb; }
     if (q.length) {
       const r = q[0];
       p.qb = {qb: r.qb, epa_per_play: r.epa_per_play, epaoe: r.epaoe, avg_opp_cov: r.avg_opp_cov, avg_opp_dl: r.avg_opp_dl, games: r.games, pred_adj: r.pred_adj, cpoe: r.cpoe, clutch_rating: r.clutch_rating};
     }
-    // Lead RB: most rush attempts (2025: 32/32). Ties are recorded.
+    // Lead RB: most rush attempts, then preserved Celo RB dictionary order (owner tie rule).
     const b = (rbs[t] || []).slice().sort((a, c) => c.rush_att - a.rush_att);
-    if (b.length > 1 && b[0].rush_att === b[1].rush_att) ties.rbSelection.push(t);
+    if (b.length > 1 && b[0].rush_att === b[1].rush_att) { ties.rbSelection.push(t); picks.rbSelection[t] = b[0].name; }
     if (b.length) {
       const r = b[0];
       p.rb = {name: r.name, rush_epa: r.rush_epa, adj_rush: r.adj_rush, adj_recv: r.adj_recv, composite: r.composite, rush_att: r.rush_att, targets: r.targets, games: r.games};
@@ -86,7 +87,14 @@ export function rebuildSeason(ui, season) {
     }
     out[t] = p;
   }
-  return {season: Number(s), teams, profiles: out, selectionTies: ties};
+  // Preserved Celo source/team-record order per index (used only to order ties).
+  const sourceOrder = {
+    qbIndex: firstSeen((ui.qb_by_season[s] || []).map(r => canon(r.team))),
+    olIndex: Object.keys(ol).map(canon), coverageIndex: Object.keys(cov).map(canon), frontIndex: Object.keys(dl).map(canon),
+    offenseIndex: Object.keys(offEpa).map(canon),
+    receiverIndex: firstSeen(Object.values(pg.wr.by_season[s] || {}).map(r => canon(r.team))),
+    rushIndex: firstSeen(Object.values(pg.rb.by_season[s] || {}).map(r => canon(r.team)))};
+  return {season: Number(s), teams, profiles: out, selectionTies: ties, selectionPicks: picks, sourceOrder};
 }
 
 export const INDEX_SOURCES = {
@@ -122,11 +130,13 @@ export function mapping2025(ui, bundle) {
   const indices = {};
   for (const [I, get] of Object.entries(INDEX_SOURCES)) {
     const vals = Object.fromEntries(fileOrder.map(t => [t, get(rebuilt.profiles[t])]));
-    const idx = ordinalIndex(vals, fileOrder);
+    const idx = ordinalIndex(vals, rebuilt.sourceOrder[I]);
     indices[I] = {compared: fileOrder.length, exact: fileOrder.filter(t => idx[t] === P[t][I]).length, tiedGroups: tiedGroups(vals)};
   }
   const missing = fileOrder.filter(t => !rebuilt.teams.includes(t));
-  return {season: 2025, teams: fileOrder.length, missingTeams: missing, fields, indices, selectionTies: rebuilt.selectionTies,
+  return {season: 2025, teams: fileOrder.length, missingTeams: missing, fields, indices,
+    indexValuesExact: Object.values(indices).reduce((a, v) => a + v.exact, 0), indexValuesCompared: Object.values(indices).reduce((a, v) => a + v.compared, 0),
+    selectionTies: rebuilt.selectionTies, selectionPicks: rebuilt.selectionPicks,
     schemaNote: 'Only alias LA->LAR is needed in 2025. Celo-only fields dropped by the bundle: clutch, epa_tgt, adot, yac, team, wpa_per_play and entropy excess fields.'};
 }
 
@@ -138,14 +148,20 @@ export function historicalCoverage(ui) {
     const tieCount = {};
     for (const [I, get] of Object.entries(INDEX_SOURCES)) {
       const vals = Object.fromEntries(r.teams.filter(t => Number.isFinite(get(r.profiles[t]))).map(t => [t, get(r.profiles[t])]));
-      tieCount[I] = tiedGroups(vals).map(g => g.join('/'));
+      if (tiedGroups(vals).some(g => g.some(t => !r.sourceOrder[I].includes(t)))) throw new Error('tie member without preserved source order ' + s + ' ' + I);
+      // Each tie group listed in preserved Celo source order (the order the owner rule applies).
+      tieCount[I] = tiedGroups(vals).map(g => g.slice().sort((a, b) => r.sourceOrder[I].indexOf(a) - r.sourceOrder[I].indexOf(b)).join('<'));
     }
+    const wrBy = ui.position_groups.wr.by_season[String(s)] || {};
+    const recCount = t => Object.values(wrBy).filter(x => canon(x.team) === t).length;
     out[s] = {teams: r.teams.length,
       withQb: r.teams.filter(t => r.profiles[t].qb).length,
+      teamsWithoutQbRow: r.teams.filter(t => !r.profiles[t].qb),
       withLeadRb: r.teams.filter(t => r.profiles[t].rb).length,
       teamsWithoutRb: r.teams.filter(t => !r.profiles[t].rb),
-      withFourReceivers: r.teams.filter(t => (ui.position_groups.wr.by_season[String(s)] && Object.values(ui.position_groups.wr.by_season[String(s)]).filter(x => canon(x.team) === t).length >= 4)).length,
-      indexTies: tieCount, selectionTies: r.selectionTies};
+      withFourReceivers: r.teams.filter(t => recCount(t) >= 4).length,
+      teamsUnderFourReceivers: Object.fromEntries(r.teams.filter(t => recCount(t) < 4).map(t => [t, recCount(t)])),
+      indexTies: tieCount, selectionTies: r.selectionTies, selectionPicks: r.selectionPicks};
   }
   return out;
 }
@@ -162,9 +178,11 @@ export function eloProvenance(ui) {
   return {teams: teams.length,
     eloExact: teams.filter(t => M[t].elo === U[t].elo).length,
     trajectoryExact: teams.filter(t => JSON.stringify(M[t].trajectory) === JSON.stringify(U[t].trajectory)).length,
-    finalEloVsSeasonEndSnapshotMaxGap2025: Math.round(Math.max(...gaps) * 10) / 10,
-    finalEloEqualsSeasonEndSnapshot: gaps.filter(g => g === 0).length,
-    note: 'Production preseason Elo is Celo rankings.elo. Earlier seasons keep only season-end snapshots (by_season_rank = trajectory), which differ from the final Elo; the historical analogue of rankings.elo is not preserved.'};
+    mainRunVsTrajectoryRunMaxGap2025: Math.round(Math.max(...gaps) * 10) / 10,
+    mainRunEqualsTrajectoryRun2025: gaps.filter(g => g === 0).length,
+    runs: {rankingsElo: 'export_ui_data.py main EloModel run over all games WITH supplementary inputs (roster_ret, personnel_data, team_av, espn_qbr, qb_pressure)',
+      trajectoryAndBySeasonRank: 'export_ui_data.py traj_model: a separate EloModel run season by season WITHOUT those supplementary inputs, snapshotted after each season'},
+    note: 'Production preseason Elo equals Celo rankings.elo exactly. The 2025 gap to the trajectory run compares two runs with different input construction, so it shows non-equivalence only and does not establish a season-end vs preseason distinction. No per-season state of the main (full-input) run is preserved for earlier seasons; that missing authenticated historical full-run state is the B3 blocker for weeks 2-11.'};
 }
 
 if (import.meta.url === `file://${process.argv[1].replace(/\\/g, '/')}` || process.argv[1]?.endsWith('celo_mapping.mjs')) {

@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
 import * as C from './classification.mjs';
 import * as M from './celo_mapping.mjs';
 
@@ -67,11 +68,55 @@ const mapping = JSON.parse(lf(DIR + '/results/celo_mapping.json'));
 const prov = JSON.parse(lf(DIR + '/provenance.json'));
 ctl('committed mapping was produced from the pinned Celo ui_data.json', mapping.celoUiDataSha256 === prov.celo.outputs['sample_data/ui_data.json']);
 ctl('2025 Celo -> FORCE mapping exact for every B1 field (32/32)', Object.values(mapping.mapping2025.fields).every(v => v.compared === 32 && v.exact === 32) && mapping.mapping2025.missingTeams.length === 0);
-ctl('2025 bundle indices rebuild exactly (7 indices, 32/32)', Object.values(mapping.mapping2025.indices).every(v => v.exact === 32));
+ctl('2025 bundle indices rebuild exactly under the owner tie rule (224/224 index values)', Object.values(mapping.mapping2025.indices).every(v => v.exact === 32) && mapping.mapping2025.indexValuesExact === 224 && mapping.mapping2025.indexValuesCompared === 224);
 ctl('2025 index ties exist (so tie order matters)', Object.values(mapping.mapping2025.indices).reduce((a, v) => a + v.tiedGroups.length, 0) === 4);
-ctl('production preseason Elo equals Celo rankings exactly; season-end snapshot differs', mapping.eloProvenance.eloExact === 32 && mapping.eloProvenance.trajectoryExact === 32 && mapping.eloProvenance.finalEloVsSeasonEndSnapshotMaxGap2025 === 10.7);
+// Owner tie rule evidence, 2008-2025: 53 two-team index tie groups, each with a preserved Celo source order.
+{
+  const tot = {}; let groups = [];
+  for (const h of Object.values(mapping.historical)) for (const [k, v] of Object.entries(h.indexTies)) { tot[k] = (tot[k] || 0) + v.length; groups = groups.concat(v); }
+  ctl('53 two-team ordinal-index tie groups 2008-2025 (QB 14, OL 13, coverage 9, front 9, offense 3, receivers 2, rushing 3)',
+    JSON.stringify(tot) === JSON.stringify({qbIndex: 14, olIndex: 13, coverageIndex: 9, frontIndex: 9, offenseIndex: 3, receiverIndex: 2, rushIndex: 3}) && groups.length === 53);
+  ctl('every tie group is a two-team group listed in preserved Celo source order', groups.every(g => g.split('<').length === 2));
+  const qb = {}, rb = {};
+  for (const [s, h] of Object.entries(mapping.historical)) { for (const [t, n] of Object.entries(h.selectionPicks.qbSelection)) qb[s + ' ' + t] = n; for (const [t, n] of Object.entries(h.selectionPicks.rbSelection)) rb[s + ' ' + t] = n; }
+  ctl('9 primary-QB ties resolved by preserved Celo QB-row order', JSON.stringify(qb) === JSON.stringify({'2010 TEN': 'Vince Young', '2012 KC': 'Matt Cassel', '2013 HOU': 'Case Keenum', '2020 JAX': 'Gardner Minshew II', '2020 WAS': 'Alex Smith', '2022 CAR': 'Sam Darnold', '2023 CLE': 'Joe Flacco', '2023 NYG': 'Tommy DeVito', '2024 DAL': 'Dak Prescott'}));
+  ctl('2 lead-RB ties resolved by preserved Celo RB dictionary order (Mostert SF 2019, Wright MIA 2025)', JSON.stringify(rb) === JSON.stringify({'2019 SF': 'R.Mostert', '2025 MIA': 'J.Wright'}));
+}
+// Correction 2: the 10.7 gap compares two differently fed Celo runs; it is not a temporal decomposition.
+const E = mapping.eloProvenance;
+ctl('production preseason Elo equals Celo rankings.elo exactly (32/32)', E.eloExact === 32 && E.trajectoryExact === 32);
+ctl('10.7 gap is attributed to two runs with different inputs, not to season-end vs preseason', E.mainRunVsTrajectoryRunMaxGap2025 === 10.7 && /WITH supplementary inputs/.test(E.runs.rankingsElo) && /WITHOUT those supplementary inputs/.test(E.runs.trajectoryAndBySeasonRank) && /non-equivalence only/.test(E.note) && /does not establish a season-end vs preseason/.test(E.note));
+ctl('no withdrawn season-end-snapshot interpretation remains in the evidence or classification', !('finalEloVsSeasonEndSnapshotMaxGap2025' in E) && !/differ from the final Elo/.test(lf(DIR + '/classification.mjs')));
+ctl('B3 retained for weeks 2-11, not for week 1 or week 12+', Object.values(C.replayability()).every(u => u.weeks2to11.blockers.includes('B3') && !(u.week1.blockers || []).includes('B3') && !(u.week12plus.blockers || []).includes('B3')));
 ctl('historical record covers 32 teams per season 2008-2025 for OL/DL/coverage', Object.values(mapping.historical).every(h => h.teams === 32));
-ctl('QB relocation gap recorded (29 teams with a QB row 2008-2015)', [2008, 2015].every(s => mapping.historical[s].withQb === 29) && mapping.historical[2021].withQb === 32);
+// Correction 3: B2 completeness is qualified by these historical gaps.
+{
+  const gap = s => JSON.stringify(mapping.historical[s].teamsWithoutQbRow);
+  ctl('QB relocation gap: no QB rows for LAR 2008-2015, LAC 2008-2016, LV 2008-2019',
+    [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015].every(s => gap(s) === '["LAC","LAR","LV"]') && gap(2016) === '["LAC","LV"]' && [2017, 2018, 2019].every(s => gap(s) === '["LV"]') && [2020, 2021, 2022, 2023, 2024, 2025].every(s => gap(s) === '[]'));
+  ctl('relocation gap classified as missing rows from producer aliasing, not reconstructed', /producer aliasing/.test(C.RESIDUALS.QB_RELOCATION_GAP) && /none are reconstructed/.test(C.RESIDUALS.QB_RELOCATION_GAP));
+  ctl('2008 under-four receiver cases: exactly CAR, BAL, CIN, CLE, LV, ATL, DET, LAR',
+    JSON.stringify(mapping.historical[2008].teamsUnderFourReceivers) === JSON.stringify({ATL: 3, BAL: 3, CAR: 1, CIN: 2, CLE: 2, DET: 2, LAR: 3, LV: 2}) && Object.entries(mapping.historical).every(([s, h]) => s === '2008' || Object.keys(h.teamsUnderFourReceivers).length === 0));
+  ctl('README does not claim historical B2 references are complete', !/every population input exists/.test(lf(DIR + '/README.md')) && /not fully resolved/.test(lf(DIR + '/README.md')));
+}
+// Correction 1: RB leakage count under the documented producer-consistent definition.
+{
+  const L = JSON.parse(lf(DIR + '/results/rb_leakage.json'));
+  ctl('RB leakage: 130 distinct player-seasons, 131 team/player/season groups (REG passer pool, as the producer)', L.affectedPlayerSeasons === 130 && L.affectedGroups === 131 && L.groups.length === 131 && new Set(L.groups.map(g => g.season + ' ' + g.player)).size === 130);
+  ctl('RB leakage: the one multi-team player-season is 2010 M.Lynch', JSON.stringify(L.multiTeamPlayerSeasons) === '["2010 M.Lynch"]');
+  ctl('RB leakage: every counted group has >=30 rushes and a first REG pass strictly after its season', L.groups.every(g => g.rushes >= 30 && g.firstPassSeason > g.season));
+  ctl('Tomlinson control: 2008 LAC L.Tomlinson, 292 carries, first REG pass 2009', JSON.stringify(L.tomlinson2008) === JSON.stringify([{season: 2008, team: 'LAC', player: 'L.Tomlinson', rushes: 292, firstPassSeason: 2009}]));
+  ctl('earlier 127 explained: REG+POST passer pool gives 127 player-seasons (128 groups)', L.withPostseasonPasserPool.affectedPlayerSeasons === 127 && L.withPostseasonPasserPool.affectedGroups === 128);
+  ctl('classification states the corrected count', C.FIELDS.find(f => f.field.startsWith('rb.')).leak.includes('130 distinct player-seasons (131 team/player/season groups)'));
+  // Recompute from the pinned play-by-play when a directory is supplied (read-only; hashes checked).
+  const dir = process.env.MD08_PINNED_PBP_DIR;
+  if (dir && fs.existsSync(dir)) {
+    const r = spawnSync('python', [DIR + '/rb_leakage.py', dir], {encoding: 'utf8', env: {...process.env, PYTHONIOENCODING: 'utf-8'}});
+    assert.equal(r.status, 0, r.stderr);
+    const fresh = JSON.parse(r.stdout);
+    ctl('RB leakage recomputed from pinned play-by-play', fresh.affectedPlayerSeasons === 130 && fresh.affectedGroups === 131);
+  }
+}
 ctl('provenance pins: 55 files plus archive, regeneration verdict B, 38 pinned upstream assets', prov.celo.fileCount === 55 && prov.celo.archiveSha256 && prov.regeneration.verdict.startsWith('B.') && prov.regeneration.downloadedUpstream.length === 38);
 
 // External Celo provenance (read-only). Verified when the owner's tree is reachable.
@@ -88,7 +133,7 @@ if (fs.existsSync(M.celoPath())) {
 }
 
 // Package checksums.
-const PACKAGE = ['README.md', 'provenance.json', 'classification.mjs', 'celo_mapping.mjs', 'check.mjs', 'results/classification.json', 'results/replayability.json', 'results/celo_mapping.json'];
+const PACKAGE = ['README.md', 'provenance.json', 'classification.mjs', 'celo_mapping.mjs', 'rb_leakage.py', 'check.mjs', 'results/classification.json', 'results/replayability.json', 'results/celo_mapping.json', 'results/rb_leakage.json'];
 const hashes = Object.fromEntries(PACKAGE.map(f => [f, sha(lf(DIR + '/' + f))]));
 if (WRITE) fs.writeFileSync(DIR + '/hashes.json', JSON.stringify(hashes, null, 2) + '\n');
 assert.deepEqual(JSON.parse(lf(DIR + '/hashes.json')), hashes, 'hashes.json');

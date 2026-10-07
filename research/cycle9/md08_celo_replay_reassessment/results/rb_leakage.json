@@ -1,0 +1,942 @@
+{
+ "definition": "An affected group is a (season s, posteam, rusher name) with >= 30 qualifying REG rushes in s (same filter, before the known_qbs exclusion) whose name is in known_qbs only because of REG passes in seasons AFTER s (no REG pass in any season <= s). An affected player-season is a distinct (s, name) with at least one affected group.",
+ "producerFilter": "season_type == REG for both passers (known_qbs) and rushes",
+ "affectedGroups": 131,
+ "affectedPlayerSeasons": 130,
+ "multiTeamPlayerSeasons": [
+  "2010 M.Lynch"
+ ],
+ "tomlinson2008": [
+  {
+   "season": 2008,
+   "team": "LAC",
+   "player": "L.Tomlinson",
+   "rushes": 292,
+   "firstPassSeason": 2009
+  }
+ ],
+ "withPostseasonPasserPool": {
+  "affectedGroups": 128,
+  "affectedPlayerSeasons": 127,
+  "note": "Earlier a9bb0f4 figure (127): passer seasons taken from all plays (REG+POST), so a player whose first pass was a postseason pass in a season <= s was not counted. That population is not the producer's."
+ },
+ "groups": [
+  {
+   "season": 2008,
+   "team": "ATL",
+   "player": "J.Norwood",
+   "rushes": 94,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2008,
+   "team": "BAL",
+   "player": "R.Rice",
+   "rushes": 107,
+   "firstPassSeason": 2009
+  },
+  {
+   "season": 2008,
+   "team": "BUF",
+   "player": "F.Jackson",
+   "rushes": 129,
+   "firstPassSeason": 2009
+  },
+  {
+   "season": 2008,
+   "team": "BUF",
+   "player": "M.Lynch",
+   "rushes": 251,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2008,
+   "team": "CHI",
+   "player": "M.Forte",
+   "rushes": 315,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2008,
+   "team": "DAL",
+   "player": "M.Barber",
+   "rushes": 238,
+   "firstPassSeason": 2010
+  },
+  {
+   "season": 2008,
+   "team": "DEN",
+   "player": "P.Hillis",
+   "rushes": 68,
+   "firstPassSeason": 2010
+  },
+  {
+   "season": 2008,
+   "team": "IND",
+   "player": "J.Addai",
+   "rushes": 155,
+   "firstPassSeason": 2009
+  },
+  {
+   "season": 2008,
+   "team": "JAX",
+   "player": "M.Jones-Drew",
+   "rushes": 198,
+   "firstPassSeason": 2010
+  },
+  {
+   "season": 2008,
+   "team": "LAC",
+   "player": "L.Tomlinson",
+   "rushes": 292,
+   "firstPassSeason": 2009
+  },
+  {
+   "season": 2008,
+   "team": "MIA",
+   "player": "R.Williams",
+   "rushes": 161,
+   "firstPassSeason": 2009
+  },
+  {
+   "season": 2008,
+   "team": "NYJ",
+   "player": "L.Washington",
+   "rushes": 77,
+   "firstPassSeason": 2010
+  },
+  {
+   "season": 2008,
+   "team": "PHI",
+   "player": "B.Westbrook",
+   "rushes": 233,
+   "firstPassSeason": 2009
+  },
+  {
+   "season": 2008,
+   "team": "PIT",
+   "player": "M.Moore",
+   "rushes": 140,
+   "firstPassSeason": 2009
+  },
+  {
+   "season": 2008,
+   "team": "TB",
+   "player": "C.Williams",
+   "rushes": 63,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2008,
+   "team": "TEN",
+   "player": "C.Johnson",
+   "rushes": 251,
+   "firstPassSeason": 2009
+  },
+  {
+   "season": 2008,
+   "team": "WAS",
+   "player": "C.Portis",
+   "rushes": 342,
+   "firstPassSeason": 2009
+  },
+  {
+   "season": 2009,
+   "team": "ATL",
+   "player": "J.Norwood",
+   "rushes": 76,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2009,
+   "team": "BUF",
+   "player": "M.Lynch",
+   "rushes": 120,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2009,
+   "team": "CHI",
+   "player": "M.Forte",
+   "rushes": 258,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2009,
+   "team": "CIN",
+   "player": "B.Scott",
+   "rushes": 74,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2009,
+   "team": "DAL",
+   "player": "M.Barber",
+   "rushes": 214,
+   "firstPassSeason": 2010
+  },
+  {
+   "season": 2009,
+   "team": "HOU",
+   "player": "A.Foster",
+   "rushes": 54,
+   "firstPassSeason": 2014
+  },
+  {
+   "season": 2009,
+   "team": "IND",
+   "player": "D.Brown",
+   "rushes": 79,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2009,
+   "team": "JAX",
+   "player": "M.Jones-Drew",
+   "rushes": 313,
+   "firstPassSeason": 2010
+  },
+  {
+   "season": 2009,
+   "team": "NYJ",
+   "player": "L.Washington",
+   "rushes": 71,
+   "firstPassSeason": 2010
+  },
+  {
+   "season": 2009,
+   "team": "TB",
+   "player": "C.Williams",
+   "rushes": 209,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2010,
+   "team": "BUF",
+   "player": "M.Lynch",
+   "rushes": 37,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2010,
+   "team": "CHI",
+   "player": "M.Forte",
+   "rushes": 237,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2010,
+   "team": "CIN",
+   "player": "B.Scott",
+   "rushes": 55,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2010,
+   "team": "HOU",
+   "player": "A.Foster",
+   "rushes": 326,
+   "firstPassSeason": 2014
+  },
+  {
+   "season": 2010,
+   "team": "IND",
+   "player": "D.Brown",
+   "rushes": 129,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2010,
+   "team": "LV",
+   "player": "M.Reece",
+   "rushes": 30,
+   "firstPassSeason": 2013
+  },
+  {
+   "season": 2010,
+   "team": "SEA",
+   "player": "M.Lynch",
+   "rushes": 165,
+   "firstPassSeason": 2011
+  },
+  {
+   "season": 2010,
+   "team": "TB",
+   "player": "C.Williams",
+   "rushes": 125,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2011,
+   "team": "DAL",
+   "player": "D.Murray",
+   "rushes": 164,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2011,
+   "team": "HOU",
+   "player": "A.Foster",
+   "rushes": 278,
+   "firstPassSeason": 2014
+  },
+  {
+   "season": 2011,
+   "team": "IND",
+   "player": "D.Brown",
+   "rushes": 134,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2011,
+   "team": "LA",
+   "player": "C.Williams",
+   "rushes": 87,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2011,
+   "team": "SF",
+   "player": "K.Hunter",
+   "rushes": 112,
+   "firstPassSeason": 2012
+  },
+  {
+   "season": 2012,
+   "team": "DAL",
+   "player": "D.Murray",
+   "rushes": 161,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2012,
+   "team": "HOU",
+   "player": "A.Foster",
+   "rushes": 351,
+   "firstPassSeason": 2014
+  },
+  {
+   "season": 2012,
+   "team": "IND",
+   "player": "D.Brown",
+   "rushes": 109,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2012,
+   "team": "LV",
+   "player": "M.Reece",
+   "rushes": 59,
+   "firstPassSeason": 2013
+  },
+  {
+   "season": 2012,
+   "team": "NE",
+   "player": "S.Vereen",
+   "rushes": 62,
+   "firstPassSeason": 2017
+  },
+  {
+   "season": 2012,
+   "team": "NYJ",
+   "player": "B.Powell",
+   "rushes": 110,
+   "firstPassSeason": 2013
+  },
+  {
+   "season": 2013,
+   "team": "DAL",
+   "player": "D.Murray",
+   "rushes": 217,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2013,
+   "team": "HOU",
+   "player": "A.Foster",
+   "rushes": 122,
+   "firstPassSeason": 2014
+  },
+  {
+   "season": 2013,
+   "team": "IND",
+   "player": "D.Brown",
+   "rushes": 102,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2013,
+   "team": "NE",
+   "player": "S.Vereen",
+   "rushes": 45,
+   "firstPassSeason": 2017
+  },
+  {
+   "season": 2013,
+   "team": "PIT",
+   "player": "L.Bell",
+   "rushes": 244,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2014,
+   "team": "DAL",
+   "player": "D.Murray",
+   "rushes": 392,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2014,
+   "team": "HOU",
+   "player": "J.Grimes",
+   "rushes": 39,
+   "firstPassSeason": 2015
+  },
+  {
+   "season": 2014,
+   "team": "LAC",
+   "player": "D.Brown",
+   "rushes": 85,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2014,
+   "team": "MIN",
+   "player": "J.McKinnon",
+   "rushes": 113,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2014,
+   "team": "NE",
+   "player": "S.Vereen",
+   "rushes": 96,
+   "firstPassSeason": 2017
+  },
+  {
+   "season": 2014,
+   "team": "PIT",
+   "player": "L.Bell",
+   "rushes": 290,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2015,
+   "team": "BAL",
+   "player": "J.Allen",
+   "rushes": 137,
+   "firstPassSeason": 2018
+  },
+  {
+   "season": 2015,
+   "team": "LAC",
+   "player": "D.Brown",
+   "rushes": 59,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2015,
+   "team": "MIN",
+   "player": "J.McKinnon",
+   "rushes": 52,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2015,
+   "team": "NYG",
+   "player": "S.Vereen",
+   "rushes": 61,
+   "firstPassSeason": 2017
+  },
+  {
+   "season": 2015,
+   "team": "PHI",
+   "player": "D.Murray",
+   "rushes": 193,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2015,
+   "team": "PIT",
+   "player": "L.Bell",
+   "rushes": 113,
+   "firstPassSeason": 2016
+  },
+  {
+   "season": 2015,
+   "team": "WAS",
+   "player": "M.Jones",
+   "rushes": 144,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2016,
+   "team": "CIN",
+   "player": "R.Burkhead",
+   "rushes": 74,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2016,
+   "team": "DAL",
+   "player": "E.Elliott",
+   "rushes": 322,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2016,
+   "team": "NE",
+   "player": "J.White",
+   "rushes": 39,
+   "firstPassSeason": 2019
+  },
+  {
+   "season": 2016,
+   "team": "NYG",
+   "player": "S.Vereen",
+   "rushes": 33,
+   "firstPassSeason": 2017
+  },
+  {
+   "season": 2016,
+   "team": "TEN",
+   "player": "D.Henry",
+   "rushes": 110,
+   "firstPassSeason": 2018
+  },
+  {
+   "season": 2016,
+   "team": "WAS",
+   "player": "M.Jones",
+   "rushes": 99,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2017,
+   "team": "BAL",
+   "player": "J.Allen",
+   "rushes": 153,
+   "firstPassSeason": 2018
+  },
+  {
+   "season": 2017,
+   "team": "CAR",
+   "player": "C.McCaffrey",
+   "rushes": 117,
+   "firstPassSeason": 2018
+  },
+  {
+   "season": 2017,
+   "team": "CIN",
+   "player": "J.Mixon",
+   "rushes": 178,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2017,
+   "team": "DAL",
+   "player": "E.Elliott",
+   "rushes": 242,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2017,
+   "team": "JAX",
+   "player": "L.Fournette",
+   "rushes": 269,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2017,
+   "team": "KC",
+   "player": "K.Hunt",
+   "rushes": 272,
+   "firstPassSeason": 2019
+  },
+  {
+   "season": 2017,
+   "team": "MIN",
+   "player": "D.Cook",
+   "rushes": 74,
+   "firstPassSeason": 2022
+  },
+  {
+   "season": 2017,
+   "team": "NE",
+   "player": "J.White",
+   "rushes": 43,
+   "firstPassSeason": 2019
+  },
+  {
+   "season": 2017,
+   "team": "NE",
+   "player": "R.Burkhead",
+   "rushes": 64,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2017,
+   "team": "NO",
+   "player": "A.Kamara",
+   "rushes": 121,
+   "firstPassSeason": 2019
+  },
+  {
+   "season": 2017,
+   "team": "TEN",
+   "player": "D.Henry",
+   "rushes": 176,
+   "firstPassSeason": 2018
+  },
+  {
+   "season": 2018,
+   "team": "CIN",
+   "player": "J.Mixon",
+   "rushes": 237,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2018,
+   "team": "DAL",
+   "player": "E.Elliott",
+   "rushes": 304,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2018,
+   "team": "JAX",
+   "player": "L.Fournette",
+   "rushes": 133,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2018,
+   "team": "KC",
+   "player": "K.Hunt",
+   "rushes": 181,
+   "firstPassSeason": 2019
+  },
+  {
+   "season": 2018,
+   "team": "MIN",
+   "player": "D.Cook",
+   "rushes": 133,
+   "firstPassSeason": 2022
+  },
+  {
+   "season": 2018,
+   "team": "NE",
+   "player": "C.Patterson",
+   "rushes": 42,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2018,
+   "team": "NE",
+   "player": "J.White",
+   "rushes": 94,
+   "firstPassSeason": 2019
+  },
+  {
+   "season": 2018,
+   "team": "NE",
+   "player": "R.Burkhead",
+   "rushes": 57,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2018,
+   "team": "NO",
+   "player": "A.Kamara",
+   "rushes": 197,
+   "firstPassSeason": 2019
+  },
+  {
+   "season": 2018,
+   "team": "NYG",
+   "player": "S.Barkley",
+   "rushes": 263,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2018,
+   "team": "PIT",
+   "player": "J.Samuels",
+   "rushes": 56,
+   "firstPassSeason": 2019
+  },
+  {
+   "season": 2019,
+   "team": "BUF",
+   "player": "D.Singletary",
+   "rushes": 151,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2019,
+   "team": "CHI",
+   "player": "D.Montgomery",
+   "rushes": 242,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2019,
+   "team": "CIN",
+   "player": "J.Mixon",
+   "rushes": 278,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2019,
+   "team": "DAL",
+   "player": "E.Elliott",
+   "rushes": 301,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2019,
+   "team": "JAX",
+   "player": "L.Fournette",
+   "rushes": 266,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2019,
+   "team": "LV",
+   "player": "J.Jacobs",
+   "rushes": 242,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2019,
+   "team": "MIN",
+   "player": "D.Cook",
+   "rushes": 250,
+   "firstPassSeason": 2022
+  },
+  {
+   "season": 2019,
+   "team": "NE",
+   "player": "R.Burkhead",
+   "rushes": 65,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2019,
+   "team": "NYG",
+   "player": "S.Barkley",
+   "rushes": 217,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2020,
+   "team": "BUF",
+   "player": "D.Singletary",
+   "rushes": 156,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2020,
+   "team": "CHI",
+   "player": "C.Patterson",
+   "rushes": 64,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2020,
+   "team": "CHI",
+   "player": "D.Montgomery",
+   "rushes": 248,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2020,
+   "team": "CIN",
+   "player": "J.Mixon",
+   "rushes": 119,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2020,
+   "team": "DAL",
+   "player": "E.Elliott",
+   "rushes": 245,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2020,
+   "team": "DET",
+   "player": "D.Swift",
+   "rushes": 114,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2020,
+   "team": "LA",
+   "player": "C.Akers",
+   "rushes": 145,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2020,
+   "team": "LV",
+   "player": "J.Jacobs",
+   "rushes": 273,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2020,
+   "team": "MIN",
+   "player": "D.Cook",
+   "rushes": 315,
+   "firstPassSeason": 2022
+  },
+  {
+   "season": 2020,
+   "team": "NE",
+   "player": "R.Burkhead",
+   "rushes": 67,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2020,
+   "team": "SEA",
+   "player": "D.Dallas",
+   "rushes": 34,
+   "firstPassSeason": 2022
+  },
+  {
+   "season": 2020,
+   "team": "TB",
+   "player": "L.Fournette",
+   "rushes": 97,
+   "firstPassSeason": 2021
+  },
+  {
+   "season": 2021,
+   "team": "BUF",
+   "player": "D.Singletary",
+   "rushes": 188,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2021,
+   "team": "CIN",
+   "player": "J.Mixon",
+   "rushes": 294,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2021,
+   "team": "LV",
+   "player": "J.Jacobs",
+   "rushes": 217,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2021,
+   "team": "MIN",
+   "player": "D.Cook",
+   "rushes": 251,
+   "firstPassSeason": 2022
+  },
+  {
+   "season": 2021,
+   "team": "NYG",
+   "player": "S.Barkley",
+   "rushes": 162,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2021,
+   "team": "PHI",
+   "player": "K.Gainwell",
+   "rushes": 69,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2021,
+   "team": "PIT",
+   "player": "N.Harris",
+   "rushes": 307,
+   "firstPassSeason": 2022
+  },
+  {
+   "season": 2021,
+   "team": "SEA",
+   "player": "D.Dallas",
+   "rushes": 33,
+   "firstPassSeason": 2022
+  },
+  {
+   "season": 2022,
+   "team": "BUF",
+   "player": "D.Singletary",
+   "rushes": 177,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2022,
+   "team": "CIN",
+   "player": "J.Mixon",
+   "rushes": 210,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2022,
+   "team": "LA",
+   "player": "C.Akers",
+   "rushes": 188,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2022,
+   "team": "LV",
+   "player": "J.Jacobs",
+   "rushes": 341,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2022,
+   "team": "NYG",
+   "player": "S.Barkley",
+   "rushes": 295,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2022,
+   "team": "PHI",
+   "player": "K.Gainwell",
+   "rushes": 53,
+   "firstPassSeason": 2023
+  },
+  {
+   "season": 2023,
+   "team": "CIN",
+   "player": "J.Mixon",
+   "rushes": 257,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2023,
+   "team": "MIN",
+   "player": "T.Chandler",
+   "rushes": 102,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2023,
+   "team": "NYG",
+   "player": "S.Barkley",
+   "rushes": 248,
+   "firstPassSeason": 2024
+  },
+  {
+   "season": 2024,
+   "team": "NYJ",
+   "player": "B.Hall",
+   "rushes": 212,
+   "firstPassSeason": 2025
+  }
+ ]
+}

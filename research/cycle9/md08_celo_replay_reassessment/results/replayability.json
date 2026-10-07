@@ -5,7 +5,7 @@
    "stage": "week1",
    "status": "CONDITIONAL",
    "conditions": [
-    "Prior: regressed qbIndex: INDEX_TIE_ORDER, SELECTION_TIES, QB_RELOCATION_GAP",
+    "Prior: regressed qbIndex: TIE_RULE, QB_RELOCATION_GAP",
     "Live: EPA/success CDF reference: B6: display season >= 2022",
     "Live: CPOE (passing_cpoe): component coverage unverified"
    ]
@@ -23,7 +23,7 @@
    "stage": "week12plus",
    "status": "CONDITIONAL",
    "conditions": [
-    "Prior: regressed qbIndex: INDEX_TIE_ORDER, SELECTION_TIES, QB_RELOCATION_GAP",
+    "Prior: regressed qbIndex: TIE_RULE, QB_RELOCATION_GAP",
     "Live: EPA/success CDF reference: B6: display season >= 2022",
     "Live: CPOE (passing_cpoe): component coverage unverified"
    ]
@@ -35,7 +35,7 @@
    "stage": "week1",
    "status": "CONDITIONAL",
    "conditions": [
-    "Prior: regressed olIndex: INDEX_TIE_ORDER",
+    "Prior: regressed olIndex: TIE_RULE",
     "Live route 1 (display >= 2022): B6 selects the route",
     "Live disruption: component coverage verified only for 2024-2025"
    ]
@@ -53,7 +53,7 @@
    "stage": "week12plus",
    "status": "CONDITIONAL",
    "conditions": [
-    "Prior: regressed olIndex: INDEX_TIE_ORDER",
+    "Prior: regressed olIndex: TIE_RULE",
     "Live route 1 (display >= 2022): B6 selects the route",
     "Live disruption: component coverage verified only for 2024-2025"
    ]
@@ -66,7 +66,7 @@
    "status": "BLOCKED",
    "blockers": [
     "Prior and live CDF reference: qb.epaoe hindsight; rb selection uses later seasons",
-    "Ridge beta and QB centre: B2 now purely semantic"
+    "Ridge beta and QB centre: B2: owner-excluded leaked dependencies (decisive) plus historical coverage gaps"
    ]
   },
   "weeks2to11": {
@@ -75,7 +75,7 @@
    "status": "BLOCKED",
    "blockers": [
     "Prior and live CDF reference: qb.epaoe hindsight; rb selection uses later seasons",
-    "Ridge beta and QB centre: B2 now purely semantic",
+    "Ridge beta and QB centre: B2: owner-excluded leaked dependencies (decisive) plus historical coverage gaps",
     "B3"
    ]
   },
@@ -85,7 +85,7 @@
    "status": "BLOCKED",
    "blockers": [
     "Prior and live CDF reference: qb.epaoe hindsight; rb selection uses later seasons",
-    "Ridge beta and QB centre: B2 now purely semantic"
+    "Ridge beta and QB centre: B2: owner-excluded leaked dependencies (decisive) plus historical coverage gaps"
    ]
   }
  },
@@ -96,7 +96,7 @@
    "status": "BLOCKED",
    "blockers": [
     "Prior and live CDF reference: rb selection uses later seasons; qb.epaoe hindsight",
-    "Receiving ridge beta: B2 now purely semantic"
+    "Receiving ridge beta: B2: owner-excluded leaked dependencies (decisive) plus historical coverage gaps"
    ]
   },
   "weeks2to11": {
@@ -105,7 +105,7 @@
    "status": "BLOCKED",
    "blockers": [
     "Prior and live CDF reference: rb selection uses later seasons; qb.epaoe hindsight",
-    "Receiving ridge beta: B2 now purely semantic",
+    "Receiving ridge beta: B2: owner-excluded leaked dependencies (decisive) plus historical coverage gaps",
     "B3"
    ]
   },
@@ -115,7 +115,7 @@
    "status": "BLOCKED",
    "blockers": [
     "Prior and live CDF reference: rb selection uses later seasons; qb.epaoe hindsight",
-    "Receiving ridge beta: B2 now purely semantic"
+    "Receiving ridge beta: B2: owner-excluded leaked dependencies (decisive) plus historical coverage gaps"
    ]
   }
  },
