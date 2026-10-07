@@ -37,7 +37,7 @@ Files:
 
 **2. Receiver and RB paths depend on fields that leak later information.** The owner keeps both excluded, and no replacement is created.
 - **`qb.epaoe`:** read through `priorQbPassEpa` for the receiver/RB betas, QB centre, residual populations and priors. Its Elo term uses hindsight-tuned Celo parameters.
-- **Cross-season RB eligibility:** under the producer's regular-season filtering, **130 distinct player-seasons (131 team/player/season groups)** are excluded only because of a later first pass. Example: 2008 LAC L. Tomlinson, 292 carries, first regular-season pass in 2009.
+- **Cross-season RB eligibility:** under the producer's own preprocessing (`load_pbp` pass/run, down and ydstogo filter, then regular season), **130 distinct player-seasons (131 team/player/season groups)** are excluded only because of a later first pass. Example: 2008 LAC L. Tomlinson, 292 carries, first regular-season pass in 2009.
 
 These are conditional possibilities, not established replay spans:
 
@@ -165,9 +165,17 @@ Verification steps that need no owner semantics: `passing_cpoe` and play-by-play
 ## 8. Corrections after Codex review B of `a9bb0f4`
 
 **1. RB leakage count.** [rb_leakage.py](rb_leakage.py) defines the count exactly and reproduces it from the hash-checked pinned play-by-play.
-- **Definition:** an affected group is a (season *s*, posteam, rusher) with ≥30 regular-season rushes (`play_type == 'run'`, rusher and EPA present) whose name enters the producer's pooled regular-season passer set only through passes in seasons after *s*.
+- **Preprocessing:** the script first applies Celo's own `load_pbp` filter, in the producer's order:
+  1. keep `season == s`
+  2. keep `play_type` in pass/run
+  3. drop rows missing `down` or `ydstogo`
+
+  It then sets a missing `season_type` to REG (there are none) and keeps REG plays. Rush counts and both passer populations are derived only after this filter.
+- **Definition:** an affected group is a (season *s*, posteam, rusher) with ≥30 producer-filtered regular-season rushes (`play_type == 'run'`, rusher and EPA present) whose name enters the producer's pooled regular-season passer set only through passes in seasons after *s*.
 - **Result:** 131 affected groups, which are **130 distinct player-seasons**. The only multi-team case is 2010 M. Lynch.
+- **Tomlinson control:** 2008 LAC, 292 producer-filtered carries, first regular-season pass in 2009.
 - **Why `a9bb0f4` said 127:** that count built the passer pool from all plays, regular season plus postseason. That is not the producer's population. Recomputing that way gives 127 player-seasons and 128 groups.
+- **Filter correction after Codex review B of `791151c`:** the `791151c` reproducer omitted the `load_pbp` filter. The totals and the affected-group set are unchanged, but **21 groups' carry counts change**. For example, L. Washington (NYJ 2008) goes from 77 to 76, and D. Cook (MIN 2020) from 315 to 312. All 21 are listed in `rb_leakage.json`.
 - The qualitative conclusion, that RB eligibility depends on later seasons, is unchanged. No cleaned eligibility rule is defined.
 
 **2. Elo comparison.** The earlier wording ("season-end snapshots that differ from the final Elo") is withdrawn and replaced by the run-provenance statement in §5. B3 itself is unchanged.
@@ -185,14 +193,14 @@ python research/cycle9/md08_celo_replay_reassessment/rb_leakage.py <pinned pbp d
 The checker verifies:
 - the input pins
 - byte-equal regeneration of the classification and replayability results
-- 50 controls (51 when `MD08_PINNED_PBP_DIR` adds the recompute), including:
+- 56 controls (57 when `MD08_PINNED_PBP_DIR` adds the full recompute of `rb_leakage.json`), including:
   - classification invariants and 13 production consumer anchors
   - stage replayability
   - the 2025 mapping and the 224/224 indices
   - the 53 tie groups and the 9 QB / 2 RB tie picks
   - the run-provenance Elo statement
   - the relocation and 2008 receiver gaps
-  - the RB leakage counts (130/131, the Tomlinson control, the 127/128 explanation)
+  - the RB leakage counts: the Celo `load_pbp` filter, 130/131, the Tomlinson, Washington and Cook controls, the 21 changed carry counts, the Lynch case and the 127/128 explanation
   - the provenance pins
 - the external Celo pins and mapping, when reachable
 - `hashes.json`

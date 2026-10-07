@@ -1,6 +1,13 @@
 {
- "definition": "An affected group is a (season s, posteam, rusher name) with >= 30 qualifying REG rushes in s (same filter, before the known_qbs exclusion) whose name is in known_qbs only because of REG passes in seasons AFTER s (no REG pass in any season <= s). An affected player-season is a distinct (s, name) with at least one affected group.",
- "producerFilter": "season_type == REG for both passers (known_qbs) and rushes",
+ "definition": "An affected group is a (season s, posteam, rusher name) with >= 30 producer-filtered REG rushes in s (same filter, before the known_qbs exclusion) whose name is in known_qbs only because of producer-filtered REG passes in seasons AFTER s (no REG pass in any season <= s). An affected player-season is a distinct (s, name) with at least one affected group.",
+ "producerFilter": "Celo load_pbp per season: season == s; play_type in ('pass','run'); dropna(down, ydstogo). Then season_type fillna('REG') and season_type == REG for both the passer pool (known_qbs) and rushes.",
+ "filterSteps": {
+  "rows": 862773,
+  "afterSeason": 862773,
+  "afterPassRun": 613624,
+  "afterDownYdstogo": 611829,
+  "nullSeasonTypeFilledREG": 0
+ },
  "affectedGroups": 131,
  "affectedPlayerSeasons": 130,
  "multiTeamPlayerSeasons": [
@@ -15,10 +22,184 @@
    "firstPassSeason": 2009
   }
  ],
+ "washington2008": [
+  {
+   "season": 2008,
+   "team": "NYJ",
+   "player": "L.Washington",
+   "rushes": 76,
+   "firstPassSeason": 2010
+  }
+ ],
+ "cook2020": [
+  {
+   "season": 2020,
+   "team": "MIN",
+   "player": "D.Cook",
+   "rushes": 312,
+   "firstPassSeason": 2022
+  }
+ ],
  "withPostseasonPasserPool": {
   "affectedGroups": 128,
   "affectedPlayerSeasons": 127,
-  "note": "Earlier a9bb0f4 figure (127): passer seasons taken from all plays (REG+POST), so a player whose first pass was a postseason pass in a season <= s was not counted. That population is not the producer's."
+  "note": "Passer pool built from all producer-filtered plays (REG+POST). Not the producer's population; it reproduces the earlier a9bb0f4 figure of 127 player-seasons."
+ },
+ "previousIncompleteReproducer": {
+  "affectedGroups": 131,
+  "affectedPlayerSeasons": 130,
+  "sameAffectedGroupSet": true,
+  "groupsWithChangedRushCount": 21,
+  "changed": [
+   {
+    "season": 2008,
+    "team": "JAX",
+    "player": "M.Jones-Drew",
+    "previousRushes": 198,
+    "producerFilteredRushes": 197
+   },
+   {
+    "season": 2008,
+    "team": "NYJ",
+    "player": "L.Washington",
+    "previousRushes": 77,
+    "producerFilteredRushes": 76
+   },
+   {
+    "season": 2009,
+    "team": "IND",
+    "player": "D.Brown",
+    "previousRushes": 79,
+    "producerFilteredRushes": 78
+   },
+   {
+    "season": 2009,
+    "team": "JAX",
+    "player": "M.Jones-Drew",
+    "previousRushes": 313,
+    "producerFilteredRushes": 312
+   },
+   {
+    "season": 2012,
+    "team": "IND",
+    "player": "D.Brown",
+    "previousRushes": 109,
+    "producerFilteredRushes": 108
+   },
+   {
+    "season": 2013,
+    "team": "HOU",
+    "player": "A.Foster",
+    "previousRushes": 122,
+    "producerFilteredRushes": 121
+   },
+   {
+    "season": 2013,
+    "team": "NE",
+    "player": "S.Vereen",
+    "previousRushes": 45,
+    "producerFilteredRushes": 44
+   },
+   {
+    "season": 2017,
+    "team": "JAX",
+    "player": "L.Fournette",
+    "previousRushes": 269,
+    "producerFilteredRushes": 268
+   },
+   {
+    "season": 2017,
+    "team": "NO",
+    "player": "A.Kamara",
+    "previousRushes": 121,
+    "producerFilteredRushes": 120
+   },
+   {
+    "season": 2018,
+    "team": "NO",
+    "player": "A.Kamara",
+    "previousRushes": 197,
+    "producerFilteredRushes": 194
+   },
+   {
+    "season": 2018,
+    "team": "NYG",
+    "player": "S.Barkley",
+    "previousRushes": 263,
+    "producerFilteredRushes": 261
+   },
+   {
+    "season": 2019,
+    "team": "JAX",
+    "player": "L.Fournette",
+    "previousRushes": 266,
+    "producerFilteredRushes": 265
+   },
+   {
+    "season": 2020,
+    "team": "CHI",
+    "player": "D.Montgomery",
+    "previousRushes": 248,
+    "producerFilteredRushes": 247
+   },
+   {
+    "season": 2020,
+    "team": "DAL",
+    "player": "E.Elliott",
+    "previousRushes": 245,
+    "producerFilteredRushes": 244
+   },
+   {
+    "season": 2020,
+    "team": "MIN",
+    "player": "D.Cook",
+    "previousRushes": 315,
+    "producerFilteredRushes": 312
+   },
+   {
+    "season": 2021,
+    "team": "CIN",
+    "player": "J.Mixon",
+    "previousRushes": 294,
+    "producerFilteredRushes": 292
+   },
+   {
+    "season": 2021,
+    "team": "MIN",
+    "player": "D.Cook",
+    "previousRushes": 251,
+    "producerFilteredRushes": 249
+   },
+   {
+    "season": 2021,
+    "team": "PHI",
+    "player": "K.Gainwell",
+    "previousRushes": 69,
+    "producerFilteredRushes": 68
+   },
+   {
+    "season": 2022,
+    "team": "LV",
+    "player": "J.Jacobs",
+    "previousRushes": 341,
+    "producerFilteredRushes": 340
+   },
+   {
+    "season": 2023,
+    "team": "NYG",
+    "player": "S.Barkley",
+    "previousRushes": 248,
+    "producerFilteredRushes": 247
+   },
+   {
+    "season": 2024,
+    "team": "NYJ",
+    "player": "B.Hall",
+    "previousRushes": 212,
+    "producerFilteredRushes": 209
+   }
+  ],
+  "note": "791151c counted without the initial load_pbp filter; totals are unchanged, some carry counts differ."
  },
  "groups": [
   {
@@ -81,7 +262,7 @@
    "season": 2008,
    "team": "JAX",
    "player": "M.Jones-Drew",
-   "rushes": 198,
+   "rushes": 197,
    "firstPassSeason": 2010
   },
   {
@@ -102,7 +283,7 @@
    "season": 2008,
    "team": "NYJ",
    "player": "L.Washington",
-   "rushes": 77,
+   "rushes": 76,
    "firstPassSeason": 2010
   },
   {
@@ -186,14 +367,14 @@
    "season": 2009,
    "team": "IND",
    "player": "D.Brown",
-   "rushes": 79,
+   "rushes": 78,
    "firstPassSeason": 2023
   },
   {
    "season": 2009,
    "team": "JAX",
    "player": "M.Jones-Drew",
-   "rushes": 313,
+   "rushes": 312,
    "firstPassSeason": 2010
   },
   {
@@ -319,7 +500,7 @@
    "season": 2012,
    "team": "IND",
    "player": "D.Brown",
-   "rushes": 109,
+   "rushes": 108,
    "firstPassSeason": 2023
   },
   {
@@ -354,7 +535,7 @@
    "season": 2013,
    "team": "HOU",
    "player": "A.Foster",
-   "rushes": 122,
+   "rushes": 121,
    "firstPassSeason": 2014
   },
   {
@@ -368,7 +549,7 @@
    "season": 2013,
    "team": "NE",
    "player": "S.Vereen",
-   "rushes": 45,
+   "rushes": 44,
    "firstPassSeason": 2017
   },
   {
@@ -543,7 +724,7 @@
    "season": 2017,
    "team": "JAX",
    "player": "L.Fournette",
-   "rushes": 269,
+   "rushes": 268,
    "firstPassSeason": 2021
   },
   {
@@ -578,7 +759,7 @@
    "season": 2017,
    "team": "NO",
    "player": "A.Kamara",
-   "rushes": 121,
+   "rushes": 120,
    "firstPassSeason": 2019
   },
   {
@@ -648,14 +829,14 @@
    "season": 2018,
    "team": "NO",
    "player": "A.Kamara",
-   "rushes": 197,
+   "rushes": 194,
    "firstPassSeason": 2019
   },
   {
    "season": 2018,
    "team": "NYG",
    "player": "S.Barkley",
-   "rushes": 263,
+   "rushes": 261,
    "firstPassSeason": 2024
   },
   {
@@ -697,7 +878,7 @@
    "season": 2019,
    "team": "JAX",
    "player": "L.Fournette",
-   "rushes": 266,
+   "rushes": 265,
    "firstPassSeason": 2021
   },
   {
@@ -746,7 +927,7 @@
    "season": 2020,
    "team": "CHI",
    "player": "D.Montgomery",
-   "rushes": 248,
+   "rushes": 247,
    "firstPassSeason": 2021
   },
   {
@@ -760,7 +941,7 @@
    "season": 2020,
    "team": "DAL",
    "player": "E.Elliott",
-   "rushes": 245,
+   "rushes": 244,
    "firstPassSeason": 2021
   },
   {
@@ -788,7 +969,7 @@
    "season": 2020,
    "team": "MIN",
    "player": "D.Cook",
-   "rushes": 315,
+   "rushes": 312,
    "firstPassSeason": 2022
   },
   {
@@ -823,7 +1004,7 @@
    "season": 2021,
    "team": "CIN",
    "player": "J.Mixon",
-   "rushes": 294,
+   "rushes": 292,
    "firstPassSeason": 2024
   },
   {
@@ -837,7 +1018,7 @@
    "season": 2021,
    "team": "MIN",
    "player": "D.Cook",
-   "rushes": 251,
+   "rushes": 249,
    "firstPassSeason": 2022
   },
   {
@@ -851,7 +1032,7 @@
    "season": 2021,
    "team": "PHI",
    "player": "K.Gainwell",
-   "rushes": 69,
+   "rushes": 68,
    "firstPassSeason": 2023
   },
   {
@@ -893,7 +1074,7 @@
    "season": 2022,
    "team": "LV",
    "player": "J.Jacobs",
-   "rushes": 341,
+   "rushes": 340,
    "firstPassSeason": 2023
   },
   {
@@ -928,14 +1109,14 @@
    "season": 2023,
    "team": "NYG",
    "player": "S.Barkley",
-   "rushes": 248,
+   "rushes": 247,
    "firstPassSeason": 2024
   },
   {
    "season": 2024,
    "team": "NYJ",
    "player": "B.Hall",
-   "rushes": 212,
+   "rushes": 209,
    "firstPassSeason": 2025
   }
  ]

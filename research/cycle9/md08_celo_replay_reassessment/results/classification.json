@@ -128,7 +128,7 @@
    "hindsightParameters": false,
    "consumer": "model/live_profiles.js priorReceiverWrteEpa (subtracts the RB room), rbRecvPassBeta, priorRbOrthogonalComposite, priorRbByTeam, RB live CDF",
    "safeAsYMinus1Prior": false,
-   "leak": "RB eligibility and lead-back selection depend on passes thrown in LATER seasons (and on abbreviated-name collisions). Under the producer's REG-season filtering (rb_leakage.py, pinned play-by-play), 130 distinct player-seasons (131 team/player/season groups) with >=30 qualifying REG rushes were excluded only because the player's first REG pass came in a later season; e.g. 2008 LAC L.Tomlinson, 292 carries, first REG pass 2009. Per-player values of included backs are season-local. For Y-1 = 2025 (current production) no later season exists.",
+   "leak": "RB eligibility and lead-back selection depend on passes thrown in LATER seasons (and on abbreviated-name collisions). Under the producer's own preprocessing (Celo load_pbp pass/run and down/ydstogo filter, then REG; rb_leakage.py, pinned play-by-play), 130 distinct player-seasons (131 team/player/season groups) with >=30 producer-filtered REG rushes were excluded only because the player's first REG pass came in a later season; e.g. 2008 LAC L.Tomlinson, 292 carries, first REG pass 2009. Per-player values of included backs are season-local. For Y-1 = 2025 (current production) no later season exists.",
    "residuals": []
   },
   {

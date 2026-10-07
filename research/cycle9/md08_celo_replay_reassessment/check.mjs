@@ -99,22 +99,32 @@ ctl('historical record covers 32 teams per season 2008-2025 for OL/DL/coverage',
     JSON.stringify(mapping.historical[2008].teamsUnderFourReceivers) === JSON.stringify({ATL: 3, BAL: 3, CAR: 1, CIN: 2, CLE: 2, DET: 2, LAR: 3, LV: 2}) && Object.entries(mapping.historical).every(([s, h]) => s === '2008' || Object.keys(h.teamsUnderFourReceivers).length === 0));
   ctl('README does not claim historical B2 references are complete', !/every population input exists/.test(lf(DIR + '/README.md')) && /not fully resolved/.test(lf(DIR + '/README.md')));
 }
-// Correction 1: RB leakage count under the documented producer-consistent definition.
+// RB leakage count under the producer's own preprocessing (Celo load_pbp, then REG population).
 {
   const L = JSON.parse(lf(DIR + '/results/rb_leakage.json'));
-  ctl('RB leakage: 130 distinct player-seasons, 131 team/player/season groups (REG passer pool, as the producer)', L.affectedPlayerSeasons === 130 && L.affectedGroups === 131 && L.groups.length === 131 && new Set(L.groups.map(g => g.season + ' ' + g.player)).size === 130);
+  const F = L.filterSteps, RL = lf(DIR + '/rb_leakage.py');
+  ctl('reproducer mirrors Celo load_pbp: pass/run only, then drop missing down and ydstogo, before both passer pools and rush counts',
+    RL.includes("pl.col('play_type').is_in(['pass', 'run'])") && RL.includes("pl.col('down').is_not_null() & pl.col('ydstogo').is_not_null()") && RL.includes("fill_null('REG')") &&
+    RL.indexOf("is_in(['pass', 'run'])") < RL.indexOf('celo_reg = ') && /pass_seasons\(celo_reg\)/.test(RL) && /pass_seasons\(celo\)/.test(RL));
+  ctl('pass/run filtering is applied (rows removed)', F.afterPassRun < F.afterSeason);
+  ctl('rows missing down or ydstogo are excluded (rows removed after pass/run)', F.afterDownYdstogo < F.afterPassRun);
+  ctl('RB leakage: 130 distinct player-seasons, 131 team/player/season groups (producer-filtered REG passer pool)', L.affectedPlayerSeasons === 130 && L.affectedGroups === 131 && L.groups.length === 131 && new Set(L.groups.map(g => g.season + ' ' + g.player)).size === 130);
   ctl('RB leakage: the one multi-team player-season is 2010 M.Lynch', JSON.stringify(L.multiTeamPlayerSeasons) === '["2010 M.Lynch"]');
   ctl('RB leakage: every counted group has >=30 rushes and a first REG pass strictly after its season', L.groups.every(g => g.rushes >= 30 && g.firstPassSeason > g.season));
-  ctl('Tomlinson control: 2008 LAC L.Tomlinson, 292 carries, first REG pass 2009', JSON.stringify(L.tomlinson2008) === JSON.stringify([{season: 2008, team: 'LAC', player: 'L.Tomlinson', rushes: 292, firstPassSeason: 2009}]));
-  ctl('earlier 127 explained: REG+POST passer pool gives 127 player-seasons (128 groups)', L.withPostseasonPasserPool.affectedPlayerSeasons === 127 && L.withPostseasonPasserPool.affectedGroups === 128);
-  ctl('classification states the corrected count', C.FIELDS.find(f => f.field.startsWith('rb.')).leak.includes('130 distinct player-seasons (131 team/player/season groups)'));
-  // Recompute from the pinned play-by-play when a directory is supplied (read-only; hashes checked).
+  ctl('Tomlinson control: 2008 LAC L.Tomlinson, 292 producer-filtered carries, first REG pass 2009', JSON.stringify(L.tomlinson2008) === JSON.stringify([{season: 2008, team: 'LAC', player: 'L.Tomlinson', rushes: 292, firstPassSeason: 2009}]));
+  ctl('L.Washington NYJ 2008 = 76 producer-filtered rushes (77 before the load_pbp filter)', L.washington2008.length === 1 && L.washington2008[0].rushes === 76 && L.previousIncompleteReproducer.changed.some(c => c.player === 'L.Washington' && c.season === 2008 && c.previousRushes === 77 && c.producerFilteredRushes === 76));
+  ctl('D.Cook MIN 2020 = 312 producer-filtered rushes (315 before the load_pbp filter)', L.cook2020.length === 1 && L.cook2020[0].rushes === 312 && L.previousIncompleteReproducer.changed.some(c => c.player === 'D.Cook' && c.season === 2020 && c.previousRushes === 315 && c.producerFilteredRushes === 312));
+  ctl('postseason-inclusive passer pool (not the producer population) gives 127 player-seasons / 128 groups', L.withPostseasonPasserPool.affectedPlayerSeasons === 127 && L.withPostseasonPasserPool.affectedGroups === 128);
+  ctl('previous incomplete reproducer: same 131 groups, exactly 21 carry counts change', L.previousIncompleteReproducer.affectedGroups === 131 && L.previousIncompleteReproducer.sameAffectedGroupSet === true &&
+    L.previousIncompleteReproducer.groupsWithChangedRushCount === 21 && L.previousIncompleteReproducer.changed.length === 21 &&
+    L.previousIncompleteReproducer.changed.every(c => c.previousRushes !== c.producerFilteredRushes && L.groups.some(g => g.season === c.season && g.team === c.team && g.player === c.player && g.rushes === c.producerFilteredRushes)));
+  ctl('classification states the producer-filtered count', C.FIELDS.find(f => f.field.startsWith('rb.')).leak.includes('130 distinct player-seasons (131 team/player/season groups)'));
+  // Recompute every value above from the pinned play-by-play when supplied (read-only; hashes checked).
   const dir = process.env.MD08_PINNED_PBP_DIR;
   if (dir && fs.existsSync(dir)) {
-    const r = spawnSync('python', [DIR + '/rb_leakage.py', dir], {encoding: 'utf8', env: {...process.env, PYTHONIOENCODING: 'utf-8'}});
+    const r = spawnSync('python', [DIR + '/rb_leakage.py', dir, '--json'], {encoding: 'utf8', env: {...process.env, PYTHONIOENCODING: 'utf-8'}, maxBuffer: 1 << 26});
     assert.equal(r.status, 0, r.stderr);
-    const fresh = JSON.parse(r.stdout);
-    ctl('RB leakage recomputed from pinned play-by-play', fresh.affectedPlayerSeasons === 130 && fresh.affectedGroups === 131);
+    ctl('rb_leakage.json recomputed from the pinned play-by-play is identical', JSON.stringify(JSON.parse(r.stdout)) === JSON.stringify(L));
   }
 }
 ctl('provenance pins: 55 files plus archive, regeneration verdict B, 38 pinned upstream assets', prov.celo.fileCount === 55 && prov.celo.archiveSha256 && prov.regeneration.verdict.startsWith('B.') && prov.regeneration.downloadedUpstream.length === 38);
