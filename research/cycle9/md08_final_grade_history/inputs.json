@@ -1,5 +1,5 @@
 {
-  "purpose": "MD-08 final-grade history build inputs. Committed repository files plus one read-only release listing (committed as results/source_listing.json). No data files were downloaded: the replay is blocked before any download would help.",
+  "purpose": "MD-08 final-grade history build inputs (corrected after Codex review C). Committed repository files plus one read-only release listing. No data files were downloaded.",
   "startingTip": "a1a781019388cd86f5f60f3345b7b6c757ba9d74",
   "base": "6cf05419f89df7c9c8c3af228a3fb80080c6f686",
   "inputs": [
@@ -30,6 +30,26 @@
     {
       "path": "research/cycle9/md08_final_grade_history/results/source_listing.json",
       "role": "nflverse release season coverage (read-only GitHub API listing, retrieved 2026-10-07)"
+    },
+    {
+      "path": "model/rating_continuity.js",
+      "role": "V99 continuity (k source, B3)"
+    },
+    {
+      "path": "model/unit_prior_controller.js",
+      "role": "V37 effective prior games (B3)"
+    },
+    {
+      "path": "model/early_regime.js",
+      "role": "V34 observation helper (B3)"
+    },
+    {
+      "path": "data/live-cache/2e8d73150c460a0bed43.bin",
+      "role": "2026 FTN charting cache header (B4 evidence)"
+    },
+    {
+      "path": "force_server.py",
+      "role": "Reference builder and validity rules (B6)"
     }
   ],
   "pins": {
@@ -39,7 +59,12 @@
     "data/matchup-data.js": "88b100a3e10158990398b46740c7d01e2048cf05d1601a03ae3c6b0f1613357d",
     "CHANGELOG_V4.md": "ed1b0b7063be019bb9195e0d40cbcaf911407295ee3534abcf81c9fa46eb3bc4",
     "research/cycle9/md08_historical_standing_prototype/hashes.json": "2d2e72197fdb3dd63d78f2d2ad6a344bbaab352ff6d06a9daa230be70cea46af",
-    "research/cycle9/md08_final_grade_history/results/source_listing.json": "ef1d7cb7d4320452c77b4414a52df41c95e9608475b5d0ceee7618c6b0590898"
+    "research/cycle9/md08_final_grade_history/results/source_listing.json": "ef1d7cb7d4320452c77b4414a52df41c95e9608475b5d0ceee7618c6b0590898",
+    "model/rating_continuity.js": "5b5e5cfdbf11f17a9ae60b649f904aca97782cb14e14f629b327f0522655ffb9",
+    "model/unit_prior_controller.js": "d5b62e123bd474ee10e328c6048bcab10754cc7f03a5de57e935953596d6d49e",
+    "model/early_regime.js": "f164f33730af3fd84e1c3f5b229e1edd0841f40038d0d90714f33c5db71e8fa5",
+    "data/live-cache/2e8d73150c460a0bed43.bin": "f805065157e4ae1aab63f7ba55cad23ca66449d17502bb54871b14c57a5ca301",
+    "force_server.py": "d580c4f6cb4d9eeaad86d38f25191444cb2075ddc5d5b38ec0eea4553298a521"
   },
   "checksumConvention": "SHA-256 of UTF-8 text after CRLF->LF normalization"
 }

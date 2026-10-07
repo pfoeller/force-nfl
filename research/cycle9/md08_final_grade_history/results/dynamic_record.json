@@ -11,102 +11,120 @@
     "modelSemantics": "model source hashes the population was replayed under",
     "canonicalSerialization": "JSON of {transformVersion, unit, design, gameCount, modelSemantics, observations: sorted [season, team, asOfWeek, finalGrade(full precision)]}"
   },
-  "boundsCandidateA": {
-    "oneNewRecord": "max shift of any existing value = 100/n",
-    "addMObservations": "max shift <= 100*m/(n+m-1)",
-    "table": [
+  "statements": {
+    "distinctReferences": "If the old reference and the added observations are all distinct values: one new record moves any previously displayed value by at most 100/n; m added observations by at most 100*m/(n+m-1). (Derived; 0 violations in the exhaustive distinct cases.)",
+    "tiedReferences": "With ties those bounds are FALSE (counterexample below). Tie-aware statement: max shift <= 100*(2m+t-1)/(2(n+m-1)), t = size of the larger extreme tied block of the old reference. Derived for the extreme-block mechanism and verified exhaustively on small adversarial references (no violations; tight); not proven for all n.",
+    "contract": "Because the tie-aware form is verified only on small exhaustive cases, the safest production contract is to MEASURE the actual movement of published values whenever the reference version changes, with the closed forms as expectations."
+  },
+  "counterexample": {
+    "reference": [
+      0,
+      1,
+      2,
+      3,
+      3
+    ],
+    "newObservation": 4,
+    "valueAt3Before": 100,
+    "valueAt3After": 70,
+    "oldClaimedBound": 20,
+    "tieAwareBound": 30
+  },
+  "exhaustiveCheck": {
+    "domain": "n=3..6 reference values in {0..4}, m=1..3 additions in {-1..5}; shifts evaluated at every old distinct value and every midpoint inside the old range",
+    "cases": 50099,
+    "distinctCases": 178,
+    "oldBoundViolations": {
+      "oneRecord": 770,
+      "batch": 5647
+    },
+    "oldBoundViolationsDistinct": 0,
+    "tieAwareViolations": 0,
+    "maxRatioToTieAware": 1,
+    "tightExamples": [
       {
-        "n": 64,
-        "seasonsAt32PerSeason": 2,
-        "oneRecord": 1.5625,
-        "oneSeason": 33.68421052631579
+        "ref": [
+          0,
+          0,
+          1
+        ],
+        "add": [
+          -1
+        ],
+        "maxShift": 50,
+        "bound": 50
       },
       {
-        "n": 160,
-        "seasonsAt32PerSeason": 5,
-        "oneRecord": 0.625,
-        "oneSeason": 16.75392670157068
+        "ref": [
+          0,
+          0,
+          1
+        ],
+        "add": [
+          -1,
+          -1
+        ],
+        "maxShift": 62.5,
+        "bound": 62.5
       },
       {
-        "n": 320,
-        "seasonsAt32PerSeason": 10,
-        "oneRecord": 0.3125,
-        "oneSeason": 9.116809116809117
-      },
-      {
-        "n": 640,
-        "seasonsAt32PerSeason": 20,
-        "oneRecord": 0.15625,
-        "oneSeason": 4.769001490312966
+        "ref": [
+          0,
+          0,
+          1
+        ],
+        "add": [
+          -1,
+          -1,
+          -1
+        ],
+        "maxShift": 70,
+        "bound": 70
       }
     ]
   },
-  "syntheticCheck": {
-    "label": "MECHANICS ONLY: seeded standard-normal populations, not FORCE grades",
+  "syntheticDistinct": {
+    "label": "MECHANICS ONLY: seeded standard-normal (distinct) populations, not FORCE grades",
     "seed": 20261007,
     "samples": [
       {
         "n": 64,
-        "newHighRecord": {
-          "maxShift": 1.5625,
-          "bound": 1.5625
-        },
-        "newLowRecord": {
-          "maxShift": 1.5625,
-          "bound": 1.5625
-        },
-        "newSeasonOf32": {
-          "maxShift": 11.495405179615702,
-          "meanShift": 5.674342105263159,
-          "bound": 33.68421052631579
+        "newHighRecord": 1.5625,
+        "newLowRecord": 1.5625,
+        "newSeasonOf32": 11.495405179615702,
+        "distinctBounds": {
+          "oneRecord": 1.5625,
+          "season": 33.68421052631579
         }
       },
       {
         "n": 160,
-        "newHighRecord": {
-          "maxShift": 0.625,
-          "bound": 0.625
-        },
-        "newLowRecord": {
-          "maxShift": 0.625,
-          "bound": 0.625
-        },
-        "newSeasonOf32": {
-          "maxShift": 5.512199940729026,
-          "meanShift": 3.1708115183246095,
-          "bound": 16.75392670157068
+        "newHighRecord": 0.625,
+        "newLowRecord": 0.625,
+        "newSeasonOf32": 5.512199940729026,
+        "distinctBounds": {
+          "oneRecord": 0.625,
+          "season": 16.75392670157068
         }
       },
       {
         "n": 320,
-        "newHighRecord": {
-          "maxShift": 0.3125,
-          "bound": 0.3125
-        },
-        "newLowRecord": {
-          "maxShift": 0.3125,
-          "bound": 0.3125
-        },
-        "newSeasonOf32": {
-          "maxShift": 1.7201189614982724,
-          "meanShift": 0.8254991336887892,
-          "bound": 9.116809116809117
+        "newHighRecord": 0.3125,
+        "newLowRecord": 0.3125,
+        "newSeasonOf32": 1.7201189614982724,
+        "distinctBounds": {
+          "oneRecord": 0.3125,
+          "season": 9.116809116809117
         }
       },
       {
         "n": 640,
-        "newHighRecord": {
-          "maxShift": 0.15625,
-          "bound": 0.15625
-        },
-        "newLowRecord": {
-          "maxShift": 0.15625,
-          "bound": 0.15625
-        },
-        "newSeasonOf32": {
-          "maxShift": 1.1498032740240092,
-          "meanShift": 0.3804769438788718,
-          "bound": 4.769001490312966
+        "newHighRecord": 0.15625,
+        "newLowRecord": 0.15625,
+        "newSeasonOf32": 1.1498032740240092,
+        "distinctBounds": {
+          "oneRecord": 0.15625,
+          "season": 4.769001490312966
         }
       }
     ]

@@ -2,9 +2,10 @@
   "bundle": {
     "path": "data/matchup-data.js",
     "season": 2025,
-    "firstCommit": "43d2c71 (Initial FORCE V149 web repository; history before V149 is not in Git)",
+    "firstCommit": "43d2c71 (Initial FORCE V149 web repository; earlier history is not in Git)",
     "changelog": "CHANGELOG_V4.md: \"Added data/matchup-data.js ... packages 2025 model diagnostics\"",
-    "generatorInRepository": false,
+    "producerInRepositoryOrHistory": false,
+    "externalReferences": "Old research cites a \"supplied Celo research bundle/archive\" that is not in the repository (model/README.md, research/v33_research_audit.py).",
     "playerLevelExamples": [
       {
         "team": "ARI",
@@ -94,12 +95,253 @@
       "pearson": 0.9543223973820789
     }
   ],
+  "recoverableRankDefinitions": [
+    {
+      "index": "coverageIndex",
+      "sourceField": "cov.rating",
+      "maxAbsGapToMidrankPercentile": 0.04838709677419395,
+      "spearman": 1
+    },
+    {
+      "index": "frontIndex",
+      "sourceField": "dl.rating",
+      "maxAbsGapToMidrankPercentile": 0.04838709677419395,
+      "spearman": 1
+    },
+    {
+      "index": "receiverIndex",
+      "sourceField": "receivers.adj_epa",
+      "maxAbsGapToMidrankPercentile": 0.04838709677419395,
+      "spearman": 1
+    },
+    {
+      "index": "rushIndex",
+      "sourceField": "rb.composite",
+      "maxAbsGapToMidrankPercentile": 0.04838709677419395,
+      "spearman": 1
+    },
+    {
+      "index": "olIndex",
+      "sourceField": "ol.rating",
+      "maxAbsGapToMidrankPercentile": 1.6258064516129025,
+      "spearman": 0.9998166987428465
+    },
+    {
+      "index": "offenseIndex",
+      "sourceField": "off_epa",
+      "maxAbsGapToMidrankPercentile": 1.6290322580645125,
+      "spearman": 0.9999083535717271
+    },
+    {
+      "index": "qbIndex",
+      "sourceField": "qb.epaoe",
+      "maxAbsGapToMidrankPercentile": 9.680645161290315,
+      "spearman": 0.9897360703812317
+    }
+  ],
   "eloChain": {
     "productionPreseasonSource": "data/model-data.js rankings (end-2025 Elo), regressed 30%",
     "repositoryHistory": "research/season_end_elo.json seasons 2008-2025",
     "maxAbsDiff2025": 10.700000000000045,
     "meanAbsDiff2025": 3.940624999999997,
-    "verdict": "not the same semantic chain"
+    "verdict": "not the same chain"
   },
-  "conclusion": "No bundled prior field is reproduced exactly from public 2025 data (0 of 32 teams for every field tested). The fields are player-level, adjusted or legacy-ranked constructs whose generator is absent. Historical priors under current semantics are therefore BLOCKED (B1), as are receiver/RB live references (B2)."
+  "b2": {
+    "currentReference": {
+      "status": "REPRODUCIBLE FOR CURRENT REFERENCE",
+      "wrBeta": 0.5879714747913416,
+      "rbBeta": 0.32652935756243806,
+      "qbCentre": 0.0615,
+      "referenceN": {
+        "receivers": 32,
+        "rb": 32
+      },
+      "maxAbsLiveResidual": {
+        "receivers": 0,
+        "rb": 0
+      }
+    },
+    "historicalReferences": {
+      "status": "BLOCKED",
+      "reason": "Season Y-1 populations for earlier Y need the B1 bundle fields of season Y-1."
+    }
+  },
+  "kTable": [
+    {
+      "week": 1,
+      "fade": 0,
+      "k": "1 exactly (fixed)",
+      "needsEloState": false
+    },
+    {
+      "week": 2,
+      "fade": 1,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 3,
+      "fade": 1,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 4,
+      "fade": 0.85,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 5,
+      "fade": 0.7,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 6,
+      "fade": 0.55,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 7,
+      "fade": 0.4,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 8,
+      "fade": 0.28,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 9,
+      "fade": 0.18,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 10,
+      "fade": 0.1,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 11,
+      "fade": 0.05,
+      "k": "continuous in [0.25, 1]; =1 only if every recent residual is within 3 points",
+      "needsEloState": true
+    },
+    {
+      "week": 12,
+      "fade": 0,
+      "k": "1 exactly (fixed)",
+      "needsEloState": false
+    },
+    {
+      "week": 13,
+      "fade": 0,
+      "k": "1 exactly (fixed)",
+      "needsEloState": false
+    },
+    {
+      "week": 14,
+      "fade": 0,
+      "k": "1 exactly (fixed)",
+      "needsEloState": false
+    },
+    {
+      "week": 15,
+      "fade": 0,
+      "k": "1 exactly (fixed)",
+      "needsEloState": false
+    },
+    {
+      "week": 16,
+      "fade": 0,
+      "k": "1 exactly (fixed)",
+      "needsEloState": false
+    },
+    {
+      "week": 17,
+      "fade": 0,
+      "k": "1 exactly (fixed)",
+      "needsEloState": false
+    },
+    {
+      "week": 18,
+      "fade": 0,
+      "k": "1 exactly (fixed)",
+      "needsEloState": false
+    }
+  ],
+  "kExperiment": {
+    "description": "Production engine (harness) on the embedded completed Week-1 slate; preseason Elo from data/model-data.js versus the repository end-2025 Elo history substituted into the same field.",
+    "completedGames": 15,
+    "byWeek": {
+      "1": {
+        "teamsChanged": 0,
+        "maxAbsChange": 0,
+        "regimeClassChanges": 0,
+        "distinctKProduction": 1
+      },
+      "2": {
+        "teamsChanged": 24,
+        "maxAbsChange": 0.019765323520834377,
+        "regimeClassChanges": 0,
+        "distinctKProduction": 26
+      },
+      "3": {
+        "teamsChanged": 24,
+        "maxAbsChange": 0.019765323520834377,
+        "regimeClassChanges": 0,
+        "distinctKProduction": 26
+      },
+      "6": {
+        "teamsChanged": 26,
+        "maxAbsChange": 0.01087092793645894,
+        "regimeClassChanges": 0,
+        "distinctKProduction": 27
+      },
+      "11": {
+        "teamsChanged": 26,
+        "maxAbsChange": 0.0009882661760417522,
+        "regimeClassChanges": 0,
+        "distinctKProduction": 27
+      },
+      "12": {
+        "teamsChanged": 0,
+        "maxAbsChange": 0,
+        "regimeClassChanges": 0,
+        "distinctKProduction": 1
+      },
+      "13": {
+        "teamsChanged": 0,
+        "maxAbsChange": 0,
+        "regimeClassChanges": 0,
+        "distinctKProduction": 1
+      }
+    }
+  },
+  "b4": {
+    "cascadeAnchor": {
+      "file": "model/live_profiles.js",
+      "line": 1488,
+      "match": "const selectedPassRush="
+    },
+    "ftnContractFieldsSought": [
+      "was_pressure",
+      "is_qb_pressure",
+      "is_pressure",
+      "pressure"
+    ],
+    "ftnCacheHeaderHasPressureField": false,
+    "snapshotProviders2026Week4": {
+      "nflverse-weekly-disruption": 28,
+      "pfr-advanced": 4
+    },
+    "historicalAsRun": "NOT RECONSTRUCTIBLE",
+    "retrospectiveCurrentPolicy": "OWNER POLICY DECISION; per-season component coverage NOT verified"
+  }
 }

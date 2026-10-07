@@ -1,42 +1,38 @@
 [
   {
-    "q": "Can final canonical grades be replayed historically for every intended unit?",
-    "a": "No. QB, OL, receivers, RB and defense overall are all BLOCKED for every historical season under current semantics."
+    "q": "What exactly remains of B1?",
+    "a": "The season Y-1 legacy source fields behind every regressed prior: qb.epaoe/epa_per_play and qbIndex, ol.rating (pressure_rate_allowed, stuff_rate_allowed, avg_opp_dl), cov.rating, off_epa, receivers.adj_epa/targets, rb rush/adj fields, dl.run_stop_rate (and dl.pressure_rate as the pass-rush fallback). Their downstream rank definitions are largely recoverable; the fields themselves are not, and no producer exists in the repository or its history."
   },
   {
-    "q": "Which units/years are blocked and why?",
-    "a": "All units, all years: B1 (prior bundle with no generator). Receivers and RB also B2 (live reference is the same bundle). All blended units B3 (preseason Elo / regime state for prior games). Defense B4 (pass-rush provider state)."
+    "q": "What exactly remains of B2?",
+    "a": "Only historical receiver/RB reference populations for seasons before the committed 2025 reference. The current 2025 betas, centre and CDFs reproduce exactly."
   },
   {
-    "q": "Maximum common historical span?",
-    "a": "None established. Conditional on resolving B1-B4: 2019+ with PFR-based pass rush or 2023+ with FTN-ready semantics, each needing a Y-1 burn-in."
+    "q": "During which game counts/weeks does B3 matter?",
+    "a": "Weeks 2-11 (V99 fade > 0). k = 1 exactly in week 1 and from week 12. In the active window k is continuous: different preseason Elo changes week-2 k for 24 teams (max 0.0198) with no regime-class change."
   },
   {
-    "q": "Deep enough for historical 0/100 semantics?",
-    "a": "Not assessable: there is no final-grade history. The prototype's two signal-layer seasons remain the only historical populations, and they are not final grades."
+    "q": "Is B4 a blocker, a policy decision, or both?",
+    "a": "Both: a hard blocker for historical-as-run provider selection; an owner policy decision for retrospective current-policy reconstruction (whose per-season coverage is not verified, and in which FTN is never ready with the public schema)."
   },
   {
-    "q": "Does Candidate A behave well on final grades?",
-    "a": "Not testable on historical final grades. On a single common reference it is monotone in the final grade by construction; the re-anchoring bounds are exact."
+    "q": "Is any unit/year span defensibly assertable?",
+    "a": "No. The only defensible statement is a necessary lower bound: QB and OL cannot start before display season 2022 under current semantics (17-game Y-1 reference). No unit is assertable while B1 remains."
   },
   {
-    "q": "S or C with deeper evidence?",
-    "a": "Not testable without final-grade history; unresolved."
+    "q": "What dynamic-record statements are valid under ties?",
+    "a": "For distinct references: 100/n per record and 100m/(n+m-1) per batch. With ties those bounds fail; the tie-aware form 100(2m+t-1)/(2(n+m-1)) holds on all exhaustive small cases but is not proven generally, so production should measure movement per reference version."
   },
   {
-    "q": "How much does dynamic re-anchoring move published values?",
-    "a": "Exactly bounded for Candidate A: one new record moves any value by at most 100/n (1.56 at n=64, 0.31 at n=320); one added season of 32 by at most 100*32/(n+31) (33.7 at n=64, 9.1 at n=320; measured on synthetic populations 11.5 and 1.7). Measured shifts on synthetic populations sit inside the bounds."
+    "q": "Is the blocker registry complete enough for the intended research use?",
+    "a": "Yes for deciding the next step: it now separates current-reference reproducibility, k activity by week, provider semantics, the 17-game reference requirement and engineering literals, each with source anchors. It is not a replay engine."
   },
   {
-    "q": "What metadata/versioning is required?",
-    "a": "transformVersion, referenceVersion (sha256 of the canonical population serialization including model source hashes), unit, design (S/C), gameCount, asOf, population size and source-history span (schema in dynamic_record.json)."
+    "q": "Does anything found eliminate the need to recover the legacy producer?",
+    "a": "No. Recoverable rank definitions and current-reference reproducibility do not regenerate the season Y-1 source fields."
   },
   {
-    "q": "Remaining owner decisions before implementation?",
-    "a": "(1) How to resolve B1/B2: recover the legacy matchup-data generator or authorize a new versioned prior/reference definition (a model change, outside MD-08). (2) A historical rule or verified replay for B3 (prior games / Elo chain). (3) A historical pass-rush provider policy for B4. Then (4) S vs C and (5) Candidate A adoption on real final-grade history."
-  },
-  {
-    "q": "Ready for production-transform authorization?",
-    "a": "No. The blocking dependency is the prior/state reconstruction (B1-B3) and provider policy (B4); without them no final-grade historical population exists for the transform to use."
+    "q": "What is the single smallest owner decision required next?",
+    "a": "Determine whether the original legacy profile producer and its exact definitions can be supplied or recovered from outside this repository."
   }
 ]

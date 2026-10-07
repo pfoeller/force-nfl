@@ -1,56 +1,143 @@
 {
   "transformVersion": "md08-candidate-A-prototype-0",
   "blockers": {
-    "B1_LEGACY_PRIOR_BUNDLE": {
-      "scope": "Every unit prior except prevention (fixed 50) and the PFR pass-rush prior",
-      "fact": "Unit priors are regressed fields of data/matchup-data.js (season 2025 only). The bundle was added in CHANGELOG_V4 as \"2025 model diagnostics\"; no generator exists in the repository (local Git begins at the V149 import). Its fields are legacy constructs: primary-QB epaoe/epa_per_play with games played, lead-RB rush/receiving \"adj\" values, a receiver subset with its own target counts, legacy olIndex/qbIndex/coverageIndex/offenseIndex ranks of unpublished score_raw values, dl.run_stop_rate. They do not reproduce from public 2025 play-by-play (results/prior_reproducibility.json).",
-      "consequence": "A season-Y replay needs the same fields for season Y-1. They cannot be generated under current semantics, and using the 2025 bundle for any earlier season would be future leakage.",
-      "resolution": "Owner decision: recover the legacy generator (if it exists outside the repository) or authorize a new, versioned prior definition (a model change outside MD-08)."
+    "B1_LEGACY_PRIOR_SOURCE_FIELDS": {
+      "kind": "hard blocker",
+      "scope": "Season Y-1 team state behind every regressed unit prior (QB, OL, receivers, RB, coverage, run defense, scoring) and the bundle fallback of the pass-rush prior",
+      "missing": [
+        "qb.epaoe / qb.epa_per_play (primary-QB, games-played, adjusted)",
+        "qbIndex (not a rank of epaoe: max rank-percentile gap 9.7)",
+        "ol.rating -> olIndex (olIndex is the rank percentile of ol.rating; ol.rating itself comes from score_raw over pressure_rate_allowed, stuff_rate_allowed and avg_opp_dl)",
+        "cov.rating -> coverageIndex (rank percentile, recoverable downstream)",
+        "off_epa -> offenseIndex (rank percentile, recoverable downstream)",
+        "receivers.adj_epa and receivers.targets (subset, adjusted)",
+        "rb.rush_epa / adj_rush / adj_recv / targets (lead-back, adjusted)",
+        "dl.run_stop_rate",
+        "dl.pressure_rate (pass-rush prior fallback only)"
+      ],
+      "recoverable": "Downstream rank definitions: coverageIndex, frontIndex, receiverIndex and rushIndex equal the midrank percentile of cov.rating, dl.rating, receivers.adj_epa and rb.composite within rounding (max gap 0.05); olIndex and offenseIndex match ol.rating and off_epa ranks up to one tie (1.63).",
+      "notRecoverable": "The adjusted/legacy input fields themselves. No producer exists in the repository or its history (Git begins at the V149 import 43d2c71; CHANGELOG_V4 added the bundle as \"2025 model diagnostics\"). The Celo research archive the old research cites is external and not in the repository. No tested field reproduces from public 2025 play-by-play for any team (0/32 exact; correlations .68-.95).",
+      "consequence": "Season Y-1 priors cannot be generated for any historical season; using the 2025 bundle for an earlier season is future leakage.",
+      "resolution": "Owner: supply or recover the legacy producer and exact definitions from outside this repository (and verify it reproduces the 2025 bundle exactly), or separately authorize a new versioned prior definition (a model change outside MD-08)."
     },
-    "B2_LEGACY_REFERENCE_POPULATION": {
-      "scope": "Receiver and RB LIVE grades (and therefore their final grades)",
-      "fact": "The receiver and RB live maps use the 32 bundled 2025 profiles as their reference CDF and median (priorReceiverResidual / priorRbOrthogonalComposite over M.profiles), and the ridge beta is fitted on the same bundle.",
-      "consequence": "Even the live grade of a historical season needs a season Y-1 bundle in the legacy schema.",
+    "B2_HISTORICAL_RECEIVER_RB_REFERENCES": {
+      "kind": "hard blocker for earlier seasons",
+      "scope": "Receiver and RB live grades for seasons before the committed reference",
+      "currentReference": "REPRODUCIBLE FOR CURRENT REFERENCE: the 2025 ridge betas (WR .5880, RB from rb.adj_recv), the QB centre (.0615), the 32-team residual / LIVE_FITTED composite CDFs and medians reproduce exactly from the committed bundle with the production functions (all 32 receiver live grades reproduce with residual 0 in the accepted follow-up).",
+      "missing": "Semantically equivalent season Y-1 reference populations for earlier Y, because they are built from the B1 fields (receivers.adj_epa/targets, rb fields, qb.epaoe) of season Y-1.",
       "resolution": "Same as B1."
     },
-    "B3_PRESEASON_ELO_STATE": {
-      "scope": "Effective prior games k for every blended unit (V37 controller)",
-      "fact": "k comes from the V34 early-regime state, built from core (result-only) Elo replayed from the regressed preseason ratings in data/model-data.js (end-2025). The only repository Elo history (research/season_end_elo.json, 2008-2025) differs from those ratings by up to 10.7 points in 2025, so it is not the same semantic chain.",
-      "consequence": "k for week g of season Y cannot be reproduced exactly without a verified current-semantics Elo chain ending at Y-1.",
-      "resolution": "A separate, verified Elo replay that reproduces data/model-data.js 2025 exactly, or an owner rule for historical k."
+    "B3_ACTIVE_CONTINUITY_K": {
+      "kind": "blocker only while continuity k is active",
+      "scope": "Effective prior games k of every blended unit, weeks 2-11",
+      "fact": "k = FORCE_UNIT_PRIOR.effectivePriorGames(FORCE_RATING_CONTINUITY.rawCorrectionPoints(team, week, state)) (V37 on V99). V99 weekFade is 0 in week 1 and from week 12 on, so k = 1 exactly there. In weeks 2-11 k is continuous in the observation residuals, which come from core result-only Elo (preseason = end-(Y-1) Elo regressed 30% toward the mean) plus completed results, opponent Elo and config HFA/scale; no market input. Substituting the repository end-2025 Elo history changes week-2 k for 24 teams (max 0.0197653235) while every team's regime class is unchanged.",
+      "consequence": "Week 1 and week 12+ observations do not need reconstructed Elo state; week 2-11 observations need an exact current-semantics Elo chain ending at Y-1.",
+      "resolution": "A verified current-semantics Elo replay that reproduces data/model-data.js 2025 exactly, or a separate owner rule (not proposed here)."
     },
-    "B4_PASS_RUSH_PROVIDER_STATE": {
-      "scope": "Pass rush, hence defense overall",
-      "fact": "The live pass-rush provider is selected per team at run time: manual override, FTN play-level (when ready), StatRankings scrape (fresh), complete PFR charting, then nflverse weekly disruption. The 2026 Week-4 snapshot used nflverse weekly for 28 teams and PFR for 4. StatRankings has no archive; FTN exists only from 2022; PFR from 2018; readiness/completeness at historical dates is not archived.",
-      "consequence": "Which provider a historical team-week would have used is undetermined, and different providers map to different populations.",
-      "resolution": "Owner rule fixing the historical provider policy, or restricting history to a provider-stable span."
+    "B4_PASS_RUSH_PROVIDER": {
+      "kind": "hard blocker for historical-as-run; owner policy decision for retrospective current-policy",
+      "scope": "Pass-rush live grade, hence defense overall",
+      "cascade": "explicit manual override -> FTN play-level (contract ready: a pressure-outcome field and defensive identity; team rows cover all games) -> StatRankings scrape (fresh, team stats fresh) -> PFR (feed-level charting ready: >=16 rows, >=max(8,20%) advanced rows; team-level: weekly QB hits cannot exceed charted pressures; charted games >= games) -> nflverse weekly hit+sack disruption (team stats usable, dropbacks > 0) -> prior held. Weekly provider: current rank among all 32; PFR provider: same-length season Y-1 charted-window CDF; prior: season Y-1 PFR composite percentile when >=20 teams, else B1 bundle field.",
+      "historicalAsRun": "NOT RECONSTRUCTIBLE: feed readiness, PFR placeholder states, StatRankings freshness and manual overrides at each historical date are not archived (2026 Week 4 ran 28 weekly / 4 PFR because live PFR rows were partial).",
+      "retrospectiveCurrentPolicy": "POSSIBLY EXECUTABLE (owner policy): run today's cascade on today's published files. Manual and StatRankings are absent historically; the public FTN schema has no pressure-outcome field (2026 cache verified), so FTN is never ready unless historical schemas differ (not verified); PFR readiness would be evaluated on today's completed rows, so most teams would likely use PFR, unlike live 2026. Component coverage per season is NOT verified.",
+      "resolution": "Owner chooses replay semantics; no span is claimed until component coverage is verified."
     },
-    "B5_SEASON_LITERALS": {
-      "scope": "All units (engineering, not semantic)",
-      "fact": "buildProfiles filters rows with the literal seasons 2026 (current) and 2025 (prior PFR).",
-      "consequence": "A replay harness must relabel historical rows; harmless if done consistently, but it must be audited.",
-      "resolution": "Harness relabelling with a checker; no formula change."
+    "B5_LITERALS_AND_FILTERS": {
+      "kind": "engineering (auditable), not semantic",
+      "fact": "buildProfiles filters season 2026 (current rows) and 2025 (prior PFR); qbReferenceValid requires reference season 2025 and qb_id_source \"2025-player-stats-positional\".",
+      "resolution": "A replay harness must relabel consistently and be checked."
+    },
+    "B6_SEVENTEEN_GAME_REFERENCE": {
+      "kind": "semantic requirement (span-limiting)",
+      "fact": "The QB EPA/success CDF uses the season Y-1 17-game windows, and qbReferenceValid (app) and _v106_reference_valid (server) require >=30 17-game windows. A 16-game season Y-1 (1999-2020) yields none, so the reference is invalid: QB becomes unavailable and OL falls back to the bundle-based percentile (B1).",
+      "consequence": "Under current semantics QB and OL need Y-1 >= 2021, i.e. display season >= 2022."
     }
   },
+  "staleAssumptionsCorrected": [
+    {
+      "was": "k comes from the V34/V37 early-regime state that fades to zero by week 7",
+      "now": "Production uses the V99 rating-continuity layer (FORCE_RATING_CONTINUITY, preferred over V34 when present): fade 1.0 in weeks 2-3, tapering to 0.05 in week 11, 0 from week 12; week 1 is 0.",
+      "source": "model/rating_continuity.js, assets/app.js regimeRawCorrectionPoints"
+    },
+    {
+      "was": "B3 blocks every observation",
+      "now": "k = 1 exactly in week 1 and week 12+; Elo state matters only in weeks 2-11.",
+      "source": "model/rating_continuity.js weekFade"
+    },
+    {
+      "was": "QB effective prior games are floored at 1.00 through four games",
+      "now": "That floor applies only under qbPolicy v104-historical-calibrated; production runs v106-current-season-stabilized, so qbPriorGames = the team k.",
+      "source": "model/live_profiles.js qbPriorGames; assets/app.js qbPolicy"
+    },
+    {
+      "was": "Receiver/RB betas and reference CDFs are not reproducible",
+      "now": "They reproduce exactly for the current 2025 reference; only earlier-season references are blocked.",
+      "source": "model/live_profiles.js ridgeOrthogonalSlope/priorReceiverResidual; follow-up reproduction"
+    },
+    {
+      "was": "RB receiving residual is a single mixed current+prior component",
+      "now": "Split into current receiving inputs and the season Y-1 ridge beta.",
+      "source": "model/live_profiles.js rbRecvResidual / rbRecvPassBeta"
+    },
+    {
+      "was": "QB and OL references need only season Y-1 play-by-play (QB 2007+, OL 2000+)",
+      "now": "Both need a valid V149-style reference, which requires >=30 17-game windows (a 17-game season Y-1, 2021+); QB is unavailable and OL falls back to the bundle otherwise.",
+      "source": "model/live_profiles.js qbReferenceValid; force_server.py _v106_reference_valid"
+    },
+    {
+      "was": "FTN is the first-choice pass-rush provider from 2022",
+      "now": "FTN is selected only when the feed has a pressure-outcome field; the public nflverse FTN schema (2026 cache) has none, so FTN is not ready.",
+      "source": "model/live_profiles.js ftnPressureField / ftnPressureContract; data/live-cache ftn-charting header"
+    },
+    {
+      "was": "Pass-rush provider state is a single hard blocker",
+      "now": "Hard blocker for historical-as-run selection; retrospective current-policy selection is a possible owner policy.",
+      "source": "model/live_profiles.js provider cascade"
+    },
+    {
+      "was": "Season literals are confined to buildProfiles filters",
+      "now": "qbReferenceValid also requires reference season 2025 and the 2025 QB-id source label.",
+      "source": "model/live_profiles.js qbReferenceValid"
+    }
+  ],
+  "validatorHistory": [
+    {
+      "probe": "mixed-role component (RB receiving residual declared current+priorSeason)",
+      "before": "Passed input validation: the role was neither current nor priorSeason, so no season/week/prior-year rule ran.",
+      "stoppedAt": "Only the unit-level BLOCKED status in validatePlan/replayFinalGrade.",
+      "now": "validateShape rejects an invalid or mismatched role; the RB component is split into current inputs and the season Y-1 beta."
+    },
+    {
+      "probe": "null throughWeek on a current input",
+      "before": "Passed: null <= asOfWeek evaluates true in JavaScript, so the future-leakage test was satisfied.",
+      "stoppedAt": "Only the unit-level BLOCKED status.",
+      "now": "validateShape requires an integer week >= 1 before the leakage comparison."
+    },
+    {
+      "probe": "missing observation identity / null as-of week / game count above as-of week",
+      "before": "Not checked.",
+      "stoppedAt": "Only the unit-level BLOCKED status.",
+      "now": "Rejected by validateShape."
+    }
+  ],
   "units": {
     "qbIndex": {
       "label": "QB",
       "unit": "qbIndex",
       "status": "BLOCKED",
       "blockers": [
-        "B1_LEGACY_PRIOR_BUNDLE",
-        "B3_PRESEASON_ELO_STATE"
+        "B1_LEGACY_PRIOR_SOURCE_FIELDS"
       ],
       "chain": [
         {
           "component": "All-play QB EPA/play (dropbacks + QB runs, downs 1-4)",
           "role": "current",
-          "source": "nflverse pbp (server drive context)",
+          "source": "nflverse pbp via server drive context",
           "status": "REPRODUCIBLE",
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 1151,
-            "match": "qbEpaPerPlay"
+            "match": "const qbEpaPerPlay="
           },
           "note": "",
           "blocker": null
@@ -63,7 +150,7 @@
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 1153,
-            "match": "qbPassSuccessRate"
+            "match": "const qbPassSuccessRate="
           },
           "note": "",
           "blocker": null
@@ -76,22 +163,22 @@
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 1088,
-            "match": "qbAnyA"
+            "match": "const qbAnyA="
           },
           "note": "",
           "blocker": null
         },
         {
-          "component": "CPOE (tanh vs current mean, 60-attempt stabilizer)",
+          "component": "CPOE (attempt-weighted passing_cpoe; tanh vs current mean; 60-attempt stabilizer)",
           "role": "current",
-          "source": "nflverse weekly player stats passing_cpoe (pbp cpoe from 2006)",
-          "status": "REPRODUCIBLE",
+          "source": "nflverse weekly player stats passing_cpoe",
+          "status": "CONDITIONAL",
           "anchor": {
             "file": "model/live_profiles.js",
-            "line": 221,
-            "match": "function qbCpoeScore"
+            "line": 1079,
+            "match": "const qbCpoe="
           },
-          "note": "",
+          "note": "Season coverage of passing_cpoe not verified.",
           "blocker": null
         },
         {
@@ -134,7 +221,7 @@
           "blocker": null
         },
         {
-          "component": "Stabilization toward current league means (150/100/60)",
+          "component": "Stabilization toward current league means (EPA 150 plays, success 100, CPOE 60)",
           "role": "current",
           "source": "current season",
           "status": "REPRODUCIBLE",
@@ -147,17 +234,17 @@
           "blocker": null
         },
         {
-          "component": "EPA/success CDF reference (17-game windows)",
+          "component": "EPA/success CDF reference (season Y-1 17-game windows)",
           "role": "priorSeason",
-          "source": "V149-style reference rebuilt from season Y-1 pbp + player-stat QB ids",
-          "status": "REPRODUCIBLE",
+          "source": "V149-style reference from Y-1 pbp + Y-1 player-stat QB ids",
+          "status": "CONDITIONAL",
           "anchor": {
             "file": "force_server.py",
             "line": 2333,
             "match": "def _v104_reference_from_drive_games("
           },
-          "note": "",
-          "blocker": null
+          "note": "Requires a 17-game season Y-1 (B6).",
+          "blocker": "B6_SEVENTEEN_GAME_REFERENCE"
         },
         {
           "component": "Composite x1.20 expansion and clamp",
@@ -175,7 +262,7 @@
         {
           "component": "Prior: regressed bundled qbIndex",
           "role": "priorSeason",
-          "source": "data/matchup-data.js (legacy, 2025 only)",
+          "source": "data/matchup-data.js (2025 only)",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
@@ -183,20 +270,20 @@
             "match": "const priorQbIndex="
           },
           "note": "",
-          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+          "blocker": "B1_LEGACY_PRIOR_SOURCE_FIELDS"
         },
         {
-          "component": "Effective prior games (QB floor 1.00 through 4 games)",
+          "component": "Effective prior games k (V37 on V99 continuity; fixed 1 in week 1 and week 12+)",
           "role": "current",
-          "source": "V34/V37 regime state on core Elo",
-          "status": "BLOCKED",
+          "source": "core Elo from end-(Y-1) preseason Elo + completed results",
+          "status": "CONDITIONAL",
           "anchor": {
             "file": "assets/app.js",
             "line": 1369,
             "match": "effectivePriorGames"
           },
-          "note": "",
-          "blocker": "B3_PRESEASON_ELO_STATE"
+          "note": "Blocked only in weeks 2-11 (B3).",
+          "blocker": "B3_ACTIVE_CONTINUITY_K"
         },
         {
           "component": "V148 recency (+/-4) after blend, final clamp",
@@ -218,8 +305,7 @@
       "unit": "olIndex",
       "status": "BLOCKED",
       "blockers": [
-        "B1_LEGACY_PRIOR_BUNDLE",
-        "B3_PRESEASON_ELO_STATE"
+        "B1_LEGACY_PRIOR_SOURCE_FIELDS"
       ],
       "chain": [
         {
@@ -236,22 +322,22 @@
           "blocker": null
         },
         {
-          "component": "Same-length window CDF",
+          "component": "Same-length window CDF (season Y-1)",
           "role": "priorSeason",
-          "source": "V149-style windows rebuilt from season Y-1 pbp",
-          "status": "REPRODUCIBLE",
+          "source": "V149-style windows from Y-1 pbp",
+          "status": "CONDITIONAL",
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 1509,
             "match": "const olHistoricalBench="
           },
-          "note": "",
-          "blocker": null
+          "note": "The reference object is valid only with a 17-game season Y-1 (B6); otherwise OL falls back to a bundle percentile (B1).",
+          "blocker": "B6_SEVENTEEN_GAME_REFERENCE"
         },
         {
           "component": "Prior: regressed bundled olIndex",
           "role": "priorSeason",
-          "source": "data/matchup-data.js (legacy, 2025 only)",
+          "source": "data/matchup-data.js",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
@@ -259,20 +345,20 @@
             "match": "const priorOlIndex="
           },
           "note": "",
-          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+          "blocker": "B1_LEGACY_PRIOR_SOURCE_FIELDS"
         },
         {
-          "component": "Effective prior games",
+          "component": "Effective prior games k (V37 on V99 continuity; fixed 1 in week 1 and week 12+)",
           "role": "current",
-          "source": "V34/V37 regime state on core Elo",
-          "status": "BLOCKED",
+          "source": "core Elo from end-(Y-1) preseason Elo + completed results",
+          "status": "CONDITIONAL",
           "anchor": {
             "file": "assets/app.js",
             "line": 1369,
             "match": "effectivePriorGames"
           },
-          "note": "",
-          "blocker": "B3_PRESEASON_ELO_STATE"
+          "note": "Blocked only in weeks 2-11 (B3).",
+          "blocker": "B3_ACTIVE_CONTINUITY_K"
         },
         {
           "component": "Blend",
@@ -294,9 +380,8 @@
       "unit": "receiverIndex",
       "status": "BLOCKED",
       "blockers": [
-        "B2_LEGACY_REFERENCE_POPULATION",
-        "B1_LEGACY_PRIOR_BUNDLE",
-        "B3_PRESEASON_ELO_STATE"
+        "B2_HISTORICAL_RECEIVER_RB_REFERENCES",
+        "B1_LEGACY_PRIOR_SOURCE_FIELDS"
       ],
       "chain": [
         {
@@ -320,23 +405,23 @@
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 1152,
-            "match": "qbAttemptEpa"
+            "match": "const qbAttemptEpa="
           },
           "note": "",
           "blocker": null
         },
         {
-          "component": "Ridge beta and QB centre",
+          "component": "Ridge beta and QB centre (fitted on season Y-1 profiles)",
           "role": "priorSeason",
-          "source": "fitted on bundled 2025 profiles",
+          "source": "bundle (current 2025: reproducible)",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 269,
-            "match": "ridgeOrthogonalSlope"
+            "match": "function ridgeOrthogonalSlope"
           },
-          "note": "",
-          "blocker": "B2_LEGACY_REFERENCE_POPULATION"
+          "note": "Reproducible for the current 2025 reference only.",
+          "blocker": "B2_HISTORICAL_RECEIVER_RB_REFERENCES"
         },
         {
           "component": "Stabilization 80 targets, centre alignment",
@@ -352,22 +437,22 @@
           "blocker": null
         },
         {
-          "component": "Live CDF reference (32 bundled residuals)",
+          "component": "Live CDF reference (32 season Y-1 residuals)",
           "role": "priorSeason",
-          "source": "data/matchup-data.js",
+          "source": "bundle (current 2025: reproducible)",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 1254,
             "match": "continuousPercentileValue(priorReceiverResidualValues"
           },
-          "note": "",
-          "blocker": "B2_LEGACY_REFERENCE_POPULATION"
+          "note": "Reproducible for the current 2025 reference only.",
+          "blocker": "B2_HISTORICAL_RECEIVER_RB_REFERENCES"
         },
         {
-          "component": "Prior: regressed bundled residual percentile",
+          "component": "Prior: regressed residual percentile",
           "role": "priorSeason",
-          "source": "data/matchup-data.js",
+          "source": "bundle",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
@@ -375,20 +460,20 @@
             "match": "const priorReceiverIndex="
           },
           "note": "",
-          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+          "blocker": "B1_LEGACY_PRIOR_SOURCE_FIELDS"
         },
         {
-          "component": "Effective prior games",
+          "component": "Effective prior games k (V37 on V99 continuity; fixed 1 in week 1 and week 12+)",
           "role": "current",
-          "source": "V34/V37 regime state",
-          "status": "BLOCKED",
+          "source": "core Elo from end-(Y-1) preseason Elo + completed results",
+          "status": "CONDITIONAL",
           "anchor": {
             "file": "assets/app.js",
             "line": 1369,
             "match": "effectivePriorGames"
           },
-          "note": "",
-          "blocker": "B3_PRESEASON_ELO_STATE"
+          "note": "Blocked only in weeks 2-11 (B3).",
+          "blocker": "B3_ACTIVE_CONTINUITY_K"
         },
         {
           "component": "Blend",
@@ -410,9 +495,8 @@
       "unit": "rbIndex",
       "status": "BLOCKED",
       "blockers": [
-        "B2_LEGACY_REFERENCE_POPULATION",
-        "B1_LEGACY_PRIOR_BUNDLE",
-        "B3_PRESEASON_ELO_STATE"
+        "B2_HISTORICAL_RECEIVER_RB_REFERENCES",
+        "B1_LEGACY_PRIOR_SOURCE_FIELDS"
       ],
       "chain": [
         {
@@ -429,17 +513,30 @@
           "blocker": null
         },
         {
-          "component": "RB receiving residual (beta fitted on bundle)",
-          "role": "current+priorSeason",
-          "source": "player stats + bundled fit",
-          "status": "BLOCKED",
+          "component": "RB receiving EPA/target and QB attempt EPA",
+          "role": "current",
+          "source": "nflverse weekly player stats + pbp",
+          "status": "REPRODUCIBLE",
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 1237,
             "match": "const rbRecvResidual="
           },
           "note": "",
-          "blocker": "B2_LEGACY_REFERENCE_POPULATION"
+          "blocker": null
+        },
+        {
+          "component": "RB receiving ridge beta (fitted on season Y-1 profiles)",
+          "role": "priorSeason",
+          "source": "bundle (current 2025: reproducible)",
+          "status": "BLOCKED",
+          "anchor": {
+            "file": "model/live_profiles.js",
+            "line": 1226,
+            "match": "rbRecvPassBeta"
+          },
+          "note": "Reproducible for the current 2025 reference only.",
+          "blocker": "B2_HISTORICAL_RECEIVER_RB_REFERENCES"
         },
         {
           "component": "Stabilization 50 carries / 40 targets, alignment",
@@ -455,22 +552,22 @@
           "blocker": null
         },
         {
-          "component": "Live CDF reference (LIVE_FITTED bundled composites)",
+          "component": "Live CDF reference (LIVE_FITTED season Y-1 composites)",
           "role": "priorSeason",
-          "source": "data/matchup-data.js",
+          "source": "bundle (current 2025: reproducible)",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 1255,
             "match": "priorRbOrthogonalValuesV109"
           },
-          "note": "",
-          "blocker": "B2_LEGACY_REFERENCE_POPULATION"
+          "note": "Reproducible for the current 2025 reference only.",
+          "blocker": "B2_HISTORICAL_RECEIVER_RB_REFERENCES"
         },
         {
-          "component": "Prior: regressed LIVE_FITTED bundled composite percentile",
+          "component": "Prior: regressed LIVE_FITTED composite percentile",
           "role": "priorSeason",
-          "source": "data/matchup-data.js",
+          "source": "bundle",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
@@ -478,20 +575,20 @@
             "match": "const priorRbIndex="
           },
           "note": "",
-          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+          "blocker": "B1_LEGACY_PRIOR_SOURCE_FIELDS"
         },
         {
-          "component": "Effective prior games",
+          "component": "Effective prior games k (V37 on V99 continuity; fixed 1 in week 1 and week 12+)",
           "role": "current",
-          "source": "V34/V37 regime state",
-          "status": "BLOCKED",
+          "source": "core Elo from end-(Y-1) preseason Elo + completed results",
+          "status": "CONDITIONAL",
           "anchor": {
             "file": "assets/app.js",
             "line": 1369,
             "match": "effectivePriorGames"
           },
-          "note": "",
-          "blocker": "B3_PRESEASON_ELO_STATE"
+          "note": "Blocked only in weeks 2-11 (B3).",
+          "blocker": "B3_ACTIVE_CONTINUITY_K"
         },
         {
           "component": "Blend",
@@ -513,28 +610,27 @@
       "unit": "defenseIndex",
       "status": "BLOCKED",
       "blockers": [
-        "B1_LEGACY_PRIOR_BUNDLE",
-        "B4_PASS_RUSH_PROVIDER_STATE",
-        "B3_PRESEASON_ELO_STATE"
+        "B1_LEGACY_PRIOR_SOURCE_FIELDS",
+        "B4_PASS_RUSH_PROVIDER"
       ],
       "chain": [
         {
-          "component": "Coverage: 75% EPA-allowed rank + 25% CPOE-allowed rank",
+          "component": "Coverage: .75 EPA-allowed rank + .25 CPOE-allowed rank (attempt-weighted passing_cpoe)",
           "role": "current",
-          "source": "nflverse pbp / team stats",
-          "status": "REPRODUCIBLE",
+          "source": "nflverse pbp / weekly stats",
+          "status": "CONDITIONAL",
           "anchor": {
             "file": "model/live_profiles.js",
             "line": 1544,
             "match": "const liveCov=teamStatsUsable"
           },
-          "note": "",
+          "note": "passing_cpoe season coverage not verified.",
           "blocker": null
         },
         {
           "component": "Coverage prior: regressed bundled coverageIndex",
           "role": "priorSeason",
-          "source": "data/matchup-data.js",
+          "source": "bundle",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
@@ -542,32 +638,32 @@
             "match": "const priorCoverageIndex="
           },
           "note": "",
-          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+          "blocker": "B1_LEGACY_PRIOR_SOURCE_FIELDS"
         },
         {
-          "component": "Pass rush: provider cascade",
+          "component": "Pass rush: provider cascade (manual -> FTN -> StatRankings -> PFR -> nflverse weekly)",
           "role": "current",
-          "source": "manual / FTN / StatRankings / PFR / nflverse weekly",
+          "source": "see B4",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
-            "line": 1489,
-            "match": "passRushProvider="
+            "line": 1488,
+            "match": "const selectedPassRush="
           },
-          "note": "",
-          "blocker": "B4_PASS_RUSH_PROVIDER_STATE"
+          "note": "Historical-as-run blocked; retrospective current-policy is an owner policy decision.",
+          "blocker": "B4_PASS_RUSH_PROVIDER"
         },
         {
-          "component": "Pass-rush prior: Y-1 PFR composite percentile, else bundled dl.pressure_rate",
+          "component": "Pass-rush prior: season Y-1 PFR composite percentile (>=20 teams), else bundled dl.pressure_rate percentile",
           "role": "priorSeason",
-          "source": "nflverse pfr_advstats (2018+) / bundle",
+          "source": "nflverse pfr_advstats / bundle",
           "status": "CONDITIONAL",
           "anchor": {
             "file": "model/live_profiles.js",
-            "line": 1451,
-            "match": "const priorPassRushIndex"
+            "line": 1415,
+            "match": "const priorPassRushByTeam"
           },
-          "note": "Reproducible from PFR for 2019+ (2018 burn-in) when every team has Y-1 PFR rows; the bundle fallback is B1.",
+          "note": "PFR branch needs Y-1 PFR (2018+); the fallback is B1.",
           "blocker": null
         },
         {
@@ -586,18 +682,18 @@
         {
           "component": "Run-defense prior: regressed percentile of bundled dl.run_stop_rate",
           "role": "priorSeason",
-          "source": "data/matchup-data.js",
+          "source": "bundle",
           "status": "BLOCKED",
           "anchor": {
             "file": "model/live_profiles.js",
-            "line": 1452,
-            "match": "const priorRunDefenseIndex"
+            "line": 1423,
+            "match": "const priorRunDefenseByTeam"
           },
           "note": "",
-          "blocker": "B1_LEGACY_PRIOR_BUNDLE"
+          "blocker": "B1_LEGACY_PRIOR_SOURCE_FIELDS"
         },
         {
-          "component": "Prevention: opponent points/drive rank, prior fixed 50, k=1",
+          "component": "Prevention: opponent points/drive rank, prior fixed 50, k = 1",
           "role": "current",
           "source": "nflverse pbp drives",
           "status": "REPRODUCIBLE",
@@ -610,17 +706,17 @@
           "blocker": null
         },
         {
-          "component": "Effective prior games for coverage/pass rush/run",
+          "component": "Effective prior games k (V37 on V99 continuity; fixed 1 in week 1 and week 12+)",
           "role": "current",
-          "source": "V34/V37 regime state",
-          "status": "BLOCKED",
+          "source": "core Elo from end-(Y-1) preseason Elo + completed results",
+          "status": "CONDITIONAL",
           "anchor": {
             "file": "assets/app.js",
             "line": 1369,
             "match": "effectivePriorGames"
           },
-          "note": "",
-          "blocker": "B3_PRESEASON_ELO_STATE"
+          "note": "Blocked only in weeks 2-11 (B3).",
+          "blocker": "B3_ACTIVE_CONTINUITY_K"
         },
         {
           "component": "Composite .36/.16/.28/.20, soft-tail softness 42",
@@ -629,8 +725,8 @@
           "status": "REPRODUCIBLE",
           "anchor": {
             "file": "model/live_profiles.js",
-            "line": 461,
-            "match": "function calibrateComposite("
+            "line": 448,
+            "match": "const DEFENSE_WEIGHTS"
           },
           "note": "",
           "blocker": null
@@ -639,11 +735,16 @@
     }
   },
   "engineering": {
-    "B5_SEASON_LITERALS": {
+    "B5_SEASON_FILTER": {
       "file": "model/live_profiles.js",
       "line": 1003,
       "match": "String(r.season)==='2026'"
+    },
+    "B5_REFERENCE_SEASON": {
+      "file": "model/live_profiles.js",
+      "line": 986,
+      "match": "ref?.season===2025"
     }
   },
-  "asOfRule": "A season-Y week-g observation may use season-Y rows with week <= g (the production profileBeforeWeek filter, app.js) plus season Y-1 full-season inputs for priorSeason roles. Anything later is leakage."
+  "asOfRule": "A season-Y week-w observation may use season-Y rows with week < w for the engine state (production profileBeforeWeek filters week < beforeWeek) and the rows through the as-of week for the unit grade, plus season Y-1 full-season inputs for priorSeason roles. Anything later is leakage."
 }
