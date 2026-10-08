@@ -9,3 +9,5 @@ node_modules
 .env.*
 .dev.vars
 force-v149-local/
+# Local Claude API review packets/results; never ship or commit them.
+research/claude-api-reviews/

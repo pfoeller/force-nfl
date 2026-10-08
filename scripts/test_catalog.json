@@ -32,6 +32,14 @@
       "classification": "regression"
     },
     {
+      "file": "test_claude_api_review.mjs",
+      "suites": [
+        "safe"
+      ],
+      "classification": "regression",
+      "timeoutMs": 180000
+    },
+    {
       "file": "test_diagnostic_views.js",
       "suites": [],
       "classification": "historical-fixture",

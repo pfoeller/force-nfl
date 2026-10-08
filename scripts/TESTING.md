@@ -18,7 +18,7 @@ example `node scripts/test_v149_release_hardening.mjs`.
 
 | Command | Audited selection |
 | --- | --- |
-| `npm test` / `npm run test:safe` | 148 tests: 115 JavaScript and 33 Python |
+| `npm test` / `npm run test:safe` | 149 tests: 116 JavaScript and 33 Python |
 | `npm run test:release` | 17 release/correctness tests |
 | `npm run test:qb` | 28 QB/pressure/research regressions |
 | `npm run test:snapshot` | 6 snapshot/bootstrap/current-identity tests |
@@ -26,6 +26,17 @@ example `node scripts/test_v149_release_hardening.mjs`.
 | `npm run test:model` | 51 model/unit/research regressions |
 | `npm run test:list` | Every test, suite membership, exclusions and special requirements |
 | `npm run test:inventory` | Machine-readable catalog and baseline inventory |
+
+### Claude API review harness
+
+`node scripts/test_claude_api_review.mjs` runs the bounded harness safety regression;
+`node --test tooling/claude-review/harness.test.mjs` produces individual test results.
+It is registered in `safe` only. HTTP behavior is mocked: no Anthropic request,
+owner key access or API credit is used. Disposable repositories and a synthetic
+DPAPI key under temporary `LOCALAPPDATA` exercise real Windows storage/ACLs;
+non-Windows runs skip those Windows-only checks. See the
+[harness README](../tooling/claude-review/README.md) for explicit manual send,
+packet budgets and the separate human review disposition.
 
 ### FORCE Gate (Phase 2A)
 
