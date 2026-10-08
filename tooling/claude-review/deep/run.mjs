@@ -3,6 +3,7 @@ import path from 'node:path';
 import {hash,git,fail,isId,SHA,json,guarded,writeNew,atomic,readJSON,withLock,iso} from './util.mjs';
 import {buildPlan,HARD_LIMIT} from './plan.mjs';
 import {buildPlan as legacyPlan} from './literal-plan-v1.mjs';
+import {buildPlan as riskPlanV3} from './risk-plan-v3.mjs';
 import {buildPlan as riskPlanV2} from './risk-plan-v2.mjs';
 import {BUDGET_POLICY} from './economics.mjs';
 import {REVIEW_POLICY} from './selection.mjs';
@@ -21,7 +22,7 @@ function file(root,id,name){fail(/^[A-Za-z0-9_.-]+$/.test(name)&&!name.startsWit
 export function loadRun(root,id){
  const dir=runDirectory(root,id),planText=fs.readFileSync(file(root,id,'plan.json'),'utf8'),plan=JSON.parse(planText),state=readJSON(file(root,id,'run-state.json'));
  fail(plan.schema===1&&plan.runId===id&&state.schema===1&&state.runId===id&&state.planHash===hash(planText),'RUN_PLAN_STATE_MISMATCH');fail(SHA.test(plan.toolingHead)&&plan.reviewerHash===hash(SYSTEM)&&plan.doctrineHash===hash(DEEP_DOCTRINE),'TOOLING_DOCTRINE_DRIFT');
- const rebuilt=(plan.policy===REVIEW_POLICY?buildPlan:plan.policy==='force-risk-rotation-v2'?riskPlanV2:legacyPlan)(root,plan.target,{...plan.options,runId:id});for(const k of Object.keys(rebuilt.plan))fail(json(plan[k])===json(rebuilt.plan[k]),'PLAN_REPRODUCTION_MISMATCH: '+k);
+ const rebuilt=(plan.policy===REVIEW_POLICY?buildPlan:plan.policy==='force-risk-rotation-v3'?riskPlanV3:plan.policy==='force-risk-rotation-v2'?riskPlanV2:legacyPlan)(root,plan.target,{...plan.options,runId:id});for(const k of Object.keys(rebuilt.plan))fail(json(plan[k])===json(rebuilt.plan[k]),'PLAN_REPRODUCTION_MISMATCH: '+k);
  const manifestText=fs.readFileSync(file(root,id,plan.manifestFile),'utf8');fail(hash(manifestText)===plan.manifestHash&&manifestText===rebuilt.manifestText,'MANIFEST_TAMPER_OR_COVERAGE_DRIFT');
  fail(Object.keys(state.passes).sort().join('|')===plan.passes.map(p=>p.id).sort().join('|'),'RUN_PASS_SET_MISMATCH');
  for(const p of plan.passes){const text=fs.readFileSync(file(root,id,p.packetFile),'utf8');fail(hash(text)===p.packetSha256&&Buffer.byteLength(text)===p.packetBytes&&text===rebuilt.packets.get(p.id),'PACKET_TAMPER');const ps=state.passes[p.id];fail(['PENDING','COMPLETED','REQUEST_FAILED','INVALID_RESPONSE','TRUNCATED_RESPONSE','OWNER_ACTION_REQUIRED'].includes(ps.status)&&Array.isArray(ps.attempts),'INVALID_PASS_STATE');
