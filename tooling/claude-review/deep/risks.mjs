@@ -1,5 +1,10 @@
+import fs from 'node:fs';
+import {guarded} from './util.mjs';
+const registeredText=(root,p)=>fs.readFileSync(guarded(root,p),'utf8');
 import {fail,SHA,git,hash,json} from './util.mjs';
 import {REVIEW_PRIORITIES,assessSelfChallenge} from '../self-challenge.mjs';
+export const declarationHash=d=>hash(json(d));
+export function registeredDeclarations(root,events){return events.filter(e=>e.classification==='SUBSTANTIVE'&&e.riskManifest).map(e=>{const d=JSON.parse(registeredText(root,e.riskManifest));fail(typeof e.riskDeclarationHash==='string'&&declarationHash(d)===e.riskDeclarationHash,'RISK_DECLARATION_HASH_MISMATCH: '+e.id);return d;});}
 export const RISK_PRIORITIES=REVIEW_PRIORITIES;
 export const DECLARATION_FIELDS=Object.freeze(['changedFiles','affectedSubsystems','indirectConsumers','truthOwners','testsRun','testsNotRun','assumptions','invariants','unresolvedQuestions','shortcuts','compatibilityFallback','dataProviderSemantics','modelStatisticalSemantics','runtimeBuildDeploymentSemantics','parallelImplementations','staleContracts','lowConfidenceAreas']);
 const text=v=>typeof v==='string'&&v.trim().length>0&&v.length<=10000;

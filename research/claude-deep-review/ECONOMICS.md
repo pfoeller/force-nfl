@@ -1,6 +1,6 @@
 # Deep-review economics and steady-state evidence
 
-**Historical policy-v3 evidence, preserved.** Policy v4 supersedes the SLA and baseline described below; see [current rotation report](ROTATION_SLA.md). These earlier results and immutable previews are not rewritten or sent.
+**Historical policy-v3 evidence, preserved.** Policy v5 supersedes the SLA and baseline described below; current scenario-conditioned evidence is in [infrastructure corrections](INFRASTRUCTURE_CORRECTIONS.md). The historical quiet-heavy distribution is not representative routine evidence; see [current rotation report](ROTATION_SLA.md). These earlier results and immutable previews are not rewritten or sent.
 
 All figures are $0 planner projections for production main `39bc08e41fe3c1c8d57de385faa568733c52efc2`, not billed usage or completed Opus review. Prices are the unchanged supplied 2026-10-07 configuration. One UTF8 byte is used as the conservative token proxy; actual tokenization and cache hits are not measured.
 

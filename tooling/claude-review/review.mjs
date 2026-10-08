@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {CONFIG} from './config.mjs';
+import {contextAdmission} from './context.mjs';
 import {buildPacket,git,hash,noSecrets} from './packet.mjs';
 import {SYSTEM,loadSecret,requestReview,upperCost} from './client.mjs';
 export function parseArgs(argv){
@@ -38,6 +39,7 @@ export async function runReview(argv,root=process.cwd(),deps={}){
  const expectedRoot=deps.expectedRoot??fileURLToPath(new URL('../../',import.meta.url));
  const p=buildPacket(root,options.start,options.end,{...options,expectedRoot});
  if(p.empty)return {exitCode:0,message:'EMPTY_RANGE: no changed files, no API call, no review disposition.'};
+ contextAdmission(p.bytes,options.maxTokens??CONFIG.maxOutputTokens,Buffer.byteLength(SYSTEM));
  const ceiling=upperCost(p.bytes,options.maxTokens??CONFIG.maxOutputTokens,options.cache!==false);
  if(ceiling>(options.maxUsd??CONFIG.maxEstimatedUsd))throw new Error(`COST_BUDGET_EXCEEDED: estimated ceiling $${ceiling.toFixed(4)}; no secret loaded or request sent.`);
  const dir=outputDirectory(p.identity.root),timestamp=(deps.now??(()=>new Date().toISOString()))(),stamp=timestamp.replace(/[:.]/g,'-');

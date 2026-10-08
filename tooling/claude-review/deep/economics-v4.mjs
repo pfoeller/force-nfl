@@ -2,7 +2,7 @@ import {fail} from './util.mjs';
 import {CONFIG} from '../config.mjs';
 import {SYSTEM,upperCost} from '../client.mjs';
 import {DEEP_DOCTRINE} from './doctrine.mjs';
-export const BUDGET_POLICY=Object.freeze({targetUsd:8,warningUsd:10,defaultRunBudgetUsd:10,extraordinaryAuthorizationUsd:100,absoluteToolMaximumUsd:200});
+export const BUDGET_POLICY=Object.freeze({targetUsd:8,warningUsd:10,defaultRunBudgetUsd:10,absoluteToolMaximumUsd:200});
 const bytes=v=>Buffer.byteLength(typeof v==='string'?v:JSON.stringify(v));
 export function outputBudget(theme,chunks,override=null){
  const paths=new Set(chunks.map(c=>c.path)),evidenceBytes=chunks.reduce((n,c)=>n+bytes(c.text),0);
@@ -19,4 +19,4 @@ export function costDecomposition(plan,packets){
  const keys=['packetBytes','directContentBytes','serializedContentBytes','commonMapBytes','duplicateLiteralBytes','inputUsd','outputReservationUsd','cacheWriteUsd','cacheReadUsd','inputBufferUsd','prefixBufferUsd','roundingUsd','totalCeilingUsd'],totals=Object.fromEntries(keys.map(k=>[k,(k.endsWith('Usd')?Number(rows.reduce((n,r)=>n+r[k],0).toFixed(12)):rows.reduce((n,r)=>n+r[k],0))]));
  return {tokenProxy:'One UTF8 byte per token; 4096 input and 4096 stable-prefix buffers. Conservative proxy, not tokenizer output.',cacheAssumption:'Every call pays full stable-prefix 5m cache write; zero cache-read savings assumed; dynamic repo map is not cached.',otherReserves:'Input/prefix buffers already included in input/cache components; only upward microdollar rounding is additional.',rows,totals,repeatedMapBytes:Math.max(0,totals.commonMapBytes-(rows[0]?.commonMapBytes??0)),equalityResidualUsd:totals.totalCeilingUsd-(totals.inputUsd+totals.outputReservationUsd+totals.cacheWriteUsd+totals.roundingUsd)};
 }
-export function economicClassification(mode,total,guard){return {plannerMode:mode,budgetPolicy:BUDGET_POLICY,budgetClassification:total>BUDGET_POLICY.warningUsd?(mode==='BASELINE'?'BASELINE PREMIUM — OWNER OVERRIDE REQUIRED':mode==='ESCALATION'?'ESCALATION COST WARNING — SEPARATE OWNER AUTHORIZATION REQUIRED':'ROUTINE COST WARNING'):'WITHIN WARNING THRESHOLD',ownerOverrideRequired:total>BUDGET_POLICY.warningUsd,withinPreferredTarget:total<=BUDGET_POLICY.targetUsd,withinConfiguredGuard:total<=guard};}
+export function economicClassification(mode,total,guard){return {plannerMode:mode,budgetPolicy:BUDGET_POLICY,budgetClassification:total>10?(mode==='BASELINE'?'BASELINE PREMIUM — OWNER OVERRIDE REQUIRED':mode==='ESCALATION'?'ESCALATION COST WARNING — SEPARATE OWNER AUTHORIZATION REQUIRED':'ROUTINE COST WARNING'):'WITHIN WARNING THRESHOLD',ownerOverrideRequired:total>10,withinPreferredTarget:total<=8,withinConfiguredGuard:total<=guard};}

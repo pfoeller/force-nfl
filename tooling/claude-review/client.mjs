@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {CONFIG} from './config.mjs';
+import {contextAdmission} from './context.mjs';
 import {noSecrets} from './packet.mjs';
 export const SYSTEM=fs.readFileSync(new URL('./reviewer.txt',import.meta.url),'utf8').replaceAll('\r\n','\n');
 export function loadSecret(){
@@ -56,7 +57,7 @@ async function boundedJson(response){
  try{return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Buffer.concat(chunks)));}catch{throw new Error('INVALID_API_JSON');}
 }
 export async function requestReview(packet,options={},deps={}){
- const maxTokens=options.maxTokens??CONFIG.maxOutputTokens,bound=upperCost(packet.bytes+Buffer.byteLength(options.systemSuffix??''),maxTokens,options.cache!==false);
+ const maxTokens=options.maxTokens??CONFIG.maxOutputTokens;contextAdmission(packet.bytes+Buffer.byteLength(options.systemSuffix??''),maxTokens,Buffer.byteLength(SYSTEM));const bound=upperCost(packet.bytes+Buffer.byteLength(options.systemSuffix??''),maxTokens,options.cache!==false);
  if(bound>(options.maxUsd??CONFIG.maxEstimatedUsd))throw new Error('COST_BUDGET_EXCEEDED; nothing sent.');
  if(options.send!==true&&!deps.fetcher)throw new Error('EXPLICIT_SEND_REQUIRED; nothing sent.');
  let key;

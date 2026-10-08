@@ -1,4 +1,6 @@
-# Policy-v4 rotation SLA and honest economics
+# Historical policy-v4 rotation SLA and scenario-conditioned economics
+
+The policy-v4 tables below are preserved historical previews and quiet-heavy reference evidence. They do not establish representative routine economics. Current policy-v5 corrections and four 24-audit scenario families are in [infrastructure corrections](INFRASTRUCTURE_CORRECTIONS.md). D remains the default, with final D-versus-E weighting left to the owner.
 
 All evidence is a zero-request projection at production main `39bc08e41fe3c1c8d57de385faa568733c52efc2`. Inventory: 766 tracked, 623 eligible, 143 explicitly excluded; tiers 48/341/234, original bytes 1,031,481 / 2,189,408 / 5,560,833. Every eligible file remains locally scanned/mapped in every audit. A map-only file has not received direct Opus review on that audit. No history advances until complete validated owner-confirmed review. No API calls, key reads, billed tokens or real paid-truncation measurements underlie these results.
 
@@ -20,7 +22,7 @@ Thirty-six hypothetical quiet completions per candidate use real Git inventory/a
 | D | 1/4/12 | 2869797.00 | 271.25 | $11.479188 | $15.443557 | $13.122808–$20.533064 | 5–8 | 0/3/11 | 12 |
 | E | 1/4/12 | 2905483.42 | 276.13 | $11.621934 | $15.440117 | $11.642776–$23.367756 | 4–8 | 0/3/11 | 12 |
 
-All plans fit the 896 KiB soft packet / 1 MiB hard limit with mandatory four themes. Source/input estimates do not include map/output/cache overhead; total ceilings do. These are conditional inventory projections, not universal upper bounds on future work. Moderate/elevated changes legitimately increase mandatory content. Final A–E mixed simulations are retained in the ignored `candidate-policies-final.json`; all twelve selected D cycles match the uncached real run exactly. Earlier exploratory/default-E files remain labelled superseded evidence. Comparable quiet behavior across D/E has almost identical mean, but E's larger worst-case burst does not justify adopting it. D also has fewer quiet audit calls at its measured peak. D is the lowest-cost tested fixed SLA; extending further would be a new owner policy tradeoff and still cannot remove the mandatory core floor.
+All plans fit the 896 KiB soft packet / 1 MiB hard limit with mandatory four themes. Source/input estimates do not include map/output/cache overhead; total ceilings do. These are conditional inventory projections, not universal upper bounds on future work. Moderate/elevated changes legitimately increase mandatory content. Final A–E mixed simulations are retained in the ignored `candidate-policies-final.json`; all twelve selected D cycles match the uncached real run exactly. Earlier exploratory/default-E files remain labelled superseded evidence. This earlier quiet-reference comparison has almost identical D/E means and a larger E peak, but does not establish D's superiority when most audits contain changes. The new change-every/most/bursty comparisons trade means against peaks; neither policy is universally better. D was the lowest-cost fixed SLA among these historical quiet tests; extending intervals remains a new owner policy tradeoff.
 
 The external scratch accelerated quiet comparison cached only immutable inventory/local-analysis at this exact target, cloning it per cycle. Its baseline plan, complete manifest text and every packet were checked byte-identical to the real planner before using the cache. No production cache or planner path was added. The final selected twelve-cycle evidence was rerun through the real uncached planner after selecting D. Quiet algorithms, packet bodies and periods used for the comparison remain unchanged by the final changed/risk allocation rule. Synthetic overlays do not represent actual future product edits or bytes.
 
@@ -36,11 +38,11 @@ The same two synthetic moderate integrations, including additive declarations, w
 
 ## Exact service level
 
-Tier 1 every completed audit; Tier 2 at most four audits between direct reviews; Tier 3 at most twelve. Changed eligible files are mandatory on the next audit; new eligible files and upward risk promotions are immediate. Static risk and all declared priorities including UNCERTAIN plus bounded one-hop context are mandatory. An explicit mandatory trigger or oversized implementer-risk expansion is elevated; the existing explicit owner override is required for any over-$10 paid run, including ordinary quiet runs. All due content bypasses soft capacity. Baseline counts as first audit; all eligible files must receive first direct exposure by audit 12. Maximum ages after completion are 0/3/11, including never-reviewed files until the initial deadline. Failed/partial/truncated runs do not count as completions or age the ledger.
+Tier 1 every completed audit; Tier 2 at most four audits between direct reviews; Tier 3 at most twelve. Changed eligible files are mandatory on the next audit; new eligible files and upward risk promotions are immediate. Static risk and all declared priorities including UNCERTAIN plus bounded one-hop context are mandatory. An explicit mandatory trigger or oversized expansion with implementer risk as the primary source-byte driver is elevated; the existing explicit owner override is required for any over-$10 paid run, including ordinary quiet runs. All due content bypasses soft capacity. Baseline counts as first audit; all eligible files must receive first direct exposure by audit 12. Maximum ages after completion are 0/3/11, including never-reviewed files until the initial deadline. Failed/partial/truncated runs do not count as completions or age the ledger.
 
 The new baseline selects current contract evidence rather than broad historical-test closure. Historical/default-excluded tests remain eligible Tier 2, not excluded or falsely reviewed. Meaningful first ordinary rotation and future hard deadlines preserve independent exploration. [Implementer declarations](IMPLEMENTER_RISKS.md) are additive evidence, not a safe-file classifier; complete maps and independently selected unflagged content remain.
 
-## Twelve actual-inventory synthetic cycles
+## Historical quiet-heavy twelve-cycle selected D evidence
 
 Exact ignored evidence: `research/claude-api-reviews/deep/FORCE-ROTATION-SLA-2026-10-08/twelve-cycles-selected-D.json`. These are hypothetical completed audits on a private ledger clone; real completed audits remain zero. Cycles 3 and 8 overlay six bounded changed paths plus two high-recall synthetic risks. Cycle 6 overlays sixteen critical changed paths, an explicit mandatory trigger and two broader risks. They are clearly labelled sizing fixtures, not claims about FORCE defects. All cycles include all 48 critical files; changed coverage is 100%. All escalation counts are zero because no reviewer request occurred. “Due before/overdue after” distinguishes due content selected from missed deadlines.
 
@@ -71,14 +73,29 @@ Every eligible file is selected by audit 12; zero deadline violations. The mutat
 
 Risk-only extra bytes exclude files independently mandatory or due in the same history. Incremental cost compares the exact same state and changes without declarations. Optional displacement can offset part of risk cost; mandatory/due content is never removed. Declaration text and context remain in adversarial review. All priorities are covered by mock tests; low confidence is not a low selection priority.
 
-## Distribution and acceptance
+## Historical quiet-reference distribution; independent acceptance pending
 
-Final twelve-cycle QUIET/NORMAL: min $13.087448, median $14.431080, mean $15.898661, max $21.159956; 5–8 calls; mean 2972365.5 original bytes / 44.16% direct files. Moderate-only mean $14.218736. Quiet-only mean $16.318642. These include initial-sweep transients and retained displaced work; costly quiet cycles remain quiet, not relabelled elevated. Thirty-six quiet comparison's D steady distribution: min $13.122808, median $14.105258, mean $15.443557, max $20.533064; 5–8 calls, mean 2,869,797 bytes / 43.54% direct.
+Historical quiet-heavy twelve-cycle QUIET/NORMAL (excluding baseline and the elevated audit): min $13.087448, median $14.431080, mean $15.898661, max $21.159956; 5–8 calls; mean 2972365.5 original bytes / 44.16% direct files. Moderate-only mean $14.218736. Quiet-only mean $16.318642. These include initial-sweep transients and retained displaced work; costly quiet cycles remain quiet, not relabelled elevated. Thirty-six quiet comparison's D steady distribution: min $13.122808, median $14.105258, mean $15.443557, max $20.533064; 5–8 calls, mean 2,869,797 bytes / 43.54% direct.
 
 **$5–$8 is not demonstrated; ordinary >$10 is still a routine warning.** Mandatory-core and selected-SLA floors explain why. The retained four-theme maps, serialization, output caps and worst-case cache-write buffers add overhead. This is the lowest honest tested fixed-policy distribution, not a universal optimum or billed cost claim.
 
 ## Major designs and baseline
 
-Literal every-file preview 001: 60 calls / $119.606864, 623/623 direct. Policy-v3 preview 004: 7 calls / $17.348788, 409/623 direct, routine $16.81–$24.45. Current policy-v4 preview 005: six calls / approximately $13.118445, 259/623 (41.57%), tiers 48/199/12. Exact committed preview pins and packet sizes are in its ignored plan and final task report; microdollar differences from synthetic run IDs are expected and disclosed. Output caps 4096–7168. Every critical file is still included; full map/local coverage remains 100%, and all ordinary content is due within twelve audits. A $10 run guard blocks paid sending; owner explanation and a sufficient total guard are required. None of 001–005 was sent by this task. Old previews and packets are preserved, not overwritten.
+Literal every-file preview 001: 60 calls / $119.606864, 623/623 direct. Policy-v3 preview 004: 7 calls / $17.348788, 409/623 direct, routine $16.81–$24.45. Preserved policy-v4 preview 005: six calls / approximately $13.118445, 259/623 (41.57%), tiers 48/199/12. Exact committed preview pins and packet sizes are in its ignored plan and final task report; microdollar differences from synthetic run IDs are expected and disclosed. Output caps 4096–7168. Every critical file is still included; full map/local coverage remains 100%, and all ordinary content is due within twelve audits. A $10 run guard blocks paid sending; owner explanation and a sufficient total guard are required. None of 001–005 was sent by this task. Old previews and packets are preserved, not overwritten.
 
 No production/model/public change, owner key read or Anthropic request. The new infrastructure packet remains unsent and is scoped to review of review tooling. Production readiness, owner product decisions and bank acceptance are not granted by this planner revision.
+
+## Current policy-v5 scenario evidence
+
+| Scenario | Policy | Audits 2–12 mean / median / max | Calls | Audits 13–24 mean / median / max | Calls | Audit 12 ceiling / calls | Audit 12 deadline-burst bytes | Maximum audit: ceiling |
+| --- | --- | --- | --- | --- | --- | --- | ---: | --- |
+| CHANGE_EVERY | D | $19.828739 / $18.624393 / $39.388296 | 6–12 | $19.576726 / $18.700080 / $35.776544 | 6–11 | $39.388296 / 12 | 3,945,064 | 12: $39.388296 |
+| CHANGE_EVERY | E | $19.859277 / $18.631840 / $39.548788 | 6–12 | $19.611637 / $17.539272 / $39.335604 | 6–12 | $39.548788 / 12 | 3,976,219 | 12: $39.548788 |
+| CHANGE_MOST | D | $18.326916 / $16.252540 / $29.602952 | 6–10 | $18.198375 / $17.494887 / $25.976620 | 6–9 | $29.602952 / 10 | 3,364,489 | 12: $29.602952 |
+| CHANGE_MOST | E | $18.030055 / $18.622956 / $28.097488 | 4–9 | $17.854305 / $15.412710 / $28.034180 | 5–9 | $28.097488 / 9 | 3,258,730 | 12: $28.097488 |
+| BURSTY | D | $19.023193 / $18.661613 / $26.865204 | 6–9 | $18.539269 / $18.699286 / $26.899800 | 6–9 | $26.865204 / 9 | 1,405,515 | 24: $26.899800 |
+| BURSTY | E | $18.866640 / $18.631648 / $31.628972 | 5–10 | $18.822776 / $18.699608 / $28.008100 | 5–9 | $31.628972 / 10 | 2,398,900 | 12: $31.628972 |
+| QUIET_REFERENCE | D | $16.357463 / $14.586404 / $21.160124 | 5–8 | $16.120708 / $14.453311 / $21.173396 | 5–8 | $21.160124 / 7 | 488,488 | 24: $21.173396 |
+| QUIET_REFERENCE | E | $15.979476 / $15.249424 / $24.753240 | 5–9 | $15.793565 / $15.424452 / $18.975697 | 4–7 | $24.753240 / 9 | 2,471,796 | 12: $24.753240 |
+
+These are scenario-conditioned conservative ceilings; no probability mixture or representative expected price is established. See [definitions, per-cycle artifacts, rotation alternatives and owner tradeoffs](INFRASTRUCTURE_CORRECTIONS.md). Both policies first sweep all eligible content by audit 12 with no hard-deadline violation. Baseline remains NOT AUTHORIZED.

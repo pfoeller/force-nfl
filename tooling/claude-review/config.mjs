@@ -1,5 +1,7 @@
+export const MODEL_CONTEXTS=Object.freeze({'claude-opus-5-5':Object.freeze({model:'claude-opus-5-5',contextTokens:1000000,framingReserveTokens:8192,verified:'2026-10-08',source:'https://platform.claude.com/docs/en/models/opus-5-5/overview'})});
 export const CONFIG=Object.freeze({
- model:'claude-opus-5-5', endpoint:'https://api.anthropic.com/v1/messages', apiVersion:'2023-06-01',
+ model:'claude-opus-5-5',
+ modelContext:MODEL_CONTEXTS['claude-opus-5-5'], endpoint:'https://api.anthropic.com/v1/messages', apiVersion:'2023-06-01',
  handoff:'research/handoffs/CHATGPT_TO_CLAUDE_BANK.md', artifacts:'research/claude-api-reviews',
  remote:'pfoeller/force-nfl', maxPacketBytes:131072, maxFileBytes:65536, maxScanBytes:4194304,
  maxOutputTokens:8192, maxEstimatedUsd:1, timeoutMs:180000, maxResponseBytes:2097152,

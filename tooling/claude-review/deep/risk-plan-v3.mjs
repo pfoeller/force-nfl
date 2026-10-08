@@ -3,7 +3,7 @@ import {hash,fail,json,isId,compare} from './util.mjs';
 import {noSecrets} from '../packet.mjs';
 import {upperCost,SYSTEM} from '../client.mjs';
 import {CONFIG} from '../config.mjs';
-import {outputBudget,costDecomposition,economicClassification,BUDGET_POLICY} from './economics.mjs';
+import {outputBudget,costDecomposition,economicClassification,BUDGET_POLICY} from './economics-v4.mjs';
 import {DEEP_DOCTRINE} from './doctrine.mjs';
 import {REVIEW_POLICY,analyzeRepository,compactMap,initialDirectState,selectDirect,coverageMetrics} from './selection-v3.mjs';
 export const HARD_LIMIT=1048576;
