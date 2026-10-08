@@ -21,7 +21,11 @@ Run from the **root of the checkout containing this harness**, on an off-main
 branch for paid review. The origin must identify `pfoeller/force-nfl`, start must
 be an ancestor of end, and end must be an ancestor of checkout HEAD. Tracked
 files/index must be clean. The result records the exact checkout, branch, HEAD,
-start/end and hashes. Git routing environment variables are removed from child
+start/end and hashes. Net file changes in END..HEAD are listed in both the packet
+and result. Changes outside the canonical handoff produce a named warning:
+the verdict covers START..END only, never the entire later checkout. Handoff-only
+checkpoints remain allowed and recorded. This does not include later file contents
+or extend review scope. Git routing environment variables are removed from child
 Git calls; source symlinks/submodules, outside paths, sensitive paths and binary
 diffs fail closed. Review artifacts are ignored by Git and Docker.
 
@@ -116,7 +120,19 @@ Defaults: model `claude-opus-5-5`, global **Standard only**, 8192 output tokens,
 $1 estimated ceiling, 180-second timeout. No Fast, tools, regional inference,
 batch-discount assumption or automatic paid retry. Opus 5.5's documented adaptive
 thinking is left at the model default, with no manual thinking budget. The output
-cap includes generated output; a truncated response is INVALID_RESPONSE.
+cap includes thinking and visible output; a truncated response is INVALID_RESPONSE.
+Adaptive thinking can consume enough of that cap to truncate the visible review
+JSON. The first live batch completed at 8035 output tokens out of 8192, so this
+is a plausible future paid failure, not an observed truncation or a guarantee of
+failure. If the saved stopReason is max_tokens, inspect retained usage/cost;
+then dry-run with a larger --max-tokens cap and consider a separately authorized
+manual send. For example, --max-tokens 16384 stays within the supported bounds,
+but still must satisfy --max-usd. Never relabel a truncated response accepted or
+automatically retry it. Defaults and model/thinking settings remain unchanged.
+
+The first saved live response returned exactly claude-opus-5-5 and global Standard
+usage, supporting current strict model matching. Unrecognized future identifiers
+still fail closed; no speculative snapshot allow-list was introduced.
 
 `--max-tokens` (256–32768), `--max-usd` ($0.01–$25) and `--max-bytes` are explicit
 bounded overrides. Cost is checked **before key access or request**. A conservative
@@ -198,7 +214,9 @@ CLAUDE REVIEW: PENDING
 ```
 
 Only ranges overlapping the requested Git range are selected; --batch narrows to
-named entries. Stale/unresolvable unrelated indexed history is excluded with a
+named entries. Each API entry ends at the next level-2 heading; following
+non-indexed sections are excluded. Duplicate/empty IDs still fail closed to avoid
+ambiguous selection; relaxing unrelated-duplicate handling is deferred. Stale/unresolvable unrelated indexed history is excluded with a
 named warning. Explicitly requesting it fails closed. It is never rewritten.
 Historical bank sections are not auto-crawled or implicitly accepted; preparing
 an API packet for one requires an explicitly authorized indexed checkpoint in

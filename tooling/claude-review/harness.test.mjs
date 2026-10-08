@@ -101,3 +101,48 @@ test('candidate outside checkout HEAD ancestry is rejected',()=>fixture(p=>{
  git(p.root,['checkout','-qb','other',p.start]);fs.writeFileSync(path.join(p.root,'source.js'),'export const value = 3;\n');git(p.root,['add','source.js']);git(p.root,['commit','-qm','uncontained']);
  const other=git(p.root,['rev-parse','HEAD']).trim();git(p.root,['checkout','-q','codex/fixture']);assert.throws(()=>buildPacket(p.root,p.start,other),/Git inspection failed/);
 }));
+// F1: exact metadata from the first completed live batch; no live request or key.
+test('reviewed live model identifier and Standard usage retain strict matching and cost',()=>{
+ const model='claude-opus-5-5',usage={input_tokens:40670,output_tokens:8035,cache_creation_input_tokens:2375,cache_read_input_tokens:0,service_tier:'standard',inference_geo:'global',cache_creation:{ephemeral_5m_input_tokens:2375,ephemeral_1h_input_tokens:0}};
+ assert.equal(model,CONFIG.model);assert.equal(usageCost(usage,model),.335255);
+ assert.equal(usageCost(usage,'unverified-snapshot'),null);
+});
+// F2: a capped response stays invalid and retains safe usage; defaults unchanged.
+test('output-cap truncation never accepts prose and preserves billing metadata',()=>fixture(async p=>{
+ const r=await send(p.packet,{fetcher:async()=>response(p.packet,outcome(p.packet),{stop_reason:'max_tokens'})});
+ assert.equal(r.status,'INVALID_RESPONSE');assert.equal(r.review,null);assert.equal(r.text,null);
+ assert.equal(r.telemetry.stopReason,'max_tokens');assert.equal(r.telemetry.usage.output_tokens,20);assert(r.telemetry.estimatedUsd>0);
+ assert.equal(CONFIG.maxOutputTokens,8192);assert(upperCost(p.packet.bytes,16384)>upperCost(p.packet.bytes,8192));
+}));
+// F3: later checkout files are provenance, never implicitly part of review.
+test('post-END provenance distinguishes same HEAD, handoff-only and unrelated changes',()=>fixture(async p=>{
+ assert.deepEqual(p.packet.postEndChanges,[]);assert.deepEqual(p.packet.outsideReviewFiles,[]);
+ const ledger=`## API Batch: valid\nStart SHA: ${p.start}\nEnd SHA: ${p.end}\nBounded fixture\n`;
+ fs.mkdirSync(path.join(p.root,'research/handoffs'),{recursive:true});fs.writeFileSync(path.join(p.root,CONFIG.handoff),ledger);git(p.root,['add',CONFIG.handoff]);git(p.root,['commit','-qm','ledger only']);
+ const handoff=buildPacket(p.root,p.start,p.end);assert.deepEqual(handoff.postEndChanges,[{status:'A',path:CONFIG.handoff}]);assert.deepEqual(handoff.outsideReviewFiles,[]);assert.deepEqual(handoff.warnings,[]);
+ fs.writeFileSync(path.join(p.root,'source.js'),'export const value = 3; // LATER_CONTENT_SENTINEL\n');git(p.root,['add','source.js']);git(p.root,['commit','-qm','later unreviewed file']);
+ const r=await runReview([...args(p,'--dry-run'),'--batch','valid'],p.root,dep(p.root,{secretLoader:()=>assert.fail('secret'),fetcher:()=>assert.fail('network')}));
+ assert.equal(r.result.apiCalls,0);assert.deepEqual(r.result.outsideReviewFiles,['source.js']);assert.deepEqual(r.result.postEndChanges,[{status:'A',path:CONFIG.handoff},{status:'M',path:'source.js'}]);
+ assert.match(r.result.warnings[0],/Outside reviewed range END\.\.HEAD: source\.js/);const packet=fs.readFileSync(r.packetPath,'utf8');assert(packet.includes('"postEndChanges"'));assert(packet.includes('"outsideReviewFiles"'));assert(packet.includes('value = 2'));assert(!packet.includes('LATER_CONTENT_SENTINEL'));
+ const saved=JSON.parse(fs.readFileSync(r.resultPath,'utf8'));assert.deepEqual(saved.postEndChanges,r.result.postEndChanges);assert.deepEqual(saved.outsideReviewFiles,['source.js']);
+}));
+// F4: compare actual bytes, not a terminal's encoding interpretation.
+test('selected context headings use exact ASCII separator bytes',()=>fixture(p=>{
+ const built=buildPacket(p.root,p.start,p.end,{context:['source.js#L1-L1']});
+ const heading=built.packet.split('\n').find(x=>x.startsWith('### source.js'));
+ assert.deepEqual(Buffer.from(heading,'utf8'),Buffer.from('### source.js#L1-L1 - END-pinned context','ascii'));
+}));
+// F5: always-color user config cannot alter packets or conceal binary diffs.
+test('forced Git color leaves deterministic packets unchanged and binary rejection intact',()=>fixture(p=>{
+ git(p.root,['config','color.ui','always']);git(p.root,['config','color.diff','always']);
+ const colored=buildPacket(p.root,p.start,p.end);assert.equal(colored.packet,p.packet.packet);assert.equal(colored.packetHash,p.packet.packetHash);assert(!colored.packet.includes('\x1b'));
+ fs.writeFileSync(path.join(p.root,'new.bin'),Buffer.from([0,1,2]));git(p.root,['add','new.bin']);git(p.root,['commit','-qm','binary evidence']);const end=git(p.root,['rev-parse','HEAD']).trim();
+ assert.throws(()=>buildPacket(p.root,p.start,end),/Binary diff/);
+}));
+// F6: bounded section parsing, while the duplicate-ID fail-closed policy stays.
+test('API handoff stops at next level-two heading without relaxing duplicate IDs',()=>fixture(p=>{
+ const block=`## API Batch: valid\nStart SHA: ${p.start}\nEnd SHA: ${p.end}\n### Focus\nRELEVANT_ONLY\n`;
+ const text='# Ledger\n'+block+'## Later checkpoint\nUNRELATED_AFTER_ENTRY\n'+`## API Batch: unrelated\nStart SHA: ${p.end}\nEnd SHA: ${p.end}\nOTHER_ENTRY\n`;
+ const selected=selectHandoff(p.root,text,p.start,p.end,['valid']);assert(selected.includes('RELEVANT_ONLY'));assert(!selected.includes('UNRELATED_AFTER_ENTRY'));assert(!selected.includes('OTHER_ENTRY'));
+ assert.throws(()=>selectHandoff(p.root,block+block,p.start,p.end,['valid']),/Duplicate/);
+}));
