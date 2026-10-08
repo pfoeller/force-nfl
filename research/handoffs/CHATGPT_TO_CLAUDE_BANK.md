@@ -857,3 +857,113 @@ canonical-ledger reuse. Judge whether this evidence supports manual first use.
 Do not redo unrelated bank/model investigations or simulations, claim executed
 checks, or resolve owner decisions. Review verdict and later human disposition
 remain separate. Default and current status: **CLAUDE REVIEW: PENDING**.
+
+## API Batch: FORCE-CLAUDE-HARNESS-001-CHECKPOINT
+Start SHA: 2ba6eaa3efb1395a57c1b7fe8f01052d736f8d72
+End SHA: 46d93d360524d54c358cd2b1093451989a0ecc42
+Date: 2026-10-08
+Title: FORCE-CLAUDE-HARNESS-001 post-review correction/checkpoint
+CLAUDE REVIEW: NOT RERUN; original API verdict preserved below; Codex-validated minor delta only.
+
+### Review provenance and exact starting state
+
+- Branch/worktree: `codex/claude-api-review-harness`, `C:/Projects/force-nfl-claude-api-review-harness`.
+- Pre-correction tip: `2ba6eaa3efb1395a57c1b7fe8f01052d736f8d72`; clean, 0 ahead/0 behind its freshly fetched remote.
+- Production local main, origin/main and direct remote main: `39bc08e41fe3c1c8d57de385faa568733c52efc2`.
+- Reviewed implementation: `d6b8c3513d045b731d3f04cb23b0edd807c78b35` -> `0b5cb2f4d96b529e35c2f5ff2ccee6e0d1cbe5af`.
+- Reviewed end is an ancestor of the starting tip. The only subsequent commit was the expected ledger checkpoint `2ba6eaa`; no unexplained divergence or post-review code commit existed.
+- Review batch/model: `FORCE-CLAUDE-HARNESS-001`, requested and returned `claude-opus-5-5`, global Standard.
+- Exact original Claude API verdict: **ACCEPTED WITH MINORS**; 4 MINOR + 3 OPTIONAL, no BLOCKER/MATERIAL.
+- Local full artifact: `C:/Projects/force-nfl-claude-api-review-harness/research/claude-api-reviews/2026-10-08T11-39-39-170Z-d6b8c3513d04-0b5cb2f4d96b-755d6c87dfca6f3c.review.json` (ignored; not copied into Git).
+- Artifact SHA256: `a98257ab635d419fd7489f5f8f1b666e4b218e0fe6b39e05ad4a8a5c65a9c4c7`.
+- Review text hash: `ba7a31b1e5fc7ca71961a0d521b12d5d162af1517b327404f3eae131a490b464`.
+- Packet hash: `755d6c87dfca6f3c71e26142c2e93cbf259109b46f972c1b9e63de564166c11b`; batch/range, text/schema and packet hashes independently matched.
+- Request ID: `req_011Cfphu3RX1i9BCJQHpE5cM`; response stop reason: `end_turn`.
+- Recorded usage: input **40,670**, output **8,035**, 5m cache write **2,375**, cache read **0**; estimated cost **$0.335255** (~$0.3353). Packet **91,039 bytes**, pre-send estimated ceiling **$0.6008**.
+
+The saved API artifact and its original humanDisposition remain unchanged. This
+entry records the owner's authorized correction checkpoint, not a new API verdict
+or an integration/deployment authorization. The earlier PENDING entry describes
+the pre-review state; this dated provenance records the completed original review.
+Bank-only review statuses/history remain untouched.
+
+### Complete finding disposition
+
+IDs F1-F7 are assigned here in original artifact order. Severity is Claude's
+verbatim classification; nature is Codex's separate assessment. The full original
+wording remains in the hashed local artifact; the quotes below preserve the
+specific factual claims and reasoning used for each disposition.
+
+| ID | Claude severity / kind | Affected surface and original factual claim / reasoning | Nature | Reproduced / evidence | Codex disposition, action and test | Re-review significance |
+| --- | --- | --- | --- | --- | --- | --- |
+| F1 | MINOR / unproven assumption | `client.mjs` model check / usageCost: "The mock always echoes the alias." A resolved identifier might make a paid response invalid and cost unknown. | ALREADY ADDRESSED / STALE | First real response returned exactly `claude-opus-5-5`, with completed review and known cost; predicted first-use mismatch did not occur. | Keep strict matching, no speculative snapshot allow-list. README records observed identifier; focused regression reproduces live Standard usage/cost $0.335255 and rejects an unverified identifier for pricing. | No matching/pricing logic changed; no material delta. Future unexpected identifiers still fail closed. |
+| F2 | MINOR / unproven assumption | `client.mjs` / README output cap: "If default thinking consumes much of the 8192-token output budget ... the visible JSON can be truncated." Mocks cannot establish first-use functional success. | UNPROVEN ASSUMPTION | Actual first call ended normally at 8035/8192 output tokens. Future truncation is plausible, not observed or statistically established as likely. Mock max_tokens response confirms invalid-review behavior. | Document thinking plus visible-output cap, inspect retained telemetry, dry-run a larger explicit max-tokens cap within cost budget, and require a separately authorized manual resend. Add truncation/cost-retention test. No default/effort/model changes or automatic retry. | Documentation and regression only; no material delta or paid request. |
+| F3 | MINOR / actual defect | `packet.mjs` buildPacket: "It never inspects END..HEAD." Later unrelated checkout changes are silently outside review; inspectedHead alone can suggest whole-checkout coverage. | ACTUAL DEFECT | Disposable END..HEAD source mutation produced no warning or post-range list before the fix. | Record net `postEndChanges` and non-handoff `outsideReviewFiles` in packet/result; emit a named warning that only START..END is reviewed. Later contents stay excluded. Regress same-HEAD, ledger-only, unrelated changes and saved metadata. | Local provenance clarification in reviewed subsystem; no scope enlargement. |
+| F4 | MINOR / actual defect | `packet.mjs` context heading contains "â€”"; every selected heading is garbled, indicating an encoding round trip. | ACTUAL DEFECT | Actual heading bytes contained `c3a2e282ace2809d`. Original real packet had no selected context, so that first call was not affected. | Replace only the separator with ASCII ` - `; exact heading-byte regression covers selected context. | Cosmetic bounded correction; no material delta. |
+| F5 | OPTIONAL / useful follow-up | `packet.mjs` Git invocation: "color.diff=always would inject ANSI escapes into the packet" and could interfere with anchored binary-diff detection. | ACTUAL DEFECT | Disposable always-color config reproduced ANSI escapes before the fix. | Trivial in-scope fix: per-command color.ui/color.diff=never plus --no-color on patch/post-range diff. Regress byte-identical packet/hash under forced color and binary rejection. | No user/global config mutation or new subsystem; no material delta. |
+| F6 | OPTIONAL / useful follow-up | `packet.mjs` selectHandoff: "The last API block absorbs all following text until end of file"; duplicates anywhere throw for every review. | ACTUAL DEFECT (section boundary); duplicate-policy suggestion is deferred | Later non-indexed level-2 section was included in a disposable selected batch. Duplicate-ID failure also reproduced, with no actual duplicate in this ledger. | Bound entries at next level-2 heading; regression excludes later prose/other batches. Preserve duplicate/empty-ID fail-closed policy, tested unchanged. Relaxing unrelated duplicates is not a trivial policy-free correction and remains optional future work. | Small parser-boundary fix directly requested by Claude; no material delta. |
+| F7 | OPTIONAL / useful follow-up | `review.mjs` result: "The result does not record the brief path or hash separately." Packet hash covers it, but auditors cannot easily distinguish committed versus local-only brief. | USEFUL FOLLOW-UP | Source and disposable local brief confirmed no dedicated result field; brief content remains covered by saved packet/hash. | Defer separate brief path/hash/END-or-HEAD tracking metadata. No demonstrated false acceptance or lost evidence; not required for this bounded checkpoint. | No code change; optional future batch, not a release blocker or new authorization. |
+
+There are no FORCE football/model/statistical findings in this artifact. No
+leakage, recency, opponent, calibration, simulation or model semantics required
+reassessment. The only cost calculation scrutinized is the unchanged harness
+pricing calculation, reproduced from the saved live usage. No ratings,
+predictions, priors, provider policy, normalization or research conclusions moved.
+
+### Correction scope and validation
+
+Correction commit: `46d93d360524d54c358cd2b1093451989a0ecc42`.
+Exact correction files:
+- `tooling/claude-review/packet.mjs` (F3, F4, F5, bounded portion of F6).
+- `tooling/claude-review/review.mjs` (F3 result provenance only).
+- `tooling/claude-review/harness.test.mjs` (six focused F1-F6 controls).
+- `tooling/claude-review/README.md` (F1/F2 observations and F3/F6 contracts).
+
+This canonical handoff is the only additional checkpoint file. No client API
+adapter, reviewer prefix, pricing config, defaults, secret helper, catalog,
+workflow, roadmap, model, public, data or production source changed.
+
+Pinned Node 24.19.0, external network disabled:
+
+```text
+node --require ./scripts/lib/test_safety.cjs --test --test-name-pattern "reviewed live|output-cap|post-END|selected context headings|forced Git color|API handoff stops" tooling/claude-review/harness.test.mjs
+```
+Result: **6/6 focused controls PASS**.
+
+```text
+node --require ./scripts/lib/test_safety.cjs --test tooling/claude-review/harness.test.mjs
+```
+Result: **43/43 PASS**, zero skipped/failed, including disposable synthetic
+Windows DPAPI round trip. HTTP is mocked; no real key lookup or API request.
+
+```text
+node scripts/run_tests.mjs --test test_runtime.cjs --test test_v149_public_refresh.mjs
+node scripts/run_tests.mjs --inventory
+```
+Existing regressions: **2 passed / 0 failed**, worktree status/hashes unchanged.
+Inventory remains **261 total / 149 safe / 112 excluded**; no catalog change.
+`node --check` on packet.mjs, review.mjs and harness.test.mjs: PASS.
+`git diff --check`: PASS. Changed text UTF-8 validation and manual diff review: PASS.
+No unrelated model/simulation/historical suites rerun; none were warranted.
+
+### Disposition, remaining risks and checkpoint identity
+
+- Claude API verdict for original range: **ACCEPTED WITH MINORS**, unchanged.
+- Human/Codex disposition: reproduced local defects corrected; all four MINORs dispositioned; bounded OPTIONAL fixes and deferrals recorded. Codex validation is not another independent Claude review or owner integration decision.
+- Re-review recommendation: **NOT REQUIRED**. No MATERIAL finding, product/model/methodology change, different subsystem or material review-surface expansion. Corrections directly implement Claude's bounded recommendations and have focused regressions.
+- Deliberately deferred: optional unrelated-duplicate-ID warning/selection policy and separate brief provenance fields. Unexpected future model identifiers and truncation remain fail-closed, manually investigated conditions; no speculative retry/adoption policy is added.
+- No second paid API request in this pass; only $0 dry-run packet checks are authorized here.
+- Final branch tip is the ledger-only checkpoint commit containing this entry, descended directly from `46d93d3`. Resolve its exact SHA with `git log -1 --format=%H -- research/handoffs/CHATGPT_TO_CLAUDE_BANK.md`; the final external report supplies it. Avoid a self-referential commit hash.
+- Push only the existing off-main harness branch after fresh remote/clean-state checks. No PR, merge, deployment, main push or next FORCE tranche is authorized by this checkpoint.
+
+### Original review caveats preserved
+
+Claude executed no code/tests and treated earlier 7/7, 37 cases, inventory,
+public parity and Windows storage results as Codex-reported evidence only.
+Claude could not check official model/pricing/cache/service-tier/usage/thinking
+documentation, assessed DPAPI/ACL/junction behavior from source, and did not inspect
+the out-of-diff canonical ledger/provenance. Workspace association, real billing
+and cache hits remain unverified by the reviewer; the actual response had zero
+cache-read tokens. The saved response now supplies observed model and Standard
+usage evidence, but does not prove all future API behavior. No caveat was removed
+from the original artifact and no broad acceptance claim is inferred.
