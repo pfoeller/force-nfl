@@ -1,47 +1,37 @@
-# Deep-review implementation handoff
+# Deep-review policy-amendment handoff
 
-Purpose: implement periodic actual-content Opus exposure, not perform FORCE’s product/model audit. New branch: `codex/claude-api-deep-review-harness`, exact validated targeted base `24bb3b0738f4177b1289becccec9450e7d11c7d9`. Production target: `39bc08e41fe3c1c8d57de385faa568733c52efc2`. Bank and targeted branch remain separate and unchanged.
+The owner superseded literal-every-eligible-file content on every audit. This follow-up implements a **repo-wide fresh-eyes audit with complete inventory/analytic coverage and risk-prioritized + rotating direct-content review**. Production main remains `39bc08e41fe3c1c8d57de385faa568733c52efc2`; the validated targeted base remains `24bb3b0738f4177b1289becccec9450e7d11c7d9`. Work stays on `codex/claude-api-deep-review-harness`, after prior implementation `4173b1fd6bb23f06131715f8ea3f008bb2d3c42f`. No FORCE product/model audit or paid request is performed.
 
-## Architecture and narrow review scope
+## Replacement first preview
 
-Review the base-to-this-branch diff in:
+| Measure | Rejected literal plan 001 | Replacement plan 003 |
+| --- | ---: | ---: |
+| Tracked / eligible / excluded | 766 / 623 / 143 | 766 / 623 / 143 |
+| Inventory / eligible local analysis | Complete inventory | 100% / 100% |
+| Actual-content files planned | 623 (100%) | 409 (65.65%) |
+| Unique paid calls planned | 60 | 7 |
+| Conservative ceiling | $119.606864 | $17.56 |
+| Total configured guard | $200 | $10 |
+| Required perspectives | 4, plus repeated corpus | 4 complementary families, 3 extra content subpasses |
 
-- `tooling/claude-review/client.mjs`: three additive transport hooks (stable suffix, suffix cost, injected deep parser); targeted defaults and reviewer.txt unchanged.
-- `tooling/claude-review/deep-review.mjs`: explicit CLI; no default/send-all spending.
-- `tooling/claude-review/deep/{util,inventory,plan,doctrine,cadence,run,synthesis}.mjs`: deterministic Git inventory/policy/byte coverage/themes, extended nature schema, calendar cadence, durable request intent, budget-before-key, resume, result validation and local synthesis.
-- `tooling/claude-review/deep/deep.test.mjs` and `scripts/test_claude_deep_review.mjs`: injected synthetic-key/API safety tests and disposable Git repos.
-- `scripts/test_catalog.json`: one additional safe regression; no existing suite/exclusion changes.
-- `research/claude-deep-review/{README.md,deep-review-state.json}` and harness README: bootstrap truth and operating contract.
+The replacement retains 48 Tier-1 critical files, source risk signals, architecture/model/governance owners, related evidence and meaningful initial rotation. Tier counts are 48 / 341 / 234. Rotation includes 61 ordinary files. Eligible files not directly selected remain in the complete local map with direct deadlines; they are not excluded. Changed eligible files at this exact baseline versus its explicit unreviewed anchor: 0. Changed inclusion is vacuously complete; percentage has no denominator. Critical inclusion is 100%.
 
-Recommended targeted Opus questions: Can eligible bytes vanish? Are exclusions sufficiently narrow and evidenced? Are themes actual-content/cross-cutting rather than summaries? Can a routine audit bypass date/24h semantics? Can a trigger or ambiguity silently disappear? Can an interrupted/completed/truncated result be repaid or reset cadence? Can an unapproved total budget reach the key loader? Can hash/path/state handling be defeated? Do additive client hooks preserve targeted mode? Is synthesis explicit about missing passes, duplicate/corroborating evidence and conflicts?
+Selected original content is 3,241,135 bytes; packet cost also includes the complete compact map in each call, chunk metadata, conservative buffers and 4096 output tokens per call. This evidence exceeds the preferred $5–$8 target and $10 warning threshold. Required coverage was retained, not cut to meet price. The preview cannot send under its $10 guard; raising it is insufficient without an explicit explained owner override. The old $119.61 routine plan is rejected and current execution blocks its paid use.
 
-Do not reproduce production/model research, full FORCE suites, deep historical datasets or a whole-repository product audit. Do not read credentials, execute paid scripts or infer integration authority. This targeted infrastructure review should happen **before the first paid deep audit**; it has not been sent by this task.
+Cumulative completed direct coverage is still 0/623; all 623 files remain never directly reviewed. Oldest review age is null because there has been no completed audit. Tier-2/Tier-3 maximum intervals are 2/4 completed audits; full initial Tier-3 sweep is due within four. Baseline Tier-1 required entries are selected immediately. None of the previews resets cadence or records a review.
 
-## Mechanisms
+## Narrow infrastructure review scope
 
-Git-object policy includes readable source/config/tests/docs/methodology by default; unknown evidence remains included with visible ambiguity. Exclusions use named codes, not file size. Source-backed generated mirror/result exclusions require included truth owners; JSON test fixtures are reviewed. Binary, raw provider caches and numeric CSV fixture populations remain explicit scoped exclusions.
+Review this follow-up diff in `deep/selection.mjs`, `deep/plan.mjs`, `deep/run.mjs`, `deep/cadence.mjs`, `deep-review.mjs`, `deep/deep.test.mjs`, the baseline state and operating documentation. `deep/literal-plan-v1.mjs` preserves prior reconstruction only. Targeted client, transport/cache/reviewer/DPAPI interfaces are unchanged by this amendment.
 
-32 KiB lossless UTF8 chunks prefer lines and preserve BOM/CRLF. Greedy lexical content groups are bounded at 384 KiB; theme groups at 512 KiB; 1 MiB hard ceiling remains. Coverage proof reconstructs each eligible file’s original bytes and verifies ranges/shards. Each of four theme families carries the full compact inventory and deterministic source-backed context, with full selected files distributed across bounded subpasses.
+Ask: Can inventory/local map omit a target path? Can critical/changed/overdue files evade direct bytes? Do rotation deadlines survive target changes and never-reviewed files? Can failed/truncated/escalation work advance ledger ages? Is pinned snapshot reproduction stable after ledger updates? Can over-$10 or escalation sends reach credentials without separate explicit approval? Does complementary source partitioning make limitations clear and permit reviewer-triggered escalation? Are cumulative completed coverage and planned exposure labelled honestly?
 
-Cadence counts five owner-authorized SUBSTANTIVE integrations, not commits, or seven America/Chicago calendar dates. Routine completion/scheduling is suppressed inside elapsed 24h; explicit mandatory reviews are exempt. Ambiguous threshold decisions are surfaced. Bootstrap has no historical completion. Triggers require explicit classification across model, unit/QB, priors/SOS, providers, forecasts, playoffs, calibration, historical, Luck/FLAG/drives and runtime/release/trust.
+Do not reproduce deep FORCE model research, full historical datasets, production suites unrelated to harness safety, or paid API calls. Obtain this infrastructure review before the first paid deep audit; it was not sent here.
 
-Ignored immutable plans/packets and separate mutable run-state are pinned to target/manifest/packet/doctrine/tooling. Only an explicit one-pass `--send` can load the outside-repo DPAPI secret. Whole planned and reserved/pending/retry cost guards precede key access. Clean off-main tooling HEAD and local/tracking/direct-remote main are verified before request. Lock plus atomic pre-request intent makes crashes owner-action-required; results remain exclusive. Completed passes cannot resend. Failed/truncated retries require explicit rationale, preserve attempts and consume another conservative reservation. `max_tokens` is dedicated TRUNCATED_RESPONSE. No paid synthesis, scheduler or automatic retry exists.
+## Validation and artifacts
 
-Local synthesis retains raw finding IDs/provenance and produces mechanical duplicate/corroboration/conflict groups plus severity/subsystem/theme/path indexes. Missing results remain explicit. Cadence completion requires all required valid non-truncated artifacts and an explicit confirmation, and does not imply findings were resolved. Events after the reviewed snapshot remain pending.
+Mock tests retain original inventory/UTF8/path/pinning/secret/budget/resume/truncation/schema/cadence/synthesis protections and add deterministic tier/rotation, automatic changes, complete map, escalation, overdue/never-reviewed intervals, completion-only ages, first/incremental behavior and explained cost overrides. Tests use disposable Git repos, synthetic keys and injected responses; no owner key or Anthropic transport.
 
-## Validation and first preview checkpoint
+Run 003 artifacts and pinned one-pass scripts are generated after the follow-up commit at `research/claude-api-reviews/deep/FORCE-DEEP-2026-10-08-003/`. They contain the exact committed tooling HEAD, manifest/packet hashes, packet bytes/output caps/ceilings, selection reasons, map-only paths, complete inventory, due status and owner override requirements. Old 001 artifacts remain intact. Artifact directories are ignored; no results are tracked.
 
-Pinned validation runtime: Node 24.19.0. Existing targeted regression, new mocked deep suite, FORCE runtime/public-refresh regressions, inventory/catalog validation, syntax and whitespace checks are run independently. No production build outputs are rewritten. Exact test totals are in the final task report; mock requests are not Anthropic calls.
-
-Run ID: `FORCE-DEEP-2026-10-08-001`. Manifest SHA256: `3f073095a328454bb88a35c9ea80a678a9532c4d57ff8eed1747d51c24edc258`.
-
-- Tracked target files: **766**; included **623**; excluded **143**.
-- Included bytes **8,781,722**; excluded bytes **23,195,834**; uncovered eligible files **0**.
-- Exclusions: binary 12; exact public mirrors 27; numeric CSV fixture populations 2; generated research evidence 58; raw provider caches 44.
-- Calls planned: **27 coverage + 33 thematic = 60**; themes architecture 7, correctness 8, statistical/football 11, adversarial 7.
-- Default output cap 8192 tokens; $5 per-call guard; total conservative ceiling **$119.606864**, total guard **$200**.
-- Price assumptions frozen as of 2026-10-07; full prefix cache-write, no guaranteed cache hit. No paid synthesis.
-- Complete ignored plan, manifest, actual packets and exact pinned one-pass owner scripts are generated after the implementation commit at `research/claude-api-reviews/deep/FORCE-DEEP-2026-10-08-001/`. They pin the actual committed tooling HEAD, not a future placeholder. Status/resume/synthesis/completion scripts accompany them.
-
-This is a $0 preview, not a completed audit or authorization to spend. Cadence remains **DEEP REVIEW DUE — INITIAL BASELINE — NO COMPLETED DEEP REVIEW RECORDED**. The key is not read, paid scripts are not run, and no PR/merge/deploy is performed.
-Verified checkpoint: targeted harness **43/43**; deep suite **105 passed, 1 Unix-only skipped, 0 failed (106 total)**; catalog **261→262**, safe **149→150**, exclusions **112 unchanged**; runtime **15**, public-refresh UI/Worker **80**, backend **102** checks. Both wrappers and the three regressions also passed **5/5** through the isolated network-disabled catalog runner with worktree hashes unchanged. Harness syntax, local doc links and whitespace checks passed.
+Validation results and final commit identity are delivered in the task report. Catalog membership remains 262 entries / 150 safe / 112 default exclusions. Main, bank, targeted harness, production/model/public/runtime and workflow files remain unchanged. No PR, merge or deployment. Anthropic calls 0, spend $0, owner key not read.
