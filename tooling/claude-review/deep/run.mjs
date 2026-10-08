@@ -3,6 +3,8 @@ import path from 'node:path';
 import {hash,git,fail,isId,SHA,json,guarded,writeNew,atomic,readJSON,withLock,iso} from './util.mjs';
 import {buildPlan,HARD_LIMIT} from './plan.mjs';
 import {buildPlan as legacyPlan} from './literal-plan-v1.mjs';
+import {buildPlan as riskPlanV2} from './risk-plan-v2.mjs';
+import {BUDGET_POLICY} from './economics.mjs';
 import {REVIEW_POLICY} from './selection.mjs';
 import {requestReview,SYSTEM,upperCost} from '../client.mjs';
 import {DEEP_DOCTRINE,parseDeepReview} from './doctrine.mjs';
@@ -10,7 +12,7 @@ import {evaluate} from './cadence.mjs';
 export const ARTIFACTS='research/claude-api-reviews/deep';
 export function runDirectory(root,id,create=false){fail(isId(id),'INVALID_RUN_ID');const rel=ARTIFACTS+'/'+id;fail(git(root,['check-ignore','--no-index',rel+'/plan.json']).trim()===rel+'/plan.json','RUN_ARTIFACTS_MUST_BE_IGNORED');return guarded(root,rel,{directory:true,create});}
 export function createRun(root,built,cadence,now){
- const {plan,manifestText,packets}=built,dir=runDirectory(root,plan.runId,true);fail(fs.readdirSync(dir).length===0,'RUN_ALREADY_EXISTS: use status/resume; no overwrite.');
+ fail(built.plan.simulationOnly!==true,'SIMULATION_PLAN_CANNOT_CREATE_RUN_OR_PAID_COMMANDS');const {plan,manifestText,packets}=built,dir=runDirectory(root,plan.runId,true);fail(fs.readdirSync(dir).length===0,'RUN_ALREADY_EXISTS: use status/resume; no overwrite.');
  const saved={...plan,createdAt:iso(now),toolingHead:git(root,['rev-parse','HEAD']).trim(),due:evaluate(cadence,now),manifestFile:'coverage-manifest.json',preview:true};const planText=json(saved);
  writeNew(path.join(dir,'coverage-manifest.json'),manifestText);for(const [id,text]of packets)writeNew(path.join(dir,id+'.packet.json'),text);writeNew(path.join(dir,'plan.json'),planText);
  const state={schema:1,runId:plan.runId,planHash:hash(planText),passes:Object.fromEntries(plan.passes.map(p=>[p.id,{status:'PENDING',resultPath:null,attempts:[]}]))};writeNew(path.join(dir,'run-state.json'),state);return {dir,plan:saved,state};
@@ -19,7 +21,7 @@ function file(root,id,name){fail(/^[A-Za-z0-9_.-]+$/.test(name)&&!name.startsWit
 export function loadRun(root,id){
  const dir=runDirectory(root,id),planText=fs.readFileSync(file(root,id,'plan.json'),'utf8'),plan=JSON.parse(planText),state=readJSON(file(root,id,'run-state.json'));
  fail(plan.schema===1&&plan.runId===id&&state.schema===1&&state.runId===id&&state.planHash===hash(planText),'RUN_PLAN_STATE_MISMATCH');fail(SHA.test(plan.toolingHead)&&plan.reviewerHash===hash(SYSTEM)&&plan.doctrineHash===hash(DEEP_DOCTRINE),'TOOLING_DOCTRINE_DRIFT');
- const rebuilt=(plan.policy===REVIEW_POLICY?buildPlan:legacyPlan)(root,plan.target,{...plan.options,runId:id});for(const k of Object.keys(rebuilt.plan))fail(json(plan[k])===json(rebuilt.plan[k]),'PLAN_REPRODUCTION_MISMATCH: '+k);
+ const rebuilt=(plan.policy===REVIEW_POLICY?buildPlan:plan.policy==='force-risk-rotation-v2'?riskPlanV2:legacyPlan)(root,plan.target,{...plan.options,runId:id});for(const k of Object.keys(rebuilt.plan))fail(json(plan[k])===json(rebuilt.plan[k]),'PLAN_REPRODUCTION_MISMATCH: '+k);
  const manifestText=fs.readFileSync(file(root,id,plan.manifestFile),'utf8');fail(hash(manifestText)===plan.manifestHash&&manifestText===rebuilt.manifestText,'MANIFEST_TAMPER_OR_COVERAGE_DRIFT');
  fail(Object.keys(state.passes).sort().join('|')===plan.passes.map(p=>p.id).sort().join('|'),'RUN_PASS_SET_MISMATCH');
  for(const p of plan.passes){const text=fs.readFileSync(file(root,id,p.packetFile),'utf8');fail(hash(text)===p.packetSha256&&Buffer.byteLength(text)===p.packetBytes&&text===rebuilt.packets.get(p.id),'PACKET_TAMPER');const ps=state.passes[p.id];fail(['PENDING','COMPLETED','REQUEST_FAILED','INVALID_RESPONSE','TRUNCATED_RESPONSE','OWNER_ACTION_REQUIRED'].includes(ps.status)&&Array.isArray(ps.attempts),'INVALID_PASS_STATE');
@@ -50,7 +52,7 @@ export function verifySendEnvironment(root,plan,options,deps={}){
  const remote=inspect(root,['remote','get-url','origin']).trim();fail(/^(?:https:\/\/github\.com\/|git@github\.com:)(?:pfoeller\/force-nfl)(?:\.git)?$/.test(remote),'WRONG_FORCE_ORIGIN');
  fail(inspect(root,['ls-remote','origin','refs/heads/main']).trim().split(/\s+/)[0]===plan.target,'REMOTE_MAIN_MOVED');
 }
-export function authorizeBudget(exposure,options={}){fail(Number.isFinite(exposure)&&exposure>=0,'INVALID_COST_EXPOSURE');if(exposure>10)fail(options.budgetOverride===true&&typeof options.overrideReason==='string'&&options.overrideReason.trim().length>0,'OVER_10_OWNER_OVERRIDE_AND_EXPLANATION_REQUIRED_BEFORE_KEY');if(exposure>=100)fail(options.extraordinaryAuthorization===true,'ROUTINE_PLANNING_FAILURE_REQUIRES_EXTRAORDINARY_OWNER_AUTHORIZATION');}
+export function authorizeBudget(exposure,options={}){fail(Number.isFinite(exposure)&&exposure>=0,'INVALID_COST_EXPOSURE');fail(exposure<=BUDGET_POLICY.absoluteToolMaximumUsd,'ABSOLUTE_TOOL_BUDGET_MAXIMUM_EXCEEDED');if(exposure>10)fail(options.budgetOverride===true&&typeof options.overrideReason==='string'&&options.overrideReason.trim().length>0,'OVER_10_OWNER_OVERRIDE_AND_EXPLANATION_REQUIRED_BEFORE_KEY');if(exposure>=100)fail(options.extraordinaryAuthorization===true,'ROUTINE_PLANNING_FAILURE_REQUIRES_EXTRAORDINARY_OWNER_AUTHORIZATION');}
 export async function runPass(root,id,passId,options={},deps={}){
  fail(isId(passId),'EXACT_ONE_PASS_REQUIRED');const initial=loadRun(root,id),p=initial.plan.passes.find(p=>p.id===passId);fail(p,'UNKNOWN_PASS');
  if(options.send!==true)return {...status(initial),mode:'DRY_RUN',selectedPass:passId,apiCallsThisCommand:0,keyReads:0};
@@ -59,7 +61,7 @@ export async function runPass(root,id,passId,options={},deps={}){
   fail(ps.status==='PENDING'||options.retry===true&&typeof options.retryReason==='string'&&options.retryReason.trim(),'OWNER_ACTION_REQUIRED: failed/truncated/interrupted pass needs explicit --retry and rationale; no automatic retry.');
   fail(options.packetHash===p.packetSha256,'EXACT_PACKET_PIN_REQUIRED');
   const reserved=status(run).reservedCeilingUsd,remaining=run.plan.passes.filter(p=>run.state.passes[p.id].status==='PENDING').reduce((n,p)=>n+p.estimatedCeilingUsd,0),retry=ps.status!=='PENDING'?p.estimatedCeilingUsd:0;
-  fail(Number.isFinite(options.maxTotalUsd)&&options.maxTotalUsd>0&&run.plan.estimatedCeilingUsd<=options.maxTotalUsd&&reserved+remaining+retry<=options.maxTotalUsd,'TOTAL_COST_BUDGET_EXCEEDED; before key access.');
+  fail(Number.isFinite(options.maxTotalUsd)&&options.maxTotalUsd>0&&options.maxTotalUsd<=BUDGET_POLICY.absoluteToolMaximumUsd&&run.plan.estimatedCeilingUsd<=options.maxTotalUsd&&reserved+remaining+retry<=options.maxTotalUsd,'TOTAL_COST_BUDGET_EXCEEDED; before key access.');
   const exposure=Math.max(run.plan.estimatedCeilingUsd,reserved+remaining+retry);authorizeBudget(exposure,options);const text=fs.readFileSync(file(root,id,p.packetFile),'utf8'),cost=upperCost(Buffer.byteLength(text)+Buffer.byteLength(DEEP_DOCTRINE),p.maxTokens);fail(p.packetBytes<=HARD_LIMIT&&Number.isFinite(options.maxUsd)&&cost<=options.maxUsd&&cost<=p.maxUsd,'PER_CALL_COST_BUDGET_EXCEEDED; before key access.');
   (deps.environmentVerifier??verifySendEnvironment)(root,run.plan,options);
   const index=ps.attempts.length+1,attempt={index,time:new Date().toISOString(),status:'OWNER_ACTION_REQUIRED',reason:'Request intent persisted; interrupted outcome may be billable. No automatic resend.',packetHash:p.packetSha256,reservedUsd:p.estimatedCeilingUsd,apiCalls:null,retryReason:options.retryReason??null,budgetOverride:options.budgetOverride===true,overrideReason:options.overrideReason??null,extraordinaryAuthorization:options.extraordinaryAuthorization===true,escalationReason:options.escalationReason??null};ps.attempts.push(attempt);ps.status='OWNER_ACTION_REQUIRED';atomic(path.join(run.dir,'run-state.json'),run.state);
