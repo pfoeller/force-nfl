@@ -66,6 +66,24 @@ For future coding agents:
 9. Roadmap ordering is never blanket permission to continue automatically. Commits, publication, deployment, and production verification are separate actions subject to the active task's authorization.
 10. If an authorized prompt appears to bypass a roadmap dependency, phase order, or a `PRESERVE` constraint, state the conflict and confirm the intended scope with the owner before implementing. An explicit owner instruction governs once the conflict is acknowledged and scope is confirmed.
 
+### Implementer self-challenge / high-recall risk declaration
+
+Standing owner-authorized rule (2026-10-08): before independent review, every substantive Codex implementation must include a compact **IMPLEMENTER SELF-CHALLENGE / HIGH-RECALL RISK DECLARATION** in its handoff. This applies to important targeted Opus batches and periodic deep review, including review-infrastructure work. It does not change product priorities, review acceptance or owner authorization.
+
+> False-positive risk flags are cheap. Omitted plausible material risks are expensive.
+>
+> When uncertain whether something deserves independent reviewer attention, flag it.
+>
+> Uncertainty is itself a review-priority signal.
+
+State the highest-risk change; highest-blast-radius change; lowest-confidence assumption; most fragile validation/test; important validation not performed; most plausible hidden dependency/consumer; potentially affected parallel/cross-language implementation; an area whose output could remain plausible despite incorrect methodology; and what the independent reviewer should attack first. Do not claim safety because no defect has been demonstrated. Say what is genuinely inapplicable without verbose boilerplate.
+
+Use CRITICAL REVIEW, HIGH REVIEW, REVIEW or UNCERTAIN; UNCERTAIN is elevated attention, never reassurance. Where useful, include machine-readable risk IDs, paths/subsystem, failure mode, blast radius, implementation/validation confidence, priority and dependency/test/context evidence. The [risk-manifest contract](research/claude-deep-review/IMPLEMENTER_RISKS.md) defines the deep-planner schema; the [targeted workflow](tooling/claude-review/README.md#implementer-self-challenge-for-future-substantive-work) defines compact brief fields.
+
+**IMPLEMENTER SELF-ASSESSMENT MAY ONLY ADD REVIEW PRIORITY.** It never establishes an unflagged area as safe and never removes Tier-1, changed-file, deterministic/static-risk, required rotation, independently selected context or Claude-triggered escalation coverage. The implementer can share the blind spot that created the defect. Independent reviewers must receive the declaration with actual diff/evidence and independent review doctrine, and ask: **What material risk did the implementer fail to identify?** The declaration is useful evidence, not the boundary of review or spending/integration permission.
+
+Trivial cosmetic/docs-only housekeeping may be exempt only with explicit HOUSEKEEPING classification and a concrete rationale in its handoff. A Markdown extension alone does not establish housekeeping; model, methodology, authority, workflow or behavioral-contract changes are substantive. Exemption does not suppress independently required review or excuse unresolved flags. Missing required declarations are surfaced as uncertainty. Legacy unclassified handoffs remain readable; absence of a classification never means safe or exempt. This rule is prospective and does not rewrite historical acceptance or bank records.
+
 ## Roadmap status taxonomy
 
 Decision status and execution status are distinct fields; progress does not settle an open decision.
