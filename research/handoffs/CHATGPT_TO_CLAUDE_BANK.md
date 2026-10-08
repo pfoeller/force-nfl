@@ -735,3 +735,125 @@ status was changed. Machine-indexed API batches use `## API Batch: ID` and exact
 `Start SHA:` / `End SHA:` lines. Legacy bank sections are retained as history and
 are not automatically crawled into API packets. No paid review has occurred;
 API results never automatically change human disposition or roadmap authority.
+
+## API Batch: FORCE-CLAUDE-HARNESS-001
+Start SHA: d6b8c3513d045b731d3f04cb23b0edd807c78b35
+End SHA: 0b5cb2f4d96b529e35c2f5ff2ccee6e0d1cbe5af
+Date: 2026-10-07
+Title: Bounded FORCE Claude Opus 5.5 API review harness
+CLAUDE REVIEW: PENDING
+
+### Objective and owner direction
+
+Create the standing Codex evidence -> bounded Claude API review workflow, using
+hardened Alsos lessons and FORCE governance. The owner explicitly authorized this
+separate off-main infrastructure branch and its normal remote push. No PR,
+merge, main push, production change, deployment or real paid API request is
+included. The owner will supply the key through a hidden local prompt and may
+manually initiate the first paid review.
+
+### Exact review scope and provenance
+
+Frozen main: `39bc08e41fe3c1c8d57de385faa568733c52efc2`.
+The start checkpoint preserves this canonical ledger's historical bank snapshot
+from `bc39476623ee9808779fe4e9874fd95a4e7c4f31`, with provenance, and is deliberately
+excluded from the API diff to avoid spending review tokens on copied bank history.
+No bank implementation or acceptance was published. This API entry is a later
+ledger-only checkpoint; its own commit is obtained from Git history, not a
+self-referential hash. Preserve newer bank records when reconciling branches.
+
+Exact implementation files in Start..End:
+- `.dockerignore`
+- `.gitignore`
+- `scripts/TESTING.md`
+- `scripts/test_catalog.json`
+- `scripts/test_claude_api_review.mjs`
+- `tooling/claude-review/README.md`
+- `tooling/claude-review/client.mjs`
+- `tooling/claude-review/config.mjs`
+- `tooling/claude-review/harness-brief.json`
+- `tooling/claude-review/harness.test.mjs`
+- `tooling/claude-review/packet.mjs`
+- `tooling/claude-review/read-secret.ps1`
+- `tooling/claude-review/review.mjs`
+- `tooling/claude-review/reviewer.txt`
+- `tooling/claude-review/secret-storage.ps1`
+- `tooling/claude-review/setup-secret.ps1`
+
+This handoff path is the only additional file across the whole off-main chain.
+No roadmap ID, owner decision, production source/model/data/public fixture,
+formula, weight, simulation or generated browser output changed. Ignore rules
+exclude local review records from Git and Docker; there is no dependency or
+version bump. No model, historical Brier or calibration change is claimed.
+
+### Tooling and mathematical assumptions
+
+Windows current-user DPAPI encrypted key, private pipe, protected user/SYSTEM
+ACLs; no existing owner secret accessed. Native Node ESM builds exact-SHA bounded
+packets with selected evidence, strict repository/worktree identity, tracked
+clean-state check, traversal/sensitive/binary guards and explicit paid-send.
+Responses are schema/scope/verdict-consistency checked. Unsafe prose is withheld
+while independently safe billing metadata survives; no retry or automatic human
+acceptance. Unrelated stale indexed history warns/skips; explicit stale selection
+fails. Historic non-indexed bank sections are retained, not automatically crawled.
+
+Global Standard Opus 5.5 prices checked in official Anthropic docs 2026-10-07:
+input/output USD 4/20 per million tokens, cache writes 5/8 for 5m/1h, reads .20
+(0.05x normal input). Byte-as-token budgeting plus reserves/full output cap is a
+conservative estimate, not an invoice or API spend lock. Default 128 KiB packet,
+8192 output tokens, $1 estimate ceiling; 5m stable system-prefix caching, no Fast.
+
+### Validation evidence
+
+Pinned Node 24.19.0; FORCE's existing isolated/network-disabled test runner:
+
+```text
+node scripts/run_tests.mjs --test test_claude_api_review.mjs --test test_runtime.cjs --test test_md08_model_display_separation.mjs --test test_v141_bootstrap_identity.js --test test_v149_bootstrap_snapshot.mjs --test test_v149_release_hardening.mjs --test test_v149_public_refresh.mjs
+```
+
+Result: **7 passed, 0 failed**, worktree status/file hashes unchanged. The harness
+wrapper covers 37 named cases, including mocked auth/network/schema failures,
+credential echoes with billing preservation, stale history, paths, budgets,
+explicit-send, cache accounting, identity/ancestry and real disposable Windows
+DPAPI setup/read/ACL/removal. Initial standalone 34-case run passed before three
+additional boundary cases were added and the final registered wrapper passed.
+All HTTP behavior is mocked; synthetic key only, zero real API calls/credit.
+The initial Windows short-path alias bug was corrected with native realpath;
+no repository boundary was relaxed.
+
+`node scripts/run_tests.mjs --inventory`: catalog **261**, safe **149**, exclusions
+**112**. Existing catalog entries/baseline/membership/order preserved; new test is
+safe only. Normal model/release/QB/snapshot/server selection counts unchanged.
+Changed .mjs plus wrapper `node --check`: PASS. PowerShell AST checks: PASS.
+Canonical `scripts/build_public.py` in external Git-archive LF scratch reproduced
+**33/33 public files byte-identically**. No public source/generated file changed.
+`git diff --check`: PASS. Manual bounded diff/credential-payload inspection: PASS.
+Historical ledger text matches the bank snapshot after LF normalization.
+
+Expected/accounted failures: none in final bounded validation. The first sandbox
+storage attempt lacked Windows ACL permissions; disposable storage passed under
+the normal user permissions. No unrelated full safe/model families were rerun;
+this tooling did not change production. Known V77 CRLF behavior was not exercised
+or modified. No real Anthropic auth, workspace association, model access or cache
+hit is claimed verified.
+
+### Artifacts, risks and open decisions
+
+Tracked brief/doctrine/config/tests are the evidence. Ignored
+`research/claude-api-reviews/` will hold dry-run packets and safe structured results.
+No paid review artifact exists. Key storage outside Git is not copied into this
+branch. Same-user processes can decrypt DPAPI; pattern guards are not complete
+DLP. Claude sees supplied text only, not an executable checkout. Prices may
+change. Bank-only package links/SHAs require the bank checkout. Future integration
+must reconcile ledger snapshots and preserve all gates. No review disposition,
+roadmap authority, deployment or model decision is made by an API response.
+
+### What Claude should review / need not reproduce
+
+Challenge safe handling of prose versus telemetry, explicit-send/key boundaries,
+identity/ancestry/pin checks, stale indexed batches, traversal/junction safety,
+response schema/verdict consistency, budget/pricing/cache assumptions and the
+canonical-ledger reuse. Judge whether this evidence supports manual first use.
+Do not redo unrelated bank/model investigations or simulations, claim executed
+checks, or resolve owner decisions. Review verdict and later human disposition
+remain separate. Default and current status: **CLAUDE REVIEW: PENDING**.
