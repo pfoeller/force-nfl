@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import {fail,json,readJSON,atomic,guarded,withLock,iso,SHA} from './deep/util.mjs';
+import {identity,noSecrets} from './packet.mjs';
+import {buildPlan} from './deep/plan.mjs';
+import {STATE_PATH,initialize,evaluate,refresh,recordIntegration,classifyIntegration,recordTrigger,clearTrigger,completeCadence} from './deep/cadence.mjs';
+import {createRun,loadRun,status,runPass,verifyCompletion,ownerScripts} from './deep/run.mjs';
+import {synthesize} from './deep/synthesis.mjs';
+export const ROOT=fileURLToPath(new URL('../../',import.meta.url));
+const COMMANDS=['status','evaluate','initialize','record-integration','classify-integration','record-trigger','clear-trigger','plan','run-status','resume','pass','synthesize','complete','owner-scripts'];
+const OPTIONS={status:[],evaluate:['now'],initialize:['target','now'], 'record-integration':['event','now'],'classify-integration':['id','classification','rationale','now'],'record-trigger':['id','category','rationale','now'],'clear-trigger':['id','rationale','now'],plan:['target','run','now','max-usd','max-total-usd','max-tokens'], 'run-status':['run'],resume:['run'],pass:['run','pass','send','dry-run','tooling-head','target','manifest-hash','packet-hash','max-usd','max-total-usd','retry','retry-reason'],synthesize:['run'],complete:['run','confirm-complete','now'],'owner-scripts':['run']};
+export function parseArgs(args){
+ if(args.includes('--help'))return {help:true};const command=args[0]??'status';fail(COMMANDS.includes(command),'UNKNOWN_COMMAND; no send-all command exists.');const values={};
+ for(let i=1;i<args.length;i++){const flag=args[i];fail(flag.startsWith('--')&&OPTIONS[command].includes(flag.slice(2))&&!Object.hasOwn(values,flag.slice(2)),'UNKNOWN_OR_DUPLICATE_OPTION');const k=flag.slice(2);if(['send','dry-run','retry','confirm-complete'].includes(k))values[k]=true;else{fail(i+1<args.length&&!args[i+1].startsWith('--'),'MISSING_OPTION_VALUE');values[k]=args[++i];}}
+ fail(!(values.send&&values['dry-run']),'CONFLICTING_SPEND_MODES');return {command,values};
+}
+const numeric=(v,fallback)=>{const n=v===undefined?fallback:Number(v);fail(Number.isFinite(n)&&n>0,'INVALID_NUMERIC_OPTION');return n;};
+export async function main(args=process.argv.slice(2),root=ROOT){
+ const a=parseArgs(args);if(a.help){return {commands:COMMANDS,doctrine:'Default/status/plan/pass without --send spend $0. pass --send sends exactly ONE explicitly pinned pass. No send-all, cron or retry loop. Read research/claude-deep-review/README.md.'};}
+ const v=a.values,now=iso(v.now??new Date().toISOString());identity(root,ROOT);const file=guarded(root,STATE_PATH),state=fs.existsSync(file)?readJSON(file):null;
+ if(a.command==='status')return evaluate(state,now);
+ if(a.command==='plan'){fail(SHA.test(v.target),'EXACT_TARGET_REQUIRED');fail(identity(root,ROOT).branch!=='main','PLAN_ON_TOOLING_BRANCH_ONLY');const built=buildPlan(root,v.target,{runId:v.run,maxUsd:numeric(v['max-usd'],5),maxTotalUsd:numeric(v['max-total-usd'],200),maxTokens:numeric(v['max-tokens'],8192)}),run=createRun(root,built,state,now);return {artifactDirectory:run.dir,...run.plan,apiCalls:0,keyReads:0,spendUsd:0};}
+ if(a.command==='run-status'||a.command==='resume')return status(loadRun(root,v.run));
+ if(a.command==='pass')return runPass(root,v.run,v.pass,{send:v.send===true,retry:v.retry===true,retryReason:v['retry-reason'],toolingHead:v['tooling-head'],target:v.target,manifestHash:v['manifest-hash'],packetHash:v['packet-hash'],maxUsd:numeric(v['max-usd'],5),maxTotalUsd:numeric(v['max-total-usd'],200)});
+ if(a.command==='synthesize')return synthesize(root,v.run);
+ if(a.command==='owner-scripts')return {scripts:ownerScripts(root,v.run,process.execPath,fileURLToPath(import.meta.url)),apiCalls:0};
+ fail(identity(root,ROOT).branch!=='main','CADENCE_UPDATES_MUST_NOT_EDIT_MAIN');
+ return withLock(file+'.lock',()=>{const latest=fs.existsSync(file)?readJSON(file):null;let next;
+  switch(a.command){case 'initialize':fail(!latest,'BASELINE_ALREADY_INITIALIZED');next=initialize(v.target,now);break;case 'evaluate':next=refresh(latest,now);break;case 'record-integration':{const event=readJSON(guarded(root,v.event));noSecrets(json(event));next=recordIntegration(latest,event,now);break;}case 'classify-integration':next=classifyIntegration(latest,v.id,v.classification,v.rationale,now);break;case 'record-trigger':next=recordTrigger(latest,{id:v.id,category:v.category,rationale:v.rationale,time:now},now);break;case 'clear-trigger':next=clearTrigger(latest,v.id,v.rationale,now);break;case 'complete':next=completeCadence(latest,verifyCompletion(root,v.run),now,v['confirm-complete']);break;default:throw new Error('UNHANDLED_COMMAND');}noSecrets(json(next));atomic(file,next);return next.lastEvaluation;
+ });
+}
+if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url)main().then(v=>{console.log(json(v));if(v?.status&&['REQUEST_FAILED','INVALID_RESPONSE','TRUNCATED_RESPONSE','OWNER_ACTION_REQUIRED'].includes(v.status))process.exitCode=2;}).catch(e=>{try{console.error(noSecrets(e.message));}catch{console.error('Unsafe error withheld.');}process.exitCode=2;});

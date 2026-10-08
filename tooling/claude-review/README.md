@@ -243,3 +243,7 @@ setup as the same user, inspect permissions/path without printing plaintext.
 Unsafe/invalid response: inspect the saved reason and safe telemetry; do not
 relabel it ACCEPTED or automatically resend. On disk/OS failure after sending,
 consult Anthropic Console billing; never assume an absent file means no charge.
+
+## Periodic deep fresh-eyes mode
+
+The additive [deep-review mode](../../research/claude-deep-review/README.md) provides deterministic repository-wide actual-content coverage plus four thematic families. It preserves this targeted interface and stable reviewer prefix. Cadence/status/preview/synthesis spend $0; paid sends are explicit, pinned, one pass at a time with total and per-call guards. No scheduler or paid synthesis exists. See the [implementation brief](../../research/claude-deep-review/IMPLEMENTATION_BRIEF.md) before authorizing the first audit.

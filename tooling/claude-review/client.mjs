@@ -56,7 +56,7 @@ async function boundedJson(response){
  try{return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Buffer.concat(chunks)));}catch{throw new Error('INVALID_API_JSON');}
 }
 export async function requestReview(packet,options={},deps={}){
- const maxTokens=options.maxTokens??CONFIG.maxOutputTokens,bound=upperCost(packet.bytes,maxTokens,options.cache!==false);
+ const maxTokens=options.maxTokens??CONFIG.maxOutputTokens,bound=upperCost(packet.bytes+Buffer.byteLength(options.systemSuffix??''),maxTokens,options.cache!==false);
  if(bound>(options.maxUsd??CONFIG.maxEstimatedUsd))throw new Error('COST_BUDGET_EXCEEDED; nothing sent.');
  if(options.send!==true&&!deps.fetcher)throw new Error('EXPLICIT_SEND_REQUIRED; nothing sent.');
  let key;
@@ -65,6 +65,7 @@ export async function requestReview(packet,options={},deps={}){
  try{
   noSecrets(packet.packet,key);
   const body={model:CONFIG.model,max_tokens:maxTokens,service_tier:'standard_only',system:[{type:'text',text:SYSTEM,...(options.cache===false?{}:{cache_control:{type:'ephemeral'}})}],messages:[{role:'user',content:packet.packet}]};
+  if(options.systemSuffix)body.system.push({type:'text',text:options.systemSuffix});
   noSecrets(JSON.stringify(body),key);let response;
   try{response=await(deps.fetcher??globalThis.fetch)(CONFIG.endpoint,{method:'POST',headers:{'content-type':'application/json','anthropic-version':CONFIG.apiVersion,'x-api-key':key},body:JSON.stringify(body),redirect:'error',signal:AbortSignal.timeout(CONFIG.timeoutMs)});}
   catch{return {status:'REQUEST_FAILED',reason:'NETWORK_OR_TIMEOUT; no retry; billing may be uncertain',review:null,text:null,telemetry:null,apiCalls:1};}
@@ -76,7 +77,7 @@ export async function requestReview(packet,options={},deps={}){
   try{noSecrets(JSON.stringify(raw),key);}catch{return invalid('UNSAFE_RESPONSE_CONTENT_WITHHELD');}
   if(!raw||raw.type!=='message'||raw.model!==CONFIG.model||raw.stop_reason!=='end_turn'||raw.stop_details?.type==='refusal'||!Array.isArray(raw.content)||raw.content.some(b=>!b||!['text','thinking','redacted_thinking'].includes(b.type)||b.type==='text'&&typeof b.text!=='string')||telemetry.omittedUnsafeFields.length)return invalid('INVALID_API_SCHEMA_MODEL_OR_COMPLETION');
   const text=raw.content.filter(b=>b.type==='text').map(b=>b.text).join('\n');
-  try{noSecrets(text,key);const review=parseReview(text,packet);return {status:'REVIEW_COMPLETED',reason:null,review,text,telemetry,apiCalls:1};}
+  try{noSecrets(text,key);const review=(deps.reviewParser??parseReview)(text,packet);return {status:'REVIEW_COMPLETED',reason:null,review,text,telemetry,apiCalls:1};}
   catch(e){return invalid(e.message);}
  }finally{key=null;} // JS strings cannot be securely zeroed; never serialize or log the key.
 }
